@@ -1,0 +1,30 @@
+# ⚠️ .gitignore 不支持行内注释！
+# 写成 `figs/   # 说明` 会被当成「名叫 figs/   # 说明 的目录」，规则失效。
+# 2026-09-12 就是这么差点把 IEEE 版权的论文原图提交进来的。注释一律单独一行。
+
+# ===== 大文件：可重新生成，不入库 =====
+# *.npz 训练数据，gen_data.py 两分钟重生成
+*.npz
+# *.pt 模型检查点，每个约 9 MB
+*.pt
+# 所有图都由 slides/make_*.py 现场生成；论文原图是 IEEE 版权，更不能入库
+figs/
+slides/figs/
+slides/node_modules/
+node_modules/
+__pycache__/
+
+# ===== 这两类要提交，它们是「有数据支撑」的一部分 =====
+# *_hist.json      训练曲线，几 KB
+# spectral_*.json  谱半径与寿命测量，几 KB
+
+# ===== 论文 PDF 本身也不入库 =====
+*.pdf
+
+# ===== 杂项 =====
+*.log
+_*.log
+* (1).*
+Thumbs.db
+desktop.ini
+~$*
