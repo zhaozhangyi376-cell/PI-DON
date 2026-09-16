@@ -1,0 +1,317 @@
+{
+  "schema": "pidon-n1-contract-audit-v1",
+  "lab_log_run": 202,
+  "required_ids": [
+    "C01",
+    "C02",
+    "C03",
+    "C04",
+    "C05",
+    "C06",
+    "C07",
+    "C08",
+    "C09",
+    "C10",
+    "C11",
+    "C12",
+    "C13",
+    "C14",
+    "C15"
+  ],
+  "checks": [
+    {
+      "id": "C01",
+      "expected": "total physical R 严格小于门槛",
+      "test_id": "test_component_loss_cannot_pass_when_physical_total_R_fails",
+      "observed": {
+        "lab_run": 202,
+        "exit_code": 0
+      },
+      "status": "PASS",
+      "run_id": 202,
+      "source_hash": {
+        "pidon_solve.py": "c79b0d13006f76957a0156b8dcfc6dada48d250e999f61d075c58ccd65254685",
+        "pidon_contract.py": "6d4d19222f956ba69a93db9d296305f96a54963050c2020a55859bdfd3d1d03c",
+        "pidon_recording.py": "499b30a895e686b75789a6333ae5ee6d3cdaff9f668cb07b1e339d790eca2a21",
+        "fdtd.py": "9837dbe51bdbc89ab2a12c147debfb10b5db1d07ebc726d18ee1962ecda1e7a8",
+        "dco.py": "53eb1c7d7ea0ed33f4e6c279554cb1adaf4a86134b8dc60fd67f6ce39525941d"
+      },
+      "evidence_path": "lab_runs.jsonl"
+    },
+    {
+      "id": "C02",
+      "expected": "仅完整零输入/零靶值走捷径",
+      "test_id": "test_nonzero_irrotational_input_is_not_zero_shortcut",
+      "observed": {
+        "lab_run": 202,
+        "exit_code": 0
+      },
+      "status": "PASS",
+      "run_id": 202,
+      "source_hash": {
+        "pidon_solve.py": "c79b0d13006f76957a0156b8dcfc6dada48d250e999f61d075c58ccd65254685",
+        "pidon_contract.py": "6d4d19222f956ba69a93db9d296305f96a54963050c2020a55859bdfd3d1d03c",
+        "pidon_recording.py": "499b30a895e686b75789a6333ae5ee6d3cdaff9f668cb07b1e339d790eca2a21",
+        "fdtd.py": "9837dbe51bdbc89ab2a12c147debfb10b5db1d07ebc726d18ee1962ecda1e7a8",
+        "dco.py": "53eb1c7d7ea0ed33f4e6c279554cb1adaf4a86134b8dc60fd67f6ce39525941d"
+      },
+      "evidence_path": "lab_runs.jsonl"
+    },
+    {
+      "id": "C03",
+      "expected": "H失败不改变E、源或H",
+      "test_id": "test_h_failure_does_not_advance_transaction",
+      "observed": {
+        "lab_run": 202,
+        "exit_code": 0
+      },
+      "status": "PASS",
+      "run_id": 202,
+      "source_hash": {
+        "pidon_solve.py": "c79b0d13006f76957a0156b8dcfc6dada48d250e999f61d075c58ccd65254685",
+        "pidon_contract.py": "6d4d19222f956ba69a93db9d296305f96a54963050c2020a55859bdfd3d1d03c",
+        "pidon_recording.py": "499b30a895e686b75789a6333ae5ee6d3cdaff9f668cb07b1e339d790eca2a21",
+        "fdtd.py": "9837dbe51bdbc89ab2a12c147debfb10b5db1d07ebc726d18ee1962ecda1e7a8",
+        "dco.py": "53eb1c7d7ea0ed33f4e6c279554cb1adaf4a86134b8dc60fd67f6ce39525941d"
+      },
+      "evidence_path": "lab_runs.jsonl"
+    },
+    {
+      "id": "C04",
+      "expected": "E_pending不重复源或E更新",
+      "test_id": "test_e_pending_resume_does_not_repeat_source_or_e_update",
+      "observed": {
+        "lab_run": 202,
+        "exit_code": 0
+      },
+      "status": "PASS",
+      "run_id": 202,
+      "source_hash": {
+        "pidon_solve.py": "c79b0d13006f76957a0156b8dcfc6dada48d250e999f61d075c58ccd65254685",
+        "pidon_contract.py": "6d4d19222f956ba69a93db9d296305f96a54963050c2020a55859bdfd3d1d03c",
+        "pidon_recording.py": "499b30a895e686b75789a6333ae5ee6d3cdaff9f668cb07b1e339d790eca2a21",
+        "fdtd.py": "9837dbe51bdbc89ab2a12c147debfb10b5db1d07ebc726d18ee1962ecda1e7a8",
+        "dco.py": "53eb1c7d7ea0ed33f4e6c279554cb1adaf4a86134b8dc60fd67f6ce39525941d"
+      },
+      "evidence_path": "lab_runs.jsonl"
+    },
+    {
+      "id": "C05",
+      "expected": "Adam中断真实状态恢复一致",
+      "test_id": "test_interrupted_adam_resume_matches_uninterrupted_trajectory",
+      "observed": {
+        "lab_run": 202,
+        "exit_code": 0
+      },
+      "status": "PASS",
+      "run_id": 202,
+      "source_hash": {
+        "pidon_solve.py": "c79b0d13006f76957a0156b8dcfc6dada48d250e999f61d075c58ccd65254685",
+        "pidon_contract.py": "6d4d19222f956ba69a93db9d296305f96a54963050c2020a55859bdfd3d1d03c",
+        "pidon_recording.py": "499b30a895e686b75789a6333ae5ee6d3cdaff9f668cb07b1e339d790eca2a21",
+        "fdtd.py": "9837dbe51bdbc89ab2a12c147debfb10b5db1d07ebc726d18ee1962ecda1e7a8",
+        "dco.py": "53eb1c7d7ea0ed33f4e6c279554cb1adaf4a86134b8dc60fd67f6ce39525941d"
+      },
+      "evidence_path": "lab_runs.jsonl"
+    },
+    {
+      "id": "C06",
+      "expected": "LBFGS中断保存raw并回滚完整调用",
+      "test_id": "test_lbfgs_budget_interrupt_restores_last_completed_call",
+      "observed": {
+        "lab_run": 202,
+        "exit_code": 0
+      },
+      "status": "PASS",
+      "run_id": 202,
+      "source_hash": {
+        "pidon_solve.py": "c79b0d13006f76957a0156b8dcfc6dada48d250e999f61d075c58ccd65254685",
+        "pidon_contract.py": "6d4d19222f956ba69a93db9d296305f96a54963050c2020a55859bdfd3d1d03c",
+        "pidon_recording.py": "499b30a895e686b75789a6333ae5ee6d3cdaff9f668cb07b1e339d790eca2a21",
+        "fdtd.py": "9837dbe51bdbc89ab2a12c147debfb10b5db1d07ebc726d18ee1962ecda1e7a8",
+        "dco.py": "53eb1c7d7ea0ed33f4e6c279554cb1adaf4a86134b8dc60fd67f6ce39525941d"
+      },
+      "evidence_path": "lab_runs.jsonl"
+    },
+    {
+      "id": "C07",
+      "expected": "耗尽预算/终态不可继续训练",
+      "test_id": "test_exhausted_inner_budget_is_rejected_before_resume",
+      "observed": {
+        "lab_run": 202,
+        "exit_code": 0
+      },
+      "status": "PASS",
+      "run_id": 202,
+      "source_hash": {
+        "pidon_solve.py": "c79b0d13006f76957a0156b8dcfc6dada48d250e999f61d075c58ccd65254685",
+        "pidon_contract.py": "6d4d19222f956ba69a93db9d296305f96a54963050c2020a55859bdfd3d1d03c",
+        "pidon_recording.py": "499b30a895e686b75789a6333ae5ee6d3cdaff9f668cb07b1e339d790eca2a21",
+        "fdtd.py": "9837dbe51bdbc89ab2a12c147debfb10b5db1d07ebc726d18ee1962ecda1e7a8",
+        "dco.py": "53eb1c7d7ea0ed33f4e6c279554cb1adaf4a86134b8dc60fd67f6ce39525941d"
+      },
+      "evidence_path": "lab_runs.jsonl"
+    },
+    {
+      "id": "C08",
+      "expected": "非有限梯度/参数保留raw并回滚",
+      "test_id": "test_nonfinite_parameter_after_step_is_raw_then_rolled_back",
+      "observed": {
+        "lab_run": 202,
+        "exit_code": 0
+      },
+      "status": "PASS",
+      "run_id": 202,
+      "source_hash": {
+        "pidon_solve.py": "c79b0d13006f76957a0156b8dcfc6dada48d250e999f61d075c58ccd65254685",
+        "pidon_contract.py": "6d4d19222f956ba69a93db9d296305f96a54963050c2020a55859bdfd3d1d03c",
+        "pidon_recording.py": "499b30a895e686b75789a6333ae5ee6d3cdaff9f668cb07b1e339d790eca2a21",
+        "fdtd.py": "9837dbe51bdbc89ab2a12c147debfb10b5db1d07ebc726d18ee1962ecda1e7a8",
+        "dco.py": "53eb1c7d7ea0ed33f4e6c279554cb1adaf4a86134b8dc60fd67f6ce39525941d"
+      },
+      "evidence_path": "lab_runs.jsonl"
+    },
+    {
+      "id": "C09",
+      "expected": "schema、角色和冻结配置不合即拒绝",
+      "test_id": "test_payload_schema_and_independent_run_identity_are_explicit",
+      "observed": {
+        "lab_run": 202,
+        "exit_code": 0
+      },
+      "status": "PASS",
+      "run_id": 202,
+      "source_hash": {
+        "pidon_solve.py": "c79b0d13006f76957a0156b8dcfc6dada48d250e999f61d075c58ccd65254685",
+        "pidon_contract.py": "6d4d19222f956ba69a93db9d296305f96a54963050c2020a55859bdfd3d1d03c",
+        "pidon_recording.py": "499b30a895e686b75789a6333ae5ee6d3cdaff9f668cb07b1e339d790eca2a21",
+        "fdtd.py": "9837dbe51bdbc89ab2a12c147debfb10b5db1d07ebc726d18ee1962ecda1e7a8",
+        "dco.py": "53eb1c7d7ea0ed33f4e6c279554cb1adaf4a86134b8dc60fd67f6ce39525941d"
+      },
+      "evidence_path": "lab_runs.jsonl"
+    },
+    {
+      "id": "C10",
+      "expected": "独立run UUID与稳定protocol hash分离",
+      "test_id": "test_payload_schema_and_independent_run_identity_are_explicit",
+      "observed": {
+        "lab_run": 202,
+        "exit_code": 0
+      },
+      "status": "PASS",
+      "run_id": 202,
+      "source_hash": {
+        "pidon_solve.py": "c79b0d13006f76957a0156b8dcfc6dada48d250e999f61d075c58ccd65254685",
+        "pidon_contract.py": "6d4d19222f956ba69a93db9d296305f96a54963050c2020a55859bdfd3d1d03c",
+        "pidon_recording.py": "499b30a895e686b75789a6333ae5ee6d3cdaff9f668cb07b1e339d790eca2a21",
+        "fdtd.py": "9837dbe51bdbc89ab2a12c147debfb10b5db1d07ebc726d18ee1962ecda1e7a8",
+        "dco.py": "53eb1c7d7ea0ed33f4e6c279554cb1adaf4a86134b8dc60fd67f6ce39525941d"
+      },
+      "evidence_path": "lab_runs.jsonl"
+    },
+    {
+      "id": "C11",
+      "expected": "JSONL后metadata崩溃扫描真实尾行",
+      "test_id": "test_jsonl_commit_crash_recovers_unique_next_sequence_and_tail",
+      "observed": {
+        "lab_run": 202,
+        "exit_code": 0
+      },
+      "status": "PASS",
+      "run_id": 202,
+      "source_hash": {
+        "pidon_solve.py": "c79b0d13006f76957a0156b8dcfc6dada48d250e999f61d075c58ccd65254685",
+        "pidon_contract.py": "6d4d19222f956ba69a93db9d296305f96a54963050c2020a55859bdfd3d1d03c",
+        "pidon_recording.py": "499b30a895e686b75789a6333ae5ee6d3cdaff9f668cb07b1e339d790eca2a21",
+        "fdtd.py": "9837dbe51bdbc89ab2a12c147debfb10b5db1d07ebc726d18ee1962ecda1e7a8",
+        "dco.py": "53eb1c7d7ea0ed33f4e6c279554cb1adaf4a86134b8dc60fd67f6ce39525941d"
+      },
+      "evidence_path": "lab_runs.jsonl"
+    },
+    {
+      "id": "C12",
+      "expected": "截断、错序、重复和NaN JSONL拒绝",
+      "test_id": "test_recorder_rejects_nonfinite_jsonl_constant_on_resume",
+      "observed": {
+        "lab_run": 202,
+        "exit_code": 0
+      },
+      "status": "PASS",
+      "run_id": 202,
+      "source_hash": {
+        "pidon_solve.py": "c79b0d13006f76957a0156b8dcfc6dada48d250e999f61d075c58ccd65254685",
+        "pidon_contract.py": "6d4d19222f956ba69a93db9d296305f96a54963050c2020a55859bdfd3d1d03c",
+        "pidon_recording.py": "499b30a895e686b75789a6333ae5ee6d3cdaff9f668cb07b1e339d790eca2a21",
+        "fdtd.py": "9837dbe51bdbc89ab2a12c147debfb10b5db1d07ebc726d18ee1962ecda1e7a8",
+        "dco.py": "53eb1c7d7ea0ed33f4e6c279554cb1adaf4a86134b8dc60fd67f6ce39525941d"
+      },
+      "evidence_path": "lab_runs.jsonl"
+    },
+    {
+      "id": "C13",
+      "expected": "两槽新指针失败时仍读回旧槽",
+      "test_id": "test_rolling_checkpoint_pointer_keeps_prior_slot_if_new_pointer_fails",
+      "observed": {
+        "lab_run": 202,
+        "exit_code": 0
+      },
+      "status": "PASS",
+      "run_id": 202,
+      "source_hash": {
+        "pidon_solve.py": "c79b0d13006f76957a0156b8dcfc6dada48d250e999f61d075c58ccd65254685",
+        "pidon_contract.py": "6d4d19222f956ba69a93db9d296305f96a54963050c2020a55859bdfd3d1d03c",
+        "pidon_recording.py": "499b30a895e686b75789a6333ae5ee6d3cdaff9f668cb07b1e339d790eca2a21",
+        "fdtd.py": "9837dbe51bdbc89ab2a12c147debfb10b5db1d07ebc726d18ee1962ecda1e7a8",
+        "dco.py": "53eb1c7d7ea0ed33f4e6c279554cb1adaf4a86134b8dc60fd67f6ce39525941d"
+      },
+      "evidence_path": "lab_runs.jsonl"
+    },
+    {
+      "id": "C14",
+      "expected": "failure_raw不改正式恢复指针且E用E尝试号",
+      "test_id": "test_failure_raw_does_not_claim_a_recovery_checkpoint",
+      "observed": {
+        "lab_run": 202,
+        "exit_code": 0
+      },
+      "status": "PASS",
+      "run_id": 202,
+      "source_hash": {
+        "pidon_solve.py": "c79b0d13006f76957a0156b8dcfc6dada48d250e999f61d075c58ccd65254685",
+        "pidon_contract.py": "6d4d19222f956ba69a93db9d296305f96a54963050c2020a55859bdfd3d1d03c",
+        "pidon_recording.py": "499b30a895e686b75789a6333ae5ee6d3cdaff9f668cb07b1e339d790eca2a21",
+        "fdtd.py": "9837dbe51bdbc89ab2a12c147debfb10b5db1d07ebc726d18ee1962ecda1e7a8",
+        "dco.py": "53eb1c7d7ea0ed33f4e6c279554cb1adaf4a86134b8dc60fd67f6ce39525941d"
+      },
+      "evidence_path": "lab_runs.jsonl"
+    },
+    {
+      "id": "C15",
+      "expected": "持久deadline和任务累计额度不重置",
+      "test_id": "test_training_stops_at_nine_and_a_half_hours",
+      "observed": {
+        "lab_run": 202,
+        "exit_code": 0
+      },
+      "status": "PASS",
+      "run_id": 202,
+      "source_hash": {
+        "pidon_solve.py": "c79b0d13006f76957a0156b8dcfc6dada48d250e999f61d075c58ccd65254685",
+        "pidon_contract.py": "6d4d19222f956ba69a93db9d296305f96a54963050c2020a55859bdfd3d1d03c",
+        "pidon_recording.py": "499b30a895e686b75789a6333ae5ee6d3cdaff9f668cb07b1e339d790eca2a21",
+        "fdtd.py": "9837dbe51bdbc89ab2a12c147debfb10b5db1d07ebc726d18ee1962ecda1e7a8",
+        "dco.py": "53eb1c7d7ea0ed33f4e6c279554cb1adaf4a86134b8dc60fd67f6ce39525941d"
+      },
+      "evidence_path": "lab_runs.jsonl"
+    }
+  ],
+  "status": "PASS",
+  "source_hashes": {
+    "pidon_solve.py": "c79b0d13006f76957a0156b8dcfc6dada48d250e999f61d075c58ccd65254685",
+    "pidon_contract.py": "6d4d19222f956ba69a93db9d296305f96a54963050c2020a55859bdfd3d1d03c",
+    "pidon_recording.py": "499b30a895e686b75789a6333ae5ee6d3cdaff9f668cb07b1e339d790eca2a21",
+    "fdtd.py": "9837dbe51bdbc89ab2a12c147debfb10b5db1d07ebc726d18ee1962ecda1e7a8",
+    "dco.py": "53eb1c7d7ea0ed33f4e6c279554cb1adaf4a86134b8dc60fd67f6ce39525941d"
+  },
+  "lab_run_record_hash": "7f3371323d754008a7bc368df61c1fefed28bcd035c7ecb248414dbd51734676"
+}

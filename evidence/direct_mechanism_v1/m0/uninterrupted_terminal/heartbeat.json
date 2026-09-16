@@ -1,0 +1,32 @@
+{
+  "events": [
+    {
+      "updated_at_utc": "2026-09-14T06:36:02.477051+00:00",
+      "case": "uninterrupted_terminal",
+      "which": "E",
+      "time_layer": 0,
+      "phase": "E_pending",
+      "attempt_id": 1,
+      "adam_updates": 1,
+      "lbfgs_steps": 0,
+      "closures": 0,
+      "successful_commit": false,
+      "stop_reason": null,
+      "resumable": true
+    },
+    {
+      "updated_at_utc": "2026-09-14T06:36:02.484606+00:00",
+      "case": "uninterrupted_terminal",
+      "which": "E",
+      "time_layer": 0,
+      "phase": "E_pending",
+      "attempt_id": 1,
+      "adam_updates": 2,
+      "lbfgs_steps": 0,
+      "closures": 0,
+      "successful_commit": false,
+      "stop_reason": null,
+      "resumable": true
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "schema": "pidon-server-failure-mechanism-audit-v1",
+  "action_id": "A-20260915T142904-a8ebc3e9",
+  "lab_run_id": "295",
+  "host": "DESKTOP-0K8A2KS",
+  "new_adam_updates": 0,
+  "new_closures": 0,
+  "protocol": {
+    "path": "docs/plans/2026-09-15-failure-mechanism-audit-protocol.md",
+    "bytes": 2386,
+    "sha256": "9d5952bdaf196dbb5483ed4ab2726b36d416064ee84aac5921c40693c62b3701"
+  },
+  "source_hashes": {
+    "scripts/experiments/server_failure_mechanism_audit.py": "a2411a18ebc1d51ac1a4176589f8851c25f25b2bac5fa329049eaef50fc883fa",
+    "scripts/experiments/server_local_review.py": "dcc697b8182b01a1f11c7e3354980f85e3ff1b272683f1e766f60991f19dc02c",
+    "scripts/experiments/server_short_tol_probe.py": "6be3e41dd1662a62bbd97f78e3f1bcb32be65de9003cab12adc4633084095e84",
+    "scripts/analysis/direct_m2_audit.py": "8416a35c4b3244c0fd1cdd58f8db345c23beaaa3cbc53aa01e95a8f4cb528495",
+    "src/pidon/pidon_solve.py": "03a440a1815cab4595f2426626bf4b04603b00873f1d9cbdf83fead5bf3d0675",
+    "src/pidon/pidon_contract.py": "fbf93008fd698a03650906a0d931016090b1dd33f49e74fcf307dcf8266fe11b",
+    "src/pidon/pidon_recording.py": "6a22cf4e2dcafba72d3a483814985ab563f73c3774f3f6f7dacf4a6a1a5dcb20",
+    "project_paths.py": "21af3868cc12464923dde267f445e6a135150eb8476308f253704a3506de6859",
+    "docs/plans/2026-09-15-failure-mechanism-audit-protocol.md": "9d5952bdaf196dbb5483ed4ab2726b36d416064ee84aac5921c40693c62b3701"
+  }
+}

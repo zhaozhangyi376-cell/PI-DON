@@ -1,0 +1,64 @@
+{
+  "measured_at_utc": "2026-09-13T15:25:29.993309+00:00",
+  "classification": "storage_planning_only_no_training_no_deletion",
+  "disk": {
+    "free_bytes": 27176849408,
+    "free_gib": 25.310413360595703,
+    "total_bytes": 511080607744,
+    "old_audit_free_bytes": 6341189632
+  },
+  "checkpoint_max_observed_bytes": 149542529,
+  "conservative_checkpoint_bytes": 186928162,
+  "checkpoint_counts_budget": {
+    "main_every_256_to_8192": 32,
+    "main_64_and_128": 2,
+    "repeat_seed_128": 1,
+    "fixed_state_final": 8,
+    "two_slots_two_seeds": 4,
+    "failure_raw_safe_allowance": 8
+  },
+  "other_artifact_allowance_bytes": 1342177280,
+  "estimated_new_artifact_bytes": 11623226190,
+  "estimated_new_artifact_gib": 10.824972940608859,
+  "normal_artifact_budget_bytes": 12884901888,
+  "normal_artifact_budget_gib": 12.0,
+  "os_free_floor_bytes": 5368709120,
+  "emergency_reserve_bytes": 1073741824,
+  "cleanup_needed_now": false,
+  "historical_weights_preserved": true,
+  "checkpoints": [
+    {
+      "path": "evidence\\gpt6_plan_v3\\h_layout_candidate\\H_step_0043.pt",
+      "exists": true,
+      "bytes": 149494039,
+      "sha256": "3019401202764cb6e2a98df23f146c3bab8188c7c302aecde06020bf00a342f5",
+      "expected_sha256": "3019401202764cb6e2a98df23f146c3bab8188c7c302aecde06020bf00a342f5"
+    },
+    {
+      "path": "evidence\\gpt6_plan_v3\\h_layout_candidate\\E_oracle_step_0043.pt",
+      "exists": true,
+      "bytes": 149542529,
+      "sha256": "33a4eb6b9194f56069bfd0ee7555f1ce263741e771e5b8bedf0df63b83b5ce82",
+      "expected_sha256": "33a4eb6b9194f56069bfd0ee7555f1ce263741e771e5b8bedf0df63b83b5ce82"
+    },
+    {
+      "path": "evidence\\gpt6_plan_v3\\h_layout_candidate\\H_step_0096.pt",
+      "exists": true,
+      "bytes": 149494039,
+      "sha256": "996773475c23b2e890b89625af332d2625e2efda546f9f4c27d79a1563009c67",
+      "expected_sha256": "996773475c23b2e890b89625af332d2625e2efda546f9f4c27d79a1563009c67"
+    },
+    {
+      "path": "evidence\\gpt6_plan_v3\\h_layout_candidate\\E_oracle_step_0096.pt",
+      "exists": true,
+      "bytes": 149542529,
+      "sha256": "3b55816b53fd0032cad2603e559cc3ffa41636c8d8b5653220b7e6838f48d034",
+      "expected_sha256": "3b55816b53fd0032cad2603e559cc3ffa41636c8d8b5653220b7e6838f48d034"
+    }
+  ],
+  "master_preserved": true,
+  "night_started": false,
+  "original_plan_sha256": "bfab05c76aae882db4d4685212919c4cd566d516a0f3f6231711dde510dcabb5",
+  "deleted_files": [],
+  "formal_dco_updates": 0
+}

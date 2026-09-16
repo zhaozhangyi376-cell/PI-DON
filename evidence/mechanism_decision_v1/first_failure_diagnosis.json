@@ -1,0 +1,168 @@
+{
+  "schema": "pidon-mechanism-first-failure-v1",
+  "protocol_sha256": "fbb875d33b57c2a9df817e64eed79673f6a4fb8b6e98d21e1523bc650422a0f4",
+  "source_hashes": {
+    "pidon_solve.py": "c79b0d13006f76957a0156b8dcfc6dada48d250e999f61d075c58ccd65254685",
+    "pidon_contract.py": "6d4d19222f956ba69a93db9d296305f96a54963050c2020a55859bdfd3d1d03c",
+    "pidon_recording.py": "499b30a895e686b75789a6333ae5ee6d3cdaff9f668cb07b1e339d790eca2a21",
+    "fdtd.py": "9837dbe51bdbc89ab2a12c147debfb10b5db1d07ebc726d18ee1962ecda1e7a8",
+    "dco.py": "53eb1c7d7ea0ed33f4e6c279554cb1adaf4a86134b8dc60fd67f6ce39525941d"
+  },
+  "arm": "P",
+  "time_layer": 0,
+  "recorded_R": 0.0005160257095534574,
+  "recomputed": {
+    "components": [
+      {
+        "sse": 3.878616178232264e-12,
+        "target_ss": 9.736211836752773e-09,
+        "R": 0.000398370150862069,
+        "max_abs": 4.043120611640916e-07
+      },
+      {
+        "sse": 3.761715765271401e-12,
+        "target_ss": 9.736211836752773e-09,
+        "R": 0.0003863633853026364,
+        "max_abs": 3.974348601332167e-07
+      },
+      {
+        "sse": 2.4079388656617073e-12,
+        "target_ss": 0.0,
+        "R": null,
+        "max_abs": 2.15235687051063e-07
+      }
+    ],
+    "sse": 1.0048270809165372e-11,
+    "target_ss": 1.9472423673505546e-08,
+    "total_R": 0.0005160256872819171
+  },
+  "recorded_and_recomputed_abs_difference": 2.2271540297755243e-11,
+  "input": {
+    "core_shape": [
+      3,
+      31,
+      31,
+      31
+    ],
+    "core_max_abs": 1.1253517584464134e-07,
+    "normalisation": {
+      "input_scale": [
+        [
+          [
+            [
+              [
+                3.5892416816452055e-10
+              ]
+            ]
+          ]
+        ]
+      ],
+      "Lc": [
+        [
+          [
+            [
+              [
+                0.0016129033174365759
+              ]
+            ]
+          ]
+        ]
+      ],
+      "out_scale": 1.0,
+      "which": "E"
+    }
+  },
+  "target": {
+    "cropped_shapes": [
+      [
+        31,
+        31,
+        31
+      ],
+      [
+        31,
+        31,
+        31
+      ],
+      [
+        31,
+        31,
+        31
+      ]
+    ],
+    "full_shapes": [
+      [
+        32,
+        31,
+        31
+      ],
+      [
+        31,
+        32,
+        31
+      ],
+      [
+        31,
+        31,
+        32
+      ]
+    ],
+    "uncovered_high_PEC_plane_max_abs": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "all_uncovered_planes_are_pec_zero": true
+  },
+  "P_fit": {
+    "n_updates": 500,
+    "n_evals": 1001,
+    "loss_initial": 50.69289779663086,
+    "loss_final": 0.0005160256987437606,
+    "sse": 1.004827124284624e-11,
+    "mse": 1.124307256424898e-16,
+    "target_ss": 1.9472423673505546e-08,
+    "passed": false,
+    "stop_reason": "max_updates",
+    "elapsed_s": 35.95526769995922,
+    "loss_sum": 101.8765882361331,
+    "target_count": 89373,
+    "n_lbfgs_steps": 0,
+    "n_closures": 0,
+    "residual_ratio": 0.0005160257095534574,
+    "max_abs_over_curl0": 2.021560305820458e-08,
+    "residual_rule": "relative_target"
+  },
+  "R_partial": {
+    "rows": 26,
+    "all_accepted": true,
+    "first_E": {
+      "n_updates": 95,
+      "n_evals": 191,
+      "loss_initial": 0.9239969253540039,
+      "loss_final": 9.913650865200907e-05,
+      "sse": 1.9304280396426066e-12,
+      "mse": 2.1599678198590253e-17,
+      "target_ss": 1.9472423673505546e-08,
+      "passed": true,
+      "stop_reason": "tol_met",
+      "elapsed_s": 6.946882899967022,
+      "loss_sum": 7.329656105051981,
+      "target_count": 89373,
+      "n_lbfgs_steps": 0,
+      "n_closures": 0,
+      "residual_ratio": 9.913650565590221e-05,
+      "max_abs_over_curl0": 4.534791386845427e-09,
+      "residual_rule": "relative_target"
+    },
+    "last_step": 25,
+    "last_global_Q": 0.009280707407942014,
+    "termination": "PARTIAL_ABORTED_BY_AGENT; no recoverable checkpoint"
+  },
+  "interpretation": [
+    "P's first nonzero E curl fit is a real strict failure under the registered budget.",
+    "The independent recomputation checks the stored final parameters and declared target support.",
+    "The high E-curl planes outside DCO's cube are PEC zeros; this diagnosis found no hidden nonzero Yee fallback there.",
+    "R's partial trajectory is descriptive only because it was terminated without a checkpoint; it is not a complete B comparison."
+  ]
+}

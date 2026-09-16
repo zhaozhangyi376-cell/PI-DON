@@ -1,0 +1,52 @@
+{
+  "schema": "mechanism-1h-stage-status-v1",
+  "started_at": "2026-09-14T02:19:56.759602+00:00",
+  "deadline": "2026-09-14T03:19:56.759602+00:00",
+  "training_deadline": "2026-09-14T03:13:56.759602+00:00",
+  "status": {
+    "S-P": "FAIL",
+    "S-R": "FAIL",
+    "X-P": "NOT_RUN",
+    "X-R": "FAIL",
+    "S-R2": "NOT_RUN",
+    "D-LR": "INCOMPLETE",
+    "S-P-retry": "RESOURCE_LIMIT"
+  },
+  "runs": {
+    "S-P": {
+      "status": "FAIL",
+      "accepted_steps": 0,
+      "total_actual_updates": 1,
+      "elapsed_s": 0.9788488000049256,
+      "recovery_eligible": false
+    },
+    "S-P-retry": {
+      "status": "RESOURCE_LIMIT",
+      "accepted_steps": 6,
+      "total_actual_updates": 10447,
+      "elapsed_s": 758.8995011999505,
+      "recovery_eligible": true
+    },
+    "S-R": {
+      "status": "FAIL",
+      "accepted_steps": 33,
+      "total_actual_updates": 10070,
+      "elapsed_s": 775.8216447000159,
+      "recovery_eligible": false
+    },
+    "X-R": {
+      "status": "FAIL",
+      "accepted_steps": 41,
+      "total_actual_updates": 13764,
+      "elapsed_s": 1045.6903722000425,
+      "recovery_eligible": false
+    },
+    "D-LR": {
+      "status": "INCOMPLETE",
+      "accepted_steps": 1,
+      "total_actual_updates": 657,
+      "elapsed_s": 48.18794510001317,
+      "recovery_eligible": false
+    }
+  }
+}

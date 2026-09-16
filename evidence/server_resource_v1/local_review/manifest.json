@@ -1,0 +1,21 @@
+{
+  "action_id": "A-20260915T092954-d6d954e9",
+  "lab_run_id": "293",
+  "host": "DESKTOP-0K8A2KS",
+  "source_hashes": {
+    "scripts/experiments/server_local_review.py": "90f3c7b43246c68d95fc1b01b8094ceaa0bb8710dd889ffcd939ad407929fcec",
+    "scripts/experiments/server_phase1_compare.py": "17a283e4ad0a970d6fb032f0d5da09c858abc49a462fba0456e7fbf5a474557f",
+    "scripts/experiments/server_compute_probe.py": "231b0ee5c437c73ca66c83b69a3ee69648ca733807b94c94f986f0e9c773f264",
+    "scripts/experiments/phase1_full_run.py": "e54a1c1576df5af849ea17997846c76e0708d035351565e23e016a79e7e8b800",
+    "src/pidon/dco.py": "1bc6c9de416064e3d4db72418d76dbd0ae54232b965496863c1f71e0065f0149",
+    "src/pidon/paper_protocol.py": "baf9a989a414a75278d1d7fbdb06c43ec0a30d61632609802e478e89adc3ed48",
+    "src/pidon/pidon_contract.py": "fbf93008fd698a03650906a0d931016090b1dd33f49e74fcf307dcf8266fe11b",
+    "src/pidon/pidon_solve.py": "03a440a1815cab4595f2426626bf4b04603b00873f1d9cbdf83fead5bf3d0675",
+    "project_paths.py": "21af3868cc12464923dde267f445e6a135150eb8476308f253704a3506de6859"
+  },
+  "protocol": {
+    "path": "C:\\PI-DON\\docs\\plans\\2026-09-15-server-resource-protocol.md",
+    "bytes": 4306,
+    "sha256": "02af390f3c649e9065aa79aa91fd9d0b324211099437f568dae462975d631d15"
+  }
+}

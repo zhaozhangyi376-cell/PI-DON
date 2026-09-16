@@ -1,0 +1,49 @@
+{
+  "init": "dco_lr1e3_300.pt",
+  "device": "cuda",
+  "n": 31,
+  "rows": [
+    {
+      "mode": "cellsize",
+      "target": "H",
+      "relative_loss": 0.5411153435707092,
+      "target_rms": 2.203407734047147e-10,
+      "pred_rms": 1.40206457555081e-10
+    },
+    {
+      "mode": "cellsize",
+      "target": "E",
+      "relative_loss": 0.8796330094337463,
+      "target_rms": 4.667741961839056e-07,
+      "pred_rms": 9.121162491965151e-08
+    },
+    {
+      "mode": "centered",
+      "target": "H",
+      "relative_loss": 1671564160.0,
+      "target_rms": 2.203407734047147e-10,
+      "pred_rms": 9.008580491354223e-06
+    },
+    {
+      "mode": "centered",
+      "target": "E",
+      "relative_loss": 569806656.0,
+      "target_rms": 4.667741961839056e-07,
+      "pred_rms": 0.011142189614474773
+    },
+    {
+      "mode": "abs",
+      "target": "H",
+      "relative_loss": 6152.8486328125,
+      "target_rms": 2.203407734047147e-10,
+      "pred_rms": 1.729567600250448e-08
+    },
+    {
+      "mode": "abs",
+      "target": "E",
+      "relative_loss": 2248.658447265625,
+      "target_rms": 4.667741961839056e-07,
+      "pred_rms": 2.2132444428279996e-05
+    }
+  ]
+}

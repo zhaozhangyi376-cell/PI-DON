@@ -1,0 +1,334 @@
+{
+  "schema": "mechanism-1h-audit-v1",
+  "experiment_id": "e8a94884f1e466cdc1e24792",
+  "started_at": "2026-09-14T02:19:56.759602+00:00",
+  "training_deadline": "2026-09-14T03:13:56.759602+00:00",
+  "final_deadline": "2026-09-14T03:19:56.759602+00:00",
+  "arms": {
+    "S-P": {
+      "status": "FAIL",
+      "rows": 1,
+      "accepted_steps": 0,
+      "actual_updates": 1,
+      "threshold": 0.0001,
+      "accepted_threshold_violations": [],
+      "last_residuals": {
+        "H": null,
+        "E": 1.1523222039773764
+      },
+      "last_six_component_nmae": {},
+      "source_probe_Ez": null,
+      "source_outside_probes": null,
+      "steps_sha256": "5fa443d958eb8e711e337f1a944dda83b4b004b6a120e4a0e9bdae12a31dac7a"
+    },
+    "S-R": {
+      "status": "FAIL",
+      "rows": 34,
+      "accepted_steps": 33,
+      "actual_updates": 10070,
+      "threshold": 0.0001,
+      "accepted_threshold_violations": [],
+      "last_residuals": {
+        "H": 9.943072757256367e-05,
+        "E": 9.992169945338588e-05
+      },
+      "last_six_component_nmae": {
+        "Ex": 2.8712823480665255e-05,
+        "Ey": 2.8548870295228812e-05,
+        "Ez": 3.63784078818656e-05,
+        "Hx": 6.390312663700488e-05,
+        "Hy": 5.694284262387172e-05,
+        "Hz": 3894018015517.358
+      },
+      "source_probe_Ez": {
+        "dut": 0.4100534915924072,
+        "ref": 0.4100534851298476
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": 0.0005059468821855266,
+          "ref_Ez": 0.0005068870377726859
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": 1.2523192253866e-05,
+          "ref_Ez": 2.423988644295605e-05
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": 0.00010283460869686663,
+          "ref_Ez": 9.808790855458921e-05
+        }
+      ],
+      "steps_sha256": "8dbd46d77c1597057901bade2477ceb26f0dcff8308c87c39284b9ba2ffe1102"
+    },
+    "X-P": {
+      "status": "NOT_RUN",
+      "rows": 0,
+      "accepted_steps": 0,
+      "actual_updates": 0,
+      "threshold": 0.001,
+      "accepted_threshold_violations": [],
+      "last_residuals": {
+        "H": null,
+        "E": null
+      },
+      "last_six_component_nmae": {},
+      "source_probe_Ez": null,
+      "source_outside_probes": null,
+      "steps_sha256": null
+    },
+    "X-R": {
+      "status": "FAIL",
+      "rows": 42,
+      "accepted_steps": 41,
+      "actual_updates": 13764,
+      "threshold": 0.001,
+      "accepted_threshold_violations": [],
+      "last_residuals": {
+        "H": 0.0009648763432350294,
+        "E": 0.000999442130080533
+      },
+      "last_six_component_nmae": {
+        "Ex": 8.753394026920805e-05,
+        "Ey": 8.311767575605286e-05,
+        "Ez": 8.837634664999488e-05,
+        "Hx": 0.0011364006878584688,
+        "Hy": 0.0012087350604168664,
+        "Hz": 1018195374143.2219
+      },
+      "source_probe_Ez": {
+        "dut": 0.9680426716804504,
+        "ref": 0.9680426865030202
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": 0.0009738569497130809,
+          "ref_Ez": 0.0013407702499534954
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": 0.0003337262023705989,
+          "ref_Ez": 0.00033638587046880275
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": 0.0006212424486875534,
+          "ref_Ez": 0.0007976967608556144
+        }
+      ],
+      "steps_sha256": "a0fa58c961ae401304ea1ca3db8ee418b06490403e7c48f84d58f09b50a71869"
+    },
+    "S-R2": {
+      "status": "NOT_RUN",
+      "rows": 0,
+      "accepted_steps": 0,
+      "actual_updates": 0,
+      "threshold": 0.0001,
+      "accepted_threshold_violations": [],
+      "last_residuals": {
+        "H": null,
+        "E": null
+      },
+      "last_six_component_nmae": {},
+      "source_probe_Ez": null,
+      "source_outside_probes": null,
+      "steps_sha256": null
+    },
+    "D-LR": {
+      "status": "INCOMPLETE",
+      "rows": 1,
+      "accepted_steps": 1,
+      "actual_updates": 657,
+      "threshold": null,
+      "accepted_threshold_violations": [],
+      "last_residuals": {
+        "H": null,
+        "E": 9.973295977724184e-05
+      },
+      "last_six_component_nmae": {
+        "Ex": null,
+        "Ey": null,
+        "Ez": null,
+        "Hx": 2.8175626461950295e-05,
+        "Hy": 2.7833208924788974e-05,
+        "Hz": null
+      },
+      "source_probe_Ez": {
+        "dut": 1.1253517584464134e-07,
+        "ref": 1.1253517471925912e-07
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": 0.0,
+          "ref_Ez": 0.0
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": 0.0,
+          "ref_Ez": 0.0
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": 0.0,
+          "ref_Ez": 0.0
+        }
+      ],
+      "steps_sha256": "dbda754850ae63afa88dda08d4349e1ca1092aef8840d1408730d34da552a724"
+    },
+    "S-P-retry": {
+      "status": "RESOURCE_LIMIT",
+      "rows": 6,
+      "accepted_steps": 6,
+      "actual_updates": 10447,
+      "threshold": 0.0001,
+      "accepted_threshold_violations": [],
+      "last_residuals": {
+        "H": 9.987407510646121e-05,
+        "E": 9.99355471311806e-05
+      },
+      "last_six_component_nmae": {
+        "Ex": 4.0803467131920285e-05,
+        "Ey": 3.735987901427938e-05,
+        "Ez": 6.820187333376073e-05,
+        "Hx": 2.3901418217995984e-05,
+        "Hy": 2.2112194163806287e-05,
+        "Hz": 5353946783465.45
+      },
+      "source_probe_Ez": {
+        "dut": 4.08495588999358e-06,
+        "ref": 4.084955947848624e-06
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": 2.9924209637988183e-10,
+          "ref_Ez": 0.0
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": 6.585143281362393e-11,
+          "ref_Ez": 0.0
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": -9.582811454078567e-11,
+          "ref_Ez": 0.0
+        }
+      ],
+      "steps_sha256": "935b41e7db32249ff4ddcd9ecbd64dab7b6f91c8dff8d861c5a7e2a693920da2"
+    }
+  },
+  "old_review_present": true
+}

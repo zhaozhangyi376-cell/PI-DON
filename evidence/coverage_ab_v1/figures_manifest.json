@@ -1,0 +1,10 @@
+{
+  "source_run": 27,
+  "arrays_sha256": "7fb3872045a78c703e132775482dcca2449b6e5cdf55d8e012ccf9b989b5be79",
+  "script_sha256": "3fe5e99ac0061678a0fbe313224b295fe2305a98210968f4b072b1625ab43061",
+  "report_sha256": "53e7e5994d0d911376db0edf4e6a0eacd746faf0ce9ebb421bcc501a77c7c6a9",
+  "figures": {
+    "figs\\coverage_ab_outcomes.png": "59b1ebcd00bfe5d13ba67516535e16dad9efef444ef29327f90a05118162be9d",
+    "figs\\coverage_ab_training.png": "849f2f864bebb53e95409ea801b0bf1fca3837a1c40739639237bf1b22f24d8b"
+  }
+}

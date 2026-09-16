@@ -1,0 +1,39 @@
+{
+  "scope": "audit_delivery_integrity_only_not_production_G0",
+  "checks": {
+    "historical_weights_unchanged": true,
+    "production_code_unchanged_this_audit": true,
+    "master_weight_hash_matches": true,
+    "audit_retains_six_failed_contract_assertions": true,
+    "historical_G0_claim_withdrawn": true,
+    "historical_candidate_still_FAIL": true,
+    "all_review_artifacts_exist": true,
+    "plan_explicitly_not_executed": true,
+    "plan_has_goal_handoff": true,
+    "review_corrections_present": true,
+    "no_formal_training_updates": true
+  },
+  "weights": {
+    "evidence\\gpt6_plan_v3\\h_layout_candidate\\H_step_0043.pt": true,
+    "evidence\\gpt6_plan_v3\\h_layout_candidate\\E_oracle_step_0043.pt": true,
+    "evidence\\gpt6_plan_v3\\h_layout_candidate\\H_step_0096.pt": true,
+    "evidence\\gpt6_plan_v3\\h_layout_candidate\\E_oracle_step_0096.pt": true
+  },
+  "production": {
+    "pidon_solve.py": true,
+    "pidon_contract.py": true,
+    "pidon_recording.py": true,
+    "pidon_exact_control.py": true,
+    "g0_verifier.py": true,
+    "h_layout_candidate.py": true
+  },
+  "artifacts": {
+    "REVIEW.md": true,
+    "PROTOCOL.md": true,
+    "PLAN_REVIEW.md": true,
+    "audit.json": true,
+    "review_evidence.png": true
+  },
+  "plan_sha256": "bfab05c76aae882db4d4685212919c4cd566d516a0f3f6231711dde510dcabb5",
+  "status": "PASS"
+}

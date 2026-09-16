@@ -1,0 +1,13 @@
+{
+  "scope": "revised_plan_delivery_only_not_production_certification",
+  "plan_path": "C:\\PI-DON\\docs\\superpowers\\plans\\2026-09-13-pidon-10h-goal-night-plan.md",
+  "plan_sha256": "a6feaa48985b594fef3c2e63754e4827457e08bb069c26f6ae1524dc2052bce7",
+  "original_plan_sha256": "bfab05c76aae882db4d4685212919c4cd566d516a0f3f6231711dde510dcabb5",
+  "goal_instruction_sha256": "acbba317ad61ea8b54a53ff106bd62bf3892b943395473c2bb7b2ce7ce73fb7d",
+  "forecast_sha256": "c7ab033f805d73253c2637fe24e7db344c7b996aa9ffa7017667d8bc04ad853b",
+  "cleanup_performed": false,
+  "formal_training_started": false,
+  "estimated_new_artifact_gib": 15.55832854937762,
+  "normal_artifact_budget_gib": 16.0,
+  "source_facts": "lab_log #177/#178; original audit delivery #176 preserved"
+}

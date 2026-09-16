@@ -1,0 +1,24 @@
+{
+  "version": "2026-09-13b",
+  "init": "random",
+  "n": 31,
+  "side": 0.05,
+  "dt": 3.075e-12,
+  "tol": 1000000.0,
+  "lr": 0.0001,
+  "requested_steps": 1,
+  "accepted_steps": 1,
+  "phase": "before_H",
+  "strict_stop": true,
+  "rows": [
+    {
+      "step": 0,
+      "nmae": 0.0,
+      "lossH": 0.0,
+      "lossE": 0.9502719640731812,
+      "updatesH": 0,
+      "updatesE": 0
+    }
+  ],
+  "stop_record": null
+}

@@ -1,0 +1,7131 @@
+{
+  "schema": "direct-mechanism-m2-arm-summary-v1",
+  "arm": "B-R",
+  "action_id": "A-20260914T065013-9957817a",
+  "status": "PASS",
+  "scientific_status": "PASS",
+  "target_steps": 128,
+  "accepted_steps": 128,
+  "elapsed_s": 2935.3384777000174,
+  "stop": null,
+  "budget": {
+    "adam": 38127,
+    "closures": 0,
+    "lbfgs_steps": 0
+  },
+  "global_budget_before": {
+    "adam": 66908,
+    "closures": 1200,
+    "lbfgs_steps": 574
+  },
+  "global_budget_after": {
+    "adam": 105035,
+    "closures": 1200,
+    "lbfgs_steps": 574
+  },
+  "recovery_eligible": false,
+  "arm_spec": {
+    "arm": "B-R",
+    "rule": "B",
+    "init_kind": "R",
+    "init": "random",
+    "seed": 20260914,
+    "target_steps": 128,
+    "tol": 0.0001,
+    "lr": 0.0003,
+    "per_fit_adam_cap": 3000,
+    "per_fit_closure_cap": 0,
+    "reset_opt_each_step": true,
+    "lbfgs_lr": 1.0,
+    "lbfgs_history": 10,
+    "purpose": "strict_short_128"
+  },
+  "source_hashes": {
+    "pidon_solve.py": "5d6eb695526117ef3b6e214b168c373c7a1ea5e01ebd99db1801db7402ce56fd",
+    "pidon_contract.py": "fbf93008fd698a03650906a0d931016090b1dd33f49e74fcf307dcf8266fe11b",
+    "pidon_recording.py": "6a22cf4e2dcafba72d3a483814985ab563f73c3774f3f6f7dacf4a6a1a5dcb20",
+    "fdtd.py": "622a8a7747245d35e07c559b362544e0d61f2f465bcc81f2f686533a1bd405b6",
+    "dco.py": "1bc6c9de416064e3d4db72418d76dbd0ae54232b965496863c1f71e0065f0149"
+  },
+  "last_accepted_step": {
+    "step": 127,
+    "accepted_steps": 128,
+    "phase": "completed",
+    "accepted": true,
+    "reason": null,
+    "fit_H": {
+      "n_updates": 54,
+      "n_evals": 109,
+      "loss_initial": 0.0002877216902561486,
+      "loss_final": 9.992266132030636e-05,
+      "sse": 6.450651426348486e-07,
+      "mse": 7.70687147711886e-12,
+      "target_ss": 0.006455644033849239,
+      "passed": true,
+      "stop_reason": "tol_met",
+      "elapsed_s": 3.9671537000103854,
+      "loss_sum": 0.044529354345286265,
+      "target_count": 83700,
+      "n_lbfgs_steps": 0,
+      "n_closures": 0,
+      "residual_ratio": 9.992266290590722e-05,
+      "max_abs_over_curl0": 0.0003065485359077027,
+      "residual_rule": "relative_target"
+    },
+    "fit_E": {
+      "n_updates": 132,
+      "n_evals": 265,
+      "loss_initial": 0.0006048906361684203,
+      "loss_final": 9.968859376385808e-05,
+      "sse": 0.061837490648031235,
+      "mse": 6.919034904057292e-07,
+      "target_ss": 620.3065185546875,
+      "passed": true,
+      "stop_reason": "tol_met",
+      "elapsed_s": 9.656329299963545,
+      "loss_sum": 0.07644260919914814,
+      "target_count": 89373,
+      "n_lbfgs_steps": 0,
+      "n_closures": 0,
+      "residual_ratio": 9.968860361505215e-05,
+      "max_abs_over_curl0": 0.00025143101811408997,
+      "residual_rule": "relative_target"
+    },
+    "recovery_eligible": true,
+    "accepted_field_metrics": {
+      "components": {
+        "Ex": {
+          "weighted_l2_error": 4.120875054545029e-07,
+          "weighted_ref_l2": 1.5340489885450167e-06,
+          "relative_l2": 0.26862734406242866,
+          "nmae": 0.050785114883489905,
+          "absolute_mae": 2.4836945159108708e-05,
+          "volume_nmae": 0.054114420021533466,
+          "volume_absolute_mae": 2.6465173613868173e-05,
+          "mre_nonzero": 25.437250380477685,
+          "mre_eq5_physical": 22.35695834221671,
+          "mre_nonzero_count": 27900,
+          "strict_zero_reference_count": 3844,
+          "strict_zero_absolute_mae": 0.0,
+          "reference_max": 0.000489059544634074,
+          "support_count": 31744,
+          "support_volume": 0.000125,
+          "sse": 1.6981611215171496e-13,
+          "reference_energy": 2.3533062992559887e-12,
+          "weak_reference": false,
+          "weak_absolute_gate": 1e-05,
+          "weak_absolute_pass": null
+        },
+        "Ey": {
+          "weighted_l2_error": 3.976062048836574e-07,
+          "weighted_ref_l2": 1.5340489885450167e-06,
+          "relative_l2": 0.259187423512968,
+          "nmae": 0.04877985022181399,
+          "absolute_mae": 2.3856251336798684e-05,
+          "volume_nmae": 0.0519776968024324,
+          "volume_absolute_mae": 2.5420188729325554e-05,
+          "mre_nonzero": 29.06560719205208,
+          "mre_eq5_physical": 25.54594382113952,
+          "mre_nonzero_count": 27900,
+          "strict_zero_reference_count": 3844,
+          "strict_zero_absolute_mae": 0.0,
+          "reference_max": 0.000489059544634074,
+          "support_count": 31744,
+          "support_volume": 0.00012499999999999998,
+          "sse": 1.5809069416198495e-13,
+          "reference_energy": 2.3533062992559887e-12,
+          "weak_reference": false,
+          "weak_absolute_gate": 1e-05,
+          "weak_absolute_pass": null
+        },
+        "Ez": {
+          "weighted_l2_error": 4.0178765402760625e-07,
+          "weighted_ref_l2": 4.410159276845745e-06,
+          "relative_l2": 0.09110502111274645,
+          "nmae": 0.01414804781632091,
+          "absolute_mae": 2.4926411499635864e-05,
+          "volume_nmae": 0.015075578443554031,
+          "volume_absolute_mae": 2.656055992725549e-05,
+          "mre_nonzero": 0.8701015708250153,
+          "mre_eq5_physical": 0.7647343894542766,
+          "mre_nonzero_count": 27899,
+          "strict_zero_reference_count": 3844,
+          "strict_zero_absolute_mae": 0.0,
+          "reference_max": 0.0017618269193917513,
+          "support_count": 31743,
+          "support_volume": 0.00012499580410190998,
+          "sse": 1.614333189290074e-13,
+          "reference_energy": 1.944950484714859e-11,
+          "weak_reference": false,
+          "weak_absolute_gate": 1e-05,
+          "weak_absolute_pass": null
+        },
+        "Hx": {
+          "weighted_l2_error": 3.4041507989064807e-07,
+          "weighted_ref_l2": 5.550526896157903e-06,
+          "relative_l2": 0.06133022796921942,
+          "nmae": 0.014816935008253769,
+          "absolute_mae": 2.2766423807177786e-05,
+          "volume_nmae": 0.015294900653681312,
+          "volume_absolute_mae": 2.3500824575151268e-05,
+          "mre_nonzero": 1.5692404658965027,
+          "mre_eq5_physical": 1.4711629367779713,
+          "mre_nonzero_count": 28830,
+          "strict_zero_reference_count": 1922,
+          "strict_zero_absolute_mae": 0.0,
+          "reference_max": 0.0015365137118098823,
+          "support_count": 30752,
+          "support_volume": 0.00012499999999999998,
+          "sse": 1.158824266169563e-13,
+          "reference_energy": 3.0808348824972284e-11,
+          "weak_reference": false,
+          "weak_absolute_gate": 1e-05,
+          "weak_absolute_pass": null
+        },
+        "Hy": {
+          "weighted_l2_error": 3.526738898673625e-07,
+          "weighted_ref_l2": 5.550526896157903e-06,
+          "relative_l2": 0.06353881288486049,
+          "nmae": 0.015332687831611859,
+          "absolute_mae": 2.355888509217215e-05,
+          "volume_nmae": 0.015827290664889658,
+          "volume_absolute_mae": 2.431884912740351e-05,
+          "mre_nonzero": 1.3699001136441227,
+          "mre_eq5_physical": 1.2842813565413653,
+          "mre_nonzero_count": 28830,
+          "strict_zero_reference_count": 1922,
+          "strict_zero_absolute_mae": 0.0,
+          "reference_max": 0.0015365137118098823,
+          "support_count": 30752,
+          "support_volume": 0.000125,
+          "sse": 1.2437887259417652e-13,
+          "reference_energy": 3.0808348824972284e-11,
+          "weak_reference": false,
+          "weak_absolute_gate": 1e-05,
+          "weak_absolute_pass": null
+        },
+        "Hz": {
+          "weighted_l2_error": 3.356313094758309e-07,
+          "weighted_ref_l2": 1.3312432218448675e-20,
+          "relative_l2": 25211869924919.152,
+          "nmae": 389059227075.2425,
+          "absolute_mae": 2.2295913113119122e-05,
+          "volume_nmae": 401609524722.83093,
+          "volume_absolute_mae": 2.3015136116768124e-05,
+          "mre_nonzero": 303894269462724.9,
+          "mre_eq5_physical": 275710526730294.75,
+          "mre_nonzero_count": 27900,
+          "strict_zero_reference_count": 2852,
+          "strict_zero_absolute_mae": 8.311403860057784e-06,
+          "reference_max": 5.730724671595357e-17,
+          "support_count": 30752,
+          "support_volume": 0.000125,
+          "sse": 1.1264837590046097e-13,
+          "reference_energy": 1.772208515707903e-40,
+          "weak_reference": true,
+          "weak_absolute_gate": 1e-05,
+          "weak_absolute_pass": false
+        }
+      },
+      "hard_source_excluded": true,
+      "global_weighted_relative_l2": 0.09909360457215889,
+      "fixed_amplitude_error": 3.3511281928590375e-05,
+      "weighted_error_numerator": 8.422498003543012e-13,
+      "weighted_reference_denominator": 8.577281509560513e-11,
+      "fixed_volume_denominator": 0.00074999580410191,
+      "metric_contract": {
+        "nmae": "ordinary masked MAE/reference_max on the declared component support",
+        "volume_nmae": "dual-volume-weighted MAE/reference_max, reported separately",
+        "mre": "mre_eq5_physical uses absolute error at strict zeros; mre_nonzero excludes them",
+        "weak_reference_threshold": 1e-06,
+        "weak_absolute_mae_threshold": 1e-05,
+        "hard_source_excluded_from_Ez": true
+      }
+    },
+    "six_component_metrics": {
+      "components": {
+        "Ex": {
+          "weighted_l2_error": 4.120875054545029e-07,
+          "weighted_ref_l2": 1.5340489885450167e-06,
+          "relative_l2": 0.26862734406242866,
+          "nmae": 0.050785114883489905,
+          "absolute_mae": 2.4836945159108708e-05,
+          "volume_nmae": 0.054114420021533466,
+          "volume_absolute_mae": 2.6465173613868173e-05,
+          "mre_nonzero": 25.437250380477685,
+          "mre_eq5_physical": 22.35695834221671,
+          "mre_nonzero_count": 27900,
+          "strict_zero_reference_count": 3844,
+          "strict_zero_absolute_mae": 0.0,
+          "reference_max": 0.000489059544634074,
+          "support_count": 31744,
+          "support_volume": 0.000125,
+          "sse": 1.6981611215171496e-13,
+          "reference_energy": 2.3533062992559887e-12,
+          "weak_reference": false,
+          "weak_absolute_gate": 1e-05,
+          "weak_absolute_pass": null
+        },
+        "Ey": {
+          "weighted_l2_error": 3.976062048836574e-07,
+          "weighted_ref_l2": 1.5340489885450167e-06,
+          "relative_l2": 0.259187423512968,
+          "nmae": 0.04877985022181399,
+          "absolute_mae": 2.3856251336798684e-05,
+          "volume_nmae": 0.0519776968024324,
+          "volume_absolute_mae": 2.5420188729325554e-05,
+          "mre_nonzero": 29.06560719205208,
+          "mre_eq5_physical": 25.54594382113952,
+          "mre_nonzero_count": 27900,
+          "strict_zero_reference_count": 3844,
+          "strict_zero_absolute_mae": 0.0,
+          "reference_max": 0.000489059544634074,
+          "support_count": 31744,
+          "support_volume": 0.00012499999999999998,
+          "sse": 1.5809069416198495e-13,
+          "reference_energy": 2.3533062992559887e-12,
+          "weak_reference": false,
+          "weak_absolute_gate": 1e-05,
+          "weak_absolute_pass": null
+        },
+        "Ez": {
+          "weighted_l2_error": 4.0178765402760625e-07,
+          "weighted_ref_l2": 4.410159276845745e-06,
+          "relative_l2": 0.09110502111274645,
+          "nmae": 0.01414804781632091,
+          "absolute_mae": 2.4926411499635864e-05,
+          "volume_nmae": 0.015075578443554031,
+          "volume_absolute_mae": 2.656055992725549e-05,
+          "mre_nonzero": 0.8701015708250153,
+          "mre_eq5_physical": 0.7647343894542766,
+          "mre_nonzero_count": 27899,
+          "strict_zero_reference_count": 3844,
+          "strict_zero_absolute_mae": 0.0,
+          "reference_max": 0.0017618269193917513,
+          "support_count": 31743,
+          "support_volume": 0.00012499580410190998,
+          "sse": 1.614333189290074e-13,
+          "reference_energy": 1.944950484714859e-11,
+          "weak_reference": false,
+          "weak_absolute_gate": 1e-05,
+          "weak_absolute_pass": null
+        },
+        "Hx": {
+          "weighted_l2_error": 3.4041507989064807e-07,
+          "weighted_ref_l2": 5.550526896157903e-06,
+          "relative_l2": 0.06133022796921942,
+          "nmae": 0.014816935008253769,
+          "absolute_mae": 2.2766423807177786e-05,
+          "volume_nmae": 0.015294900653681312,
+          "volume_absolute_mae": 2.3500824575151268e-05,
+          "mre_nonzero": 1.5692404658965027,
+          "mre_eq5_physical": 1.4711629367779713,
+          "mre_nonzero_count": 28830,
+          "strict_zero_reference_count": 1922,
+          "strict_zero_absolute_mae": 0.0,
+          "reference_max": 0.0015365137118098823,
+          "support_count": 30752,
+          "support_volume": 0.00012499999999999998,
+          "sse": 1.158824266169563e-13,
+          "reference_energy": 3.0808348824972284e-11,
+          "weak_reference": false,
+          "weak_absolute_gate": 1e-05,
+          "weak_absolute_pass": null
+        },
+        "Hy": {
+          "weighted_l2_error": 3.526738898673625e-07,
+          "weighted_ref_l2": 5.550526896157903e-06,
+          "relative_l2": 0.06353881288486049,
+          "nmae": 0.015332687831611859,
+          "absolute_mae": 2.355888509217215e-05,
+          "volume_nmae": 0.015827290664889658,
+          "volume_absolute_mae": 2.431884912740351e-05,
+          "mre_nonzero": 1.3699001136441227,
+          "mre_eq5_physical": 1.2842813565413653,
+          "mre_nonzero_count": 28830,
+          "strict_zero_reference_count": 1922,
+          "strict_zero_absolute_mae": 0.0,
+          "reference_max": 0.0015365137118098823,
+          "support_count": 30752,
+          "support_volume": 0.000125,
+          "sse": 1.2437887259417652e-13,
+          "reference_energy": 3.0808348824972284e-11,
+          "weak_reference": false,
+          "weak_absolute_gate": 1e-05,
+          "weak_absolute_pass": null
+        },
+        "Hz": {
+          "weighted_l2_error": 3.356313094758309e-07,
+          "weighted_ref_l2": 1.3312432218448675e-20,
+          "relative_l2": 25211869924919.152,
+          "nmae": 389059227075.2425,
+          "absolute_mae": 2.2295913113119122e-05,
+          "volume_nmae": 401609524722.83093,
+          "volume_absolute_mae": 2.3015136116768124e-05,
+          "mre_nonzero": 303894269462724.9,
+          "mre_eq5_physical": 275710526730294.75,
+          "mre_nonzero_count": 27900,
+          "strict_zero_reference_count": 2852,
+          "strict_zero_absolute_mae": 8.311403860057784e-06,
+          "reference_max": 5.730724671595357e-17,
+          "support_count": 30752,
+          "support_volume": 0.000125,
+          "sse": 1.1264837590046097e-13,
+          "reference_energy": 1.772208515707903e-40,
+          "weak_reference": true,
+          "weak_absolute_gate": 1e-05,
+          "weak_absolute_pass": false
+        }
+      },
+      "hard_source_excluded": true,
+      "global_weighted_relative_l2": 0.09909360457215889,
+      "fixed_amplitude_error": 3.3511281928590375e-05,
+      "weighted_error_numerator": 8.422498003543012e-13,
+      "weighted_reference_denominator": 8.577281509560513e-11,
+      "fixed_volume_denominator": 0.00074999580410191,
+      "metric_contract": {
+        "nmae": "ordinary masked MAE/reference_max on the declared component support",
+        "volume_nmae": "dual-volume-weighted MAE/reference_max, reported separately",
+        "mre": "mre_eq5_physical uses absolute error at strict zeros; mre_nonzero excludes them",
+        "weak_reference_threshold": 1e-06,
+        "weak_absolute_mae_threshold": 1e-05,
+        "hard_source_excluded_from_Ez": true
+      }
+    },
+    "source_probe_Ez": {
+      "dut": 2.0417117368923817e-29,
+      "ref": 2.041711680802609e-29
+    },
+    "source_outside_probes": [
+      {
+        "cells": [
+          12.0,
+          12.0,
+          13.0
+        ],
+        "xyz_m": [
+          0.01935483870967742,
+          0.01935483870967742,
+          0.020967741935483872
+        ],
+        "dut_Ez": -5.4929787438595715e-05,
+        "ref_Ez": 2.170010452573489e-05
+      },
+      {
+        "cells": [
+          8.0,
+          10.0,
+          12.0
+        ],
+        "xyz_m": [
+          0.012903225806451613,
+          0.016129032258064516,
+          0.01935483870967742
+        ],
+        "dut_Ez": 0.00021526316413655877,
+        "ref_Ez": 0.00021158561139600351
+      },
+      {
+        "cells": [
+          21.0,
+          19.0,
+          18.0
+        ],
+        "xyz_m": [
+          0.03387096774193549,
+          0.03064516129032258,
+          0.02903225806451613
+        ],
+        "dut_Ez": 3.2996504160109745e-05,
+        "ref_Ez": 2.825936257977432e-05
+      }
+    ],
+    "arm": "B-R",
+    "arm_spec": {
+      "arm": "B-R",
+      "rule": "B",
+      "init_kind": "R",
+      "init": "random",
+      "seed": 20260914,
+      "target_steps": 128,
+      "tol": 0.0001,
+      "lr": 0.0003,
+      "per_fit_adam_cap": 3000,
+      "per_fit_closure_cap": 0,
+      "reset_opt_each_step": true,
+      "lbfgs_lr": 1.0,
+      "lbfgs_history": 10,
+      "purpose": "strict_short_128"
+    },
+    "fit_traces": {
+      "H": [
+        {
+          "updates": 0,
+          "loss": 0.0002877216902561486
+        },
+        {
+          "updates": 10,
+          "loss": 0.0010441421763971448
+        },
+        {
+          "updates": 20,
+          "loss": 0.0005683486815541983
+        },
+        {
+          "updates": 30,
+          "loss": 0.00022815761622041464
+        },
+        {
+          "updates": 40,
+          "loss": 0.00015629443805664778
+        },
+        {
+          "updates": 50,
+          "loss": 0.00011046217696275562
+        },
+        {
+          "updates": 54,
+          "loss": 9.992266132030636e-05
+        }
+      ],
+      "E": [
+        {
+          "updates": 0,
+          "loss": 0.0006048906361684203
+        },
+        {
+          "updates": 10,
+          "loss": 0.0014631811063736677
+        },
+        {
+          "updates": 20,
+          "loss": 0.000914247939363122
+        },
+        {
+          "updates": 30,
+          "loss": 0.0005341316573321819
+        },
+        {
+          "updates": 40,
+          "loss": 0.0003495356359053403
+        },
+        {
+          "updates": 50,
+          "loss": 0.0002907789603341371
+        },
+        {
+          "updates": 60,
+          "loss": 0.00024035167007241398
+        },
+        {
+          "updates": 70,
+          "loss": 0.00021028475021012127
+        },
+        {
+          "updates": 80,
+          "loss": 0.0001846523955464363
+        },
+        {
+          "updates": 90,
+          "loss": 0.0001633985375519842
+        },
+        {
+          "updates": 100,
+          "loss": 0.00014487234875559807
+        },
+        {
+          "updates": 110,
+          "loss": 0.00012870487989857793
+        },
+        {
+          "updates": 120,
+          "loss": 0.0001144998095696792
+        },
+        {
+          "updates": 130,
+          "loss": 0.00010200046381214634
+        },
+        {
+          "updates": 132,
+          "loss": 9.968859376385808e-05
+        }
+      ]
+    },
+    "budget_caps": {
+      "H": {
+        "which": "H",
+        "time_layer": 127,
+        "arm_cost_before": {
+          "adam": 37941,
+          "closures": 0,
+          "lbfgs_steps": 0
+        },
+        "global_cost_before": {
+          "adam": 66908,
+          "closures": 1200,
+          "lbfgs_steps": 574
+        },
+        "cap_adam": 3000,
+        "cap_closures": 0,
+        "resource_cap_limited": false
+      },
+      "E": {
+        "which": "E",
+        "time_layer": 127,
+        "arm_cost_before": {
+          "adam": 37995,
+          "closures": 0,
+          "lbfgs_steps": 0
+        },
+        "global_cost_before": {
+          "adam": 66908,
+          "closures": 1200,
+          "lbfgs_steps": 574
+        },
+        "cap_adam": 3000,
+        "cap_closures": 0,
+        "resource_cap_limited": false
+      }
+    },
+    "actual_wall_s": 2934.3161151999957,
+    "row_cost": {
+      "adam": 186,
+      "closures": 0,
+      "lbfgs_steps": 0
+    }
+  },
+  "stop_row": null,
+  "probe_timeseries": [
+    {
+      "step": 0,
+      "source_probe_Ez": {
+        "dut": 1.1253517584464134e-07,
+        "ref": 1.1253517471925912e-07
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": 0.0,
+          "ref_Ez": 0.0
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": 0.0,
+          "ref_Ez": 0.0
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": 0.0,
+          "ref_Ez": 0.0
+        }
+      ]
+    },
+    {
+      "step": 1,
+      "source_probe_Ez": {
+        "dut": 2.393920794929727e-07,
+        "ref": 2.3939208253875934e-07
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": 2.8157539451109782e-11,
+          "ref_Ez": 0.0
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": -3.1265925720842802e-12,
+          "ref_Ez": 0.0
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": -7.152432454898114e-12,
+          "ref_Ez": 0.0
+        }
+      ]
+    },
+    {
+      "step": 2,
+      "source_probe_Ez": {
+        "dut": 5.000465534976684e-07,
+        "ref": 5.000465533960066e-07
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": -2.713083230298964e-12,
+          "ref_Ez": 0.0
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": -1.6283480640255643e-13,
+          "ref_Ez": 0.0
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": -1.1477106591495369e-11,
+          "ref_Ez": 0.0
+        }
+      ]
+    },
+    {
+      "step": 3,
+      "source_probe_Ez": {
+        "dut": 1.0256288760501775e-06,
+        "ref": 1.0256289141181177e-06
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": 2.6138266898123677e-12,
+          "ref_Ez": 0.0
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": 8.521887622653379e-13,
+          "ref_Ez": 0.0
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": -4.224386031953573e-12,
+          "ref_Ez": 0.0
+        }
+      ]
+    },
+    {
+      "step": 4,
+      "source_probe_Ez": {
+        "dut": 2.065614353341516e-06,
+        "ref": 2.065614319259788e-06
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": 1.0036194271478865e-10,
+          "ref_Ez": 0.0
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": 8.224935055950455e-12,
+          "ref_Ez": 0.0
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": -1.161437959695816e-11,
+          "ref_Ez": 0.0
+        }
+      ]
+    },
+    {
+      "step": 5,
+      "source_probe_Ez": {
+        "dut": 4.08495588999358e-06,
+        "ref": 4.084955947848624e-06
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": 1.0368565034335399e-10,
+          "ref_Ez": 0.0
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": 7.1515215624429196e-12,
+          "ref_Ez": 0.0
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": -3.6855792723278194e-11,
+          "ref_Ez": 0.0
+        }
+      ]
+    },
+    {
+      "step": 6,
+      "source_probe_Ez": {
+        "dut": 7.932401786092669e-06,
+        "ref": 7.932401382266575e-06
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": 3.196901493529569e-10,
+          "ref_Ez": 0.0
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": 3.900642374203567e-11,
+          "ref_Ez": 0.0
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": 3.3181089820199916e-11,
+          "ref_Ez": 0.0
+        }
+      ]
+    },
+    {
+      "step": 7,
+      "source_probe_Ez": {
+        "dut": 1.5125200661714189e-05,
+        "ref": 1.512520075783125e-05
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": 6.503787230993648e-10,
+          "ref_Ez": 0.0
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": 8.773488706370625e-11,
+          "ref_Ez": 0.0
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": -7.074074312440865e-11,
+          "ref_Ez": 0.0
+        }
+      ]
+    },
+    {
+      "step": 8,
+      "source_probe_Ez": {
+        "dut": 2.8318925615167245e-05,
+        "ref": 2.8318925840323944e-05
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": 1.714368591532181e-09,
+          "ref_Ez": 3.0649809357186194e-09
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": -7.690579423291766e-11,
+          "ref_Ez": 0.0
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": 6.964870347125793e-11,
+          "ref_Ez": 0.0
+        }
+      ]
+    },
+    {
+      "step": 9,
+      "source_probe_Ez": {
+        "dut": 5.206328569329344e-05,
+        "ref": 5.206328497065699e-05
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": 5.562958316218679e-09,
+          "ref_Ez": 8.834690978787319e-09
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": -3.886900939997773e-10,
+          "ref_Ez": 0.0
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": -2.9206376206403227e-10,
+          "ref_Ez": 0.0
+        }
+      ]
+    },
+    {
+      "step": 10,
+      "source_probe_Ez": {
+        "dut": 9.398650581715629e-05,
+        "ref": 9.398650918856957e-05
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": 1.0913907111387315e-08,
+          "ref_Ez": 1.3432142065283883e-08
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": -8.283646130147204e-10,
+          "ref_Ez": 0.0
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": -6.529809054578481e-10,
+          "ref_Ez": 0.0
+        }
+      ]
+    },
+    {
+      "step": 11,
+      "source_probe_Ez": {
+        "dut": 0.0001666013995418325,
+        "ref": 0.0001666013953245129
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": 1.9346012347654145e-08,
+          "ref_Ez": 2.1392270177500486e-08
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": -1.2818252015378562e-09,
+          "ref_Ez": 0.0
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": 2.969248180661931e-10,
+          "ref_Ez": 0.0
+        }
+      ]
+    },
+    {
+      "step": 12,
+      "source_probe_Ez": {
+        "dut": 0.00028998192283324897,
+        "ref": 0.00028998191360804504
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": 3.3126375420522515e-08,
+          "ref_Ez": 4.230638417368489e-08
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": -2.471862547981374e-09,
+          "ref_Ez": 0.0
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": -3.1457225713195636e-11,
+          "ref_Ez": 9.598880579275682e-10
+        }
+      ]
+    },
+    {
+      "step": 13,
+      "source_probe_Ez": {
+        "dut": 0.000495612621307373,
+        "ref": 0.0004956126134087132
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": 6.887972414659786e-08,
+          "ref_Ez": 8.540254547995133e-08
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": -2.265658105571333e-09,
+          "ref_Ez": 0.0
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": 3.6210525689028505e-09,
+          "ref_Ez": 3.5055781610893074e-09
+        }
+      ]
+    },
+    {
+      "step": 14,
+      "source_probe_Ez": {
+        "dut": 0.0008317502797581255,
+        "ref": 0.000831750273015473
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": 1.3321695035983826e-07,
+          "ref_Ez": 1.6446649553358865e-07
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": 1.464986576493743e-09,
+          "ref_Ez": 0.0
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": 7.629972653688782e-09,
+          "ref_Ez": 7.1728565309569884e-09
+        }
+      ]
+    },
+    {
+      "step": 15,
+      "source_probe_Ez": {
+        "dut": 0.0013706377940252423,
+        "ref": 0.001370637834278166
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": 2.7525548418339044e-07,
+          "ref_Ez": 3.0683298035683085e-07
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": -3.2856770637579302e-09,
+          "ref_Ez": 8.35237989882387e-10
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": 2.0307549197795482e-08,
+          "ref_Ez": 1.2589738140889015e-08
+        }
+      ]
+    },
+    {
+      "step": 16,
+      "source_probe_Ez": {
+        "dut": 0.0022178473882377148,
+        "ref": 0.002217847299751875
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": 5.330901871047908e-07,
+          "ref_Ez": 5.608369804122057e-07
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": 1.809930783025493e-08,
+          "ref_Ez": 3.027677553113506e-09
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": 4.571348011239699e-08,
+          "ref_Ez": 2.2467106397527868e-08
+        }
+      ]
+    },
+    {
+      "step": 17,
+      "source_probe_Ez": {
+        "dut": 0.003523868741467595,
+        "ref": 0.003523868790252103
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": 9.344394698018745e-07,
+          "ref_Ez": 1.0042762994544333e-06
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": 2.139363353137469e-08,
+          "ref_Ez": 5.951944936910536e-09
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": 7.935558432592397e-08,
+          "ref_Ez": 4.3196765275865714e-08
+        }
+      ]
+    },
+    {
+      "step": 18,
+      "source_probe_Ez": {
+        "dut": 0.005497775040566921,
+        "ref": 0.005497775218225253
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": 1.7441922750549585e-06,
+          "ref_Ez": 1.7622967334318699e-06
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": 5.56459447409452e-08,
+          "ref_Ez": 1.0211128387282997e-08
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": 1.139927121585058e-07,
+          "ref_Ez": 8.447523569543573e-08
+        }
+      ]
+    },
+    {
+      "step": 19,
+      "source_probe_Ez": {
+        "dut": 0.008422352373600006,
+        "ref": 0.008422352065450231
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": 2.965584144476456e-06,
+          "ref_Ez": 3.0314425316646563e-06
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": 3.2727029974921606e-08,
+          "ref_Ez": 1.8276729463195807e-08
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": 2.3104536239770768e-07,
+          "ref_Ez": 1.6066276842252554e-07
+        }
+      ]
+    },
+    {
+      "step": 20,
+      "source_probe_Ez": {
+        "dut": 0.012669485062360764,
+        "ref": 0.012669485124312338
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": 4.905870582661016e-06,
+          "ref_Ez": 5.110268261887548e-06
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": 8.44618313067258e-08,
+          "ref_Ez": 3.530484260494404e-08
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": 3.530101366777662e-07,
+          "ref_Ez": 2.977480662025294e-07
+        }
+      ]
+    },
+    {
+      "step": 21,
+      "source_probe_Ez": {
+        "dut": 0.018713874742388725,
+        "ref": 0.018713874061362944
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": 8.488394996675209e-06,
+          "ref_Ez": 8.440581950708304e-06
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": 2.7934639490467816e-08,
+          "ref_Ez": 6.916791939204359e-08
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": 5.85418860055141e-07,
+          "ref_Ez": 5.401942217986278e-07
+        }
+      ]
+    },
+    {
+      "step": 22,
+      "source_probe_Ez": {
+        "dut": 0.02714235894382,
+        "ref": 0.02714235967357598
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": 1.381500442221297e-05,
+          "ref_Ez": 1.3657840554515153e-05
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": 8.653841732098044e-08,
+          "ref_Ez": 1.3135137422182197e-07
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": 1.2187954325781881e-06,
+          "ref_Ez": 9.596518850685224e-07
+        }
+      ]
+    },
+    {
+      "step": 23,
+      "source_probe_Ez": {
+        "dut": 0.038655444979667664,
+        "ref": 0.03865544365234308
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": 2.161224438168577e-05,
+          "ref_Ez": 2.164502348023237e-05
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": 2.4929236275283984e-07,
+          "ref_Ez": 2.4276258869804224e-07
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": 2.3787854956935874e-06,
+          "ref_Ez": 1.670078063398247e-06
+        }
+      ]
+    },
+    {
+      "step": 24,
+      "source_probe_Ez": {
+        "dut": 0.05405711755156517,
+        "ref": 0.05405711763985523
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": 3.2701605960028293e-05,
+          "ref_Ez": 3.3586728932277806e-05
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": 7.432031168264075e-08,
+          "ref_Ez": 4.3929239268436504e-07
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": 3.5511247915564964e-06,
+          "ref_Ez": 2.8498387791842047e-06
+        }
+      ]
+    },
+    {
+      "step": 25,
+      "source_probe_Ez": {
+        "dut": 0.07422911375761032,
+        "ref": 0.07422911288765364
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": 4.995295603293932e-05,
+          "ref_Ez": 5.101512215333066e-05
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": 3.407399589150373e-07,
+          "ref_Ez": 7.785327227338712e-07
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": 5.648252681567088e-06,
+          "ref_Ez": 4.768269263877292e-06
+        }
+      ]
+    },
+    {
+      "step": 26,
+      "source_probe_Ez": {
+        "dut": 0.10008633881807327,
+        "ref": 0.10008634221898259
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": 7.24567835277413e-05,
+          "ref_Ez": 7.582814032502948e-05
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": 1.0985890526171715e-06,
+          "ref_Ez": 1.3516898889065487e-06
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": 9.110521205002422e-06,
+          "ref_Ez": 7.818699032213758e-06
+        }
+      ]
+    },
+    {
+      "step": 27,
+      "source_probe_Ez": {
+        "dut": 0.13251179456710815,
+        "ref": 0.13251179203614755
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": 0.00010487940380699015,
+          "ref_Ez": 0.00011025881394743934
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": 1.6767971828812733e-06,
+          "ref_Ez": 2.3009088749859075e-06
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": 1.5009792150522084e-05,
+          "ref_Ez": 1.2560553386720108e-05
+        }
+      ]
+    },
+    {
+      "step": 28,
+      "source_probe_Ez": {
+        "dut": 0.1722714900970459,
+        "ref": 0.17227148561225622
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": 0.00015179816546151433,
+          "ref_Ez": 0.00015677395640523195
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": 2.397387106611859e-06,
+          "ref_Ez": 3.83992619390483e-06
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": 2.1912010197411254e-05,
+          "ref_Ez": 1.9765630895562902e-05
+        }
+      ]
+    },
+    {
+      "step": 29,
+      "source_probe_Ez": {
+        "dut": 0.2199132740497589,
+        "ref": 0.21991326821612045
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": 0.00022350645303959054,
+          "ref_Ez": 0.0002178772920160557
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": 5.442366273200605e-06,
+          "ref_Ez": 6.27927897767222e-06
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": 3.1182657039607834e-05,
+          "ref_Ez": 3.046115489269136e-05
+        }
+      ]
+    },
+    {
+      "step": 30,
+      "source_probe_Ez": {
+        "dut": 0.2756567597389221,
+        "ref": 0.275656748313362
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": 0.00029357941821217575,
+          "ref_Ez": 0.00029579584224848115
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": 8.998112662084168e-06,
+          "ref_Ez": 1.0058366115117678e-05
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": 4.899248597212129e-05,
+          "ref_Ez": 4.596188045979935e-05
+        }
+      ]
+    },
+    {
+      "step": 31,
+      "source_probe_Ez": {
+        "dut": 0.3392852544784546,
+        "ref": 0.33928525577786334
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": 0.00039241628837771757,
+          "ref_Ez": 0.000392045010812581
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": 1.4178029232425615e-05,
+          "ref_Ez": 1.577980765432585e-05
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": 7.597810690640461e-05,
+          "ref_Ez": 6.787916208850209e-05
+        }
+      ]
+    },
+    {
+      "step": 32,
+      "source_probe_Ez": {
+        "dut": 0.4100534915924072,
+        "ref": 0.4100534851298476
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": 0.0004973332106601453,
+          "ref_Ez": 0.0005068870377726859
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": 2.446816324663814e-05,
+          "ref_Ez": 2.423988644295605e-05
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": 0.00010878838656935823,
+          "ref_Ez": 9.808790855458921e-05
+        }
+      ]
+    },
+    {
+      "step": 33,
+      "source_probe_Ez": {
+        "dut": 0.48662588000297546,
+        "ref": 0.48662586637727223
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": 0.0006178836338222034,
+          "ref_Ez": 0.0006387248722603552
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": 3.994183680333663e-05,
+          "ref_Ez": 3.644884600362275e-05
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": 0.00014472752809524517,
+          "ref_Ez": 0.00013863216736353912
+        }
+      ]
+    },
+    {
+      "step": 34,
+      "source_probe_Ez": {
+        "dut": 0.5670600533485413,
+        "ref": 0.5670600275209124
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": 0.0007524528336944068,
+          "ref_Ez": 0.0007835108845029035
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": 5.819449870614335e-05,
+          "ref_Ez": 5.36315292265499e-05
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": 0.00018226245447294762,
+          "ref_Ez": 0.00019155154586769613
+        }
+      ]
+    },
+    {
+      "step": 35,
+      "source_probe_Ez": {
+        "dut": 0.6488466262817383,
+        "ref": 0.6488466123110848
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": 0.0008889496384654205,
+          "ref_Ez": 0.0009342818520963204
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": 7.820103201083839e-05,
+          "ref_Ez": 7.719319546595216e-05
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": 0.00023753232380840903,
+          "ref_Ez": 0.00025861331232590563
+        }
+      ]
+    },
+    {
+      "step": 36,
+      "source_probe_Ez": {
+        "dut": 0.7290112376213074,
+        "ref": 0.7290112167039858
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": 0.0009912448585964752,
+          "ref_Ez": 0.0010809529921971275
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": 0.00010832984844455495,
+          "ref_Ez": 0.0001086354604922235
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": 0.0003296634240541602,
+          "ref_Ez": 0.000340946920914575
+        }
+      ]
+    },
+    {
+      "step": 37,
+      "source_probe_Ez": {
+        "dut": 0.8042768239974976,
+        "ref": 0.8042768006987631
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": 0.0010977793135680271,
+          "ref_Ez": 0.001210505899507554
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": 0.00015265682304743677,
+          "ref_Ez": 0.00014940973778720945
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": 0.00044251634972169925,
+          "ref_Ez": 0.0004385980719234789
+        }
+      ]
+    },
+    {
+      "step": 38,
+      "source_probe_Ez": {
+        "dut": 0.8712765574455261,
+        "ref": 0.8712765694311991
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": 0.0012939173029735702,
+          "ref_Ez": 0.0013076844334136712
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": 0.00020760032202815637,
+          "ref_Ez": 0.0002006978538702242
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": 0.0005571789952227839,
+          "ref_Ez": 0.0005500423139892512
+        }
+      ]
+    },
+    {
+      "step": 39,
+      "source_probe_Ez": {
+        "dut": 0.9267992973327637,
+        "ref": 0.9267992860437692
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": 0.0013939506316091885,
+          "ref_Ez": 0.0013562518288381417
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": 0.0002701092598726973,
+          "ref_Ez": 0.0002631199240568094
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": 0.0006694904295727604,
+          "ref_Ez": 0.0006717218202538782
+        }
+      ]
+    },
+    {
+      "step": 40,
+      "source_probe_Ez": {
+        "dut": 0.9680426716804504,
+        "ref": 0.9680426865030202
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": 0.001263919111806901,
+          "ref_Ez": 0.0013407702499534954
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": 0.00032761522743385285,
+          "ref_Ez": 0.00033638587046880275
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": 0.000789316254667937,
+          "ref_Ez": 0.0007976967608556144
+        }
+      ]
+    },
+    {
+      "step": 41,
+      "source_probe_Ez": {
+        "dut": 0.9928473830223083,
+        "ref": 0.9928473662643622
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": 0.0010437772143632193,
+          "ref_Ez": 0.0012487566855270435
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": 0.0003971958358306438,
+          "ref_Ez": 0.0004189255560049787
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": 0.0009299031808041027,
+          "ref_Ez": 0.0009195189923048012
+        }
+      ]
+    },
+    {
+      "step": 42,
+      "source_probe_Ez": {
+        "dut": 0.9998840093612671,
+        "ref": 0.9998840257428104
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": 0.0010600937239360086,
+          "ref_Ez": 0.0010729518253356238
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": 0.000490379796246998,
+          "ref_Ez": 0.0005075509689049795
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": 0.00103431541356258,
+          "ref_Ez": 0.0010264333977829656
+        }
+      ]
+    },
+    {
+      "step": 43,
+      "source_probe_Ez": {
+        "dut": 0.9887714982032776,
+        "ref": 0.9887714870233006
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": 0.0009633014851715434,
+          "ref_Ez": 0.0008133494848152641
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": 0.0005961779679637402,
+          "ref_Ez": 0.0005972232902422547
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": 0.0011167849588673555,
+          "ref_Ez": 0.0011059888347517692
+        }
+      ]
+    },
+    {
+      "step": 44,
+      "source_probe_Ez": {
+        "dut": 0.9601109027862549,
+        "ref": 0.960110900913024
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": 0.0005219580052653344,
+          "ref_Ez": 0.00047859419464657717
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": 0.0006476135458797216,
+          "ref_Ez": 0.0006810098711866885
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": 0.001175968151073902,
+          "ref_Ez": 0.0011450918973423536
+        }
+      ]
+    },
+    {
+      "step": 45,
+      "source_probe_Ez": {
+        "dut": 0.9154318571090698,
+        "ref": 0.9154318724549967
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": -2.412300091235556e-06,
+          "ref_Ez": 8.638876897748712e-05
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": 0.0007231471536215395,
+          "ref_Ez": 0.0007503105443902314
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": 0.0011297939927317202,
+          "ref_Ez": 0.0011314623989164827
+        }
+      ]
+    },
+    {
+      "step": 46,
+      "source_probe_Ez": {
+        "dut": 0.8570572137832642,
+        "ref": 0.8570572238499637
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": -0.0004555445048026726,
+          "ref_Ez": -0.0003373360068508178
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": 0.0008049955940805376,
+          "ref_Ez": 0.0007954090542625636
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": 0.0010389448143541813,
+          "ref_Ez": 0.0010553604224696755
+        }
+      ]
+    },
+    {
+      "step": 47,
+      "source_probe_Ez": {
+        "dut": 0.7879030108451843,
+        "ref": 0.7879030336254765
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": -0.0008110926864901546,
+          "ref_Ez": -0.0007605516584590067
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": 0.0008071393240243196,
+          "ref_Ez": 0.0008063659770414233
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": 0.0009276206837967039,
+          "ref_Ez": 0.0009113693377003076
+        }
+      ]
+    },
+    {
+      "step": 48,
+      "source_probe_Ez": {
+        "dut": 0.711237907409668,
+        "ref": 0.7112378944880849
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": -0.0011481879046186796,
+          "ref_Ez": -0.001148394134361296
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": 0.0007437342137563974,
+          "ref_Ez": 0.0007742060115560889
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": 0.0007094209140632308,
+          "ref_Ez": 0.0006999540491960949
+        }
+      ]
+    },
+    {
+      "step": 49,
+      "source_probe_Ez": {
+        "dut": 0.6304289698600769,
+        "ref": 0.6304289740447665
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": -0.0014712020056322208,
+          "ref_Ez": -0.0014671623357571655
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": 0.0006480112788267434,
+          "ref_Ez": 0.000692284113029018
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": 0.0004229976038914184,
+          "ref_Ez": 0.00042848702287301513
+        }
+      ]
+    },
+    {
+      "step": 50,
+      "source_probe_Ez": {
+        "dut": 0.5487020611763,
+        "ref": 0.5487020769836471
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": -0.001769419875927269,
+          "ref_Ez": -0.0016884807846508916
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": 0.0005841725214850157,
+          "ref_Ez": 0.0005576484545599669
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": 0.00013542726810556022,
+          "ref_Ez": 0.00011147003533551593
+        }
+      ]
+    },
+    {
+      "step": 51,
+      "source_probe_Ez": {
+        "dut": 0.46893882751464844,
+        "ref": 0.4689388408795633
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": -0.0018951415549963708,
+          "ref_Ez": -0.0017929709865711625
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": 0.00047860023914836347,
+          "ref_Ez": 0.00037217258068267256
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": -0.00014303727948572365,
+          "ref_Ez": -0.00023022422828944254
+        }
+      ]
+    },
+    {
+      "step": 52,
+      "source_probe_Ez": {
+        "dut": 0.39352738857269287,
+        "ref": 0.3935273937015742
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": -0.001824631763156503,
+          "ref_Ez": -0.0017728174570947881
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": 0.0001808094821171835,
+          "ref_Ez": 0.00014321795606520027
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": -0.0005112388607813029,
+          "ref_Ez": -0.0005711178237106635
+        }
+      ]
+    },
+    {
+      "step": 53,
+      "source_probe_Ez": {
+        "dut": 0.32427456974983215,
+        "ref": 0.3242745722262398
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": -0.0017033810727298255,
+          "ref_Ez": -0.0016327839693985875
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": -0.00018717125931289047,
+          "ref_Ez": -0.00011637706120382063
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": -0.0009289986628573367,
+          "ref_Ez": -0.0008837489585857824
+        }
+      ]
+    },
+    {
+      "step": 54,
+      "source_probe_Ez": {
+        "dut": 0.26237955689430237,
+        "ref": 0.2623795501225288
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": -0.0014699274906888602,
+          "ref_Ez": -0.0013894921867176886
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": -0.0004169084568275139,
+          "ref_Ez": -0.0003890976950060576
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": -0.0011280521284788836,
+          "ref_Ez": -0.0011418235953897225
+        }
+      ]
+    },
+    {
+      "step": 55,
+      "source_probe_Ez": {
+        "dut": 0.2084616869688034,
+        "ref": 0.2084616799039159
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": -0.0011714108986780045,
+          "ref_Ez": -0.0010690829949453469
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": -0.0006139178585726768,
+          "ref_Ez": -0.0006543349591083825
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": -0.0012961013126187016,
+          "ref_Ez": -0.0013234419748187054
+        }
+      ]
+    },
+    {
+      "step": 56,
+      "source_probe_Ez": {
+        "dut": 0.1626303642988205,
+        "ref": 0.16263036831237745
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": -0.0008082963759079573,
+          "ref_Ez": -0.0007036626338958737
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": -0.0008952797506935894,
+          "ref_Ez": -0.0008905999711714685
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": -0.0013790812226943663,
+          "ref_Ez": -0.0014138936530798665
+        }
+      ]
+    },
+    {
+      "step": 57,
+      "source_probe_Ez": {
+        "dut": 0.12458226084709167,
+        "ref": 0.1245822643194179
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": -0.00035432545701041763,
+          "ref_Ez": -0.0003271399400546212
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": -0.0010976619087159634,
+          "ref_Ez": -0.0010780846932902932
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": -0.001331573352217674,
+          "ref_Ez": -0.001407557690981775
+        }
+      ]
+    },
+    {
+      "step": 58,
+      "source_probe_Ez": {
+        "dut": 0.09371086955070496,
+        "ref": 0.09371086716353186
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": 2.8496404411271465e-05,
+          "ref_Ez": 2.8862803446827795e-05
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": -0.0011634372640401125,
+          "ref_Ez": -0.0012011908111162484
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": -0.001304313656874001,
+          "ref_Ez": -0.001308581791818142
+        }
+      ]
+    },
+    {
+      "step": 59,
+      "source_probe_Ez": {
+        "dut": 0.06921541690826416,
+        "ref": 0.06921541951488913
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": 0.00021968499640934167,
+          "ref_Ez": 0.0003383989678695801
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": -0.0011871609603986144,
+          "ref_Ez": -0.0012506212224252522
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": -0.001154033525381238,
+          "ref_Ez": -0.001130221760831774
+        }
+      ]
+    },
+    {
+      "step": 60,
+      "source_probe_Ez": {
+        "dut": 0.050198983401060104,
+        "ref": 0.05019898274326605
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": 0.00039870916953077594,
+          "ref_Ez": 0.0005834330222569408
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": -0.0012148848036304116,
+          "ref_Ez": -0.0012246762635186315
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": -0.000877220620168374,
+          "ref_Ez": -0.0008929595060180881
+        }
+      ]
+    },
+    {
+      "step": 61,
+      "source_probe_Ez": {
+        "dut": 0.03574918583035469,
+        "ref": 0.03574918453046701
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": 0.0007136908534448598,
+          "ref_Ez": 0.0007547162531409415
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": -0.001174015982542187,
+          "ref_Ez": -0.0011295194271951914
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": -0.0005437700456241159,
+          "ref_Ez": -0.0006217253103386624
+        }
+      ]
+    },
+    {
+      "step": 62,
+      "source_probe_Ez": {
+        "dut": 0.024998648092150688,
+        "ref": 0.02499864820357384
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": 0.0008572928782086818,
+          "ref_Ez": 0.0008513522334396841
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": -0.0009703271789476275,
+          "ref_Ez": -0.0009783492714632303
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": -0.00028405855118762837,
+          "ref_Ez": -0.00034269940806552903
+        }
+      ]
+    },
+    {
+      "step": 63,
+      "source_probe_Ez": {
+        "dut": 0.017165089026093483,
+        "ref": 0.01716508950750685
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": 0.0007733892125543207,
+          "ref_Ez": 0.0008793217130005361
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": -0.0007831375987734646,
+          "ref_Ez": -0.0007896035676822066
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": -9.550945833325497e-05,
+          "ref_Ez": -8.021298162930316e-05
+        }
+      ]
+    },
+    {
+      "step": 64,
+      "source_probe_Ez": {
+        "dut": 0.011573235504329205,
+        "ref": 0.011573235273672211
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": 0.0007319974538404498,
+          "ref_Ez": 0.0008493708155583591
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": -0.0005997406260576099,
+          "ref_Ez": -0.0005844867846462876
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": 0.00013698700058739513,
+          "ref_Ez": 0.00014578628542949318
+        }
+      ]
+    },
+    {
+      "step": 65,
+      "source_probe_Ez": {
+        "dut": 0.007662008982151747,
+        "ref": 0.007662008930439271
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": 0.0007309460197575389,
+          "ref_Ez": 0.0007747054623905569
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": -0.00035514326009433717,
+          "ref_Ez": -0.00038421363569796085
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": 0.0003239533543819551,
+          "ref_Ez": 0.00032137888774741327
+        }
+      ]
+    },
+    {
+      "step": 66,
+      "source_probe_Ez": {
+        "dut": 0.004980921279639006,
+        "ref": 0.00498092139171693
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": 0.0006316627841442822,
+          "ref_Ez": 0.0006688870489597321
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": -0.00018980935419676825,
+          "ref_Ez": -0.00020739798492286354
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": 0.0005085335578769435,
+          "ref_Ez": 0.0004392965056467792
+        }
+      ]
+    },
+    {
+      "step": 67,
+      "source_probe_Ez": {
+        "dut": 0.003179478459060192,
+        "ref": 0.003179478436716334
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": 0.00046275887871161103,
+          "ref_Ez": 0.0005442052206490189
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": -9.639810014050454e-05,
+          "ref_Ez": -6.79598015267402e-05
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": 0.0005983871233183881,
+          "ref_Ez": 0.0004985834384569891
+        }
+      ]
+    },
+    {
+      "step": 68,
+      "source_probe_Ez": {
+        "dut": 0.001992880366742611,
+        "ref": 0.001992880429096727
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": 0.000339487989549525,
+          "ref_Ez": 0.00041066968697123224
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": 2.1507974452106282e-05,
+          "ref_Ez": 2.6193506187155435e-05
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": 0.0005380327056627716,
+          "ref_Ez": 0.0005035190843045707
+        }
+      ]
+    },
+    {
+      "step": 69,
+      "source_probe_Ez": {
+        "dut": 0.0012265514815226197,
+        "ref": 0.0012265514287401744
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": 0.00021722335077356547,
+          "ref_Ez": 0.00027562769537325943
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": 0.00011024519699276425,
+          "ref_Ez": 7.359755363722797e-05
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": 0.0004899596970062701,
+          "ref_Ez": 0.0004621135012712327
+        }
+      ]
+    },
+    {
+      "step": 70,
+      "source_probe_Ez": {
+        "dut": 0.0007412580889649689,
+        "ref": 0.0007412580884362635
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": 5.200441228225813e-05,
+          "ref_Ez": 0.00014391128934221337
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": 0.00011344284939696081,
+          "ref_Ez": 7.881519923103042e-05
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": 0.0004015875019831583,
+          "ref_Ez": 0.0003845038008876143
+        }
+      ]
+    },
+    {
+      "step": 71,
+      "source_probe_Ez": {
+        "dut": 0.0004398780583869666,
+        "ref": 0.00043987804895739434
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": -8.251431790995412e-05,
+          "ref_Ez": 1.836133583310579e-05
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": 5.386608972912654e-05,
+          "ref_Ez": 5.133295962878037e-05
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": 0.0002830309967976065,
+          "ref_Ez": 0.0002815300249494612
+        }
+      ]
+    },
+    {
+      "step": 72,
+      "source_probe_Ez": {
+        "dut": 0.0002563151647336781,
+        "ref": 0.00025631516198727083
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": -0.0001701302244327964,
+          "ref_Ez": -9.944515477400279e-05
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": -7.723626367805991e-06,
+          "ref_Ez": 3.9956255477591185e-06
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": 0.00019498338224366302,
+          "ref_Ez": 0.0001636696397326887
+        }
+      ]
+    },
+    {
+      "step": 73,
+      "source_probe_Ez": {
+        "dut": 0.00014665452181361616,
+        "ref": 0.00014665452452061357
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": -0.00028067728271707903,
+          "ref_Ez": -0.00020842421508859848
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": -3.402620041015325e-05,
+          "ref_Ez": -4.876842467638198e-05
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": 7.556300988653676e-05,
+          "ref_Ez": 4.0397439988737575e-05
+        }
+      ]
+    },
+    {
+      "step": 74,
+      "source_probe_Ez": {
+        "dut": 8.239404269261286e-05,
+        "ref": 8.239403989959484e-05
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": -0.0003905438934452832,
+          "ref_Ez": -0.0003073048865189776
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": -6.480002048192546e-05,
+          "ref_Ez": -9.270805458072573e-05
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": -7.303451639017997e-05,
+          "ref_Ez": -8.006638745428047e-05
+        }
+      ]
+    },
+    {
+      "step": 75,
+      "source_probe_Ez": {
+        "dut": 4.545433330349624e-05,
+        "ref": 4.545433317153015e-05
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": -0.0004561535606626422,
+          "ref_Ez": -0.00039413393824361265
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": -0.00012135127690271474,
+          "ref_Ez": -0.00011532470671227202
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": -0.00018029932107310712,
+          "ref_Ez": -0.0001907278929138554
+        }
+      ]
+    },
+    {
+      "step": 76,
+      "source_probe_Ez": {
+        "dut": 2.46226027229568e-05,
+        "ref": 2.4622602075354137e-05
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": -0.0005239015445113182,
+          "ref_Ez": -0.00046602950897067785
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": -0.00011960974370595068,
+          "ref_Ez": -0.0001071429687726777
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": -0.000254973710980266,
+          "ref_Ez": -0.0002856553182937202
+        }
+      ]
+    },
+    {
+      "step": 77,
+      "source_probe_Ez": {
+        "dut": 1.3096998372930102e-05,
+        "ref": 1.3096998094058428e-05
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": -0.0006020533910486848,
+          "ref_Ez": -0.0005192191747482866
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": -5.0848615501308814e-05,
+          "ref_Ez": -6.261408088903408e-05
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": -0.00032364511571358846,
+          "ref_Ez": -0.0003598190087359395
+        }
+      ]
+    },
+    {
+      "step": 78,
+      "source_probe_Ez": {
+        "dut": 6.840514288342092e-06,
+        "ref": 6.840514128910021e-06
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": -0.0006224680109880864,
+          "ref_Ez": -0.0005493588978424668
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": 6.6580269049154595e-06,
+          "ref_Ez": 1.9382786376809236e-05
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": -0.00038380234036594586,
+          "ref_Ez": -0.0004090366710443045
+        }
+      ]
+    },
+    {
+      "step": 79,
+      "source_probe_Ez": {
+        "dut": 3.5082043723377865e-06,
+        "ref": 3.508204379418585e-06
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": -0.0005915828223805877,
+          "ref_Ez": -0.0005521077546291053
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": 0.00011152588558616117,
+          "ref_Ez": 0.0001354527921648696
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": -0.00042175225098617315,
+          "ref_Ez": -0.0004300801228964696
+        }
+      ]
+    },
+    {
+      "step": 80,
+      "source_probe_Ez": {
+        "dut": 1.7666893654677551e-06,
+        "ref": 1.7666893484462727e-06
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": -0.000584082183195278,
+          "ref_Ez": -0.000523893628269434
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": 0.0002880749525502324,
+          "ref_Ez": 0.0002779999340418726
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": -0.0003954897547373541,
+          "ref_Ez": -0.0004209372709738084
+        }
+      ]
+    },
+    {
+      "step": 81,
+      "source_probe_Ez": {
+        "dut": 8.736041081647272e-07,
+        "ref": 8.736040868895341e-07
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": -0.0005627268110401928,
+          "ref_Ez": -0.00046276056673377747
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": 0.0004593867342919111,
+          "ref_Ez": 0.0004359261365607381
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": -0.00035313445550855173,
+          "ref_Ez": -0.00038117427902761776
+        }
+      ]
+    },
+    {
+      "step": 82,
+      "source_probe_Ez": {
+        "dut": 4.2417815393491765e-07,
+        "ref": 4.241781422178685e-07
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": -0.00046139751793816686,
+          "ref_Ez": -0.00036916868702974165
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": 0.0005958473775535822,
+          "ref_Ez": 0.0005956692330073565
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": -0.0002890473115257911,
+          "ref_Ez": -0.00031230713648255844
+        }
+      ]
+    },
+    {
+      "step": 83,
+      "source_probe_Ez": {
+        "dut": 2.0223721719503374e-07,
+        "ref": 2.022372152134098e-07
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": -0.00031508447136729956,
+          "ref_Ez": -0.0002465944780851714
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": 0.0007249476329889148,
+          "ref_Ez": 0.0007424962823279202
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": -0.0001703346788417542,
+          "ref_Ez": -0.00021806807490065618
+        }
+      ]
+    },
+    {
+      "step": 84,
+      "source_probe_Ez": {
+        "dut": 9.467886030734007e-08,
+        "ref": 9.467886202885399e-08
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": -0.00018082937458530068,
+          "ref_Ez": -0.00010178513548453332
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": 0.0008540722774341702,
+          "ref_Ez": 0.0008619378495495766
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": -7.561663005617374e-05,
+          "ref_Ez": -0.0001044639866449863
+        }
+      ]
+    },
+    {
+      "step": 85,
+      "source_probe_Ez": {
+        "dut": 4.3523534998257674e-08,
+        "ref": 4.3523533273987365e-08
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": -2.0384253730298816e-05,
+          "ref_Ez": 5.545108979276854e-05
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": 0.0009386758902110159,
+          "ref_Ez": 0.000941221573157236
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": 1.4568508049706853e-05,
+          "ref_Ez": 2.045576110276734e-05
+        }
+      ]
+    },
+    {
+      "step": 86,
+      "source_probe_Ez": {
+        "dut": 1.9646012816565417e-08,
+        "ref": 1.9646012758266055e-08
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": 0.00015270780568243936,
+          "ref_Ez": 0.0002129767599399202
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": 0.0009809366019908339,
+          "ref_Ez": 0.0009705446718726307
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": 0.00017431777814636056,
+          "ref_Ez": 0.00014716344594489832
+        }
+      ]
+    },
+    {
+      "step": 87,
+      "source_probe_Ez": {
+        "dut": 8.707708332167385e-09,
+        "ref": 8.707708079737952e-09
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": 0.000266371265752241,
+          "ref_Ez": 0.00035754081909544766
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": 0.0009611914283595979,
+          "ref_Ez": 0.0009440438880119473
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": 0.0003047956270165744,
+          "ref_Ez": 0.0002655215939739722
+        }
+      ]
+    },
+    {
+      "step": 88,
+      "source_probe_Ez": {
+        "dut": 3.789766722661625e-09,
+        "ref": 3.78976658976117e-09
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": 0.0003700211818795651,
+          "ref_Ez": 0.00047635829832870513
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": 0.0008608689531683922,
+          "ref_Ez": 0.0008603581809438765
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": 0.0003805875021498653,
+          "ref_Ez": 0.0003658746427390726
+        }
+      ]
+    },
+    {
+      "step": 89,
+      "source_probe_Ez": {
+        "dut": 1.619571921018803e-09,
+        "ref": 1.619571875701199e-09
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": 0.0004868689429713413,
+          "ref_Ez": 0.0005588442727457732
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": 0.0007196579244919121,
+          "ref_Ez": 0.0007227332098409534
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": 0.0004655793454730884,
+          "ref_Ez": 0.000440226387581788
+        }
+      ]
+    },
+    {
+      "step": 90,
+      "source_probe_Ez": {
+        "dut": 6.796215812343576e-10,
+        "ref": 6.796215673099321e-10
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": 0.0005466792499646543,
+          "ref_Ez": 0.0005982212605886161
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": 0.0005510581831913441,
+          "ref_Ez": 0.0005386842240113765
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": 0.0005310830601956692,
+          "ref_Ez": 0.0004833199636777861
+        }
+      ]
+    },
+    {
+      "step": 91,
+      "source_probe_Ez": {
+        "dut": 2.800356058152431e-10,
+        "ref": 2.800355969418824e-10
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": 0.0005141025176271796,
+          "ref_Ez": 0.0005927176971454173
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": 0.0003469965886324644,
+          "ref_Ez": 0.00031929704709909856
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": 0.0005259695462882516,
+          "ref_Ez": 0.0004934386524837462
+        }
+      ]
+    },
+    {
+      "step": 92,
+      "source_probe_Ez": {
+        "dut": 1.1330223564920416e-10,
+        "ref": 1.1330223863709162e-10
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": 0.0004466095706447958,
+          "ref_Ez": 0.0005461031105369329
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": 8.181310840882361e-05,
+          "ref_Ez": 7.828882917237934e-05
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": 0.000475134089356288,
+          "ref_Ez": 0.00047276451368816154
+        }
+      ]
+    },
+    {
+      "step": 93,
+      "source_probe_Ez": {
+        "dut": 4.50135137497476e-11,
+        "ref": 4.501351250178252e-11
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": 0.0003892412642017006,
+          "ref_Ez": 0.0004674027441069483
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": -0.0001804966595955193,
+          "ref_Ez": -0.00016904106450965628
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": 0.0004429023538250471,
+          "ref_Ez": 0.00042719306657090734
+        }
+      ]
+    },
+    {
+      "step": 94,
+      "source_probe_Ez": {
+        "dut": 1.7560080126099997e-11,
+        "ref": 1.756007950072838e-11
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": 0.00029168970650061965,
+          "ref_Ez": 0.0003697766514960676
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": -0.0004035571764688939,
+          "ref_Ez": -0.0004068539128638804
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": 0.0004053199227200815,
+          "ref_Ez": 0.0003655920154415065
+        }
+      ]
+    },
+    {
+      "step": 95,
+      "source_probe_Ez": {
+        "dut": 6.726500866721663e-12,
+        "ref": 6.726501053141112e-12
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": 0.00017963034042622878,
+          "ref_Ez": 0.00026868813438341016
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": -0.0006155479641165584,
+          "ref_Ez": -0.000619726546574384
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": 0.00031762212165631305,
+          "ref_Ez": 0.0002985816972795868
+        }
+      ]
+    },
+    {
+      "step": 96,
+      "source_probe_Ez": {
+        "dut": 2.5300616636469986e-12,
+        "ref": 2.530061706397684e-12
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": 0.00011781218199757856,
+          "ref_Ez": 0.00017963898426387454
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": -0.000779670401243493,
+          "ref_Ez": -0.0007934882596600801
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": 0.0002572254161350425,
+          "ref_Ez": 0.00023701274039922225
+        }
+      ]
+    },
+    {
+      "step": 97,
+      "source_probe_Ez": {
+        "dut": 9.344416516607335e-13,
+        "ref": 9.344416218318168e-13
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": 5.854494156665164e-05,
+          "ref_Ez": 0.00011584400272113266
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": -0.0009099987510126084,
+          "ref_Ez": -0.0009159523178823292
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": 0.0002336568722967053,
+          "ref_Ez": 0.00019037767197005397
+        }
+      ]
+    },
+    {
+      "step": 98,
+      "source_probe_Ez": {
+        "dut": 3.388850344007016e-13,
+        "ref": 3.3888504024980493e-13
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": 1.2148644600529098e-05,
+          "ref_Ez": 8.624188558314924e-05
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": -0.000983084348263219,
+          "ref_Ez": -0.000977580522885546
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": 0.00018215738236904098,
+          "ref_Ez": 0.0001654154257266777
+        }
+      ]
+    },
+    {
+      "step": 99,
+      "source_probe_Ez": {
+        "dut": 1.2067902016230092e-13,
+        "ref": 1.2067902234065383e-13
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": 1.5223813534248597e-05,
+          "ref_Ez": 9.419637353857976e-05
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": -0.000959960074396804,
+          "ref_Ez": -0.0009721101669128984
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": 0.00019139143842039576,
+          "ref_Ez": 0.00016514511662535318
+        }
+      ]
+    },
+    {
+      "step": 100,
+      "source_probe_Ez": {
+        "dut": 4.219784989641616e-14,
+        "ref": 4.219785065182747e-14
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": 5.751930257247291e-05,
+          "ref_Ez": 0.00013711574865737927
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": -0.0009195104648824781,
+          "ref_Ez": -0.0008971524075604975
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": 0.0002171918604290108,
+          "ref_Ez": 0.00018849560001399322
+        }
+      ]
+    },
+    {
+      "step": 101,
+      "source_probe_Ez": {
+        "dut": 1.4488654416847102e-14,
+        "ref": 1.4488653973220592e-14
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": 0.0001276452167076058,
+          "ref_Ez": 0.00020705197675852102
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": -0.0007898492913227528,
+          "ref_Ez": -0.0007547184359282255
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": 0.00024277966440422425,
+          "ref_Ez": 0.0002305950474692504
+        }
+      ]
+    },
+    {
+      "step": 102,
+      "source_probe_Ez": {
+        "dut": 4.884778867476295e-15,
+        "ref": 4.884778915269696e-15
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": 0.00021042887237854302,
+          "ref_Ez": 0.0002921620471170172
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": -0.0005007373983971775,
+          "ref_Ez": -0.0005515800439752638
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": 0.0003124299400951709,
+          "ref_Ez": 0.0002836678468156601
+        }
+      ]
+    },
+    {
+      "step": 103,
+      "source_probe_Ez": {
+        "dut": 1.617115174712034e-15,
+        "ref": 1.617115152203235e-15
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": 0.00030516705010086287,
+          "ref_Ez": 0.00037874723784625525
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": -0.0002579510473879054,
+          "ref_Ez": -0.0002993453817907721
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": 0.000362289720214903,
+          "ref_Ez": 0.00033837885712273376
+        }
+      ]
+    },
+    {
+      "step": 104,
+      "source_probe_Ez": {
+        "dut": 5.256735704450247e-16,
+        "ref": 5.25673570847904e-16
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": 0.0003686085547087713,
+          "ref_Ez": 0.00045349086576607073
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": -3.9249360270332545e-05,
+          "ref_Ez": -1.4119584648142336e-05
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": 0.0004232564388075839,
+          "ref_Ez": 0.00038538619992323176
+        }
+      ]
+    },
+    {
+      "step": 105,
+      "source_probe_Ez": {
+        "dut": 1.6779170790202994e-16,
+        "ref": 1.677917103850399e-16
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": 0.0004157031944487243,
+          "ref_Ez": 0.0005054982175352052
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": 0.00028807723720092326,
+          "ref_Ez": 0.00028433799161575735
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": 0.0004546718701021742,
+          "ref_Ez": 0.0004168297600699585
+        }
+      ]
+    },
+    {
+      "step": 106,
+      "source_probe_Ez": {
+        "dut": 5.259010186436972e-17,
+        "ref": 5.2590103025679e-17
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": 0.0004634307842934502,
+          "ref_Ez": 0.0005277922027744352
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": 0.0005773105658590794,
+          "ref_Ez": 0.0005739846965298057
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": 0.0004504945245571432,
+          "ref_Ez": 0.0004275082465028388
+        }
+      ]
+    },
+    {
+      "step": 107,
+      "source_probe_Ez": {
+        "dut": 1.6185148569527024e-17,
+        "ref": 1.6185149092264932e-17
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": 0.00046507421939168115,
+          "ref_Ez": 0.0005180489679332821
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": 0.0008226261998061091,
+          "ref_Ez": 0.0008323213260155171
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": 0.00043458497384563083,
+          "ref_Ez": 0.0004155660571996121
+        }
+      ]
+    },
+    {
+      "step": 108,
+      "source_probe_Ez": {
+        "dut": 4.891122684338809e-18,
+        "ref": 4.891122603585229e-18
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": 0.00037615641485899665,
+          "ref_Ez": 0.00047851634735707183
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": 0.001057857705745846,
+          "ref_Ez": 0.001038507791236043
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": 0.0003635779721662405,
+          "ref_Ez": 0.00038259950815699995
+        }
+      ]
+    },
+    {
+      "step": 109,
+      "source_probe_Ez": {
+        "dut": 1.4513747217007223e-18,
+        "ref": 1.4513747266618697e-18
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": 0.0003185294335708022,
+          "ref_Ez": 0.0004152117471676319
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": 0.0011681210016831756,
+          "ref_Ez": 0.001175526063889265
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": 0.00033712126605678366,
+          "ref_Ez": 0.0003332006745040419
+        }
+      ]
+    },
+    {
+      "step": 110,
+      "source_probe_Ez": {
+        "dut": 4.228922366080082e-19,
+        "ref": 4.228922492549145e-19
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": 0.0002940002013929187,
+          "ref_Ez": 0.0003366263699717819
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": 0.001212406496051699,
+          "ref_Ez": 0.0012321023386903107
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": 0.0003104971838183702,
+          "ref_Ez": 0.0002740641357377175
+        }
+      ]
+    },
+    {
+      "step": 111,
+      "source_probe_Ez": {
+        "dut": 1.2099266462571462e-19,
+        "ref": 1.2099266896153902e-19
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": 0.00016213916387641797,
+          "ref_Ez": 0.00025222219119314104
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": 0.0012058737338520586,
+          "ref_Ez": 0.0012041119043715298
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": 0.00023532131308456937,
+          "ref_Ez": 0.00021284048852976452
+        }
+      ]
+    },
+    {
+      "step": 112,
+      "source_probe_Ez": {
+        "dut": 3.399128121285328e-20,
+        "ref": 3.3991282460043215e-20
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": 5.667036384693351e-05,
+          "ref_Ez": 0.0001710072174319066
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": 0.0011140338610857725,
+          "ref_Ez": 0.0010952383745461702
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": 0.00019931315910071191,
+          "ref_Ez": 0.00015694089961471082
+        }
+      ]
+    },
+    {
+      "step": 113,
+      "source_probe_Ez": {
+        "dut": 9.376811987356718e-21,
+        "ref": 9.376811944140562e-21
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": 3.071569517487644e-05,
+          "ref_Ez": 0.0001004155965347309
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": 0.0009224341192748398,
+          "ref_Ez": 0.0009167634125333279
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": 0.00016183400657610085,
+          "ref_Ez": 0.0001124891023209789
+        }
+      ]
+    },
+    {
+      "step": 114,
+      "source_probe_Ez": {
+        "dut": 2.5399315800586636e-21,
+        "ref": 2.5399316159569987e-21
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": -4.2198072151222556e-05,
+          "ref_Ez": 4.561677997116936e-05
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": 0.0006478787690866739,
+          "ref_Ez": 0.0006864762108307332
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": 0.00012361083281575748,
+          "ref_Ez": 8.356685430044356e-05
+        }
+      ]
+    },
+    {
+      "step": 115,
+      "source_probe_Ez": {
+        "dut": 6.7556634284385295e-22,
+        "ref": 6.755663419971044e-22
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": -9.662544835009607e-05,
+          "ref_Ez": 9.271775070374203e-06
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": 0.00041792051342781633,
+          "ref_Ez": 0.0004268180637154728
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": 7.61495721235411e-05,
+          "ref_Ez": 7.182802983152256e-05
+        }
+      ]
+    },
+    {
+      "step": 116,
+      "source_probe_Ez": {
+        "dut": 1.7643840973193368e-22,
+        "ref": 1.7643841440762331e-22
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": -7.71451377659106e-05,
+          "ref_Ez": -8.334083304362057e-06
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": 0.00018322433606954291,
+          "ref_Ez": 0.00016248412430286407
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": 7.741127046756488e-05,
+          "ref_Ez": 7.64877295296177e-05
+        }
+      ]
+    },
+    {
+      "step": 117,
+      "source_probe_Ez": {
+        "dut": 4.5247799346028884e-23,
+        "ref": 4.524779817466246e-23
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": -5.593368405243372e-05,
+          "ref_Ez": -8.909459211281411e-06
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": -7.642616401426494e-05,
+          "ref_Ez": -8.22223646537168e-05
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": 0.00013014038268011082,
+          "ref_Ez": 9.463336027693029e-05
+        }
+      ]
+    },
+    {
+      "step": 118,
+      "source_probe_Ez": {
+        "dut": 1.1394123110421378e-23,
+        "ref": 1.139412336214309e-23
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": -6.218496673682225e-05,
+          "ref_Ez": 4.335676749178767e-06
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": -0.00029178167460486293,
+          "ref_Ez": -0.00028595569892786443
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": 0.0001425276241207032,
+          "ref_Ez": 0.00012176676318631525
+        }
+      ]
+    },
+    {
+      "step": 119,
+      "source_probe_Ez": {
+        "dut": 2.81736781362072e-24,
+        "ref": 2.817367794685412e-24
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": -6.913291872479023e-05,
+          "ref_Ez": 2.718356092756845e-05
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": -0.00044008888653479517,
+          "ref_Ez": -0.00043250666931271553
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": 0.0001775806813384408,
+          "ref_Ez": 0.0001524711915408262
+        }
+      ]
+    },
+    {
+      "step": 120,
+      "source_probe_Ez": {
+        "dut": 6.840460414280406e-25,
+        "ref": 6.84046045781545e-25
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": -1.3641925761476052e-05,
+          "ref_Ez": 5.484351459017499e-05
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": -0.000510941245011054,
+          "ref_Ez": -0.0005123442242620513
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": 0.00023335751757258538,
+          "ref_Ez": 0.00018110237579094246
+        }
+      ]
+    },
+    {
+      "step": 121,
+      "source_probe_Ez": {
+        "dut": 1.6308210240485814e-25,
+        "ref": 1.630820979610216e-25
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": 4.998453732696458e-06,
+          "ref_Ez": 8.231965693994436e-05
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": -0.0005241577600827441,
+          "ref_Ez": -0.0005233592964941636
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": 0.0001959131186595188,
+          "ref_Ez": 0.00020241888705641029
+        }
+      ]
+    },
+    {
+      "step": 122,
+      "source_probe_Ez": {
+        "dut": 3.8177404220284985e-26,
+        "ref": 3.8177404985577593e-26
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": -1.4120096238912026e-05,
+          "ref_Ez": 0.00010474054943188104
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": -0.00044198246905580163,
+          "ref_Ez": -0.00047075978363864124
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": 0.00022831858950667075,
+          "ref_Ez": 0.00021209198894212012
+        }
+      ]
+    },
+    {
+      "step": 123,
+      "source_probe_Ez": {
+        "dut": 8.775779436628365e-27,
+        "ref": 8.775779089781848e-27
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": 6.0920665418962125e-05,
+          "ref_Ez": 0.00011768887634389116
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": -0.00033821025863289833,
+          "ref_Ez": -0.00036617115256376565
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": 0.00025493089924566415,
+          "ref_Ez": 0.0002070594637189059
+        }
+      ]
+    },
+    {
+      "step": 124,
+      "source_probe_Ez": {
+        "dut": 1.980815866314361e-27,
+        "ref": 1.9808159384188986e-27
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": 6.992377166170624e-05,
+          "ref_Ez": 0.00011755147716030492
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": -0.0002239918103441596,
+          "ref_Ez": -0.00022609128791373223
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": 0.00019251723279012367,
+          "ref_Ez": 0.00018570517568150522
+        }
+      ]
+    },
+    {
+      "step": 125,
+      "source_probe_Ez": {
+        "dut": 4.390173678635231e-28,
+        "ref": 4.390173900453204e-28
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": 9.700266673462679e-06,
+          "ref_Ez": 0.00010187780208070776
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": -4.317393177188933e-05,
+          "ref_Ez": -6.991397094679996e-05
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": 0.00017417474737158037,
+          "ref_Ez": 0.00014786399333388528
+        }
+      ]
+    },
+    {
+      "step": 126,
+      "source_probe_Ez": {
+        "dut": 9.554291694330952e-29,
+        "ref": 9.554291499870119e-29
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": 4.204444849165236e-06,
+          "ref_Ez": 6.969469177420263e-05
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": 0.00010899284825427458,
+          "ref_Ez": 8.223246186389588e-05
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": 0.00012133987547713316,
+          "ref_Ez": 9.466729534324245e-05
+        }
+      ]
+    },
+    {
+      "step": 127,
+      "source_probe_Ez": {
+        "dut": 2.0417117368923817e-29,
+        "ref": 2.041711680802609e-29
+      },
+      "source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": -5.4929787438595715e-05,
+          "ref_Ez": 2.170010452573489e-05
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": 0.00021526316413655877,
+          "ref_Ez": 0.00021158561139600351
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": 3.2996504160109745e-05,
+          "ref_Ez": 2.825936257977432e-05
+        }
+      ]
+    }
+  ],
+  "checkpoint_pointer": "evidence/direct_mechanism_v1/runs/B_R/checkpoint_pointer.json",
+  "run_dir": "evidence/direct_mechanism_v1/runs/B_R",
+  "lab_run_id": "285"
+}

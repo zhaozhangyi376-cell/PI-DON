@@ -1,0 +1,63 @@
+{
+  "schema": "pidon-reference-cache-v3",
+  "classification": "double_precision_Yee_reference_not_DCO",
+  "protocol": {
+    "n": 31,
+    "side": 0.05,
+    "dt": 3.075e-12,
+    "steps": 8192,
+    "fmax": 15000000000.0,
+    "source_mode": "hard",
+    "source_index": [
+      15,
+      15,
+      15
+    ],
+    "source_hashes": {
+      "pidon_solve.py": "83648e8d57e62205a0cc426b5b62862da737968854dcf7273b65c2a7e3791caa",
+      "pidon_contract.py": "6d4d19222f956ba69a93db9d296305f96a54963050c2020a55859bdfd3d1d03c",
+      "pidon_recording.py": "499b30a895e686b75789a6333ae5ee6d3cdaff9f668cb07b1e339d790eca2a21",
+      "fdtd.py": "9837dbe51bdbc89ab2a12c147debfb10b5db1d07ebc726d18ee1962ecda1e7a8",
+      "dco.py": "53eb1c7d7ea0ed33f4e6c279554cb1adaf4a86134b8dc60fd67f6ce39525941d"
+    }
+  },
+  "protocol_hash": "8e99648a2c63fada1938230cb97cc4051ac783f9ed20e1dfa195dd09bdec3b52",
+  "component_abs_peaks": {
+    "Ex": 0.4240391945145107,
+    "Ey": 0.4240391945145107,
+    "Ez": 0.9998840257428104,
+    "Hx": 0.00020901204681638541,
+    "Hy": 0.00020901204681638541,
+    "Hz": 2.086443871040067e-19
+  },
+  "group_weighted_energy_peaks": {
+    "E": 1.340294901468701e-08,
+    "H": 1.884514416146706e-10,
+    "all_six": 1.3423460029190054e-08
+  },
+  "Ez_spacetime_abs_peak": 0.9998840257428104,
+  "probe_cells": [
+    [
+      12.0,
+      12.0,
+      13.0
+    ],
+    [
+      8.0,
+      10.0,
+      12.0
+    ],
+    [
+      21.0,
+      19.0,
+      18.0
+    ]
+  ],
+  "probe_abs_peaks": [
+    0.00230897860313878,
+    0.0017865186027289635,
+    0.0016044738591045004
+  ],
+  "snapshot_npz": "evidence/gpt6_plan_v4_night/g0_attempt_02/reference_cache_snapshots.npz",
+  "snapshot_sha256": "25632ead722034259fe02817726111f2cba90159e78999cf8da2ac0952c640c4"
+}

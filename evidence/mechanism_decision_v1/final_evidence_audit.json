@@ -1,0 +1,33 @@
+{
+  "schema": "pidon-mechanism-final-audit-v1",
+  "read_only": true,
+  "claims_data": {
+    "protocol_sha256": "fbb875d33b57c2a9df817e64eed79673f6a4fb8b6e98d21e1523bc650422a0f4",
+    "s1_cube32_pass": false,
+    "s1_cube32_macro_nmae_max": 0.20915692292110336,
+    "s1_cube32_rel_l2_p90": 0.011496010060636932,
+    "p_passed": false,
+    "p_updates": 500,
+    "p_R": 0.0005160257095534574,
+    "p_stop_reason": "max_updates",
+    "p_accepted_steps": 0,
+    "first_failure_recomputed": true,
+    "first_failure_abs_difference": 2.2271540297755243e-11,
+    "r_partial_rows": 26,
+    "r_all_accepted": true,
+    "r_status": "PARTIAL_ABORTED_BY_AGENT",
+    "r_last_step": 25,
+    "r_last_Q": 0.009280707407942014
+  },
+  "files_sha256": {
+    "evidence\\mechanism_decision_v1\\protocol.json": "fbb875d33b57c2a9df817e64eed79673f6a4fb8b6e98d21e1523bc650422a0f4",
+    "evidence\\mechanism_decision_v1\\phase1_raw.json": "564e52f6bdc52a4cb7f4b851f27ae9c11964f5e07b4ad5e0e35b9aa22b4a461b",
+    "evidence\\mechanism_decision_v1\\first_failure_diagnosis.json": "4fa38094f978f93a4a7993d51ef1130bdb47a2e4e566f826ab1f6552f39e7b8c",
+    "evidence\\mechanism_decision_v1\\TASK_STATUS.md": "53995403ebbb53d2345a71cdf8d274f5b5a065d70f09ae02e3e1294b9af457e9",
+    "evidence\\mechanism_decision_v1\\FINAL_ACCEPTANCE_REPORT.md": "b441e29de4931ff3f6a2f3a5fb570f30dfbbb541236e725a88f612945ec6ce33",
+    "evidence\\mechanism_decision_v1\\EVIDENCE_MANIFEST.md": "a6d2a05b2c82f302693ba8680643824c0ad5c6ee83fc844bafdaa7b5a10b5f5b",
+    "RESULTS.md": "742f70611478d464b041385cb282a2f35bbf5768668e4a3b8c24a2fafd915264",
+    "STATUS.md": "29543a551003380d74fd35a411d8558c4db70f5ab5748a67dbc2d282daf2c030"
+  },
+  "reader_sha256": "50071e9e8f4b84bafd689f612f2b6eb724d919a1116fde106f2732a26c2b9bc9"
+}

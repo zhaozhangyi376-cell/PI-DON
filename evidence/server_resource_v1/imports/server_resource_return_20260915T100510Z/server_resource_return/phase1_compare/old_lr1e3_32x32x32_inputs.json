@@ -1,0 +1,17 @@
+{
+  "model": "old_lr1e3",
+  "grid": "32x32x32",
+  "status": "INCOMPLETE",
+  "inputs": {
+    "model": {
+      "path": "H:\\PI-DON\\assets\\models\\dco_lr1e3_300.pt",
+      "bytes": 37015205,
+      "sha256": "3f259bc887a10fac77f6bdf77b43ba1ad6b45827a3f8b9bd685934acc47ca5d7"
+    },
+    "data": {
+      "path": "H:\\PI-DON\\evidence\\direct_mechanism_v2\\s1r_phase1_server\\blind_data\\blind_32x32x32.npz",
+      "bytes": 11493542,
+      "sha256": "f1478445d3d80ee6f1c5ee07a32615d4e7565d4f24b34a59988df74ebc9607fc"
+    }
+  }
+}

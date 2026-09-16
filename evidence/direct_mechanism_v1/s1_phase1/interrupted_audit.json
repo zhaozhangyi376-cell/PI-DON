@@ -1,0 +1,111 @@
+{
+  "schema": "pidon-s1-interrupted-audit-v1",
+  "action_id": "A-20260914T102345-10b45e87",
+  "audit_lab_run_id": "288",
+  "status": "INCOMPLETE",
+  "scientific_result": "INCOMPLETE",
+  "reason": "training_process_not_live_and_no_terminal_summary_or_last_checkpoint",
+  "planned_epochs": 1000,
+  "planned_updates": 25000,
+  "history_rows": 937,
+  "last_history": {
+    "epoch": 937,
+    "updates": 23425,
+    "train_rel_loss": 0.0001439038384705782,
+    "lr": 2.95659645472573e-06,
+    "elapsed_s": 21157.049408600025
+  },
+  "validation_rows": 94,
+  "best_from_history": {
+    "epoch": 930,
+    "updates": 23250,
+    "train_rel_loss": 0.00014395554819202517,
+    "lr": 3.1800786650013826e-06,
+    "elapsed_s": 20987.97244460002,
+    "dev": {
+      "macro_nmae_mean": 0.02194540502333757,
+      "global_rel_l2_p90": 0.05491862156735433,
+      "macro_mre_eq5_mean": 1.8043889096694798
+    }
+  },
+  "best_checkpoint": {
+    "epoch": 930,
+    "updates": 23250,
+    "best": {
+      "epoch": 930,
+      "updates": 23250,
+      "dev_macro_nmae": 0.02194540502333757,
+      "dev_global_rel_l2_p90": 0.05491862156735433,
+      "dev_macro_mre_eq5_mean": 1.8043889096694798
+    },
+    "microbatch": 4,
+    "history_len_in_checkpoint": 929,
+    "sha256": "00e4a9da0915fd44bc9f7b238dde56627a7e8a53f766367f9759ac2807e89579",
+    "bytes": 111115611
+  },
+  "missing_updates_to_planned": 1575,
+  "has_terminal_summary": false,
+  "has_last_checkpoint": false,
+  "has_blind_data": false,
+  "lab_ledger": {
+    "max_recorded_id": 287,
+    "contains_s1_phase1": false,
+    "s1_lab_run_ids": []
+  },
+  "recovery_assessment": {
+    "production_resume_eligible": false,
+    "reason": "latest model/optimizer/RNG state at epoch 937 was not saved; best.pt is a dev-selected checkpoint at epoch 930 and resuming from it would repeat updates and exceed the registered 25000-update S1 budget"
+  },
+  "files": {
+    "manifest.json": {
+      "exists": true,
+      "bytes": 1366,
+      "sha256": "78321f196c2a59e956c01e6188aa3ee22dd6945f9ebd6d34a7d864db83462666"
+    },
+    "preflight.json": {
+      "exists": true,
+      "bytes": 482,
+      "sha256": "b72389311e482d112e76738c3efba35b49f2d05e3dd580a49f1faee29ea250e3"
+    },
+    "train_dev_data.npz": {
+      "exists": true,
+      "bytes": 720222167,
+      "sha256": null
+    },
+    "train_dev_specs.json": {
+      "exists": true,
+      "bytes": 2895204,
+      "sha256": "e03bcf9d92b947dcedc44872ab1d06aecbd626e8a97b4e06f6c03fbd903f22e7"
+    },
+    "blind_specs.json": {
+      "exists": true,
+      "bytes": 41230,
+      "sha256": "503735229ec3521cf15d26f7fe872e214867066749895da0e50181ab69c65e08"
+    },
+    "history.jsonl": {
+      "exists": true,
+      "bytes": 139976,
+      "sha256": "3f892fae5a72c30a6dc718fad81d426651a3888a7e3a285db64dac68604d6222"
+    },
+    "best.pt": {
+      "exists": true,
+      "bytes": 111115611,
+      "sha256": "00e4a9da0915fd44bc9f7b238dde56627a7e8a53f766367f9759ac2807e89579"
+    },
+    "last.pt": {
+      "exists": false,
+      "bytes": null,
+      "sha256": null
+    },
+    "summary.json": {
+      "exists": false,
+      "bytes": null,
+      "sha256": null
+    },
+    "audit.json": {
+      "exists": false,
+      "bytes": null,
+      "sha256": null
+    }
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "schema": "pidon-v4-night-acceptance-v1",
+  "registered_before_n3": true,
+  "master_weight": "dco_lr1e3_300.pt",
+  "master_weight_sha256": "3f259bc887a10fac77f6bdf77b43ba1ad6b45827a3f8b9bd685934acc47ca5d7",
+  "fixed_configuration": {
+    "network": "DCO L4/base32/direct",
+    "coords": "cellsize",
+    "normalisation": "rms",
+    "h_shift": true,
+    "h_scale": 1.0,
+    "h_output_scale": 1.0,
+    "n": 31,
+    "side_m": 0.05,
+    "dt_s": 3.075e-12,
+    "seed": 20260913
+  },
+  "candidate": {
+    "name": "head_lstsq_once_adam499",
+    "classification": "optimization-rule variant, not paper-confirmed Algorithm 1",
+    "head_parameter_commits_max": 1,
+    "linear_solves_per_target": 3,
+    "adam_updates_max": 499,
+    "total_parameter_updates_max": 500,
+    "lbfgs_closures": 0,
+    "rcond": 1e-12
+  },
+  "scientific_gates": {
+    "inner_physical_R_strict_lt": 0.0001,
+    "accepted_fixed_amplitude_error_lte": 0.001,
+    "G0": "complete contract and independent Yee/control measurement certification only; never a DCO score",
+    "G1": "all registered sequential development H/E targets meet R and field/probe gates",
+    "G2": "main 1024 and repeat-seed 128 are required before a long-run claim",
+    "G3": "same main trajectory reaches 8192 with registered field/spectral gates"
+  },
+  "metrics": {
+    "nMAE": "ordinary masked MAE/reference maximum on declared component support",
+    "MRE_eq5_physical": "strict-zero values use absolute error; nonzero values use relative error",
+    "rule": "nMAE and MRE are separate columns and are never compared as the same quantity"
+  },
+  "prohibitions": [
+    "Do not reset budget by recovery or resume old failed checkpoints.",
+    "Do not count exact Yee or geometry controls as DCO results.",
+    "Do not weaken gates after observing data.",
+    "Do not start 64/128/1024/8192 without the declared predecessor gate."
+  ]
+}

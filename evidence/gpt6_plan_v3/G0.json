@@ -1,0 +1,199 @@
+{
+  "schema": "pidon-g0-v3",
+  "lab_log_run": 165,
+  "G0": "PASS",
+  "required_g0_checks": [
+    {
+      "name": "A1_contract_recovery_identity_fault_suite",
+      "observed": {
+        "tests_run": 54,
+        "failures": 0,
+        "errors": 0
+      },
+      "expected": {
+        "failures": 0,
+        "errors": 0
+      },
+      "status": "PASS",
+      "evidence": {
+        "path": "evidence/gpt6_plan_v3/contract_test_results.json",
+        "sha256": "7af1de793c4f8fcdcd087a94e5a10f93445f64213d5b13bcc782334fb490bf75"
+      },
+      "run_id": null
+    },
+    {
+      "name": "A2_float64_exact_128_with_restore",
+      "observed": {
+        "steps": 128,
+        "gate": true,
+        "restored_at": 64,
+        "uncovered": 0,
+        "six_component_metrics": true,
+        "control_only": true,
+        "reference_dtype": "float64"
+      },
+      "expected": {
+        "steps": 128,
+        "field_gate": true,
+        "control_only": true,
+        "uncovered": 0,
+        "six_component_metrics": true,
+        "reference_dtype": "float64"
+      },
+      "status": "PASS",
+      "evidence": {
+        "pidon_solve.py": "c04d865fbdade1b25896603b4900c434a14e6eea3a00645ebda3232cbce73ea2",
+        "pidon_contract.py": "d8700d584a4b2d8d289c15e187388da7ce0a63e18e92bd25c7e523cffbd7e065",
+        "pidon_recording.py": "cb58b7d03ce344c9d01744769a8896d4c6d37d98234d1ced70d5bc911d0cbf15",
+        "fdtd.py": "9837dbe51bdbc89ab2a12c147debfb10b5db1d07ebc726d18ee1962ecda1e7a8",
+        "dco.py": "53eb1c7d7ea0ed33f4e6c279554cb1adaf4a86134b8dc60fd67f6ce39525941d"
+      },
+      "run_id": null
+    },
+    {
+      "name": "A2_float32_exact_128_with_restore",
+      "observed": {
+        "steps": 128,
+        "gate": true,
+        "restored_at": 64,
+        "uncovered": 0,
+        "six_component_metrics": true,
+        "control_only": true,
+        "reference_dtype": "float64"
+      },
+      "expected": {
+        "steps": 128,
+        "field_gate": true,
+        "control_only": true,
+        "uncovered": 0,
+        "six_component_metrics": true,
+        "reference_dtype": "float64"
+      },
+      "status": "PASS",
+      "evidence": {
+        "pidon_solve.py": "c04d865fbdade1b25896603b4900c434a14e6eea3a00645ebda3232cbce73ea2",
+        "pidon_contract.py": "d8700d584a4b2d8d289c15e187388da7ce0a63e18e92bd25c7e523cffbd7e065",
+        "pidon_recording.py": "cb58b7d03ce344c9d01744769a8896d4c6d37d98234d1ced70d5bc911d0cbf15",
+        "fdtd.py": "9837dbe51bdbc89ab2a12c147debfb10b5db1d07ebc726d18ee1962ecda1e7a8",
+        "dco.py": "53eb1c7d7ea0ed33f4e6c279554cb1adaf4a86134b8dc60fd67f6ce39525941d"
+      },
+      "run_id": null
+    },
+    {
+      "name": "A2_hard_source_only_negative",
+      "observed": {
+        "steps": 128,
+        "gate": false,
+        "restored_at": null,
+        "uncovered": 0,
+        "six_component_metrics": true,
+        "control_only": true,
+        "reference_dtype": "float64"
+      },
+      "expected": {
+        "steps": 128,
+        "field_gate": false,
+        "control_only": true,
+        "uncovered": 0,
+        "six_component_metrics": true,
+        "reference_dtype": "float64"
+      },
+      "status": "PASS",
+      "evidence": {
+        "pidon_solve.py": "c04d865fbdade1b25896603b4900c434a14e6eea3a00645ebda3232cbce73ea2",
+        "pidon_contract.py": "d8700d584a4b2d8d289c15e187388da7ce0a63e18e92bd25c7e523cffbd7e065",
+        "pidon_recording.py": "cb58b7d03ce344c9d01744769a8896d4c6d37d98234d1ced70d5bc911d0cbf15",
+        "fdtd.py": "9837dbe51bdbc89ab2a12c147debfb10b5db1d07ebc726d18ee1962ecda1e7a8",
+        "dco.py": "53eb1c7d7ea0ed33f4e6c279554cb1adaf4a86134b8dc60fd67f6ce39525941d"
+      },
+      "run_id": null
+    },
+    {
+      "name": "A2_wrong_H_half_negative",
+      "observed": {
+        "steps": 128,
+        "gate": false,
+        "restored_at": null,
+        "uncovered": 0,
+        "six_component_metrics": true,
+        "control_only": true,
+        "reference_dtype": "float64"
+      },
+      "expected": {
+        "steps": 128,
+        "field_gate": false,
+        "control_only": true,
+        "uncovered": 0,
+        "six_component_metrics": true,
+        "reference_dtype": "float64"
+      },
+      "status": "PASS",
+      "evidence": {
+        "pidon_solve.py": "c04d865fbdade1b25896603b4900c434a14e6eea3a00645ebda3232cbce73ea2",
+        "pidon_contract.py": "d8700d584a4b2d8d289c15e187388da7ce0a63e18e92bd25c7e523cffbd7e065",
+        "pidon_recording.py": "cb58b7d03ce344c9d01744769a8896d4c6d37d98234d1ced70d5bc911d0cbf15",
+        "fdtd.py": "9837dbe51bdbc89ab2a12c147debfb10b5db1d07ebc726d18ee1962ecda1e7a8",
+        "dco.py": "53eb1c7d7ea0ed33f4e6c279554cb1adaf4a86134b8dc60fd67f6ce39525941d"
+      },
+      "run_id": null
+    },
+    {
+      "name": "A2_zero_curl_negative",
+      "observed": {
+        "steps": 128,
+        "gate": false,
+        "restored_at": null,
+        "uncovered": 0,
+        "six_component_metrics": true,
+        "control_only": true,
+        "reference_dtype": "float64"
+      },
+      "expected": {
+        "steps": 128,
+        "field_gate": false,
+        "control_only": true,
+        "uncovered": 0,
+        "six_component_metrics": true,
+        "reference_dtype": "float64"
+      },
+      "status": "PASS",
+      "evidence": {
+        "pidon_solve.py": "c04d865fbdade1b25896603b4900c434a14e6eea3a00645ebda3232cbce73ea2",
+        "pidon_contract.py": "d8700d584a4b2d8d289c15e187388da7ce0a63e18e92bd25c7e523cffbd7e065",
+        "pidon_recording.py": "cb58b7d03ce344c9d01744769a8896d4c6d37d98234d1ced70d5bc911d0cbf15",
+        "fdtd.py": "9837dbe51bdbc89ab2a12c147debfb10b5db1d07ebc726d18ee1962ecda1e7a8",
+        "dco.py": "53eb1c7d7ea0ed33f4e6c279554cb1adaf4a86134b8dc60fd67f6ce39525941d"
+      },
+      "run_id": null
+    },
+    {
+      "name": "A2_reference_cache_8192",
+      "observed": {
+        "steps": 8192,
+        "source_mode": "hard",
+        "snapshot_exists": true,
+        "snapshot_hash": "25632ead722034259fe02817726111f2cba90159e78999cf8da2ac0952c640c4",
+        "probe_count": 3
+      },
+      "expected": {
+        "steps": 8192,
+        "source_mode": "hard",
+        "snapshot_hash": "25632ead722034259fe02817726111f2cba90159e78999cf8da2ac0952c640c4",
+        "probe_count": 3
+      },
+      "status": "PASS",
+      "evidence": {
+        "path": "evidence/gpt6_plan_v3/reference_cache.json",
+        "sha256": "c269c00a1e1f469b0a6847fbf6e509155c65b2edb14e5c09ec38e9518aeb75da"
+      },
+      "run_id": null
+    }
+  ],
+  "inputs": {
+    "evidence/gpt6_plan_v3/contract_test_results.json": "7af1de793c4f8fcdcd087a94e5a10f93445f64213d5b13bcc782334fb490bf75",
+    "evidence/gpt6_plan_v3/A2_exact_control.json": "1039202324f585954a5fdc995bf26aac5aeeecd2657892795956ea1ff70048f9",
+    "evidence/gpt6_plan_v3/A2_zero_curl_negative.json": "5f4128221e707cb987fdf33a30aeb0bf9c6ca15296239630f81665f83ea64f39",
+    "evidence/gpt6_plan_v3/reference_cache.json": "c269c00a1e1f469b0a6847fbf6e509155c65b2edb14e5c09ec38e9518aeb75da"
+  },
+  "interpretation": "G0 certifies engineering/measurement controls only; exact Yee controls are not DCO scores."
+}

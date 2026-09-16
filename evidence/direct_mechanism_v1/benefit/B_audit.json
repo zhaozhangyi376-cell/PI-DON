@@ -1,0 +1,69 @@
+{
+  "schema": "direct-benefit-audit-v1",
+  "action_id": "A-20260914T165418-00ed3794",
+  "audit_lab_run_id": "289",
+  "arms": {
+    "B-P": {
+      "status": "PASS",
+      "accepted_steps": 128,
+      "elapsed_s": 3502.87363690004,
+      "budget": {
+        "adam": 44630,
+        "closures": 0,
+        "lbfgs_steps": 0
+      },
+      "final_H_R": 9.841101172563177e-05,
+      "final_E_R": 9.943979027191016e-05,
+      "global_weighted_relative_l2": 0.09848817137878926,
+      "fixed_amplitude_error": 3.330653771205355e-05,
+      "run_dir": "evidence/direct_mechanism_v1/runs/B_P",
+      "recovery_eligible": false
+    },
+    "B-R": {
+      "status": "PASS",
+      "accepted_steps": 128,
+      "elapsed_s": 2935.3384777000174,
+      "budget": {
+        "adam": 38127,
+        "closures": 0,
+        "lbfgs_steps": 0
+      },
+      "final_H_R": 9.992266290590722e-05,
+      "final_E_R": 9.968860361505215e-05,
+      "global_weighted_relative_l2": 0.09909360457215889,
+      "fixed_amplitude_error": 3.3511281928590375e-05,
+      "run_dir": "evidence/direct_mechanism_v1/runs/B_R",
+      "recovery_eligible": false
+    },
+    "B-R2": {
+      "status": "PASS",
+      "accepted_steps": 128,
+      "elapsed_s": 4759.5542747,
+      "budget": {
+        "adam": 37588,
+        "closures": 0,
+        "lbfgs_steps": 0
+      },
+      "final_H_R": 9.778989283552609e-05,
+      "final_E_R": 9.979193762074037e-05,
+      "global_weighted_relative_l2": 0.09772935982406493,
+      "fixed_amplitude_error": 3.304992430041282e-05,
+      "run_dir": "evidence/direct_mechanism_v1/benefit/B_R2",
+      "recovery_eligible": false
+    }
+  },
+  "comparable_residual_128": true,
+  "p_vs_random_adam_savings": [
+    -0.1705615443124295,
+    -0.18734702564648292
+  ],
+  "p_vs_random_time_savings": [
+    -0.19334572946582784,
+    0.26403326136651106
+  ],
+  "residual_cost_benefit_pass": false,
+  "field_gate_benefit_pass": false,
+  "scientific_result": "FAIL",
+  "reason": "No benefit can support the paper mechanism because G128 field gate failed. Residual-window cost savings are reported separately.",
+  "recommendation": "do_not_use_benefit_to_unlock_longrun"
+}

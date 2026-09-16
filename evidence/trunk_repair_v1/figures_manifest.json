@@ -1,0 +1,12 @@
+{
+  "source_run": 33,
+  "heldout_sha256": "d2bfd20f368cfa0219799a87f20b7399ea9785c32c0b542b01073ec00420cf70",
+  "diagnostic_sha256": "99e48e8d24105524ca29f1725190435ebe9794e0eeafa082ebdca024d11f922f",
+  "reader_sha256": "21b0a24d2e75bb4a66d82f4cb2f2ebe8af4c97a66913df6e80509d9785ef0c34",
+  "script_sha256": "f3682700c90aeb791ec68e11436f72379938626e8438b16bd8fa650599af2b8b",
+  "report_sha256": "0f3d057d7ef4880a5f3510e82058427dd406f0ba7504431070aef0b5e7c63940",
+  "figures": {
+    "figs\\trunk_repair_outcomes.png": "bbded5094b7d3dc6cb64c2d3cdc67bb526b742cc3c120d1fe6852fa269940df0",
+    "figs\\trunk_repair_training.png": "46ccc34eb9785f22d54485ffe915e4c6d4cddf58e36e99f89e0d23dd87d7e009"
+  }
+}

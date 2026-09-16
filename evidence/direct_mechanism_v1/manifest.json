@@ -1,0 +1,151 @@
+{
+  "schema": "pidon-direct-mechanism-v1",
+  "experiment_id": "9c9b2b1d6aa98b964aefd0db",
+  "created_at_utc": "2026-09-14T06:36:01.198310+00:00",
+  "plan_path": "docs/plans/2026-09-14-direct-mechanism-plan.md",
+  "plan_sha256": "82b2c277c61d19c97a381dd6e3493602971cfd436a97e3a3aa65bc302d7c7083",
+  "master": "assets/models/dco_lr1e3_300.pt",
+  "master_sha256": "3f259bc887a10fac77f6bdf77b43ba1ad6b45827a3f8b9bd685934acc47ca5d7",
+  "source_hashes": {
+    "pidon_solve.py": "5d6eb695526117ef3b6e214b168c373c7a1ea5e01ebd99db1801db7402ce56fd",
+    "pidon_contract.py": "fbf93008fd698a03650906a0d931016090b1dd33f49e74fcf307dcf8266fe11b",
+    "pidon_recording.py": "6a22cf4e2dcafba72d3a483814985ab563f73c3774f3f6f7dacf4a6a1a5dcb20",
+    "fdtd.py": "622a8a7747245d35e07c559b362544e0d61f2f465bcc81f2f686533a1bd405b6",
+    "dco.py": "1bc6c9de416064e3d4db72418d76dbd0ae54232b965496863c1f71e0065f0149"
+  },
+  "action_id": "A-20260914T063218-e7293aa4",
+  "global_budget": {
+    "adam": 1000000,
+    "lbfgs_closures": 300000,
+    "storage_gib": 12
+  },
+  "m0_contract": {
+    "purpose": "recording/recovery/measurement smoke checks only",
+    "scientific_result": "NOT_APPLICABLE",
+    "tiny_grid": {
+      "n": 3,
+      "levels": 2,
+      "base": 2,
+      "device": "cpu"
+    }
+  },
+  "status": {
+    "M0": "PASS",
+    "M2": "IN_PROGRESS"
+  },
+  "m0_audit": "evidence/direct_mechanism_v1/m0/m0_audit.json",
+  "m2": {
+    "schema": "direct-mechanism-m2-v1",
+    "registered_at_utc": "2026-09-14T07:10:43.114986+00:00",
+    "arms": {
+      "A-R": {
+        "arm": "A-R",
+        "rule": "A",
+        "init_kind": "R",
+        "init": "random",
+        "seed": 20260914,
+        "target_steps": 128,
+        "tol": 0.0001,
+        "lr": 0.0003,
+        "per_fit_adam_cap": 3000,
+        "per_fit_closure_cap": 1200,
+        "reset_opt_each_step": false,
+        "lbfgs_lr": 1.0,
+        "lbfgs_history": 10,
+        "purpose": "strict_short_128"
+      },
+      "A-P": {
+        "arm": "A-P",
+        "rule": "A",
+        "init_kind": "P",
+        "init": "assets/models/dco_lr1e3_300.pt",
+        "seed": 20260914,
+        "target_steps": 128,
+        "tol": 0.0001,
+        "lr": 0.0003,
+        "per_fit_adam_cap": 3000,
+        "per_fit_closure_cap": 1200,
+        "reset_opt_each_step": false,
+        "lbfgs_lr": 1.0,
+        "lbfgs_history": 10,
+        "purpose": "strict_short_128"
+      },
+      "B-R": {
+        "arm": "B-R",
+        "rule": "B",
+        "init_kind": "R",
+        "init": "random",
+        "seed": 20260914,
+        "target_steps": 128,
+        "tol": 0.0001,
+        "lr": 0.0003,
+        "per_fit_adam_cap": 3000,
+        "per_fit_closure_cap": 0,
+        "reset_opt_each_step": true,
+        "lbfgs_lr": 1.0,
+        "lbfgs_history": 10,
+        "purpose": "strict_short_128"
+      },
+      "B-P": {
+        "arm": "B-P",
+        "rule": "B",
+        "init_kind": "P",
+        "init": "assets/models/dco_lr1e3_300.pt",
+        "seed": 20260914,
+        "target_steps": 128,
+        "tol": 0.0001,
+        "lr": 0.0003,
+        "per_fit_adam_cap": 3000,
+        "per_fit_closure_cap": 0,
+        "reset_opt_each_step": true,
+        "lbfgs_lr": 1.0,
+        "lbfgs_history": 10,
+        "purpose": "strict_short_128"
+      }
+    },
+    "status": {
+      "A-R": "FAIL",
+      "A-P": "PASS",
+      "B-R": "PASS",
+      "B-P": "PASS"
+    },
+    "arm_budget": {
+      "adam": 150000,
+      "closures": 60000
+    },
+    "global_online_budget": {
+      "adam": 1000000,
+      "closures": 300000
+    },
+    "runs": {
+      "A-R": {
+        "status": "FAIL",
+        "accepted_steps": 33,
+        "adam": 10228,
+        "closures": 1200,
+        "elapsed_s": 1142.8833609999856
+      },
+      "A-P": {
+        "status": "PASS",
+        "accepted_steps": 128,
+        "adam": 56680,
+        "closures": 0,
+        "elapsed_s": 4409.936257099966
+      },
+      "B-R": {
+        "status": "PASS",
+        "accepted_steps": 128,
+        "adam": 38127,
+        "closures": 0,
+        "elapsed_s": 2935.3384777000174
+      },
+      "B-P": {
+        "status": "PASS",
+        "accepted_steps": 128,
+        "adam": 44630,
+        "closures": 0,
+        "elapsed_s": 3502.87363690004
+      }
+    }
+  }
+}

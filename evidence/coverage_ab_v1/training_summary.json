@@ -1,0 +1,33 @@
+{
+  "version": "coverage-ab-v1",
+  "manifest_sha256": "e81f2490eeb17f3a1469e72cfeb915da5f14439dbaa2a89106912687f01fcb13",
+  "data_hashes": {
+    "A200": "f88bca4a2929c54c6a99794d481113fc695c8c93aee6a8c89733cbea5de55c61",
+    "B200": "694c00cd662f49f70fa2b490b5db4d78b49a823a8d48e0dbc5a2682e652d5a0b"
+  },
+  "pairing_max_abs": 1.7881393432617188e-07,
+  "tests_passed": true,
+  "test_count": 12,
+  "training": [
+    {
+      "tag": "A200",
+      "path": "evidence\\coverage_ab_v1\\A200.pt",
+      "sha256": "239d87e7c2fa7b28e5ded657fd7f730b0c639245f59b046ade4b28fc1ad421dc",
+      "updates": 200,
+      "seconds": 40.76940099999774,
+      "optimizer_step_min": 200,
+      "optimizer_step_max": 200,
+      "history_sha256": "180e893275826d16f0c701f2fad5db1c249cd6feaecdf806c04f983aa6ca8216"
+    },
+    {
+      "tag": "B200",
+      "path": "evidence\\coverage_ab_v1\\B200.pt",
+      "sha256": "7f23a9525199ab625b23e32837cfce0dca32b42225b53af3470caf4b057b97fa",
+      "updates": 200,
+      "seconds": 48.84232850000262,
+      "optimizer_step_min": 200,
+      "optimizer_step_max": 200,
+      "history_sha256": "7bcd0398f55af3e5379b6a2d77ee89254bbad604ed9f6e506a5a2233f9cd93b7"
+    }
+  ]
+}

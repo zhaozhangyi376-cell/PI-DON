@@ -1,0 +1,424 @@
+{
+  "test_inventory": {
+    "reported": 54,
+    "rows": 54,
+    "unique_ids": 38,
+    "duplicates": {
+      "test_pidon_contract.PidonContractTests.test_atomic_recorder_keeps_jsonl_and_latest_checkpoint": 2,
+      "test_pidon_contract.PidonContractTests.test_cpu_checkpoint_e_pending_resume_is_deterministic": 2,
+      "test_pidon_contract.PidonContractTests.test_e_pending_resume_does_not_repeat_source_or_e_update": 2,
+      "test_pidon_contract.PidonContractTests.test_exact_control_128_steps_is_not_dco_and_meets_precision_gates": 2,
+      "test_pidon_contract.PidonContractTests.test_exhausted_inner_budget_is_not_reset_after_resume": 2,
+      "test_pidon_contract.PidonContractTests.test_h_failure_does_not_advance_transaction": 2,
+      "test_pidon_contract.PidonContractTests.test_nonfinite_raw_state_precedes_safe_rollback": 2,
+      "test_pidon_contract.PidonContractTests.test_nonzero_irrotational_input_is_not_zero_shortcut": 2,
+      "test_pidon_contract.PidonContractTests.test_pec_normal_curl_e_faces_are_explicitly_zero": 2,
+      "test_pidon_contract.PidonContractTests.test_production_control_serializes_weak_component_metrics_as_null": 2,
+      "test_pidon_contract.PidonContractTests.test_reached_is_strict_and_finite": 2,
+      "test_pidon_contract.PidonContractTests.test_resume_rejects_changed_frozen_configuration": 2,
+      "test_pidon_contract.PidonContractTests.test_staggered_probe_and_dual_boundary_volume": 2,
+      "test_pidon_contract.PidonContractTests.test_three_axis_discrete_plane_wave_symbols_and_div_curl": 2,
+      "test_pidon_contract.PidonContractTests.test_yee_constant_and_linear_curls_have_expected_sign_and_support": 2,
+      "test_pidon_contract.PidonContractTests.test_zero_curl_control_is_rejected_after_propagation": 2
+    }
+  },
+  "g0_counterexamples": {
+    "one_row_only": {
+      "name": "one_row_only",
+      "observed": {
+        "steps": 128,
+        "gate": true,
+        "restored_at": 64,
+        "uncovered": 0,
+        "six_component_metrics": true,
+        "control_only": true,
+        "reference_dtype": "float64"
+      },
+      "expected": {
+        "steps": 128,
+        "field_gate": true,
+        "control_only": true,
+        "uncovered": 0,
+        "six_component_metrics": true,
+        "reference_dtype": "float64"
+      },
+      "status": "PASS",
+      "evidence": {
+        "pidon_solve.py": "c04d865fbdade1b25896603b4900c434a14e6eea3a00645ebda3232cbce73ea2",
+        "pidon_contract.py": "d8700d584a4b2d8d289c15e187388da7ce0a63e18e92bd25c7e523cffbd7e065",
+        "pidon_recording.py": "cb58b7d03ce344c9d01744769a8896d4c6d37d98234d1ced70d5bc911d0cbf15",
+        "fdtd.py": "9837dbe51bdbc89ab2a12c147debfb10b5db1d07ebc726d18ee1962ecda1e7a8",
+        "dco.py": "53eb1c7d7ea0ed33f4e6c279554cb1adaf4a86134b8dc60fd67f6ce39525941d"
+      }
+    },
+    "bad_numbers_good_labels": {
+      "name": "bad_numbers",
+      "observed": {
+        "steps": 128,
+        "gate": true,
+        "restored_at": 64,
+        "uncovered": 0,
+        "six_component_metrics": true,
+        "control_only": true,
+        "reference_dtype": "float64"
+      },
+      "expected": {
+        "steps": 128,
+        "field_gate": true,
+        "control_only": true,
+        "uncovered": 0,
+        "six_component_metrics": true,
+        "reference_dtype": "float64"
+      },
+      "status": "PASS",
+      "evidence": {
+        "pidon_solve.py": "c04d865fbdade1b25896603b4900c434a14e6eea3a00645ebda3232cbce73ea2",
+        "pidon_contract.py": "d8700d584a4b2d8d289c15e187388da7ce0a63e18e92bd25c7e523cffbd7e065",
+        "pidon_recording.py": "cb58b7d03ce344c9d01744769a8896d4c6d37d98234d1ced70d5bc911d0cbf15",
+        "fdtd.py": "9837dbe51bdbc89ab2a12c147debfb10b5db1d07ebc726d18ee1962ecda1e7a8",
+        "dco.py": "53eb1c7d7ea0ed33f4e6c279554cb1adaf4a86134b8dc60fd67f6ce39525941d"
+      }
+    },
+    "expected": "both must FAIL"
+  },
+  "recorder_crash": {
+    "sequence_ids": [
+      0,
+      0
+    ],
+    "recognized_tail_before_append": [],
+    "expected": "unique increasing IDs and preserved tail"
+  },
+  "terminal_resume": {
+    "rejected": false,
+    "actual_cpu_test_updates": 1,
+    "stop_reason": "max_updates",
+    "expected": "reject terminal state before update"
+  },
+  "component_objective_stop": {
+    "passed": true,
+    "physical_R": 0.00022495500899820037,
+    "fit": {
+      "n_updates": 0,
+      "n_evals": 1,
+      "loss_initial": 7.499999628635123e-05,
+      "loss_final": 7.499999628635123e-05,
+      "sse": 60.75,
+      "mse": 0.75,
+      "target_ss": 270054.0,
+      "passed": true,
+      "stop_reason": "tol_met",
+      "elapsed_s": 0.0004144000122323632,
+      "loss_sum": 0.0,
+      "target_count": 81,
+      "n_lbfgs_steps": 0,
+      "n_closures": 0,
+      "residual_ratio": 0.00022495500899820037,
+      "max_abs_over_curl0": 28.25477351732402,
+      "residual_rule": "relative_target"
+    },
+    "expected": "R>=1e-4 must fail regardless of optimization objective"
+  },
+  "reference_measurement_dtype": {
+    "numpy_reference": "float64",
+    "comparison_reference": "torch.float32",
+    "expected": "torch.float64"
+  },
+  "historical_fits": [
+    {
+      "step": 43,
+      "role": "H",
+      "path": "evidence\\gpt6_plan_v3\\h_layout_candidate\\H_step_0043.pt",
+      "sha256": "3019401202764cb6e2a98df23f146c3bab8188c7c302aecde06020bf00a342f5",
+      "file_bytes": 149494039,
+      "saved_parameter_R": 0.0011944096007844396,
+      "R_saved_arrays_float64": 0.0011944096323866823,
+      "components": [
+        {
+          "shape": [
+            31,
+            30,
+            30
+          ],
+          "SSE": 2.9187381785071693e-06,
+          "target_ss": 0.0007919585198874538,
+          "R": 0.00368546850019614,
+          "boundary_SSE_fraction": 0.01893425728443329,
+          "boundary_target_fraction": 1.28066477327131e-05
+        },
+        {
+          "shape": [
+            30,
+            31,
+            30
+          ],
+          "SSE": 2.6531728391213448e-06,
+          "target_ss": 0.0007919585198874538,
+          "R": 0.003350141165850947,
+          "boundary_SSE_fraction": 0.020703345245450533,
+          "boundary_target_fraction": 1.2806647732713104e-05
+        },
+        {
+          "shape": [
+            30,
+            30,
+            31
+          ],
+          "SSE": 2.566889660307467e-06,
+          "target_ss": 0.005230161193731081,
+          "R": 0.0004907859557721021,
+          "boundary_SSE_fraction": 0.030696503122296857,
+          "boundary_target_fraction": 2.3761842044797572e-05
+        }
+      ],
+      "progress": {
+        "updates": 500,
+        "lbfgs_steps": 0,
+        "closures": 0,
+        "elapsed_s": 27.72582500000135,
+        "lbfgs_elapsed_s": 0.0,
+        "attempt_id": 1,
+        "optimization_phase": "adam",
+        "stop_reason": "max_updates",
+        "resumable": false
+      },
+      "optimizer_steps": [
+        500
+      ],
+      "phase": "before_H",
+      "current_time_layer": 0,
+      "extra_time_layer": 43,
+      "source_index": 42,
+      "loss_at_400": 0.00174435181543231,
+      "loss_at_500": 0.0011944095604121685,
+      "last_100_relative_reduction": 0.31527026265848046
+    },
+    {
+      "step": 43,
+      "role": "E",
+      "path": "evidence\\gpt6_plan_v3\\h_layout_candidate\\E_oracle_step_0043.pt",
+      "sha256": "33a4eb6b9194f56069bfd0ee7555f1ce263741e771e5b8bedf0df63b83b5ce82",
+      "file_bytes": 149542529,
+      "saved_parameter_R": 0.10847574580164006,
+      "R_saved_arrays_float64": 0.10847573590514277,
+      "components": [
+        {
+          "shape": [
+            31,
+            31,
+            31
+          ],
+          "SSE": 80.59648674562426,
+          "target_ss": 1246.446822088443,
+          "R": 0.06466099100046921,
+          "boundary_SSE_fraction": 0.018735002706794863,
+          "boundary_target_fraction": 2.1148361496388608e-05
+        },
+        {
+          "shape": [
+            31,
+            31,
+            31
+          ],
+          "SSE": 110.47733010167903,
+          "target_ss": 1246.446822088443,
+          "R": 0.08863380943646867,
+          "boundary_SSE_fraction": 0.014054595917548802,
+          "boundary_target_fraction": 2.11483614963886e-05
+        },
+        {
+          "shape": [
+            31,
+            31,
+            31
+          ],
+          "SSE": 79.34465573804007,
+          "target_ss": 2.328147767322188e-11,
+          "R": 3408059267187.387,
+          "boundary_SSE_fraction": 0.022459309904680032,
+          "boundary_target_fraction": 3.7603169101558525e-07
+        }
+      ],
+      "progress": {
+        "updates": 500,
+        "lbfgs_steps": 0,
+        "closures": 0,
+        "elapsed_s": 27.67344659997616,
+        "lbfgs_elapsed_s": 0.0,
+        "attempt_id": 1,
+        "optimization_phase": "adam",
+        "stop_reason": "max_updates",
+        "resumable": false
+      },
+      "optimizer_steps": [
+        500
+      ],
+      "phase": "before_H",
+      "current_time_layer": 0,
+      "extra_time_layer": 43,
+      "source_index": 42,
+      "loss_at_400": 0.14908091723918915,
+      "loss_at_500": 0.10847573727369308,
+      "last_100_relative_reduction": 0.2723700706801267
+    },
+    {
+      "step": 96,
+      "role": "H",
+      "path": "evidence\\gpt6_plan_v3\\h_layout_candidate\\H_step_0096.pt",
+      "sha256": "996773475c23b2e890b89625af332d2625e2efda546f9f4c27d79a1563009c67",
+      "file_bytes": 149494039,
+      "saved_parameter_R": 0.0007415181704376282,
+      "R_saved_arrays_float64": 0.0007415181261809445,
+      "components": [
+        {
+          "shape": [
+            31,
+            30,
+            30
+          ],
+          "SSE": 6.994524687916875e-07,
+          "target_ss": 0.00031525462395940585,
+          "R": 0.0022186905936762828,
+          "boundary_SSE_fraction": 0.11552516942029079,
+          "boundary_target_fraction": 0.2587794997431078
+        },
+        {
+          "shape": [
+            30,
+            31,
+            30
+          ],
+          "SSE": 7.058449834597719e-07,
+          "target_ss": 0.00031525462395940585,
+          "R": 0.0022389679002794293,
+          "boundary_SSE_fraction": 0.1221496638859512,
+          "boundary_target_fraction": 0.25877949974310777
+        },
+        {
+          "shape": [
+            30,
+            30,
+            31
+          ],
+          "SSE": 1.70297324181308e-06,
+          "target_ss": 0.003561257054643646,
+          "R": 0.00047819441721919917,
+          "boundary_SSE_fraction": 0.05009352812670872,
+          "boundary_target_fraction": 0.14496345515652886
+        }
+      ],
+      "progress": {
+        "updates": 500,
+        "lbfgs_steps": 0,
+        "closures": 0,
+        "elapsed_s": 27.91692850002437,
+        "lbfgs_elapsed_s": 0.0,
+        "attempt_id": 1,
+        "optimization_phase": "adam",
+        "stop_reason": "max_updates",
+        "resumable": false
+      },
+      "optimizer_steps": [
+        500
+      ],
+      "phase": "before_H",
+      "current_time_layer": 0,
+      "extra_time_layer": 96,
+      "source_index": 95,
+      "loss_at_400": 0.0009242393425665796,
+      "loss_at_500": 0.0007415181607939303,
+      "last_100_relative_reduction": 0.19769898700182909
+    },
+    {
+      "step": 96,
+      "role": "E",
+      "path": "evidence\\gpt6_plan_v3\\h_layout_candidate\\E_oracle_step_0096.pt",
+      "sha256": "3b55816b53fd0032cad2603e559cc3ffa41636c8d8b5653220b7e6838f48d034",
+      "file_bytes": 149542529,
+      "saved_parameter_R": 0.00014467062572757962,
+      "R_saved_arrays_float64": 0.00014467062950302182,
+      "components": [
+        {
+          "shape": [
+            31,
+            31,
+            31
+          ],
+          "SSE": 0.02881452684180671,
+          "target_ss": 268.2316874379648,
+          "R": 0.00010742402255688296,
+          "boundary_SSE_fraction": 0.18273470523538976,
+          "boundary_target_fraction": 0.22720768900345897
+        },
+        {
+          "shape": [
+            31,
+            31,
+            31
+          ],
+          "SSE": 0.02940867196479685,
+          "target_ss": 268.2316874379648,
+          "R": 0.00010963906705317331,
+          "boundary_SSE_fraction": 0.19459645553386662,
+          "boundary_target_fraction": 0.227207689003459
+        },
+        {
+          "shape": [
+            31,
+            31,
+            31
+          ],
+          "SSE": 0.019387295342012945,
+          "target_ss": 1.3438299286509348e-12,
+          "R": 14426896535.542833,
+          "boundary_SSE_fraction": 0.26590384555676705,
+          "boundary_target_fraction": 0.2321630993582542
+        }
+      ],
+      "progress": {
+        "updates": 500,
+        "lbfgs_steps": 0,
+        "closures": 0,
+        "elapsed_s": 27.870183099992573,
+        "lbfgs_elapsed_s": 0.0,
+        "attempt_id": 1,
+        "optimization_phase": "adam",
+        "stop_reason": "max_updates",
+        "resumable": false
+      },
+      "optimizer_steps": [
+        500
+      ],
+      "phase": "before_H",
+      "current_time_layer": 0,
+      "extra_time_layer": 96,
+      "source_index": 95,
+      "loss_at_400": 0.0001882481446955353,
+      "loss_at_500": 0.00014467063010670245,
+      "last_100_relative_reduction": 0.23148974275052384
+    }
+  ],
+  "resources": {
+    "disk_free_bytes": 6341189632,
+    "max_task_checkpoint_bytes": 149542529,
+    "128_immutable_checkpoints_bytes": 19141443712
+  },
+  "formal_dco_updates_this_audit": 0,
+  "source_hashes": {
+    "a1_contract_report.py": "e0e34cfe4439f121f55dfa0fafc0732985f7c5ef148e3a29a1c6c57a89faecd7",
+    "audit_night_v4.py": "fbfa34c52d431f3d8cf0e54429f4df32c92a4458b29180069bd57a74a54e3715",
+    "g0_verifier.py": "38f618b674876b337cdc46f6c316ad6d85f435f01afd32579254c07bc698b913",
+    "h_layout_candidate.py": "6e0a64586982b26fe85a4da21bd40cfab5eb45a62f5c954e6f4c8bc650583917",
+    "pidon_contract.py": "d8700d584a4b2d8d289c15e187388da7ce0a63e18e92bd25c7e523cffbd7e065",
+    "pidon_exact_control.py": "fcb69becc6e2324eea02dc1341b4174c39a4d215533547f2cd970d6e883ef557",
+    "pidon_recording.py": "cb58b7d03ce344c9d01744769a8896d4c6d37d98234d1ced70d5bc911d0cbf15",
+    "pidon_solve.py": "86e3145dc88248ff4f1c5f63881b06de1e1d270168e17bd8285eff086f45cbaa",
+    "reference_cache.py": "c694f0505f977034cba8c3df9288c9e7106084f859efc939050ad860a89e57df"
+  },
+  "historical_G0_inputs_current_hash_match": {
+    "evidence/gpt6_plan_v3/contract_test_results.json": true,
+    "evidence/gpt6_plan_v3/A2_exact_control.json": true,
+    "evidence/gpt6_plan_v3/A2_zero_curl_negative.json": true,
+    "evidence/gpt6_plan_v3/reference_cache.json": true
+  }
+}

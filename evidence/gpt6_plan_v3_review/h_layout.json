@@ -1,0 +1,38 @@
+{
+  "classification": "exact-kernel geometry control only; NOT DCO performance",
+  "n": 7,
+  "dxyz": [
+    0.1,
+    0.2,
+    0.3
+  ],
+  "seed": 20260913,
+  "rows": [
+    {
+      "layout": "legacy_unshifted",
+      "relative_l2": 1.4419452491978635,
+      "sse": 299110.36115653877,
+      "target_ss": 143857.96622770606,
+      "geometry_gate_pass": false
+    },
+    {
+      "layout": "existing_h_shift",
+      "relative_l2": 0.0,
+      "sse": 0.0,
+      "target_ss": 143857.96622770606,
+      "geometry_gate_pass": true
+    }
+  ],
+  "h_shift_origin_m": [
+    0.05,
+    0.1,
+    0.15
+  ],
+  "source_hashes": {
+    "dco.py": "53eb1c7d7ea0ed33f4e6c279554cb1adaf4a86134b8dc60fd67f6ce39525941d",
+    "fdtd.py": "9837dbe51bdbc89ab2a12c147debfb10b5db1d07ebc726d18ee1962ecda1e7a8",
+    "gen_data.py": "c3cf361c6f3cb43644d96bcb2c853142cacfeba091d50c4e45cac11fbe7268f5",
+    "pidon_solve.py": "2e3dfa709d6b7e87b53ba2ce0c65eff17c10df69f82ff6371a8ab4b56a612135",
+    "C:\\PI-DON\\audit_h_layout.py": "d2a759de27c198917de0cc1fe720f65b4d8edbd40e88c1709bd704fea86f73a6"
+  }
+}

@@ -1,0 +1,17 @@
+test_component_aggregation (test_paper_protocol.PaperProtocolTests.test_component_aggregation) ... ok
+test_eq5_uses_exact_zero_branch_not_small_value_cutoff (test_paper_protocol.PaperProtocolTests.test_eq5_uses_exact_zero_branch_not_small_value_cutoff) ... ok
+test_fixed_case_reuses_wave_spec_across_grids (test_paper_protocol.PaperProtocolTests.test_fixed_case_reuses_wave_spec_across_grids) ... ok
+test_metric_zero_branch_is_unit_sensitive (test_paper_protocol.PaperProtocolTests.test_metric_zero_branch_is_unit_sensitive) ... ok
+test_mre_scaling_is_not_nmae (test_paper_protocol.PaperProtocolTests.test_mre_scaling_is_not_nmae) ... ok
+test_nonfinite_metrics_rejected (test_paper_protocol.PaperProtocolTests.test_nonfinite_metrics_rejected) ... ok
+test_pec_and_zero_field_fixed_point (test_paper_protocol.PaperProtocolTests.test_pec_and_zero_field_fixed_point) ... ok
+test_single_wave_analytic_curl (test_paper_protocol.PaperProtocolTests.test_single_wave_analytic_curl) ... ok
+test_three_curl_components_at_yee_positions (test_paper_protocol.PaperProtocolTests.test_three_curl_components_at_yee_positions) ... ok
+test_budget_has_exactly_200_complete_batches (test_coverage_ab.CoverageTests.test_budget_has_exactly_200_complete_batches) ... ok
+test_paired_samples_match_existing_generator (test_coverage_ab.CoverageTests.test_paired_samples_match_existing_generator) ... ok
+test_relative_loss_weights_samples_equally (test_coverage_ab.CoverageTests.test_relative_loss_weights_samples_equally) ... ok
+
+----------------------------------------------------------------------
+Ran 12 tests in 0.146s
+
+OK

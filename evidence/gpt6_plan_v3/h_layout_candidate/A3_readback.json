@@ -1,0 +1,48 @@
+{
+  "schema": "pidon-a3-readback-v3",
+  "classification": "read_only_pure_inference",
+  "device": "cuda",
+  "rows": [
+    {
+      "step": 43,
+      "role": "H",
+      "path": "H_step_0043.pt",
+      "sha256": "3019401202764cb6e2a98df23f146c3bab8188c7c302aecde06020bf00a342f5",
+      "saved_R": 0.0011944096007844396,
+      "readback_R": 0.0011944096007844396,
+      "abs_difference": 0.0,
+      "passed": true
+    },
+    {
+      "step": 43,
+      "role": "E_oracle",
+      "path": "E_oracle_step_0043.pt",
+      "sha256": "33a4eb6b9194f56069bfd0ee7555f1ce263741e771e5b8bedf0df63b83b5ce82",
+      "saved_R": 0.10847574580164006,
+      "readback_R": 0.10847574580164006,
+      "abs_difference": 0.0,
+      "passed": true
+    },
+    {
+      "step": 96,
+      "role": "H",
+      "path": "H_step_0096.pt",
+      "sha256": "996773475c23b2e890b89625af332d2625e2efda546f9f4c27d79a1563009c67",
+      "saved_R": 0.0007415181704376282,
+      "readback_R": 0.0007415181704376282,
+      "abs_difference": 0.0,
+      "passed": true
+    },
+    {
+      "step": 96,
+      "role": "E_oracle",
+      "path": "E_oracle_step_0096.pt",
+      "sha256": "3b55816b53fd0032cad2603e559cc3ffa41636c8d8b5653220b7e6838f48d034",
+      "saved_R": 0.00014467062572757962,
+      "readback_R": 0.00014467062572757962,
+      "abs_difference": 0.0,
+      "passed": true
+    }
+  ],
+  "all_pass": true
+}

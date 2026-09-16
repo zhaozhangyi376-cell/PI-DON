@@ -1,0 +1,289 @@
+{
+  "schema": "pidon-p0-audit-v1",
+  "generated_at_utc": "2026-09-13T03:08:50.730274+00:00",
+  "host": {
+    "platform": "Windows-10-10.0.26200-SP0",
+    "python": "3.11.9"
+  },
+  "scope": "read-only inventory and interpretation audit of pre-P0 artifacts",
+  "current_solver_version": "2026-09-13a",
+  "artifacts": [
+    {
+      "label": "phase1_checkpoint_lr1e3",
+      "path": "dco_lr1e3_300.pt",
+      "exists": true,
+      "historical_provenance": "current-file inventory only; the original generating command and input-data hashes are not contained in this artifact",
+      "bytes": 37015205,
+      "sha256": "3f259bc887a10fac77f6bdf77b43ba1ad6b45827a3f8b9bd685934acc47ca5d7"
+    },
+    {
+      "label": "phase1_checkpoint_paper32",
+      "path": "dco_paper32.pt",
+      "exists": true,
+      "historical_provenance": "current-file inventory only; the original generating command and input-data hashes are not contained in this artifact",
+      "bytes": 37014661,
+      "sha256": "358af766816a0eb69c9209776278004a275c4b1fb25a74325c6c242d0a26df54"
+    },
+    {
+      "label": "phase1_data_32",
+      "path": "data_32.npz",
+      "exists": true,
+      "historical_provenance": "current-file inventory only; the original generating command and input-data hashes are not contained in this artifact",
+      "bytes": 720620585,
+      "sha256": "e5e6cc20c9f1c6e8fcb72ec5eb1643e357bc020d0dbbfed6544de5aa1fde126d"
+    },
+    {
+      "label": "phase1_data_32_pw",
+      "path": "data_32_pw.npz",
+      "exists": true,
+      "historical_provenance": "current-file inventory only; the original generating command and input-data hashes are not contained in this artifact",
+      "bytes": 724112282,
+      "sha256": "f508f080060095bbb54733155f8fd1e40ddb83cb45a960ba11027e9372dd22fc"
+    },
+    {
+      "label": "trajectory_128",
+      "path": "evidence/pidon_stage2_128_separate_reset_lr3e4_i500.json",
+      "exists": true,
+      "historical_provenance": "trajectory JSON is present, but it omits a complete configuration, RNG state, optimizer state, and checkpoint linkage",
+      "bytes": 36875,
+      "sha256": "44c159194ce657bf46f9d33457237b05e1b5b3cbffc72c06c9c2a4ebeb697760"
+    },
+    {
+      "label": "trajectory_64",
+      "path": "evidence/pidon_stage2_64_component_lr3e4_tol1e5.json",
+      "exists": true,
+      "historical_provenance": "trajectory JSON is present, but it omits a complete configuration, RNG state, optimizer state, and checkpoint linkage",
+      "bytes": 18442,
+      "sha256": "0a294525575741a646186ddb8ad41b1fcb2c4407f876391313455ccfb809fe94"
+    },
+    {
+      "label": "longrun_report",
+      "path": "evidence/stage2_longrun/STAGE2_LONGRUN_REPORT.md",
+      "exists": true,
+      "historical_provenance": "current-file inventory",
+      "bytes": 2197,
+      "sha256": "fafb785a6eed3a2465da760172ed80e84380f7fd2c32811dc7a951d1e803b330"
+    },
+    {
+      "label": "current_solver",
+      "path": "pidon_solve.py",
+      "exists": true,
+      "historical_provenance": "current-file inventory",
+      "bytes": 27477,
+      "sha256": "63275708d328ebacdb55ba5509e284c2f0aa7e4494ab197b59a9078ef27dbe82"
+    },
+    {
+      "label": "current_fdtd",
+      "path": "fdtd.py",
+      "exists": true,
+      "historical_provenance": "current-file inventory",
+      "bytes": 10569,
+      "sha256": "09d33eb84d788f5a2b089064745b2e76c29c43f82f7bbc0ca7b066258659fb8e"
+    },
+    {
+      "label": "current_dco",
+      "path": "dco.py",
+      "exists": true,
+      "historical_provenance": "current-file inventory",
+      "bytes": 12983,
+      "sha256": "53eb1c7d7ea0ed33f4e6c279554cb1adaf4a86134b8dc60fd67f6ce39525941d"
+    },
+    {
+      "label": "claim_registry",
+      "path": "verify_claims.py",
+      "exists": true,
+      "historical_provenance": "current-file inventory",
+      "bytes": 59619,
+      "sha256": "f2f4987f43d2882e4456ea7be3a919247c60bba343a325731d8dc2d6b41b186b"
+    },
+    {
+      "label": "lab_log",
+      "path": "lab_log.py",
+      "exists": true,
+      "historical_provenance": "current-file inventory",
+      "bytes": 17091,
+      "sha256": "a776716d639c194f9884daed30d3cdc6387aa238e3b1681d662879d4cb5bec2c"
+    }
+  ],
+  "trajectories": {
+    "128_step": {
+      "path": "evidence/pidon_stage2_128_separate_reset_lr3e4_i500.json",
+      "exists": true,
+      "sha256": "44c159194ce657bf46f9d33457237b05e1b5b3cbffc72c06c9c2a4ebeb697760",
+      "metadata": {
+        "version": "2026-09-10a",
+        "n": 31,
+        "side": 0.05,
+        "dt": 3.075e-12,
+        "steps": 128,
+        "tol": 0.0001,
+        "lr": 0.0003,
+        "max_inner": null
+      },
+      "row_count": 128,
+      "step_continuity": {
+        "all_zero_based_contiguous": true,
+        "bad_row_indices": []
+      },
+      "required_historical_fields_missing_count": {
+        "step": 0,
+        "itH": 0,
+        "lossH": 0,
+        "cumH": 0,
+        "itE": 0,
+        "lossE": 0,
+        "cumE": 0,
+        "nmae": 0
+      },
+      "strict_final_loss_reconstruction": {
+        "criterion": "recorded final loss < recorded tolerance; H rows with itH == 0 are excluded as historical zero/shortcut rows",
+        "tolerance": 0.0001,
+        "H": {
+          "applicable_rows": 127,
+          "finite_final_loss_rows": 127,
+          "passed_final_loss_lt_tol": 125,
+          "failed_or_missing": 2
+        },
+        "E": {
+          "applicable_rows": 128,
+          "finite_final_loss_rows": 128,
+          "passed_final_loss_lt_tol": 105,
+          "failed_or_missing": 23
+        }
+      },
+      "final_row": {
+        "step": 127,
+        "lossH": 9.599929762771353e-05,
+        "lossE": 9.973363194148988e-05,
+        "nmae": 0.01569395645054517,
+        "cumH": 0.053162644704570994,
+        "cumE": 0.04764970773976529,
+        "probe_dut": 2.0417117368923817e-29,
+        "probe_ref": 2.041711680802609e-29
+      },
+      "descriptive_nmae_growth": {
+        "available": true,
+        "label": "descriptive log-linear fit; it is neither a spectral radius nor an exact one-step multiplier",
+        "selection": "nMAE > 0.15 * trajectory maximum (fall back to all positive rows)",
+        "n_points": 62,
+        "log_slope_per_step": -0.0034715146014659033,
+        "stepgain": 0.9965345041386191,
+        "intercept": -3.950568717179524
+      },
+      "version_reproducibility_risk": {
+        "recorded_solver_version": "2026-09-10a",
+        "current_solver_version": "2026-09-13a",
+        "matches_current_source": false,
+        "interpretation": "a mismatch means the JSON cannot by itself establish that the current dirty source reproduces the recorded trajectory"
+      },
+      "known_omissions": [
+        "complete CLI/configuration",
+        "network and optimizer state",
+        "RNG state",
+        "per-step six-component field errors",
+        "source-outside probes",
+        "restart record"
+      ]
+    },
+    "64_step": {
+      "path": "evidence/pidon_stage2_64_component_lr3e4_tol1e5.json",
+      "exists": true,
+      "sha256": "0a294525575741a646186ddb8ad41b1fcb2c4407f876391313455ccfb809fe94",
+      "metadata": {
+        "version": "2026-09-10a",
+        "n": 31,
+        "side": 0.05,
+        "dt": 3.075e-12,
+        "steps": 64,
+        "tol": 1e-05,
+        "lr": 0.0003,
+        "max_inner": null
+      },
+      "row_count": 64,
+      "step_continuity": {
+        "all_zero_based_contiguous": true,
+        "bad_row_indices": []
+      },
+      "required_historical_fields_missing_count": {
+        "step": 0,
+        "itH": 0,
+        "lossH": 0,
+        "cumH": 0,
+        "itE": 0,
+        "lossE": 0,
+        "cumE": 0,
+        "nmae": 0
+      },
+      "strict_final_loss_reconstruction": {
+        "criterion": "recorded final loss < recorded tolerance; H rows with itH == 0 are excluded as historical zero/shortcut rows",
+        "tolerance": 1e-05,
+        "H": {
+          "applicable_rows": 63,
+          "finite_final_loss_rows": 63,
+          "passed_final_loss_lt_tol": 48,
+          "failed_or_missing": 15
+        },
+        "E": {
+          "applicable_rows": 64,
+          "finite_final_loss_rows": 64,
+          "passed_final_loss_lt_tol": 26,
+          "failed_or_missing": 38
+        }
+      },
+      "final_row": {
+        "step": 63,
+        "lossH": 1.502274153608596e-05,
+        "lossE": 8.877203072188422e-05,
+        "nmae": 0.0005303404786043236,
+        "cumH": 0.10617145083051582,
+        "cumE": 0.24431800899765221,
+        "probe_dut": 0.017165089026093483,
+        "probe_ref": 0.01716508950750685
+      },
+      "descriptive_nmae_growth": {
+        "available": true,
+        "label": "descriptive log-linear fit; it is neither a spectral radius nor an exact one-step multiplier",
+        "selection": "nMAE > 0.15 * trajectory maximum (fall back to all positive rows)",
+        "n_points": 6,
+        "log_slope_per_step": 0.34370688279543,
+        "stepgain": 1.410165231232125,
+        "intercept": -29.222771888492105
+      },
+      "version_reproducibility_risk": {
+        "recorded_solver_version": "2026-09-10a",
+        "current_solver_version": "2026-09-13a",
+        "matches_current_source": false,
+        "interpretation": "a mismatch means the JSON cannot by itself establish that the current dirty source reproduces the recorded trajectory"
+      },
+      "known_omissions": [
+        "complete CLI/configuration",
+        "network and optimizer state",
+        "RNG state",
+        "per-step six-component field errors",
+        "source-outside probes",
+        "restart record"
+      ]
+    }
+  },
+  "source_timing": {
+    "waveform": "fdtd.gaussian_pulse(fmax=15 GHz, level=0.1)",
+    "dt_s": 3.075e-12,
+    "tau_s": 3.220080378978548e-11,
+    "t0_s": 1.288032151591419e-10,
+    "peak_index_zero_based": 42,
+    "peak_time_s": 1.2915000000000001e-10,
+    "tail_below_peak_times_1e-4_index_zero_based": 74,
+    "time_at_64_steps_s": 1.968e-10,
+    "time_at_128_steps_s": 3.936e-10,
+    "time_at_8192_steps_s": 2.51904e-08,
+    "mode_110_frequency_hz_for_side_0p05_m": 4239705600.007665,
+    "mode_110_period_s": 2.358654336749684e-10,
+    "interpretation": "The 64/128-step endpoints are pulse-transient windows, so a source-cell probe alone cannot establish propagation or cavity resonance."
+  },
+  "registered_interpretations": [
+    "Historical trajectory pass counts are evidence quality indicators, not proof of strict Algorithm 1 execution.",
+    "A finite exact-Yee control will validate geometry/time indexing only; it is not a DCO result.",
+    "A source-point probe is retained as diagnostic context, while P1 adds probes outside the source cell.",
+    "The 31-interval reading of a nominal 32-point grid is a current CFL-consistency hypothesis, not author-confirmed paper metadata."
+  ]
+}

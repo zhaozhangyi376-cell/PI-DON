@@ -1,0 +1,129 @@
+{
+  "schema": "pidon-mechanism-decision-v1",
+  "experiment_id": "1603692a-4f24-423d-851e-e750ad06dcc2",
+  "created_at_utc": "2026-09-14T01:01:29.548380+00:00",
+  "training_deadline_utc": "2026-09-14T10:31:29.548380+00:00",
+  "deadline_utc": "2026-09-14T11:01:29.548380+00:00",
+  "plan": {
+    "path": "docs\\superpowers\\plans\\2026-09-14-pidon-mechanism-decision-plan.md",
+    "sha256": "69b5de250a63cf91fd14a82e7f1ba8ff69663d46067b0c1dc6e8fe0acc0c05ce"
+  },
+  "master": {
+    "path": "dco_lr1e3_300.pt",
+    "sha256": "3f259bc887a10fac77f6bdf77b43ba1ad6b45827a3f8b9bd685934acc47ca5d7"
+  },
+  "source_hashes": {
+    "pidon_solve.py": "c79b0d13006f76957a0156b8dcfc6dada48d250e999f61d075c58ccd65254685",
+    "pidon_contract.py": "6d4d19222f956ba69a93db9d296305f96a54963050c2020a55859bdfd3d1d03c",
+    "pidon_recording.py": "499b30a895e686b75789a6333ae5ee6d3cdaff9f668cb07b1e339d790eca2a21",
+    "fdtd.py": "9837dbe51bdbc89ab2a12c147debfb10b5db1d07ebc726d18ee1962ecda1e7a8",
+    "dco.py": "53eb1c7d7ea0ed33f4e6c279554cb1adaf4a86134b8dc60fd67f6ce39525941d"
+  },
+  "source_snapshot_hashes": {
+    "dco.py": "53eb1c7d7ea0ed33f4e6c279554cb1adaf4a86134b8dc60fd67f6ce39525941d",
+    "fdtd.py": "9837dbe51bdbc89ab2a12c147debfb10b5db1d07ebc726d18ee1962ecda1e7a8",
+    "gen_data.py": "c3cf361c6f3cb43644d96bcb2c853142cacfeba091d50c4e45cac11fbe7268f5",
+    "pidon_contract.py": "6d4d19222f956ba69a93db9d296305f96a54963050c2020a55859bdfd3d1d03c",
+    "pidon_recording.py": "499b30a895e686b75789a6333ae5ee6d3cdaff9f668cb07b1e339d790eca2a21",
+    "pidon_solve.py": "c79b0d13006f76957a0156b8dcfc6dada48d250e999f61d075c58ccd65254685",
+    "mechanism_decision_init.py": "a04cb5436476db3fcb4da9705b496467910590a8a2819e7b95184c0dc6fd4248",
+    "mechanism_path_check.py": "50d9f99e6faa4d749fe9192aa12477365977088b4c11bbf6e37a2f2d22692a0e",
+    "mechanism_decision_eval.py": "64344c7a2ba799d7741c0eaf442c82e990797d8013903bc49c015edb424c44ff",
+    "mechanism_decision_runner.py": "c2ad7ac9d318f04003c8e3ce608b69da59513d79df517810622da11f831c258b"
+  },
+  "git": {
+    "commit": "dad6fb2cbe032cebac713ad149f3ae08d0fa0993",
+    "branch": "main",
+    "dirty": true
+  },
+  "resource_baseline": {
+    "disk_free_bytes": 26240634880,
+    "python": "3.11.9 (tags/v3.11.9:de54cf5, Apr  2 2024, 10:12:12) [MSC v.1938 64 bit (AMD64)]",
+    "torch": "2.14.0+cu126",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "cuda": true,
+    "gpu": "NVIDIA GeForce GTX 1660 SUPER"
+  },
+  "common_config": {
+    "n": 31,
+    "side": 0.05,
+    "dt": 3.075e-12,
+    "tol": 0.0001,
+    "tol_mode": "rel",
+    "max_inner": 500,
+    "lr": 0.0003,
+    "levels": 4,
+    "base": 32,
+    "coords": "cellsize",
+    "norm": "rms",
+    "separate_nets": true,
+    "reset_opt_each_step": false,
+    "grad_clip": 0.0,
+    "h_scale": 1.0,
+    "component_rel": false,
+    "h_output_scale": 1.0,
+    "h_shift": true,
+    "strict_stop": true,
+    "inner_time_budget_s": 360.0,
+    "fmax": 15000000000.0,
+    "lbfgs_closures": 0,
+    "lbfgs_lr": 1.0,
+    "lbfgs_history": 10,
+    "lbfgs_time_budget_s": 0.0,
+    "torch_dtype": "float32",
+    "source_mode": "hard",
+    "head_lstsq_once": false,
+    "head_rcond": 1e-12,
+    "seed": 20260914
+  },
+  "arms": {
+    "P": {
+      "init": "dco_lr1e3_300.pt",
+      "seed": 20260914,
+      "purpose": "pretrained"
+    },
+    "R": {
+      "init": "random",
+      "seed": 20260914,
+      "purpose": "random_initialization"
+    }
+  },
+  "gates": {
+    "per_nonzero_fit": {
+      "residual_ratio_lt": 0.0001,
+      "adam_updates_le": 500,
+      "elapsed_s_le": 360.0
+    },
+    "short_checkpoints": [
+      64,
+      128
+    ],
+    "S2": {
+      "steps": 1024,
+      "Q_le": 0.05,
+      "component_nmae_le": 0.01,
+      "source_outside_waveform_error_le": 0.05,
+      "A_fixed_le": 0.001
+    },
+    "B": {
+      "relative_online_time_and_updates_reduction_ge": 0.2,
+      "random_seeds_required": 2
+    }
+  },
+  "prohibitions": [
+    "No old failure checkpoint resumes for new budget.",
+    "No head least-squares, LBFGS, learning-rate, scale, or architecture sweep.",
+    "Exact Yee controls are interface controls, never DCO results.",
+    "MRE Eq.5 and nMAE are reported in distinct columns."
+  ],
+  "status": {
+    "step1": "IN_PROGRESS",
+    "S1": "NOT_RUN",
+    "P": "NOT_RUN",
+    "R": "NOT_RUN",
+    "S2": "NOT_RUN",
+    "B": "NOT_RUN",
+    "U": "NOT_RUN",
+    "S3": "NOT_RUN"
+  }
+}

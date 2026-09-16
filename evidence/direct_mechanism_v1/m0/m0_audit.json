@@ -1,0 +1,77 @@
+{
+  "schema": "direct-mechanism-m0-audit-v1",
+  "created_at_utc": "2026-09-14T06:36:02.848897+00:00",
+  "manifest": "evidence/direct_mechanism_v1/manifest.json",
+  "action_id": "A-20260914T063218-e7293aa4",
+  "scientific_result": "NOT_APPLICABLE",
+  "checks": {
+    "pending_resume_matches_uninterrupted": true,
+    "pending_checkpoint_saved": true,
+    "terminal_budget_not_production_resumable": true,
+    "none_metric_reportable": true,
+    "closure_budget_counted": true
+  },
+  "status": "PASS",
+  "consistency": {
+    "phase_equal": true,
+    "accepted_steps_equal": true,
+    "current_time_layer_equal": true,
+    "E_max_abs_delta": 0.0,
+    "H_max_abs_delta": 0.0,
+    "ref_Ez_max_abs_delta": 0.0,
+    "ref_Hz_max_abs_delta": 0.0
+  },
+  "terminal_rejected": true,
+  "saved_pending": true,
+  "unknown_tail_policy": {
+    "power_loss_tail_possible": true,
+    "unknown_tail_is_reported_as_UNKNOWN": true,
+    "jsonl_committed_tail_adopted_by_recorder": true
+  },
+  "case_budgets": {
+    "uninterrupted_terminal": {
+      "adam": 2,
+      "closures": 0,
+      "accepted_steps": 0,
+      "failed_candidates": 1
+    },
+    "pending_interrupt_first": {
+      "adam": 1,
+      "closures": 0,
+      "accepted_steps": 0,
+      "failed_candidates": 1
+    },
+    "pending_resume_second": {
+      "adam": 2,
+      "closures": 0,
+      "accepted_steps": 0,
+      "failed_candidates": 1
+    },
+    "closure_budget_counts": {
+      "adam": 0,
+      "closures": 1,
+      "accepted_steps": 0,
+      "failed_candidates": 1
+    }
+  },
+  "total_m0_engineering_budget": {
+    "adam": 5,
+    "closures": 1,
+    "accepted_steps": 0,
+    "failed_candidates": 4
+  },
+  "none_metric_case": {
+    "json_serializable": true,
+    "encoded_bytes": 131,
+    "ez_nmae": null
+  },
+  "recovery": {
+    "interrupt_checkpoint_recovery_eligible": true,
+    "terminal_resource_checkpoint_recovery_eligible": false
+  },
+  "outputs": {
+    "uninterrupted": "evidence/direct_mechanism_v1/m0/uninterrupted_terminal",
+    "interrupted_resume": "evidence/direct_mechanism_v1/m0/pending_interrupt_resume",
+    "closure": "evidence/direct_mechanism_v1/m0/closure_budget_counts"
+  }
+}

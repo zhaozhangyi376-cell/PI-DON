@@ -1,0 +1,272 @@
+"""Read-only saved-asset audit plus tiny CPU contract counterexamples."""
+from __future__ import annotations
+
+import argparse
+import copy
+import json
+import shutil
+import subprocess
+import tempfile
+from pathlib import Path
+from unittest.mock import patch
+
+import numpy as np
+import torch
+
+import dco as D
+import fdtd
+import pidon_solve as S
+from pidon_contract import six_component_metrics
+from pidon_recording import RunRecorder, sha256_file
+from r4_fixed_state import json_safe, solver_args
+from test_pidon_contract import PidonContractTests
+
+ROOT = Path(__file__).resolve().parent
+OUT = ROOT / 'evidence/gpt6_plan_v3_review'
+
+
+def tiny_args():
+    a = PidonContractTests._tiny_args(0.0)
+    a.max_inner = 1
+    a.lbfgs_closures = 0
+    a.lbfgs_lr, a.lbfgs_history, a.lbfgs_time_budget_s = 1.0, 10, 60.0
+    return a
+
+
+def contract_probes():
+    torch.manual_seed(7)
+    a = tiny_args(); a.inner_time_budget_s = 1.0
+    s = S.Solver(a, 'cpu')
+    s.H = [torch.randn_like(x) for x in s.H]
+    s.fit_progress['H']['elapsed_s'] = 2.0
+    # A constant clock removes machine speed from the counterexample: prior
+    # consumed time alone is already greater than the registered allowance.
+    with patch.object(S.time, 'perf_counter', return_value=100.0):
+        fit = s.inner_train(s.H, s.yee_curl_H(), 'H')
+    time_result = {'prior_elapsed_s': 2.0, 'budget_s': 1.0,
+                   'new_adam_updates': fit.n_updates, 'expected_new_updates': 0,
+                   'contract_pass': fit.n_updates == 0}
+
+    saved = s.state_payload()
+    b = copy.copy(a); b.lbfgs_closures = 999
+    rejected = False
+    try:
+        S.assert_resume_compatible(b, saved['frozen_config'])
+    except ValueError:
+        rejected = True
+    with tempfile.TemporaryDirectory() as directory:
+        RunRecorder(directory, {'run_id': 'A', 'protocol': 'A'})
+        conflict_rejected = False
+        try:
+            RunRecorder(directory, {'run_id': 'B', 'protocol': 'B'})
+        except (ValueError, RuntimeError, FileExistsError):
+            conflict_rejected = True
+        metadata = json.loads((Path(directory) / 'run_metadata.json').read_text())
+
+    # Exercise the production exception/rollback path with controlled values.
+    a2 = tiny_args(); a2.max_inner = 0; a2.lbfgs_closures = 2
+    s2 = S.Solver(a2, 'cpu')
+    s2.H = [torch.randn_like(x) for x in s2.H]
+    p = next(s2.net_H.parameters()); initial = p.detach().clone()
+    accepted = []
+    class InterruptedLBFGS:
+        def __init__(self, params, **kwargs):
+            self.params = list(params); self.calls = 0
+        def zero_grad(self, **kwargs):
+            for param in self.params:
+                param.grad = None
+        def step(self, closure):
+            self.calls += 1
+            closure()
+            with torch.no_grad():
+                self.params[0].add_(0.001)
+            if self.calls == 1:
+                accepted.append(self.params[0].detach().clone())
+            else:
+                closure()  # exceeds the two-closure cumulative budget
+    with patch.object(S.torch.optim, 'LBFGS', InterruptedLBFGS):
+        f2 = s2.inner_train(s2.H, s2.yee_curl_H(), 'H')
+    return {
+        'cumulative_time': time_result,
+        'lbfgs_config_change': {'old_closures': 0, 'requested_closures': 999, 'contract_pass': rejected},
+        'run_identity': {'contract_pass': conflict_rejected, 'metadata_after_conflict': metadata},
+        'lbfgs_safe_state': {'completed_calls': f2.n_lbfgs_steps, 'closures': f2.n_closures,
+                            'stop_reason': f2.stop_reason,
+                            'restored_before_all_lbfgs': bool(torch.equal(p, initial)),
+                            'contract_pass': bool(torch.equal(p, accepted[0])),
+                            'raw_saved': hasattr(s2, 'last_failure_raw')},
+        'classification': 'CPU tiny-network/fake-optimizer engineering probes; no formal DCO optimizer updates',
+    }
+
+
+def meta(ck):
+    return {k: ck[k] for k in ('levels', 'base', 'coords', 'norm', 'head', 'epoch', 'updates', 'indices', 'seed', 'data_sha256') if k in ck}
+
+
+def optimizer_steps(state):
+    return sorted({int(v['step']) for v in state.get('state', {}).values() if 'step' in v})
+
+
+def infer(s, which):
+    field = s.H if which == 'H' else s.E
+    target = s.yee_curl_H() if which == 'H' else s.yee_curl_E()
+    core = S.core_of(*field, s.n)
+    with torch.no_grad():
+        pred = s.predict(core, which)
+    rows = []
+    for k, t in enumerate(target):
+        sh = tuple(min(size, s.n) for size in t.shape)
+        sl = tuple(slice(0, z) for z in sh)
+        p, y = pred[k][sl].double(), t[sl].double()
+        err = (p - y).square(); ss = float(y.square().sum())
+        shell = torch.zeros_like(y, dtype=torch.bool)
+        for axis in range(3):
+            for index in (0, -1):
+                face = [slice(None)] * 3; face[axis] = index
+                shell[tuple(face)] = True
+        rows.append({'component': 'xyz'[k], 'target_ss': ss, 'sse': float(err.sum()),
+                     'mse': float(err.mean()), 'R': float(err.sum()) / ss if ss else None,
+                     'target_max': float(y.abs().max()), 'pred_max': float(p.abs().max()),
+                     'index_shell_sse': float(err[shell].sum()), 'interior_sse': float(err[~shell].sum()),
+                     'shell_note': 'one-index shell of fitted array; not a physical PEC mask'})
+    total_ss = sum(x['target_ss'] for x in rows)
+    return {'R': sum(x['sse'] for x in rows) / total_ss if total_ss else None,
+            'components': rows}, pred
+
+
+def saved_assets():
+    v2 = ROOT / 'evidence/gpt6_plan_v2'
+    dev = json.loads((v2 / 'R4_development_corrected/R4_development.json').read_text())
+    p4 = json.loads((v2 / 'R4_p4a_step0043/P4A.json').read_text())
+    base = argparse.Namespace(**dev['config'])
+    args = solver_args(base, max_inner=0)
+    main_ck = torch.load(ROOT / base.init, map_location='cpu', weights_only=False)
+    rows = []
+    cases = [(f'Adam500_step{n}', v2 / f'R4_development_corrected/candidate_step_{n:04d}.pt', n,
+              next(x['fit_H'] for x in dev['tasks'] if x['step'] == n)) for n in (43, 96)]
+    cases += [('Adam200_step43', v2 / 'R4_p4a_step0043/adam200_final.pt', 43, p4['adam200']),
+              ('Adam200_LBFGS_step43', v2 / 'R4_p4a_step0043/adam200_lbfgs_final.pt', 43, p4['adam200_lbfgs'])]
+    for name, path, n, record in cases:
+        ck = torch.load(path, map_location='cpu', weights_only=False)
+        s = S.Solver(args, 'cpu')
+        s.net_H.load_state_dict(ck['net_H'])
+        s.H = [x.clone() for x in ck['H']]
+        result, _ = infer(s, 'H')
+        rows.append({'name': name, 'checkpoint': str(path.relative_to(ROOT)),
+                     'sha256': sha256_file(path), 'reported_R': record['residual_ratio'],
+                     'recomputed': result, 'passes_R': result['R'] < 1e-4,
+                     'optimizer_step_values': optimizer_steps(ck['opt_H']),
+                     'record_updates': record['n_updates'], 'record_closures': record['n_closures'],
+                     'record_lbfgs_steps': record['n_lbfgs_steps'], 'record_elapsed_s': record['elapsed_s'],
+                     'checkpoint_progress': ck.get('fit_progress'), 'checkpoint_phase': ck.get('phase'),
+                     'checkpoint_time_layer': ck.get('current_time_layer'),
+                     'has_lbfgs_optimizer_state': any('lbfgs' in key.lower() for key in ck),
+                     'effective_model': {'levels': s.levels, 'base': main_ck['base'], 'coords': s.coord_mode, 'norm': s.norm_mode},
+                     'requested_model': {k: ck['config'].get(k) for k in ('levels','base','coords','norm')}})
+        print(json.dumps({'asset': name, 'reported_R': record['residual_ratio'], 'recomputed_R': result['R']}), flush=True)
+    pair = torch.load(v2 / 'R4_development_corrected/state_0043_complete.pt', map_location='cpu', weights_only=False)
+    s = S.Solver(args, 'cpu')
+    amplitude_rows = []
+    for which, state_key in (('H', 'before'), ('E', 'after_e')):
+        original = [S.to_t(pair[state_key][which + q], 'cpu') for q in 'xyz']
+        setattr(s, which, original)
+        _, reference = infer(s, which)
+        for factor in (1e-3, 1.0, 1e3):
+            setattr(s, which, [x * factor for x in original])
+            result, output = infer(s, which)
+            padded = S.core_of(*getattr(s, which), s.n)[None]
+            if s.pad:
+                padded = torch.nn.functional.pad(padded, (0, s.pad) * 3, mode='replicate')
+            raw_scale = float(padded.square().mean().sqrt()) if s.norm_mode == 'rms' else float(padded.abs().max())
+            equiv = float((output.double() / factor - reference.double()).norm() / reference.double().norm())
+            amplitude_rows.append({'which': which, 'factor': factor, 'raw_scale': raw_scale,
+                                   'normalization_floor_active': raw_scale < 1e-12,
+                                   'relative_prediction_scaling_difference': equiv, **result})
+    return {'main_checkpoint_meta': meta(main_ck), 'saved_fits': rows,
+            'zero_update_scale_diagnostics': amplitude_rows, 'formal_optimizer_updates': 0}
+
+
+def reference_ordering():
+    ref = fdtd.PECCavity(n=31, side=.05, dt=3.075e-12)
+    alternate = fdtd.PECCavity(n=31, side=.05, dt=3.075e-12)
+    source = fdtd.source_waveform(128, 3.075e-12, 15e9, 'gauss')
+    aligned_worst = wrong_worst = 0.0
+    for value in source:
+        ref.step(src_value=float(value), src_idx=(15, 15, 15), src_mode='hard')
+        alternate.step_e_source_h(src_value=float(value), src_idx=(15, 15, 15))
+        E = [S.to_t(getattr(ref, 'E' + q), 'cpu', torch.float64) for q in 'xyz']
+        H = [S.to_t(getattr(ref, 'H' + q), 'cpu', torch.float64) for q in 'xyz']
+        ce = fdtd.curl_E(ref.Ex, ref.Ey, ref.Ez, ref.dx, ref.dy, ref.dz)
+        aligned = [h - ref.dt / ref.mu * S.to_t(c, 'cpu', torch.float64) for h, c in zip(H, ce)]
+        altE = [S.to_t(getattr(alternate, 'E' + q), 'cpu', torch.float64) for q in 'xyz']
+        altH = [S.to_t(getattr(alternate, 'H' + q), 'cpu', torch.float64) for q in 'xyz']
+        aligned_metric = six_component_metrics(altE, altH, E, aligned, (ref.dx,) * 3, source_ez_index=(15,15,15))
+        wrong_metric = six_component_metrics(altE, altH, E, H, (ref.dx,) * 3, source_ez_index=(15,15,15))
+        q1, q2 = aligned_metric['global_weighted_relative_l2'], wrong_metric['global_weighted_relative_l2']
+        if np.isfinite(q1): aligned_worst = max(aligned_worst, q1)
+        if np.isfinite(q2): wrong_worst = max(wrong_worst, q2)
+    return {'steps':128, 'aligned_max_Q':aligned_worst, 'unaligned_max_Q':wrong_worst,
+            'alignment_pass': aligned_worst <= 1e-10,
+            'classification':'reference-order equivalence only; not full G0 or DCO result'}
+
+
+def p5_provenance():
+    path = ROOT / 'evidence/gpt6_plan_v1/phase1_pilot_corrected/learnability_checkpoint.pt'
+    ck = torch.load(path, map_location='cpu', weights_only=False)
+    with np.load(ROOT / 'data_32.npz') as z:
+        e = torch.from_numpy(z['E'][ck['indices']]); c = torch.from_numpy(z['C'][ck['indices']])
+        d = torch.from_numpy(z['D'][ck['indices']] * 1e3)
+        eh, ch, sc, lc = D.normalise(e, c, d, ck['norm'])
+        roundtrip = float((D.denormalise(ch, sc, lc) - c).norm() / c.norm())
+        output = {'npz_keys': list(z.keys()), 'checkpoint_meta':meta(ck),
+                  'shape_E':list(e.shape), 'shape_C':list(c.shape),
+                  'all_finite':bool(torch.isfinite(e).all() and torch.isfinite(c).all()),
+                  'sample_cell_sizes_mm':d.tolist(), 'curl_roundtrip_relative_l2':roundtrip,
+                  'optimizer_step_values':optimizer_steps(ck['optimizer']),
+                  'checkpoint_data_hash_matches_current':ck.get('data_sha256') == sha256_file(ROOT / 'data_32.npz'),
+                  'label_provenance_status':'INCOMPLETE unless original generating RNG/version/wave parameters are recovered; shape and finite checks do not verify analytic labels'}
+    return output
+
+
+def main():
+    torch.set_num_threads(4)
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--reference-only', action='store_true')
+    args = parser.parse_args()
+    if args.reference_only:
+        path = OUT / 'reference_alignment_corrected.json'
+        if path.exists():
+            raise FileExistsError(path)
+        result = reference_ordering()
+        result['correction'] = 'run #137 reference subtest accidentally used default additive source; corrected to registered hard source. Other #137 subtests are unaffected.'
+        result['script_sha256'] = sha256_file(__file__)
+        shutil.copy2(__file__, OUT / 'source_snapshot/audit_v2_stop_reference_corrected.py')
+        path.write_text(json.dumps(json_safe(result),ensure_ascii=False,indent=2,allow_nan=False)+'\n',encoding='utf-8')
+        print(json.dumps(result,ensure_ascii=False))
+        return
+    if (OUT / 'audit.json').exists():
+        raise FileExistsError('Refusing to overwrite an audit; preserve previous evidence')
+    snapshot = OUT / 'source_snapshot'; snapshot.mkdir(parents=True, exist_ok=False)
+    names = ['audit_v2_stop.py','pidon_solve.py','pidon_contract.py','pidon_recording.py','fdtd.py','dco.py',
+             'r4_fixed_state.py','r4_p4a.py','r3_v2_recompute.py','test_pidon_contract.py','verify_claims.py',
+             'r1_r2_reports.py','STATUS.md','RESULTS.md','phase1_pilot.py','gen_data.py']
+    hashes = {}
+    for name in names:
+        shutil.copy2(ROOT / name, snapshot / name); hashes[name] = sha256_file(ROOT / name)
+    for name, command in [('git_status.txt',['git','status','--short']),('git_diff.patch',['git','diff','--binary'])]:
+        (snapshot / name).write_bytes(subprocess.check_output(command, cwd=ROOT))
+    inputs = ['dco_lr1e3_300.pt','dco_paper32.pt','data_32.npz']
+    before = {name:sha256_file(ROOT / name) for name in inputs}
+    output = {'protocol':'v3_stop_review_2026-09-13', 'source_hashes':hashes,
+              'contract_probes':contract_probes(), 'assets':saved_assets(),
+              'reference_alignment':reference_ordering(), 'p5_data_audit':p5_provenance()}
+    output['inputs_before'] = before
+    output['inputs_after'] = {name:sha256_file(ROOT / name) for name in inputs}
+    output['original_inputs_unchanged'] = output['inputs_before'] == output['inputs_after']
+    (OUT / 'audit.json').write_text(json.dumps(json_safe(output),ensure_ascii=False,indent=2,allow_nan=False)+'\n',encoding='utf-8')
+    print(json.dumps({'out':str(OUT / 'audit.json'), 'contract_probes':output['contract_probes'],
+                      'reference_alignment':output['reference_alignment'], 'inputs_unchanged':output['original_inputs_unchanged']},ensure_ascii=False),flush=True)
+
+
+if __name__ == '__main__':
+    main()

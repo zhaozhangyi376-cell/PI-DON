@@ -1,0 +1,283 @@
+{
+  "schema": "pidon-a1-contract-v3",
+  "lab_log_run": 164,
+  "status": "PASS",
+  "observed": {
+    "tests_run": 54,
+    "failures": 0,
+    "errors": 0
+  },
+  "expected": {
+    "failures": 0,
+    "errors": 0
+  },
+  "tests": [
+    {
+      "test": "test_pidon_contract.PidonContractTests.test_atomic_recorder_keeps_jsonl_and_latest_checkpoint",
+      "status": "PASS"
+    },
+    {
+      "test": "test_pidon_contract.PidonContractTests.test_atomic_recorder_keeps_jsonl_and_latest_checkpoint",
+      "status": "PASS"
+    },
+    {
+      "test": "test_pidon_contract.PidonContractTests.test_cpu_checkpoint_e_pending_resume_is_deterministic",
+      "status": "PASS"
+    },
+    {
+      "test": "test_pidon_contract.PidonContractTests.test_cpu_checkpoint_e_pending_resume_is_deterministic",
+      "status": "PASS"
+    },
+    {
+      "test": "test_pidon_contract.PidonContractTests.test_e_pending_resume_does_not_repeat_source_or_e_update",
+      "status": "PASS"
+    },
+    {
+      "test": "test_pidon_contract.PidonContractTests.test_e_pending_resume_does_not_repeat_source_or_e_update",
+      "status": "PASS"
+    },
+    {
+      "test": "test_pidon_contract.PidonContractTests.test_exact_control_128_steps_is_not_dco_and_meets_precision_gates",
+      "status": "PASS"
+    },
+    {
+      "test": "test_pidon_contract.PidonContractTests.test_exact_control_128_steps_is_not_dco_and_meets_precision_gates",
+      "status": "PASS"
+    },
+    {
+      "test": "test_pidon_contract.PidonContractTests.test_exhausted_inner_budget_is_not_reset_after_resume",
+      "status": "PASS"
+    },
+    {
+      "test": "test_pidon_contract.PidonContractTests.test_exhausted_inner_budget_is_not_reset_after_resume",
+      "status": "PASS"
+    },
+    {
+      "test": "test_pidon_contract.PidonContractTests.test_h_failure_does_not_advance_transaction",
+      "status": "PASS"
+    },
+    {
+      "test": "test_pidon_contract.PidonContractTests.test_h_failure_does_not_advance_transaction",
+      "status": "PASS"
+    },
+    {
+      "test": "test_pidon_contract.PidonContractTests.test_nonfinite_raw_state_precedes_safe_rollback",
+      "status": "PASS"
+    },
+    {
+      "test": "test_pidon_contract.PidonContractTests.test_nonfinite_raw_state_precedes_safe_rollback",
+      "status": "PASS"
+    },
+    {
+      "test": "test_pidon_contract.PidonContractTests.test_nonzero_irrotational_input_is_not_zero_shortcut",
+      "status": "PASS"
+    },
+    {
+      "test": "test_pidon_contract.PidonContractTests.test_nonzero_irrotational_input_is_not_zero_shortcut",
+      "status": "PASS"
+    },
+    {
+      "test": "test_pidon_contract.PidonContractTests.test_pec_normal_curl_e_faces_are_explicitly_zero",
+      "status": "PASS"
+    },
+    {
+      "test": "test_pidon_contract.PidonContractTests.test_pec_normal_curl_e_faces_are_explicitly_zero",
+      "status": "PASS"
+    },
+    {
+      "test": "test_pidon_contract.PidonContractTests.test_production_control_serializes_weak_component_metrics_as_null",
+      "status": "PASS"
+    },
+    {
+      "test": "test_pidon_contract.PidonContractTests.test_production_control_serializes_weak_component_metrics_as_null",
+      "status": "PASS"
+    },
+    {
+      "test": "test_pidon_contract.PidonContractTests.test_reached_is_strict_and_finite",
+      "status": "PASS"
+    },
+    {
+      "test": "test_pidon_contract.PidonContractTests.test_reached_is_strict_and_finite",
+      "status": "PASS"
+    },
+    {
+      "test": "test_pidon_contract.PidonContractTests.test_resume_rejects_changed_frozen_configuration",
+      "status": "PASS"
+    },
+    {
+      "test": "test_pidon_contract.PidonContractTests.test_resume_rejects_changed_frozen_configuration",
+      "status": "PASS"
+    },
+    {
+      "test": "test_pidon_contract.PidonContractTests.test_staggered_probe_and_dual_boundary_volume",
+      "status": "PASS"
+    },
+    {
+      "test": "test_pidon_contract.PidonContractTests.test_staggered_probe_and_dual_boundary_volume",
+      "status": "PASS"
+    },
+    {
+      "test": "test_pidon_contract.PidonContractTests.test_three_axis_discrete_plane_wave_symbols_and_div_curl",
+      "status": "PASS"
+    },
+    {
+      "test": "test_pidon_contract.PidonContractTests.test_three_axis_discrete_plane_wave_symbols_and_div_curl",
+      "status": "PASS"
+    },
+    {
+      "test": "test_pidon_contract.PidonContractTests.test_yee_constant_and_linear_curls_have_expected_sign_and_support",
+      "status": "PASS"
+    },
+    {
+      "test": "test_pidon_contract.PidonContractTests.test_yee_constant_and_linear_curls_have_expected_sign_and_support",
+      "status": "PASS"
+    },
+    {
+      "test": "test_pidon_contract.PidonContractTests.test_zero_curl_control_is_rejected_after_propagation",
+      "status": "PASS"
+    },
+    {
+      "test": "test_pidon_contract.PidonContractTests.test_zero_curl_control_is_rejected_after_propagation",
+      "status": "PASS"
+    },
+    {
+      "test": "test_pidon_contract_v3.A1ContractRegressionTests.test_elapsed_budget_is_cumulative_across_resume",
+      "status": "PASS"
+    },
+    {
+      "test": "test_pidon_contract_v3.A1ContractRegressionTests.test_failed_half_transaction_has_no_accepted_field_metric",
+      "status": "PASS"
+    },
+    {
+      "test": "test_pidon_contract_v3.A1ContractRegressionTests.test_formal_config_rejects_explicit_cli_conflict",
+      "status": "PASS"
+    },
+    {
+      "test": "test_pidon_contract_v3.A1ContractRegressionTests.test_formal_config_requires_every_frozen_field",
+      "status": "PASS"
+    },
+    {
+      "test": "test_pidon_contract_v3.A1ContractRegressionTests.test_interrupted_adam_resume_matches_uninterrupted_trajectory",
+      "status": "PASS"
+    },
+    {
+      "test": "test_pidon_contract_v3.A1ContractRegressionTests.test_interrupted_lbfgs_resume_matches_uninterrupted_trajectory",
+      "status": "PASS"
+    },
+    {
+      "test": "test_pidon_contract_v3.A1ContractRegressionTests.test_lbfgs_budget_interrupt_restores_last_completed_call",
+      "status": "PASS"
+    },
+    {
+      "test": "test_pidon_contract_v3.A1ContractRegressionTests.test_mre_and_nmae_are_separate_with_strict_zero_reporting",
+      "status": "PASS"
+    },
+    {
+      "test": "test_pidon_contract_v3.A1ContractRegressionTests.test_new_run_refuses_foreign_identity_in_existing_directory",
+      "status": "PASS"
+    },
+    {
+      "test": "test_pidon_contract_v3.A1ContractRegressionTests.test_new_run_rejects_nonempty_directory_without_metadata",
+      "status": "PASS"
+    },
+    {
+      "test": "test_pidon_contract_v3.A1ContractRegressionTests.test_payload_has_explicit_attempt_identity_and_optimizer_phase",
+      "status": "PASS"
+    },
+    {
+      "test": "test_pidon_contract_v3.A1ContractRegressionTests.test_production_exact_control_records_and_restores_midrun",
+      "status": "PASS"
+    },
+    {
+      "test": "test_pidon_contract_v3.A1ContractRegressionTests.test_production_h_shift_adapter_uses_registered_staggered_slices",
+      "status": "PASS"
+    },
+    {
+      "test": "test_pidon_contract_v3.A1ContractRegressionTests.test_recorder_classifies_uncheckpointed_jsonl_tail_on_resume",
+      "status": "PASS"
+    },
+    {
+      "test": "test_pidon_contract_v3.A1ContractRegressionTests.test_recorder_commits_monotonic_sequence_to_durable_metadata",
+      "status": "PASS"
+    },
+    {
+      "test": "test_pidon_contract_v3.A1ContractRegressionTests.test_recorder_save_failure_keeps_the_prior_complete_checkpoint",
+      "status": "PASS"
+    },
+    {
+      "test": "test_pidon_contract_v3.A1ContractRegressionTests.test_resume_accepts_only_same_identity",
+      "status": "PASS"
+    },
+    {
+      "test": "test_pidon_contract_v3.A1ContractRegressionTests.test_resume_rejects_lbfgs_budget_change",
+      "status": "PASS"
+    },
+    {
+      "test": "test_stop_review_claims.ReviewGateTests.test_both_curls_required",
+      "status": "PASS"
+    },
+    {
+      "test": "test_stop_review_claims.ReviewGateTests.test_development_pass_is_distinct_from_full_g1",
+      "status": "PASS"
+    },
+    {
+      "test": "test_stop_review_claims.ReviewGateTests.test_one_successful_state_is_not_complete_development",
+      "status": "PASS"
+    },
+    {
+      "test": "test_stop_review_claims.ReviewGateTests.test_scientific_failure_is_not_relabelled_missing",
+      "status": "PASS"
+    }
+  ],
+  "source_hashes": {
+    "pidon_solve.py": "86e3145dc88248ff4f1c5f63881b06de1e1d270168e17bd8285eff086f45cbaa",
+    "pidon_contract.py": "d8700d584a4b2d8d289c15e187388da7ce0a63e18e92bd25c7e523cffbd7e065",
+    "pidon_recording.py": "cb58b7d03ce344c9d01744769a8896d4c6d37d98234d1ced70d5bc911d0cbf15",
+    "fdtd.py": "9837dbe51bdbc89ab2a12c147debfb10b5db1d07ebc726d18ee1962ecda1e7a8",
+    "dco.py": "53eb1c7d7ea0ed33f4e6c279554cb1adaf4a86134b8dc60fd67f6ce39525941d"
+  },
+  "v2_p4a_assets": [
+    {
+      "path": "evidence/gpt6_plan_v2/R4_p4a_step0043/adam200_final.pt",
+      "sha256": "9727622631ef3d427b6735ba0ea2a46b19a21b30792d5cfa9709bcba07343f3a",
+      "classification": "diagnostic_only_not_resumable_v3",
+      "fit_progress": {
+        "H": {
+          "updates": 0,
+          "lbfgs_steps": 0,
+          "closures": 0,
+          "elapsed_s": 0.0
+        },
+        "E": {
+          "updates": 0,
+          "lbfgs_steps": 0,
+          "closures": 0,
+          "elapsed_s": 0.0
+        }
+      },
+      "has_lbfgs_H": false,
+      "has_recorder_identity": false
+    },
+    {
+      "path": "evidence/gpt6_plan_v2/R4_p4a_step0043/adam200_lbfgs_final.pt",
+      "sha256": "0b9ad229278d6b9f58a781d75de9b9c7fdc3007f3b94fac438f5e880cadb9bd6",
+      "classification": "diagnostic_only_not_resumable_v3",
+      "fit_progress": {
+        "H": {
+          "updates": 0,
+          "lbfgs_steps": 0,
+          "closures": 0,
+          "elapsed_s": 0.0
+        },
+        "E": {
+          "updates": 0,
+          "lbfgs_steps": 0,
+          "closures": 0,
+          "elapsed_s": 0.0
+        }
+      },
+      "has_lbfgs_H": false,
+      "has_recorder_identity": false
+    }
+  ]
+}

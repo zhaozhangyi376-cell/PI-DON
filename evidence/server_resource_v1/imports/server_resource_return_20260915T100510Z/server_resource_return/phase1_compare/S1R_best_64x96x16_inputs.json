@@ -1,0 +1,17 @@
+{
+  "model": "S1R_best",
+  "grid": "64x96x16",
+  "status": "INCOMPLETE",
+  "inputs": {
+    "model": {
+      "path": "H:\\PI-DON\\evidence\\direct_mechanism_v2\\s1r_phase1_server\\best.pt",
+      "bytes": 111118036,
+      "sha256": "958a976476476fa0bbc0fd1274bb1d26a70cb491223ca43d3a1b2cdbc913b7e7"
+    },
+    "data": {
+      "path": "H:\\PI-DON\\evidence\\direct_mechanism_v2\\s1r_phase1_server\\blind_data\\blind_64x96x16.npz",
+      "bytes": 34440649,
+      "sha256": "8b361e56f30bcedb88a9dc973e456a189b6eaa2cb2763f42118ec03529d47d39"
+    }
+  }
+}

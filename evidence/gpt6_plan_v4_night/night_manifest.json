@@ -1,0 +1,24 @@
+{
+  "schema": "pidon-v4-night-manifest-v1",
+  "experiment_id": "289ca344-10e3-4569-a8fe-38c1f25646d9",
+  "started_at": "2026-09-13T15:53:40.292464+00:00",
+  "deadline": "2026-09-14T01:53:40.292464+00:00",
+  "training_deadline": "2026-09-14T01:23:40.292464+00:00",
+  "plan_path": "C:\\PI-DON\\docs\\superpowers\\plans\\2026-09-13-pidon-10h-goal-night-plan.md",
+  "plan_sha256": "a6feaa48985b594fef3c2e63754e4827457e08bb069c26f6ae1524dc2052bce7",
+  "master_weight": "C:\\PI-DON\\dco_lr1e3_300.pt",
+  "master_weight_sha256": "3f259bc887a10fac77f6bdf77b43ba1ad6b45827a3f8b9bd685934acc47ca5d7",
+  "source_hashes_at_start": {
+    "pidon_solve.py": "86e3145dc88248ff4f1c5f63881b06de1e1d270168e17bd8285eff086f45cbaa",
+    "pidon_contract.py": "d8700d584a4b2d8d289c15e187388da7ce0a63e18e92bd25c7e523cffbd7e065",
+    "pidon_recording.py": "cb58b7d03ce344c9d01744769a8896d4c6d37d98234d1ced70d5bc911d0cbf15",
+    "fdtd.py": "9837dbe51bdbc89ab2a12c147debfb10b5db1d07ebc726d18ee1962ecda1e7a8",
+    "dco.py": "53eb1c7d7ea0ed33f4e6c279554cb1adaf4a86134b8dc60fd67f6ce39525941d"
+  },
+  "artifact_limit_bytes": 17179869184,
+  "system_floor_bytes": 5368709120,
+  "emergency_reserve_bytes": 1073741824,
+  "status": "COMPLETE",
+  "completed_at": "2026-09-13T17:40:13.018314+00:00",
+  "n6_lab_run_id": 218
+}

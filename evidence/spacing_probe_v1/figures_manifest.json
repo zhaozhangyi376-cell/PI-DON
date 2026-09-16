@@ -1,0 +1,11 @@
+{
+  "source_run": 23,
+  "arrays_sha256": "c41b60fad7e356bdbd8fecd80c8424016ca6e6e13e3b88551aaa1f7527204519",
+  "script_sha256": "8bb8a9d064463a1089d9ac8501c27ede157abd7b215bac69e99d4cf798fa9d3b",
+  "report_sha256": "dc5962b376fc7040e28dd0086a3fb6642620eb6c2e2adb5918c909171b11779c",
+  "figures": {
+    "figs\\spacing_probe_trunk.png": "1f9cb6102ade47774f6c1a50b340afeeb160149e3818db7fb49fc80213018c11",
+    "figs\\spacing_probe_axis.png": "a5cba9c3e847e77b145312f6d065d0a76221a2278b2b47c2ca0160f8735997e0",
+    "figs\\spacing_probe_scaling.png": "6a3baada3e378aa0be7fb60a465bf68bd37317043f1305cf881b05eec76d79e5"
+  }
+}

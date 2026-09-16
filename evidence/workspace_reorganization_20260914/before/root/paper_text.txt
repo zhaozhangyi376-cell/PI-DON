@@ -1,0 +1,1270 @@
+3800
+IEEE TRANSACTIONS ON MICROWAVE THEORY AND TECHNIQUES, VOL. 73, NO. 7, JULY 2025
+Physics-Informed Deep Operator Network for 3-D
+Time-Domain Electromagnetic Modeling
+Shutong Qi , Graduate Student Member, IEEE, and Costas D. Sarris , Fellow, IEEE
+Abstract— This article presents a modeling technique for
+realistic 3-D electromagnetic problems in the time domain, using
+a novel physics-informed deep operator network (PI-DON). The
+training of the PI-DON is executed in two stages. In the first stage,
+a neural operator is trained to approximate the curl operator in
+Maxwell’s equations. In the second stage, the neural curl operator
+is deployed with problem-specific settings to model electromag-
+netic fields through an unsupervised training approach, utilizing
+a physics-informed loss function. This unsupervised training
+eliminates the need to generate ground-truth data and reduces the
+volume of training data required, making PI-DON more efficient
+than traditional deep neural networks. As an electromagnetic
+solver, PI-DON demonstrates competitive efficiency compared to
+finite-difference time-domain (FDTD) solvers for a single run,
+even when accounting for its training time. Moreover, PI-DON
+shows strong generalizability, allowing for accurate and efficient
+uncertainty quantification and design optimization of microwave
+geometries without additional training. We show the high accu-
+racy, efficiency, and robust generalizability of the PI-DON solver
+through the modeling and uncertainty quantification of 3-D
+planar microwave circuits and a metasurface unit cell.
+Index Terms— Computational electromagnetics, electromag-
+netic fields, machine learning, physics-informed neural networks
+(PINNs).
+I. INTRODUCTION
+S
+CIENTIFIC machine learning (SciML) is a powerful tool
+in computational physics, merging principles of scientific
+computing with deep learning algorithms to model complex
+physical phenomena. SciML has been widely applied to
+computational electromagnetics [1], [2], [3], [4], [5]. However,
+most current research in SciML relies on a data-driven training
+strategy, requiring significant computational resources for
+generating ground-truth data and for the training process
+itself. Additionally, since these networks are trained based on
+specific datasets, their generalizability is limited when applied
+to new problems beyond those included in the training set,
+thus restricting their overall effectiveness.
+Physics-informed
+neural
+networks
+(PINNs)
+[6]
+have
+emerged as a promising area of SciML for solving complex
+partial differential equations (PDEs), such as the Navier–
+Stokes equation [7] and the Schrödinger equation [8].
+Received 28 September 2024; revised 30 November 2024; accepted
+18 December 2024. Date of publication 31 December 2024; date of current
+version 3 July 2025. This work was supported by the Natural Sciences
+and Engineering Research Council of Canada (NSERC) through Exploring
+New Frontiers for Computational Electromagnetics with Scientific Machine
+Learning under Grant RGPIN-2024-04326. (Corresponding author: Shutong
+Qi.)
+The authors are with the Edward S. Rogers Sr. Department of Electrical
+and Computer Engineering, University of Toronto, Toronto, ON M5S 3G4,
+Canada (e-mail: st.qi@mail.utoronto.ca; costas.sarris@utoronto.ca).
+Digital Object Identifier 10.1109/TMTT.2024.3521389
+Additionally, PINNs have been successfully applied to inverse
+problems [9]. PINNs apply physical laws as loss functions
+within deep learning algorithms [10], [11]. This approach
+enables PINNs to be trained in an unsupervised manner,
+thus saving computational resources typically required to
+generate ground-truth data. Despite their popularity and effec-
+tiveness, PINNs suffer from significant challenges, including
+poor training efficiency, unknown generalizability, and diffi-
+culties in scaling to larger domains [12], [13], [14]. These
+challenges limit the application of PINNs to real-world
+problems.
+A novel neural network architecture known as the deep
+operator network (DeepONet) [15] offers further possibilities
+for SciML. Unlike standard neural network solvers that dis-
+cretize input and output spaces, DeepONets are trained to map
+input to output functions continuously. This capability makes
+DeepONets suitable for approximating operators, such as PDE
+operators. DeepONets address a limitation of standard PINNs,
+which typically solve only one specific problem per training.
+Thus, DeepONets enhance the versatility and applicability of
+SciML solvers.
+In this work, a DeepONet is proposed to replace the
+curl operator in Maxwell’s equations, referred to as the
+deep curl operator (DCO). Then, the DCO is utilized to
+solve Maxwell’s equations with problem-specific settings for
+modeling practical electromagnetic problems. To that end,
+the DCO is further trained using an unsupervised strategy,
+driven by a physics-informed loss function. This extended
+version of the DCO, which incorporates the physics-informed
+loss function for solving Maxwell’s equations, is termed the
+physics-informed DeepONet (PI-DON).
+The proposed PI-DON offers three key advantages over
+existing physics-informed machine learning models for solving
+Maxwell’s equations [16], [17]. First, it simplifies the train-
+ing process by narrowing the focus from solving the entire
+problem to learning the curl operator. Second, the DeepONet
+supports inputs of different sizes [18], allowing the PI-DON
+to be applied to computational domains of varying dimensions
+without modification. Third, the trained PI-DON demonstrates
+strong generalizability. Once trained on a specific problem,
+PI-DON can accurately solve a range of similar problems
+without requiring additional training. This capability makes
+PI-DON an ideal tool for uncertainty quantification and design
+optimization, which requires numerous simulations to model
+geometries with stochastically uncertain specifications [19].
+We
+trained
+PI-DONs
+to
+model
+two
+different
+planar
+microwave circuits and a metasurface unit cell, consisting
+of a split-ring resonator (SRR) and a strip wire. These
+0018-9480 © 2024 IEEE. All rights reserved, including rights for text and data mining, and training of artificial intelligence
+and similar technologies. Personal use is permitted, but republication/redistribution requires IEEE permission.
+See https://www.ieee.org/publications/rights/index.html for more information.
+Authorized licensed use limited to: Southern University of Science and Technology. Downloaded on September 01,2026 at 07:10:51 UTC from IEEE Xplore.  Restrictions apply. 
+
+QI AND SARRIS: PI-DON FOR 3-D TIME-DOMAIN ELECTROMAGNETIC MODELING
+3801
+trained models were used to accurately quantify geometric
+and material uncertainties in these structures. As a neural
+network-based solver, PI-DONs can be executed in parallel on
+GPUs for uncertainty quantification tasks, further increasing
+their efficiency. We demonstrated the accuracy and efficiency
+of PI-DONs by comparing their results to reference data
+generated by a finite-difference time-domain (FDTD) solver.
+Numerical experiments showed that the PI-DON is faster than
+FDTD, even considering training time, with a mean relative
+error in the order of 10−3. Hence, we significantly extend
+our previous work reported in [20], by introducing the DCO
+and the associated PI-DON scheme. To our knowledge, this is
+the first physics-informed machine learning model applied to
+realistic 3-D microwave geometries, clearly demonstrating its
+potential to surpass the efficiency of FDTD when numerous
+simulations are required.
+The rest of the article is organized as follows. In Section II,
+we provide an overview of PINNs and DeepONets and intro-
+duce the proposed PI-DON workflow. In Section III, we show
+the training process of the DCO. In Section IV, we integrate
+the DCO into the PI-DON solver and analyze the stability
+of the PI-DON. In Sections V and VI, we demonstrate the
+accuracy, efficiency, and generalizability of the PI-DON for
+3-D electromagnetic problems, along with its application to
+uncertainty quantification studies. In Section VII, we summa-
+rize our contributions.
+II. OVERVIEW OF PINNS, DEEPONETS, AND THE
+PROPOSED PHYSICS-INFORMED DEEPONET
+In this section, we present an overview of general frame-
+works for PINNs [6] and DeepONets [15]. Moreover, we show
+the workflow of the proposed physics-informed DeepONet.
+A. Physics-Informed Neural Networks
+PINNs use PDEs and their associated boundary and initial
+conditions as the loss function of a neural network. This
+approach facilitates unsupervised training and eliminates the
+need to generate ground-truth data. As an example, Fig. 1(a)
+shows the application of the PINN algorithm to the transmis-
+sion line (TL) equations. The TL equations are implemented as
+a loss function by employing automatic differentiation (AD)
+to approximate the partial derivatives of the voltage V (z, t)
+and current I (z, t) with respect to z and t. Then, the network
+is trained by minimizing this loss function using gradient-
+based optimizers, such as the Adam [21] and L-BFGS [22],
+to approximate the actual solution.
+Although AD-based PINNs are effective for solving PDEs,
+they have two significant constraints. First, the AD process
+is conducted twice during training: once for loss computation
+and once for backpropagation. This slows down the training
+process, especially for complex equations and large computa-
+tional domains. Second, the applicability of a trained PINN is
+limited to the specific domain settings and the boundary/initial
+conditions for which it was trained, reducing its effectiveness
+under different scenarios. These issues limit the applicability
+of PINNs to real-world, 3-D problems. To address the first
+limitation, PINNs utilizing discrete losses have been developed
+Fig. 1.
+(a) Framework of a PINN for modeling transmission lines.
+(b) Schematic illustration of the DeepONet.
+to improve training efficiency [17], [23], [24]. Furthermore,
+a new framework in SciML, known as the DeepONet, has
+been introduced.
+B. Deep Operator Networks
+DeepONets have been introduced as a generalized version of
+PINNs [10], to infer system responses in real-time for various
+scenarios with minimal or no additional training. Consider an
+operator G that maps an input function u to an output function
+v, that is, G : u →v. DeepONets are designed to approximate
+the operator G, by leveraging the principles of the universal
+approximation theorem [25].
+As depicted in Fig. 1(b), a DeepONet comprises two neural
+networks: a branch network and a trunk network. These net-
+works can adopt various architectures, such as fully connected
+neural networks (FCNNs), convolutional neural networks
+(CNNs), or graph neural networks (GNNs). The branch net-
+work encodes the input function u on a set of sampling
+points, while the trunk network encodes the spatiotemporal
+coordinates of the output function v. DeepONet aims to
+learn the operator G(u) evaluated at continuous spatiotemporal
+coordinates ξ. The output of a DeepONet for a specified input
+function ui is expressed as Gθ(ui; ξ), where θ = (W, b)
+represents trainable parameters, including the weights W and
+biases b, of the network. The trainable parameters θ are
+optimized by a loss function
+L(θ) = 1
+N
+N
+X
+i=1
+wi|Gθ(ui; ξ) −vi(ξ)|2.
+(1)
+If the target function vi sampled at ξ is obtained by spe-
+cific physical laws instead of the ground-truth data from
+Authorized licensed use limited to: Southern University of Science and Technology. Downloaded on September 01,2026 at 07:10:51 UTC from IEEE Xplore.  Restrictions apply. 
+
+3802
+IEEE TRANSACTIONS ON MICROWAVE THEORY AND TECHNIQUES, VOL. 73, NO. 7, JULY 2025
+Fig. 2.
+Proposed PI-DON workflow for solving Maxwell’s equations in practical applications.
+measurements or simulations, the DeepONet is trained in an
+unsupervised, physics-informed way.
+The operator learning strategy implemented by DeepONets
+facilitates the solution of problems, which are characterized
+by multiple pairs of input (ui) and output (vi) functions, with
+a single training process. In this study, a neural operator G is
+trained to approximate the curl operator for solving Maxwell’s
+equations.
+We show the detailed workflow of the proposed
+physics-informed DeepONet for solving Maxwell’s equations
+in Section II-C.
+C. Proposed Physics-Informed DeepONet for 3-D
+Electromagnetic Problems: Workflow
+The workflow of the proposed PI-DON is illustrated in
+Fig. 2. The process begins with training the DCO to approx-
+imate the curl operator in Maxwell’s equations. The DCO is
+developed using a modified 3-D U-net architecture, detailed
+in Section III-A. We train the DCO with plane wave electric
+fields propagating in free space to accurately approximate the
+results of a curl operation. Then, we conduct numerical exper-
+iments to confirm the DCO’s effectiveness with varying input
+dimensions. Finally, the DCO is embedded within the PI-DON
+framework to solve electromagnetic problems. We evaluate
+the accuracy of the PI-DON solver by modeling a cavity
+problem. We further assess its stability using the dynamic
+mode decomposition (DMD) method [26]. We demonstrate the
+feasibility and versatility of the PI-DON for practical electro-
+magnetic problems, by modeling planar microwave circuits
+and an SRR/strip wire unit cell. We also show the robust
+generalizability of PI-DON and its accuracy and efficiency
+for uncertainty quantification in modeling electromagnetic
+structures.
+III. DEEP CURL OPERATOR TRAINING STAGE
+In this section, we present the architecture of the modified
+U-net utilized as the DCO, along with details of the training
+Fig. 3.
+Architecture of the modified U-net used for DCO implementation.
+data and training process. Additionally, we evaluate the accu-
+racy of the trained DCO and demonstrate that it works with
+varying input dimensions.
+A. Architecture of the Deep Curl Operator
+The DCO is implemented using a modified U-net archi-
+tecture [27]. The conventional U-net structure is primarily
+designed for 2-D data with a single downsampling branch.
+We extended the U-net framework by incorporating 3-D con-
+volutional kernels to solve 3-D problems. We also added an
+extra downsampling branch to function as the trunk network in
+the DeepONet, allowing it to process coordinate information.
+As a DCO, this trunk network decodes coordinate informa-
+tion into cell sizes, allowing its application across different
+computational domains. An illustration of the modified U-net
+structure for implementing the DCO is shown in Fig. 3.
+The U-net architecture comprises two branches: a downsam-
+pling branch and an upsampling branch. Each branch contains
+L levels of corresponding blocks. In each block, there are two
+3×3 × 3 convolution filters with an activation function. Unlike
+the original U-net [27], which uses a nonsmooth ReLU [28]
+as the activation function, we use Gaussian error linear units
+(GELUs) to avoid stiff predictions [29] that decrease the
+Authorized licensed use limited to: Southern University of Science and Technology. Downloaded on September 01,2026 at 07:10:51 UTC from IEEE Xplore.  Restrictions apply. 
+
+QI AND SARRIS: PI-DON FOR 3-D TIME-DOMAIN ELECTROMAGNETIC MODELING
+3803
+accuracy of the DCO. The padding size of these two con-
+volutional layers is 1 on each boundary, and the step size
+of convolutional kernels is also 1, ensuring that the output
+dimensions remain unchanged after each block. We add an
+additional residual connection within each block to maintain
+the gradient flow from the input feature map to the second
+convolution layer. This residual connection facilitates deeper
+layers in the network to learn residual functions with reference
+to the layer inputs, enhancing the robustness of the neural
+network as the number of levels (L) increases [30]. The
+complexity of the U-net is determined by L. In Section III-C,
+we will evaluate the influence of L on the performance of the
+trained DCO.
+In the downsampling branch, there is a max-pooling layer
+between two neighboring blocks. The kernel size of the
+max-pooling layer is 2×2 × 2, which halves the feature map
+dimensions after each downsampling block. In the upsampling
+branch, there is a transposed convolutional layer between each
+block. The kernel size of this layer is also 2×2 × 2, doubling
+the size of the feature map in each dimension after each block.
+Consequently, the output dimensions remain the same as the
+input dimensions after U-net computation, making the U-net
+suitable as a neural operator [18].
+The outputs of the two
+downsampling branches are combined using the Hadamard
+product, which performs element-wise multiplication of the
+corresponding values from the branch and trunk networks.
+This operation maintains the dimensions of the input feature
+map, ensuring alignment of the feature map shapes between
+the corresponding blocks in the downsampling and upsampling
+branches.
+Finally, between the downsampling branch and the upsam-
+pling
+branch,
+there
+is
+a
+skip
+connection
+between
+the
+corresponding block. In Fig. 3, it can be observed that the skip
+connection directly copies the output from one downsampling
+branch to the corresponding block in the upsampling branch.
+This direct connection maintains multiple levels of features in
+the training process.
+B. Training Data: A Combination of Plane Waves
+We generated a dataset of 3-D electric fields propagating in
+free space. Each dataset, denoted by E, consists of multiple
+plane waves and serves as the input for the U-net. The
+corresponding ∇× E was computed analytically to provide
+reference data for training the U-net. The generated input data
+are defined as
+E =
+n
+X
+i=0
+E0,iexp
+
+−jki
+
+xcosφsinθ + ysinφsinθ + zcosθ
+	
+.
+(2)
+The computational domain was discretized into 32 × 32 ×
+32 cells in the x-, y-, and z-directions, with cell dimensions
+1x, 1y, and 1z ranging from 0.3 to 0.8 mm. For each dataset,
+the angles φ and θ were randomly chosen between −π and
+π, and between 0 and π, respectively. After setting φ and θ,
+multiple values of k were selected between 0 and 1048, result-
+ing in a frequency spectrum ranging from 0 to 50 GHz. Next,
+the amplitudes of Ex and Ey were generated using random
+numbers between 0 and 5 for a specific ki. Subsequently, the
+amplitude of Ez was computed by satisfying the following
+condition:
+ki · E0,i = 0
+(3)
+Ez,i = −cosφsinθ Ex,i + sinφsinθ Ey,i
+cosθ
+.
+(4)
+In this work, the accuracy is measured by the mean relative
+error (MRE), which is calculated using the following formula:
+MRE =
+1
+Nx Ny Nz
+Nx,Ny,Nz
+X
+i, j,k=1
+
+
+
+
+yp
+i, j,k −yt
+i, j,k
+yt
+i, j,k
+,
+if yt
+i, j,k ̸= 0
+yp
+i, j,k
+,
+if yt
+i, j,k = 0
+(5)
+where yt
+i, j,k represents the analytical ground-truth data and
+yp
+i, j,k represents the predictions from the DCO.
+The U-net output, ∇D × E, was normalized by the local
+maximum for each component to improve prediction accu-
+racy. This normalization reduced the MRE on the testing set
+from 4.1 × 10−2 to 7.9 × 10−4. However, this normalization
+was no longer necessary in the subsequent physics-informed
+DeepONet, as the physics-informed loss function ensured high
+prediction accuracy.
+C. Training and Evaluation of the DCO Model
+A dataset of 1000 samples was generated to train the U-net
+to approximate the curl operator. Eighty percent of the data
+was used for training, while the remaining was used for testing.
+Each input dataset included two 3-D vectors representing the
+coordinates and the corresponding E. The training process
+utilized the Adam optimizer over 1000 epochs, with a learning
+rate set to 10−4 and a batch size of 32.
+We assessed the impact of the U-net complexity on the
+performance of the trained DCO. The complexity was con-
+trolled by the number of levels in the U-net architecture.
+Each additional level introduced six convolutional layers (four
+in the downsampling branch and two in the upsampling
+branch), one max-pooling layer, and one transposed layer.
+We tested two to five levels. The training and testing losses
+over 1000 epochs are shown in Fig. 4.
+Abrupt increases
+are observed in the losses at specific epochs, particularly in
+models with more U-Net levels. These increases arise from
+unstable gradients during training, caused by increased model
+complexity and sensitivity. Notably, the U-Net with five levels
+shows the most frequent peaks, while the U-Net with two
+levels achieves the smoothest convergence. We also recorded
+the training time and prediction accuracy [measured by MRE
+in (5)] on the testing set, presented in Table I. Based on
+the accuracy and training time, we selected a U-net with
+four levels for further experiments. Fig. 5 illustrates a set
+of DCO’s inputs, predictions, and the errors compared to the
+ground-truth analytical solutions. This test case was generated
+with 1x = 1y = 1z = 0.6 mm, θ = 45◦, φ = 60◦, and
+k consisting of 20 values uniformly selected from 0.021 to
+838.34, resulting in a frequency spectrum ranging from 1 MHz
+to 40 GHz.
+Authorized licensed use limited to: Southern University of Science and Technology. Downloaded on September 01,2026 at 07:10:51 UTC from IEEE Xplore.  Restrictions apply. 
+
+3804
+IEEE TRANSACTIONS ON MICROWAVE THEORY AND TECHNIQUES, VOL. 73, NO. 7, JULY 2025
+Fig. 4.
+Comparison of training and testing losses for different levels of the
+U-net (L).
+TABLE I
+TRAINING TIME AND MRE FOR DIFFERENT LEVELS OF U-NET
+Fig. 5.
+Illustration of DCO’s input, prediction, and error compared to the
+ground-truth data, showing the x, y, and z components.
+D. Demonstration of the Dimension-Invariant Feature of the
+DCO
+Since the DCO is based on a fully convolutional U-net and
+incorporates coordinate information as part of the input, it can
+handle inputs of arbitrary sizes without additional specifica-
+tions. The DCO was initially trained with input dimensions
+of 32 × 32 × 32. We used the case shown in Fig. 5 to test
+the adaptability of the DCO to different input dimensions.
+The trained DCO was applied to predict the result of a curl
+operation at the following input dimensions: 64 × 64 × 64,
+32 × 64 × 16, and 64 × 96 × 16, with the cell size
+computed based on a total length of 19.2 mm in each direc-
+tion. The x component of the input E, the output ∇D × E,
+Fig. 6.
+Validation of the adaptability of the trained DCO to different input
+dimensions, showing the x component. (a) Input dimension of 64 × 64 ×
+64, MRE = 4.1 × 10−3. (b) Input dimension of 64 × 96 × 16, MRE =
+3.8 × 10−3. (c) Input dimension of 32 × 64 × 16, MRE = 4.7 × 10−3.
+and the corresponding difference compared to the analytical
+ground-truth data are shown in Fig. 6. These results indicate
+that the DCO effectively adapts to new input dimensions that
+are not included in the training process. This adaptability to
+arbitrary input dimensions enables the DCO to solve a wide
+range of problems, which is essential for modeling real-world
+scenarios. To ensure the accuracy of DCO-based numerical
+simulations, we propose a physics-informed training strategy
+designed to solve Maxwell’s equations accurately for any
+problem in Section IV.
+IV. APPLYING THE DCO TO SOLVE MAXWELL’S
+EQUATIONS WITH A PHYSICS-INFORMED
+LOSS FUNCTION
+When using the DCO to model electromagnetic fields for a
+specific case, it is further trained using a physics-informed
+loss function. This model is referred to as PI-DON.
+The
+PI-DON solver employs the DCO to approximate the curl
+operator in Maxwell’s equations and utilizes centered finite
+differences to approximate the temporal derivatives of the elec-
+tric and magnetic fields, which is similar to FDTD. Material
+properties—such as permittivities and permeabilities—along
+with boundary conditions are also taken into account. We
+show the stability analysis of the PI-DON solver through the
+DMD [26].
+A. Physics-Informed DeepONet for Cavity Modeling
+By approximating the partial derivative of electromagnetic
+fields with respect to time using a centered finite difference
+and the curl operator using the DCO, the update equation for
+electromagnetic fields is modified as follows:
+En+1 = En + 1t
+ε ∇D × Hn+1/2
+Hn+1/2 = Hn−1/2 −1t
+µ ∇D × En
+(6)
+The training workflow of the PI-DON is outlined in
+Algorithm 1. The electric fields, E, and magnetic fields, H, are
+initialized as zero arrays. The training begins by optimizing
+∇×H using the physics-informed loss function. Subsequently,
+the E fields are updated based on the permittivity ε and
+the time step 1t. Next, the excitation is applied by setting
+Authorized licensed use limited to: Southern University of Science and Technology. Downloaded on September 01,2026 at 07:10:51 UTC from IEEE Xplore.  Restrictions apply. 
+
+QI AND SARRIS: PI-DON FOR 3-D TIME-DOMAIN ELECTROMAGNETIC MODELING
+3805
+Algorithm 1 Physics-Informed DeepONet Algorithm
+Require: Nmax (maximum iterations), boundary conditions
+for H and E fields, permittivity ε, and permeability µ,
+1: Initialize fields E and H
+2: N ←0
+3: while N < Nmax do
+4:
+Train ∇× H using physics-informed loss function
+5:
+Update E fields using permittivity ε and 1˜t
+6:
+Implement excitation
+7:
+Train ∇× E using (7) (with boundary conditions)
+8:
+Update H fields using permeability µ and 1˜t
+9:
+N ←N + 1
+10: end while
+11: Output: Trained fields E at the sampling ports
+(for hard sources [31]) or superimposing (for transparent
+sources [31]) the source excitation to the E fields from
+step 5, within the source region. Following this, ∇× E is
+trained to update H fields based on the loss function defined
+in (7), as shown at the bottom of the page. During this
+step, boundary conditions—such as perfect electric conductors
+(PECs) and absorbing boundary conditions—are implemented
+as part of the loss function. In steps 4 and 7, the training is
+terminated when the loss drops below 10−4. The mesh used
+in PI-DON is generated similarly to the corresponding FDTD
+simulation, with 10–20 points per wavelength at the highest
+frequency of interest. In the training stage, the coordinates of
+E and H fields are input into the trunk network of the DCO,
+providing information on cell sizes. Since the training process
+is completely unsupervised, it proceeds sequentially across
+time steps. To ensure training stability, the time steps used
+during training are subject to the CFL condition, as PI-DON
+follows the FDTD scheme. The proposed PI-DON method
+simultaneously processes the three components of E and H,
+allowing Maxwell’s equations to be solved in parallel.
+We tested the accuracy, efficiency, and stability of the
+PI-DON in a 3-D cavity problem. The cavity was a cube with a
+side length of 50 mm, discretized into 32 cells in each direction
+and filled with air. The time step was 3.075 × 10−12 s in the
+training stage. A unit amplitude Gaussian source was placed at
+the center of the cube to excite the cavity modes, as illustrated
+in Fig. 7(a). In the PI-DON framework, the excitation is intro-
+duced by setting Ez with the corresponding Gaussian source
+amplitude at the excitation point. The fields were terminated
+by PECs on all sides of the cavity. These settings were the
+TABLE II
+COMPARISON OF RESONANT FREQUENCIES (UNIT: GHz)
+same for both FDTD and PI-DON. The PECs were modeled
+in the PI-DON by setting the predicted tangential components
+on PECs to zero. Then, the loss function (7) was computed
+using the updated predictions and used to optimize the DCO’s
+parameters through backpropagation.
+We modeled the electromagnetic fields within this cavity
+for 8192 steps with the PI-DON and compared the results
+with reference data from an FDTD solver with the same mesh
+partition and time step. The training process took 583 s on an
+Nvidia A6000 GPU, while an FDTD solver took 6.47 s on an
+Intel i5 CPU. Although the PI-DON was slower than FDTD
+for this specific cavity problem, the training and execution
+time of PI-DON can be comparable or even shorter than that of
+FDTD, depending on the problem, as discussed in Section V
+on numerical experiments. Yet, PI-DON has a clear advantage
+when repetitive runs are needed, such as in uncertainty
+quantification. The comparison of the electromagnetic fields
+in the time domain is shown in Fig. 7(b), where the Ez
+component at z = 131z is sampled at 300, 600, and 900 time
+steps. The MRE of the PI-DON results for each time step is
+9.6 × 10−3.
+We also computed the frequency spectrum of the fields
+calculated by PI-DON and FDTD via Fourier transform, sam-
+pling the Ez component at the position (121x, 121y, 131z).
+The comparison between the frequency spectra generated
+by PI-DON and FDTD is shown in Fig. 7(c). Furthermore,
+we selected several resonant frequencies calculated by FDTD
+and the PI-DON and compared them with analytical results,
+in Table II. These comparisons demonstrate that the PI-DON
+can achieve accuracy comparable to that of FDTD.
+To demonstrate the necessity of DCO’s pretraining stage,
+we solved the same cavity problem using the U-net with
+random initialization. The comparison of the cumulative train-
+ing losses between these two initialization methods over the
+first 2000 time steps is shown in Fig. 8. The cumulative loss
+represents the total loss summed over all training epochs at
+each time step. The results show that training a DeepONet
+L∇×E =
+X
+i, j,k
+(
+(∇D×E)x
+i+1/2, j,k −
+" 
+E y
+i, j+1/2,k+1 −E y
+i, j+1/2,k
+1z
+!
+−
+ 
+Ez
+i, j+1,k+1/2 −Ez
+i, j,k+1/2
+1y
+!#)2
++
+X
+i, j,k
+(
+(∇D×E)y
+i, j+1/2,k −
+" E x
+i+1/2, j,k+1 −E x
+i+1/2, j,k
+1z
+
+−
+ 
+Ez
+i+1, j,k+1/2 −Ez
+i, j,k+1/2
+1x
+!#)2
++
+X
+i, j,k
+(
+(∇D×E)z
+i, j,k+1/2 −
+" 
+E y
+i+1, j+1/2,k −E y
+i, j+1/2,k
+1x
+!
+−
+ E x
+i+1/2, j+1,k −E x
+i+1/2, j,k
+1y
+#)2
+(7)
+Authorized licensed use limited to: Southern University of Science and Technology. Downloaded on September 01,2026 at 07:10:51 UTC from IEEE Xplore.  Restrictions apply. 
+
+3806
+IEEE TRANSACTIONS ON MICROWAVE THEORY AND TECHNIQUES, VOL. 73, NO. 7, JULY 2025
+Fig. 7.
+PI-DON for cavity modeling. (a) Cavity geometry. (b) Comparison of time-domain results from the PI-DON approach and an FDTD solver at
+z = 131z within the cavity, evaluated at 300, 600, and 900 time steps. (c) Comparison of frequency spectra between the results from PI-DON and an FDTD
+solver, with electromagnetic fields sampled at the position (121x, 121y, 131z) within the cavity.
+Fig. 8.
+Comparison of cumulative training losses between pretrained DCO
+initialization and random initialization.
+from scratch converges more slowly and with greater difficulty
+compared to training with pretrained DCO initialization. This
+comparison proves the importance of pretraining the DCO to
+solve Maxwell’s equations.
+To further evaluate the impact
+of material properties on PI-DON’s training, a dielectric
+block with dimensions 51x × 51y × 51z and a relative
+permittivity of four was introduced into the cavity, centered at
+(71x, 71y, 71z), as shown in Fig. 7(a). Then, the PI-DON
+was trained again using both pretrained DCO initialization and
+random initialization. The corresponding cumulative losses are
+shown in Fig. 8. These results demonstrate that the existence of
+multiple materials does not affect the performance advantage
+of the pretrained DCO.
+B. Stability Analysis of the PI-DON for Time-Domain
+Electromagnetic Modeling
+We have demonstrated that a PINN-based EM solver is not
+subject to the stability limit of the FDTD method in [20]. This
+motivates us to analyze the stability of a trained PI-DON for
+a time step that is larger than the Courant–Fredrichs–Lewy
+(CFL) limit [32] in an FDTD solver with the same mesh.
+To this end, we employed the DMD method [26]. The DMD is
+a data-driven technique for analyzing spatiotemporal patterns
+from time-series data. Given multivariate time-series data,
+DMD computes a set of dynamic modes, where each mode is
+associated with a fixed oscillation frequency and decay/growth
+rate. From the latter, we can deduce the stability/instability of
+PI-DON at a given time step. Using DMD, a signal x(t) can
+be reconstructed by
+x(t) ≈˜x(t) = 9 exp
+ eig t
+
+b
+(8)
+where ˜x(t) is the reconstructed signal, 9 is the DMD basis,
+b is the vector containing the projected initial conditions, and
+eig is a diagonal matrix whose entries are the continuous
+eigenvalues ωi = ln(λi)/1t, with 1t representing the time
+step between the outputs. The eigenvalues typically appear as
+complex conjugate pairs and constitute the DMD spectrum.
+An eigenvalue with an amplitude greater than 1 corresponds
+to an unstable mode, while an amplitude less than 1 indicates
+a stable mode. Hence, we can use the DMD method to analyze
+the stability of a trained PI-DON solver.
+We applied the trained PI-DON to the 3-D cavity problem
+described in Section IV-A. Let 1tmax represent the largest time
+step allowed by the CFL limit in an FDTD solver with the
+same mesh, and let
+˜1t represent the time step in a PI-DON
+solver. We set the time step of the PI-DON solver to
+˜1t =
+51tmax and applied the trained PI-DON to the cavity problem.
+With this setting, the sampling rate was Nλ = 2.48 points per
+wavelength (ppw), that is, close to the Nyquist limit.
+At each time step, the predictions from the PI-DON were
+reshaped into an N × 1 vector as the input to the DMD,
+where N was the total number of points in the computational
+domain. The PI-DON was trained for M = 8192 time steps
+to model the cavity, resulting in ˜M = 1638 steps with ˜1t =
+51t during the evaluation stage. Then, we applied the DMD
+to the PI-DON’s predictions and obtained the corresponding
+eigenvalues to assess the stability of the PI-DON solver.
+As shown in Fig. 9, all the eigenvalues lie within the unit circle,
+demonstrating the stability of this case. This feature makes
+PI-DON an efficient solver for time-domain electromagnetic
+modeling. In Sections V and VI, we apply the PI-DON to
+model practical electromagnetic problems.
+V. NUMERICAL EXPERIMENT I: UTILIZING THE PI-DON
+FOR MODELING PLANAR MICROWAVE CIRCUITS
+We have demonstrated that the DCO can be applied at arbi-
+trary input dimensions in Section III and extended the DCO to
+a PI-DON solver for time-domain electromagnetic modeling in
+Section IV-A. Additionally, we showed that a trained PI-DON
+Authorized licensed use limited to: Southern University of Science and Technology. Downloaded on September 01,2026 at 07:10:51 UTC from IEEE Xplore.  Restrictions apply. 
+
+QI AND SARRIS: PI-DON FOR 3-D TIME-DOMAIN ELECTROMAGNETIC MODELING
+3807
+Fig. 9.
+Illustration of eigenvalues from the DMD method: PI-DON predic-
+tions with ˜M = 1638 steps with ˜1t = 51t.
+is not subject to the CFL limit during the evaluation process
+in Section IV-B. These features make PI-DON an efficient and
+versatile solver for time-domain electromagnetic modeling.
+In this section, we apply the PI-DON to model 3-D practical
+electromagnetic problems and quantify the effects of stochastic
+uncertainty in geometric and material specifications.
+We used the PI-DON to simulate the well-known benchmark
+microwave structures of [33] to show its accuracy, efficiency,
+and generalizability. For the PI-DON simulations, we adopted
+the same mesh partition, time step, excitation, and boundary
+conditions as in [33].
+A transparent Gaussian source was
+applied to Ez at the excitation port. To model open boundaries
+of the computational domain (0 ≤x ≤xm, 0 ≤y ≤ym, and
+0 ≤z ≤zm), a modified first-order Mur’s absorbing boundary
+condition [34] was incorporated into the loss function. Loss
+function terms were defined for the tangential electric field
+components at the open boundaries: x = 0, x = xm; y = 0,
+y = ym; and z = zm. For example, considering the Ex
+component at the boundaries y = 0 and y = ym, the additional
+loss terms for the Ex components at these boundaries are
+Lx,y=0
+ABC =
+X
+i,k∈y=0
+E x,n+1
+i+1/2,0,k −E x,n
+i+1/2,1,k
+−sy −1
+sy + 1
+
+E x,n+1
+i+1/2,1,k −E x,n
+i+1/2,0,k
+
+2
+Lx,y=ym
+ABC
+=
+X
+i,k∈y=ym
+E x,n+1
+i+1/2, jmax,k −E x,n
+i+1/2, jmax−1,k
+−sy −1
+sy + 1
+
+E x,n+1
+i+1/2, jmax−1,k −E x,n
+i+1/2, jmax,k
+
+2
+(9)
+where sy = vp1t/1y, and v represents the phase velocity in
+the corresponding material.
+The total loss function for computing ∇× E in planar
+microwave circuit cases is
+L = αL∇×E + (1 −α)
+
+Lx=0,xm
+ABC
++ Ly=0,ym
+ABC
++ Lz=zm
+ABC
+
+(10)
+where Lx=0,xm
+ABC
+accounts for the losses of both Ey and Ez
+components at x = 0 and x = xm, and similarly for Ly=0,ym
+ABC
+and Lz=zm
+ABC . For the planar microwave circuits, the bottom
+boundary at z = 0 is treated as a PEC by setting the tangential
+components Ez=0
+x
+and Ez=0
+y
+to zero. The microstrip line
+TABLE III
+EXECUTION TIME COMPARISON BETWEEN FDTD AND PI-DON
+FOR MC EXPERIMENTS AND ACCURACY OF PI-DON
+Fig. 10.
+Layout of a microstrip low-pass filter.
+segments are also modeled as PECs using the same method.
+In (10), α is a hyperparameter that starts from 0 and gradually
+increases during training, prioritizing the ABC loss terms in
+the early stages and ensuring a balanced contribution between
+the losses for the internal fields and the boundary fields.
+In this section, the FDTD experiments were executed on
+an Intel i5-12600K CPU, while the PI-DON was trained and
+evaluated on an Nvidia A6000 GPU. The accuracy of PI-DON
+predictions was measured by the MRE, as defined in (5),
+for the Ez component across the entire simulation domain,
+averaged over each time step. For numerical experiments of
+planar circuits, the execution times of PI-DON and FDTD,
+as well as the MRE of PI-DON predictions, are presented in
+Table III. The Monte Carlo (MC) method was employed to
+quantify uncertainties in the geometry and material properties
+of these planar circuits. Geometry perturbations were intro-
+duced by adding/removing 1–3 cells along the direction of
+the perturbation.
+A. Microstrip Low-Pass Filter
+First, we trained the PI-DON to model the microstrip low-
+pass filter, shown in Fig. 10. We generated reference data by
+using an FDTD solver on the same mesh. The comparisons
+between the FDTD simulations and PI-DON predictions in
+both the time and frequency domains are shown in Fig. 11.
+The MRE for the PI-DON predictions is 1.9×10−3 compared
+to the reference data. The filter was modeled with 4096 steps
+in the FDTD simulation, which took 90 s. The training time
+for PI-DON, based on the pretrained DCO, was 117 s. While
+the physics-informed loss terms in (7) and (9) required more
+computational resources than a single FDTD run, the overall
+execution time of the PI-DON was comparable to that of
+FDTD. In this case, we also compared the pretrained DCO
+initialization with random initialization. The cumulative train-
+ing loss comparison between these two initialization methods
+for the first 1000 steps is shown in Fig. 12. The results
+demonstrate the advantage of using the pretrained DCO.
+As a neural network-based model, PI-DON can process
+multiple cases simultaneously by batching them as its input,
+Authorized licensed use limited to: Southern University of Science and Technology. Downloaded on September 01,2026 at 07:10:51 UTC from IEEE Xplore.  Restrictions apply. 
+
+3808
+IEEE TRANSACTIONS ON MICROWAVE THEORY AND TECHNIQUES, VOL. 73, NO. 7, JULY 2025
+Fig. 11. Comparison between the FDTD simulations and PI-DON predictions
+of the microstrip filter in Fig. 10 for the training case. (a) Time-domain signals
+for Ports 1 and 2 and (b) frequency-domain S-parameters.
+Fig. 12.
+Comparison of cumulative training losses between pretrained DCO
+and random initialization for the simulation of the microstrip filter of Fig. 10.
+enabling parallel computation of different scenarios. This
+parallelization, along with its ability to use time steps beyond
+the CFL limit, significantly enhances the efficiency of the PI-
+DON solver, especially when multiple simulations are needed.
+Uncertainty quantification, variability analysis, and design
+optimization often require a large number of simulations
+with varying input parameters. A trained PI-DON solver can
+accurately model these uncertainties without further training,
+serving as an efficient tool for uncertainty quantification.
+To demonstrate this, we considered three uncertain param-
+eters: the substrate dielectric constant (εr) and the lengths
+d1 and d3 in the microstrip filter, as shown in Fig. 10. The range
+of εr was set between 2.1 and 2.6, while d1 and d3 ranged from
+4.88 to 6.50 mm. The lengths of d1 and d3 were varied by
+21x from their original values [33]. A study of smaller per-
+turbations would require a more elaborate mesh deformation
+(as in [19]) and is beyond the scope of this article. In fact,
+this relatively large interval of d1 and d3 values is a harder
+test of the accuracy of the PI-DON. We employed the MC
+method, generating ten uniformly distributed random values
+for each parameter, resulting in a total of 1000 experiments.
+Then, the PI-DON was used to produce the corresponding
+Fig. 13.
+Mean magnitude of S-parameters and the corresponding CI
+from 1000 MC experiments for the microstrip filter shown in Fig. 10. (a) S11
+and (b) S21.
+Fig. 14.
+Comparison of the probability density functions (pdfs) for the 6-dB
+roll-off frequency of the microstrip filter of Fig. 10 computed by FDTD and
+PI-DON.
+results without requiring further training. During the evaluation
+stage, the time step used in PI-DON, denoted as ˜1t, was set to
+51tmax, where 1tmax represents the largest time step allowed
+by the CFL limit in an FDTD solver with the same mesh.
+Consequently, 4.44–4.5 points per wavelength were sampled
+at the highest frequency. This time step setting was also used
+in the simulation of a microstrip branch-line coupler, shown
+in Section V-B.
+The mean magnitude of the S-parameters and the corre-
+sponding confidence interval (CI) from the MC trials for
+both FDTD simulations and PI-DON predictions are presented
+in Fig. 13. The limits of the 90% CI are derived from the
+pdfs, such that 5% of the data are outside the upper and
+lower bounds, respectively. The mean and CI from PI-DON’s
+predictions are in close agreement with FDTD results across
+the 0–20-GHz frequency range.
+The 6-dB roll-off frequency, which refers to the frequency
+at which |S21| drops to −6 dB, is critical for filter design
+optimization. We extracted the 6-dB roll-off frequencies from
+all trials predicted by the PI-DON and the corresponding
+FDTD simulations. Subsequently, we approximated the pdfs of
+these frequencies, as depicted in Fig. 14. We also collected all
+Authorized licensed use limited to: Southern University of Science and Technology. Downloaded on September 01,2026 at 07:10:51 UTC from IEEE Xplore.  Restrictions apply. 
+
+QI AND SARRIS: PI-DON FOR 3-D TIME-DOMAIN ELECTROMAGNETIC MODELING
+3809
+Fig. 15. Comparison of frequency polygons for the microstrip filter of Fig. 10
+between FDTD simulations and PI-DON predictions.
+Fig. 16.
+Layout of the microstrip branch-line coupler.
+S-parameters from the MC trials and generated a histogram
+of the amplitude of these S-parameters. By connecting the
+midpoints of each bin in the histogram, we constructed a
+frequency polygon, as shown in Fig. 15. The PI-DON’s pre-
+dictions closely align with the corresponding FDTD results in
+the frequency polygons.
+B. Microstrip Branch-Line Coupler
+The second microstrip circuit we modeled is a branch-line
+coupler, shown in Fig. 16. A branch-line coupler is designed
+to divide power equally between ports 3 and 4 from ports 1 or
+2 at the operating frequency, with a phase difference of 90◦
+between ports 3 and 4. In the FDTD simulation, 4096 time
+steps were used to simulate the coupler, requiring 145 s.
+We trained PI-DON to model this coupler, which took 105 s.
+Notably, PI-DON was faster than FDTD in this case, even for
+a single run.
+To quantify the impact of uncertainties in εr, L1, and
+L2 on the coupler, we applied the MC method, by generating
+ten uniformly distributed random values for each parameter,
+resulting in a total of 1000 simulations. The range for εr was
+set between 2.1 and 2.6. The lengths of L1 and L2 were
+varied by 21y and 21x, respectively, from the values reported
+in [33], yielding a range of 8.93–10.56 mm. The mean S-
+parameters and the corresponding 90% CIs from the MC trials
+are presented in Fig. 17. The statistics of the phase difference
+between ports 3 and 4 are illustrated in Fig. 17(e).
+VI. NUMERICAL EXPERIMENT II: MODELING A
+METASURFACE UNIT WITH UNCERTAINTY
+QUANTIFICATION USING PI-DON
+We have demonstrated the feasibility of PI-DON for solv-
+ing realistic electromagnetic problems by modeling planar
+microwave circuits. Our results show that the PI-DON is both
+Fig. 17.
+Mean magnitude of S-parameters for the branch-line coupler and
+the corresponding CIs from 1000 MC experiments. (a) S11, (b) S21, (c) S31,
+and (d) S41. (e) The mean phase difference between ports 3 and 4 of the
+branch-line coupler and the corresponding CI calculated from MC trials.
+accurate and efficient in quantifying uncertainties related to
+geometric and material specifications. To further validate the
+generalizability and effectiveness of PI-DON, we applied it to
+a completely different scenario: modeling a metasurface unit
+cell consisting of an SRR and a strip wire, as illustrated in
+Fig. 18. This structure is based on the design presented in [35]
+and originally proposed in [36].
+This case features a different microwave geometry and
+boundary conditions compared to planar microwave circuits.
+The unit cell comprises an SRR and a strip wire, posi-
+tioned within a waveguide terminated by open boundaries in
+the z-direction. Periodic boundary conditions in the x- and
+y-directions were applied using PECs and perfect magnetic
+Authorized licensed use limited to: Southern University of Science and Technology. Downloaded on September 01,2026 at 07:10:51 UTC from IEEE Xplore.  Restrictions apply. 
+
+3810
+IEEE TRANSACTIONS ON MICROWAVE THEORY AND TECHNIQUES, VOL. 73, NO. 7, JULY 2025
+Fig. 18.
+(a) Geometry of an SRR/strip wire unit cell. (b) Modeling the
+unit cell in a waveguide with open boundaries in the z-direction and periodic
+boundary conditions in the x- and y-directions.
+Fig. 19. Comparison between the FDTD simulations and PI-DON predictions
+of the SRR/strip wire unit cell for the training case. (a) Time-domain signals
+from Probes 1 and 2, and (b) frequency-domain S-parameters.
+conductors (PMCs), respectively. A 0–22-GHz Gaussian pulse
+was used to excite the structure,
+applied as a plane wave,
+as illustrated in Fig. 18(b). For the dimensions shown in
+Fig. 18, the computational domain was divided into 48×64×
+200 cells, with cell dimensions of 1x = 1y = 1z =
+0.056 mm. The structure was simulated using 20 000 steps
+of FDTD, which required 1208 s on an Intel i5-12600K CPU.
+It took 631 s to train the PI-DON to model this structure
+on an Nvidia A6000 GPU. This execution time comparison
+demonstrated that the PI-DON was faster than FDTD for
+modeling a single case, even when accounting for the training
+time. The MRE of PI-DON’s predictions compared to the
+FDTD simulations was 1.5 × 10−3. The time-domain fields
+sampled from probes 1 and 2 are shown in Fig. 19(a) for both
+FDTD and PI-DON. The S-parameters computed by FDTD
+and the PI-DON are plotted in Fig. 19(d).
+Fig. 20.
+Absolute error of 0 ≤|S11| ≤1 in linear scale as a function of
+frequency and points per period.
+To satisfy the CFL condition, the time step used in FDTD
+with 1x = 1y = 1z = 0.056 mm is much smaller than the
+time step required to accurately sample the fields. By using
+the trained PI-DON, we can use a larger time step that
+exceeds the CFL limit. Hence, the fields can be sampled with
+a time step selected based on accuracy rather than stability
+considerations. We analyzed the influence of the time step
+on the results of the PI-DON by increasing
+˜1t from 51tmax
+to 801tmax. The absolute error of |S11| predicted by PI-DON
+was calculated compared to the ground-truth data from FDTD.
+Fig. 20 shows the error as a function of frequency and points
+per period up to 30 GHz. The error increases significantly as
+points per period approaches the Nyquist limit of 2. For the
+subsequent MC trials, ˜1t was set to 401tmax, corresponding to
+7.88 points per period. This choice balances the computational
+efficiency and prediction accuracy of the PI-DON.
+The perturbations in the position and width of the SRR gap,
+denoted by g1 and g2, as well as in the strip wire width (d1),
+were assumed to follow a uniform distribution. The ranges
+for g1 and g2 were set between 0.34 and 0.61 mm, with their
+center positions varying from −0.11 to 0.11 mm. Similarly,
+the range for d1 was set between 0.16 and 0.33 mm, with its
+center varying within the same range of −0.11–0.11 mm.
+We conducted 1512 MC trials using both FDTD and
+PI-DON. The mean S-parameters and the corresponding CIs
+are shown in Fig. 21. Additionally, we extracted the 6-dB
+roll-off frequency of |S11| from all trials and presented the
+pdf of these frequency points in Fig. 22. The results from
+PI-DON closely aligned with the ground-truth data obtained
+from FDTD simulations, demonstrating the accuracy of the
+PI-DON approach.
+Generating these results took approximately 153 CPU core
+hours (1 h of computation time on a single CPU core)
+using the FDTD method on a server provided by Compute
+Canada, whereas PI-DON required only 1.05 h on an Nvidia
+A6000 GPU. The MRE for the PI-DON predictions was
+2.8×10−3. While the efficiency gains of PI-DON over FDTD
+could be compensated by parallelizing FDTD simulations,
+achieving comparable performance would require approxi-
+mately 147 cores. In contrast, PI-DON requires only a single
+Authorized licensed use limited to: Southern University of Science and Technology. Downloaded on September 01,2026 at 07:10:51 UTC from IEEE Xplore.  Restrictions apply. 
+
+QI AND SARRIS: PI-DON FOR 3-D TIME-DOMAIN ELECTROMAGNETIC MODELING
+3811
+Fig. 21.
+Mean magnitude of S-parameters and the corresponding CIs
+from 1512 MC trials for quantifying uncertainties in an SRR/strip wire unit
+cell. (a) S11. (b) S21.
+Fig. 22.
+PDFs of the 6-dB roll-off frequency of |S11| for the SRR/strip
+wire unit cell computed using 1512 MC trials from both the PI-DON and the
+FDTD.
+GPU for the three cases presented in this article. Hence,
+PI-DON offers advantages in terms of both computational
+efficiency and the financial cost of hardware.
+VII. CONCLUSION
+We introduced a physics-informed DeepONet designed for
+efficient and accurate time-domain electromagnetic modeling
+with practical applications. By leveraging a physics-informed
+training strategy and operator learning technique, PI-DON
+overcomes the limitations of traditional data-driven models,
+which require a lot of computational resources to generate
+ground-truth data and for the training process itself. Instead,
+the PI-DON can be trained without ground-truth data, applies
+to a wide range of problems, and generalizes well to unseen
+scenarios.
+As a novel time-domain solver, PI-DON is not
+constrained by a CFL-like stability limit; instead, its time
+step is set based on accuracy rather than stability, similar
+to unconditionally stable methods. For single simulations,
+the total execution time for PI-DON (including training)
+is generally comparable to, but often longer than, that of
+conventional FDTD, depending on the specific application.
+However, the combined advantages of unconditional stability
+and generalizability to new scenarios are particularly powerful
+for uncertainty quantification and design optimization studies,
+which require a large number of repetitive simulations. These
+results demonstrate that the proposed PI-DON is a feasible
+paradigm for applying physics-informed machine learning to
+realistic 3-D electromagnetic simulations.
+REFERENCES
+[1] W. Tang et al., “Study on a Poisson’s equation solver based on deep
+learning technique,” in Proc. IEEE Electr. Design Adv. Packag. Syst.
+Symp. (EDAPS), Dec. 2017, pp. 1–3.
+[2] H. M. Yao and L. J. Jiang, “Machine learning based neural network
+solving methods for the FDTD method,” in Proc. IEEE Int. Symp.
+Antennas Propag. USNC/URSI Nat. Radio Sci. Meeting, Jul. 2018,
+pp. 2321–2322.
+[3] S. Qi and C. D. Sarris, “Deep neural networks for rapid simulation of
+planar microwave circuits based on their layouts,” IEEE Trans. Microw.
+Theory Techn., vol. 70, no. 11, pp. 4805–4815, Nov. 2022.
+[4] F. Feng, W. Na, J. Jin, J. Zhang, W. Zhang, and Q. Zhang, “Artificial
+neural networks for microwave computer-aided design: The state of the
+art,” IEEE Trans. Microw. Theory Techn., vol. 70, no. 11, pp. 4597–4619,
+Nov. 2022.
+[5] P. Wang et al., “A machine learning framework for the design of
+STCDME structures in RIS applications,” IEEE Trans. Microw. Theory
+Techn., vol. 72, no. 3, pp. 1467–1479, Mar. 2024.
+[6] G. E. Karniadakis, I. G. Kevrekidis, L. Lu, P. Perdikaris, S. Wang,
+and L. Yang, “Physics-informed machine learning,” Nature Rev. Phys.,
+vol. 3, no. 6, pp. 422–440, May 2021.
+[7] J. Sirignano, J. F. MacArt, and J. B. Freund, “DPM: A deep learning
+PDE augmentation method with application to large-eddy simulation,”
+J. Comput. Phys., vol. 423, Dec. 2020, Art. no. 109811.
+[8] D. Pfau, J. S. Spencer, A. G. Matthews, and W. M. C. Foulkes, “Ab initio
+solution of the many-electron Schrödinger equation with deep neural
+networks,” Phys. Rev. Res., vol. 2, no. 3, 2020, Art. no. 033429.
+[9] M. Baldan, P. Di Barba, and D. A. Lowther, “Physics-informed neural
+networks for inverse electromagnetic problems,” IEEE Trans. Magn.,
+vol. 59, no. 5, pp. 1–5, May 2023.
+[10] L. Lu, X. Meng, Z. Mao, and G. E. Karniadakis, “DeepXDE: A deep
+learning library for solving differential equations,” SIAM Rev., vol. 63,
+no. 1, pp. 208–228, Jan. 2021.
+[11] L. Lu, R. Pestourie, W. Yao, Z. Wang, F. Verdugo, and S. G. Johnson,
+“Physics-informed neural networks with hard constraints for inverse
+design,” SIAM J. Scientific Comput., vol. 43, no. 6, pp. B1105–B1132,
+Jan. 2021.
+[12] N. Rahaman et al., “On the spectral bias of neural networks,” in Proc.
+Int. Conf. Mach. Learn., 2019, pp. 5301–5310.
+[13] B. Ronen, D. Jacobs, Y. Kasten, and S. Kritchman, “The convergence
+rate of neural networks for learned functions of different frequencies,”
+in Proc. Adv. Neural Inf. Process. Syst., vol. 32, 2019, pp. 1–11
+[14] B. Moseley, “Physics-informed machine learning: From concepts to real-
+world applications,” Ph.D. dissertation, St. Catherine’s College, Univ.
+Oxford, Oxford, U.K., 2022.
+[15] L. Lu, P. Jin, G. Pang, Z. Zhang, and G. E. Karniadakis, “Learning
+nonlinear operators via DeepONet based on the universal approximation
+theorem of operators,” Nature Mach. Intell., vol. 3, no. 3, pp. 218–229,
+Mar. 2021.
+[16] P. Zhang, Y. Hu, Y. Jin, S. Deng, X. Wu, and J. Chen, “A Maxwell’s
+equations based deep learning method for time domain electromagnetic
+simulations,” IEEE J. Multiscale Multiphys. Comput. Techn., vol. 6,
+pp. 35–40, 2021.
+[17] J. Lim and D. Psaltis, “MaxwellNet: Physics-driven deep neural network
+training based on Maxwell’s equations,” APL Photon., vol. 7, no. 1,
+Jan. 2022, Art. no. 011301.
+[18] K. Azizzadenesheli, N. Kovachki, Z. Li, M. Liu-Schiaffini, J. Kossaifi,
+and A. Anandkumar, “Neural operators for accelerating scientific sim-
+ulations and design,” Nature Rev. Phys., vol. 6, no. 5, pp. 320–328,
+Apr. 2024.
+[19] A. C. M. Austin and C. D. Sarris, “Efficient analysis of geometrical
+uncertainty in the FDTD method using polynomial chaos with applica-
+tion to microwave circuits,” IEEE Trans. Microw. Theory Techn., vol. 61,
+no. 12, pp. 4293–4301, Dec. 2013.
+Authorized licensed use limited to: Southern University of Science and Technology. Downloaded on September 01,2026 at 07:10:51 UTC from IEEE Xplore.  Restrictions apply. 
+
+3812
+IEEE TRANSACTIONS ON MICROWAVE THEORY AND TECHNIQUES, VOL. 73, NO. 7, JULY 2025
+[20] S. Qi and C. D. Sarris, “Hybrid physics-informed neural network for
+the wave equation with unconditionally stable time-stepping,” IEEE
+Antennas Wireless Propag. Lett., vol. 23, pp. 1356–1360, 2024.
+[21] D. P. Kingma and J. Ba, “Adam: A method for stochastic optimization,”
+2014, arXiv:1412.6980.
+[22] C. Zhu, R. H. Byrd, P. Lu, and J. Nocedal, “Algorithm 778: L-BFGS-
+B: Fortran subroutines for large-scale bound-constrained optimization,”
+ACM Trans. Math. Softw., vol. 23, no. 4, pp. 550–560, Dec. 1997.
+[23] P. Karnakov, S. Litvinov, and P. Koumoutsakos, “Optimizing a discrete
+loss (ODIL) to solve forward and inverse problems for partial differential
+equations using machine learning tools,” 2022, arXiv:2205.04611.
+[24] Z. Fang, “A high-efficient hybrid physics-informed neural networks
+based on convolutional neural network,” IEEE Trans. Neural Netw.
+Learn. Syst., vol. 33, no. 10, pp. 5514–5526, Oct. 2022.
+[25] T. Chen and H. Chen, “Universal approximation to nonlinear operators
+by neural networks with arbitrary activation functions and its application
+to dynamical systems,” IEEE Trans. Neural Netw., vol. 6, no. 4,
+pp. 911–917, Jul. 1995.
+[26] J. N. Kutz, S. L. Brunton, B. W. Brunton, and J. L. Proctor, Dynamic
+Mode Decomposition: Data-driven Modeling of Complex Systems. New
+Delhi, India: SIAM, 2016.
+[27] O. Ronneberger, P. Fischer, and T. Brox, “U-Net: Convolutional net-
+works for biomedical image segmentation,” in Proc. 18th Int. Conf.
+Med. Image Comput. Comput.-Assist. Intervent., vol. 9351. Cham,
+Switzerland: Springer, 2015, pp. 234–241.
+[28] V. Nair and G. E. Hinton, “Rectified linear units improve restricted
+Boltzmann machines,” in Proc. 27th Int. Conf. Mach. Learn., 2010,
+pp. 807–814.
+[29] Z. Li et al., “Neural operator: Graph kernel network for partial differ-
+ential equations,” 2020, arXiv:2003.03485.
+[30] K. He, X. Zhang, S. Ren, and J. Sun, “Deep residual learning for
+image recognition,” in Proc. IEEE Conf. Comput. Vis. Pattern Recognit.
+(CVPR), Jun. 2016, pp. 770–778.
+[31] S. D. Gedney, Introduction To the Finite-Difference Time-Domain
+(FDTD) Method for Electromagnetics. San Rafael, CA, USA: Morgan
+& Claypool, 2011.
+[32] R. Courant, K. Friedrichs, and H. Lewy, “On the partial difference
+equations of mathematical physics,” IBM J. Res. Develop., vol. 11, no. 2,
+pp. 215–234, Mar. 1967.
+[33] D. M. Sheen, S. M. Ali, M. D. Abouzahra, and J. A. Kong, “Application
+of the three-dimensional finite-difference time-domain method to the
+analysis of planar microstrip circuits,” IEEE Trans. Microw. Theory
+Techn., vol. 38, no. 7, pp. 849–857, Jul. 1990.
+[34] G. Mur, “Absorbing boundary conditions for the finite-difference
+approximation of the time-domain electromagnetic-field equations,”
+IEEE Trans. Electromagn. Compat., vol. EMC-23, no. 4, pp. 377–382,
+Nov. 1981.
+[35] Q. Zhao and C. D. Sarris, “Discontinuous Galerkin time domain
+modeling of metasurface geometries with multi-rate time stepping,” in
+IEEE MTT-S Int. Microw. Symp. Dig., Jun. 2021, pp. 124–127.
+[36] M. Chen and G. V. Eleftheriades, “Omega-bianisotropic wire-loop
+Huygens’ metasurface for reflectionless wide-angle refraction,” IEEE
+Trans. Antennas Propag., vol. 68, no. 3, pp. 1477–1490, Mar. 2020.
+Shutong Qi (Graduate Student Member, IEEE)
+received the B.S. degree (Hons.) in electronic and
+information engineering from Beihang University,
+Beijing, China, in 2020. He is currently pursuing the
+Ph.D. degree in electrical and computer engineering
+at the University of Toronto, Toronto, ON, Canada.
+His research interests include scientific machine
+learning,
+computational
+electromagnetics,
+multiphysics
+simulation,
+numerical
+methods,
+and microwave circuit modeling.
+Mr. Qi was a recipient of the IEEE MTT-S
+Graduate Fellowship in 2024.
+Costas D. Sarris (Fellow, IEEE) received the
+Diploma degree in electrical and computer engi-
+neering from the National Technical University of
+Athens, Athens, Greece, in 1997, and the M.Sc.
+degree in applied mathematics and the Ph.D. degree
+in electrical engineering from the University of
+Michigan, Ann Arbor, MI, USA, both in 2002 and
+2002, respectively.
+He is a Full Professor with the Department of
+Electrical and Computer Engineering, University of
+Toronto, Toronto, ON, Canada. His research area is
+computational electromagnetics, with an emphasis on time-domain modeling,
+adaptive mesh refinement, enhanced stability, and higher order methods. He
+also works on physics-based wireless propagation models (with full-wave,
+asymptotic, and hybrid techniques), uncertainty quantification, and scientific
+machine learning.
+Dr. Sarris was a recipient of the IEEE MTT-S Outstanding Young Engineer
+Award in 2013 and an Early Researcher Award from the Ontario Government
+in 2007. He was a Guest Editor of IEEE Microwave Magazine’s Special
+Issue on Machine Learning for Microwave Engineering (October 2021),
+and an Associate Editor for the IEEE TRANSACTIONS ON MICROWAVE
+THEORY AND TECHNIQUES from 2009 to 2013 and the IEEE MICROWAVE
+AND WIRELESS COMPONENTS LETTERS from 2007 to 2009. He served as
+the Editor-in-Chief of the IEEE JOURNAL ON MULTISCALE AND MUL-
+TIPHYSICS COMPUTATIONAL TECHNIQUES from 2019 to 2024. He is a
+Distinguished Lecturer of the IEEE Antennas and Propagation Society (AP-S)
+for 2024–2026.
+Authorized licensed use limited to: Southern University of Science and Technology. Downloaded on September 01,2026 at 07:10:51 UTC from IEEE Xplore.  Restrictions apply. 

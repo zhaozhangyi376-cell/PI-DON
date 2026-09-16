@@ -1,0 +1,501 @@
+{
+  "schema": "mechanism-2h-audit-v1",
+  "old_readonly_audit": {
+    "stage_matches_audit": {
+      "S-P": {
+        "stage_status": "FAIL",
+        "audit_status": "FAIL",
+        "stage_updates": 1,
+        "audit_updates": 1
+      },
+      "S-R": {
+        "stage_status": "FAIL",
+        "audit_status": "FAIL",
+        "stage_updates": 10070,
+        "audit_updates": 10070
+      },
+      "X-P": {
+        "stage_status": "NOT_RUN",
+        "audit_status": "NOT_RUN",
+        "stage_updates": null,
+        "audit_updates": 0
+      },
+      "X-R": {
+        "stage_status": "FAIL",
+        "audit_status": "FAIL",
+        "stage_updates": 13764,
+        "audit_updates": 13764
+      },
+      "S-R2": {
+        "stage_status": "NOT_RUN",
+        "audit_status": "NOT_RUN",
+        "stage_updates": null,
+        "audit_updates": 0
+      },
+      "D-LR": {
+        "stage_status": "INCOMPLETE",
+        "audit_status": "INCOMPLETE",
+        "stage_updates": 657,
+        "audit_updates": 657
+      },
+      "S-P-retry": {
+        "stage_status": "RESOURCE_LIMIT",
+        "audit_status": "RESOURCE_LIMIT",
+        "stage_updates": 10447,
+        "audit_updates": 10447
+      }
+    },
+    "manifest_top_updates_this_experiment": 0,
+    "actual_updates_from_audit": 34939,
+    "actual_updates_from_stage": 34939
+  },
+  "s_r_failure_analysis": {
+    "status": "FAIL",
+    "accepted_steps": 33,
+    "rows": 34,
+    "steps_sha256": "8dbd46d77c1597057901bade2477ceb26f0dcff8308c87c39284b9ba2ffe1102",
+    "audit_steps_sha256": "8dbd46d77c1597057901bade2477ceb26f0dcff8308c87c39284b9ba2ffe1102",
+    "checkpoint_pointer": {
+      "schema": "pidon-rolling-checkpoint-v1",
+      "slot": "B",
+      "path": "checkpoint_B.pt",
+      "sha256": "9662ee5aa319ad5c4fd78ab53c14faf095785416a1bf5709fbcf3f05fbd0740e",
+      "last_committed_sequence_id": 33
+    },
+    "failure_raw_present": true,
+    "last_accepted_residuals": {
+      "H": 9.943072757256367e-05,
+      "E": 9.992169945338588e-05
+    },
+    "failure_residuals": {
+      "H": 9.936100711098532e-05,
+      "E": 0.00012504438289440666
+    },
+    "failure_reason": "max_updates",
+    "failure_phase": "E_pending",
+    "failure_updates": 3033,
+    "failure_E_stop": "max_updates",
+    "failure_E_elapsed_s": 218.5852673999616,
+    "failure_E_loss_initial": 0.31238383054733276,
+    "failure_E_loss_final": 0.00012504438927862793,
+    "failure_E_target_ss": 254.7160186767578,
+    "last_accepted_six_nmae": {
+      "Ex": 2.8712823480665255e-05,
+      "Ey": 2.8548870295228812e-05,
+      "Ez": 3.63784078818656e-05,
+      "Hx": 6.390312663700488e-05,
+      "Hy": 5.694284262387172e-05,
+      "Hz": 3894018015517.358
+    },
+    "last_accepted_source_probe_Ez": {
+      "dut": 0.4100534915924072,
+      "ref": 0.4100534851298476
+    },
+    "last_accepted_source_outside_probes": [
+      {
+        "cells": [
+          12.0,
+          12.0,
+          13.0
+        ],
+        "xyz_m": [
+          0.01935483870967742,
+          0.01935483870967742,
+          0.020967741935483872
+        ],
+        "dut_Ez": 0.0005059468821855266,
+        "ref_Ez": 0.0005068870377726859
+      },
+      {
+        "cells": [
+          8.0,
+          10.0,
+          12.0
+        ],
+        "xyz_m": [
+          0.012903225806451613,
+          0.016129032258064516,
+          0.01935483870967742
+        ],
+        "dut_Ez": 1.2523192253866e-05,
+        "ref_Ez": 2.423988644295605e-05
+      },
+      {
+        "cells": [
+          21.0,
+          19.0,
+          18.0
+        ],
+        "xyz_m": [
+          0.03387096774193549,
+          0.03064516129032258,
+          0.02903225806451613
+        ],
+        "dut_Ez": 0.00010283460869686663,
+        "ref_Ez": 9.808790855458921e-05
+      }
+    ],
+    "recent_E_trend": [
+      {
+        "step": 26,
+        "accepted": true,
+        "phase": "completed",
+        "H_updates": 29,
+        "H_R": 9.781136272006891e-05,
+        "E_updates": 267,
+        "E_R": 9.976670384622225e-05,
+        "E_target_ss": 214.50233459472656,
+        "E_stop": "tol_met"
+      },
+      {
+        "step": 27,
+        "accepted": true,
+        "phase": "completed",
+        "H_updates": 29,
+        "H_R": 9.865672717932869e-05,
+        "E_updates": 308,
+        "E_R": 9.981675253633295e-05,
+        "E_target_ss": 290.18951416015625,
+        "E_stop": "tol_met"
+      },
+      {
+        "step": 28,
+        "accepted": true,
+        "phase": "completed",
+        "H_updates": 29,
+        "H_R": 9.867546972331766e-05,
+        "E_updates": 323,
+        "E_R": 9.982763707941051e-05,
+        "E_target_ss": 364.6990661621094,
+        "E_stop": "tol_met"
+      },
+      {
+        "step": 29,
+        "accepted": true,
+        "phase": "completed",
+        "H_updates": 30,
+        "H_R": 9.767466873377526e-05,
+        "E_updates": 426,
+        "E_R": 9.975316580101227e-05,
+        "E_target_ss": 425.944091796875,
+        "E_stop": "tol_met"
+      },
+      {
+        "step": 30,
+        "accepted": true,
+        "phase": "completed",
+        "H_updates": 29,
+        "H_R": 9.99241848173443e-05,
+        "E_updates": 387,
+        "E_R": 9.977252157173862e-05,
+        "E_target_ss": 454.3929443359375,
+        "E_stop": "tol_met"
+      },
+      {
+        "step": 31,
+        "accepted": true,
+        "phase": "completed",
+        "H_updates": 31,
+        "H_R": 9.8618378177868e-05,
+        "E_updates": 413,
+        "E_R": 9.990773458696753e-05,
+        "E_target_ss": 435.67547607421875,
+        "E_stop": "tol_met"
+      },
+      {
+        "step": 32,
+        "accepted": true,
+        "phase": "completed",
+        "H_updates": 32,
+        "H_R": 9.943072757256367e-05,
+        "E_updates": 500,
+        "E_R": 9.992169945338588e-05,
+        "E_target_ss": 362.91796875,
+        "E_stop": "tol_met"
+      },
+      {
+        "step": 33,
+        "accepted": false,
+        "phase": "E_pending",
+        "H_updates": 33,
+        "H_R": 9.936100711098532e-05,
+        "E_updates": 3000,
+        "E_R": 0.00012504438289440666,
+        "E_target_ss": 254.7160186767578,
+        "E_stop": "max_updates"
+      }
+    ],
+    "interpretation": "H half-step passed quickly; the 34th candidate failed in E_pending after 3000 E updates. The last accepted field errors were small except weak-reference Hz, so this is not a macroscopic field blow-up. D-LR4 shows lr=1e-3 does not simply fix this class of E bottleneck."
+  },
+  "new_dlr4_analysis": {
+    "status": "FAIL",
+    "purpose": "diagnostic_strict_lr_1e-3_4step",
+    "accepted_steps": 1,
+    "target_steps": 4,
+    "actual_updates": 4074,
+    "steps_sha256": "c827bbe58f6dfa0b02630c35dfd129185b3f0ea3f4fbc8a17f08102923ea6018",
+    "checkpoint_latest_sha256": "e6166e598c48138417bc1ca284ac06d6e3ab828f28af40663b30d6c44c5c1da6",
+    "failure_raw_present": true,
+    "lab_log_run": 262,
+    "lab_log_exit_code": 1,
+    "elapsed_s": 344.1,
+    "last_accepted_residuals": {
+      "H": null,
+      "E": 9.974485277977331e-05
+    },
+    "failure_residuals": {
+      "H": 9.988104732397363e-05,
+      "E": 347.6076915514439
+    },
+    "failure_phase": "E_pending",
+    "failure_reason": "time_budget",
+    "failure_E_stop": "time_budget",
+    "failure_E_elapsed_s": 240.07338029996026,
+    "failure_E_updates": 2920,
+    "failure_E_loss_initial": 0.5579275488853455,
+    "failure_E_loss_final": 347.6076965332031,
+    "failure_E_target_ss": 3.6028612981908736e-08,
+    "last_accepted_six_nmae": {
+      "Ex": null,
+      "Ey": null,
+      "Ez": null,
+      "Hx": 2.8183002739115745e-05,
+      "Hy": 2.7564082214076546e-05,
+      "Hz": null
+    },
+    "last_accepted_source_probe_Ez": {
+      "dut": 1.1253517584464134e-07,
+      "ref": 1.1253517471925912e-07
+    },
+    "last_accepted_source_outside_probes": [
+      {
+        "cells": [
+          12.0,
+          12.0,
+          13.0
+        ],
+        "xyz_m": [
+          0.01935483870967742,
+          0.01935483870967742,
+          0.020967741935483872
+        ],
+        "dut_Ez": 0.0,
+        "ref_Ez": 0.0
+      },
+      {
+        "cells": [
+          8.0,
+          10.0,
+          12.0
+        ],
+        "xyz_m": [
+          0.012903225806451613,
+          0.016129032258064516,
+          0.01935483870967742
+        ],
+        "dut_Ez": 0.0,
+        "ref_Ez": 0.0
+      },
+      {
+        "cells": [
+          21.0,
+          19.0,
+          18.0
+        ],
+        "xyz_m": [
+          0.03387096774193549,
+          0.03064516129032258,
+          0.02903225806451613
+        ],
+        "dut_Ez": 0.0,
+        "ref_Ez": 0.0
+      }
+    ],
+    "recovery_eligible": false,
+    "script_exit_note": "Run #262 exited 1 after the scientific stop because diagnose() could not format nmae=None; the accepted and failed step rows, failure_raw, and checkpoints were already persisted."
+  },
+  "lab_runs": {
+    "248": {
+      "id": 248,
+      "exit_code": 0,
+      "seconds": 1.8,
+      "note": "1h机制实验初始化：冻结绝对截止、P/R/探索矩阵、源与主权重hash",
+      "outputs": [
+        "evidence/mechanism_1h_v2/manifest.json",
+        "evidence/mechanism_1h_v2/source_hashes_at_start.json",
+        "evidence/mechanism_1h_v2/stage_status.json"
+      ]
+    },
+    "249": {
+      "id": 249,
+      "exit_code": 0,
+      "seconds": 4.5,
+      "note": "1h严格P：原始主权重、3000更新240秒单半步预算、从零场连续128步",
+      "outputs": [
+        "evidence/mechanism_1h_v2/runs/S_P/checkpoint_A.pt",
+        "evidence/mechanism_1h_v2/runs/S_P/failure_raw_000001_attempt_1.pt",
+        "evidence/mechanism_1h_v2/runs/S_P/summary.json",
+        "evidence/mechanism_1h_v2/runs/S_P/run_metadata.json",
+        "evidence/mechanism_1h_v2/runs/S_P/steps.jsonl",
+        "evidence/mechanism_1h_v2/stage_status.json",
+        "evidence/mechanism_1h_v2/runs/S_P/heartbeat.json",
+        "evidence/mechanism_1h_v2/runs/S_P/checkpoint_pointer.json"
+      ]
+    },
+    "250": {
+      "id": 250,
+      "exit_code": 0,
+      "seconds": 1.8,
+      "note": "1h调度器bug修复回归：截止回调仅在到期时中断，基础单测重跑",
+      "outputs": []
+    },
+    "251": {
+      "id": 251,
+      "exit_code": 1,
+      "seconds": 3.3,
+      "note": "1h严格P修复后独立重试：首轮仅为调度器反向中断错误，使用独立保存目录不续接旧现场",
+      "outputs": []
+    },
+    "252": {
+      "id": 252,
+      "exit_code": 1,
+      "seconds": 3.4,
+      "note": "1h严格P修复后独立重试：保留首轮调度器错误目录，重新从登记主权重开始",
+      "outputs": []
+    },
+    "253": {
+      "id": 253,
+      "exit_code": 0,
+      "seconds": 1.8,
+      "note": "1h严格P臂切片收尾：读取最后滚动checkpoint与6个完整步，标记RESOURCE_LIMIT，不伪造未保存半步",
+      "outputs": [
+        "evidence/mechanism_1h_v2/runs/S_P_retry/summary.json",
+        "evidence/mechanism_1h_v2/manifest.json",
+        "evidence/mechanism_1h_v2/stage_status.json"
+      ]
+    },
+    "254": {
+      "id": 254,
+      "exit_code": 0,
+      "seconds": 779.2,
+      "note": "1h严格R：随机seed20260914、独立新臂、同阈值同硬源至128",
+      "outputs": [
+        "evidence/mechanism_1h_v2/runs/S_R/checkpoint_B.pt",
+        "evidence/mechanism_1h_v2/runs/S_R/failure_raw_000034_attempt_1.pt",
+        "evidence/mechanism_1h_v2/runs/S_R/checkpoint_A.pt",
+        "evidence/mechanism_1h_v2/runs/S_R/summary.json",
+        "evidence/mechanism_1h_v2/runs/S_R/steps.jsonl",
+        "evidence/mechanism_1h_v2/manifest.json",
+        "evidence/mechanism_1h_v2/runs/S_R/run_metadata.json",
+        "evidence/mechanism_1h_v2/stage_status.json",
+        "evidence/mechanism_1h_v2/runs/S_R/heartbeat.json",
+        "evidence/mechanism_1h_v2/runs/S_R/checkpoint_pointer.json"
+      ]
+    },
+    "255": {
+      "id": 255,
+      "exit_code": 0,
+      "seconds": 1049.1,
+      "note": "1h条件探索X-R：独立放宽阈值R<1e-3，观察R臂可推进长度",
+      "outputs": [
+        "evidence/mechanism_1h_v2/runs/X_R/checkpoint_B.pt",
+        "evidence/mechanism_1h_v2/runs/X_R/failure_raw_000042_attempt_1.pt",
+        "evidence/mechanism_1h_v2/runs/X_R/checkpoint_A.pt",
+        "evidence/mechanism_1h_v2/runs/X_R/summary.json",
+        "evidence/mechanism_1h_v2/runs/X_R/steps.jsonl",
+        "evidence/mechanism_1h_v2/manifest.json",
+        "evidence/mechanism_1h_v2/runs/X_R/run_metadata.json",
+        "evidence/mechanism_1h_v2/stage_status.json",
+        "evidence/mechanism_1h_v2/runs/X_R/heartbeat.json",
+        "evidence/mechanism_1h_v2/runs/X_R/checkpoint_pointer.json"
+      ]
+    },
+    "256": {
+      "id": 256,
+      "exit_code": 0,
+      "seconds": 51.6,
+      "note": "1h固定诊断D-LR：登记高学习率首步，判断E拟合瓶颈是否可被学习率解除",
+      "outputs": [
+        "evidence/mechanism_1h_v2/runs/D_LR/checkpoint_A.pt",
+        "evidence/mechanism_1h_v2/runs/D_LR/summary.json",
+        "evidence/mechanism_1h_v2/runs/D_LR/steps.jsonl",
+        "evidence/mechanism_1h_v2/manifest.json",
+        "evidence/mechanism_1h_v2/runs/D_LR/run_metadata.json",
+        "evidence/mechanism_1h_v2/stage_status.json",
+        "evidence/mechanism_1h_v2/runs/D_LR/heartbeat.json",
+        "evidence/mechanism_1h_v2/runs/D_LR/checkpoint_pointer.json"
+      ]
+    },
+    "257": {
+      "id": 257,
+      "exit_code": 0,
+      "seconds": 1.9,
+      "note": "1h实验最终报告：汇总严格、探索、诊断、资源与未运行状态",
+      "outputs": [
+        "evidence/mechanism_1h_v2/FINAL_REPORT.md"
+      ]
+    },
+    "258": {
+      "id": 258,
+      "exit_code": 0,
+      "seconds": 0.1,
+      "note": "1h独立证据审计：校验逐步阈值、真实更新、六分量、探针及旧复核存在",
+      "outputs": [
+        "evidence/mechanism_1h_v2/audit.json"
+      ]
+    },
+    "259": {
+      "id": 259,
+      "exit_code": 1,
+      "seconds": 0.0,
+      "note": "1h实验代码与回调回归测试",
+      "outputs": []
+    },
+    "260": {
+      "id": 260,
+      "exit_code": 0,
+      "seconds": 1.8,
+      "note": "1h实验代码与回调回归测试",
+      "outputs": []
+    },
+    "261": {
+      "id": 261,
+      "exit_code": 1,
+      "seconds": 58.5,
+      "note": "2h机制推进D-LR4：高学习率1e-3严格阈值连续4个完整步补证",
+      "outputs": [
+        "evidence/mechanism_2h_v1/runs/D_LR4/checkpoint_commit_000000_000000.pt",
+        "evidence/mechanism_2h_v1/runs/D_LR4/checkpoint_latest.pt",
+        "evidence/mechanism_2h_v1/runs/D_LR4/snapshot_step_0001.pt",
+        "evidence/mechanism_2h_v1/runs/D_LR4/steps.jsonl",
+        "evidence/mechanism_2h_v1/runs/D_LR4/run_metadata.json"
+      ]
+    },
+    "262": {
+      "id": 262,
+      "exit_code": 1,
+      "seconds": 344.1,
+      "note": "2h机制推进D-LR4-retry：修复显示层None格式后重跑高学习率严格4步补证",
+      "outputs": [
+        "evidence/mechanism_2h_v1/runs/D_LR4_retry/checkpoint_commit_000001_000001.pt",
+        "evidence/mechanism_2h_v1/runs/D_LR4_retry/checkpoint_latest.pt",
+        "evidence/mechanism_2h_v1/runs/D_LR4_retry/failure_raw_000002_attempt_1.pt",
+        "evidence/mechanism_2h_v1/runs/D_LR4_retry/checkpoint_commit_000000_000000.pt",
+        "evidence/mechanism_2h_v1/runs/D_LR4_retry/checkpoint_previous.pt",
+        "evidence/mechanism_2h_v1/runs/D_LR4_retry/snapshot_step_0001.pt",
+        "evidence/mechanism_2h_v1/runs/D_LR4_retry/steps.jsonl",
+        "evidence/mechanism_2h_v1/runs/D_LR4_retry/run_metadata.json"
+      ]
+    }
+  },
+  "status": {
+    "S-P-retry": "RESOURCE_LIMIT",
+    "S-R": "FAIL",
+    "X-R": "EXPLORE_FAIL",
+    "D-LR-old": "INCOMPLETE",
+    "D-LR4-retry": "FAIL",
+    "S-P-continuation": "NOT_RUN",
+    "strict-64": "NOT_RUN",
+    "strict-128": "NOT_RUN"
+  }
+}

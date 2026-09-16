@@ -1,0 +1,11 @@
+{
+  "source_run": 13,
+  "arrays_sha256": "e598960a0205c924a82bf1fd7bc7c4047c6288bf65fd54991270dfbf6b752b9b",
+  "script_sha256": "27beaabd38e9c9754834e1200b90060320997fbe213ce9df3ccb64914e4a636f",
+  "report_sha256": "3ab307e0be9dd93c32aa6bc2d0c173adfced436fb20cc4867f6700cd6c8db2f4",
+  "figures": {
+    "figs\\paper_first_metrics.png": "5b8f732d78ad6b31843b424b963a64fe88de5779252fb799e1e33055acb90bb6",
+    "figs\\paper_first_fields.png": "0412d9350ccc7b4523b832a20cc337290656b07b2e3101492a650ed1fa38a3b1",
+    "figs\\paper_first_fdtd.png": "9bf8bd57c83b462faab57d43134d8744b2550e024c6bc6002a8d746e9a87e439"
+  }
+}

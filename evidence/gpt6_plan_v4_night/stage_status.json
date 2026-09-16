@@ -1,0 +1,96 @@
+{
+  "schema": "pidon-v4-night-stage-status-v1",
+  "manifest_experiment_id": "289ca344-10e3-4569-a8fe-38c1f25646d9",
+  "N0": {
+    "implementation": "PASS",
+    "scientific_gate": "N/A",
+    "lab_run_id": null
+  },
+  "N1": {
+    "implementation": "PASS",
+    "scientific_gate": "N/A",
+    "lab_run_id": 202,
+    "evidence": "N1_contract_checks.json"
+  },
+  "N2": {
+    "implementation": "PASS",
+    "scientific_gate": "PASS",
+    "lab_run_id": 204,
+    "evidence": "g0_after_head_integration/G0.json"
+  },
+  "N3": {
+    "implementation": "PASS",
+    "scientific_gate": "FAIL",
+    "lab_run_id": null,
+    "evidence": "n3_fixed/N3_fixed.json",
+    "stop_reason": "G1_development_failed",
+    "lab_run_ids": [
+      205,
+      206,
+      207
+    ]
+  },
+  "N4": {
+    "implementation": "NOT_RUN",
+    "scientific_gate": "NOT_RUN",
+    "stop_reason": "G1_development_failed"
+  },
+  "N5": {
+    "implementation": "PASS",
+    "scientific_gate": "N/A",
+    "evidence": "n5_diagnostics_attempt05/N5_diagnostics.json",
+    "lab_run_id": 212
+  },
+  "N6": {
+    "implementation": "PASS",
+    "scientific_gate": "N/A",
+    "lab_run_id": 218,
+    "evidence": "FINAL_REPORT.md",
+    "night_goal": "COMPLETE",
+    "supporting_lab_run_ids": [
+      213,
+      215,
+      216,
+      217,
+      218,
+      219,
+      220
+    ]
+  },
+  "historical_asset_hashes": {
+    "dco_lr1e3_300.pt": "3f259bc887a10fac77f6bdf77b43ba1ad6b45827a3f8b9bd685934acc47ca5d7",
+    "evidence/gpt6_plan_v3/h_layout_candidate/H_step_0043.pt": "3019401202764cb6e2a98df23f146c3bab8188c7c302aecde06020bf00a342f5",
+    "evidence/gpt6_plan_v3/h_layout_candidate/E_oracle_step_0043.pt": "33a4eb6b9194f56069bfd0ee7555f1ce263741e771e5b8bedf0df63b83b5ce82",
+    "evidence/gpt6_plan_v3/h_layout_candidate/H_step_0096.pt": "996773475c23b2e890b89625af332d2625e2efda546f9f4c27d79a1563009c67",
+    "evidence/gpt6_plan_v3/h_layout_candidate/E_oracle_step_0096.pt": "3b55816b53fd0032cad2603e559cc3ffa41636c8d8b5653220b7e6838f48d034"
+  },
+  "resource_baseline": {
+    "disk_free_bytes": 27217731584,
+    "disk_total_bytes": 511080607744,
+    "python": "3.11.9 (tags/v3.11.9:de54cf5, Apr  2 2024, 10:12:12) [MSC v.1938 64 bit (AMD64)]",
+    "torch": "2.14.0+cu126",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "gpu": {
+      "available": true,
+      "name": "NVIDIA GeForce GTX 1660 SUPER",
+      "memory_total_bytes": 6442123264,
+      "memory_allocated_bytes": 0
+    }
+  },
+  "source_snapshot_hashes": {
+    "pidon_solve.py": "86e3145dc88248ff4f1c5f63881b06de1e1d270168e17bd8285eff086f45cbaa",
+    "pidon_recording.py": "cb58b7d03ce344c9d01744769a8896d4c6d37d98234d1ced70d5bc911d0cbf15",
+    "pidon_contract.py": "d8700d584a4b2d8d289c15e187388da7ce0a63e18e92bd25c7e523cffbd7e065",
+    "pidon_exact_control.py": "fcb69becc6e2324eea02dc1341b4174c39a4d215533547f2cd970d6e883ef557",
+    "reference_cache.py": "c694f0505f977034cba8c3df9288c9e7106084f859efc939050ad860a89e57df",
+    "g0_verifier.py": "38f618b674876b337cdc46f6c316ad6d85f435f01afd32579254c07bc698b913",
+    "fdtd.py": "9837dbe51bdbc89ab2a12c147debfb10b5db1d07ebc726d18ee1962ecda1e7a8",
+    "dco.py": "53eb1c7d7ea0ed33f4e6c279554cb1adaf4a86134b8dc60fd67f6ce39525941d",
+    "night_budget.py": "e0176a46b243afab68904ddcfecf836bd248ad76fe0b46d0c8a8eb36a45db0c7",
+    "night_init.py": "6c0b2ba57837498481baf0bb5cd671c08ff2a49ceab7301e21675b71045006b2",
+    "test_night_budget.py": "66c87b01644d392fd69bc189ec6c201e8a36db877be6be8dc9aa5cc95fececee"
+  },
+  "plan_sha256": "a6feaa48985b594fef3c2e63754e4827457e08bb069c26f6ae1524dc2052bce7",
+  "master_weight_sha256": "3f259bc887a10fac77f6bdf77b43ba1ad6b45827a3f8b9bd685934acc47ca5d7",
+  "cleanup_performed": false
+}

@@ -1,0 +1,270 @@
+{
+  "schema": "pidon-master-plan-v1",
+  "updated": "2026-09-15",
+  "goal": {
+    "id": "G-REPRO",
+    "objective": "以可追溯证据复现旋度算子学习与逐时间步适配求解机制，判断精度、成本、复用收益是否支持研究方向"
+  },
+  "current_task": "",
+  "status_semantics": "delivery PASS仅表示任务交付；G128/G1024 PASS才表示对应科学门全数值通过。harness不认证科学。",
+  "gaps": [
+    {
+      "id": "S1",
+      "target": "未见旋度算子学习及同场换网格验收",
+      "current": "旧S1 FAIL；新S1运行到epoch 937/23425更新后工程中断，无last.pt/summary/盲测，best开发宏nMAE 0.021945",
+      "status": "INCOMPLETE",
+      "evidence": [
+        "evidence/mechanism_decision_v1_review/REVIEW.md",
+        "evidence/direct_mechanism_v1/s1_phase1/interrupted_audit.json",
+        "evidence/direct_mechanism_v1/s1_phase1/S1_REPORT.md"
+      ]
+    },
+    {
+      "id": "SHORT",
+      "target": "新合法连续128残差+全场+源外波形",
+      "current": "A-P/B-R/B-P均完成128残差接受，但M2审计显示场门全部FAIL",
+      "status": "FAIL",
+      "evidence": [
+        "evidence/workspace_reorganization_20260914/INDEPENDENT_AUDIT.md",
+        "evidence/direct_mechanism_v1/m1/m1_audit.json",
+        "evidence/direct_mechanism_v1/m2_audit.json"
+      ]
+    },
+    {
+      "id": "LONG",
+      "target": "同轨迹1024→8192场和频谱",
+      "current": "DCO尚未验收；Yee参考不计成绩",
+      "status": "NOT_RUN",
+      "evidence": [
+        "evidence/workspace_reorganization_20260914/INDEPENDENT_AUDIT.md"
+      ]
+    },
+    {
+      "id": "BENEFIT",
+      "target": "同精度P/R及冻结复用成本",
+      "current": "B-P/B-R/B-R2残差128均完成，但B-P比两个随机对照用更多Adam且G128场门失败，收益判定FAIL",
+      "status": "FAIL",
+      "evidence": [
+        "evidence/workspace_reorganization_20260914/INDEPENDENT_AUDIT.md",
+        "evidence/direct_mechanism_v1/benefit/B_audit.json",
+        "evidence/direct_mechanism_v1/benefit/B_REPORT.md"
+      ]
+    },
+    {
+      "id": "PROVENANCE",
+      "target": "成本和恢复证据完整",
+      "current": "1h精确总数UNKNOWN/下界35122；2h新更新4719；S-P恢复未认证；M0新队列记录/恢复最小检查PASS；S1中断恢复未认证",
+      "status": "INCOMPLETE",
+      "evidence": [
+        "evidence/workspace_reorganization_20260914/INDEPENDENT_AUDIT.md",
+        "evidence/direct_mechanism_v1/m0/m0_audit.json"
+      ]
+    }
+  ],
+  "tasks": [
+    {
+      "id": "W0",
+      "goal_id": "G-REPRO",
+      "title": "核查与工作区整理",
+      "status": "PASS",
+      "depends": [],
+      "reason": "建立共同目标入口，保留原始证据并更正成本与恢复误判",
+      "evidence": [
+        "evidence/workspace_reorganization_20260914/REPORT.md",
+        "evidence/workspace_reorganization_20260914/audit.json",
+        "evidence/workspace_reorganization_20260914/layout_validation.json",
+        "evidence/workspace_reorganization_20260914/INDEPENDENT_AUDIT.md"
+      ],
+      "kind": "delivery",
+      "scientific_result": "NOT_APPLICABLE",
+      "execution_plan": "docs/plans/2026-09-14-direct-mechanism-plan.md"
+    },
+    {
+      "id": "M0",
+      "goal_id": "G-REPRO",
+      "title": "新队列记录/测量最小修复",
+      "status": "PASS",
+      "depends": [],
+      "reason": "使pending恢复、实际成本和场验收可信",
+      "evidence": [
+        "evidence/direct_mechanism_v1/m0/M0_REPORT.md",
+        "evidence/direct_mechanism_v1/m0/m0_audit.json",
+        "evidence/direct_mechanism_v1/manifest.json"
+      ],
+      "kind": "delivery",
+      "scientific_result": "NOT_APPLICABLE",
+      "execution_plan": "docs/plans/2026-09-14-direct-mechanism-plan.md"
+    },
+    {
+      "id": "M1",
+      "goal_id": "G-REPRO",
+      "title": "真实失败输入的拟合鉴别",
+      "status": "PASS",
+      "depends": [],
+      "reason": "区分当前特征与非线性优化问题，避免盲扫学习率",
+      "evidence": [
+        "evidence/direct_mechanism_v1/m1/M1_REPORT.md",
+        "evidence/direct_mechanism_v1/m1/m1_audit.json",
+        "evidence/direct_mechanism_v1/m1/m1_diagnostic.png"
+      ],
+      "kind": "delivery",
+      "scientific_result": "NOT_APPLICABLE",
+      "execution_plan": "docs/plans/2026-09-14-direct-mechanism-plan.md"
+    },
+    {
+      "id": "M2",
+      "goal_id": "G-REPRO",
+      "title": "登记A/B和P/R连续128队列",
+      "status": "PASS",
+      "depends": [
+        "M0",
+        "M1"
+      ],
+      "reason": "直接跨越已知34步瓶颈，失败切换独立臂",
+      "evidence": [
+        "evidence/direct_mechanism_v1/M2_REPORT.md",
+        "evidence/direct_mechanism_v1/m2_audit.json",
+        "evidence/direct_mechanism_v1/runs/A_R/summary.json",
+        "evidence/direct_mechanism_v1/runs/A_P/summary.json",
+        "evidence/direct_mechanism_v1/runs/B_R/summary.json",
+        "evidence/direct_mechanism_v1/runs/B_P/summary.json"
+      ],
+      "kind": "delivery",
+      "scientific_result": "RESIDUAL_128_PASS_FIELD_FAIL",
+      "execution_plan": "docs/plans/2026-09-14-direct-mechanism-plan.md"
+    },
+    {
+      "id": "G128",
+      "goal_id": "G-REPRO",
+      "title": "新轨迹128数值验收门",
+      "status": "FAIL",
+      "depends": [
+        "M2"
+      ],
+      "reason": "残差与场/源外波形均达标才能延长，不把交付完成当科学PASS",
+      "evidence": [
+        "evidence/direct_mechanism_v1/m2_audit.json"
+      ],
+      "kind": "scientific_gate",
+      "scientific_result": "FAIL",
+      "execution_plan": "docs/plans/2026-09-14-direct-mechanism-plan.md"
+    },
+    {
+      "id": "S1",
+      "goal_id": "G-REPRO",
+      "title": "一次完整第一阶段训练与盲测",
+      "status": "INCOMPLETE",
+      "depends": [],
+      "reason": "独立回答是否学到可迁移旋度，避免被在线局部问题挤掉",
+      "evidence": [
+        "evidence/direct_mechanism_v1/s1_phase1/S1_REPORT.md",
+        "evidence/direct_mechanism_v1/s1_phase1/interrupted_audit.json",
+        "evidence/direct_mechanism_v1/s1_phase1/history.jsonl"
+      ],
+      "kind": "delivery",
+      "scientific_result": "INCOMPLETE",
+      "execution_plan": "docs/plans/2026-09-14-direct-mechanism-plan.md"
+    },
+    {
+      "id": "S1R",
+      "goal_id": "G-REPRO",
+      "title": "服务器完整第一阶段重跑与盲测",
+      "status": "READY",
+      "depends": [],
+      "reason": "在不恢复旧中断行动、不覆盖旧S1证据的前提下，利用服务器补齐第一阶段完整训练与盲测",
+      "evidence": [],
+      "kind": "delivery",
+      "scientific_result": "NOT_RUN",
+      "execution_plan": "docs/plans/2026-09-14-direct-mechanism-plan.md"
+    },
+    {
+      "id": "B",
+      "goal_id": "G-REPRO",
+      "title": "共同窗口预训练收益配对",
+      "status": "PASS",
+      "depends": [
+        "M2"
+      ],
+      "reason": "同精度同规则配对，判断预训练成本是否值得；详细计划另有有效配对条件",
+      "evidence": [
+        "evidence/direct_mechanism_v1/benefit/B_REPORT.md",
+        "evidence/direct_mechanism_v1/benefit/B_audit.json",
+        "evidence/direct_mechanism_v1/benefit/B_R2/summary.json"
+      ],
+      "kind": "delivery",
+      "scientific_result": "FAIL",
+      "execution_plan": "docs/plans/2026-09-14-direct-mechanism-plan.md"
+    },
+    {
+      "id": "L1",
+      "goal_id": "G-REPRO",
+      "title": "同一合格轨迹1024",
+      "status": "NOT_RUN",
+      "depends": [
+        "G128"
+      ],
+      "reason": "覆盖300/600/900切片和实际传播/反射",
+      "evidence": [],
+      "kind": "delivery",
+      "scientific_result": "NOT_RUN",
+      "execution_plan": "docs/plans/2026-09-14-direct-mechanism-plan.md"
+    },
+    {
+      "id": "G1024",
+      "goal_id": "G-REPRO",
+      "title": "1024数值验收门",
+      "status": "NOT_RUN",
+      "depends": [
+        "L1"
+      ],
+      "reason": "逐项复算场门槛与增长风险，不从完成长度自动推PASS",
+      "evidence": [],
+      "kind": "scientific_gate",
+      "scientific_result": "NOT_RUN",
+      "execution_plan": "docs/plans/2026-09-14-direct-mechanism-plan.md"
+    },
+    {
+      "id": "L2",
+      "goal_id": "G-REPRO",
+      "title": "同轨迹8192及频谱",
+      "status": "NOT_RUN",
+      "depends": [
+        "G1024"
+      ],
+      "reason": "验证完整论文长度、场与五模频率",
+      "evidence": [],
+      "kind": "delivery",
+      "scientific_result": "NOT_RUN",
+      "execution_plan": "docs/plans/2026-09-14-direct-mechanism-plan.md"
+    },
+    {
+      "id": "U",
+      "goal_id": "G-REPRO",
+      "title": "问题训练后的冻结复用",
+      "status": "NOT_RUN",
+      "depends": [
+        "G1024"
+      ],
+      "reason": "判断在线重训以外的实际复用价值",
+      "evidence": [],
+      "kind": "delivery",
+      "scientific_result": "NOT_RUN",
+      "execution_plan": "docs/plans/2026-09-14-direct-mechanism-plan.md"
+    },
+    {
+      "id": "V",
+      "goal_id": "G-REPRO",
+      "title": "成本、限制与研究判断",
+      "status": "PASS",
+      "depends": [],
+      "reason": "独立分析随时可做，所有登记任务终结后才最终交付",
+      "evidence": [
+        "evidence/direct_mechanism_v1/FINAL_REPORT.md",
+        "evidence/direct_mechanism_v1/FINAL_JUDGMENT.json"
+      ],
+      "kind": "delivery",
+      "scientific_result": "FAIL",
+      "execution_plan": "docs/plans/2026-09-14-direct-mechanism-plan.md"
+    }
+  ]
+}

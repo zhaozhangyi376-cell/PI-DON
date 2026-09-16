@@ -1,0 +1,168 @@
+{
+  "protocol": "gpt6_plan_v2",
+  "frozen_at_utc": "2026-09-13T09:49:17.680223+00:00",
+  "rule": "Thresholds may not be relaxed after observing a result.",
+  "scales": {
+    "L0_m": 0.05,
+    "E0_V_per_m": 1.0,
+    "Z0_ohm": "sqrt(mu0/eps0)",
+    "H0_A_per_m": "E0/Z0",
+    "curlE0": 20.0,
+    "curlH0": "H0/L0"
+  },
+  "time_and_geometry": {
+    "n_intervals": 31,
+    "side_m": 0.05,
+    "dt_s": 3.075e-12,
+    "source": "gauss",
+    "fmax_hz": 15000000000.0,
+    "probes_cells": [
+      [
+        12,
+        12,
+        13
+      ],
+      [
+        8,
+        10,
+        12
+      ],
+      [
+        21,
+        19,
+        18
+      ]
+    ],
+    "Ez_offset_cells": [
+      0,
+      0,
+      0.5
+    ],
+    "snapshots": [
+      1,
+      2,
+      16,
+      32,
+      43,
+      64,
+      96,
+      128,
+      192,
+      300,
+      600,
+      900,
+      1024,
+      2048,
+      4096,
+      8192
+    ]
+  },
+  "g0": {
+    "exact_control_steps": 128,
+    "float64_error_max": 1e-10,
+    "float32_error_max": 0.0001,
+    "strict_stop": true,
+    "nonzero_target_R_lt": 0.0001,
+    "zero_target_fixed_mse_max": 1e-10,
+    "zero_target_max_residual_over_curl0": 0.0001
+  },
+  "g1": {
+    "main_checkpoint": "dco_lr1e3_300.pt",
+    "development_steps": [
+      43,
+      96
+    ],
+    "legacy_validation_steps": [
+      16,
+      300,
+      600
+    ],
+    "new_holdout_steps": [
+      192,
+      450,
+      900
+    ],
+    "adam_lr": 0.0003,
+    "max_adam_updates": 500,
+    "per_task_seconds": 360,
+    "fixed_amplitude_error_max": 0.001,
+    "lbfgs": {
+      "adam_first": 200,
+      "lr": 1.0,
+      "history": 10,
+      "closures_max": 200,
+      "seconds_max": 60,
+      "only_lr_backup": 0.0001
+    }
+  },
+  "g2": {
+    "steps": [
+      128,
+      1024
+    ],
+    "Q_max": 0.05,
+    "active_nmae_max": 0.01,
+    "probe_waveform_l2_max": 0.05,
+    "weak_abs_max": 1e-05,
+    "seed_primary": 20260913,
+    "seed_repeat": 20260914,
+    "gpu_minutes_128": 60,
+    "gpu_hours_1024_increment": 4
+  },
+  "g3": {
+    "steps": 8192,
+    "analytic_frequency_rel_max": 0.005,
+    "fdtd_frequency_rel_max": 0.002,
+    "spectrum_amplitude_db_max": 1.0,
+    "energy_rel_max": 0.1,
+    "remaining_gpu_hours_p90_max": 8
+  },
+  "p5": {
+    "fixed_indices": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "pilot_seed": 20261012,
+    "pilot_updates": [
+      200,
+      500
+    ],
+    "loss_reduction_min": 100,
+    "macro_nmae_max": 0.001,
+    "ab_train": 128,
+    "ab_updates": [
+      200,
+      500
+    ],
+    "batch": 4,
+    "dev_fig6_seeds": [
+      0,
+      1,
+      2
+    ],
+    "promotion_seeds": [
+      101,
+      102,
+      103
+    ],
+    "final_seeds": [
+      201,
+      202,
+      203
+    ],
+    "noncubic_geomean_ratio_max": 0.8,
+    "cubic_retention_ratio_max": 1.1,
+    "formal_data_seed": 20261010,
+    "formal_dev_seed": 20261011,
+    "formal_epochs": 1000,
+    "formal_lr": 0.0001,
+    "formal_effective_batch": 32,
+    "formal_gpu_hours_max": 8
+  },
+  "classification": {
+    "exact_yee": "control only; never a DCO score",
+    "paper_MRE": "separate from nMAE; never divided or ranked together"
+  }
+}

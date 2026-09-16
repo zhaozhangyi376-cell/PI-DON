@@ -1,0 +1,9 @@
+{
+  "run": 38,
+  "json_sha256": "2a6a3f3f104cffd1f924b185a8708db85c9acef6e49b70f161f51e8cc01ed01d",
+  "script_sha256": "f5705866ee2e94baf493112702c824e2947978e1ef5aec68dba8a58096b26497",
+  "report_sha256": "f03e443e0ef6b9488971e832f4b177fed197cce6dbb64e0122534dfafc33fa62",
+  "figures": {
+    "figs\\stage2_algorithm1_32.png": "8456657c3fbd4700a50c1803c76b6fdb90fd5ab4bd025a7e4129b320f58c1225"
+  }
+}

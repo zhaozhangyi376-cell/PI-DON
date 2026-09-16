@@ -1,0 +1,9 @@
+{
+  "steps": 128,
+  "aligned_max_Q": 0.0,
+  "unaligned_max_Q": 0.9665418213769029,
+  "alignment_pass": true,
+  "classification": "reference-order equivalence only; not full G0 or DCO result",
+  "correction": "run #137 reference subtest accidentally used default additive source; corrected to registered hard source. Other #137 subtests are unaffected.",
+  "script_sha256": "ec2214ec26b21843ca8ab78205c91b22c125f5dcceacdf9ffaabc75076f42b56"
+}

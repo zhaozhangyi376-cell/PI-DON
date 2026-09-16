@@ -1,0 +1,10 @@
+{
+  "source_run": 18,
+  "arrays_sha256": "b7b43772244fdfdf8e330b98c2dcc3c1e0556385dc9dc52b0fde47e371391b07",
+  "script_sha256": "34f9deb078c5b3ba6554d2455035dcbc5bc2a5298164d364a22b815630cbe3b1",
+  "report_sha256": "26c7d5670bb3b4cd297f46e7442700dd427755a3bac7d5cfac124cb6cc9b569e",
+  "figures": {
+    "figs\\grid_diagnosis_matrix.png": "06abeefefd387b915dd9cb14938db2fea2772e62759a44f0d4343838c8a35ab6",
+    "figs\\grid_diagnosis_controls.png": "02dabc19ab01a2bc8a0b72403c827067929b58c2e2017e688227713529419ff9"
+  }
+}

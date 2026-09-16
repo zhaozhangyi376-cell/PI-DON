@@ -1,0 +1,16 @@
+{
+  "updated_at": "2026-09-14T03:10:40.278234+00:00",
+  "which": "E",
+  "updates": 557,
+  "lbfgs_steps": 0,
+  "closures": 0,
+  "head_commit_count": 0,
+  "linear_solve_calls": 0,
+  "head_committed": false,
+  "elapsed_s": 40.37086550000822,
+  "lbfgs_elapsed_s": 0.0,
+  "attempt_id": 1,
+  "optimization_phase": "adam",
+  "stop_reason": null,
+  "resumable": true
+}

@@ -1,0 +1,60 @@
+{
+  "schema": "pidon-a3-gate-v3",
+  "lab_log_run": 169,
+  "G1_development": "FAIL",
+  "G1_validation": "NOT_RUN",
+  "scientific_stop": true,
+  "reason": "registered h_shift candidate missed the unchanged R<1e-4 development gate; no permitted candidate remains",
+  "tasks": [
+    {
+      "step": 43,
+      "H_R": 0.0011944096007844396,
+      "H_pass": false,
+      "H_updates": 500,
+      "E_mode": "oracle_only",
+      "E_R": 0.10847574580164006,
+      "E_pass": false,
+      "E_updates": 500,
+      "A_fixed": null,
+      "old_H_R": 0.0012786137727905911,
+      "H_improvement_fraction": 0.06585583058625655,
+      "cost_pass": true,
+      "accepted_field_metrics": null,
+      "source_outside_probes": null,
+      "recovery_eligible": false,
+      "sequential_gate_pass": false
+    },
+    {
+      "step": 96,
+      "H_R": 0.0007415181704376282,
+      "H_pass": false,
+      "H_updates": 500,
+      "E_mode": "oracle_only",
+      "E_R": 0.00014467062572757962,
+      "E_pass": false,
+      "E_updates": 500,
+      "A_fixed": null,
+      "old_H_R": 0.0009224232814714674,
+      "H_improvement_fraction": 0.19611941141083933,
+      "cost_pass": true,
+      "accepted_field_metrics": null,
+      "source_outside_probes": null,
+      "recovery_eligible": false,
+      "sequential_gate_pass": false
+    }
+  ],
+  "readback": {
+    "all_pass": true,
+    "sha256": "3db22f6559458478552453e6dd0f061071bdfd860e215c7939dc35e46508c7b1"
+  },
+  "evidence": {
+    "development": "6beabd79fdfd4dfef26a4403e3ccda2138f7cff99a3fa774abbe11fc42a4b611"
+  },
+  "downstream": {
+    "64": "NOT_RUN",
+    "128": "NOT_RUN",
+    "1024": "NOT_RUN",
+    "8192": "NOT_RUN",
+    "P5": "NOT_RUN"
+  }
+}

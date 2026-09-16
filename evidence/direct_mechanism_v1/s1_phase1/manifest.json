@@ -1,0 +1,44 @@
+{
+  "schema": "pidon-s1-phase1-full-v1",
+  "action_id": "A-20260914T102345-10b45e87",
+  "lab_run_id": "288",
+  "created_at_utc": "2026-09-14T10:23:55.420635+00:00",
+  "plan": "docs/plans/2026-09-14-direct-mechanism-plan.md",
+  "plan_sha256": "82b2c277c61d19c97a381dd6e3493602971cfd436a97e3a3aa65bc302d7c7083",
+  "config": {
+    "data_seed": 2026091701,
+    "blind_seed": 2026091702,
+    "train_seed": 2026091703,
+    "samples": 1000,
+    "train": 800,
+    "dev": 200,
+    "grid": [
+      32,
+      32,
+      32
+    ],
+    "levels": 4,
+    "base": 32,
+    "coords": "cellsize",
+    "norm": "rms",
+    "dirs": "shared",
+    "lr": 0.0001,
+    "eta_min": 2e-06,
+    "epochs": 1000,
+    "steps_per_epoch": 25,
+    "effective_batch": 32,
+    "validate_every": 10
+  },
+  "gen_data_constants": {
+    "COS_MIN": 0.15,
+    "K_MAX": 1048.0,
+    "AMP_MAX": 5.0
+  },
+  "source_hashes": {
+    "pidon_solve.py": "5d6eb695526117ef3b6e214b168c373c7a1ea5e01ebd99db1801db7402ce56fd",
+    "pidon_contract.py": "fbf93008fd698a03650906a0d931016090b1dd33f49e74fcf307dcf8266fe11b",
+    "pidon_recording.py": "6a22cf4e2dcafba72d3a483814985ab563f73c3774f3f6f7dacf4a6a1a5dcb20",
+    "fdtd.py": "622a8a7747245d35e07c559b362544e0d61f2f465bcc81f2f686533a1bd405b6",
+    "dco.py": "1bc6c9de416064e3d4db72418d76dbd0ae54232b965496863c1f71e0065f0149"
+  }
+}

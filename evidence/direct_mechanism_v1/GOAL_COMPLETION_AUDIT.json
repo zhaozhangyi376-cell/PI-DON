@@ -1,0 +1,87 @@
+{
+  "schema": "direct-goal-completion-audit-v1",
+  "lab_run_id": "292",
+  "note": "direct_mechanism_v1_goal_audit",
+  "goal_complete": false,
+  "requirements": [
+    {
+      "id": "read_and_status_bootstrap",
+      "requirement": "AGENTS/PLAN/STATUS and project_harness status/check/next were used to drive the work.",
+      "evidence": [
+        "project/plan.json",
+        "PLAN.md",
+        "STATUS.md",
+        "project/actions.jsonl"
+      ],
+      "status": "PROVEN",
+      "reason": "harness check currently passes and actions log contains M0/M1/M2/S1/B/V starts/finishes."
+    },
+    {
+      "id": "m0_m1_m2",
+      "requirement": "M0, M1 and at most two optimization rules with P/R 128 queue are executed and audited.",
+      "evidence": [
+        "evidence/direct_mechanism_v1/m0/m0_audit.json",
+        "evidence/direct_mechanism_v1/m1/m1_audit.json",
+        "evidence/direct_mechanism_v1/m2_audit.json"
+      ],
+      "status": "PROVEN",
+      "reason": "M0/M1/M2 delivery PASS; M2 used rules A and B only."
+    },
+    {
+      "id": "phase1_complete_training",
+      "requirement": "One complete phase-1 training reaches terminal 1000 epochs/25000 updates and blind test.",
+      "evidence": [
+        "evidence/direct_mechanism_v1/s1_phase1/interrupted_audit.json",
+        "evidence/direct_mechanism_v1/s1_phase1/history.jsonl",
+        "evidence/direct_mechanism_v1/s1_phase1/S1_REPORT.md"
+      ],
+      "status": "NOT_PROVEN",
+      "reason": "S1 status is INCOMPLETE; last recorded updates 23425 of 25000; no last.pt, no terminal summary, no blind migration result."
+    },
+    {
+      "id": "longrun_conditional",
+      "requirement": "If a legal trajectory passes 128 field gate, continue 1024 -> 8192.",
+      "evidence": [
+        "evidence/direct_mechanism_v1/m2_audit.json",
+        "evidence/direct_mechanism_v1/FINAL_JUDGMENT.json"
+      ],
+      "status": "PROVEN_NOT_RUN_BY_GATE",
+      "reason": "G128 field gate failed; longrun_unlocked is false, so 1024/8192 are correctly NOT_RUN."
+    },
+    {
+      "id": "benefit_and_v",
+      "requirement": "Complete benefit/reuse/research judgment where prerequisites allow.",
+      "evidence": [
+        "evidence/direct_mechanism_v1/benefit/B_audit.json",
+        "evidence/direct_mechanism_v1/FINAL_JUDGMENT.json"
+      ],
+      "status": "PROVEN",
+      "reason": "B delivery PASS/science FAIL; U correctly NOT_RUN because G1024 is not unlocked; V PASS/science FAIL."
+    },
+    {
+      "id": "no_false_success",
+      "requirement": "Do not claim paper mechanism reproduced; keep MRE/nMAE and Yee controls separate.",
+      "evidence": [
+        "evidence/direct_mechanism_v1/FINAL_REPORT.md",
+        "evidence/direct_mechanism_v1/FINAL_JUDGMENT.json"
+      ],
+      "status": "PROVEN",
+      "reason": "Final judgment says paper_mechanism_reproduced=false and separates residual, field, S1 and benefit evidence."
+    }
+  ],
+  "blocking_requirements": [
+    {
+      "id": "phase1_complete_training",
+      "requirement": "One complete phase-1 training reaches terminal 1000 epochs/25000 updates and blind test.",
+      "evidence": [
+        "evidence/direct_mechanism_v1/s1_phase1/interrupted_audit.json",
+        "evidence/direct_mechanism_v1/s1_phase1/history.jsonl",
+        "evidence/direct_mechanism_v1/s1_phase1/S1_REPORT.md"
+      ],
+      "status": "NOT_PROVEN",
+      "reason": "S1 status is INCOMPLETE; last recorded updates 23425 of 25000; no last.pt, no terminal summary, no blind migration result."
+    }
+  ],
+  "safe_next_action": "new_user_authorized_S1_rerun_or_new_protocol",
+  "why_not_auto_continue": "The only missing explicit objective item is the complete phase-1 run. The registered S1 budget was already partly spent and lacks certified resume state; automatic restart would spend a new budget and consume/alter the registered experiment."
+}

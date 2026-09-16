@@ -7,6 +7,15 @@
 *.npz
 # *.pt 模型检查点，每个约 9 MB
 *.pt
+# 服务器往返传输包和证据压缩包，体积可能超过 GitHub 单文件限制
+*.zip
+archive/transfers/
+server_*_package_*/
+# CST工程和仿真结果保留在本地/服务器，不作为源码仓库内容
+PEC/
+PEC_cavity/
+cst_baseline/
+test/
 # 所有图都由 slides/make_*.py 现场生成；论文原图是 IEEE 版权，更不能入库
 figs/
 slides/figs/

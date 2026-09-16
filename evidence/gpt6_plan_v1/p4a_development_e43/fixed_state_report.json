@@ -1,0 +1,80 @@
+{
+  "schema": "pidon-p3-fixed-state-v1",
+  "classification": "fixed FDTD state diagnostic; not a closed-loop DCO trajectory",
+  "config": {
+    "mode": "fixed",
+    "out": "evidence/gpt6_plan_v1/p4a_development_e43",
+    "init": "dco_paper32.pt",
+    "n": 31,
+    "side": 0.05,
+    "dt": 3.075e-12,
+    "lr": 0.0003,
+    "tol": 0.0001,
+    "max_inner": 200,
+    "baseline_updates": 200,
+    "lbfgs_closures": 200,
+    "lbfgs_lr": 1.0,
+    "lbfgs_history": 10,
+    "lbfgs_time_budget_s": 60.0,
+    "per_task_budget_s": 60.0,
+    "total_budget_s": 3600.0,
+    "device": "cuda",
+    "states": [
+      43
+    ],
+    "subproblems": [
+      "E"
+    ]
+  },
+  "device": "cuda",
+  "source_hashes": {
+    "pidon_solve.py": "4a7948efee6e0a0afde459496b18b4d1a943b0740df3c1792a7cf59b353ac2ec",
+    "pidon_contract.py": "bd43ea4f1fd5aed8f2be76e36d4b2bfc38e0a4515da58f6048026d2292a1bf7a",
+    "pidon_recording.py": "334f0c99eff7c274d042fe6b71b4475d37b1856af5b6269bf0779be691f06380",
+    "fdtd.py": "309e752bbc4acc274f8e841b1a88f3cb000ca0eba5bfaac2f2906f0c82acb314",
+    "dco.py": "53eb1c7d7ea0ed33f4e6c279554cb1adaf4a86134b8dc60fd67f6ce39525941d"
+  },
+  "init_sha256": "358af766816a0eb69c9209776278004a275c4b1fb25a74325c6c242d0a26df54",
+  "tasks": [
+    {
+      "step": 43,
+      "split": "development",
+      "which": "E",
+      "baseline": {
+        "n_updates": 200,
+        "n_evals": 401,
+        "loss_initial": 10.871434211730957,
+        "loss_final": 0.002835877938196063,
+        "sse": 7.069547176361084,
+        "mse": 7.910159865240155e-05,
+        "target_ss": 2492.8955078125,
+        "passed": false,
+        "stop_reason": "max_updates",
+        "elapsed_s": 11.237881500012008,
+        "loss_sum": 36.6619511351455,
+        "target_count": 89373,
+        "n_lbfgs_steps": 0,
+        "n_closures": 0
+      },
+      "fit": {
+        "n_updates": 297,
+        "n_evals": 698,
+        "loss_initial": 10.871434211730957,
+        "loss_final": 0.0013474664883688092,
+        "sse": 3.359093189239502,
+        "mse": 3.758510052520898e-05,
+        "target_ss": 2492.8955078125,
+        "passed": false,
+        "stop_reason": "max_updates",
+        "elapsed_s": 22.67946319998009,
+        "loss_sum": 37.05418642924633,
+        "target_count": 89373,
+        "n_lbfgs_steps": 97,
+        "n_closures": 200
+      }
+    }
+  ],
+  "single_step_errors": {},
+  "elapsed_s": 35.29216459998861,
+  "stopped_for_total_budget": false
+}

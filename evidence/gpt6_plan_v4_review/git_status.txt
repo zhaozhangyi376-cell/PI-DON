@@ -1,0 +1,72 @@
+ M AGENTS.md
+ M LAB_NOTEBOOK.md
+ M RESULTS.md
+ M STATUS.md
+ M dco.py
+ M fdtd.py
+ M lab_runs.jsonl
+ M pidon_solve.py
+ M verify_claims.py
+?? PAPER_FIRST_REVIEW.md
+?? PAPER_VS_CURRENT_TABLES.md
+?? a1_contract_report.py
+?? a2_zero_curl_control.py
+?? a3_gate_report.py
+?? a3_readback.py
+?? adapt_dco_cavity.py
+?? audit_h_layout.py
+?? audit_night_v4.py
+?? audit_reproduction.py
+?? audit_v2_stop.py
+?? coverage_ab.py
+?? dco_cavity_adapt_hist.json
+?? diagnose_grid.py
+?? docs/
+?? evidence/
+?? g0_verifier.py
+?? h_layout_candidate.py
+?? make_a3_evidence_figure.py
+?? make_stop_review_report.py
+?? p3_report.py
+?? p4_report.py
+?? p5_ab_audit.py
+?? p5_audit.py
+?? paper_protocol.py
+?? paper_recheck.py
+?? paper_text.txt
+?? phase1_ab_pilot.py
+?? phase1_pilot.py
+?? pidon_contract.py
+?? pidon_exact_control.py
+?? pidon_recording.py
+?? pidon_solve_dco_lr1e3_300.json
+?? r0_v2_audit.py
+?? r1_r2_reports.py
+?? r3_v2_recompute.py
+?? r4_fixed_state.py
+?? r4_p4a.py
+?? reference_cache.py
+?? slides/make_coverage_ab_figs.py
+?? slides/make_grid_diagnosis_figs.py
+?? slides/make_paper_first_figs.py
+?? slides/make_spacing_probe_figs.py
+?? slides/make_stage2_figs.py
+?? slides/make_stage2_longrun_figs.py
+?? slides/make_trunk_repair_figs.py
+?? spacing_probe.py
+?? stage2_evidence.py
+?? stage2_fixed_state.py
+?? stage2_interface_probe.py
+?? stage2_shared_interference.py
+?? stop_review_evidence.py
+?? test_coverage_ab.py
+?? test_paper_protocol.py
+?? test_phase1_pilot.py
+?? test_pidon_contract.py
+?? test_pidon_contract_v3.py
+?? test_r4_fixed_state.py
+?? test_r4_p4a.py
+?? test_stop_review_claims.py
+?? test_trunk_repair.py
+?? trunk_evidence.py
+?? trunk_repair.py

@@ -1,0 +1,21 @@
+{
+  "equivalence": {
+    "status": "PASS",
+    "full_loss": 1.169264554977417,
+    "micro_loss": 1.169264554977417,
+    "loss_abs_diff": 0.0,
+    "max_checked_grad_abs_diff": 5.960464477539063e-08,
+    "max_checked_grad_rel_diff": 1.0717688580409995e-06,
+    "microbatch": 4
+  },
+  "microbatch_preflight": {
+    "status": "PASS",
+    "attempts": [
+      {
+        "microbatch": 4,
+        "status": "PASS",
+        "loss": 1.169264554977417
+      }
+    ]
+  }
+}

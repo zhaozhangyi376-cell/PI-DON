@@ -1,0 +1,7 @@
+{
+  "schema": "pidon-rolling-checkpoint-v1",
+  "slot": "A",
+  "path": "checkpoint_A.pt",
+  "sha256": "bcf0a0e8ca7d65d7e4f36870f148991a967ef1fb831754e7ff0c33ec8986776f",
+  "last_committed_sequence_id": 127
+}

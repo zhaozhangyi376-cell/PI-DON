@@ -1,0 +1,41 @@
+{
+  "schema": "pidon-r0-v2-audit",
+  "created_at_utc": "2026-09-13T09:49:17.680223+00:00",
+  "git_head": "dad6fb2cbe032cebac713ad149f3ae08d0fa0993",
+  "branch": "main",
+  "sources_sha256": {
+    "pidon_solve.py": "4a7948efee6e0a0afde459496b18b4d1a943b0740df3c1792a7cf59b353ac2ec",
+    "pidon_contract.py": "bd43ea4f1fd5aed8f2be76e36d4b2bfc38e0a4515da58f6048026d2292a1bf7a",
+    "pidon_recording.py": "334f0c99eff7c274d042fe6b71b4475d37b1856af5b6269bf0779be691f06380",
+    "pidon_exact_control.py": "7333acf0720c40946fb21efeb4fdb5335589417596ada41c2a907da7bb7862c1",
+    "stage2_fixed_state.py": "94c5c48f1deb83e2946dd467f4965b9ef519b69d5f2fdcf4fcf6bcf83707a5f1",
+    "phase1_pilot.py": "61edda2f650a2acdcc245e56d6d9f38b7b1596ceb18df7fa697a821ad4fb6b3d",
+    "phase1_ab_pilot.py": "0f26e1f353aa435791ae3b0697d46c3e57164ce7dcda21d584ebd66334a0e595",
+    "p3_report.py": "bd8aa6b5398b6a2bd694f9c4cda66886cd0d2b26522ffd65010271a6763589bc",
+    "p4_report.py": "6cf1e3572163cb5a852eb72e5aaee47e27bd9aadee9f07df68b3b1026b81e1bd",
+    "p5_audit.py": "00e1825b36d9490963895012eabe49d6335c6063514d30f65d62190040de3450",
+    "p5_ab_audit.py": "596e3b63d9e494de5ea5daa70513a2dc60f8d9db6678cd6bce11acc8bb3acbe8",
+    "verify_claims.py": "eb5d905eb16bcc41b95caf474834c365ec491a56c8c6081c5b6956a7117dbba1",
+    "fdtd.py": "309e752bbc4acc274f8e841b1a88f3cb000ca0eba5bfaac2f2906f0c82acb314",
+    "dco.py": "53eb1c7d7ea0ed33f4e6c279554cb1adaf4a86134b8dc60fd67f6ce39525941d",
+    "test_pidon_contract.py": "0b25ba043bdea78df6ef6adb0dd2066f296fd58a9ff13f73f92a0bbe7a9eb63b",
+    "lab_log.py": "a776716d639c194f9884daed30d3cdc6387aa238e3b1681d662879d4cb5bec2c",
+    "AGENTS.md": "0dab185218a0e05a5d91b591592c464c3391b7ea2761107dec3fd10ed36d7964",
+    "STATUS.md": "84010248eec0fbc20c9cf907abfcdeb337e20950807596dab078c161ee82fe53",
+    "RESULTS.md": "8b8d308e2c105b5a3983776837fbfb7ed427512339051313dc4f512fa2fb8865",
+    "LAB_NOTEBOOK.md": "6830d726ac23f0affda0402a1ad425e1c9985c251d3da770891154e904409425",
+    "lab_runs.jsonl": "f283baeb49f12da73f8f806885743d72b2b2b8e7dc94f0567218f2429cdc0655"
+  },
+  "inputs_sha256": {
+    "dco_lr1e3_300.pt": "3f259bc887a10fac77f6bdf77b43ba1ad6b45827a3f8b9bd685934acc47ca5d7",
+    "dco_paper32.pt": "358af766816a0eb69c9209776278004a275c4b1fb25a74325c6c242d0a26df54",
+    "data_32.npz": "e5e6cc20c9f1c6e8fcb72ec5eb1643e357bc020d0dbbfed6544de5aa1fde126d"
+  },
+  "v1_preserved": true,
+  "historical_status": {
+    "v1_P1": "INCOMPLETE",
+    "v1_P2": "INCOMPLETE",
+    "v1_G1": "NOT_CERTIFIED",
+    "v1_G2_G3": "NOT_RUN"
+  }
+}

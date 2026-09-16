@@ -1,0 +1,276 @@
+{
+  "schema": "pidon-reorganization-delivery-v1",
+  "created_at_utc": "2026-09-14T06:21:18.481276+00:00",
+  "old_1h": {
+    "D_LR": {
+      "recorded_updates": 657,
+      "accepted_steps": 1,
+      "rows": 1,
+      "last_row_accepted": true,
+      "last_H_R": null,
+      "last_E_R": 9.973295977724184e-05,
+      "steps_path": "evidence/mechanism_1h_v2/runs/D_LR/steps.jsonl",
+      "steps_sha256": "dbda754850ae63afa88dda08d4349e1ca1092aef8840d1408730d34da552a724"
+    },
+    "S_P": {
+      "recorded_updates": 1,
+      "accepted_steps": 0,
+      "rows": 1,
+      "last_row_accepted": false,
+      "last_H_R": null,
+      "last_E_R": 1.1523222039773764,
+      "steps_path": "evidence/mechanism_1h_v2/runs/S_P/steps.jsonl",
+      "steps_sha256": "5fa443d958eb8e711e337f1a944dda83b4b004b6a120e4a0e9bdae12a31dac7a"
+    },
+    "S_P_retry": {
+      "recorded_updates": 10447,
+      "accepted_steps": 6,
+      "rows": 6,
+      "last_row_accepted": true,
+      "last_H_R": 9.987407510646121e-05,
+      "last_E_R": 9.99355471311806e-05,
+      "steps_path": "evidence/mechanism_1h_v2/runs/S_P_retry/steps.jsonl",
+      "steps_sha256": "935b41e7db32249ff4ddcd9ecbd64dab7b6f91c8dff8d861c5a7e2a693920da2"
+    },
+    "S_R": {
+      "recorded_updates": 10070,
+      "accepted_steps": 33,
+      "rows": 34,
+      "last_row_accepted": false,
+      "last_H_R": 9.936100711098532e-05,
+      "last_E_R": 0.00012504438289440666,
+      "steps_path": "evidence/mechanism_1h_v2/runs/S_R/steps.jsonl",
+      "steps_sha256": "8dbd46d77c1597057901bade2477ceb26f0dcff8308c87c39284b9ba2ffe1102"
+    },
+    "X_R": {
+      "recorded_updates": 13764,
+      "accepted_steps": 41,
+      "rows": 42,
+      "last_row_accepted": false,
+      "last_H_R": 0.0009952085218243184,
+      "last_E_R": 1.6029030960953428,
+      "steps_path": "evidence/mechanism_1h_v2/runs/X_R/steps.jsonl",
+      "steps_sha256": "a0fa58c961ae401304ea1ca3db8ee418b06490403e7c48f84d58f09b50a71869"
+    }
+  },
+  "new_2h": {
+    "D_LR4": {
+      "recorded_updates": 645,
+      "accepted_steps": 1,
+      "rows": 1,
+      "last_row_accepted": true,
+      "last_H_R": null,
+      "last_E_R": 9.972725826291962e-05,
+      "steps_path": "evidence/mechanism_2h_v1/runs/D_LR4/steps.jsonl",
+      "steps_sha256": "1f925c169c9d43e9de1a70ddc50ead835db65f3cf1f60ddea0992992e9bbd8d8"
+    },
+    "D_LR4_retry": {
+      "recorded_updates": 4074,
+      "accepted_steps": 1,
+      "rows": 2,
+      "last_row_accepted": false,
+      "last_H_R": 9.988104732397363e-05,
+      "last_E_R": 347.6076915514439,
+      "steps_path": "evidence/mechanism_2h_v1/runs/D_LR4_retry/steps.jsonl",
+      "steps_sha256": "c827bbe58f6dfa0b02630c35dfd129185b3f0ea3f4fbc8a17f08102923ea6018"
+    }
+  },
+  "old_1h_recorded_updates": 34939,
+  "old_1h_exact_updates": null,
+  "old_1h_known_lower_bound": 35122,
+  "new_2h_recorded_updates": 4719,
+  "S_P_retry_recovery": {
+    "verdict": "UNVERIFIED",
+    "production_resume_in_next_plan": false,
+    "checkpoint_sha_matches_pointer": true,
+    "heartbeat_after_checkpoint": true,
+    "heartbeat_tail_updates_lower_bound": 183,
+    "checkpoint_top_keys": [
+      "E",
+      "H",
+      "accepted_steps",
+      "arm_protocol",
+      "checkpoint_role",
+      "checkpoint_schema",
+      "config",
+      "current_time_layer",
+      "fit_progress",
+      "frozen_config",
+      "last_committed_sequence_id",
+      "lbfgs_E",
+      "lbfgs_H",
+      "net_E",
+      "net_H",
+      "opt_E",
+      "opt_H",
+      "payload_role",
+      "pending_fit_H",
+      "phase",
+      "recorder_identity",
+      "reference",
+      "requested_steps",
+      "rng",
+      "script_version",
+      "shared_network",
+      "source_index",
+      "state_schema"
+    ],
+    "fit_progress": {
+      "H": {
+        "updates": 0,
+        "lbfgs_steps": 0,
+        "closures": 0,
+        "head_commit_count": 0,
+        "linear_solve_calls": 0,
+        "head_committed": false,
+        "elapsed_s": 0.0,
+        "lbfgs_elapsed_s": 0.0,
+        "attempt_id": 0,
+        "optimization_phase": "not_started",
+        "stop_reason": null,
+        "resumable": true
+      },
+      "E": {
+        "updates": 0,
+        "lbfgs_steps": 0,
+        "closures": 0,
+        "head_commit_count": 0,
+        "linear_solve_calls": 0,
+        "head_committed": false,
+        "elapsed_s": 0.0,
+        "lbfgs_elapsed_s": 0.0,
+        "attempt_id": 0,
+        "optimization_phase": "not_started",
+        "stop_reason": null,
+        "resumable": true
+      }
+    },
+    "reason": "尾部不在完整步汇总；心跳非完整参数状态；不能以指针存在认证恢复或生成精确成本"
+  },
+  "previous_2h_execution_completeness": "INCOMPLETE",
+  "root_files": [
+    ".gitignore",
+    "AGENTS.md",
+    "CLAUDE.md",
+    "PLAN.md",
+    "README.md",
+    "RESULTS.md",
+    "STATUS.md",
+    "lab_log.py",
+    "project_paths.py",
+    "run.py"
+  ],
+  "unexpected_root_files": [],
+  "plan_validation_errors": [],
+  "next_tasks": [
+    "M0",
+    "M1",
+    "S1",
+    "V"
+  ],
+  "migration_integrity": true,
+  "moved_files": 233,
+  "lab_runs": {
+    "264": {
+      "exit_code": 0,
+      "seconds": 2.7,
+      "argv": [
+        "py",
+        "-3.11",
+        "-c",
+        "import json, pathlib, hashlib, torch\nroot=pathlib.Path('C:/PI-DON')\npaths=['evidence/mechanism_1h_v2/runs/S_P_retry/checkpoint_B.pt','evidence/mechanism_1h_v2/runs/S_R/checkpoint_B.pt','evidence/mechanism_2h_v1/runs/D_LR4/checkpoint_latest.pt','evidence/mechanism_2h_v1/runs/D_LR4_retry/checkpoint_latest.pt']\nfor rel in paths:\n p=root/rel\n x=torch.load(p,map_location='cpu',weights_only=False)\n fits=x.get('fit_progress',{})\n r={'path':rel,'sha256':hashlib.sha256(p.read_bytes()).hexdigest(),'keys':list(x),'checkpoint_schema':x.get('checkpoint_schema'),'checkpoint_role':x.get('checkpoint_role'),'phase':x.get('phase'),'accepted_steps':x.get('accepted_steps'),'current_time_layer':x.get('current_time_layer'),'source_index':x.get('source_index'),'recorder_identity':x.get('recorder_identity'),'rng_keys':list(x.get('rng',{})),'fit_progress':{k:{a:v for a,v in z.items() if a in ['updates','elapsed_s','stop_reason','resumable','n_updates','attempt_id','optimization_phase']} for k,z in fits.items()}}\n print(json.dumps(r,ensure_ascii=False))\nfor directory in ['evidence/mechanism_1h_v2/runs','evidence/mechanism_2h_v1/runs']:\n for p in sorted((root/directory).glob('*/steps.jsonl')):\n  rows=[json.loads(s) for s in p.read_text(encoding='utf-8').splitlines() if s.strip()]\n  n=sum(int((r.get(k) or {}).get('n_updates',0)) for r in rows for k in ['fit_H','fit_E'])\n  print(json.dumps({'path':str(p.relative_to(root)),'rows':len(rows),'accepted':sum(bool(r.get('accepted')) for r in rows),'committed_updates':n,'sha256':hashlib.sha256(p.read_bytes()).hexdigest()},ensure_ascii=False))"
+      ]
+    },
+    "265": {
+      "exit_code": 0,
+      "seconds": 2.1,
+      "argv": [
+        "py",
+        "-3.11",
+        "tools/reorganize_workspace.py"
+      ]
+    },
+    "266": {
+      "exit_code": 0,
+      "seconds": 5.6,
+      "argv": [
+        "py",
+        "-3.11",
+        "tools/reorganize_workspace.py",
+        "--apply"
+      ]
+    },
+    "267": {
+      "exit_code": 0,
+      "seconds": 1.3,
+      "argv": [
+        "py",
+        "-3.11",
+        "tools/repair_layout_paths.py"
+      ]
+    },
+    "268": {
+      "exit_code": 0,
+      "seconds": 15.6,
+      "argv": [
+        "py",
+        "-3.11",
+        "run.py",
+        "unittest",
+        "-v",
+        "test_project_harness",
+        "test_pidon_contract",
+        "test_pidon_contract_v3",
+        "test_pidon_contract_v4",
+        "test_mechanism_hour"
+      ]
+    },
+    "269": {
+      "exit_code": 0,
+      "seconds": 6.2,
+      "argv": [
+        "py",
+        "-3.11",
+        "run.py",
+        "validate_workspace_layout"
+      ]
+    },
+    "270": {
+      "exit_code": 0,
+      "seconds": 0.3,
+      "argv": [
+        "py",
+        "-3.11",
+        "run.py",
+        "unittest",
+        "-v",
+        "test_run_entrypoint",
+        "test_project_harness"
+      ]
+    },
+    "271": {
+      "exit_code": 0,
+      "seconds": 2.2,
+      "argv": [
+        "py",
+        "-3.11",
+        "run.py",
+        "audit_reorganization_delivery"
+      ]
+    },
+    "272": {
+      "exit_code": 0,
+      "seconds": 0.2,
+      "argv": [
+        "py",
+        "-3.11",
+        "run.py",
+        "unittest",
+        "-v",
+        "test_run_entrypoint"
+      ]
+    }
+  },
+  "production_training_updates_this_delivery": 0,
+  "all_new_research_stages": "NOT_RUN"
+}

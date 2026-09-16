@@ -1,0 +1,17 @@
+{
+  "model": "old_paper32",
+  "grid": "32x64x16",
+  "status": "INCOMPLETE",
+  "inputs": {
+    "model": {
+      "path": "H:\\PI-DON\\assets\\models\\dco_paper32.pt",
+      "bytes": 37014661,
+      "sha256": "358af766816a0eb69c9209776278004a275c4b1fb25a74325c6c242d0a26df54"
+    },
+    "data": {
+      "path": "H:\\PI-DON\\evidence\\direct_mechanism_v2\\s1r_phase1_server\\blind_data\\blind_32x64x16.npz",
+      "bytes": 11490946,
+      "sha256": "2f83519c2a61c54197aa91b2e8c84a9ce78832c124c03ec8b4e53284bbe61a58"
+    }
+  }
+}

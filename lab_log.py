@@ -45,14 +45,17 @@ import shlex
 import subprocess
 import sys
 import time
+from project_paths import PROJECT_DIR, configure, resolve_legacy
+
+configure()
 
 SCRIPT_VERSION = "2026-09-10a"
-NOTEBOOK = "LAB_NOTEBOOK.md"
-JSONL = "lab_runs.jsonl"
+NOTEBOOK = "records/LAB_NOTEBOOK.md"
+JSONL = "records/lab_runs.jsonl"
 # figs/ is NOT ignored: the figures are exactly the artefacts that end
 # up on a slide, so they are the ones most worth hashing.  Skipping
 # them made a make_figs.py run record "0 file(s) touched".
-IGNORE_DIRS = {".git", "__pycache__", "archive", "cst"}
+IGNORE_DIRS = {".git", "__pycache__", "cst"}
 IGNORE_EXT = {".pyc", ".log", ".tmp"}
 MAX_HASH_MB = 400            # skip hashing anything bigger; record size only
 
@@ -182,7 +185,7 @@ def quote(argv):
     return " ".join(out)
 
 
-def launch(argv):
+def launch(argv, run_id=None):
     """Popen the child.  No shell, so an argument with spaces stays ONE
     argument -- ' '.join + shell=True silently splits it and you get a
     different run than the one written in the log.
@@ -195,6 +198,8 @@ def launch(argv):
     # non-ASCII line came back as mojibake, both on screen and in the
     # recorded stdout_tail.  PYTHONIOENCODING makes the two ends agree.
     env = dict(os.environ, PYTHONIOENCODING="utf-8", PYTHONUTF8="1")
+    if run_id is not None:
+        env['PIDON_LAB_RUN_ID'] = str(run_id)
     return subprocess.Popen(argv, stdout=subprocess.PIPE,
                             stderr=subprocess.STDOUT, text=True,
                             encoding="utf-8", errors="replace", bufsize=1,
@@ -231,7 +236,7 @@ def do_run(a):
     t0 = time.time()
     lines = []
     try:
-        proc = launch(argv)
+        proc = launch(argv, run_id=rid)
     except OSError as exc:
         raise SystemExit(f"could not start {argv[0]!r}: {exc}")
     for line in proc.stdout:
@@ -370,6 +375,7 @@ def do_verify(a):
     okc = badc = gone = 0
     print(f"核对 {len(latest)} 个有哈希记录的文件…\n")
     for path, (rid, sha, n) in sorted(latest.items()):
+        path = str(resolve_legacy(path))
         if not os.path.exists(path):
             print(f"  缺失   #{rid:<3} {path}")
             gone += 1
@@ -390,6 +396,8 @@ def do_verify(a):
 
 
 def main():
+    os.chdir(PROJECT_DIR)
+    os.makedirs("records", exist_ok=True)
     ap = argparse.ArgumentParser(description="实验过程记录")
     sub = ap.add_subparsers(dest="what", required=True)
 

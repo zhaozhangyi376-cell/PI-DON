@@ -1,0 +1,420 @@
+{
+  "schema": "pidon-v4-night-evidence-v1",
+  "experiment_id": "289ca344-10e3-4569-a8fe-38c1f25646d9",
+  "manifest": {
+    "started_at": "2026-09-13T15:53:40.292464+00:00",
+    "deadline": "2026-09-14T01:53:40.292464+00:00",
+    "training_deadline": "2026-09-14T01:23:40.292464+00:00",
+    "plan_sha256": "a6feaa48985b594fef3c2e63754e4827457e08bb069c26f6ae1524dc2052bce7",
+    "master_weight_sha256": "3f259bc887a10fac77f6bdf77b43ba1ad6b45827a3f8b9bd685934acc47ca5d7"
+  },
+  "acceptance_file": {
+    "path": "evidence/gpt6_plan_v4_night/acceptance.json",
+    "exists": false
+  },
+  "asset_integrity": [
+    {
+      "path": "dco_lr1e3_300.pt",
+      "expected_sha256": "3f259bc887a10fac77f6bdf77b43ba1ad6b45827a3f8b9bd685934acc47ca5d7",
+      "actual_sha256": "3f259bc887a10fac77f6bdf77b43ba1ad6b45827a3f8b9bd685934acc47ca5d7",
+      "status": "PASS"
+    },
+    {
+      "path": "evidence/gpt6_plan_v3/h_layout_candidate/H_step_0043.pt",
+      "expected_sha256": "3019401202764cb6e2a98df23f146c3bab8188c7c302aecde06020bf00a342f5",
+      "actual_sha256": "3019401202764cb6e2a98df23f146c3bab8188c7c302aecde06020bf00a342f5",
+      "status": "PASS"
+    },
+    {
+      "path": "evidence/gpt6_plan_v3/h_layout_candidate/E_oracle_step_0043.pt",
+      "expected_sha256": "33a4eb6b9194f56069bfd0ee7555f1ce263741e771e5b8bedf0df63b83b5ce82",
+      "actual_sha256": "33a4eb6b9194f56069bfd0ee7555f1ce263741e771e5b8bedf0df63b83b5ce82",
+      "status": "PASS"
+    },
+    {
+      "path": "evidence/gpt6_plan_v3/h_layout_candidate/H_step_0096.pt",
+      "expected_sha256": "996773475c23b2e890b89625af332d2625e2efda546f9f4c27d79a1563009c67",
+      "actual_sha256": "996773475c23b2e890b89625af332d2625e2efda546f9f4c27d79a1563009c67",
+      "status": "PASS"
+    },
+    {
+      "path": "evidence/gpt6_plan_v3/h_layout_candidate/E_oracle_step_0096.pt",
+      "expected_sha256": "3b55816b53fd0032cad2603e559cc3ffa41636c8d8b5653220b7e6838f48d034",
+      "actual_sha256": "3b55816b53fd0032cad2603e559cc3ffa41636c8d8b5653220b7e6838f48d034",
+      "status": "PASS"
+    }
+  ],
+  "N0": {
+    "status": "PASS",
+    "disk_free_initial_bytes": 27217731584,
+    "cleanup_bytes": 0
+  },
+  "N1": {
+    "status": "PASS",
+    "checks_passed": 15,
+    "checks_required": 15,
+    "lab_run_id": 202
+  },
+  "G0": {
+    "status": "PASS",
+    "checks_passed": 28,
+    "checks_required": 28,
+    "lab_run_id": 204,
+    "control_measurements": {
+      "M06": {
+        "rows": 128,
+        "step_sequence_ok": true,
+        "accepted_rows": true,
+        "six_components": true,
+        "metric_fields": true,
+        "finite": true,
+        "max_Q": 0.0,
+        "max_A_fixed": 0.0,
+        "max_probe_abs": 0.0,
+        "threshold": 1e-10,
+        "numeric_ok": true,
+        "restored_at": 64,
+        "control_only": true,
+        "reference_dtype": "float64",
+        "identity_and_jsonl_integrity": true
+      },
+      "M07": {
+        "rows": 128,
+        "step_sequence_ok": true,
+        "accepted_rows": true,
+        "six_components": true,
+        "metric_fields": true,
+        "finite": true,
+        "max_Q": 2.808238397995293e-06,
+        "max_A_fixed": 9.224699420841925e-10,
+        "max_probe_abs": 8.429448684259353e-09,
+        "threshold": 0.0001,
+        "numeric_ok": true,
+        "restored_at": 64,
+        "control_only": true,
+        "reference_dtype": "float64",
+        "identity_and_jsonl_integrity": true
+      },
+      "M08": {
+        "rows": 128,
+        "step_sequence_ok": true,
+        "accepted_rows": true,
+        "six_components": true,
+        "metric_fields": true,
+        "finite": true,
+        "max_Q": 1.0,
+        "max_A_fixed": 0.0035078173165410697,
+        "max_probe_abs": 0.0017929709732387624,
+        "threshold": 1e-10,
+        "numeric_ok": false,
+        "restored_at": null,
+        "control_only": true,
+        "reference_dtype": "float64",
+        "identity_and_jsonl_integrity": true
+      },
+      "M09": {
+        "rows": 128,
+        "step_sequence_ok": true,
+        "accepted_rows": true,
+        "six_components": true,
+        "metric_fields": true,
+        "finite": true,
+        "max_Q": 1.0,
+        "max_A_fixed": 0.0035078173165410697,
+        "max_probe_abs": 0.0017929709732387624,
+        "threshold": 1e-10,
+        "numeric_ok": false,
+        "restored_at": null,
+        "control_only": true,
+        "reference_dtype": "float64",
+        "identity_and_jsonl_integrity": true
+      },
+      "M10": {
+        "rows": 128,
+        "step_sequence_ok": true,
+        "accepted_rows": true,
+        "six_components": true,
+        "metric_fields": true,
+        "finite": false,
+        "max_Q": null,
+        "max_A_fixed": null,
+        "max_probe_abs": null,
+        "threshold": 1e-10,
+        "numeric_ok": false,
+        "restored_at": null,
+        "control_only": true,
+        "reference_dtype": "float64",
+        "identity_and_jsonl_integrity": true
+      },
+      "M01": {
+        "lab_run": 202,
+        "valid_lab_record": true
+      },
+      "M02": {
+        "lab_run": 202,
+        "valid_lab_record": true
+      },
+      "M03": {
+        "lab_run": 202,
+        "valid_lab_record": true
+      },
+      "M04": {
+        "lab_run": 202,
+        "valid_lab_record": true
+      },
+      "M05": {
+        "lab_run": 202,
+        "valid_lab_record": true
+      },
+      "M11": {
+        "restored": true,
+        "rolling_pointer": true
+      },
+      "M12": {
+        "snapshot": "C:\\PI-DON\\evidence\\gpt6_plan_v4_night\\g0_after_head_integration\\reference_cache_snapshots.npz",
+        "hash_match": true,
+        "steps": 8192
+      },
+      "M13": {
+        "missing_rows_rejected": true,
+        "duplicate_step_rejected": true,
+        "bad_numeric_rejected": true,
+        "missing_probe_rejected": true,
+        "hash_tamper_rejected": true,
+        "empty_required_set_rejected": true,
+        "control_disguised_as_dco_rejected": true
+      }
+    },
+    "classification": "exact Yee/control and measurement certification; not DCO score"
+  },
+  "N3": {
+    "implementation": "PASS",
+    "candidate": "head_lstsq_once_adam499 (optimization variant; not paper-confirmed)",
+    "threshold_R_strict": 0.0001,
+    "registered_rows": [
+      {
+        "status": "FAIL",
+        "classification": "registered_G1_development",
+        "origin": "fixed_reference_state",
+        "phase": "before_H",
+        "source_index": 42,
+        "task_id": "22a299521aca5a4d7546813c0e0a1d743a6ef7b90662f8b2529a04217fc59f85",
+        "checkpoint": "evidence/gpt6_plan_v4_night/n3_fixed/step_0043_H.pt",
+        "checkpoint_sha256": "05af08af0c65d96bf03601cdf5d4a4be4f616e30dc53a9d1ecbb69a1fcf836cc",
+        "adam_updates": 499,
+        "head_commits": 1,
+        "linear_solve_calls": 3,
+        "closures": 0,
+        "loss_objective": null,
+        "R_recorded": 0.0001489403061029543,
+        "R_disk": 0.0001489410402038181,
+        "physical_sse": 1.0148909268536954e-06,
+        "physical_mse": 1.2125339627881666e-11,
+        "stop_reason": "max_updates",
+        "recovery_eligible": false,
+        "six_components": null,
+        "source_outside_probes": null
+      },
+      {
+        "status": "PASS",
+        "classification": "registered_G1_development",
+        "origin": "fixed_reference_state",
+        "phase": "before_H",
+        "source_index": 95,
+        "task_id": "694e59bdd88ae229f0eaab583b3ff0be53f913af1d51694e93e7efadb6b247a1",
+        "checkpoint": "evidence/gpt6_plan_v4_night/n3_fixed/step_0096_H.pt",
+        "checkpoint_sha256": "fa33811083d365068e7ab6106b1373df4befa2b44aea236eb8a58bdd0b9345b3",
+        "adam_updates": 396,
+        "head_commits": 1,
+        "linear_solve_calls": 3,
+        "closures": 0,
+        "loss_objective": 9.980468894354999e-05,
+        "R_recorded": 9.980468773866889e-05,
+        "R_disk": 9.980475123543686e-05,
+        "physical_sse": 4.1835789943434065e-07,
+        "physical_mse": 4.9983022632537715e-12,
+        "stop_reason": "tol_met",
+        "recovery_eligible": true,
+        "six_components": null,
+        "source_outside_probes": null
+      },
+      {
+        "status": "FAIL",
+        "classification": "registered_G1_development_sequential",
+        "origin": "fixed_reference_state",
+        "phase": "E_pending_after_passing_H96",
+        "source_index": null,
+        "task_id": "6a824c0ec7d072c55e300d14bad103ee2b21683d92d528d072dddb9b98ad6f6a",
+        "checkpoint": "evidence/gpt6_plan_v4_night/n3_fixed/step_0096_E_sequential.pt",
+        "checkpoint_sha256": "fba89abb5fe125ade5c7b3bf2d77accc3341f84b4a8932bd36e5b35de80f0e5c",
+        "adam_updates": 499,
+        "head_commits": 1,
+        "linear_solve_calls": 3,
+        "closures": 0,
+        "loss_objective": 0.00011543828441062942,
+        "R_recorded": 0.00011543828343061498,
+        "R_disk": 0.00011543830425963396,
+        "physical_sse": 0.06193874776363373,
+        "physical_mse": 6.930364625069509e-07,
+        "stop_reason": "max_updates",
+        "recovery_eligible": false,
+        "six_components": "NOT_RUN",
+        "source_outside_probes": "NOT_RUN"
+      }
+    ],
+    "oracle_rows_excluded": [
+      {
+        "kind": "N3_oracle_E",
+        "task_id": "83e0d01609cb6a3b3617b99ea32262beb72c6758a886705b91f0f734823d41aa",
+        "adam_updates": 499,
+        "head_commits": 1,
+        "linear_solve_calls": 3,
+        "training_s": 35.230139000021154,
+        "sequence_id": 5,
+        "recorded_at": "2026-09-13T16:57:15.707837+00:00",
+        "schema": "pidon-v4-night-ledger-v1"
+      },
+      {
+        "kind": "N3_oracle_E",
+        "task_id": "acaae82277ec089d9b171d092775a79f1ed5a8ead313fbdffc8731b3270d421f",
+        "adam_updates": 266,
+        "head_commits": 1,
+        "linear_solve_calls": 3,
+        "training_s": 18.750870699994266,
+        "sequence_id": 7,
+        "recorded_at": "2026-09-13T16:58:03.264341+00:00",
+        "schema": "pidon-v4-night-ledger-v1"
+      }
+    ],
+    "G1": "FAIL",
+    "stop_reason": "H43_R_above_threshold",
+    "workflow_deviations": [
+      "#205 JSON report serialization failed after H43 checkpoint; H43 was remeasured from disk without a new update.",
+      "#206 ran oracle-E diagnostics with parameter updates; they are preserved in the ledger and excluded from G1. The E96 oracle is explicitly a flow defect because H96 had passed."
+    ]
+  },
+  "N4": {
+    "status": "NOT_RUN",
+    "reason": "G1_development_failed; no validated accepted trajectory may enter 64/128/1024/8192",
+    "G2": "NOT_RUN",
+    "G3": "NOT_RUN"
+  },
+  "N5": {
+    "status": "PASS",
+    "lab_run_id": 212,
+    "formal_dco_updates": 0,
+    "analytic_n7_fd": [
+      {
+        "epsilon": 1e-05,
+        "autodiff": -1.3658181425364295,
+        "central_difference": -1.3658181435699521,
+        "abs_difference": 1.0335226008351128e-09,
+        "pass": true
+      },
+      {
+        "epsilon": 5e-06,
+        "autodiff": -1.3658181425364295,
+        "central_difference": -1.3658181428011227,
+        "abs_difference": 2.646931562821919e-10,
+        "pass": true
+      }
+    ],
+    "old_sample_gradient_status": [
+      {
+        "path": "data_16.npz",
+        "status": "PASS",
+        "loss": 0.10589373111724854,
+        "zero_gradient_parameter_ratio": 0.0
+      },
+      {
+        "path": "data_16_pw.npz",
+        "status": "PASS",
+        "loss": 0.03686811029911041,
+        "zero_gradient_parameter_ratio": 0.0
+      },
+      {
+        "path": "data_32.npz",
+        "status": "PASS",
+        "loss": 0.22274625301361084,
+        "zero_gradient_parameter_ratio": 0.0
+      },
+      {
+        "path": "data_32_pw.npz",
+        "status": "PASS",
+        "loss": 0.06549888849258423,
+        "zero_gradient_parameter_ratio": 0.0
+      }
+    ],
+    "label_provenance": "INCOMPLETE",
+    "frozen_feature": [
+      {
+        "asset": "evidence/gpt6_plan_v3/h_layout_candidate/H_step_0043.pt",
+        "role": "H",
+        "stored_R": 0.0011944096007844396,
+        "forward_R": 0.001194409333838671,
+        "frozen_feature_lstsq_R": 0.0011850958629163347,
+        "rank": [
+          33,
+          33,
+          33
+        ],
+        "parameter_updates": 0
+      },
+      {
+        "asset": "evidence/gpt6_plan_v3/h_layout_candidate/E_oracle_step_0043.pt",
+        "role": "E",
+        "stored_R": 0.10847574580164006,
+        "forward_R": 0.1084756984526231,
+        "frozen_feature_lstsq_R": 0.06140458283129595,
+        "rank": [
+          33,
+          33,
+          33
+        ],
+        "parameter_updates": 0
+      },
+      {
+        "asset": "evidence/gpt6_plan_v3/h_layout_candidate/H_step_0096.pt",
+        "role": "H",
+        "stored_R": 0.0007415181704376282,
+        "forward_R": 0.0007415179253339628,
+        "frozen_feature_lstsq_R": 0.0007366008041839087,
+        "rank": [
+          33,
+          33,
+          33
+        ],
+        "parameter_updates": 0
+      },
+      {
+        "asset": "evidence/gpt6_plan_v3/h_layout_candidate/E_oracle_step_0096.pt",
+        "role": "E",
+        "stored_R": 0.00014467062572757962,
+        "forward_R": 0.0001446706812809008,
+        "frozen_feature_lstsq_R": 0.00010810862404531484,
+        "rank": [
+          33,
+          33,
+          33
+        ],
+        "parameter_updates": 0
+      }
+    ]
+  },
+  "resource": {
+    "ledger_rows": 9,
+    "registered_g1_adam_updates": 1394,
+    "registered_g1_head_commits": 3,
+    "registered_g1_linear_solve_calls": 9,
+    "oracle_excluded_adam_updates": 765,
+    "cleanup_performed": false
+  },
+  "gates": {
+    "G0": "PASS",
+    "G1": "FAIL",
+    "G2": "NOT_RUN",
+    "G3": "NOT_RUN",
+    "paper_reproduction": "NOT_REPRODUCED"
+  },
+  "night_goal": "COMPLETE"
+}

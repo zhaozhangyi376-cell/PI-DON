@@ -1,0 +1,18 @@
+{
+  "events": [
+    {
+      "updated_at_utc": "2026-09-14T06:36:02.710476+00:00",
+      "case": "pending_interrupt_resume",
+      "which": "E",
+      "time_layer": 0,
+      "phase": "E_pending",
+      "attempt_id": 2,
+      "adam_updates": 2,
+      "lbfgs_steps": 0,
+      "closures": 0,
+      "successful_commit": false,
+      "stop_reason": null,
+      "resumable": true
+    }
+  ]
+}

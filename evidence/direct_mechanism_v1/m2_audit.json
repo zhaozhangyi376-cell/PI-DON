@@ -1,0 +1,508 @@
+{
+  "schema": "direct-mechanism-m2-audit-v1",
+  "action_id": "A-20260914T065013-9957817a",
+  "lab_run_id": "287",
+  "arms": [
+    {
+      "arm": "A-R",
+      "status": "FAIL",
+      "residual_128_pass": false,
+      "field_gate_pass": false,
+      "accepted_steps": 33,
+      "target_steps": 128,
+      "elapsed_s": 1142.8833609999856,
+      "budget": {
+        "adam": 10228,
+        "closures": 1200,
+        "lbfgs_steps": 574
+      },
+      "stop_reason": "FIT_FAIL",
+      "recovery_eligible": false,
+      "final_H_R": 9.967961762888484e-05,
+      "final_E_R": 9.965224787875114e-05,
+      "global_weighted_relative_l2": 0.007411447523620537,
+      "fixed_amplitude_error": 1.0164143593984686e-05,
+      "effective_component_nmae": {
+        "Ex": 2.84479551838125e-05,
+        "Ey": 2.8549821875955317e-05,
+        "Ez": 3.7268494923470685e-05,
+        "Hx": 6.496533195140788e-05,
+        "Hy": 5.7915898833488626e-05
+      },
+      "max_effective_component_nmae": 6.496533195140788e-05,
+      "weak_component_absolute": {
+        "Hz": {
+          "absolute_mae": 3.4008362363080962e-06,
+          "weak_absolute_pass": true,
+          "reference_max": 8.897598941488073e-19
+        }
+      },
+      "probe_waveform": [
+        {
+          "index": 0,
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "ref_peak": 0.0005068870377726859,
+          "relative_l2": 0.030608456924094925,
+          "valid": true,
+          "pass_5pct": true
+        },
+        {
+          "index": 1,
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "ref_peak": 2.423988644295605e-05,
+          "relative_l2": 0.4227322475142845,
+          "valid": true,
+          "pass_5pct": false
+        },
+        {
+          "index": 2,
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "ref_peak": 9.808790855458921e-05,
+          "relative_l2": 0.12101688634369778,
+          "valid": true,
+          "pass_5pct": false
+        }
+      ],
+      "valid_probe_count": 3,
+      "source_probe_Ez": {
+        "dut": 0.4100534915924072,
+        "ref": 0.4100534851298476
+      },
+      "last_source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": 0.000507401098730043,
+          "ref_Ez": 0.0005068870377726859
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": 1.4197138625604566e-05,
+          "ref_Ez": 2.423988644295605e-05
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": 0.00010908873082371412,
+          "ref_Ez": 9.808790855458921e-05
+        }
+      ],
+      "run_dir": "evidence/direct_mechanism_v1/runs/A_R"
+    },
+    {
+      "arm": "A-P",
+      "status": "PASS",
+      "residual_128_pass": true,
+      "field_gate_pass": false,
+      "accepted_steps": 128,
+      "target_steps": 128,
+      "elapsed_s": 4409.936257099966,
+      "budget": {
+        "adam": 56680,
+        "closures": 0,
+        "lbfgs_steps": 0
+      },
+      "stop_reason": null,
+      "recovery_eligible": false,
+      "final_H_R": 8.691448396190442e-05,
+      "final_E_R": 9.982332368004672e-05,
+      "global_weighted_relative_l2": 0.1032817683349191,
+      "fixed_amplitude_error": 3.49276269815626e-05,
+      "effective_component_nmae": {
+        "Ex": 0.051269250161268265,
+        "Ey": 0.05049924840776101,
+        "Ez": 0.015140640733276652,
+        "Hx": 0.012445344019167014,
+        "Hy": 0.012470619994093681
+      },
+      "max_effective_component_nmae": 0.051269250161268265,
+      "weak_component_absolute": {
+        "Hz": {
+          "absolute_mae": 1.7485579109328193e-05,
+          "weak_absolute_pass": false,
+          "reference_max": 5.730724671595357e-17
+        }
+      },
+      "probe_waveform": [
+        {
+          "index": 0,
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "ref_peak": 0.0017929709865711625,
+          "relative_l2": 0.13181396607443344,
+          "valid": true,
+          "pass_5pct": false
+        },
+        {
+          "index": 1,
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "ref_peak": 0.0012506212224252522,
+          "relative_l2": 0.08909924431839182,
+          "valid": true,
+          "pass_5pct": false
+        },
+        {
+          "index": 2,
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "ref_peak": 0.0014138936530798665,
+          "relative_l2": 0.0415257887826249,
+          "valid": true,
+          "pass_5pct": true
+        }
+      ],
+      "valid_probe_count": 3,
+      "source_probe_Ez": {
+        "dut": 2.0417117368923817e-29,
+        "ref": 2.041711680802609e-29
+      },
+      "last_source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": 8.759052434470566e-05,
+          "ref_Ez": 2.170010452573489e-05
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": 0.00026621266442816705,
+          "ref_Ez": 0.00021158561139600351
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": 5.905807483941147e-06,
+          "ref_Ez": 2.825936257977432e-05
+        }
+      ],
+      "run_dir": "evidence/direct_mechanism_v1/runs/A_P"
+    },
+    {
+      "arm": "B-R",
+      "status": "PASS",
+      "residual_128_pass": true,
+      "field_gate_pass": false,
+      "accepted_steps": 128,
+      "target_steps": 128,
+      "elapsed_s": 2935.3384777000174,
+      "budget": {
+        "adam": 38127,
+        "closures": 0,
+        "lbfgs_steps": 0
+      },
+      "stop_reason": null,
+      "recovery_eligible": false,
+      "final_H_R": 9.992266290590722e-05,
+      "final_E_R": 9.968860361505215e-05,
+      "global_weighted_relative_l2": 0.09909360457215889,
+      "fixed_amplitude_error": 3.3511281928590375e-05,
+      "effective_component_nmae": {
+        "Ex": 0.050785114883489905,
+        "Ey": 0.04877985022181399,
+        "Ez": 0.01414804781632091,
+        "Hx": 0.014816935008253769,
+        "Hy": 0.015332687831611859
+      },
+      "max_effective_component_nmae": 0.050785114883489905,
+      "weak_component_absolute": {
+        "Hz": {
+          "absolute_mae": 2.2295913113119122e-05,
+          "weak_absolute_pass": false,
+          "reference_max": 5.730724671595357e-17
+        }
+      },
+      "probe_waveform": [
+        {
+          "index": 0,
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "ref_peak": 0.0017929709865711625,
+          "relative_l2": 0.11881909099078715,
+          "valid": true,
+          "pass_5pct": false
+        },
+        {
+          "index": 1,
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "ref_peak": 0.0012506212224252522,
+          "relative_l2": 0.039014490169839634,
+          "valid": true,
+          "pass_5pct": true
+        },
+        {
+          "index": 2,
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "ref_peak": 0.0014138936530798665,
+          "relative_l2": 0.058761498104880905,
+          "valid": true,
+          "pass_5pct": false
+        }
+      ],
+      "valid_probe_count": 3,
+      "source_probe_Ez": {
+        "dut": 2.0417117368923817e-29,
+        "ref": 2.041711680802609e-29
+      },
+      "last_source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": -5.4929787438595715e-05,
+          "ref_Ez": 2.170010452573489e-05
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": 0.00021526316413655877,
+          "ref_Ez": 0.00021158561139600351
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": 3.2996504160109745e-05,
+          "ref_Ez": 2.825936257977432e-05
+        }
+      ],
+      "run_dir": "evidence/direct_mechanism_v1/runs/B_R"
+    },
+    {
+      "arm": "B-P",
+      "status": "PASS",
+      "residual_128_pass": true,
+      "field_gate_pass": false,
+      "accepted_steps": 128,
+      "target_steps": 128,
+      "elapsed_s": 3502.87363690004,
+      "budget": {
+        "adam": 44630,
+        "closures": 0,
+        "lbfgs_steps": 0
+      },
+      "stop_reason": null,
+      "recovery_eligible": false,
+      "final_H_R": 9.841101172563177e-05,
+      "final_E_R": 9.943979027191016e-05,
+      "global_weighted_relative_l2": 0.09848817137878926,
+      "fixed_amplitude_error": 3.330653771205355e-05,
+      "effective_component_nmae": {
+        "Ex": 0.04797091348090079,
+        "Ey": 0.049254241513757416,
+        "Ez": 0.014442948385320153,
+        "Hx": 0.014572043617293152,
+        "Hy": 0.014145625867713424
+      },
+      "max_effective_component_nmae": 0.049254241513757416,
+      "weak_component_absolute": {
+        "Hz": {
+          "absolute_mae": 1.983799092079414e-05,
+          "weak_absolute_pass": false,
+          "reference_max": 5.730724671595357e-17
+        }
+      },
+      "probe_waveform": [
+        {
+          "index": 0,
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "ref_peak": 0.0017929709865711625,
+          "relative_l2": 0.05251343466302477,
+          "valid": true,
+          "pass_5pct": false
+        },
+        {
+          "index": 1,
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "ref_peak": 0.0012506212224252522,
+          "relative_l2": 0.03422325284320164,
+          "valid": true,
+          "pass_5pct": true
+        },
+        {
+          "index": 2,
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "ref_peak": 0.0014138936530798665,
+          "relative_l2": 0.06415318986054504,
+          "valid": true,
+          "pass_5pct": false
+        }
+      ],
+      "valid_probe_count": 3,
+      "source_probe_Ez": {
+        "dut": 2.0417117368923817e-29,
+        "ref": 2.041711680802609e-29
+      },
+      "last_source_outside_probes": [
+        {
+          "cells": [
+            12.0,
+            12.0,
+            13.0
+          ],
+          "xyz_m": [
+            0.01935483870967742,
+            0.01935483870967742,
+            0.020967741935483872
+          ],
+          "dut_Ez": 2.990273605973905e-05,
+          "ref_Ez": 2.170010452573489e-05
+        },
+        {
+          "cells": [
+            8.0,
+            10.0,
+            12.0
+          ],
+          "xyz_m": [
+            0.012903225806451613,
+            0.016129032258064516,
+            0.01935483870967742
+          ],
+          "dut_Ez": 0.00016938737826421857,
+          "ref_Ez": 0.00021158561139600351
+        },
+        {
+          "cells": [
+            21.0,
+            19.0,
+            18.0
+          ],
+          "xyz_m": [
+            0.03387096774193549,
+            0.03064516129032258,
+            0.02903225806451613
+          ],
+          "dut_Ez": 9.254250835510874e-05,
+          "ref_Ez": 2.825936257977432e-05
+        }
+      ],
+      "run_dir": "evidence/direct_mechanism_v1/runs/B_P"
+    }
+  ],
+  "residual_128_pass_arms": [
+    "A-P",
+    "B-R",
+    "B-P"
+  ],
+  "field_gate_pass_arms": [],
+  "g128_qualified": false,
+  "long_run_unlocked": false,
+  "recommendation": "do_not_start_1024_or_8192"
+}

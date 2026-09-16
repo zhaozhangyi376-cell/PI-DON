@@ -1,0 +1,41 @@
+{
+  "schema": "pidon-mechanism-path-check-v1",
+  "source_hashes": {
+    "pidon_solve.py": "c79b0d13006f76957a0156b8dcfc6dada48d250e999f61d075c58ccd65254685",
+    "pidon_contract.py": "6d4d19222f956ba69a93db9d296305f96a54963050c2020a55859bdfd3d1d03c",
+    "pidon_recording.py": "499b30a895e686b75789a6333ae5ee6d3cdaff9f668cb07b1e339d790eca2a21",
+    "fdtd.py": "9837dbe51bdbc89ab2a12c147debfb10b5db1d07ebc726d18ee1962ecda1e7a8",
+    "dco.py": "53eb1c7d7ea0ed33f4e6c279554cb1adaf4a86134b8dc60fd67f6ce39525941d"
+  },
+  "protocol_sha256": "fbb875d33b57c2a9df817e64eed79673f6a4fb8b6e98d21e1523bc650422a0f4",
+  "linear": {
+    "curl_E_linear_max_abs_error": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "curl_H_linear_max_abs_error": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "curl_E_constant_max_abs": [
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  "plane_wave": {
+    "k_rad_per_m": 300.0,
+    "yee_symbol_rad_per_m": 298.8762649471984,
+    "analytic_symbol_rad_per_m": 300.0,
+    "max_abs_against_discrete_symbol": 1.0231815394945443e-12,
+    "max_abs_against_analytic_derivative": 1.121548757437779,
+    "sign_at_first_nonzero": -1.0
+  },
+  "interpretation": {
+    "analytic_and_yee_are_distinct": true,
+    "exact_yee_is_interface_control_not_dco_score": true,
+    "all_reported_values_are_raw_operator_checks": true
+  }
+}

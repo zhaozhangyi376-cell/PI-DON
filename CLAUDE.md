@@ -1,6 +1,7 @@
-# CLAUDE.md
+# 跨 agent 入口
 
-本仓库的全部约定、红线、工作纪律和当前进展，**统一写在 `AGENTS.md` 里**
-（Codex / Claude Code / 其他 agent 共用一份，避免两份文档各说各话）。
+依次读 [AGENTS.md](AGENTS.md) → [PLAN.md](PLAN.md) → [STATUS.md](STATUS.md)。
 
-**请先读 `AGENTS.md`，再读 `STATUS.md`。**
+所有agent共用目标、状态和下一步；本文件不复制科学结论或另设计划。
+
+开始执行前：`py -3.11 run.py project_harness status`。

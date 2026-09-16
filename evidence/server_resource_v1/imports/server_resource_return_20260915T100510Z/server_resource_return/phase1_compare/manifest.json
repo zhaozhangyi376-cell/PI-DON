@@ -1,0 +1,23 @@
+{
+  "action_id": "A-20260915T094044-78db962e",
+  "lab_run_id": "296",
+  "host": "WS-04",
+  "source_hashes": {
+    "scripts/experiments/server_local_review.py": "fcfe323ea60504f855f52e021dce63a2de8c63ff241092bde00b03f9b79554a4",
+    "scripts/experiments/server_phase1_compare.py": "450ea1101425e4c4bb81b5ecf0495833b403098806d953f79ebefb56b648a460",
+    "scripts/experiments/server_compute_probe.py": "a553515c185a9b792378a00517e5c23471644ac144f22039b5c5d3858744a03d",
+    "scripts/experiments/phase1_full_run.py": "e54a1c1576df5af849ea17997846c76e0708d035351565e23e016a79e7e8b800",
+    "src/pidon/dco.py": "1bc6c9de416064e3d4db72418d76dbd0ae54232b965496863c1f71e0065f0149",
+    "src/pidon/paper_protocol.py": "baf9a989a414a75278d1d7fbdb06c43ec0a30d61632609802e478e89adc3ed48",
+    "src/pidon/pidon_contract.py": "fbf93008fd698a03650906a0d931016090b1dd33f49e74fcf307dcf8266fe11b",
+    "src/pidon/pidon_solve.py": "5d6eb695526117ef3b6e214b168c373c7a1ea5e01ebd99db1801db7402ce56fd",
+    "src/pidon/pidon_recording.py": "6a22cf4e2dcafba72d3a483814985ab563f73c3774f3f6f7dacf4a6a1a5dcb20",
+    "tools/server_resource_queue.py": "232f6811c89d7942b622ed9fe95de22c23938c884a6aed1d16444d8eb9399477",
+    "project_paths.py": "21af3868cc12464923dde267f445e6a135150eb8476308f253704a3506de6859"
+  },
+  "protocol": {
+    "path": "H:\\PI-DON\\docs\\plans\\2026-09-15-server-resource-protocol.md",
+    "bytes": 4306,
+    "sha256": "02af390f3c649e9065aa79aa91fd9d0b324211099437f568dae462975d631d15"
+  }
+}

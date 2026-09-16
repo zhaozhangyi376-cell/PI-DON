@@ -1,0 +1,29 @@
+{
+  "classification": "refined_storage_forecast_not_training",
+  "source_checkpoint": "evidence\\gpt6_plan_v3\\h_layout_candidate\\H_step_0043.pt",
+  "source_sha256": "3019401202764cb6e2a98df23f146c3bab8188c7c302aecde06020bf00a342f5",
+  "measured_adam_H_tensor_bytes": 73974336,
+  "measured_adam_E_tensor_bytes": 0,
+  "full_two_optimizer_checkpoint_estimated_bytes": 223468375,
+  "conservative_full_checkpoint_bytes": 279335469,
+  "checkpoint_counts_budget": {
+    "main_every_256_to_8192": 32,
+    "main_64_and_128": 2,
+    "repeat_seed_128": 1,
+    "fixed_state_final": 8,
+    "two_slots_two_seeds": 4,
+    "failure_raw_safe_allowance": 8
+  },
+  "estimated_new_artifact_bytes": 16705628075,
+  "estimated_new_artifact_gib": 15.55832854937762,
+  "disk_free_bytes": 27191754752,
+  "disk_free_gib": 25.324295043945312,
+  "normal_artifact_budget_bytes": 17179869184,
+  "normal_artifact_budget_gib": 16.0,
+  "os_free_floor_bytes": 5368709120,
+  "emergency_reserve_bytes": 1073741824,
+  "cleanup_needed_now": false,
+  "deleted_files": [],
+  "formal_dco_updates": 0,
+  "supersedes_forecast_only": "storage_audit.json; initial forecast did not add the second populated Adam state"
+}

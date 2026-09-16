@@ -1,0 +1,2074 @@
+{
+  "schema": "pidon-layout-validation-v1",
+  "files": [
+    {
+      "old": "a1_contract_report.py",
+      "new": "scripts/analysis/a1_contract_report.py",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "a2_zero_curl_control.py",
+      "new": "scripts/experiments/a2_zero_curl_control.py",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "a3_gate_report.py",
+      "new": "scripts/analysis/a3_gate_report.py",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "a3_readback.py",
+      "new": "scripts/analysis/a3_readback.py",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "adapt_dco_cavity.py",
+      "new": "scripts/experiments/adapt_dco_cavity.py",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "audit_h_layout.py",
+      "new": "scripts/analysis/audit_h_layout.py",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "audit_mechanism_2h.py",
+      "new": "scripts/analysis/audit_mechanism_2h.py",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "audit_mechanism_decision_review.py",
+      "new": "scripts/analysis/audit_mechanism_decision_review.py",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "audit_mechanism_hour.py",
+      "new": "scripts/analysis/audit_mechanism_hour.py",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "audit_night_storage_revision.py",
+      "new": "scripts/analysis/audit_night_storage_revision.py",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "audit_night_v4.py",
+      "new": "scripts/analysis/audit_night_v4.py",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "audit_reproduction.py",
+      "new": "scripts/analysis/audit_reproduction.py",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "audit_v2_stop.py",
+      "new": "scripts/analysis/audit_v2_stop.py",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "check_files.py",
+      "new": "scripts/analysis/check_files.py",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "coverage_ab.py",
+      "new": "scripts/experiments/coverage_ab.py",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "cst_probe.npz",
+      "new": "archive/legacy_results/arrays/cst_probe.npz",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "data_1500.npz",
+      "new": "assets/datasets/data_1500.npz",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "data_16.npz",
+      "new": "assets/datasets/data_16.npz",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "data_16_pw.npz",
+      "new": "assets/datasets/data_16_pw.npz",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "data_32.npz",
+      "new": "assets/datasets/data_32.npz",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "data_32_pw.npz",
+      "new": "assets/datasets/data_32_pw.npz",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "dco.py",
+      "new": "src/pidon/dco.py",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "dco_cavity_adapt.pt",
+      "new": "assets/models/dco_cavity_adapt.pt",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "dco_cavity_adapt_hist.json",
+      "new": "archive/legacy_results/training_curves/dco_cavity_adapt_hist.json",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "dco_L3.pt",
+      "new": "assets/models/dco_L3.pt",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "dco_L3_hist.json",
+      "new": "archive/legacy_results/training_curves/dco_L3_hist.json",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "dco_L3b.pt",
+      "new": "assets/models/dco_L3b.pt",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "dco_L3b_hist.json",
+      "new": "archive/legacy_results/training_curves/dco_L3b_hist.json",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "dco_L3c.pt",
+      "new": "assets/models/dco_L3c.pt",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "dco_L3c_hist.json",
+      "new": "archive/legacy_results/training_curves/dco_L3c_hist.json",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "dco_L3d.pt",
+      "new": "assets/models/dco_L3d.pt",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "dco_L3d_hist.json",
+      "new": "archive/legacy_results/training_curves/dco_L3d_hist.json",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "dco_L4.pt",
+      "new": "assets/models/dco_L4.pt",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "dco_L4_hist.json",
+      "new": "archive/legacy_results/training_curves/dco_L4_hist.json",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "dco_L4b.pt",
+      "new": "assets/models/dco_L4b.pt",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "dco_L4b_hist.json",
+      "new": "archive/legacy_results/training_curves/dco_L4b_hist.json",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "dco_lr1e3_300.pt",
+      "new": "assets/models/dco_lr1e3_300.pt",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "dco_lr1e3_b8_300.pt",
+      "new": "assets/models/dco_lr1e3_b8_300.pt",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "dco_paper1000.pt",
+      "new": "assets/models/dco_paper1000.pt",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "dco_paper32.pt",
+      "new": "assets/models/dco_paper32.pt",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "dco_paper32b.pt",
+      "new": "assets/models/dco_paper32b.pt",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "dco_paper32b_hist.json",
+      "new": "archive/legacy_results/training_curves/dco_paper32b_hist.json",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "dco_pw300.pt",
+      "new": "assets/models/dco_pw300.pt",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "diag_coords.py",
+      "new": "scripts/exploratory/diag_coords.py",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "diag_exp3.py",
+      "new": "scripts/exploratory/diag_exp3.py",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "diagnose_grid.py",
+      "new": "scripts/experiments/diagnose_grid.py",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "exact_stencil.py",
+      "new": "src/pidon/exact_stencil.py",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "exp3_waveform.npz",
+      "new": "archive/legacy_results/arrays/exp3_waveform.npz",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "export_storage_revision_handoff.py",
+      "new": "scripts/figures/export_storage_revision_handoff.py",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "fdtd.py",
+      "new": "src/pidon/fdtd.py",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "fdtd_cavity.npz",
+      "new": "archive/legacy_results/arrays/fdtd_cavity.npz",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "g0_verifier.py",
+      "new": "scripts/experiments/g0_verifier.py",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "gap_analysis.py",
+      "new": "scripts/experiments/gap_analysis.py",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "gen_data.py",
+      "new": "src/pidon/gen_data.py",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "h_layout_candidate.py",
+      "new": "scripts/experiments/h_layout_candidate.py",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "head_lstsq.py",
+      "new": "src/pidon/head_lstsq.py",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "make_a3_evidence_figure.py",
+      "new": "scripts/figures/make_a3_evidence_figure.py",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "make_figs.py",
+      "new": "scripts/figures/make_figs.py",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "make_night_report.py",
+      "new": "scripts/figures/make_night_report.py",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "make_night_review_figure.py",
+      "new": "scripts/figures/make_night_review_figure.py",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "make_stop_review_report.py",
+      "new": "scripts/figures/make_stop_review_report.py",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "manifold_check.npz",
+      "new": "archive/legacy_results/arrays/manifold_check.npz",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "manifold_check.py",
+      "new": "scripts/exploratory/manifold_check.py",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "mechanism_decision_eval.py",
+      "new": "scripts/experiments/mechanism_decision_eval.py",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "mechanism_decision_init.py",
+      "new": "scripts/experiments/mechanism_decision_init.py",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "mechanism_decision_runner.py",
+      "new": "scripts/experiments/mechanism_decision_runner.py",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "mechanism_final_audit.py",
+      "new": "scripts/experiments/mechanism_final_audit.py",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "mechanism_first_failure.py",
+      "new": "scripts/experiments/mechanism_first_failure.py",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "mechanism_hour_runner.py",
+      "new": "scripts/experiments/mechanism_hour_runner.py",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "mechanism_path_check.py",
+      "new": "scripts/experiments/mechanism_path_check.py",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "mini2d.npz",
+      "new": "archive/legacy_results/arrays/mini2d.npz",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "mini2d.py",
+      "new": "scripts/exploratory/mini2d.py",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "n1_evidence.py",
+      "new": "scripts/analysis/n1_evidence.py",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "n3_h96_sequential_e.py",
+      "new": "scripts/experiments/n3_h96_sequential_e.py",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "n3_recover_continue.py",
+      "new": "scripts/experiments/n3_recover_continue.py",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "night_budget.py",
+      "new": "scripts/experiments/night_budget.py",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "night_diagnostics.py",
+      "new": "scripts/experiments/night_diagnostics.py",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "night_evidence.py",
+      "new": "scripts/analysis/night_evidence.py",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "night_fixed_state.py",
+      "new": "scripts/experiments/night_fixed_state.py",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "night_init.py",
+      "new": "scripts/experiments/night_init.py",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "night_report.py",
+      "new": "scripts/analysis/night_report.py",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "night_review_evidence.py",
+      "new": "scripts/analysis/night_review_evidence.py",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "night_runner.py",
+      "new": "scripts/experiments/night_runner.py",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "p3_report.py",
+      "new": "scripts/analysis/p3_report.py",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "p4_report.py",
+      "new": "scripts/analysis/p4_report.py",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "p5_ab_audit.py",
+      "new": "scripts/experiments/p5_ab_audit.py",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "p5_audit.py",
+      "new": "scripts/experiments/p5_audit.py",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "PAPER_FIRST_REVIEW.md",
+      "new": "docs/paper/PAPER_FIRST_REVIEW.md",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "PAPER_NOTES.md",
+      "new": "docs/paper/PAPER_NOTES.md",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "paper_protocol.py",
+      "new": "src/pidon/paper_protocol.py",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "paper_recheck.py",
+      "new": "scripts/experiments/paper_recheck.py",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "paper_text.txt",
+      "new": "docs/paper/paper_text.txt",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "PAPER_VS_CURRENT_TABLES.md",
+      "new": "docs/history/PAPER_VS_CURRENT_TABLES.md",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "phase1_ab_pilot.py",
+      "new": "scripts/experiments/phase1_ab_pilot.py",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "phase1_pilot.py",
+      "new": "scripts/experiments/phase1_pilot.py",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "pidon_A2.pt",
+      "new": "assets/models/pidon_A2.pt",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "pidon_A2_hist.json",
+      "new": "archive/legacy_results/training_curves/pidon_A2_hist.json",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "pidon_B_div.pt",
+      "new": "assets/models/pidon_B_div.pt",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "pidon_B_div_hist.json",
+      "new": "archive/legacy_results/training_curves/pidon_B_div_hist.json",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "pidon_C2.pt",
+      "new": "assets/models/pidon_C2.pt",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "pidon_C2_hist.json",
+      "new": "archive/legacy_results/training_curves/pidon_C2_hist.json",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "pidon_contract.py",
+      "new": "src/pidon/pidon_contract.py",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "pidon_D_perwave.pt",
+      "new": "assets/models/pidon_D_perwave.pt",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "pidon_D_perwave_hist.json",
+      "new": "archive/legacy_results/training_curves/pidon_D_perwave_hist.json",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "pidon_E2.pt",
+      "new": "assets/models/pidon_E2.pt",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "pidon_E2_hist.json",
+      "new": "archive/legacy_results/training_curves/pidon_E2_hist.json",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "pidon_exact_control.py",
+      "new": "scripts/experiments/pidon_exact_control.py",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "pidon_R1_roll.pt",
+      "new": "assets/models/pidon_R1_roll.pt",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "pidon_R1_roll_hist.json",
+      "new": "archive/legacy_results/training_curves/pidon_R1_roll_hist.json",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "pidon_R2_all.pt",
+      "new": "assets/models/pidon_R2_all.pt",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "pidon_R2_all_hist.json",
+      "new": "archive/legacy_results/training_curves/pidon_R2_all_hist.json",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "pidon_recording.py",
+      "new": "src/pidon/pidon_recording.py",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "pidon_solve.py",
+      "new": "src/pidon/pidon_solve.py",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "pidon_solve_dco_lr1e3_300.json",
+      "new": "archive/legacy_results/metrics/pidon_solve_dco_lr1e3_300.json",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "pidon_solve_random.json",
+      "new": "archive/legacy_results/metrics/pidon_solve_random.json",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "r0_v2_audit.py",
+      "new": "scripts/experiments/r0_v2_audit.py",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "r1_r2_reports.py",
+      "new": "scripts/analysis/r1_r2_reports.py",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "r3_v2_recompute.py",
+      "new": "scripts/analysis/r3_v2_recompute.py",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "r4_fixed_state.py",
+      "new": "scripts/experiments/r4_fixed_state.py",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "r4_p4a.py",
+      "new": "scripts/experiments/r4_p4a.py",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "reference_cache.py",
+      "new": "src/pidon/reference_cache.py",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "refine_night_storage_estimate.py",
+      "new": "scripts/experiments/refine_night_storage_estimate.py",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "REPORT_20260911.md",
+      "new": "docs/history/REPORT_20260911.md",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "REPRODUCTION_LOGICAL_CHAIN_20260914.md",
+      "new": "docs/history/REPRODUCTION_LOGICAL_CHAIN_20260914.md",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "review_reproduction_acceptance.py",
+      "new": "scripts/analysis/review_reproduction_acceptance.py",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "rollout.py",
+      "new": "src/pidon/rollout.py",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "rollout_err.npz",
+      "new": "archive/legacy_results/arrays/rollout_err.npz",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "rollout_err_dco_L3d.npz",
+      "new": "archive/legacy_results/arrays/rollout_err_dco_L3d.npz",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "rollout_err_pidon_R1_roll.npz",
+      "new": "archive/legacy_results/arrays/rollout_err_pidon_R1_roll.npz",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "rollout_err_pidon_R2_all.npz",
+      "new": "archive/legacy_results/arrays/rollout_err_pidon_R2_all.npz",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "run_day4.bat",
+      "new": "archive/legacy_commands/run_day4.bat",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "run_fdtd_cavity.py",
+      "new": "scripts/experiments/run_fdtd_cavity.py",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "run_meal.bat",
+      "new": "archive/legacy_commands/run_meal.bat",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "run_night.bat",
+      "new": "archive/legacy_commands/run_night.bat",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "run_night2.bat",
+      "new": "archive/legacy_commands/run_night2.bat",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "run_night3.bat",
+      "new": "archive/legacy_commands/run_night3.bat",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "run_paper_parity.bat",
+      "new": "archive/legacy_commands/run_paper_parity.bat",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "run_rho32.bat",
+      "new": "archive/legacy_commands/run_rho32.bat",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "run_stage2.bat",
+      "new": "archive/legacy_commands/run_stage2.bat",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "run_stage3.bat",
+      "new": "archive/legacy_commands/run_stage3.bat",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "run_stage4.bat",
+      "new": "archive/legacy_commands/run_stage4.bat",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "run_stage5.bat",
+      "new": "archive/legacy_commands/run_stage5.bat",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "run_stage5_big.bat",
+      "new": "archive/legacy_commands/run_stage5_big.bat",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "run_stage6.bat",
+      "new": "archive/legacy_commands/run_stage6.bat",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "SERVER_SETUP.md",
+      "new": "docs/guides/SERVER_SETUP.md",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "spacing_probe.py",
+      "new": "scripts/experiments/spacing_probe.py",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "spectral_dco.py",
+      "new": "scripts/experiments/spectral_dco.py",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "spectral_dco_L3.json",
+      "new": "archive/legacy_results/metrics/spectral_dco_L3.json",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "spectral_dco_L3b.json",
+      "new": "archive/legacy_results/metrics/spectral_dco_L3b.json",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "spectral_dco_L3c.json",
+      "new": "archive/legacy_results/metrics/spectral_dco_L3c.json",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "spectral_dco_L3d.json",
+      "new": "archive/legacy_results/metrics/spectral_dco_L3d.json",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "spectral_dco_L4.json",
+      "new": "archive/legacy_results/metrics/spectral_dco_L4.json",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "spectral_dco_L4b.json",
+      "new": "archive/legacy_results/metrics/spectral_dco_L4b.json",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "spectral_dco_paper32.json",
+      "new": "archive/legacy_results/metrics/spectral_dco_paper32.json",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "spectral_pidon_A2.json",
+      "new": "archive/legacy_results/metrics/spectral_pidon_A2.json",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "spectral_pidon_A_yee.json",
+      "new": "archive/legacy_results/metrics/spectral_pidon_A_yee.json",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "spectral_pidon_B_div.json",
+      "new": "archive/legacy_results/metrics/spectral_pidon_B_div.json",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "spectral_pidon_C2.json",
+      "new": "archive/legacy_results/metrics/spectral_pidon_C2.json",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "spectral_pidon_C_both.json",
+      "new": "archive/legacy_results/metrics/spectral_pidon_C_both.json",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "spectral_pidon_D_perwave.json",
+      "new": "archive/legacy_results/metrics/spectral_pidon_D_perwave.json",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "spectral_pidon_E2.json",
+      "new": "archive/legacy_results/metrics/spectral_pidon_E2.json",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "spectral_pidon_E_all.json",
+      "new": "archive/legacy_results/metrics/spectral_pidon_E_all.json",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "spectral_pidon_R1_roll.json",
+      "new": "archive/legacy_results/metrics/spectral_pidon_R1_roll.json",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "spectral_pidon_R2_all.json",
+      "new": "archive/legacy_results/metrics/spectral_pidon_R2_all.json",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "stage2_evidence.py",
+      "new": "scripts/analysis/stage2_evidence.py",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "stage2_fixed_state.py",
+      "new": "scripts/experiments/stage2_fixed_state.py",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "stage2_interface_probe.py",
+      "new": "scripts/experiments/stage2_interface_probe.py",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "stage2_shared_interference.py",
+      "new": "scripts/experiments/stage2_shared_interference.py",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "stop_review_evidence.py",
+      "new": "scripts/analysis/stop_review_evidence.py",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "structured.py",
+      "new": "scripts/exploratory/structured.py",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "structured3d.py",
+      "new": "scripts/exploratory/structured3d.py",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "structured_cavity.py",
+      "new": "scripts/exploratory/structured_cavity.py",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "structured_deep.py",
+      "new": "scripts/exploratory/structured_deep.py",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "structured_material.py",
+      "new": "scripts/exploratory/structured_material.py",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "structured_pec.py",
+      "new": "scripts/exploratory/structured_pec.py",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "structured_scale.py",
+      "new": "scripts/exploratory/structured_scale.py",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "sweep_baseline.pt",
+      "new": "assets/models/sweep_baseline.pt",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "sweep_batch32.pt",
+      "new": "assets/models/sweep_batch32.pt",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "sweep_batch8.pt",
+      "new": "assets/models/sweep_batch8.pt",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "sweep_lr1e3.pt",
+      "new": "assets/models/sweep_lr1e3.pt",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "sweep_lr3e3.pt",
+      "new": "assets/models/sweep_lr3e3.pt",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "sweep_lr3e4.pt",
+      "new": "assets/models/sweep_lr3e4.pt",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "sweep_mse.pt",
+      "new": "assets/models/sweep_mse.pt",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "sweep_normmax.pt",
+      "new": "assets/models/sweep_normmax.pt",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "sweep_perwave.pt",
+      "new": "assets/models/sweep_perwave.pt",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "sweep_report.py",
+      "new": "scripts/analysis/sweep_report.py",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "symplectic.py",
+      "new": "scripts/exploratory/symplectic.py",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "test_coverage_ab.py",
+      "new": "tests/test_coverage_ab.py",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "test_dco.py",
+      "new": "scripts/experiments/test_dco.py",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "test_head_lstsq.py",
+      "new": "tests/test_head_lstsq.py",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "test_mechanism_claims.py",
+      "new": "tests/test_mechanism_claims.py",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "test_mechanism_decision_eval.py",
+      "new": "tests/test_mechanism_decision_eval.py",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "test_mechanism_first_failure.py",
+      "new": "tests/test_mechanism_first_failure.py",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "test_mechanism_hour.py",
+      "new": "tests/test_mechanism_hour.py",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "test_night_budget.py",
+      "new": "tests/test_night_budget.py",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "test_night_evidence.py",
+      "new": "tests/test_night_evidence.py",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "test_paper_protocol.py",
+      "new": "tests/test_paper_protocol.py",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "test_phase1_pilot.py",
+      "new": "tests/test_phase1_pilot.py",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "test_pidon_contract.py",
+      "new": "tests/test_pidon_contract.py",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "test_pidon_contract_v3.py",
+      "new": "tests/test_pidon_contract_v3.py",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "test_pidon_contract_v4.py",
+      "new": "tests/test_pidon_contract_v4.py",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "test_r4_fixed_state.py",
+      "new": "tests/test_r4_fixed_state.py",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "test_r4_p4a.py",
+      "new": "tests/test_r4_p4a.py",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "test_results.npz",
+      "new": "archive/legacy_results/arrays/test_results.npz",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "test_results_dco_L3b.npz",
+      "new": "archive/legacy_results/arrays/test_results_dco_L3b.npz",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "test_results_dco_L3c.npz",
+      "new": "archive/legacy_results/arrays/test_results_dco_L3c.npz",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "test_results_dco_L3d.npz",
+      "new": "archive/legacy_results/arrays/test_results_dco_L3d.npz",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "test_results_dco_L4.npz",
+      "new": "archive/legacy_results/arrays/test_results_dco_L4.npz",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "test_results_dco_L4b.npz",
+      "new": "archive/legacy_results/arrays/test_results_dco_L4b.npz",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "test_results_dco_lr1e3_300.npz",
+      "new": "archive/legacy_results/arrays/test_results_dco_lr1e3_300.npz",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "test_results_dco_lr1e3_b8_300.npz",
+      "new": "archive/legacy_results/arrays/test_results_dco_lr1e3_b8_300.npz",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "test_results_dco_paper32.npz",
+      "new": "archive/legacy_results/arrays/test_results_dco_paper32.npz",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "test_results_pidon_A2.npz",
+      "new": "archive/legacy_results/arrays/test_results_pidon_A2.npz",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "test_results_pidon_A_yee.npz",
+      "new": "archive/legacy_results/arrays/test_results_pidon_A_yee.npz",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "test_results_pidon_B_div.npz",
+      "new": "archive/legacy_results/arrays/test_results_pidon_B_div.npz",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "test_results_pidon_C2.npz",
+      "new": "archive/legacy_results/arrays/test_results_pidon_C2.npz",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "test_results_pidon_C_both.npz",
+      "new": "archive/legacy_results/arrays/test_results_pidon_C_both.npz",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "test_results_pidon_D_perwave.npz",
+      "new": "archive/legacy_results/arrays/test_results_pidon_D_perwave.npz",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "test_results_pidon_E2.npz",
+      "new": "archive/legacy_results/arrays/test_results_pidon_E2.npz",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "test_results_pidon_E_all.npz",
+      "new": "archive/legacy_results/arrays/test_results_pidon_E_all.npz",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "test_results_pidon_R1_roll.npz",
+      "new": "archive/legacy_results/arrays/test_results_pidon_R1_roll.npz",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "test_results_pidon_R2_all.npz",
+      "new": "archive/legacy_results/arrays/test_results_pidon_R2_all.npz",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "test_stop_review_claims.py",
+      "new": "tests/test_stop_review_claims.py",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "test_trunk_repair.py",
+      "new": "tests/test_trunk_repair.py",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "train_dco.py",
+      "new": "scripts/experiments/train_dco.py",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "train_pidon.py",
+      "new": "scripts/experiments/train_pidon.py",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "trunk_evidence.py",
+      "new": "scripts/analysis/trunk_evidence.py",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "trunk_repair.py",
+      "new": "scripts/experiments/trunk_repair.py",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "verify_claims.py",
+      "new": "scripts/analysis/verify_claims.py",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "verify_night_review_delivery.py",
+      "new": "scripts/analysis/verify_night_review_delivery.py",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "WALKTHROUGH.md",
+      "new": "docs/guides/WALKTHROUGH.md",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "LAB_NOTEBOOK.md",
+      "new": "records/LAB_NOTEBOOK.md",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    },
+    {
+      "old": "lab_runs.jsonl",
+      "new": "records/lab_runs.jsonl",
+      "exists": true,
+      "hash_matches": true,
+      "original_copy_matches": true,
+      "old_name_resolves": true
+    }
+  ],
+  "moved_file_count": 233,
+  "all_file_checks_pass": true,
+  "python_ast_parsed": [
+    "src/pidon/dco.py",
+    "src/pidon/exact_stencil.py",
+    "src/pidon/fdtd.py",
+    "src/pidon/gen_data.py",
+    "src/pidon/head_lstsq.py",
+    "src/pidon/paper_protocol.py",
+    "src/pidon/pidon_contract.py",
+    "src/pidon/pidon_recording.py",
+    "src/pidon/pidon_solve.py",
+    "src/pidon/reference_cache.py",
+    "src/pidon/rollout.py",
+    "scripts/analysis/a1_contract_report.py",
+    "scripts/analysis/a3_gate_report.py",
+    "scripts/analysis/a3_readback.py",
+    "scripts/analysis/audit_h_layout.py",
+    "scripts/analysis/audit_mechanism_2h.py",
+    "scripts/analysis/audit_mechanism_decision_review.py",
+    "scripts/analysis/audit_mechanism_hour.py",
+    "scripts/analysis/audit_night_storage_revision.py",
+    "scripts/analysis/audit_night_v4.py",
+    "scripts/analysis/audit_reproduction.py",
+    "scripts/analysis/audit_v2_stop.py",
+    "scripts/analysis/check_files.py",
+    "scripts/analysis/n1_evidence.py",
+    "scripts/analysis/night_evidence.py",
+    "scripts/analysis/night_report.py",
+    "scripts/analysis/night_review_evidence.py",
+    "scripts/analysis/p3_report.py",
+    "scripts/analysis/p4_report.py",
+    "scripts/analysis/r1_r2_reports.py",
+    "scripts/analysis/r3_v2_recompute.py",
+    "scripts/analysis/review_reproduction_acceptance.py",
+    "scripts/analysis/stage2_evidence.py",
+    "scripts/analysis/stop_review_evidence.py",
+    "scripts/analysis/sweep_report.py",
+    "scripts/analysis/trunk_evidence.py",
+    "scripts/analysis/verify_claims.py",
+    "scripts/analysis/verify_night_review_delivery.py",
+    "scripts/experiments/a2_zero_curl_control.py",
+    "scripts/experiments/adapt_dco_cavity.py",
+    "scripts/experiments/coverage_ab.py",
+    "scripts/experiments/diagnose_grid.py",
+    "scripts/experiments/g0_verifier.py",
+    "scripts/experiments/gap_analysis.py",
+    "scripts/experiments/h_layout_candidate.py",
+    "scripts/experiments/mechanism_decision_eval.py",
+    "scripts/experiments/mechanism_decision_init.py",
+    "scripts/experiments/mechanism_decision_runner.py",
+    "scripts/experiments/mechanism_final_audit.py",
+    "scripts/experiments/mechanism_first_failure.py",
+    "scripts/experiments/mechanism_hour_runner.py",
+    "scripts/experiments/mechanism_path_check.py",
+    "scripts/experiments/n3_h96_sequential_e.py",
+    "scripts/experiments/n3_recover_continue.py",
+    "scripts/experiments/night_budget.py",
+    "scripts/experiments/night_diagnostics.py",
+    "scripts/experiments/night_fixed_state.py",
+    "scripts/experiments/night_init.py",
+    "scripts/experiments/night_runner.py",
+    "scripts/experiments/p5_ab_audit.py",
+    "scripts/experiments/p5_audit.py",
+    "scripts/experiments/paper_recheck.py",
+    "scripts/experiments/phase1_ab_pilot.py",
+    "scripts/experiments/phase1_pilot.py",
+    "scripts/experiments/pidon_exact_control.py",
+    "scripts/experiments/r0_v2_audit.py",
+    "scripts/experiments/r4_fixed_state.py",
+    "scripts/experiments/r4_p4a.py",
+    "scripts/experiments/refine_night_storage_estimate.py",
+    "scripts/experiments/run_fdtd_cavity.py",
+    "scripts/experiments/spacing_probe.py",
+    "scripts/experiments/spectral_dco.py",
+    "scripts/experiments/stage2_fixed_state.py",
+    "scripts/experiments/stage2_interface_probe.py",
+    "scripts/experiments/stage2_shared_interference.py",
+    "scripts/experiments/test_dco.py",
+    "scripts/experiments/train_dco.py",
+    "scripts/experiments/train_pidon.py",
+    "scripts/experiments/trunk_repair.py",
+    "scripts/exploratory/diag_coords.py",
+    "scripts/exploratory/diag_exp3.py",
+    "scripts/exploratory/manifold_check.py",
+    "scripts/exploratory/mini2d.py",
+    "scripts/exploratory/structured.py",
+    "scripts/exploratory/structured3d.py",
+    "scripts/exploratory/structured_cavity.py",
+    "scripts/exploratory/structured_deep.py",
+    "scripts/exploratory/structured_material.py",
+    "scripts/exploratory/structured_pec.py",
+    "scripts/exploratory/structured_scale.py",
+    "scripts/exploratory/symplectic.py",
+    "scripts/figures/export_storage_revision_handoff.py",
+    "scripts/figures/make_a3_evidence_figure.py",
+    "scripts/figures/make_figs.py",
+    "scripts/figures/make_night_report.py",
+    "scripts/figures/make_night_review_figure.py",
+    "scripts/figures/make_stop_review_report.py",
+    "tests/test_coverage_ab.py",
+    "tests/test_head_lstsq.py",
+    "tests/test_mechanism_claims.py",
+    "tests/test_mechanism_decision_eval.py",
+    "tests/test_mechanism_first_failure.py",
+    "tests/test_mechanism_hour.py",
+    "tests/test_night_budget.py",
+    "tests/test_night_evidence.py",
+    "tests/test_paper_protocol.py",
+    "tests/test_phase1_pilot.py",
+    "tests/test_pidon_contract.py",
+    "tests/test_pidon_contract_v3.py",
+    "tests/test_pidon_contract_v4.py",
+    "tests/test_project_harness.py",
+    "tests/test_r4_fixed_state.py",
+    "tests/test_r4_p4a.py",
+    "tests/test_run_entrypoint.py",
+    "tests/test_stop_review_claims.py",
+    "tests/test_trunk_repair.py",
+    "tools/audit_reorganization_delivery.py",
+    "tools/build_project_state.py",
+    "tools/finalize_layout.py",
+    "tools/project_harness.py",
+    "tools/reorganize_workspace.py",
+    "tools/repair_layout_paths.py",
+    "tools/validate_workspace_layout.py",
+    "tools/write_reorganization_report.py"
+  ],
+  "changed_top_level_definitions": {
+    "dco.py": [],
+    "fdtd.py": [],
+    "pidon_contract.py": [],
+    "head_lstsq.py": [],
+    "pidon_solve.py": [
+      "formal_run_identity",
+      "Solver"
+    ]
+  },
+  "changed_solver_methods": [
+    "_make_net"
+  ],
+  "test_run": {
+    "lab_log_id": 268,
+    "execution_count": 71,
+    "unique_test_count": 55,
+    "unique_ids": [
+      "test_mechanism_hour.MechanismHourTests.test_budget_is_monotonic_and_separates_strict_explore",
+      "test_mechanism_hour.MechanismHourTests.test_failure_does_not_become_success_or_reset_budget",
+      "test_mechanism_hour.MechanismHourTests.test_interrupt_callback_does_not_depend_on_stdout",
+      "test_pidon_contract.PidonContractTests.test_atomic_recorder_keeps_jsonl_and_latest_checkpoint",
+      "test_pidon_contract.PidonContractTests.test_e_pending_resume_does_not_repeat_source_or_e_update",
+      "test_pidon_contract.PidonContractTests.test_exact_control_128_steps_is_not_dco_and_meets_precision_gates",
+      "test_pidon_contract.PidonContractTests.test_exhausted_inner_budget_is_rejected_before_resume",
+      "test_pidon_contract.PidonContractTests.test_h_failure_does_not_advance_transaction",
+      "test_pidon_contract.PidonContractTests.test_nonfinite_raw_state_precedes_safe_rollback",
+      "test_pidon_contract.PidonContractTests.test_nonzero_irrotational_input_is_not_zero_shortcut",
+      "test_pidon_contract.PidonContractTests.test_pec_normal_curl_e_faces_are_explicitly_zero",
+      "test_pidon_contract.PidonContractTests.test_production_control_serializes_weak_component_metrics_as_null",
+      "test_pidon_contract.PidonContractTests.test_reached_is_strict_and_finite",
+      "test_pidon_contract.PidonContractTests.test_resume_rejects_changed_frozen_configuration",
+      "test_pidon_contract.PidonContractTests.test_staggered_probe_and_dual_boundary_volume",
+      "test_pidon_contract.PidonContractTests.test_terminal_e_pending_checkpoint_is_not_resumable",
+      "test_pidon_contract.PidonContractTests.test_three_axis_discrete_plane_wave_symbols_and_div_curl",
+      "test_pidon_contract.PidonContractTests.test_yee_constant_and_linear_curls_have_expected_sign_and_support",
+      "test_pidon_contract.PidonContractTests.test_zero_curl_control_is_rejected_after_propagation",
+      "test_pidon_contract_v3.A1ContractRegressionTests.test_elapsed_budget_is_cumulative_across_resume",
+      "test_pidon_contract_v3.A1ContractRegressionTests.test_failed_half_transaction_has_no_accepted_field_metric",
+      "test_pidon_contract_v3.A1ContractRegressionTests.test_formal_config_rejects_explicit_cli_conflict",
+      "test_pidon_contract_v3.A1ContractRegressionTests.test_formal_config_requires_every_frozen_field",
+      "test_pidon_contract_v3.A1ContractRegressionTests.test_interrupted_adam_resume_matches_uninterrupted_trajectory",
+      "test_pidon_contract_v3.A1ContractRegressionTests.test_interrupted_lbfgs_resume_matches_uninterrupted_trajectory",
+      "test_pidon_contract_v3.A1ContractRegressionTests.test_lbfgs_budget_interrupt_restores_last_completed_call",
+      "test_pidon_contract_v3.A1ContractRegressionTests.test_mre_and_nmae_are_separate_with_strict_zero_reporting",
+      "test_pidon_contract_v3.A1ContractRegressionTests.test_new_run_refuses_foreign_identity_in_existing_directory",
+      "test_pidon_contract_v3.A1ContractRegressionTests.test_new_run_rejects_nonempty_directory_without_metadata",
+      "test_pidon_contract_v3.A1ContractRegressionTests.test_payload_has_explicit_attempt_identity_and_optimizer_phase",
+      "test_pidon_contract_v3.A1ContractRegressionTests.test_production_exact_control_records_and_restores_midrun",
+      "test_pidon_contract_v3.A1ContractRegressionTests.test_production_h_shift_adapter_uses_registered_staggered_slices",
+      "test_pidon_contract_v3.A1ContractRegressionTests.test_recorder_classifies_uncheckpointed_jsonl_tail_on_resume",
+      "test_pidon_contract_v3.A1ContractRegressionTests.test_recorder_commits_monotonic_sequence_to_durable_metadata",
+      "test_pidon_contract_v3.A1ContractRegressionTests.test_recorder_save_failure_keeps_the_prior_complete_checkpoint",
+      "test_pidon_contract_v3.A1ContractRegressionTests.test_resume_accepts_only_same_identity",
+      "test_pidon_contract_v3.A1ContractRegressionTests.test_resume_rejects_lbfgs_budget_change",
+      "test_pidon_contract_v4.NightContractRegressionTests.test_component_loss_cannot_pass_when_physical_total_R_fails",
+      "test_pidon_contract_v4.NightContractRegressionTests.test_failure_raw_does_not_claim_a_recovery_checkpoint",
+      "test_pidon_contract_v4.NightContractRegressionTests.test_jsonl_commit_crash_recovers_unique_next_sequence_and_tail",
+      "test_pidon_contract_v4.NightContractRegressionTests.test_nonfinite_gradient_is_terminal_before_optimizer_step",
+      "test_pidon_contract_v4.NightContractRegressionTests.test_nonfinite_parameter_after_step_is_raw_then_rolled_back",
+      "test_pidon_contract_v4.NightContractRegressionTests.test_payload_schema_and_independent_run_identity_are_explicit",
+      "test_pidon_contract_v4.NightContractRegressionTests.test_recorder_rejects_nonfinite_jsonl_constant_on_resume",
+      "test_pidon_contract_v4.NightContractRegressionTests.test_recorder_rejects_truncated_or_duplicate_jsonl_on_resume",
+      "test_pidon_contract_v4.NightContractRegressionTests.test_rolling_checkpoint_pointer_keeps_prior_slot_if_new_pointer_fails",
+      "test_pidon_contract_v4.NightContractRegressionTests.test_terminal_state_is_rejected_but_diagnostic_load_is_read_only",
+      "test_project_harness.ProjectHarnessTests.test_corrupt_log_preserved_and_blocks_new_action",
+      "test_project_harness.ProjectHarnessTests.test_failure_is_append_only_and_does_not_stop_independent_task",
+      "test_project_harness.ProjectHarnessTests.test_goal_binding_and_unique_ids",
+      "test_project_harness.ProjectHarnessTests.test_migration_lookup_and_exact_historical_evidence",
+      "test_project_harness.ProjectHarnessTests.test_ready_and_start_cannot_bypass_unreviewed_predecessor",
+      "test_project_harness.ProjectHarnessTests.test_reject_missing_evidence_protocol_and_blank_reason",
+      "test_project_harness.ProjectHarnessTests.test_reported_pass_does_not_certify_or_unlock_dependency",
+      "test_project_harness.ProjectHarnessTests.test_unknown_dependency_and_cycles_rejected"
+    ],
+    "interpretation": "迁移回归，非完整G0；存在导入导致的重复执行，不将重复计作额外覆盖"
+  },
+  "production_training_updates": 0
+}

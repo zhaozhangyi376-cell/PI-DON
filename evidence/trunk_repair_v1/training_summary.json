@@ -1,0 +1,16 @@
+{
+  "version": "trunk-repair-v1",
+  "manifest_sha256": "befe668083116a8ec0f4832cf122999386c3579a105785763bd7402169ff7813",
+  "training": {
+    "tag": "C200",
+    "path": "evidence\\trunk_repair_v1\\C200.pt",
+    "sha256": "4649bb8ba785285215f823e029520ba5fa23a1cf8b58b6840fd7e95e0363c7a8",
+    "updates": 200,
+    "seconds": 56.4598832000047,
+    "optimizer_step_min": 200,
+    "optimizer_step_max": 200,
+    "history_sha256": "fa42f92a5872b1245366a3d27131f092abde1c42f56ef9493c807bc06ff26716"
+  },
+  "tests_passed": true,
+  "test_count": 13
+}

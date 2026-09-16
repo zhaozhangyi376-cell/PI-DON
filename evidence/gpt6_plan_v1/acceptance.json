@@ -1,0 +1,35 @@
+{
+  "protocol": "gpt6_plan_v1",
+  "frozen_on": "2026-09-13",
+  "rule": "Thresholds are registered before later numerical results and may not be relaxed because a test fails.",
+  "metrics": {
+    "paper_comparison": "Paper MRE and local-max nMAE are reported in separate columns and are never divided or ranked against each other.",
+    "neural_error": "Six-component weighted global L2 and per-component weighted relative L2 with E0=1 and H0=E0/Z0; physical Yee dual volumes.",
+    "residual": "Yee/Maxwell residual, reported separately from field error."
+  },
+  "gates": {
+    "P1_contract": [
+      "strict stop refuses to advance an E or H half-step after a finite target fit misses tolerance",
+      "non-finite fit triggers rollback/recovery and records the event",
+      "checkpoint/restart preserves exact time-layer state and produces matching continuation on the deterministic test"
+    ],
+    "P2_exact_control": [
+      "float64 exact Yee control remains finite through 128 steps",
+      "float32 exact Yee control remains finite through 128 steps",
+      "control output is labelled exact Yee, never DCO"
+    ],
+    "P3_fixed_state": [
+      "each registered source-free fixed-state task reaches its frozen residual tolerance within its update budget",
+      "all six components and source-outside probes are recorded",
+      "a target-matched fixed-state result is not promoted to a closed-loop DCO result"
+    ],
+    "P4_short_rollout": [
+      "only candidates passing P3 may enter 32/64/128-step closed-loop comparison",
+      "report actual updates, final residual, six-component errors, source-outside probes, and restart state",
+      "no automatic 8192-step continuation from a failed short-run gate"
+    ],
+    "P6_longer_rollout": [
+      "128 and 1024 steps are distinct gated milestones; 8192 is forbidden until the registered preceding gates pass"
+    ]
+  }
+}

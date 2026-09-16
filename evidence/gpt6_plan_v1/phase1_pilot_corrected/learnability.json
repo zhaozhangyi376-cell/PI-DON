@@ -1,0 +1,58 @@
+{
+  "schema": "pidon-p5-learnability-v1",
+  "classification": "phase-1 fixed-sample learnability pilot; not Fig.6 evaluation",
+  "config": {
+    "data": "data_32.npz",
+    "indices": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "updates": 200,
+    "max_updates": 500,
+    "lr": 0.0003,
+    "seed": 20261012,
+    "device": "cuda",
+    "out": "evidence/gpt6_plan_v1/phase1_pilot_corrected"
+  },
+  "device": "cuda",
+  "data_sha256": "e5e6cc20c9f1c6e8fcb72ec5eb1643e357bc020d0dbbfed6544de5aa1fde126d",
+  "history": [
+    {
+      "updates": 0,
+      "relative_squared_loss": 1.0580662488937378,
+      "component_nmae": [
+        0.3632626533508301,
+        0.1719224452972412,
+        0.316979318857193
+      ],
+      "macro_nmae": 0.2840548058350881
+    },
+    {
+      "updates": 200,
+      "relative_squared_loss": 0.0017196147236973047,
+      "component_nmae": [
+        0.022395048290491104,
+        0.003592175431549549,
+        0.017022231593728065
+      ],
+      "macro_nmae": 0.014336485105256239
+    },
+    {
+      "updates": 500,
+      "relative_squared_loss": 0.0002488871105015278,
+      "component_nmae": [
+        0.00925382785499096,
+        0.0014556640526279807,
+        0.006846731528639793
+      ],
+      "macro_nmae": 0.005852074478752911
+    }
+  ],
+  "actual_updates": 500,
+  "loss_reduction": 4251.189411784516,
+  "passed": false,
+  "elapsed_s": 71.75327880002442,
+  "gate": "relative squared loss reduction >=100 and macro nMAE <=1e-3"
+}

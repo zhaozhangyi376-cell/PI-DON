@@ -1,0 +1,500 @@
+{
+  "schema": "pidon-g0-v4",
+  "contract_lab_run": 195,
+  "required_ids": [
+    "C01",
+    "C02",
+    "C03",
+    "C04",
+    "C05",
+    "C06",
+    "C07",
+    "C08",
+    "C09",
+    "C10",
+    "C11",
+    "C12",
+    "C13",
+    "C14",
+    "C15",
+    "M01",
+    "M02",
+    "M03",
+    "M04",
+    "M05",
+    "M06",
+    "M07",
+    "M08",
+    "M09",
+    "M10",
+    "M11",
+    "M12",
+    "M13"
+  ],
+  "required_g0_checks": [
+    {
+      "id": "C01",
+      "expected": "N1真实回归通过且ID唯一",
+      "observed": {
+        "present": true,
+        "lab_run": 190,
+        "contract_status": "PASS"
+      },
+      "status": "PASS",
+      "evidence": {
+        "path": "evidence/gpt6_plan_v4_night/N1_contract_checks.json",
+        "sha256": "0eb8955a2b5f685b009db5e32e2851b89034328e44c8b8eb23a1fa32592d8b8f"
+      }
+    },
+    {
+      "id": "C02",
+      "expected": "N1真实回归通过且ID唯一",
+      "observed": {
+        "present": true,
+        "lab_run": 190,
+        "contract_status": "PASS"
+      },
+      "status": "PASS",
+      "evidence": {
+        "path": "evidence/gpt6_plan_v4_night/N1_contract_checks.json",
+        "sha256": "0eb8955a2b5f685b009db5e32e2851b89034328e44c8b8eb23a1fa32592d8b8f"
+      }
+    },
+    {
+      "id": "C03",
+      "expected": "N1真实回归通过且ID唯一",
+      "observed": {
+        "present": true,
+        "lab_run": 190,
+        "contract_status": "PASS"
+      },
+      "status": "PASS",
+      "evidence": {
+        "path": "evidence/gpt6_plan_v4_night/N1_contract_checks.json",
+        "sha256": "0eb8955a2b5f685b009db5e32e2851b89034328e44c8b8eb23a1fa32592d8b8f"
+      }
+    },
+    {
+      "id": "C04",
+      "expected": "N1真实回归通过且ID唯一",
+      "observed": {
+        "present": true,
+        "lab_run": 190,
+        "contract_status": "PASS"
+      },
+      "status": "PASS",
+      "evidence": {
+        "path": "evidence/gpt6_plan_v4_night/N1_contract_checks.json",
+        "sha256": "0eb8955a2b5f685b009db5e32e2851b89034328e44c8b8eb23a1fa32592d8b8f"
+      }
+    },
+    {
+      "id": "C05",
+      "expected": "N1真实回归通过且ID唯一",
+      "observed": {
+        "present": true,
+        "lab_run": 190,
+        "contract_status": "PASS"
+      },
+      "status": "PASS",
+      "evidence": {
+        "path": "evidence/gpt6_plan_v4_night/N1_contract_checks.json",
+        "sha256": "0eb8955a2b5f685b009db5e32e2851b89034328e44c8b8eb23a1fa32592d8b8f"
+      }
+    },
+    {
+      "id": "C06",
+      "expected": "N1真实回归通过且ID唯一",
+      "observed": {
+        "present": true,
+        "lab_run": 190,
+        "contract_status": "PASS"
+      },
+      "status": "PASS",
+      "evidence": {
+        "path": "evidence/gpt6_plan_v4_night/N1_contract_checks.json",
+        "sha256": "0eb8955a2b5f685b009db5e32e2851b89034328e44c8b8eb23a1fa32592d8b8f"
+      }
+    },
+    {
+      "id": "C07",
+      "expected": "N1真实回归通过且ID唯一",
+      "observed": {
+        "present": true,
+        "lab_run": 190,
+        "contract_status": "PASS"
+      },
+      "status": "PASS",
+      "evidence": {
+        "path": "evidence/gpt6_plan_v4_night/N1_contract_checks.json",
+        "sha256": "0eb8955a2b5f685b009db5e32e2851b89034328e44c8b8eb23a1fa32592d8b8f"
+      }
+    },
+    {
+      "id": "C08",
+      "expected": "N1真实回归通过且ID唯一",
+      "observed": {
+        "present": true,
+        "lab_run": 190,
+        "contract_status": "PASS"
+      },
+      "status": "PASS",
+      "evidence": {
+        "path": "evidence/gpt6_plan_v4_night/N1_contract_checks.json",
+        "sha256": "0eb8955a2b5f685b009db5e32e2851b89034328e44c8b8eb23a1fa32592d8b8f"
+      }
+    },
+    {
+      "id": "C09",
+      "expected": "N1真实回归通过且ID唯一",
+      "observed": {
+        "present": true,
+        "lab_run": 190,
+        "contract_status": "PASS"
+      },
+      "status": "PASS",
+      "evidence": {
+        "path": "evidence/gpt6_plan_v4_night/N1_contract_checks.json",
+        "sha256": "0eb8955a2b5f685b009db5e32e2851b89034328e44c8b8eb23a1fa32592d8b8f"
+      }
+    },
+    {
+      "id": "C10",
+      "expected": "N1真实回归通过且ID唯一",
+      "observed": {
+        "present": true,
+        "lab_run": 190,
+        "contract_status": "PASS"
+      },
+      "status": "PASS",
+      "evidence": {
+        "path": "evidence/gpt6_plan_v4_night/N1_contract_checks.json",
+        "sha256": "0eb8955a2b5f685b009db5e32e2851b89034328e44c8b8eb23a1fa32592d8b8f"
+      }
+    },
+    {
+      "id": "C11",
+      "expected": "N1真实回归通过且ID唯一",
+      "observed": {
+        "present": true,
+        "lab_run": 190,
+        "contract_status": "PASS"
+      },
+      "status": "PASS",
+      "evidence": {
+        "path": "evidence/gpt6_plan_v4_night/N1_contract_checks.json",
+        "sha256": "0eb8955a2b5f685b009db5e32e2851b89034328e44c8b8eb23a1fa32592d8b8f"
+      }
+    },
+    {
+      "id": "C12",
+      "expected": "N1真实回归通过且ID唯一",
+      "observed": {
+        "present": true,
+        "lab_run": 190,
+        "contract_status": "PASS"
+      },
+      "status": "PASS",
+      "evidence": {
+        "path": "evidence/gpt6_plan_v4_night/N1_contract_checks.json",
+        "sha256": "0eb8955a2b5f685b009db5e32e2851b89034328e44c8b8eb23a1fa32592d8b8f"
+      }
+    },
+    {
+      "id": "C13",
+      "expected": "N1真实回归通过且ID唯一",
+      "observed": {
+        "present": true,
+        "lab_run": 190,
+        "contract_status": "PASS"
+      },
+      "status": "PASS",
+      "evidence": {
+        "path": "evidence/gpt6_plan_v4_night/N1_contract_checks.json",
+        "sha256": "0eb8955a2b5f685b009db5e32e2851b89034328e44c8b8eb23a1fa32592d8b8f"
+      }
+    },
+    {
+      "id": "C14",
+      "expected": "N1真实回归通过且ID唯一",
+      "observed": {
+        "present": true,
+        "lab_run": 190,
+        "contract_status": "PASS"
+      },
+      "status": "PASS",
+      "evidence": {
+        "path": "evidence/gpt6_plan_v4_night/N1_contract_checks.json",
+        "sha256": "0eb8955a2b5f685b009db5e32e2851b89034328e44c8b8eb23a1fa32592d8b8f"
+      }
+    },
+    {
+      "id": "C15",
+      "expected": "N1真实回归通过且ID唯一",
+      "observed": {
+        "present": true,
+        "lab_run": 190,
+        "contract_status": "PASS"
+      },
+      "status": "PASS",
+      "evidence": {
+        "path": "evidence/gpt6_plan_v4_night/N1_contract_checks.json",
+        "sha256": "0eb8955a2b5f685b009db5e32e2851b89034328e44c8b8eb23a1fa32592d8b8f"
+      }
+    },
+    {
+      "id": "M06",
+      "expected": "逐行、六分量、探针和数值门槛从原始行重算",
+      "observed": {
+        "rows": 128,
+        "step_sequence_ok": true,
+        "accepted_rows": true,
+        "six_components": true,
+        "metric_fields": true,
+        "finite": true,
+        "max_Q": 0.0,
+        "max_A_fixed": 0.0,
+        "max_probe_abs": 0.0,
+        "threshold": 1e-10,
+        "numeric_ok": true,
+        "restored_at": 64,
+        "control_only": true,
+        "reference_dtype": "float64",
+        "identity_and_jsonl_integrity": true
+      },
+      "status": "PASS",
+      "evidence": {
+        "path": "evidence/gpt6_plan_v4_night/g0_attempt_02/controls.json",
+        "sha256": "2fb3358fe687e68848fb33ad321b15c4fe6c9474caf75e17b23a30a56d79f56e"
+      }
+    },
+    {
+      "id": "M07",
+      "expected": "逐行、六分量、探针和数值门槛从原始行重算",
+      "observed": {
+        "rows": 128,
+        "step_sequence_ok": true,
+        "accepted_rows": true,
+        "six_components": true,
+        "metric_fields": true,
+        "finite": true,
+        "max_Q": 2.808238397995293e-06,
+        "max_A_fixed": 9.224699420841925e-10,
+        "max_probe_abs": 8.429448684259353e-09,
+        "threshold": 0.0001,
+        "numeric_ok": true,
+        "restored_at": 64,
+        "control_only": true,
+        "reference_dtype": "float64",
+        "identity_and_jsonl_integrity": true
+      },
+      "status": "PASS",
+      "evidence": {
+        "path": "evidence/gpt6_plan_v4_night/g0_attempt_02/controls.json",
+        "sha256": "2fb3358fe687e68848fb33ad321b15c4fe6c9474caf75e17b23a30a56d79f56e"
+      }
+    },
+    {
+      "id": "M08",
+      "expected": "逐行、六分量、探针和数值门槛从原始行重算",
+      "observed": {
+        "rows": 128,
+        "step_sequence_ok": true,
+        "accepted_rows": true,
+        "six_components": true,
+        "metric_fields": true,
+        "finite": true,
+        "max_Q": 1.0,
+        "max_A_fixed": 0.0035078173165410697,
+        "max_probe_abs": 0.0017929709732387624,
+        "threshold": 1e-10,
+        "numeric_ok": false,
+        "restored_at": null,
+        "control_only": true,
+        "reference_dtype": "float64",
+        "identity_and_jsonl_integrity": true
+      },
+      "status": "PASS",
+      "evidence": {
+        "path": "evidence/gpt6_plan_v4_night/g0_attempt_02/controls.json",
+        "sha256": "2fb3358fe687e68848fb33ad321b15c4fe6c9474caf75e17b23a30a56d79f56e"
+      }
+    },
+    {
+      "id": "M09",
+      "expected": "逐行、六分量、探针和数值门槛从原始行重算",
+      "observed": {
+        "rows": 128,
+        "step_sequence_ok": true,
+        "accepted_rows": true,
+        "six_components": true,
+        "metric_fields": true,
+        "finite": true,
+        "max_Q": 1.0,
+        "max_A_fixed": 0.0035078173165410697,
+        "max_probe_abs": 0.0017929709732387624,
+        "threshold": 1e-10,
+        "numeric_ok": false,
+        "restored_at": null,
+        "control_only": true,
+        "reference_dtype": "float64",
+        "identity_and_jsonl_integrity": true
+      },
+      "status": "PASS",
+      "evidence": {
+        "path": "evidence/gpt6_plan_v4_night/g0_attempt_02/controls.json",
+        "sha256": "2fb3358fe687e68848fb33ad321b15c4fe6c9474caf75e17b23a30a56d79f56e"
+      }
+    },
+    {
+      "id": "M10",
+      "expected": "逐行、六分量、探针和数值门槛从原始行重算",
+      "observed": {
+        "rows": 128,
+        "step_sequence_ok": true,
+        "accepted_rows": true,
+        "six_components": true,
+        "metric_fields": true,
+        "finite": false,
+        "max_Q": null,
+        "max_A_fixed": null,
+        "max_probe_abs": null,
+        "threshold": 1e-10,
+        "numeric_ok": false,
+        "restored_at": null,
+        "control_only": true,
+        "reference_dtype": "float64",
+        "identity_and_jsonl_integrity": true
+      },
+      "status": "PASS",
+      "evidence": {
+        "path": "evidence/gpt6_plan_v4_night/g0_attempt_02/controls.json",
+        "sha256": "2fb3358fe687e68848fb33ad321b15c4fe6c9474caf75e17b23a30a56d79f56e"
+      }
+    },
+    {
+      "id": "M01",
+      "expected": "常量/线性curl双路径double断言",
+      "observed": {
+        "lab_run": 195,
+        "valid_lab_record": true
+      },
+      "status": "PASS",
+      "evidence": {
+        "path": "evidence/gpt6_plan_v4_night/N1_contract_checks.json",
+        "sha256": "0eb8955a2b5f685b009db5e32e2851b89034328e44c8b8eb23a1fa32592d8b8f"
+      }
+    },
+    {
+      "id": "M02",
+      "expected": "三轴平面波与div(curl)断言",
+      "observed": {
+        "lab_run": 195,
+        "valid_lab_record": true
+      },
+      "status": "PASS",
+      "evidence": {
+        "path": "evidence/gpt6_plan_v4_night/N1_contract_checks.json",
+        "sha256": "0eb8955a2b5f685b009db5e32e2851b89034328e44c8b8eb23a1fa32592d8b8f"
+      }
+    },
+    {
+      "id": "M03",
+      "expected": "learned/PEC boundary/uncovered支撑断言",
+      "observed": {
+        "lab_run": 195,
+        "valid_lab_record": true
+      },
+      "status": "PASS",
+      "evidence": {
+        "path": "evidence/gpt6_plan_v4_night/N1_contract_checks.json",
+        "sha256": "0eb8955a2b5f685b009db5e32e2851b89034328e44c8b8eb23a1fa32592d8b8f"
+      }
+    },
+    {
+      "id": "M04",
+      "expected": "双体积、硬源mask和插值断言",
+      "observed": {
+        "lab_run": 195,
+        "valid_lab_record": true
+      },
+      "status": "PASS",
+      "evidence": {
+        "path": "evidence/gpt6_plan_v4_night/N1_contract_checks.json",
+        "sha256": "0eb8955a2b5f685b009db5e32e2851b89034328e44c8b8eb23a1fa32592d8b8f"
+      }
+    },
+    {
+      "id": "M05",
+      "expected": "nMAE、volume_nMAE、严格零MRE手算断言",
+      "observed": {
+        "lab_run": 195,
+        "valid_lab_record": true
+      },
+      "status": "PASS",
+      "evidence": {
+        "path": "evidence/gpt6_plan_v4_night/N1_contract_checks.json",
+        "sha256": "0eb8955a2b5f685b009db5e32e2851b89034328e44c8b8eb23a1fa32592d8b8f"
+      }
+    },
+    {
+      "id": "M11",
+      "expected": "128行来自第64步真实磁盘两槽恢复",
+      "observed": {
+        "restored": true,
+        "rolling_pointer": true
+      },
+      "status": "PASS",
+      "evidence": {
+        "path": "evidence/gpt6_plan_v4_night/g0_attempt_02/controls.json",
+        "sha256": "2fb3358fe687e68848fb33ad321b15c4fe6c9474caf75e17b23a30a56d79f56e"
+      }
+    },
+    {
+      "id": "M12",
+      "expected": "8192步double参考、峰值、探针和hash齐全",
+      "observed": {
+        "snapshot": "C:\\PI-DON\\evidence\\gpt6_plan_v4_night\\g0_attempt_02\\reference_cache_snapshots.npz",
+        "hash_match": true,
+        "steps": 8192
+      },
+      "status": "PASS",
+      "evidence": {
+        "path": "evidence/gpt6_plan_v4_night/g0_attempt_02/reference_cache.json",
+        "sha256": "c792dd3390c95a74332cb4c492c1da2c45872d1b4e205e8ae20c0a886841a4b2"
+      }
+    },
+    {
+      "id": "M13",
+      "expected": "缺行、重复、坏数值、漏probe和控制伪装全部被拒绝",
+      "observed": {
+        "missing_rows_rejected": true,
+        "duplicate_step_rejected": true,
+        "bad_numeric_rejected": true,
+        "missing_probe_rejected": true,
+        "hash_tamper_rejected": true,
+        "empty_required_set_rejected": true,
+        "control_disguised_as_dco_rejected": true
+      },
+      "status": "PASS",
+      "evidence": {
+        "path": "evidence/gpt6_plan_v4_night/g0_attempt_02/controls.json",
+        "sha256": "2fb3358fe687e68848fb33ad321b15c4fe6c9474caf75e17b23a30a56d79f56e"
+      }
+    }
+  ],
+  "input_hashes": {
+    "evidence/gpt6_plan_v4_night/N1_contract_checks.json": "0eb8955a2b5f685b009db5e32e2851b89034328e44c8b8eb23a1fa32592d8b8f",
+    "evidence/gpt6_plan_v4_night/g0_attempt_02/controls.json": "2fb3358fe687e68848fb33ad321b15c4fe6c9474caf75e17b23a30a56d79f56e",
+    "evidence/gpt6_plan_v4_night/g0_attempt_02/reference_cache.json": "c792dd3390c95a74332cb4c492c1da2c45872d1b4e205e8ae20c0a886841a4b2"
+  },
+  "source_hashes": {
+    "pidon_solve.py": "83648e8d57e62205a0cc426b5b62862da737968854dcf7273b65c2a7e3791caa",
+    "pidon_contract.py": "6d4d19222f956ba69a93db9d296305f96a54963050c2020a55859bdfd3d1d03c",
+    "pidon_recording.py": "499b30a895e686b75789a6333ae5ee6d3cdaff9f668cb07b1e339d790eca2a21",
+    "fdtd.py": "9837dbe51bdbc89ab2a12c147debfb10b5db1d07ebc726d18ee1962ecda1e7a8",
+    "dco.py": "53eb1c7d7ea0ed33f4e6c279554cb1adaf4a86134b8dc60fd67f6ce39525941d"
+  },
+  "G0": "PASS",
+  "interpretation": "精确Yee控制只认证测量/恢复链路，control_only=true，绝不计为DCO成绩。"
+}

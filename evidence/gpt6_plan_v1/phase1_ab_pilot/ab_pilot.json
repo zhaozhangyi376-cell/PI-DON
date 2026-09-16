@@ -1,0 +1,56 @@
+{
+  "schema": "pidon-p5-ab-v1",
+  "classification": "paired development pilot; not Fig.6 or independent test",
+  "config": {
+    "data": "data_32.npz",
+    "train_n": 128,
+    "dev_n": 32,
+    "updates": 200,
+    "batch": 4,
+    "lr": 0.0003,
+    "seed": 20261012,
+    "device": "cuda",
+    "out": "evidence/gpt6_plan_v1/phase1_ab_pilot"
+  },
+  "data_sha256": "e5e6cc20c9f1c6e8fcb72ec5eb1643e357bc020d0dbbfed6544de5aa1fde126d",
+  "curl_e0": 96249.9296875,
+  "batch_schedule_sha256": "af74b0f7f7151ab64272a0ab9bf6c7c4e4e723a460eb43c5d29b0b047585c0b0",
+  "records": [
+    {
+      "variant": "A_relative",
+      "actual_updates": 200,
+      "dev_component_nmae_before": [
+        0.4528331756591797,
+        0.49052706360816956,
+        0.5992579460144043
+      ],
+      "dev_macro_nmae_before": 0.5142060617605845,
+      "dev_component_nmae_after": [
+        0.13612237572669983,
+        0.17882667481899261,
+        0.3228512406349182
+      ],
+      "dev_macro_nmae_after": 0.21260009706020355,
+      "elapsed_s": 28.38501540001016
+    },
+    {
+      "variant": "B_component_localmax",
+      "actual_updates": 200,
+      "dev_component_nmae_before": [
+        0.4528331756591797,
+        0.49052706360816956,
+        0.5992579460144043
+      ],
+      "dev_macro_nmae_before": 0.5142060617605845,
+      "dev_component_nmae_after": [
+        0.5705268979072571,
+        0.6124322414398193,
+        1.2983548641204834
+      ],
+      "dev_macro_nmae_after": 0.8271046678225199,
+      "elapsed_s": 28.56648330000462
+    }
+  ],
+  "same_initial_state": true,
+  "selection_rule": "No promotion from this development result; full P5 noncubic and retention gates remain required."
+}

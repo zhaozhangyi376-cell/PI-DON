@@ -1,0 +1,128 @@
+# GV100临时吞吐诊断
+
+仅工程测速；不计DCO或PI-DON成绩。
+
+```json
+{
+  "status": "PASS",
+  "scientific_result": "NOT_APPLICABLE",
+  "arms": [
+    {
+      "microbatch": 4,
+      "effective_batch": 32,
+      "updates": 5,
+      "status": "PASS",
+      "timings_s": [
+        0.7636884000094142,
+        0.41779109998606145,
+        0.41600179999659304,
+        0.4167330999916885,
+        0.41713260000688024
+      ],
+      "losses": [
+        1.1766375750303268,
+        1.1466417908668518,
+        1.118742749094963,
+        1.0925318598747253,
+        1.0676513016223907
+      ],
+      "unknown_tail": false,
+      "first_step_equivalence": {
+        "relative_l2": 0.0,
+        "max_abs": 0.0,
+        "pass": true
+      },
+      "median_timed_update_s": 0.4167330999916885,
+      "peak_allocated_bytes": 548668416,
+      "peak_reserved_bytes": 587202560
+    },
+    {
+      "microbatch": 8,
+      "effective_batch": 32,
+      "updates": 5,
+      "status": "PASS",
+      "timings_s": [
+        0.32660119999491144,
+        0.31477179999637883,
+        0.31558370000857394,
+        0.31397749998723157,
+        0.31920220000029076
+      ],
+      "losses": [
+        1.1766376197338104,
+        1.1466418206691742,
+        1.1187427639961243,
+        1.092531830072403,
+        1.0676513016223907
+      ],
+      "unknown_tail": false,
+      "first_step_equivalence": {
+        "relative_l2": 1.9308157424352483e-07,
+        "max_abs": 6.692833267152309e-06,
+        "pass": true
+      },
+      "median_timed_update_s": 0.31558370000857394,
+      "peak_allocated_bytes": 935855104,
+      "peak_reserved_bytes": 1035993088
+    },
+    {
+      "microbatch": 16,
+      "effective_batch": 32,
+      "updates": 5,
+      "status": "PASS",
+      "timings_s": [
+        0.3620538000104716,
+        0.3360417000076268,
+        0.33851839999260847,
+        0.34210960000928026,
+        0.3418888999876799
+      ],
+      "losses": [
+        1.1766376495361328,
+        1.1466417908668518,
+        1.1187427639961243,
+        1.0925318002700806,
+        1.0676512718200684
+      ],
+      "unknown_tail": false,
+      "first_step_equivalence": {
+        "relative_l2": 1.7020570087324047e-08,
+        "max_abs": 4.062894731760025e-07,
+        "pass": true
+      },
+      "median_timed_update_s": 0.3418888999876799,
+      "peak_allocated_bytes": 1716061184,
+      "peak_reserved_bytes": 1971322880
+    }
+  ],
+  "action_id": "A-20260915T094102-1285f598",
+  "lab_run_id": "297",
+  "new_closures": 0,
+  "new_adam_updates": 15,
+  "total_cap": 15,
+  "update_count_semantics": "confirmed lower bound when unknown_tail is true",
+  "recovery_eligible": false,
+  "device": "cuda",
+  "torch": "2.5.1+cu121",
+  "input": {
+    "path": "H:\\PI-DON\\evidence\\direct_mechanism_v2\\s1r_phase1_server\\train_dev_data.npz",
+    "bytes": 720222167,
+    "sha256": "4b045c038d00adf0e423fd1be7739861d833998feaa3548b1d2e1669ed7a2005"
+  },
+  "environment": {
+    "cpu_logical_count": 96,
+    "torch_threads": 4,
+    "cuda_runtime": "12.1",
+    "cudnn": 90100,
+    "gpu": "Quadro GV100",
+    "capability": [
+      7,
+      0
+    ],
+    "gpu_memory_bytes": 34359279616
+  },
+  "unknown_tail": false,
+  "recommended_microbatch": 8,
+  "elapsed_s": 7.891595499997493
+}
+```

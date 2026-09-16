@@ -1,0 +1,37 @@
+{
+  "schema": "pidon-p2-exact-control-v1",
+  "float64": {
+    "dtype": "float64",
+    "steps": 128,
+    "ordering": "E_update -> hard_source -> H_update",
+    "classification": "exact Yee control; not a DCO result",
+    "max_abs_error_per_component": {
+      "Ex": 0.0,
+      "Ey": 0.0,
+      "Ez": 0.0,
+      "Hx": 0.0,
+      "Hy": 0.0,
+      "Hz": 0.0
+    },
+    "global_relative_l2": 0.0,
+    "max_analytic_pec_boundary_curl": 0.0,
+    "finite": true
+  },
+  "float32": {
+    "dtype": "float32",
+    "steps": 128,
+    "ordering": "E_update -> hard_source -> H_update",
+    "classification": "exact Yee control; not a DCO result",
+    "max_abs_error_per_component": {
+      "Ex": 0.0,
+      "Ey": 0.0,
+      "Ez": 0.0,
+      "Hx": 0.0,
+      "Hy": 0.0,
+      "Hz": 0.0
+    },
+    "global_relative_l2": 0.0,
+    "max_analytic_pec_boundary_curl": 0.0,
+    "finite": true
+  }
+}

@@ -1,0 +1,147 @@
+{
+  "schema": "pidon-mechanism-1h-v2",
+  "experiment_id": "e8a94884f1e466cdc1e24792",
+  "started_at": "2026-09-14T02:19:56.759602+00:00",
+  "training_deadline": "2026-09-14T03:13:56.759602+00:00",
+  "deadline": "2026-09-14T03:19:56.759602+00:00",
+  "plan_path": "C:\\PI-DON\\docs\\superpowers\\plans\\2026-09-14-pidon-one-hour-adaptive-mechanism-plan.md",
+  "plan_sha256": "e63a8baef6b24e3418b451324ba5d2199e2cee0fee376a5874d5d366f58bf95a",
+  "master": "C:\\PI-DON\\dco_lr1e3_300.pt",
+  "master_sha256": "3f259bc887a10fac77f6bdf77b43ba1ad6b45827a3f8b9bd685934acc47ca5d7",
+  "source_hashes": {
+    "pidon_solve.py": "c79b0d13006f76957a0156b8dcfc6dada48d250e999f61d075c58ccd65254685",
+    "pidon_contract.py": "6d4d19222f956ba69a93db9d296305f96a54963050c2020a55859bdfd3d1d03c",
+    "pidon_recording.py": "499b30a895e686b75789a6333ae5ee6d3cdaff9f668cb07b1e339d790eca2a21",
+    "fdtd.py": "9837dbe51bdbc89ab2a12c147debfb10b5db1d07ebc726d18ee1962ecda1e7a8",
+    "dco.py": "53eb1c7d7ea0ed33f4e6c279554cb1adaf4a86134b8dc60fd67f6ce39525941d"
+  },
+  "config": {
+    "n": 31,
+    "side": 0.05,
+    "dt": 3.075e-12,
+    "levels": 4,
+    "base": 32,
+    "coords": "cellsize",
+    "norm": "rms",
+    "separate_nets": true,
+    "h_shift": true,
+    "strict_stop": true,
+    "fmax": 15000000000.0,
+    "max_inner": 3000,
+    "inner_time_budget_s": 240.0,
+    "lbfgs_closures": 0,
+    "head_lstsq_once": false,
+    "grad_clip": 0.0,
+    "h_scale": 1.0,
+    "h_output_scale": 1.0,
+    "component_rel": false,
+    "reset_opt_each_step": false,
+    "torch_dtype": "float32",
+    "source_mode": "hard"
+  },
+  "arms": {
+    "S-P": {
+      "init": "C:\\PI-DON\\dco_lr1e3_300.pt",
+      "seed": 20260914,
+      "lr": 0.0003,
+      "tol": 0.0001,
+      "strict": true,
+      "target_steps": 128,
+      "purpose": "strict"
+    },
+    "S-R": {
+      "init": "random",
+      "seed": 20260914,
+      "lr": 0.0003,
+      "tol": 0.0001,
+      "strict": true,
+      "target_steps": 128,
+      "purpose": "strict"
+    },
+    "X-P": {
+      "init": "C:\\PI-DON\\dco_lr1e3_300.pt",
+      "seed": 20260914,
+      "lr": 0.0003,
+      "tol": 0.001,
+      "strict": false,
+      "target_steps": 128,
+      "purpose": "explore"
+    },
+    "X-R": {
+      "init": "random",
+      "seed": 20260914,
+      "lr": 0.0003,
+      "tol": 0.001,
+      "strict": false,
+      "target_steps": 128,
+      "purpose": "explore"
+    },
+    "S-R2": {
+      "init": "random",
+      "seed": 20260915,
+      "lr": 0.0003,
+      "tol": 0.0001,
+      "strict": true,
+      "target_steps": 128,
+      "purpose": "strict"
+    },
+    "D-LR": {
+      "init": "C:\\PI-DON\\dco_lr1e3_300.pt",
+      "seed": 20260914,
+      "lr": 0.001,
+      "tol": 0.0001,
+      "strict": true,
+      "target_steps": 128,
+      "purpose": "diagnostic"
+    },
+    "S-P-retry": {
+      "init": "C:\\PI-DON\\dco_lr1e3_300.pt",
+      "seed": 20260914,
+      "lr": 0.0003,
+      "tol": 0.0001,
+      "strict": true,
+      "target_steps": 128,
+      "purpose": "infrastructure_retry"
+    }
+  },
+  "status": {
+    "S-P": "FAIL",
+    "S-R": "FAIL",
+    "X-P": "NOT_RUN",
+    "X-R": "FAIL",
+    "S-R2": "NOT_RUN",
+    "D-LR": "INCOMPLETE",
+    "S-P-retry": "RESOURCE_LIMIT"
+  },
+  "updates_this_experiment": 0,
+  "runs": {
+    "S-P-retry": {
+      "status": "RESOURCE_LIMIT",
+      "accepted_steps": 6,
+      "total_actual_updates": 10447,
+      "elapsed_s": 758.8995011999505,
+      "recovery_eligible": true
+    },
+    "S-R": {
+      "status": "FAIL",
+      "accepted_steps": 33,
+      "total_actual_updates": 10070,
+      "elapsed_s": 775.8216447000159,
+      "recovery_eligible": false
+    },
+    "X-R": {
+      "status": "FAIL",
+      "accepted_steps": 41,
+      "total_actual_updates": 13764,
+      "elapsed_s": 1045.6903722000425,
+      "recovery_eligible": false
+    },
+    "D-LR": {
+      "status": "INCOMPLETE",
+      "accepted_steps": 1,
+      "total_actual_updates": 657,
+      "elapsed_s": 48.18794510001317,
+      "recovery_eligible": false
+    }
+  }
+}

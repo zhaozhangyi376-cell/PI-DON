@@ -1,0 +1,9 @@
+{
+  "run_id": "v4-isolated-recorder-crash",
+  "protocol_hash": "v4-audit-only",
+  "created_at_utc": "2026-09-13T14:49:58.706427+00:00",
+  "last_committed_sequence_id": 0,
+  "last_checkpoint_sequence_id": -1,
+  "last_checkpoint_serial": -1,
+  "recovery_tail_sequence_ids": []
+}

@@ -1,0 +1,150 @@
+{
+  "schema": "pidon-r3-v2-readonly-recompute",
+  "classification": "read-only saved-asset audit; no optimizer.step",
+  "data_sha256": "e5e6cc20c9f1c6e8fcb72ec5eb1643e357bc020d0dbbfed6544de5aa1fde126d",
+  "pilot_checkpoint_sha256": "50a4ef935649bc92deb0210b996ba9044091c65f93851ccca62987e97210e67c",
+  "indices": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "per_sample_component_metrics": [
+    {
+      "sample": 0,
+      "components": [
+        {
+          "component": "x",
+          "mae": 91.0289306640625,
+          "target_max_abs": 6221.7705078125,
+          "nmae": 0.014630711716184335,
+          "mre_eq5": 0.1647782027721405,
+          "strict_zero_count": 0
+        },
+        {
+          "component": "y",
+          "mae": 88.60440063476562,
+          "target_max_abs": 12668.23828125,
+          "nmae": 0.006994216454383179,
+          "mre_eq5": 0.1024852991104126,
+          "strict_zero_count": 0
+        },
+        {
+          "component": "z",
+          "mae": 101.46199035644531,
+          "target_max_abs": 18475.140625,
+          "nmae": 0.005491811532906549,
+          "mre_eq5": 0.055495698004961014,
+          "strict_zero_count": 0
+        }
+      ],
+      "macro_nmae": 0.009038913234491354
+    },
+    {
+      "sample": 1,
+      "components": [
+        {
+          "component": "x",
+          "mae": 91.76324462890625,
+          "target_max_abs": 4070.200927734375,
+          "nmae": 0.022545138743306485,
+          "mre_eq5": 0.4146241545677185,
+          "strict_zero_count": 0
+        },
+        {
+          "component": "y",
+          "mae": 93.54638671875,
+          "target_max_abs": 22471.220703125,
+          "nmae": 0.00416294192267627,
+          "mre_eq5": 0.048248108476400375,
+          "strict_zero_count": 0
+        },
+        {
+          "component": "z",
+          "mae": 84.1242904663086,
+          "target_max_abs": 8961.5458984375,
+          "nmae": 0.00938725209017522,
+          "mre_eq5": 0.08677072823047638,
+          "strict_zero_count": 0
+        }
+      ],
+      "macro_nmae": 0.012031777585385992
+    },
+    {
+      "sample": 2,
+      "components": [
+        {
+          "component": "x",
+          "mae": 285.1964416503906,
+          "target_max_abs": 5590.4990234375,
+          "nmae": 0.05101448733909774,
+          "mre_eq5": 0.8887328505516052,
+          "strict_zero_count": 0
+        },
+        {
+          "component": "y",
+          "mae": 309.0911865234375,
+          "target_max_abs": 96249.9296875,
+          "nmae": 0.003211339348786862,
+          "mre_eq5": 0.07106573134660721,
+          "strict_zero_count": 0
+        },
+        {
+          "component": "z",
+          "mae": 282.0362548828125,
+          "target_max_abs": 19655.580078125,
+          "nmae": 0.014348915359496056,
+          "mre_eq5": 0.344976544380188,
+          "strict_zero_count": 0
+        }
+      ],
+      "macro_nmae": 0.02285824734912689
+    },
+    {
+      "sample": 3,
+      "components": [
+        {
+          "component": "x",
+          "mae": 80.37850189208984,
+          "target_max_abs": 14814.6103515625,
+          "nmae": 0.0054256237582119265,
+          "mre_eq5": 0.04154638200998306,
+          "strict_zero_count": 0
+        },
+        {
+          "component": "y",
+          "mae": 69.1881103515625,
+          "target_max_abs": 9756.0166015625,
+          "nmae": 0.007091840161534934,
+          "mre_eq5": 0.0750659704208374,
+          "strict_zero_count": 0
+        },
+        {
+          "component": "z",
+          "mae": 70.68312072753906,
+          "target_max_abs": 732.5901489257812,
+          "nmae": 0.09648385366795312,
+          "mre_eq5": 1.0449473857879639,
+          "strict_zero_count": 0
+        }
+      ],
+      "macro_nmae": 0.03633377252923333
+    }
+  ],
+  "corrected_macro_nmae": 0.020065677674559388,
+  "legacy_macro_nmae": 0.005852074478752911,
+  "ab_floor_audit": {
+    "legacy_curlE0": 96249.9296875,
+    "required_curlE0": 20.0,
+    "legacy_floor": 0.0962499296875,
+    "required_floor": 1.9999999999999998e-05,
+    "components_affected_by_floor_change": 0,
+    "components_below_required_floor": 0,
+    "total_components": 384,
+    "final_B_first4_loss_old_floor": 9.756619453430176,
+    "final_B_first4_loss_required_floor": 9.756619453430176,
+    "final_B_first4_grad_norm_old_floor": 289.45452880859375,
+    "final_B_first4_grad_norm_required_floor": 289.45452880859375
+  },
+  "p3_asset_status": "INCOMPLETE: v1 fixed-state files contain inputs/targets and scalar reports, not final trained predictions/weights or fixed-amplitude denominators."
+}
