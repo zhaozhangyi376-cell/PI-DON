@@ -57,6 +57,20 @@ Expand-Archive .\server_paper01_ablation_bundle.zip .\server_paper01_ablation_up
 nvidia-smi -l 5
 ```
 
+也可以另开一个服务器 PowerShell 查询四个消融变体的文件级进度：
+
+```powershell
+Set-Location H:\PI-DON
+$PY="C:\Users\ZZY\.conda\envs\pidon311\python.exe"
+& $PY run.py paper01_ablation_status
+```
+
+若想复制给本地审计，可输出 JSON：
+
+```powershell
+& $PY run.py paper01_ablation_status --json
+```
+
 四个变体：
 
 | 变体 | 含义 |
