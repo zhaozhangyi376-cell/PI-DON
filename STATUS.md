@@ -8,7 +8,7 @@
 
 PEC计算图审计已完成：生产`apply_pec`对Ex/Ey/Ez的切向边界掩膜与预期一致，预测插入也清零对应法向curl面；但玩具自动微分表明，loss前边界置零与更新后硬投影的边界梯度支撑不同，因此当前实现不能宣称与论文PEC路径等价。作者的具体张量错位与mask细节仍未公开。
 
-汇报交付已完成：`汇报素材/PI-DON导师汇报_20260917_r3.pptx`共44页，配套逐页讲稿、Q&A和缩略总览；44页全部渲染且无几何溢出。用户已要求PPT终稿暂停，r3/r4只作为素材底稿，后续等用户写出自己的理解后再收敛成短汇报。独立`_01`论文显式第一阶段参考线已回传审计：1000样本、25000 Adam、恒定1e-4、等效batch32、fresh随机初始化和本地R1合同均核对通过；但科学门FAIL，开发集宏nMAE=9.2334%，relL2 p90=57.9028%，Eq.(5) MRE均值=2.0180，三项登记门均未过。它不解锁第二阶段、1024或8192。
+汇报交付已完成：`汇报素材/PI-DON导师汇报_20260917_r3.pptx`共44页，配套逐页讲稿、Q&A和缩略总览；44页全部渲染且无几何溢出。用户已要求PPT终稿暂停，r3/r4只作为素材底稿，后续等用户写出自己的理解后再收敛成短汇报。独立`_01`论文显式第一阶段参考线已回传审计：1000样本、25000 Adam、恒定1e-4、等效batch32、fresh随机初始化和本地R1合同均核对通过；但科学门FAIL，开发集宏nMAE=9.2334%，relL2 p90=57.9028%，Eq.(5) MRE均值=2.0180，三项登记门均未过。随后PAPER01-DIAG以0参数更新分解了200个保留样本：最后5000更新test MSE仅下降2.42%，curl-z平均nMAE=13.25%显著高于curl-x 7.49%和curl-y 6.96%，`abs(cos theta)<0.25`组宏nMAE最高为13.45%。PAPER01-DATA-AUDIT进一步确认`k dot E0`横向条件满足到机器精度（相对最大≤1.23e-16），因此失败不能归因于平面波不横向；但Eq.(4)导致Ez放大比p90=3.09、最大=7.89，近奇异角组Ez放大均值=4.54且宏nMAE最高。原样延长训练优先级低；若重训，应先做角度/幅值/归一化的小型消融，不解锁第二阶段、1024或8192。
 
 随机128已审核：服务器lab313，行动A-20260916T131636-74a4f0e0，交付PASS、科学FAIL。128步、159240 Adam、6837.28秒；Q=3.1335%，Ex/Ey nMAE=1.7801%/1.7705%。预训练128为261209 Adam、11074.07秒、Q=3.0811%，Ex/Ey=1.5486%/1.6308%。两组同在69步首次分量门失败；随机组更新少39.04%、时间少38.26%，但均未通过最终场门，不作合格求解的加速认证。
 
@@ -73,6 +73,9 @@ PEC计算图审计已完成：生产`apply_pec`对Ex/Ey/Ez的切向边界掩膜�
 | PAPER01-PREFLIGHT | PASS，本地lab302，2 Adam | 独立`_01`的恒定1e-4、等效batch、fresh目录和证据写入通过；不计科学成绩 |
 | PAPER01-PREFLIGHT-R1 | PASS，本地lab303，2 Adam | 修正忠实度分类和Eq.(4)幅值构造后重新预检；合同哈希`370a93df...`，不计科学成绩 |
 | PAPER01-S1 | 交付PASS / 科学FAIL | 服务器完整25000 Adam；合同、history、checkpoint哈希均通过；宏nMAE=9.2334%，relL2 p90=57.9028%，Eq.(5) MRE=2.0180，三项登记门均失败 |
+| PAPER01-DIAG | 诊断PASS，本地lab304，0更新 | 后5000更新test MSE仅降2.42%；curl-z为主导误差；近奇异角`abs(cos theta)<0.25`组最差；原样重训优先级低 |
+| PAPER01-DATA-AUDIT | 诊断PASS，本地lab305，0更新 | `k dot E0`相对最大≤1.23e-16；Ez放大p90=3.09、最大=7.89；近奇异角组Ez放大均值=4.54且宏nMAE最高 |
+| PAPER01-ABLATION-SMOKE | READY，服务器包已生成 | `server_paper01_ablation_bundle.zip`及`.sha256`；SHA256 `19A6B42640055937CFB92409D6AA0D93EFEF3626D4139B80D5B8F32FB02BFD87`；四臂各2000 Adam，比较baseline、theta_min_0p5、ez_cap3、projected_amp短训趋势；执行说明见[服务器消融指南](docs/guides/PAPER01_ABLATION_SERVER.md) |
 | SR-S1/SR-G128 | BLOCKED | SR-S1本批不消耗；SR-G128需新64/128场门证据后再审 |
 | L1/G1024/L2/U | NOT_RUN | 无新合格128轨迹，不启动1024/8192 |
 
@@ -80,7 +83,7 @@ PEC计算图审计已完成：生产`apply_pec`对Ex/Ey/Ez的切向边界掩膜�
 
 本批已执行依据：[精度对齐复核JSON](evidence/server_resource_v1/local_review_v2/review.json)、[中文报告](evidence/server_resource_v1/local_review_v2/REPORT.md)、[场误差曲线](evidence/server_resource_v1/local_review_v2/field_timeline.png)、[SR-SHORT-R2回传审计](evidence/server_resource_v1/batch2_return_review.md)、[SR-FAIL-AUDIT报告](evidence/server_resource_v1/failure_mechanism_audit/REPORT.md)、[SR-E1-BUDGET回传审计](evidence/server_resource_v1/first_e_return_review.md)、[SR-MICRO4回传审计](evidence/server_resource_v1/micro4_return_review.md)、[SR-MICRO16回传审计](evidence/server_resource_v1/micro16_return_review.md)、[SR-64回传审计](evidence/server_resource_v1/strict64_return_review.md)、[clean low-lr64回传审计](evidence/server_resource_v1/clean_low_lr64_return_review.md)、[clean low-lr128回传审计](evidence/server_resource_v1/clean_low_lr128_return_review.md)、[论文阈值诊断回传审计](evidence/server_resource_v1/paper_tol128_return_review.md)、[随机低学习率64对照审计](evidence/server_resource_v1/random_low_lr64_return_review.md)。两次原始源码/输入哈希分别随现场保存。SR-READBACK行动为A-20260915T093341-03844084；SR-SHORT-R2行动为A-20260915T102902-9b618d25；SR-FAIL-AUDIT行动为A-20260915T142904-a8ebc3e9；SR-E1-BUDGET行动为A-20260915T144224-63c5e568；SR-MICRO4行动为A-20260915T150454-54384222；SR-MICRO16行动为A-20260915T153241-a20321cd；SR-64行动为A-20260915T155212-d9c7d617。
 
-已知观察：五臂JSONL更新/closure/提交成本均与summary一致；四条旧128残差轨迹当前Q在第57–58步超过5%，有效分量nMAE在第66步超过1%；S1R的32³已见测试仅1/16样本宏nMAE≤1%，最差样本占宏误差和52.71%。服务器同题诊断显示旧`dco_lr1e3_300.pt`优于S1R_best。更严格单步残差门已被R2否定：不是“门槛再严一点就能自然变好”。SR-E1-BUDGET把首个E从3000 Adam失败推进到3769 Adam过1e-5；SR-MICRO4到4步且Q=0.2916%；SR-MICRO16到16步且Q=0.3006%；SR-64未到旧57–58步场门瓶颈，在第36步E半步拟合失败。低学习率clean64首次给出合格64步场证据；clean128说明总Q可压在5%内，但Ex/Ey分量误差在第69步后超过1%，所以仍不启动1024/8192。论文式`1e-4`残差门在64步Q=9.041%而失败，说明不能靠放宽残差门换长程速度。随机初始化同规则64步对照PASS_64且成本更低，说明clean64成功不依赖预训练，当前配方下预训练收益为负；下一步应诊断128步Ex/Ey分量门或设计真正能体现复用收益的任务，而不是继续启动长程。
+已知观察：五臂JSONL更新/closure/提交成本均与summary一致；四条旧128残差轨迹当前Q在第57–58步超过5%，有效分量nMAE在第66步超过1%；S1R的32³已见测试仅1/16样本宏nMAE≤1%，最差样本占宏误差和52.71%。服务器同题诊断显示旧`dco_lr1e3_300.pt`优于S1R_best。更严格单步残差门已被R2否定：不是“门槛再严一点就能自然变好”。SR-E1-BUDGET把首个E从3000 Adam失败推进到3769 Adam过1e-5；SR-MICRO4到4步且Q=0.2916%；SR-MICRO16到16步且Q=0.3006%；SR-64未到旧57–58步场门瓶颈，在第36步E半步拟合失败。低学习率clean64首次给出合格64步场证据；clean128说明总Q可压在5%内，但Ex/Ey分量误差在第69步后超过1%，所以仍不启动1024/8192。论文式`1e-4`残差门在64步Q=9.041%而失败，说明不能靠放宽残差门换长程速度。随机初始化同规则64步对照PASS_64且成本更低，说明clean64成功不依赖预训练，当前配方下预训练收益为负。PAPER01数据合同审计显示Eq.(4)横向性自洽，但近奇异角带来强Ez放大并对应较高宏误差；下一步若继续第一阶段，应登记小型角度/幅值/归一化消融，而不是继续启动长程。
 
 ## 历史证据保留
 

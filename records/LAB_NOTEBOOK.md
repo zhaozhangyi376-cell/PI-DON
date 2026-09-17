@@ -12372,3 +12372,58 @@ py -3.11 _01\train_phase1.py preflight --output _01\evidence\preflight_cuda_2026
 ```
 
 </details>
+
+## #304　2026-09-17T10:41:50　OK
+
+**PAPER01-DIAG zero-update S1 failure decomposition**
+
+```
+py -3.11 run.py --action A-20260917T024132-0e8b9971 diagnose_paper01_s1 --out evidence\paper01_s1\failure_diagnosis_v1 --device auto
+```
+
+- 耗时 9s ｜ commit `72072ab` (main) ⚠ **跟踪文件与该 commit 不一致，此次运行无法仅凭 commit 复现**
+- DESKTOP-0K8A2KS ｜ Windows 10 ｜ python 3.11.9 ｜ torch 2.14.0+cu126 ｜ NVIDIA GeForce GTX 1660 SUPER
+
+| 产生/修改的文件 | 大小 | sha256 (前 16 位) |
+|---|---|---|
+| `evidence/paper01_s1/failure_diagnosis_v1/per_sample.csv` | 115 KB | `ef2e06ce3b6d8cc4` |
+| `evidence/paper01_s1/failure_diagnosis_v1/component_error_box.png` | 45 KB | `9e34be83855b9037` |
+| `evidence/paper01_s1/failure_diagnosis_v1/summary.json` | 42 KB | `c49b855525043cbc` |
+| `evidence/paper01_s1/failure_diagnosis_v1/history_curve.png` | 36 KB | `206104fba13f2e19` |
+| `evidence/paper01_s1/failure_diagnosis_v1/REPORT.md` | 2 KB | `0956eec4ff1a131c` |
+
+<details><summary>输出末尾</summary>
+
+```
+{"status": "PASS", "scientific_result": "DIAGNOSTIC_ONLY", "parameter_updates": 0, "output": "evidence\\paper01_s1\\failure_diagnosis_v1", "test_sample_count": 200, "dominant_component": "z", "last_5k_relative_drop": 0.02423925233394141}
+```
+
+</details>
+
+## #305　2026-09-17T10:49:54　OK
+
+**PAPER01-DATA-AUDIT zero-update formula normalization audit**
+
+```
+py -3.11 run.py --action A-20260917T024939-e9ba35f9 audit_paper01_data_contract --out evidence\paper01_s1\data_contract_audit_v1
+```
+
+- 耗时 6s ｜ commit `72072ab` (main) ⚠ **跟踪文件与该 commit 不一致，此次运行无法仅凭 commit 复现**
+- DESKTOP-0K8A2KS ｜ Windows 10 ｜ python 3.11.9 ｜ torch 2.14.0+cu126 ｜ NVIDIA GeForce GTX 1660 SUPER
+
+| 产生/修改的文件 | 大小 | sha256 (前 16 位) |
+|---|---|---|
+| `evidence/paper01_s1/data_contract_audit_v1/per_sample_contract.csv` | 205 KB | `6171cde0a7e5cd6a` |
+| `evidence/paper01_s1/data_contract_audit_v1/z_error_vs_support.png` | 61 KB | `a9c34a8e5ad565e8` |
+| `evidence/paper01_s1/data_contract_audit_v1/z_error_vs_angle.png` | 55 KB | `3d092d31782af5b1` |
+| `evidence/paper01_s1/data_contract_audit_v1/ez_amplification_hist.png` | 31 KB | `ee067da653998f24` |
+| `evidence/paper01_s1/data_contract_audit_v1/summary.json` | 25 KB | `f34363404f653db5` |
+| `evidence/paper01_s1/data_contract_audit_v1/REPORT.md` | 2 KB | `4e6ad73f118a3daf` |
+
+<details><summary>输出末尾</summary>
+
+```
+{"status": "PASS", "scientific_result": "DIAGNOSTIC_ONLY", "sample_count": 200, "ez_amplification_p90": 3.0878331396380294, "z_active_fraction_mean": 0.8175180053710938, "output": "evidence\\paper01_s1\\data_contract_audit_v1"}
+```
+
+</details>

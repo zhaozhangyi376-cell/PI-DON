@@ -884,6 +884,68 @@
       "summary": "PAPER01-S1 engineering=PASS; scientific=FAIL_REGISTERED_S1_GATES; updates=25000; macro_nMAE=0.09233404946513474; relL2_p90=0.5790284514427184; Eq5_MRE=2.0180368006477756."
     },
     {
+      "id": "PAPER01-DIAG",
+      "goal_id": "G-REPRO",
+      "title": "PAPER01第一阶段失败原因只读分解",
+      "status": "PASS",
+      "depends": [
+        "PAPER01-S1"
+      ],
+      "reason": "把独立论文显式第一阶段参考线的失败分解到分量、样本、波数/角度、幅值和收敛趋势，判断是否值得重训及应改哪个因素",
+      "evidence": [
+        "docs/plans/2026-09-17-paper01-s1-diagnosis-protocol.md",
+        "evidence/paper01_s1/failure_diagnosis_v1/summary.json",
+        "evidence/paper01_s1/failure_diagnosis_v1/per_sample.csv",
+        "evidence/paper01_s1/failure_diagnosis_v1/REPORT.md",
+        "evidence/paper01_s1/failure_diagnosis_v1/history_curve.png",
+        "evidence/paper01_s1/failure_diagnosis_v1/component_error_box.png"
+      ],
+      "kind": "diagnostic",
+      "scientific_result": "DIAGNOSTIC_ONLY",
+      "execution_plan": "docs/plans/2026-09-17-paper01-s1-diagnosis-protocol.md",
+      "summary": "PAPER01-DIAG PASS: zero updates; 200 held-out samples; last 5k test MSE drop 2.42%; curl-z mean nMAE 13.25% dominates x/y; abs(cos theta)<0.25 bin worst; do not relabel PAPER01-S1 or start long runs."
+    },
+    {
+      "id": "PAPER01-DATA-AUDIT",
+      "goal_id": "G-REPRO",
+      "title": "PAPER01第一阶段数据公式与归一化合同审计",
+      "status": "PASS",
+      "depends": [
+        "PAPER01-DIAG"
+      ],
+      "reason": "PAPER01-DIAG指向curl-z、近奇异角和幅值/归一化风险；需要零更新核对Eq.(4)横向条件、Ez放大、分量尺度和目标支撑，再决定是否值得重训",
+      "evidence": [
+        "docs/plans/2026-09-17-paper01-data-contract-audit-protocol.md",
+        "evidence/paper01_s1/data_contract_audit_v1/summary.json",
+        "evidence/paper01_s1/data_contract_audit_v1/per_sample_contract.csv",
+        "evidence/paper01_s1/data_contract_audit_v1/REPORT.md",
+        "evidence/paper01_s1/data_contract_audit_v1/z_error_vs_angle.png",
+        "evidence/paper01_s1/data_contract_audit_v1/z_error_vs_support.png",
+        "evidence/paper01_s1/data_contract_audit_v1/ez_amplification_hist.png"
+      ],
+      "kind": "diagnostic",
+      "scientific_result": "DIAGNOSTIC_ONLY",
+      "execution_plan": "docs/plans/2026-09-17-paper01-data-contract-audit-protocol.md",
+      "summary": "PAPER01-DATA-AUDIT PASS: zero updates; kdotE0 relative max <=1.23e-16; Ez amplification mean=1.2557, p90=3.0878, max=7.8873; abs(cos theta) 0.15-0.25 bin has highest macro nMAE mean=13.45% and Ez amplification mean=4.54; no long-run unlock."
+    },
+    {
+      "id": "PAPER01-ABLATION-SMOKE",
+      "goal_id": "G-REPRO",
+      "title": "PAPER01第一阶段角度幅值归一化短预算消融",
+      "status": "READY",
+      "depends": [
+        "PAPER01-DATA-AUDIT"
+      ],
+      "reason": "数据合同审计显示横向条件自洽但Eq.(4)近奇异角和Ez放大与失败相关；用短预算比较角度拒绝、Ez上限和幅值构造，决定是否值得完整重训",
+      "evidence": [
+        "docs/plans/2026-09-17-paper01-ablation-smoke-protocol.md",
+        "docs/guides/PAPER01_ABLATION_SERVER.md"
+      ],
+      "kind": "diagnostic",
+      "scientific_result": "NOT_RUN",
+      "execution_plan": "docs/plans/2026-09-17-paper01-ablation-smoke-protocol.md"
+    },
+    {
       "id": "PAPER01-PREFLIGHT-R1",
       "goal_id": "G-REPRO",
       "title": "修订论文显式第一阶段本机预检",
