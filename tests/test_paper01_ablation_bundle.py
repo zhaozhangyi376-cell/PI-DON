@@ -9,6 +9,15 @@ from tools.build_paper01_ablation_bundle import build_bundle
 
 
 class Paper01AblationBundleTests(unittest.TestCase):
+    def test_bundle_hash_is_reproducible(self):
+        with tempfile.TemporaryDirectory() as directory:
+            first = Path(directory) / "first.zip"
+            second = Path(directory) / "second.zip"
+            build_bundle(first)
+            build_bundle(second)
+            self.assertEqual(hashlib.sha256(first.read_bytes()).hexdigest(),
+                             hashlib.sha256(second.read_bytes()).hexdigest())
+
     def test_bundle_contains_ablation_source_queue_and_no_old_evidence(self):
         with tempfile.TemporaryDirectory() as directory:
             output = Path(directory) / "ablation.zip"

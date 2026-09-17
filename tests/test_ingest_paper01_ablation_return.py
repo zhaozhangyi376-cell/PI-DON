@@ -49,6 +49,8 @@ class Paper01AblationReturnIngestTests(unittest.TestCase):
         self.assertEqual(data["status"], "PASS")
         self.assertEqual(data["variant_count"], 4)
         self.assertEqual(data["best_macro_nmae_variant"]["variant"], "theta_min_0p5")
+        self.assertAlmostEqual(data["best_vs_baseline_macro_nmae_ratio"], 0.5)
+        self.assertEqual(data["recommendation"]["code"], "REGISTER_FULL_S1_WITH_MATCHING_FILTER")
         self.assertFalse(data["long_run_unlocked"])
 
 

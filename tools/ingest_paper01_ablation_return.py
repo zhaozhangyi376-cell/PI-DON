@@ -56,6 +56,10 @@ def review(summary_path: Path, import_dir: Path) -> dict[str, Any]:
     baseline = next((row for row in rows if row["variant"] == "baseline"), None)
     best = min((row for row in rows if row.get("macro_nmae_mean") is not None),
                key=lambda row: float(row["macro_nmae_mean"]), default=None)
+    ratio = None
+    if baseline and best and baseline.get("macro_nmae_mean"):
+        ratio = float(best["macro_nmae_mean"]) / float(baseline["macro_nmae_mean"])
+    recommendation = recommend_next_step(summary.get("status"), baseline, best, ratio, len(rows))
     return {
         "schema": "pidon-paper01-ablation-return-review-v1",
         "status": "PASS" if summary.get("status") == "PASS" and len(rows) == 4 else "INCOMPLETE",
@@ -67,7 +71,41 @@ def review(summary_path: Path, import_dir: Path) -> dict[str, Any]:
         "variants": rows,
         "baseline": baseline,
         "best_macro_nmae_variant": best,
+        "best_vs_baseline_macro_nmae_ratio": ratio,
+        "recommendation": recommendation,
         "long_run_unlocked": False,
+    }
+
+
+def recommend_next_step(status: str | None,
+                        baseline: dict[str, Any] | None,
+                        best: dict[str, Any] | None,
+                        ratio: float | None,
+                        variant_count: int) -> dict[str, str]:
+    if status != "PASS" or variant_count != 4 or not baseline or not best or ratio is None:
+        return {
+            "code": "WAIT_OR_RETRY_AUDIT",
+            "text": "回传证据不完整；先导入并保留现场，不登记完整重训。",
+        }
+    variant = best.get("variant")
+    if variant == "baseline" or ratio >= 0.9:
+        return {
+            "code": "NO_ABLATION_SIGNAL_OR_ORIGINAL_RETRAIN_LOW_PRIORITY",
+            "text": "短预算下消融没有明显优于baseline；原样加长训练优先级低，先复核网络/归一化定义。",
+        }
+    if best.get("diagnostic_not_paper_literal"):
+        return {
+            "code": "FORMULA_OR_AMPLITUDE_CONSTRUCTION_SIGNAL_DIAGNOSTIC_ONLY",
+            "text": "诊断性幅值构造最好，说明问题可能在幅值/极化生成方式；它不忠实论文，不能直接作为复现配置。",
+        }
+    if variant in {"theta_min_0p5", "ez_cap3"} and ratio <= 0.8:
+        return {
+            "code": "REGISTER_FULL_S1_WITH_MATCHING_FILTER",
+            "text": "论文式数据的受控过滤显著优于baseline；下一步可登记同类完整第一阶段重训，仍不解锁第二阶段。",
+        }
+    return {
+        "code": "WEAK_SIGNAL_REPEAT_OR_EXTEND_SMALL_BUDGET",
+        "text": "存在改善但幅度不强；先登记短预算复核或稍长消融，不直接完整重训。",
     }
 
 
@@ -89,9 +127,13 @@ def write_report(data: dict[str, Any]) -> None:
             f"{row['ez_amplification_p90']} |"
         )
     best = data.get("best_macro_nmae_variant") or {}
+    recommendation = data.get("recommendation") or {}
+    ratio = data.get("best_vs_baseline_macro_nmae_ratio")
     lines += [
         "",
         f"- macro nMAE 最低短训变体：`{best.get('variant')}`；该结果只用于判断是否值得完整重训。",
+        f"- 最优/baseline macro nMAE 比值：`{ratio}`。",
+        f"- 下一步建议：`{recommendation.get('code')}` — {recommendation.get('text')}",
         "- 本审计不改变`PAPER01-S1`科学FAIL，不解锁第二阶段、1024或8192。",
     ]
     REVIEW_MD.parent.mkdir(parents=True, exist_ok=True)
