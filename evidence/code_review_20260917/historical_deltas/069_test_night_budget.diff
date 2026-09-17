@@ -1,0 +1,15 @@
+--- tests/test_night_budget.py
++++ evidence/gpt6_plan_v4_night/source_snapshot/test_night_budget.py
+@@ -1,12 +1,4 @@
+-
+-# Project layout bootstrap (imports and paths only).
+-import sys as _layout_sys
+-from pathlib import Path as _LayoutPath
+-_layout_sys.path.insert(0, str(_LayoutPath(__file__).resolve().parents[1]))
+-from project_paths import ROOT as PROJECT_ROOT, configure as _layout_configure, resolve_legacy
+-_layout_configure()
+-
+ from datetime import datetime, timedelta, timezone
+ import tempfile
+ import unittest
+ from pathlib import Path

@@ -1,0 +1,16 @@
+[update 00001/00002] epoch~   0.67 train_mse=9.989e+01 test_mse=8.707e+01 lr=1.0e-04 gpu_mem=0.00GiB elapsed=0.1s eta=0.1s
+[update 00002/00002] epoch~   1.33 train_mse=1.357e+02 test_mse=8.543e+01 lr=1.0e-04 gpu_mem=0.00GiB elapsed=0.1s eta=0.0s
+
+test_every_contract_field_has_fidelity_class_and_source (test_contract.PaperContractTests.test_every_contract_field_has_fidelity_class_and_source) ... ok
+test_analytic_curl_matches_finite_difference_away_from_boundary (test_data.PaperDataTests.test_analytic_curl_matches_finite_difference_away_from_boundary) ... ok
+test_plane_wave_amplitudes_are_transverse (test_data.PaperDataTests.test_plane_wave_amplitudes_are_transverse) ... ok
+test_trunk_coordinates_are_positions_not_constant_cellsize_channels (test_data.PaperDataTests.test_trunk_coordinates_are_positions_not_constant_cellsize_channels) ... ok
+test_four_level_model_preserves_spatial_shape (test_model.PaperModelTests.test_four_level_model_preserves_spatial_shape) ... ok
+test_local_max_is_independent_for_each_output_component (test_model.PaperModelTests.test_local_max_is_independent_for_each_output_component) ... ok
+test_fresh_output_refuses_nonempty_directory (test_runner.PaperRunnerTests.test_fresh_output_refuses_nonempty_directory) ... ok
+test_preflight_keeps_constant_learning_rate_and_writes_contract (test_runner.PaperRunnerTests.test_preflight_keeps_constant_learning_rate_and_writes_contract) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 1.224s
+
+OK

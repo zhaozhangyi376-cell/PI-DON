@@ -1,0 +1,28 @@
+--- scripts/figures/make_night_report.py
++++ evidence/workspace_reorganization_20260914/before/root/make_night_report.py
+@@ -1,14 +1,6 @@
+ """Generate the Chinese N6 handoff from the single night_evidence reader."""
+ from __future__ import annotations
+-
+-# Project layout bootstrap (imports and paths only).
+-import sys as _layout_sys
+-from pathlib import Path as _LayoutPath
+-_layout_sys.path.insert(0, str(_LayoutPath(__file__).resolve().parents[2]))
+-from project_paths import ROOT as PROJECT_ROOT, configure as _layout_configure, resolve_legacy
+-_layout_configure()
+-
+ 
+ import argparse
+ import datetime as dt
+ import json
+@@ -18,9 +10,9 @@
+ 
+ import night_evidence
+ import night_fixed_state as fixed
+ 
+-ROOT = PROJECT_ROOT
++ROOT = Path(__file__).resolve().parent
+ 
+ 
+ def dump(path: Path, data) -> None:
+     path.write_text(json.dumps(data, ensure_ascii=False, indent=2, allow_nan=False) + "\n", encoding="utf-8")

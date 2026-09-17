@@ -1,0 +1,25 @@
+--- scripts/analysis/review_reproduction_acceptance.py
++++ evidence/workspace_reorganization_20260914/before/root/review_reproduction_acceptance.py
+@@ -1,21 +1,13 @@
+ """Read-only acceptance review; preserves all original execution artifacts."""
+-
+-# Project layout bootstrap (imports and paths only).
+-import sys as _layout_sys
+-from pathlib import Path as _LayoutPath
+-_layout_sys.path.insert(0, str(_LayoutPath(__file__).resolve().parents[2]))
+-from project_paths import ROOT as PROJECT_ROOT, configure as _layout_configure, resolve_legacy
+-_layout_configure()
+-
+ import json
+ from datetime import datetime, timezone
+ from pathlib import Path
+ 
+ import g0_verifier
+ import night_evidence
+ 
+-ROOT = PROJECT_ROOT
++ROOT = Path(__file__).resolve().parent
+ NIGHT = ROOT / 'evidence/gpt6_plan_v4_night'
+ OUT = ROOT / 'evidence/2026-09-14_acceptance_review'
+ 
+ 

@@ -1,0 +1,56 @@
+{
+  "review_only": true,
+  "production_updates": 0,
+  "toy_optimizer_updates": 0,
+  "tests": 3,
+  "failures": 0,
+  "errors": 0,
+  "observations": {
+    "empty_fixed_state_tasks": [
+      "PASS",
+      "固定状态未达标=[]",
+      "判据：所有登记任务必须在500更新内 R<1e-4；FAIL 触发 P4-A，不允许直接进入闭环。"
+    ],
+    "material_marker_completeness": [
+      {
+        "stdout": "RESULT material_pair_ok 1\n",
+        "reported": [
+          "PASS",
+          "RESULT material_pair_ok 1",
+          "两条都要命中才算过：成对的成立、单侧的不成立。论文 Fig 8 本身含 eps_r=4 的 inhomogeneous cavity"
+        ]
+      },
+      {
+        "stdout": "RESULT material_pair_ok 1\nRESULT material_onesided_ok 1\n",
+        "reported": [
+          "PASS",
+          "RESULT material_pair_ok 1",
+          "两条都要命中才算过：成对的成立、单侧的不成立。论文 Fig 8 本身含 eps_r=4 的 inhomogeneous cavity"
+        ]
+      }
+    ],
+    "zero_step_control": {
+      "fixture": {
+        "float64": {
+          "finite": true,
+          "global_relative_l2": 0.0,
+          "classification": "not a DCO",
+          "steps": 0,
+          "rows": []
+        },
+        "float32": {
+          "finite": true,
+          "global_relative_l2": 0.0,
+          "classification": "not a DCO",
+          "steps": 0,
+          "rows": []
+        }
+      },
+      "reported": [
+        "PASS",
+        "float64/float32 相对L2=0.000e+00/0.000e+00；分类=not a DCO",
+        "判据：128步同序精确 Yee 控制有限且满足登记精度，并显式标为非DCO。"
+      ]
+    }
+  }
+}

@@ -1,0 +1,41 @@
+--- scripts/experiments/pidon_exact_control.py
++++ evidence/gpt6_plan_v4_night/control_runs/float64_exact/source_snapshot/pidon_exact_control.py
+@@ -4,16 +4,8 @@
+ not use a DCO output and are deliberately labelled ``control_only``.
+ """
+ 
+ from __future__ import annotations
+-
+-# Project layout bootstrap (imports and paths only).
+-import sys as _layout_sys
+-from pathlib import Path as _LayoutPath
+-_layout_sys.path.insert(0, str(_LayoutPath(__file__).resolve().parents[2]))
+-from project_paths import ROOT as PROJECT_ROOT, configure as _layout_configure, resolve_legacy
+-_layout_configure()
+-
+ 
+ import argparse
+ import json
+ import math
+@@ -31,9 +23,9 @@
+ from pidon_solve import (Solver, _checkpoint_payload, _restore_reference,
+                          formal_run_identity, to_t)
+ 
+ 
+-ROOT = PROJECT_ROOT
++ROOT = Path(__file__).resolve().parent
+ CONTROL_SOURCE_FILES = ("pidon_exact_control.py", "pidon_solve.py", "pidon_contract.py",
+                         "pidon_recording.py", "fdtd.py", "dco.py")
+ 
+ 
+@@ -172,9 +164,9 @@
+     current E to H from the preceding reference half step.
+     """
+     if n != 31 or side != 0.05 or dt != 3.075e-12:
+         raise ValueError("A2 exact control is frozen at n=31, side=.05, dt=3.075e-12")
+-    is_float64 = dtype in (torch.float64, np.float64, np.dtype(np.float64))
++    is_float64 = dtype is torch.float64 or np.dtype(dtype) == np.dtype(np.float64)
+     torch_dtype = torch.float64 if is_float64 else torch.float32
+     args = control_args(torch_dtype, mode)
+     solver = ProductionControlSolver(args, "cpu")
+     reference = fdtd.PECCavity(side=side, n=n, dt=dt)  # independent double reference

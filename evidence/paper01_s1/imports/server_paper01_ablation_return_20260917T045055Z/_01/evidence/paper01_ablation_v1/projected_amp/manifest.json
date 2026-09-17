@@ -1,0 +1,30 @@
+{
+  "schema": "pidon-paper01-ablation-run-v1",
+  "created_utc": "2026-09-17T04:21:01.255889+00:00",
+  "variant": "projected_amp",
+  "claim": "diagnostic ablation; not paper reproduction",
+  "config": {
+    "output": "H:\\PI-DON\\_01\\evidence\\paper01_ablation_v1",
+    "variants": [
+      "baseline",
+      "theta_min_0p5",
+      "ez_cap3",
+      "projected_amp"
+    ],
+    "grid": 32,
+    "samples": 1000,
+    "effective_batch": 32,
+    "microbatch": 8,
+    "updates": 2000,
+    "levels": 4,
+    "base": 32,
+    "device": "cuda",
+    "learning_rate": 0.0001,
+    "seed": 2026091702,
+    "validation_every": 250,
+    "progress_every": 50
+  },
+  "contract_sha256": "370a93df76cd3846a8fef3021e3c0ca7b5b35ee7c4a6a1e52b07403a93568fd4",
+  "old_checkpoint_loaded": false,
+  "parameter_count": 9246755
+}

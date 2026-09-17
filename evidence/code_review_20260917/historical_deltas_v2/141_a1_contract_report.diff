@@ -1,0 +1,29 @@
+--- scripts/analysis/a1_contract_report.py
++++ evidence/gpt6_plan_v4_review/source_snapshot/a1_contract_report.py
+@@ -1,15 +1,7 @@
+ """Create machine-readable A1 contract evidence from the production tests."""
+ 
+ from __future__ import annotations
+-
+-# Project layout bootstrap (imports and paths only).
+-import sys as _layout_sys
+-from pathlib import Path as _LayoutPath
+-_layout_sys.path.insert(0, str(_LayoutPath(__file__).resolve().parents[2]))
+-from project_paths import ROOT as PROJECT_ROOT, configure as _layout_configure, resolve_legacy
+-_layout_configure()
+-
+ 
+ import argparse
+ import hashlib
+ import json
+@@ -20,9 +12,9 @@
+ 
+ from pidon_recording import sha256_file, source_hashes
+ 
+ 
+-ROOT = PROJECT_ROOT
++ROOT = Path(__file__).resolve().parent
+ OUT = ROOT / "evidence" / "gpt6_plan_v3"
+ MODULES = ("test_pidon_contract", "test_pidon_contract_v3", "test_stop_review_claims")
+ 
+ 

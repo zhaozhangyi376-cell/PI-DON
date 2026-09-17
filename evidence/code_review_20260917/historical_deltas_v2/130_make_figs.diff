@@ -1,0 +1,19 @@
+--- scripts/figures/make_figs.py
++++ evidence/workspace_reorganization_20260914/before/root/make_figs.py
+@@ -20,16 +20,8 @@
+ Fonts: matplotlib has no Chinese font by default and will render boxes.  All
+ labels here are English/ASCII on purpose -- put the Chinese in the PowerPoint
+ text box, not in the figure.
+ """
+-
+-# Project layout bootstrap (imports and paths only).
+-import sys as _layout_sys
+-from pathlib import Path as _LayoutPath
+-_layout_sys.path.insert(0, str(_LayoutPath(__file__).resolve().parents[2]))
+-from project_paths import ROOT as PROJECT_ROOT, configure as _layout_configure, resolve_legacy
+-_layout_configure()
+-
+ 
+ import json
+ import os
+ 

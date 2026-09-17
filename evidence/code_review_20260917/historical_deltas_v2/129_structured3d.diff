@@ -1,0 +1,19 @@
+--- scripts/exploratory/structured3d.py
++++ evidence/workspace_reorganization_20260914/before/root/structured3d.py
+@@ -32,16 +32,8 @@
+     The spectral (exact) curl at the Yee staggered points, exactly as in
+     structured.py: the correction worth having on a coarse grid is the O(k^2
+     d^2) dispersion error, not the stencil itself.
+ """
+-
+-# Project layout bootstrap (imports and paths only).
+-import sys as _layout_sys
+-from pathlib import Path as _LayoutPath
+-_layout_sys.path.insert(0, str(_LayoutPath(__file__).resolve().parents[2]))
+-from project_paths import ROOT as PROJECT_ROOT, configure as _layout_configure, resolve_legacy
+-_layout_configure()
+-
+ 
+ import numpy as np
+ import torch
+ import torch.nn as nn

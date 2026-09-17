@@ -1,0 +1,16 @@
+--- scripts/experiments/trunk_repair.py
++++ evidence/trunk_repair_v1/source/trunk_repair.py
+@@ -1,13 +1,5 @@
+ """Approved C200 experiment: only trunk parameters, same B data and batches."""
+-
+-# Project layout bootstrap (imports and paths only).
+-import sys as _layout_sys
+-from pathlib import Path as _LayoutPath
+-_layout_sys.path.insert(0, str(_LayoutPath(__file__).resolve().parents[2]))
+-from project_paths import ROOT as PROJECT_ROOT, configure as _layout_configure, resolve_legacy
+-_layout_configure()
+-
+ import argparse
+ import copy
+ import io
+ import json

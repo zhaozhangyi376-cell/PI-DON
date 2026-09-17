@@ -1,0 +1,30 @@
+--- scripts/experiments/h_layout_candidate.py
++++ evidence/gpt6_plan_v3/h_layout_candidate/source_snapshot/h_layout_candidate.py
+@@ -3,16 +3,8 @@
+ This is deliberately not a rollout and never resumes v1/v2 optimizer state.
+ """
+ 
+ from __future__ import annotations
+-
+-# Project layout bootstrap (imports and paths only).
+-import sys as _layout_sys
+-from pathlib import Path as _LayoutPath
+-_layout_sys.path.insert(0, str(_LayoutPath(__file__).resolve().parents[2]))
+-from project_paths import ROOT as PROJECT_ROOT, configure as _layout_configure, resolve_legacy
+-_layout_configure()
+-
+ 
+ import argparse
+ import copy
+ import json
+@@ -30,9 +22,9 @@
+ from pidon_solve import Solver, formal_run_identity, to_t
+ from r4_fixed_state import fixed_pairs
+ 
+ 
+-ROOT = PROJECT_ROOT
++ROOT = Path(__file__).resolve().parent
+ OUT_DEFAULT = ROOT / "evidence" / "gpt6_plan_v3" / "h_layout_candidate"
+ SOURCE_FILES = ("h_layout_candidate.py", "pidon_solve.py", "pidon_contract.py", "pidon_recording.py",
+                 "fdtd.py", "dco.py", "r4_fixed_state.py")
+ 

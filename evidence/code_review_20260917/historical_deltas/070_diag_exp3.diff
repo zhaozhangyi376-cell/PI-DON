@@ -1,0 +1,19 @@
+--- scripts/exploratory/diag_exp3.py
++++ evidence/workspace_reorganization_20260914/before/root/diag_exp3.py
+@@ -24,16 +24,8 @@
+ WHAT THIS MEASURES
+     that one number, for: the training distribution, a clean analytic cavity
+     mode, and the actual state EXP 3 hands to the network.
+ """
+-
+-# Project layout bootstrap (imports and paths only).
+-import sys as _layout_sys
+-from pathlib import Path as _LayoutPath
+-_layout_sys.path.insert(0, str(_LayoutPath(__file__).resolve().parents[2]))
+-from project_paths import ROOT as PROJECT_ROOT, configure as _layout_configure, resolve_legacy
+-_layout_configure()
+-
+ 
+ import numpy as np
+ 
+ import fdtd

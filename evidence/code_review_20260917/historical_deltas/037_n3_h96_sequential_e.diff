@@ -1,0 +1,28 @@
+--- scripts/experiments/n3_h96_sequential_e.py
++++ evidence/workspace_reorganization_20260914/before/root/n3_h96_sequential_e.py
+@@ -1,14 +1,6 @@
+ """Run the registered sequential E96 fit from saved, passing H96 state only."""
+ from __future__ import annotations
+-
+-# Project layout bootstrap (imports and paths only).
+-import sys as _layout_sys
+-from pathlib import Path as _LayoutPath
+-_layout_sys.path.insert(0, str(_LayoutPath(__file__).resolve().parents[2]))
+-from project_paths import ROOT as PROJECT_ROOT, configure as _layout_configure, resolve_legacy
+-_layout_configure()
+-
+ import json, time
+ from pathlib import Path
+ import torch
+ import night_fixed_state as N
+@@ -16,9 +8,9 @@
+ from pidon_contract import six_component_metrics
+ from pidon_recording import sha256_file
+ from pidon_solve import Solver, to_t
+ 
+-ROOT=PROJECT_ROOT
++ROOT=Path(__file__).resolve().parent
+ def brief(x): return {k:v for k,v in x.items() if k not in ("prediction","target")}
+ def main():
+  root=ROOT/"evidence/gpt6_plan_v4_night";paths=NightPaths(root);assert_can_start(json.loads(paths.manifest.read_text(encoding="utf-8")),training=True);out=root/"n3_fixed";payload=torch.load(out/"step_0096_H.pt",map_location="cpu",weights_only=False);solver=Solver(N.args_for(20260913),"cuda" if torch.cuda.is_available() else "cpu");solver.load_state_payload(payload,diagnostic_only=True);pair=N.fixed_pairs(31,.05,3.075e-12,(96,))[96];field_h=[x.to(solver.dev) for x in payload["fit_input_H"]];target_h=[x.to(solver.dev) for x in payload["fit_target_H"]];h=N.residual(solver,field_h,target_h,"H");
+  if not h["R"] < 1e-4: raise RuntimeError(f"saved H96 no longer passes disk remeasure: {h['R']}")

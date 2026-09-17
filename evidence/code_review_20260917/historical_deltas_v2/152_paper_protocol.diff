@@ -1,0 +1,19 @@
+--- src/pidon/paper_protocol.py
++++ evidence/coverage_ab_v1/source/paper_protocol.py
+@@ -3,16 +3,8 @@
+ All metric inputs are PHYSICAL fields/curls. Eq.(5) uses an exact-zero branch.
+ The three per-component metrics and their arithmetic means are reported;
+ legacy global nMAE is kept separately, never substituted for paper MRE.
+ """
+-
+-# Project layout bootstrap (imports and paths only).
+-import sys as _layout_sys
+-from pathlib import Path as _LayoutPath
+-_layout_sys.path.insert(0, str(_LayoutPath(__file__).resolve().parents[2]))
+-from project_paths import ROOT as PROJECT_ROOT, configure as _layout_configure, resolve_legacy
+-_layout_configure()
+-
+ import numpy as np
+ 
+ VERSION = 'paper-protocol-v1'
+ SHAPES = ((32,32,32), (64,64,64), (64,96,16), (32,64,16))

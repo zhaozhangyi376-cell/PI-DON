@@ -1,0 +1,67 @@
+{
+  "review_only": true,
+  "production_updates": 0,
+  "tests": 7,
+  "failures": 0,
+  "errors": 1,
+  "skipped": [],
+  "observations": {
+    "history_counter": {
+      "rows": 25000,
+      "last": 25000,
+      "unique_updates": 1,
+      "passes_history_complete_expression": true
+    },
+    "current_vs_random128_snapshot": {
+      "fdtd.py": {
+        "raw_equal": false,
+        "lf_equal": true
+      },
+      "pidon_solve.py": {
+        "raw_equal": false,
+        "lf_equal": false
+      }
+    },
+    "lab_truncation": {
+      "actual_outputs": 26,
+      "recorded_outputs": 25,
+      "dropped": "output_00.txt",
+      "explicit_truncation_field": false
+    },
+    "lab_ids": {
+      "two_starts_before_finish": [
+        2,
+        2
+      ],
+      "scope": "no reservation; concurrent wrappers can share id"
+    },
+    "lab_verify": {
+      "missing_outputs": 1,
+      "returncode": 0
+    },
+    "queue_reset": {
+      "before": {
+        "id": "SR-128-LOWLR-CLEAN",
+        "status": "PASS",
+        "evidence": [
+          "kept.json"
+        ],
+        "scientific_result": "FAIL",
+        "summary": "audited old result"
+      },
+      "after": {
+        "id": "SR-128-LOWLR-CLEAN",
+        "status": "READY",
+        "evidence": [],
+        "scientific_result": "NOT_RUN",
+        "summary": "clean trajectory from step0; lr=1e-4, tol=1e-5, max_inner=60000, target=128.",
+        "goal_id": "review",
+        "title": "从0开始的低学习率128步验证",
+        "depends": [],
+        "reason": "clean low-lr64已过64场门，验证同配置能否达到128场门",
+        "kind": "delivery",
+        "execution_plan": "docs/plans/2026-09-16-clean-low-lr-128-protocol.md"
+      }
+    }
+  }
+}

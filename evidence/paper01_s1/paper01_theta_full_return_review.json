@@ -1,0 +1,17 @@
+{
+  "schema": "pidon-paper01-theta-full-return-review-v1",
+  "status": "PASS",
+  "scientific_result": "DIAGNOSTIC_ONLY",
+  "import_dir": "C:\\PI-DON\\evidence\\paper01_s1\\imports\\server_paper01_theta_full_return_20260917T110529Z",
+  "summary_path": "C:\\PI-DON\\evidence\\paper01_s1\\imports\\server_paper01_theta_full_return_20260917T110529Z\\_01\\evidence\\paper01_theta_full_v1\\summary.json",
+  "parameter_updates": 25000,
+  "variant": "theta_min_0p5",
+  "best_test_mse": 0.016009831254680952,
+  "best_update": 24500,
+  "macro_nmae_mean": 0.0720422450794528,
+  "rel_l2_p90": 0.45308546423912044,
+  "mre_eq5_mean": 1.1524533810963233,
+  "ez_amplification_p90": 1.3677113238900063,
+  "diagnostic_not_paper_literal": false,
+  "long_run_unlocked": false
+}

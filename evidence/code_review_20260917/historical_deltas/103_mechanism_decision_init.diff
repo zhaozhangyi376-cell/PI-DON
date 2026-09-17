@@ -1,0 +1,30 @@
+--- scripts/experiments/mechanism_decision_init.py
++++ evidence/mechanism_decision_v1/source_snapshot/mechanism_decision_init.py
+@@ -3,16 +3,8 @@
+ This intentionally records a *new* protocol.  It never changes historical
+ G0/G1 decisions, checkpoints, or their budgets.
+ """
+ from __future__ import annotations
+-
+-# Project layout bootstrap (imports and paths only).
+-import sys as _layout_sys
+-from pathlib import Path as _LayoutPath
+-_layout_sys.path.insert(0, str(_LayoutPath(__file__).resolve().parents[2]))
+-from project_paths import ROOT as PROJECT_ROOT, configure as _layout_configure, resolve_legacy
+-_layout_configure()
+-
+ 
+ import hashlib
+ import json
+ import os
+@@ -28,9 +20,9 @@
+ 
+ from pidon_recording import atomic_json_save, sha256_file, source_hashes
+ 
+ 
+-ROOT = PROJECT_ROOT
++ROOT = Path(__file__).resolve().parent
+ OUT = ROOT / "evidence" / "mechanism_decision_v1"
+ PLAN = ROOT / "docs" / "superpowers" / "plans" / "2026-09-14-pidon-mechanism-decision-plan.md"
+ MASTER = ROOT / "dco_lr1e3_300.pt"
+ SOURCE_FILES = (

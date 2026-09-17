@@ -1,0 +1,24 @@
+--- scripts/analysis/audit_mechanism_2h.py
++++ evidence/workspace_reorganization_20260914/before/root/audit_mechanism_2h.py
+@@ -1,20 +1,12 @@
+ """Read-only audit/report for the bounded 2h mechanism follow-up."""
+ from __future__ import annotations
+-
+-# Project layout bootstrap (imports and paths only).
+-import sys as _layout_sys
+-from pathlib import Path as _LayoutPath
+-_layout_sys.path.insert(0, str(_LayoutPath(__file__).resolve().parents[2]))
+-from project_paths import ROOT as PROJECT_ROOT, configure as _layout_configure, resolve_legacy
+-_layout_configure()
+-
+ 
+ import hashlib
+ import json
+ from pathlib import Path
+ 
+-ROOT = PROJECT_ROOT
++ROOT = Path(__file__).resolve().parent
+ OLD = ROOT / "evidence" / "mechanism_1h_v2"
+ OUT = ROOT / "evidence" / "mechanism_2h_v1"
+ 
+ 

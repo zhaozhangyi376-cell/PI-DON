@@ -1,0 +1,27 @@
+--- scripts/analysis/audit_mechanism_decision_review.py
++++ evidence/workspace_reorganization_20260914/before/root/audit_mechanism_decision_review.py
+@@ -1,13 +1,5 @@
+ """No-training audit. Preserve all v1 outputs; independently recompute metrics."""
+-
+-# Project layout bootstrap (imports and paths only).
+-import sys as _layout_sys
+-from pathlib import Path as _LayoutPath
+-_layout_sys.path.insert(0, str(_LayoutPath(__file__).resolve().parents[2]))
+-from project_paths import ROOT as PROJECT_ROOT, configure as _layout_configure, resolve_legacy
+-_layout_configure()
+-
+ import argparse
+ import hashlib
+ import json
+ from pathlib import Path
+@@ -17,9 +9,9 @@
+ import mechanism_decision_eval as E
+ import mechanism_first_failure as F
+ import pidon_solve as S
+ 
+-ROOT = PROJECT_ROOT
++ROOT = Path(__file__).resolve().parent
+ OLD = ROOT / 'evidence/mechanism_decision_v1'
+ OUT = ROOT / 'evidence/mechanism_decision_v1_review'
+ 
+ def sha(p):

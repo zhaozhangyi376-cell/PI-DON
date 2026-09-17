@@ -1,0 +1,18 @@
+--- tests/test_pidon_contract.py
++++ evidence/workspace_reorganization_20260914/before/root/test_pidon_contract.py
+@@ -1,15 +1,7 @@
+ """P1 contract tests: stop decisions, Yee measurement and transaction recovery."""
+ 
+ from __future__ import annotations
+-
+-# Project layout bootstrap (imports and paths only).
+-import sys as _layout_sys
+-from pathlib import Path as _LayoutPath
+-_layout_sys.path.insert(0, str(_LayoutPath(__file__).resolve().parents[1]))
+-from project_paths import ROOT as PROJECT_ROOT, configure as _layout_configure, resolve_legacy
+-_layout_configure()
+-
+ 
+ import argparse
+ import json
+ import tempfile

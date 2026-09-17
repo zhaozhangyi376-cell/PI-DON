@@ -1,0 +1,19 @@
+--- src/pidon/dco.py
++++ evidence/coverage_ab_v1/source/dco.py
+@@ -32,16 +32,8 @@
+   * channel counts        -> base=32, doubling per level  [MVP; paper silent]
+   * where exactly the residual lands -> out = act(c2(act(c1(x)))) + proj(x)
+   * how the output is de-normalised -> see normalise() below
+ """
+-
+-# Project layout bootstrap (imports and paths only).
+-import sys as _layout_sys
+-from pathlib import Path as _LayoutPath
+-_layout_sys.path.insert(0, str(_LayoutPath(__file__).resolve().parents[2]))
+-from project_paths import ROOT as PROJECT_ROOT, configure as _layout_configure, resolve_legacy
+-_layout_configure()
+-
+ 
+ import torch
+ import torch.nn as nn
+ 

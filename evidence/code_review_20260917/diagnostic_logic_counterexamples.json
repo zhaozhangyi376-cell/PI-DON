@@ -1,0 +1,55 @@
+{
+  "review_only": true,
+  "production_updates": 0,
+  "toy_optimizer_updates": 0,
+  "tests": 4,
+  "failures": 0,
+  "errors": 0,
+  "observations": {
+    "a3_all_not_run": {
+      "tasks": [
+        {
+          "step": 43,
+          "status": "NOT_RUN"
+        },
+        {
+          "step": 96,
+          "status": "NOT_RUN"
+        }
+      ],
+      "g1_development_pass": true
+    },
+    "r4_one_of_two": {
+      "requested_states": [
+        43,
+        96
+      ],
+      "completed_states": [
+        43
+      ],
+      "g1_development_pass": true
+    },
+    "shared_H_targets": [
+      {
+        "which": "H",
+        "target_value": 1.0
+      },
+      {
+        "which": "H",
+        "target_value": 1.0
+      },
+      {
+        "which": "H",
+        "target_value": 2.0
+      }
+    ],
+    "linear_identity_operator": {
+      "n_waves": 12,
+      "zero_output_max_abs": 0.0,
+      "positive_amplitude_homogeneity_max_abs": 0.0,
+      "superposition_defect_relative_l2": 0.8297981946856627,
+      "note": "幅值齐次性受输入RMS归一化和可逆反归一化强烈约束，只作控制，不计泛化成绩。",
+      "actual_additivity_defect": 0.0
+    }
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "review_only": true,
+  "production_parameter_updates": 0,
+  "tests": 12,
+  "errors": 0,
+  "failures": 0,
+  "observations": {
+    "absolute_mode": {
+      "absolute_loss": 8.099999782018585e-09,
+      "tol": 0.0001,
+      "relative_residual": 1.0,
+      "passed": false,
+      "parameter_updates": 0
+    },
+    "cfl": {
+      "n32_dt_over_limit": 1.0218953533564947,
+      "raises": false
+    },
+    "rel_l2_units": {
+      "physical": 0.009998999536037445,
+      "component_normalized": 0.5773502588272095
+    },
+    "probe_gate": {
+      "pass": true,
+      "dut": 1000.0,
+      "ref": 1.0
+    },
+    "missing_field_evidence": {
+      "pass": true,
+      "global_weighted_relative_l2": 0.0,
+      "global_weighted_relative_l2_le_5pct": true,
+      "fixed_amplitude_error": 0.0,
+      "fixed_amplitude_error_le_1e_minus_3": true,
+      "component_pass": true,
+      "components": {},
+      "source_outside_probes": null,
+      "source_probe_Ez": null
+    },
+    "path_alias": {
+      "requested": "Z:\\independent_study\\dco_lr1e3_300.pt",
+      "resolved": "C:\\PI-DON\\assets\\models\\dco_lr1e3_300.pt"
+    },
+    "material": {
+      "eps_r_1_and_4_identical": true,
+      "stored_eps_ratio": 1.0
+    },
+    "mre_units": {
+      "physical_absolute_error_A_per_m": 0.0026544187287155145,
+      "reported_mre_eq5_physical": 1.0
+    },
+    "rolling_crash": {
+      "first_resume_loaded_value": 2,
+      "second_write_overwrote_pointed_slot": true,
+      "second_resume_error": "rolling checkpoint hash differs from pointer"
+    },
+    "theta_ingest": {
+      "status": "PASS",
+      "files_present": [
+        "summary.json"
+      ],
+      "updates": null
+    },
+    "ablation_confounding": {
+      "baseline": {
+        "test_size": 20,
+        "test_abs_cos_below_0p5": 6,
+        "field_sha256": "56d826fe97bd77681d759928a1b77b7f52b596fa612fb91bffd0af9c70ed69fd",
+        "seed": 2026091702
+      },
+      "theta_min_0p5": {
+        "test_size": 20,
+        "test_abs_cos_below_0p5": 0,
+        "field_sha256": "5120b012ed9f21103eca6b5b73e614416d7f8d518e022d32de7392e223a1c3a0",
+        "seed": 2026092702
+      }
+    },
+    "independent_linear_curl": {
+      "E": 4.085620730620576e-14,
+      "H": 2.3092638912203256e-14
+    }
+  }
+}

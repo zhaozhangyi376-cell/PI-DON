@@ -1,0 +1,40 @@
+{
+  "review_only": true,
+  "production_updates": 0,
+  "tests": 3,
+  "errors": 0,
+  "failures": 0,
+  "observations": {
+    "equivalence_checker": {
+      "status": "PASS",
+      "full_loss": 801048128.0,
+      "micro_loss": 12516548.0,
+      "loss_abs_diff": 788531580.0,
+      "max_checked_grad_abs_diff": 1686659584.0,
+      "max_checked_grad_rel_diff": 0.9843722919921256,
+      "microbatch": 4
+    },
+    "m2_gate": {
+      "field_gate_pass": true,
+      "Q": 9.0,
+      "weak_Hz_absolute_error": 10.0,
+      "Ey_nmae_is_nan": true,
+      "components_present": [
+        "Ex",
+        "Ey",
+        "Hz"
+      ],
+      "probe_timeseries_length": 1
+    },
+    "s1_sample_gate": {
+      "macro_nmae_mean": 0.00020000000000000017,
+      "macro_nmae_max": 0.020000000000000018,
+      "global_rel_l2_p90": 0.0,
+      "gate": {
+        "macro_nmae_mean_le_1pct": true,
+        "global_rel_l2_p90_le_5pct": true,
+        "pass": true
+      }
+    }
+  }
+}

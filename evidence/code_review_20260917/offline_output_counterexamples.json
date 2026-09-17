@@ -1,0 +1,27 @@
+{
+  "review_only": true,
+  "production_updates": 0,
+  "toy_adam_calls": 2,
+  "tests": 3,
+  "errors": 0,
+  "failures": 0,
+  "observations": {
+    "head_semantics": {
+      "state_dict_strict_load_succeeds": true,
+      "max_output_difference": 0.6308901309967041,
+      "source_head": "potential",
+      "loaded_head": "direct"
+    },
+    "missing_parent": {
+      "adam_before_save_failure": 1,
+      "checkpoint_exists": false
+    },
+    "non_pt_output": {
+      "path_suffix": ".bin",
+      "output_is_json_not_weights": true,
+      "observed_epochs": [
+        1
+      ]
+    }
+  }
+}

@@ -1,0 +1,16 @@
+--- tests/test_coverage_ab.py
++++ evidence/coverage_ab_v1/source/test_coverage_ab.py
+@@ -1,13 +1,5 @@
+ """Pre-training checks for paired data, physical loss and strict update budget."""
+-
+-# Project layout bootstrap (imports and paths only).
+-import sys as _layout_sys
+-from pathlib import Path as _LayoutPath
+-_layout_sys.path.insert(0, str(_LayoutPath(__file__).resolve().parents[1]))
+-from project_paths import ROOT as PROJECT_ROOT, configure as _layout_configure, resolve_legacy
+-_layout_configure()
+-
+ import unittest
+ import copy
+ import numpy as np
+ import torch

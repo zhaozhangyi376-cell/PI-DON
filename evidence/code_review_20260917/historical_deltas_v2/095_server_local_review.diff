@@ -1,0 +1,98 @@
+--- scripts/experiments/server_local_review.py
++++ evidence/server_resource_v1/local_review/source/scripts/experiments/server_local_review.py
+@@ -42,26 +42,20 @@
+     hashes = {}
+     for rel in ('scripts/experiments/server_local_review.py',
+                 'scripts/experiments/server_phase1_compare.py',
+                 'scripts/experiments/server_compute_probe.py',
+-                'scripts/experiments/server_short_tol_probe.py',
+                 'scripts/experiments/phase1_full_run.py', 'src/pidon/dco.py',
+                 'src/pidon/paper_protocol.py', 'src/pidon/pidon_contract.py',
+-                'src/pidon/pidon_solve.py', 'src/pidon/pidon_recording.py',
+-                'tools/server_resource_queue.py', 'tools/server_batch2_queue.py',
+-                'project_paths.py'):
++                'src/pidon/pidon_solve.py', 'project_paths.py'):
+         path = ROOT / rel
+         if path.exists():
+             dest = source / rel
+             dest.parent.mkdir(parents=True, exist_ok=True)
+             shutil.copy2(path, dest)
+             hashes[rel] = sha256_file(path)
+-    from project_harness import read_events, evidence_path
+-    starts = [e for e in read_events(ROOT) if e.get('event') == 'start' and e.get('action_id') == action]
+-    protocol = evidence_path(starts[0]['protocol'], ROOT) if len(starts) == 1 else PROTOCOL
+     atomic_json_save({'action_id': action, 'lab_run_id': os.environ.get('PIDON_LAB_RUN_ID'),
+                       'host': socket.gethostname(), 'source_hashes': hashes,
+-                      'protocol': file_identity(protocol)}, out / 'manifest.json')
++                      'protocol': file_identity(PROTOCOL)}, out / 'manifest.json')
+     return out
+ 
+ 
+ def receipt_diagnosis(summary):
+@@ -138,31 +132,20 @@
+     ck = torch.load(path, map_location='cpu', weights_only=False)
+     cfg = ck['frozen_config']
+     h = cfg['side'] / cfg['n']
+     ref = ck['reference']
+-    # The original _step_summary converts the float64 FDTD reference to DUT
+-    # dtype before metrics. Near-zero component denominators are sensitive.
+-    reference_e = [ref[k].to(dtype=ck['E'][i].dtype) for i, k in enumerate(NAMES[:3])]
+-    reference_h = [ref[k].to(dtype=ck['H'][i].dtype) for i, k in enumerate(NAMES[3:])]
+-    measured = six_component_metrics(ck['E'], ck['H'], reference_e,
+-                                     reference_h, (h, h, h),
++    measured = six_component_metrics(ck['E'], ck['H'], [ref[k] for k in NAMES[:3]],
++                                     [ref[k] for k in NAMES[3:]], (h, h, h),
+                                      source_ez_index=(cfg['n']//2,)*3)
+     saved = row['six_component_metrics']
+     diffs = {}
+-    invalid = []
+     for name in NAMES:
+         for metric in ('absolute_mae', 'reference_max', 'nmae'):
+             a, b = measured['components'][name][metric], saved['components'][name][metric]
+-            if b is None and metric == 'nmae' and measured['components'][name]['reference_max'] == 0:
+-                continue
+-            if b is None or not np.isfinite(a) or not np.isfinite(b):
+-                invalid.append(f'{name}.{metric}')
+-            else:
++            if b is not None and np.isfinite(a):
+                 diffs[f'{name}.{metric}'] = abs(a-b)
+     return {'file': file_identity(path), 'accepted_steps': ck['accepted_steps'],
+-            'row_accepted_steps': row['accepted_steps'], 'max_abs_metric_difference': max(diffs.values()) if diffs else None,
+-            'invalid_metrics': invalid, 'consistent': not invalid and bool(diffs) and max(diffs.values()) <= 1e-8 and ck['accepted_steps'] == row['accepted_steps'],
+-            'reference_precision': 'matched_to_original_DUT_float32_before_metric',
++            'row_accepted_steps': row['accepted_steps'], 'max_abs_metric_difference': max(diffs.values(), default=0),
+             'six_components': measured, 'certification': 'readback_only_not_full_field_gate'}
+ 
+ 
+ def review_arm(path):
+@@ -222,9 +205,9 @@
+ 
+ 
+ def run(args):
+     started = time.perf_counter()
+-    out = new_output(args.output_name, args.action_id)
++    out = new_output('local_review', args.action_id)
+     shutil.copy2(args.receipt, out / 'user_supplied_s1r_summary.json')
+     result = {'action_id': args.action_id, 'lab_run_id': os.environ.get('PIDON_LAB_RUN_ID'),
+               'new_adam_updates': 0, 'new_closures': 0, 'scientific_result': 'NOT_APPLICABLE',
+               's1r': receipt_diagnosis(read_json(args.receipt)), 'arms': []}
+@@ -235,12 +218,8 @@
+         except Exception as exc:
+             result['arms'].append({'arm': rel, 'status': 'INCOMPLETE', 'error': repr(exc)})
+         print('reviewed', rel, flush=True)
+     result['status'] = 'INCOMPLETE' if any('error' in r for r in result['arms']) else 'PASS'
+-    result['readback_consistent'] = all(m.get('consistent', False) for r in result['arms']
+-                                       for m in r.get('milestones', {}).values() if 'file' in m)
+-    if not result['readback_consistent']:
+-        result['status'] = 'INCOMPLETE'
+     result['elapsed_s'] = time.perf_counter()-started
+     result['limitations'] = [
+         'S1R supplied summary only; remote hashes/checkpoints/ledger not locally verified.',
+         'Original S1 plan says per-sample <=1%; code uses mean <=1%. Both reported; no old failure promoted.',
+@@ -276,6 +255,5 @@
+ if __name__ == '__main__':
+     parser = argparse.ArgumentParser()
+     parser.add_argument('--action-id', required=True)
+     parser.add_argument('--receipt', type=Path, required=True)
+-    parser.add_argument('--output-name', choices=('local_review', 'local_review_v2'), default='local_review')
+     run(parser.parse_args())

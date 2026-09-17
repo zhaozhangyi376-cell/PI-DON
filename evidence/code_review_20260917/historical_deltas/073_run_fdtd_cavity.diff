@@ -1,0 +1,19 @@
+--- scripts/experiments/run_fdtd_cavity.py
++++ evidence/workspace_reorganization_20260914/before/root/run_fdtd_cavity.py
+@@ -22,16 +22,8 @@
+  3. Frequency resolution: 8192 steps x 2.98 ps = 24 ns -> 41 MHz per raw FFT
+     bin, far too coarse for the 3-decimal GHz figures in Table II.  We
+     zero-pad to 2^20 and parabolic-interpolate the peak.
+ """
+-
+-# Project layout bootstrap (imports and paths only).
+-import sys as _layout_sys
+-from pathlib import Path as _LayoutPath
+-_layout_sys.path.insert(0, str(_LayoutPath(__file__).resolve().parents[2]))
+-from project_paths import ROOT as PROJECT_ROOT, configure as _layout_configure, resolve_legacy
+-_layout_configure()
+-
+ 
+ import argparse
+ import time
+ 

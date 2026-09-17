@@ -1,0 +1,62 @@
+--- scripts/analysis/audit_v2_stop.py
++++ evidence/gpt6_plan_v3_review/source_snapshot/audit_v2_stop.py
+@@ -1,14 +1,6 @@
+ """Read-only saved-asset audit plus tiny CPU contract counterexamples."""
+ from __future__ import annotations
+-
+-# Project layout bootstrap (imports and paths only).
+-import sys as _layout_sys
+-from pathlib import Path as _LayoutPath
+-_layout_sys.path.insert(0, str(_LayoutPath(__file__).resolve().parents[2]))
+-from project_paths import ROOT as PROJECT_ROOT, configure as _layout_configure, resolve_legacy
+-_layout_configure()
+-
+ 
+ import argparse
+ import copy
+ import json
+@@ -28,9 +20,9 @@
+ from pidon_recording import RunRecorder, sha256_file
+ from r4_fixed_state import json_safe, solver_args
+ from test_pidon_contract import PidonContractTests
+ 
+-ROOT = PROJECT_ROOT
++ROOT = Path(__file__).resolve().parent
+ OUT = ROOT / 'evidence/gpt6_plan_v3_review'
+ 
+ 
+ def tiny_args():
+@@ -199,9 +191,9 @@
+     alternate = fdtd.PECCavity(n=31, side=.05, dt=3.075e-12)
+     source = fdtd.source_waveform(128, 3.075e-12, 15e9, 'gauss')
+     aligned_worst = wrong_worst = 0.0
+     for value in source:
+-        ref.step(src_value=float(value), src_idx=(15, 15, 15), src_mode='hard')
++        ref.step(src_value=float(value), src_idx=(15, 15, 15))
+         alternate.step_e_source_h(src_value=float(value), src_idx=(15, 15, 15))
+         E = [S.to_t(getattr(ref, 'E' + q), 'cpu', torch.float64) for q in 'xyz']
+         H = [S.to_t(getattr(ref, 'H' + q), 'cpu', torch.float64) for q in 'xyz']
+         ce = fdtd.curl_E(ref.Ex, ref.Ey, ref.Ez, ref.dx, ref.dy, ref.dz)
+@@ -237,22 +229,8 @@
+ 
+ 
+ def main():
+     torch.set_num_threads(4)
+-    parser = argparse.ArgumentParser()
+-    parser.add_argument('--reference-only', action='store_true')
+-    args = parser.parse_args()
+-    if args.reference_only:
+-        path = OUT / 'reference_alignment_corrected.json'
+-        if path.exists():
+-            raise FileExistsError(path)
+-        result = reference_ordering()
+-        result['correction'] = 'run #137 reference subtest accidentally used default additive source; corrected to registered hard source. Other #137 subtests are unaffected.'
+-        result['script_sha256'] = sha256_file(__file__)
+-        shutil.copy2(__file__, OUT / 'source_snapshot/audit_v2_stop_reference_corrected.py')
+-        path.write_text(json.dumps(json_safe(result),ensure_ascii=False,indent=2,allow_nan=False)+'\n',encoding='utf-8')
+-        print(json.dumps(result,ensure_ascii=False))
+-        return
+     if (OUT / 'audit.json').exists():
+         raise FileExistsError('Refusing to overwrite an audit; preserve previous evidence')
+     snapshot = OUT / 'source_snapshot'; snapshot.mkdir(parents=True, exist_ok=False)
+     names = ['audit_v2_stop.py','pidon_solve.py','pidon_contract.py','pidon_recording.py','fdtd.py','dco.py',

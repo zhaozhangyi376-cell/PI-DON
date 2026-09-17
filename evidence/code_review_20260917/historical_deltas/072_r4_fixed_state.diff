@@ -1,0 +1,29 @@
+--- scripts/experiments/r4_fixed_state.py
++++ evidence/gpt6_plan_v3/h_layout_candidate/source_snapshot/r4_fixed_state.py
+@@ -1,15 +1,7 @@
+ """R4 v2 development-state diagnostic using the repaired Solver contract."""
+ 
+ from __future__ import annotations
+-
+-# Project layout bootstrap (imports and paths only).
+-import sys as _layout_sys
+-from pathlib import Path as _LayoutPath
+-_layout_sys.path.insert(0, str(_LayoutPath(__file__).resolve().parents[2]))
+-from project_paths import ROOT as PROJECT_ROOT, configure as _layout_configure, resolve_legacy
+-_layout_configure()
+-
+ 
+ import argparse
+ import json
+ import math
+@@ -149,9 +141,9 @@
+                       "phase": "completed" if fit_e and fit_e.passed else ("E_pending" if fit_h.passed else "before_H"),
+                       "waveform_status": "N/A_fixed_single_time", "elapsed_s": time.perf_counter() - started,
+                       "fit_H_trace": trace_h, "fit_E_trace": trace_e})
+     result = {"schema": "pidon-r4-v2-development", "classification": "sequential fixed-state diagnostic; not closed-loop rollout",
+-              "config": vars(a), "source_hashes": source_hashes(PROJECT_ROOT), "init_sha256": sha256_file(a.init),
++              "config": vars(a), "source_hashes": source_hashes(Path(__file__).parent), "init_sha256": sha256_file(a.init),
+               "tasks": tasks, "elapsed_s": time.perf_counter() - started,
+               "g1_development_pass": bool(tasks) and all(x["fit_H"]["passed"] and x["fit_E"] and x["fit_E"]["passed"]
+                                                           and x["fixed_amplitude_error"] <= 1e-3 for x in tasks)}
+     result = json_safe(result)

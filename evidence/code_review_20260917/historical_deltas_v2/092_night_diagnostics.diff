@@ -1,0 +1,28 @@
+--- scripts/experiments/night_diagnostics.py
++++ evidence/workspace_reorganization_20260914/before/root/night_diagnostics.py
+@@ -1,14 +1,6 @@
+ """N5 no-update diagnostics: frozen feature head bound and label/gradient audit."""
+ from __future__ import annotations
+-
+-# Project layout bootstrap (imports and paths only).
+-import sys as _layout_sys
+-from pathlib import Path as _LayoutPath
+-_layout_sys.path.insert(0, str(_LayoutPath(__file__).resolve().parents[2]))
+-from project_paths import ROOT as PROJECT_ROOT, configure as _layout_configure, resolve_legacy
+-_layout_configure()
+-
+ import argparse, gc, hashlib, json, math, os
+ from pathlib import Path
+ from types import SimpleNamespace
+ import numpy as np
+@@ -18,9 +10,9 @@
+ import night_fixed_state as N
+ from pidon_recording import sha256_file
+ from pidon_solve import Solver
+ 
+-ROOT=PROJECT_ROOT
++ROOT=Path(__file__).resolve().parent
+ OLD=("H_step_0043.pt","E_oracle_step_0043.pt","H_step_0096.pt","E_oracle_step_0096.pt")
+ def finite(v): return float(v) if math.isfinite(float(v)) else None
+ def write(path,v):
+  t=path.with_suffix(path.suffix+".tmp");t.write_text(json.dumps(v,ensure_ascii=False,indent=2,allow_nan=False)+"\n",encoding="utf-8");os.replace(t,path)

@@ -1,0 +1,19 @@
+--- scripts/experiments/spacing_probe.py
++++ evidence/coverage_ab_v1/source/spacing_probe.py
+@@ -2,16 +2,8 @@
+ 
+ All criteria are saved before inference. Single waves are diagnostic probes,
+ not samples from the paper's 20-wave test or the old 4--16-wave training set.
+ """
+-
+-# Project layout bootstrap (imports and paths only).
+-import sys as _layout_sys
+-from pathlib import Path as _LayoutPath
+-_layout_sys.path.insert(0, str(_LayoutPath(__file__).resolve().parents[2]))
+-from project_paths import ROOT as PROJECT_ROOT, configure as _layout_configure, resolve_legacy
+-_layout_configure()
+-
+ import argparse
+ from pathlib import Path
+ import shutil
+ import time

@@ -1,0 +1,19 @@
+--- scripts/experiments/train_pidon.py
++++ evidence/workspace_reorganization_20260914/before/root/train_pidon.py
+@@ -58,16 +58,8 @@
+                      div(curl)=0 and adjointness to 2e-16, energy conserved to
+                      twelve decimals over 2000 steps, dispersion within 0.001%
+                      of the Yee relation.
+ """
+-
+-# Project layout bootstrap (imports and paths only).
+-import sys as _layout_sys
+-from pathlib import Path as _LayoutPath
+-_layout_sys.path.insert(0, str(_LayoutPath(__file__).resolve().parents[2]))
+-from project_paths import ROOT as PROJECT_ROOT, configure as _layout_configure, resolve_legacy
+-_layout_configure()
+-
+ 
+ import argparse
+ import json
+ import time

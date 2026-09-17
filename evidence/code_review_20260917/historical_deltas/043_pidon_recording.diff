@@ -1,0 +1,40 @@
+--- src/pidon/pidon_recording.py
++++ evidence/gpt6_plan_v4_night/control_runs/float64_exact/source_snapshot/pidon_recording.py
+@@ -1,15 +1,7 @@
+ """Durable, append-only recording helpers for formal stage-2 runs."""
+ 
+ from __future__ import annotations
+-
+-# Project layout bootstrap (imports and paths only).
+-import sys as _layout_sys
+-from pathlib import Path as _LayoutPath
+-_layout_sys.path.insert(0, str(_LayoutPath(__file__).resolve().parents[2]))
+-from project_paths import ROOT as PROJECT_ROOT, configure as _layout_configure, resolve_legacy
+-_layout_configure()
+-
+ 
+ import hashlib
+ import json
+ import os
+@@ -24,9 +16,9 @@
+ import torch
+ 
+ 
+ def sha256_file(path: str | Path) -> str | None:
+-    path = Path(resolve_legacy(path))
++    path = Path(path)
+     if not path.is_file():
+         return None
+     digest = hashlib.sha256()
+     with path.open("rb") as handle:
+@@ -37,9 +29,9 @@
+ 
+ def source_hashes(root: str | Path) -> dict[str, str | None]:
+     root = Path(root)
+     return {
+-        name: sha256_file(root / name if (root / name).is_file() else PROJECT_ROOT / name)
++        name: sha256_file(root / name)
+         for name in ("pidon_solve.py", "pidon_contract.py", "pidon_recording.py", "fdtd.py", "dco.py")
+     }
+ 
+ 

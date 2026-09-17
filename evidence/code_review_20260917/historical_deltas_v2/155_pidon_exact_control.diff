@@ -1,0 +1,130 @@
+--- scripts/experiments/pidon_exact_control.py
++++ evidence/gpt6_plan_v3/A2_control_runs/float32_exact/source_snapshot/pidon_exact_control.py
+@@ -4,16 +4,8 @@
+ not use a DCO output and are deliberately labelled ``control_only``.
+ """
+ 
+ from __future__ import annotations
+-
+-# Project layout bootstrap (imports and paths only).
+-import sys as _layout_sys
+-from pathlib import Path as _LayoutPath
+-_layout_sys.path.insert(0, str(_LayoutPath(__file__).resolve().parents[2]))
+-from project_paths import ROOT as PROJECT_ROOT, configure as _layout_configure, resolve_legacy
+-_layout_configure()
+-
+ 
+ import argparse
+ import json
+ import math
+@@ -24,16 +16,16 @@
+ import numpy as np
+ import torch
+ 
+ import fdtd
+-from pidon_contract import (FitRecord, StepRecord, SOURCE_OUTSIDE_PROBES_CELLS,
++from pidon_contract import (FitRecord, SOURCE_OUTSIDE_PROBES_CELLS,
+                             six_component_metrics, trilinear_sample)
+ from pidon_recording import RunRecorder, sha256_file
+ from pidon_solve import (Solver, _checkpoint_payload, _restore_reference,
+                          formal_run_identity, to_t)
+ 
+ 
+-ROOT = PROJECT_ROOT
++ROOT = Path(__file__).resolve().parent
+ CONTROL_SOURCE_FILES = ("pidon_exact_control.py", "pidon_solve.py", "pidon_contract.py",
+                         "pidon_recording.py", "fdtd.py", "dco.py")
+ 
+ 
+@@ -102,37 +94,13 @@
+                          sum(part.numel() for part in prediction),
+                          residual_ratio=(error / target_ss if target_ss else None),
+                          residual_rule="exact_yee_control")
+ 
+-    def step(self, g_t):
+-        """Keep the hard-source-only negative independent from zero curl.
+-
+-        It still invokes both production fitting roles so the audit can count
+-        the transaction interface, but constructs its six fields afresh from
+-        the hard source instead of reusing the zero-curl update branch.
+-        """
+-        if self.a.control_mode != "hard_source_only":
+-            return super().step(g_t)
+-        fit_h = self.inner_train(self.H, self.yee_curl_H(), "H")
+-        fit_e = self.inner_train(self.E, self.yee_curl_E(), "E")
+-        self.E = [torch.zeros_like(part) for part in self.E]
+-        self.H = [torch.zeros_like(part) for part in self.H]
+-        c = self.n // 2
+-        self.E[2][c, c, c] = g_t
+-        self.apply_pec()
+-        record = StepRecord(self.current_time_layer, True, "hard_source_only", fit_h, fit_e)
+-        self.accepted_steps += 1
+-        self.current_time_layer += 1
+-        return record
+-
+ 
+ def _reference_tensors(ref, solver, h_override=None):
+     h_arrays = h_override if h_override is not None else (ref.Hx, ref.Hy, ref.Hz)
+-    # A float32 control is deliberately compared with the independent float64
+-    # reference.  Casting it down would make the check a float32-vs-float32
+-    # self-comparison and hide its roundoff error.
+-    return ([to_t(getattr(ref, name), solver.dev, torch.float64) for name in ("Ex", "Ey", "Ez")],
+-            [to_t(array, solver.dev, torch.float64) for array in h_arrays])
++    return ([to_t(getattr(ref, name), solver.dev, solver.dtype) for name in ("Ex", "Ey", "Ez")],
++            [to_t(array, solver.dev, solver.dtype) for array in h_arrays])
+ 
+ 
+ def _probes(solver, reference_e):
+     dxyz = (solver.cav.dx, solver.cav.dy, solver.cav.dz)
+@@ -158,10 +126,9 @@
+ 
+ 
+ def _metric_gate(result, threshold):
+     return (result["finite"] and result["max_global_relative_l2"] <= threshold and
+-            result["max_probe_abs_error"] <= threshold and
+-            result["max_fixed_amplitude_error"] <= threshold)
++            result["max_probe_abs_error"] <= threshold)
+ 
+ 
+ def run(dtype, n=31, steps=128, side=0.05, dt=3.075e-12, mode="exact", *,
+         out_dir: str | Path | None = None, resume_after: int | None = None,
+@@ -172,9 +139,9 @@
+     current E to H from the preceding reference half step.
+     """
+     if n != 31 or side != 0.05 or dt != 3.075e-12:
+         raise ValueError("A2 exact control is frozen at n=31, side=.05, dt=3.075e-12")
+-    is_float64 = dtype in (torch.float64, np.float64, np.dtype(np.float64))
++    is_float64 = dtype is torch.float64 or np.dtype(dtype) == np.dtype(np.float64)
+     torch_dtype = torch.float64 if is_float64 else torch.float32
+     args = control_args(torch_dtype, mode)
+     solver = ProductionControlSolver(args, "cpu")
+     reference = fdtd.PECCavity(side=side, n=n, dt=dt)  # independent double reference
+@@ -223,24 +190,21 @@
+         if recorder is not None:
+             recorder.append(json_safe(row))
+         if recorder is not None and resume_after is not None and solver.accepted_steps == resume_after:
+             payload = _checkpoint_payload(solver, reference, requested_steps=steps, source_index=step + 1)
+-            checkpoint_path = recorder.rolling_checkpoint(payload)
+-            # Destroy the in-memory objects and restore the actual bytes that
+-            # made it to disk; an in-memory payload is not recovery evidence.
+-            disk_payload = torch.load(checkpoint_path, map_location="cpu", weights_only=False)
++            recorder.checkpoint(payload)
+             solver = ProductionControlSolver(args, "cpu")
+-            solver.load_state_payload(disk_payload)
++            solver.load_state_payload(payload)
+             reference = fdtd.PECCavity(side=side, n=n, dt=dt)
+-            _restore_reference(reference, disk_payload["reference"])
++            _restore_reference(reference, payload["reference"])
+             recorder = RunRecorder(out_dir, {
+                 "schema": "pidon-production-control-v3", "classification": "control_only",
+                 "control_mode": mode, "wrong_h_half": wrong_h_half, "config": vars(args).copy(),
+                 "reference_dtype": "float64", **identity,
+             }, mode="resume")
+             restored_at = step + 1
+     if recorder is not None:
+-        recorder.rolling_checkpoint(_checkpoint_payload(solver, reference, requested_steps=steps, source_index=steps))
++        recorder.checkpoint(_checkpoint_payload(solver, reference, requested_steps=steps, source_index=steps))
+     finite = all(bool(torch.isfinite(part).all()) for part in solver.E + solver.H)
+     result = json_safe({
+         "schema": "pidon-production-control-v3", "dtype": "float64" if is_float64 else "float32",
+         "steps": steps, "mode": mode, "wrong_h_half": wrong_h_half,

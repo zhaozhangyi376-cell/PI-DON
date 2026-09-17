@@ -1,0 +1,28 @@
+--- scripts/experiments/g0_verifier.py
++++ evidence/workspace_reorganization_20260914/before/root/g0_verifier.py
+@@ -1,14 +1,6 @@
+ """Numeric, input-driven G0 verifier for the v4 night evidence package."""
+ from __future__ import annotations
+-
+-# Project layout bootstrap (imports and paths only).
+-import sys as _layout_sys
+-from pathlib import Path as _LayoutPath
+-_layout_sys.path.insert(0, str(_LayoutPath(__file__).resolve().parents[2]))
+-from project_paths import ROOT as PROJECT_ROOT, configure as _layout_configure, resolve_legacy
+-_layout_configure()
+-
+ 
+ import argparse
+ import copy
+ import json
+@@ -17,9 +9,9 @@
+ from typing import Any
+ 
+ from pidon_recording import sha256_file, source_hashes
+ 
+-ROOT = PROJECT_ROOT
++ROOT = Path(__file__).resolve().parent
+ C_IDS = [f"C{i:02d}" for i in range(1, 16)]
+ M_IDS = [f"M{i:02d}" for i in range(1, 14)]
+ 
+ 

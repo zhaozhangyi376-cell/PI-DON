@@ -1,0 +1,28 @@
+--- scripts/experiments/night_fixed_state.py
++++ evidence/workspace_reorganization_20260914/before/root/night_fixed_state.py
+@@ -1,14 +1,6 @@
+ """Registered N3 fixed-state evaluation for head_lstsq_once_adam499 only."""
+ from __future__ import annotations
+-
+-# Project layout bootstrap (imports and paths only).
+-import sys as _layout_sys
+-from pathlib import Path as _LayoutPath
+-_layout_sys.path.insert(0, str(_LayoutPath(__file__).resolve().parents[2]))
+-from project_paths import ROOT as PROJECT_ROOT, configure as _layout_configure, resolve_legacy
+-_layout_configure()
+-
+ 
+ import argparse
+ import hashlib
+ import json
+@@ -26,9 +18,9 @@
+ from pidon_recording import sha256_file, source_hashes
+ from pidon_solve import Solver, to_t
+ from r4_fixed_state import fixed_pairs
+ 
+-ROOT = PROJECT_ROOT
++ROOT = Path(__file__).resolve().parent
+ MASTER = ROOT / "dco_lr1e3_300.pt"
+ MASTER_HASH = "3f259bc887a10fac77f6bdf77b43ba1ad6b45827a3f8b9bd685934acc47ca5d7"
+ 
+ 

@@ -1,0 +1,40 @@
+{
+  "review_only": true,
+  "production_updates": 0,
+  "toy_updates": 0,
+  "tests": 4,
+  "errors": 0,
+  "failures": 0,
+  "observations": {
+    "finalize": {
+      "before_status": "FAIL",
+      "after_status": "RESOURCE_LIMIT",
+      "recovery_eligible_with_empty_pointer": true,
+      "top_level_updates": 0,
+      "per_arm_updates": 7
+    },
+    "g0_binding": {
+      "integrity_pass": true,
+      "summary_numeric_pass": true,
+      "raw_disk_all_accepted": false,
+      "source_snapshot_hashes_present": false
+    },
+    "g0_negative": {
+      "negative_test_pass": true,
+      "Q": 0.0,
+      "missing_probe_is_only_change": true
+    },
+    "m1_case_association": {
+      "input_case_count": 2,
+      "output_notes": [
+        {
+          "case_id": "first",
+          "readback_matches_recorded_within_5pct": true,
+          "primary_read": "frozen_features_head_projection_can_reach_R_but_optimizer_did_not",
+          "head_best_R": 1e-08,
+          "readback_R": 0.1
+        }
+      ]
+    }
+  }
+}

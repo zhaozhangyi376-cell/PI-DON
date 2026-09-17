@@ -1,0 +1,9 @@
+{
+  "abs_cos_theta_min": 0.5011399952223576,
+  "abs_cos_theta_mean": 0.835828365100766,
+  "ez_amplification_mean": 0.6105162594972054,
+  "ez_amplification_p90": 1.2798486921778756,
+  "ez_amplification_max": 2.123922996564418,
+  "rejection_attempts_mean": 1.0,
+  "diagnostic_not_paper_literal": false
+}

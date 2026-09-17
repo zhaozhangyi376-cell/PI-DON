@@ -1,0 +1,19 @@
+--- src/pidon/fdtd.py
++++ evidence/gpt6_plan_v3/A2_control_runs/float32_exact/source_snapshot/fdtd.py
+@@ -27,16 +27,8 @@
+     The intended meaning is unambiguous, so this file implements the standard,
+     self-consistent Yee curl (components at the H positions, all three signs
+     positive).  Flag this in the report -- it is a real, checkable finding.
+ """
+-
+-# Project layout bootstrap (imports and paths only).
+-import sys as _layout_sys
+-from pathlib import Path as _LayoutPath
+-_layout_sys.path.insert(0, str(_LayoutPath(__file__).resolve().parents[2]))
+-from project_paths import ROOT as PROJECT_ROOT, configure as _layout_configure, resolve_legacy
+-_layout_configure()
+-
+ 
+ import numpy as np
+ 
+ C0 = 2.99792458e8          # physical speed of light, used for the solver

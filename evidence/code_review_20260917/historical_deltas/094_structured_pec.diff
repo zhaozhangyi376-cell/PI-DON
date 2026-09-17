@@ -1,0 +1,19 @@
+--- scripts/exploratory/structured_pec.py
++++ evidence/workspace_reorganization_20260914/before/root/structured_pec.py
+@@ -22,16 +22,8 @@
+       * H 的自由度 = 全部 Hx, Hy, Hz
+     然后直接比较 curl_H 的矩阵与 curl_E 矩阵的转置。
+     若相等，再用一个随机稠密的 T 演示三明治确实对称半正定，并跑蛙跳。
+ """
+-
+-# Project layout bootstrap (imports and paths only).
+-import sys as _layout_sys
+-from pathlib import Path as _LayoutPath
+-_layout_sys.path.insert(0, str(_LayoutPath(__file__).resolve().parents[2]))
+-from project_paths import ROOT as PROJECT_ROOT, configure as _layout_configure, resolve_legacy
+-_layout_configure()
+-
+ 
+ import numpy as np
+ 
+ import fdtd

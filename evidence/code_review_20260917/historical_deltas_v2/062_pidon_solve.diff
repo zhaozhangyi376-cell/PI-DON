@@ -1,0 +1,25 @@
+--- src/pidon/pidon_solve.py
++++ evidence/server_resource_v1/dco_value_review_20260916/returned/random_low_lr128/source/src/pidon/pidon_solve.py
+@@ -157,20 +157,10 @@
+ def assert_resume_compatible(current, saved):
+     missing = [key for key in RESUME_CONFIG_KEYS if key not in saved]
+     if missing:
+         raise ValueError("checkpoint lacks frozen configuration fields: " + ", ".join(missing))
+-    changed = {}
+-    for key, value in frozen_config(current).items():
+-        if key not in saved:
+-            continue
+-        old = saved[key]
+-        if key == "init":
+-            old_compare = os.fspath(resolve_legacy(old))
+-            new_compare = os.fspath(resolve_legacy(value))
+-            if old_compare != new_compare:
+-                changed[key] = (old, value)
+-        elif old != value:
+-            changed[key] = (old, value)
++    changed = {key: (saved.get(key), value) for key, value in frozen_config(current).items()
++               if key in saved and saved[key] != value}
+     if changed:
+         rendered = ", ".join(f"{key}: saved={old!r}, requested={new!r}"
+                              for key, (old, new) in changed.items())
+         raise ValueError(f"resume configuration differs from checkpoint: {rendered}")

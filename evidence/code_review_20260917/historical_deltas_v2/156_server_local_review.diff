@@ -1,0 +1,18 @@
+--- scripts/experiments/server_local_review.py
++++ evidence/server_resource_v1/local_review_v2/source/scripts/experiments/server_local_review.py
+@@ -42,14 +42,12 @@
+     hashes = {}
+     for rel in ('scripts/experiments/server_local_review.py',
+                 'scripts/experiments/server_phase1_compare.py',
+                 'scripts/experiments/server_compute_probe.py',
+-                'scripts/experiments/server_short_tol_probe.py',
+                 'scripts/experiments/phase1_full_run.py', 'src/pidon/dco.py',
+                 'src/pidon/paper_protocol.py', 'src/pidon/pidon_contract.py',
+                 'src/pidon/pidon_solve.py', 'src/pidon/pidon_recording.py',
+-                'tools/server_resource_queue.py', 'tools/server_batch2_queue.py',
+-                'project_paths.py'):
++                'tools/server_resource_queue.py', 'project_paths.py'):
+         path = ROOT / rel
+         if path.exists():
+             dest = source / rel
+             dest.parent.mkdir(parents=True, exist_ok=True)

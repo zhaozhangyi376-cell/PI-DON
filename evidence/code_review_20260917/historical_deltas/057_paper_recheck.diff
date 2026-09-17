@@ -1,0 +1,19 @@
+--- scripts/experiments/paper_recheck.py
++++ evidence/coverage_ab_v1/source/paper_recheck.py
+@@ -2,16 +2,8 @@
+ 
+ No training. Run with lab_log.py. Outputs are new and source/weight hashes are
+ recorded. Existing checkpoint normalization is preserved deliberately.
+ """
+-
+-# Project layout bootstrap (imports and paths only).
+-import sys as _layout_sys
+-from pathlib import Path as _LayoutPath
+-_layout_sys.path.insert(0, str(_LayoutPath(__file__).resolve().parents[2]))
+-from project_paths import ROOT as PROJECT_ROOT, configure as _layout_configure, resolve_legacy
+-_layout_configure()
+-
+ import argparse
+ import hashlib
+ import io
+ import json

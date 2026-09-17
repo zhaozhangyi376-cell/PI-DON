@@ -1,0 +1,970 @@
+{
+  "review_only": true,
+  "production_updates": 0,
+  "files": [
+    {
+      "path": "archive/legacy_commands/run_day4.bat",
+      "sha256": "987d5803ccd2b15c55e15153d7319cf1239c46f1955477cd5f82e3f0308ef554",
+      "normalized_sha256": "5b19487f7eb2186c5c0dc45b944d34d090e31961daf51901837d624f5bd514fe",
+      "lines": 73,
+      "exact_lf_match": null
+    },
+    {
+      "path": "archive/legacy_commands/run_meal.bat",
+      "sha256": "c0a0dea51cbf462369629992f0eb89fedf83cafcf7191df2ccbc568138d1d42b",
+      "normalized_sha256": "0459fcf5c5bc23c0240a515da74a75dbe5d2db86851c11a8debe5f6669ccba86",
+      "lines": 73,
+      "exact_lf_match": null
+    },
+    {
+      "path": "archive/legacy_commands/run_night.bat",
+      "sha256": "77fcad7a57bb9dd2407a74c84c85c44ffa1a1852f1e41a24aad448198b35c517",
+      "normalized_sha256": "e907279a1f789948a75d3f801edd71e5c363d994b596da7308ff3493bd206f5f",
+      "lines": 154,
+      "exact_lf_match": null
+    },
+    {
+      "path": "archive/legacy_commands/run_night2.bat",
+      "sha256": "b8fdec3a07c3893d26778c90c94b9381499b2e63366d442416724b75e0a98098",
+      "normalized_sha256": "c2b02400a69972c7225dd653a91a5db0a84bb31e4be7dfcb43e1870bc3241508",
+      "lines": 46,
+      "exact_lf_match": null
+    },
+    {
+      "path": "archive/legacy_commands/run_night3.bat",
+      "sha256": "080355398c253ed887ee00c14c3148d947274ea13f50b7e77734a1b80c4fbe27",
+      "normalized_sha256": "745cb9a96075a0cbb1bdc9a9456cd7ec2d19ed67241ecbcb06a5cc0a05c5b618",
+      "lines": 87,
+      "exact_lf_match": null
+    },
+    {
+      "path": "archive/legacy_commands/run_paper_parity.bat",
+      "sha256": "729bbe4381365e43545d7c5bbc86eba138aa21f83266dfd69faa220bd44f42aa",
+      "normalized_sha256": "61d2790213c03972dc5175b64b4144a386411aa2018ed0513a3e007d398a64b1",
+      "lines": 59,
+      "exact_lf_match": null
+    },
+    {
+      "path": "archive/legacy_commands/run_rho32.bat",
+      "sha256": "3cd49dbe65af39b458f03fc7ad9a5660fe2c63f773317a78eb1d72d8e5b48e07",
+      "normalized_sha256": "0149590ba3fb2274aa54fe642bf849033ee11e8bb8b341944b044bf646053b56",
+      "lines": 52,
+      "exact_lf_match": null
+    },
+    {
+      "path": "archive/legacy_commands/run_stage2.bat",
+      "sha256": "47585c114aadf20dfed3c5b37801206c4ac7a05080d42ca0558000e4dcdec49f",
+      "normalized_sha256": "9b7e86e371c30bf58d8314de543ee49aa3e65d2c69db48e3de852362b67502b0",
+      "lines": 79,
+      "exact_lf_match": null
+    },
+    {
+      "path": "archive/legacy_commands/run_stage3.bat",
+      "sha256": "a0af4ec66cb0b95f85233055b4f12a364094a8fbe977cf1e1d07c4853e68af7f",
+      "normalized_sha256": "cd8e7af08702c9bc622e347fa679dec480b07c12c82ba51bb18bc9096818b637",
+      "lines": 52,
+      "exact_lf_match": null
+    },
+    {
+      "path": "archive/legacy_commands/run_stage4.bat",
+      "sha256": "0d4f071a252f417d1da0a4319490a91658255fe5ecaa9d39c236682f74bb3d94",
+      "normalized_sha256": "c5847a2c316c488375ff1affaf8bbf956177d9f82ba8ec572acc7d91a3417edb",
+      "lines": 67,
+      "exact_lf_match": null
+    },
+    {
+      "path": "archive/legacy_commands/run_stage5.bat",
+      "sha256": "1c004684626e39be15d95f637761736b3a2f4f95a25818f75fee0c096708aaa9",
+      "normalized_sha256": "9544afcfa65779957107d9000296539fee10db1ee9815b653e51a0555331b564",
+      "lines": 60,
+      "exact_lf_match": null
+    },
+    {
+      "path": "archive/legacy_commands/run_stage5_big.bat",
+      "sha256": "bd8b06256f0cae13bc3398169741c4e57bfa27fc58dfa1f830b9df979ca6e559",
+      "normalized_sha256": "034c6ffceef4774bab42b5d3ba4fbc5b2d3e6cffee6ea05e88ccc02aafc39637",
+      "lines": 60,
+      "exact_lf_match": null
+    },
+    {
+      "path": "archive/legacy_commands/run_stage6.bat",
+      "sha256": "17ef585bf8186a869fb8df4b16619d554aa3fd1d6487fba8559e55b8ba86f431",
+      "normalized_sha256": "1795ee917bac519b076ddf46d474eb94dfb4d219cd0173e1c8e9d2504259aba3",
+      "lines": 59,
+      "exact_lf_match": null
+    },
+    {
+      "path": "evidence/server_resource_v1/imports/server_64_return_20260916T011046Z/strict64_probe/source/project_paths.py",
+      "sha256": "306099c40fd2fd27d36c98f84d49f9e5abbe398e7a1009cc51d0b1435e8ef840",
+      "normalized_sha256": "21af3868cc12464923dde267f445e6a135150eb8476308f253704a3506de6859",
+      "lines": 50,
+      "exact_lf_match": "evidence/server_resource_v1/dco_value_review_20260916/returned/random_low_lr128/source/project_paths.py"
+    },
+    {
+      "path": "evidence/server_resource_v1/imports/server_64_return_20260916T011046Z/strict64_probe/source/scripts/experiments/server_local_review.py",
+      "sha256": "8ebbd530b4bb46671d98280cc1bc2670810ca65cd23fa72346b003c45e783e17",
+      "normalized_sha256": "dcc697b8182b01a1f11c7e3354980f85e3ff1b272683f1e766f60991f19dc02c",
+      "lines": 281,
+      "exact_lf_match": "evidence/server_resource_v1/dco_value_review_20260916/returned/random_low_lr128/source/scripts/experiments/server_local_review.py"
+    },
+    {
+      "path": "evidence/server_resource_v1/imports/server_64_return_20260916T011046Z/strict64_probe/source/scripts/experiments/server_short_tol_probe.py",
+      "sha256": "5c586856482a14184fc27319d1c5446acb0bb45ff67a71b1151e789ce6d784e9",
+      "normalized_sha256": "e5ad3e8b32f6540a8c44efed7439b5844322ae8cd69cc4e7ae5c0a5bd5053b01",
+      "lines": 388,
+      "exact_lf_match": null,
+      "diff_file": "015_server_short_tol_probe.diff",
+      "canonical": "archive/transfers/2026-09-16/server_clean_low_lr128_package_20260916T141307/payload/scripts/experiments/server_short_tol_probe.py"
+    },
+    {
+      "path": "evidence/server_resource_v1/imports/server_64_return_20260916T011046Z/strict64_probe/source/src/pidon/dco.py",
+      "sha256": "047f0a7470ab063625eee7571075480f3cf3f9beb914a0e354c8b2b0da50cfca",
+      "normalized_sha256": "1bc6c9de416064e3d4db72418d76dbd0ae54232b965496863c1f71e0065f0149",
+      "lines": 291,
+      "exact_lf_match": "evidence/server_resource_v1/dco_value_review_20260916/returned/random_low_lr128/source/src/pidon/dco.py"
+    },
+    {
+      "path": "evidence/server_resource_v1/imports/server_64_return_20260916T011046Z/strict64_probe/source/src/pidon/fdtd.py",
+      "sha256": "a387fe5951fb76ce62b7cc304ad0f9b7db7f0a1c857189a2aa98ca96df572903",
+      "normalized_sha256": "622a8a7747245d35e07c559b362544e0d61f2f465bcc81f2f686533a1bd405b6",
+      "lines": 260,
+      "exact_lf_match": "evidence/server_resource_v1/dco_value_review_20260916/returned/random_low_lr128/source/src/pidon/fdtd.py"
+    },
+    {
+      "path": "evidence/server_resource_v1/imports/server_64_return_20260916T011046Z/strict64_probe/source/src/pidon/pidon_recording.py",
+      "sha256": "515791efa958f8c1bb044b6ad7cb3806235168325b38874b3bef7555a97bafe4",
+      "normalized_sha256": "6a22cf4e2dcafba72d3a483814985ab563f73c3774f3f6f7dacf4a6a1a5dcb20",
+      "lines": 278,
+      "exact_lf_match": "evidence/server_resource_v1/dco_value_review_20260916/returned/random_low_lr128/source/src/pidon/pidon_recording.py"
+    },
+    {
+      "path": "evidence/server_resource_v1/imports/server_64_return_20260916T011046Z/strict64_probe/source/src/pidon/pidon_solve.py",
+      "sha256": "ea1e76d264036e7fff58fb4f4ca54e4d3d980d2556361b69f20209a6b9a149d7",
+      "normalized_sha256": "5d6eb695526117ef3b6e214b168c373c7a1ea5e01ebd99db1801db7402ce56fd",
+      "lines": 1321,
+      "exact_lf_match": "evidence/server_resource_v1/dco_value_review_20260916/returned/random_low_lr128/source/src/pidon/pidon_solve.py"
+    },
+    {
+      "path": "evidence/server_resource_v1/imports/server_64_return_20260916T011046Z/strict64_probe/source/tools/server_batch2_queue.py",
+      "sha256": "e8f12063d75792846a4c961891899325afb2c4a15a9d71348f8492f01acd9ee5",
+      "normalized_sha256": "e33dc2ecea9227597cbef21839b827a20a2aa44d8196091b8772027162ee3da9",
+      "lines": 203,
+      "exact_lf_match": "evidence/server_resource_v1/dco_value_review_20260916/returned/random_low_lr128/source/tools/server_batch2_queue.py"
+    },
+    {
+      "path": "evidence/server_resource_v1/imports/server_batch2_return_r2_full_20260915T141612Z/short_tol_probe_r2/source/project_paths.py",
+      "sha256": "306099c40fd2fd27d36c98f84d49f9e5abbe398e7a1009cc51d0b1435e8ef840",
+      "normalized_sha256": "21af3868cc12464923dde267f445e6a135150eb8476308f253704a3506de6859",
+      "lines": 50,
+      "exact_lf_match": "evidence/server_resource_v1/dco_value_review_20260916/returned/random_low_lr128/source/project_paths.py"
+    },
+    {
+      "path": "evidence/server_resource_v1/imports/server_batch2_return_r2_full_20260915T141612Z/short_tol_probe_r2/source/scripts/experiments/server_local_review.py",
+      "sha256": "8ebbd530b4bb46671d98280cc1bc2670810ca65cd23fa72346b003c45e783e17",
+      "normalized_sha256": "dcc697b8182b01a1f11c7e3354980f85e3ff1b272683f1e766f60991f19dc02c",
+      "lines": 281,
+      "exact_lf_match": "evidence/server_resource_v1/dco_value_review_20260916/returned/random_low_lr128/source/scripts/experiments/server_local_review.py"
+    },
+    {
+      "path": "evidence/server_resource_v1/imports/server_batch2_return_r2_full_20260915T141612Z/short_tol_probe_r2/source/scripts/experiments/server_short_tol_probe.py",
+      "sha256": "6ab8541e915056920a56ad45edc306227bf1f53954db5dbbc48c4f7c069750a0",
+      "normalized_sha256": "6be3e41dd1662a62bbd97f78e3f1bcb32be65de9003cab12adc4633084095e84",
+      "lines": 370,
+      "exact_lf_match": "evidence/server_resource_v1/failure_mechanism_audit/source/scripts/experiments/server_short_tol_probe.py"
+    },
+    {
+      "path": "evidence/server_resource_v1/imports/server_batch2_return_r2_full_20260915T141612Z/short_tol_probe_r2/source/src/pidon/dco.py",
+      "sha256": "047f0a7470ab063625eee7571075480f3cf3f9beb914a0e354c8b2b0da50cfca",
+      "normalized_sha256": "1bc6c9de416064e3d4db72418d76dbd0ae54232b965496863c1f71e0065f0149",
+      "lines": 291,
+      "exact_lf_match": "evidence/server_resource_v1/dco_value_review_20260916/returned/random_low_lr128/source/src/pidon/dco.py"
+    },
+    {
+      "path": "evidence/server_resource_v1/imports/server_batch2_return_r2_full_20260915T141612Z/short_tol_probe_r2/source/src/pidon/fdtd.py",
+      "sha256": "a387fe5951fb76ce62b7cc304ad0f9b7db7f0a1c857189a2aa98ca96df572903",
+      "normalized_sha256": "622a8a7747245d35e07c559b362544e0d61f2f465bcc81f2f686533a1bd405b6",
+      "lines": 260,
+      "exact_lf_match": "evidence/server_resource_v1/dco_value_review_20260916/returned/random_low_lr128/source/src/pidon/fdtd.py"
+    },
+    {
+      "path": "evidence/server_resource_v1/imports/server_batch2_return_r2_full_20260915T141612Z/short_tol_probe_r2/source/src/pidon/pidon_recording.py",
+      "sha256": "515791efa958f8c1bb044b6ad7cb3806235168325b38874b3bef7555a97bafe4",
+      "normalized_sha256": "6a22cf4e2dcafba72d3a483814985ab563f73c3774f3f6f7dacf4a6a1a5dcb20",
+      "lines": 278,
+      "exact_lf_match": "evidence/server_resource_v1/dco_value_review_20260916/returned/random_low_lr128/source/src/pidon/pidon_recording.py"
+    },
+    {
+      "path": "evidence/server_resource_v1/imports/server_batch2_return_r2_full_20260915T141612Z/short_tol_probe_r2/source/src/pidon/pidon_solve.py",
+      "sha256": "ea1e76d264036e7fff58fb4f4ca54e4d3d980d2556361b69f20209a6b9a149d7",
+      "normalized_sha256": "5d6eb695526117ef3b6e214b168c373c7a1ea5e01ebd99db1801db7402ce56fd",
+      "lines": 1321,
+      "exact_lf_match": "evidence/server_resource_v1/dco_value_review_20260916/returned/random_low_lr128/source/src/pidon/pidon_solve.py"
+    },
+    {
+      "path": "evidence/server_resource_v1/imports/server_batch2_return_r2_full_20260915T141612Z/short_tol_probe_r2/source/tools/server_batch2_queue.py",
+      "sha256": "e8f12063d75792846a4c961891899325afb2c4a15a9d71348f8492f01acd9ee5",
+      "normalized_sha256": "e33dc2ecea9227597cbef21839b827a20a2aa44d8196091b8772027162ee3da9",
+      "lines": 203,
+      "exact_lf_match": "evidence/server_resource_v1/dco_value_review_20260916/returned/random_low_lr128/source/tools/server_batch2_queue.py"
+    },
+    {
+      "path": "evidence/server_resource_v1/imports/server_clean_low_lr128_return_20260916T092721Z/clean_low_lr128/source/project_paths.py",
+      "sha256": "21af3868cc12464923dde267f445e6a135150eb8476308f253704a3506de6859",
+      "normalized_sha256": "21af3868cc12464923dde267f445e6a135150eb8476308f253704a3506de6859",
+      "lines": 50,
+      "exact_lf_match": "evidence/server_resource_v1/dco_value_review_20260916/returned/random_low_lr128/source/project_paths.py"
+    },
+    {
+      "path": "evidence/server_resource_v1/imports/server_clean_low_lr128_return_20260916T092721Z/clean_low_lr128/source/scripts/experiments/server_local_review.py",
+      "sha256": "dcc697b8182b01a1f11c7e3354980f85e3ff1b272683f1e766f60991f19dc02c",
+      "normalized_sha256": "dcc697b8182b01a1f11c7e3354980f85e3ff1b272683f1e766f60991f19dc02c",
+      "lines": 281,
+      "exact_lf_match": "evidence/server_resource_v1/dco_value_review_20260916/returned/random_low_lr128/source/scripts/experiments/server_local_review.py"
+    },
+    {
+      "path": "evidence/server_resource_v1/imports/server_clean_low_lr128_return_20260916T092721Z/clean_low_lr128/source/scripts/experiments/server_short_tol_probe.py",
+      "sha256": "4a9740e54c7c07e7e01e8583d37c740a3537df683bf955dd9c9fba60129fb2ba",
+      "normalized_sha256": "4a9740e54c7c07e7e01e8583d37c740a3537df683bf955dd9c9fba60129fb2ba",
+      "lines": 447,
+      "exact_lf_match": "archive/transfers/2026-09-16/server_clean_low_lr128_package_20260916T141307/payload/scripts/experiments/server_short_tol_probe.py"
+    },
+    {
+      "path": "evidence/server_resource_v1/imports/server_clean_low_lr128_return_20260916T092721Z/clean_low_lr128/source/src/pidon/dco.py",
+      "sha256": "1bc6c9de416064e3d4db72418d76dbd0ae54232b965496863c1f71e0065f0149",
+      "normalized_sha256": "1bc6c9de416064e3d4db72418d76dbd0ae54232b965496863c1f71e0065f0149",
+      "lines": 291,
+      "exact_lf_match": "evidence/server_resource_v1/dco_value_review_20260916/returned/random_low_lr128/source/src/pidon/dco.py"
+    },
+    {
+      "path": "evidence/server_resource_v1/imports/server_clean_low_lr128_return_20260916T092721Z/clean_low_lr128/source/src/pidon/fdtd.py",
+      "sha256": "622a8a7747245d35e07c559b362544e0d61f2f465bcc81f2f686533a1bd405b6",
+      "normalized_sha256": "622a8a7747245d35e07c559b362544e0d61f2f465bcc81f2f686533a1bd405b6",
+      "lines": 260,
+      "exact_lf_match": "evidence/server_resource_v1/dco_value_review_20260916/returned/random_low_lr128/source/src/pidon/fdtd.py"
+    },
+    {
+      "path": "evidence/server_resource_v1/imports/server_clean_low_lr128_return_20260916T092721Z/clean_low_lr128/source/src/pidon/pidon_recording.py",
+      "sha256": "6a22cf4e2dcafba72d3a483814985ab563f73c3774f3f6f7dacf4a6a1a5dcb20",
+      "normalized_sha256": "6a22cf4e2dcafba72d3a483814985ab563f73c3774f3f6f7dacf4a6a1a5dcb20",
+      "lines": 278,
+      "exact_lf_match": "evidence/server_resource_v1/dco_value_review_20260916/returned/random_low_lr128/source/src/pidon/pidon_recording.py"
+    },
+    {
+      "path": "evidence/server_resource_v1/imports/server_clean_low_lr128_return_20260916T092721Z/clean_low_lr128/source/src/pidon/pidon_solve.py",
+      "sha256": "5d6eb695526117ef3b6e214b168c373c7a1ea5e01ebd99db1801db7402ce56fd",
+      "normalized_sha256": "5d6eb695526117ef3b6e214b168c373c7a1ea5e01ebd99db1801db7402ce56fd",
+      "lines": 1321,
+      "exact_lf_match": "evidence/server_resource_v1/dco_value_review_20260916/returned/random_low_lr128/source/src/pidon/pidon_solve.py"
+    },
+    {
+      "path": "evidence/server_resource_v1/imports/server_clean_low_lr128_return_20260916T092721Z/clean_low_lr128/source/tools/server_batch2_queue.py",
+      "sha256": "e33dc2ecea9227597cbef21839b827a20a2aa44d8196091b8772027162ee3da9",
+      "normalized_sha256": "e33dc2ecea9227597cbef21839b827a20a2aa44d8196091b8772027162ee3da9",
+      "lines": 203,
+      "exact_lf_match": "evidence/server_resource_v1/dco_value_review_20260916/returned/random_low_lr128/source/tools/server_batch2_queue.py"
+    },
+    {
+      "path": "evidence/server_resource_v1/imports/server_clean_low_lr64_return_20260916T061148Z/clean_low_lr64/source/project_paths.py",
+      "sha256": "306099c40fd2fd27d36c98f84d49f9e5abbe398e7a1009cc51d0b1435e8ef840",
+      "normalized_sha256": "21af3868cc12464923dde267f445e6a135150eb8476308f253704a3506de6859",
+      "lines": 50,
+      "exact_lf_match": "evidence/server_resource_v1/dco_value_review_20260916/returned/random_low_lr128/source/project_paths.py"
+    },
+    {
+      "path": "evidence/server_resource_v1/imports/server_clean_low_lr64_return_20260916T061148Z/clean_low_lr64/source/scripts/experiments/server_local_review.py",
+      "sha256": "8ebbd530b4bb46671d98280cc1bc2670810ca65cd23fa72346b003c45e783e17",
+      "normalized_sha256": "dcc697b8182b01a1f11c7e3354980f85e3ff1b272683f1e766f60991f19dc02c",
+      "lines": 281,
+      "exact_lf_match": "evidence/server_resource_v1/dco_value_review_20260916/returned/random_low_lr128/source/scripts/experiments/server_local_review.py"
+    },
+    {
+      "path": "evidence/server_resource_v1/imports/server_clean_low_lr64_return_20260916T061148Z/clean_low_lr64/source/scripts/experiments/server_short_tol_probe.py",
+      "sha256": "17abaa7d21b649421c6e2b26561d6bb4b353aceefcc8ea99e2aeef1e1269547b",
+      "normalized_sha256": "4a9740e54c7c07e7e01e8583d37c740a3537df683bf955dd9c9fba60129fb2ba",
+      "lines": 447,
+      "exact_lf_match": "archive/transfers/2026-09-16/server_clean_low_lr128_package_20260916T141307/payload/scripts/experiments/server_short_tol_probe.py"
+    },
+    {
+      "path": "evidence/server_resource_v1/imports/server_clean_low_lr64_return_20260916T061148Z/clean_low_lr64/source/src/pidon/dco.py",
+      "sha256": "047f0a7470ab063625eee7571075480f3cf3f9beb914a0e354c8b2b0da50cfca",
+      "normalized_sha256": "1bc6c9de416064e3d4db72418d76dbd0ae54232b965496863c1f71e0065f0149",
+      "lines": 291,
+      "exact_lf_match": "evidence/server_resource_v1/dco_value_review_20260916/returned/random_low_lr128/source/src/pidon/dco.py"
+    },
+    {
+      "path": "evidence/server_resource_v1/imports/server_clean_low_lr64_return_20260916T061148Z/clean_low_lr64/source/src/pidon/fdtd.py",
+      "sha256": "a387fe5951fb76ce62b7cc304ad0f9b7db7f0a1c857189a2aa98ca96df572903",
+      "normalized_sha256": "622a8a7747245d35e07c559b362544e0d61f2f465bcc81f2f686533a1bd405b6",
+      "lines": 260,
+      "exact_lf_match": "evidence/server_resource_v1/dco_value_review_20260916/returned/random_low_lr128/source/src/pidon/fdtd.py"
+    },
+    {
+      "path": "evidence/server_resource_v1/imports/server_clean_low_lr64_return_20260916T061148Z/clean_low_lr64/source/src/pidon/pidon_recording.py",
+      "sha256": "515791efa958f8c1bb044b6ad7cb3806235168325b38874b3bef7555a97bafe4",
+      "normalized_sha256": "6a22cf4e2dcafba72d3a483814985ab563f73c3774f3f6f7dacf4a6a1a5dcb20",
+      "lines": 278,
+      "exact_lf_match": "evidence/server_resource_v1/dco_value_review_20260916/returned/random_low_lr128/source/src/pidon/pidon_recording.py"
+    },
+    {
+      "path": "evidence/server_resource_v1/imports/server_clean_low_lr64_return_20260916T061148Z/clean_low_lr64/source/src/pidon/pidon_solve.py",
+      "sha256": "ea1e76d264036e7fff58fb4f4ca54e4d3d980d2556361b69f20209a6b9a149d7",
+      "normalized_sha256": "5d6eb695526117ef3b6e214b168c373c7a1ea5e01ebd99db1801db7402ce56fd",
+      "lines": 1321,
+      "exact_lf_match": "evidence/server_resource_v1/dco_value_review_20260916/returned/random_low_lr128/source/src/pidon/pidon_solve.py"
+    },
+    {
+      "path": "evidence/server_resource_v1/imports/server_clean_low_lr64_return_20260916T061148Z/clean_low_lr64/source/tools/server_batch2_queue.py",
+      "sha256": "e8f12063d75792846a4c961891899325afb2c4a15a9d71348f8492f01acd9ee5",
+      "normalized_sha256": "e33dc2ecea9227597cbef21839b827a20a2aa44d8196091b8772027162ee3da9",
+      "lines": 203,
+      "exact_lf_match": "evidence/server_resource_v1/dco_value_review_20260916/returned/random_low_lr128/source/tools/server_batch2_queue.py"
+    },
+    {
+      "path": "evidence/server_resource_v1/imports/server_first_e_return_20260915T145629Z/first_e_budget_probe/source/project_paths.py",
+      "sha256": "306099c40fd2fd27d36c98f84d49f9e5abbe398e7a1009cc51d0b1435e8ef840",
+      "normalized_sha256": "21af3868cc12464923dde267f445e6a135150eb8476308f253704a3506de6859",
+      "lines": 50,
+      "exact_lf_match": "evidence/server_resource_v1/dco_value_review_20260916/returned/random_low_lr128/source/project_paths.py"
+    },
+    {
+      "path": "evidence/server_resource_v1/imports/server_first_e_return_20260915T145629Z/first_e_budget_probe/source/scripts/experiments/server_failure_mechanism_audit.py",
+      "sha256": "d61e8d6d65042f7b28b669605076065673baf0ebf75079ba81cd863cc6a026fe",
+      "normalized_sha256": "a2411a18ebc1d51ac1a4176589f8851c25f25b2bac5fa329049eaef50fc883fa",
+      "lines": 430,
+      "exact_lf_match": "evidence/server_resource_v1/failure_mechanism_audit/source/scripts/experiments/server_failure_mechanism_audit.py"
+    },
+    {
+      "path": "evidence/server_resource_v1/imports/server_first_e_return_20260915T145629Z/first_e_budget_probe/source/scripts/experiments/server_first_e_budget_probe.py",
+      "sha256": "f65d2cc7afe383d8cde77475befd6ba7aad6b9753fd42ba6e5f58f44ba22632e",
+      "normalized_sha256": "916a5b6a5823626113be357b288ff6f22f44e6f7780a88129094e9de98e3bc09",
+      "lines": 274,
+      "exact_lf_match": "scripts/experiments/server_first_e_budget_probe.py"
+    },
+    {
+      "path": "evidence/server_resource_v1/imports/server_first_e_return_20260915T145629Z/first_e_budget_probe/source/scripts/experiments/server_short_tol_probe.py",
+      "sha256": "6ab8541e915056920a56ad45edc306227bf1f53954db5dbbc48c4f7c069750a0",
+      "normalized_sha256": "6be3e41dd1662a62bbd97f78e3f1bcb32be65de9003cab12adc4633084095e84",
+      "lines": 370,
+      "exact_lf_match": "evidence/server_resource_v1/failure_mechanism_audit/source/scripts/experiments/server_short_tol_probe.py"
+    },
+    {
+      "path": "evidence/server_resource_v1/imports/server_first_e_return_20260915T145629Z/first_e_budget_probe/source/src/pidon/dco.py",
+      "sha256": "047f0a7470ab063625eee7571075480f3cf3f9beb914a0e354c8b2b0da50cfca",
+      "normalized_sha256": "1bc6c9de416064e3d4db72418d76dbd0ae54232b965496863c1f71e0065f0149",
+      "lines": 291,
+      "exact_lf_match": "evidence/server_resource_v1/dco_value_review_20260916/returned/random_low_lr128/source/src/pidon/dco.py"
+    },
+    {
+      "path": "evidence/server_resource_v1/imports/server_first_e_return_20260915T145629Z/first_e_budget_probe/source/src/pidon/fdtd.py",
+      "sha256": "a387fe5951fb76ce62b7cc304ad0f9b7db7f0a1c857189a2aa98ca96df572903",
+      "normalized_sha256": "622a8a7747245d35e07c559b362544e0d61f2f465bcc81f2f686533a1bd405b6",
+      "lines": 260,
+      "exact_lf_match": "evidence/server_resource_v1/dco_value_review_20260916/returned/random_low_lr128/source/src/pidon/fdtd.py"
+    },
+    {
+      "path": "evidence/server_resource_v1/imports/server_first_e_return_20260915T145629Z/first_e_budget_probe/source/src/pidon/pidon_recording.py",
+      "sha256": "515791efa958f8c1bb044b6ad7cb3806235168325b38874b3bef7555a97bafe4",
+      "normalized_sha256": "6a22cf4e2dcafba72d3a483814985ab563f73c3774f3f6f7dacf4a6a1a5dcb20",
+      "lines": 278,
+      "exact_lf_match": "evidence/server_resource_v1/dco_value_review_20260916/returned/random_low_lr128/source/src/pidon/pidon_recording.py"
+    },
+    {
+      "path": "evidence/server_resource_v1/imports/server_first_e_return_20260915T145629Z/first_e_budget_probe/source/src/pidon/pidon_solve.py",
+      "sha256": "ea1e76d264036e7fff58fb4f4ca54e4d3d980d2556361b69f20209a6b9a149d7",
+      "normalized_sha256": "5d6eb695526117ef3b6e214b168c373c7a1ea5e01ebd99db1801db7402ce56fd",
+      "lines": 1321,
+      "exact_lf_match": "evidence/server_resource_v1/dco_value_review_20260916/returned/random_low_lr128/source/src/pidon/pidon_solve.py"
+    },
+    {
+      "path": "evidence/server_resource_v1/imports/server_first_e_return_20260915T145629Z/first_e_budget_probe/source/tools/server_first_e_queue.py",
+      "sha256": "624cc526231cd25a2c3f300e5833eeb64e133c8442e51b180df525a7a235ecaf",
+      "normalized_sha256": "51f0271e361cb33e2d73bc1302396286c9a5f997f5ab96f0eb11fa24cdde10a7",
+      "lines": 133,
+      "exact_lf_match": "tools/server_first_e_queue.py"
+    },
+    {
+      "path": "evidence/server_resource_v1/imports/server_micro16_return_20260915T154708Z/micro16_strict_probe/source/project_paths.py",
+      "sha256": "306099c40fd2fd27d36c98f84d49f9e5abbe398e7a1009cc51d0b1435e8ef840",
+      "normalized_sha256": "21af3868cc12464923dde267f445e6a135150eb8476308f253704a3506de6859",
+      "lines": 50,
+      "exact_lf_match": "evidence/server_resource_v1/dco_value_review_20260916/returned/random_low_lr128/source/project_paths.py"
+    },
+    {
+      "path": "evidence/server_resource_v1/imports/server_micro16_return_20260915T154708Z/micro16_strict_probe/source/scripts/experiments/server_local_review.py",
+      "sha256": "8ebbd530b4bb46671d98280cc1bc2670810ca65cd23fa72346b003c45e783e17",
+      "normalized_sha256": "dcc697b8182b01a1f11c7e3354980f85e3ff1b272683f1e766f60991f19dc02c",
+      "lines": 281,
+      "exact_lf_match": "evidence/server_resource_v1/dco_value_review_20260916/returned/random_low_lr128/source/scripts/experiments/server_local_review.py"
+    },
+    {
+      "path": "evidence/server_resource_v1/imports/server_micro16_return_20260915T154708Z/micro16_strict_probe/source/scripts/experiments/server_short_tol_probe.py",
+      "sha256": "5c586856482a14184fc27319d1c5446acb0bb45ff67a71b1151e789ce6d784e9",
+      "normalized_sha256": "e5ad3e8b32f6540a8c44efed7439b5844322ae8cd69cc4e7ae5c0a5bd5053b01",
+      "lines": 388,
+      "exact_lf_match": "evidence/server_resource_v1/imports/server_64_return_20260916T011046Z/strict64_probe/source/scripts/experiments/server_short_tol_probe.py"
+    },
+    {
+      "path": "evidence/server_resource_v1/imports/server_micro16_return_20260915T154708Z/micro16_strict_probe/source/src/pidon/dco.py",
+      "sha256": "047f0a7470ab063625eee7571075480f3cf3f9beb914a0e354c8b2b0da50cfca",
+      "normalized_sha256": "1bc6c9de416064e3d4db72418d76dbd0ae54232b965496863c1f71e0065f0149",
+      "lines": 291,
+      "exact_lf_match": "evidence/server_resource_v1/dco_value_review_20260916/returned/random_low_lr128/source/src/pidon/dco.py"
+    },
+    {
+      "path": "evidence/server_resource_v1/imports/server_micro16_return_20260915T154708Z/micro16_strict_probe/source/src/pidon/fdtd.py",
+      "sha256": "a387fe5951fb76ce62b7cc304ad0f9b7db7f0a1c857189a2aa98ca96df572903",
+      "normalized_sha256": "622a8a7747245d35e07c559b362544e0d61f2f465bcc81f2f686533a1bd405b6",
+      "lines": 260,
+      "exact_lf_match": "evidence/server_resource_v1/dco_value_review_20260916/returned/random_low_lr128/source/src/pidon/fdtd.py"
+    },
+    {
+      "path": "evidence/server_resource_v1/imports/server_micro16_return_20260915T154708Z/micro16_strict_probe/source/src/pidon/pidon_recording.py",
+      "sha256": "515791efa958f8c1bb044b6ad7cb3806235168325b38874b3bef7555a97bafe4",
+      "normalized_sha256": "6a22cf4e2dcafba72d3a483814985ab563f73c3774f3f6f7dacf4a6a1a5dcb20",
+      "lines": 278,
+      "exact_lf_match": "evidence/server_resource_v1/dco_value_review_20260916/returned/random_low_lr128/source/src/pidon/pidon_recording.py"
+    },
+    {
+      "path": "evidence/server_resource_v1/imports/server_micro16_return_20260915T154708Z/micro16_strict_probe/source/src/pidon/pidon_solve.py",
+      "sha256": "ea1e76d264036e7fff58fb4f4ca54e4d3d980d2556361b69f20209a6b9a149d7",
+      "normalized_sha256": "5d6eb695526117ef3b6e214b168c373c7a1ea5e01ebd99db1801db7402ce56fd",
+      "lines": 1321,
+      "exact_lf_match": "evidence/server_resource_v1/dco_value_review_20260916/returned/random_low_lr128/source/src/pidon/pidon_solve.py"
+    },
+    {
+      "path": "evidence/server_resource_v1/imports/server_micro16_return_20260915T154708Z/micro16_strict_probe/source/tools/server_batch2_queue.py",
+      "sha256": "e8f12063d75792846a4c961891899325afb2c4a15a9d71348f8492f01acd9ee5",
+      "normalized_sha256": "e33dc2ecea9227597cbef21839b827a20a2aa44d8196091b8772027162ee3da9",
+      "lines": 203,
+      "exact_lf_match": "evidence/server_resource_v1/dco_value_review_20260916/returned/random_low_lr128/source/tools/server_batch2_queue.py"
+    },
+    {
+      "path": "evidence/server_resource_v1/imports/server_micro4_return_20260915T152352Z/micro4_strict_probe/source/project_paths.py",
+      "sha256": "306099c40fd2fd27d36c98f84d49f9e5abbe398e7a1009cc51d0b1435e8ef840",
+      "normalized_sha256": "21af3868cc12464923dde267f445e6a135150eb8476308f253704a3506de6859",
+      "lines": 50,
+      "exact_lf_match": "evidence/server_resource_v1/dco_value_review_20260916/returned/random_low_lr128/source/project_paths.py"
+    },
+    {
+      "path": "evidence/server_resource_v1/imports/server_micro4_return_20260915T152352Z/micro4_strict_probe/source/scripts/experiments/server_local_review.py",
+      "sha256": "8ebbd530b4bb46671d98280cc1bc2670810ca65cd23fa72346b003c45e783e17",
+      "normalized_sha256": "dcc697b8182b01a1f11c7e3354980f85e3ff1b272683f1e766f60991f19dc02c",
+      "lines": 281,
+      "exact_lf_match": "evidence/server_resource_v1/dco_value_review_20260916/returned/random_low_lr128/source/scripts/experiments/server_local_review.py"
+    },
+    {
+      "path": "evidence/server_resource_v1/imports/server_micro4_return_20260915T152352Z/micro4_strict_probe/source/scripts/experiments/server_short_tol_probe.py",
+      "sha256": "681308fdf2ed801ebe4066979aff114f66f05890d73ef84c908f44d77f81330d",
+      "normalized_sha256": "4b29ce90ef25e387df83a698674313dc647f679b5279cb4f886be435c8997d9f",
+      "lines": 384,
+      "exact_lf_match": null,
+      "diff_file": "064_server_short_tol_probe.diff",
+      "canonical": "evidence/server_resource_v1/failure_mechanism_audit/source/scripts/experiments/server_short_tol_probe.py"
+    },
+    {
+      "path": "evidence/server_resource_v1/imports/server_micro4_return_20260915T152352Z/micro4_strict_probe/source/src/pidon/dco.py",
+      "sha256": "047f0a7470ab063625eee7571075480f3cf3f9beb914a0e354c8b2b0da50cfca",
+      "normalized_sha256": "1bc6c9de416064e3d4db72418d76dbd0ae54232b965496863c1f71e0065f0149",
+      "lines": 291,
+      "exact_lf_match": "evidence/server_resource_v1/dco_value_review_20260916/returned/random_low_lr128/source/src/pidon/dco.py"
+    },
+    {
+      "path": "evidence/server_resource_v1/imports/server_micro4_return_20260915T152352Z/micro4_strict_probe/source/src/pidon/fdtd.py",
+      "sha256": "a387fe5951fb76ce62b7cc304ad0f9b7db7f0a1c857189a2aa98ca96df572903",
+      "normalized_sha256": "622a8a7747245d35e07c559b362544e0d61f2f465bcc81f2f686533a1bd405b6",
+      "lines": 260,
+      "exact_lf_match": "evidence/server_resource_v1/dco_value_review_20260916/returned/random_low_lr128/source/src/pidon/fdtd.py"
+    },
+    {
+      "path": "evidence/server_resource_v1/imports/server_micro4_return_20260915T152352Z/micro4_strict_probe/source/src/pidon/pidon_recording.py",
+      "sha256": "515791efa958f8c1bb044b6ad7cb3806235168325b38874b3bef7555a97bafe4",
+      "normalized_sha256": "6a22cf4e2dcafba72d3a483814985ab563f73c3774f3f6f7dacf4a6a1a5dcb20",
+      "lines": 278,
+      "exact_lf_match": "evidence/server_resource_v1/dco_value_review_20260916/returned/random_low_lr128/source/src/pidon/pidon_recording.py"
+    },
+    {
+      "path": "evidence/server_resource_v1/imports/server_micro4_return_20260915T152352Z/micro4_strict_probe/source/src/pidon/pidon_solve.py",
+      "sha256": "ea1e76d264036e7fff58fb4f4ca54e4d3d980d2556361b69f20209a6b9a149d7",
+      "normalized_sha256": "5d6eb695526117ef3b6e214b168c373c7a1ea5e01ebd99db1801db7402ce56fd",
+      "lines": 1321,
+      "exact_lf_match": "evidence/server_resource_v1/dco_value_review_20260916/returned/random_low_lr128/source/src/pidon/pidon_solve.py"
+    },
+    {
+      "path": "evidence/server_resource_v1/imports/server_micro4_return_20260915T152352Z/micro4_strict_probe/source/tools/server_batch2_queue.py",
+      "sha256": "e8f12063d75792846a4c961891899325afb2c4a15a9d71348f8492f01acd9ee5",
+      "normalized_sha256": "e33dc2ecea9227597cbef21839b827a20a2aa44d8196091b8772027162ee3da9",
+      "lines": 203,
+      "exact_lf_match": "evidence/server_resource_v1/dco_value_review_20260916/returned/random_low_lr128/source/tools/server_batch2_queue.py"
+    },
+    {
+      "path": "evidence/server_resource_v1/imports/server_paper_tol128_return_20260916T114443Z/paper_tol128_diag/source/project_paths.py",
+      "sha256": "21af3868cc12464923dde267f445e6a135150eb8476308f253704a3506de6859",
+      "normalized_sha256": "21af3868cc12464923dde267f445e6a135150eb8476308f253704a3506de6859",
+      "lines": 50,
+      "exact_lf_match": "evidence/server_resource_v1/dco_value_review_20260916/returned/random_low_lr128/source/project_paths.py"
+    },
+    {
+      "path": "evidence/server_resource_v1/imports/server_paper_tol128_return_20260916T114443Z/paper_tol128_diag/source/scripts/experiments/server_local_review.py",
+      "sha256": "dcc697b8182b01a1f11c7e3354980f85e3ff1b272683f1e766f60991f19dc02c",
+      "normalized_sha256": "dcc697b8182b01a1f11c7e3354980f85e3ff1b272683f1e766f60991f19dc02c",
+      "lines": 281,
+      "exact_lf_match": "evidence/server_resource_v1/dco_value_review_20260916/returned/random_low_lr128/source/scripts/experiments/server_local_review.py"
+    },
+    {
+      "path": "evidence/server_resource_v1/imports/server_paper_tol128_return_20260916T114443Z/paper_tol128_diag/source/scripts/experiments/server_short_tol_probe.py",
+      "sha256": "17abaa7d21b649421c6e2b26561d6bb4b353aceefcc8ea99e2aeef1e1269547b",
+      "normalized_sha256": "4a9740e54c7c07e7e01e8583d37c740a3537df683bf955dd9c9fba60129fb2ba",
+      "lines": 447,
+      "exact_lf_match": "archive/transfers/2026-09-16/server_clean_low_lr128_package_20260916T141307/payload/scripts/experiments/server_short_tol_probe.py"
+    },
+    {
+      "path": "evidence/server_resource_v1/imports/server_paper_tol128_return_20260916T114443Z/paper_tol128_diag/source/src/pidon/dco.py",
+      "sha256": "1bc6c9de416064e3d4db72418d76dbd0ae54232b965496863c1f71e0065f0149",
+      "normalized_sha256": "1bc6c9de416064e3d4db72418d76dbd0ae54232b965496863c1f71e0065f0149",
+      "lines": 291,
+      "exact_lf_match": "evidence/server_resource_v1/dco_value_review_20260916/returned/random_low_lr128/source/src/pidon/dco.py"
+    },
+    {
+      "path": "evidence/server_resource_v1/imports/server_paper_tol128_return_20260916T114443Z/paper_tol128_diag/source/src/pidon/fdtd.py",
+      "sha256": "622a8a7747245d35e07c559b362544e0d61f2f465bcc81f2f686533a1bd405b6",
+      "normalized_sha256": "622a8a7747245d35e07c559b362544e0d61f2f465bcc81f2f686533a1bd405b6",
+      "lines": 260,
+      "exact_lf_match": "evidence/server_resource_v1/dco_value_review_20260916/returned/random_low_lr128/source/src/pidon/fdtd.py"
+    },
+    {
+      "path": "evidence/server_resource_v1/imports/server_paper_tol128_return_20260916T114443Z/paper_tol128_diag/source/src/pidon/pidon_recording.py",
+      "sha256": "6a22cf4e2dcafba72d3a483814985ab563f73c3774f3f6f7dacf4a6a1a5dcb20",
+      "normalized_sha256": "6a22cf4e2dcafba72d3a483814985ab563f73c3774f3f6f7dacf4a6a1a5dcb20",
+      "lines": 278,
+      "exact_lf_match": "evidence/server_resource_v1/dco_value_review_20260916/returned/random_low_lr128/source/src/pidon/pidon_recording.py"
+    },
+    {
+      "path": "evidence/server_resource_v1/imports/server_paper_tol128_return_20260916T114443Z/paper_tol128_diag/source/src/pidon/pidon_solve.py",
+      "sha256": "5d6eb695526117ef3b6e214b168c373c7a1ea5e01ebd99db1801db7402ce56fd",
+      "normalized_sha256": "5d6eb695526117ef3b6e214b168c373c7a1ea5e01ebd99db1801db7402ce56fd",
+      "lines": 1321,
+      "exact_lf_match": "evidence/server_resource_v1/dco_value_review_20260916/returned/random_low_lr128/source/src/pidon/pidon_solve.py"
+    },
+    {
+      "path": "evidence/server_resource_v1/imports/server_paper_tol128_return_20260916T114443Z/paper_tol128_diag/source/tools/server_batch2_queue.py",
+      "sha256": "e33dc2ecea9227597cbef21839b827a20a2aa44d8196091b8772027162ee3da9",
+      "normalized_sha256": "e33dc2ecea9227597cbef21839b827a20a2aa44d8196091b8772027162ee3da9",
+      "lines": 203,
+      "exact_lf_match": "evidence/server_resource_v1/dco_value_review_20260916/returned/random_low_lr128/source/tools/server_batch2_queue.py"
+    },
+    {
+      "path": "evidence/server_resource_v1/imports/server_random_low_lr64_return_20260916T130417Z/random_low_lr64/source/project_paths.py",
+      "sha256": "21af3868cc12464923dde267f445e6a135150eb8476308f253704a3506de6859",
+      "normalized_sha256": "21af3868cc12464923dde267f445e6a135150eb8476308f253704a3506de6859",
+      "lines": 50,
+      "exact_lf_match": "evidence/server_resource_v1/dco_value_review_20260916/returned/random_low_lr128/source/project_paths.py"
+    },
+    {
+      "path": "evidence/server_resource_v1/imports/server_random_low_lr64_return_20260916T130417Z/random_low_lr64/source/scripts/experiments/server_local_review.py",
+      "sha256": "dcc697b8182b01a1f11c7e3354980f85e3ff1b272683f1e766f60991f19dc02c",
+      "normalized_sha256": "dcc697b8182b01a1f11c7e3354980f85e3ff1b272683f1e766f60991f19dc02c",
+      "lines": 281,
+      "exact_lf_match": "evidence/server_resource_v1/dco_value_review_20260916/returned/random_low_lr128/source/scripts/experiments/server_local_review.py"
+    },
+    {
+      "path": "evidence/server_resource_v1/imports/server_random_low_lr64_return_20260916T130417Z/random_low_lr64/source/scripts/experiments/server_short_tol_probe.py",
+      "sha256": "83202064b0fde02b94dbd7186f198bba6a5bfd5e0f6ed02ea4eefde7db7a4f38",
+      "normalized_sha256": "a39bebaa427fd05cfb48c6c50b92b8938c310a07730b91e0bf0d19e0443a9cb0",
+      "lines": 449,
+      "exact_lf_match": "evidence/server_resource_v1/dco_value_review_20260916/returned/random_low_lr128/source/scripts/experiments/server_short_tol_probe.py"
+    },
+    {
+      "path": "evidence/server_resource_v1/imports/server_random_low_lr64_return_20260916T130417Z/random_low_lr64/source/src/pidon/dco.py",
+      "sha256": "1bc6c9de416064e3d4db72418d76dbd0ae54232b965496863c1f71e0065f0149",
+      "normalized_sha256": "1bc6c9de416064e3d4db72418d76dbd0ae54232b965496863c1f71e0065f0149",
+      "lines": 291,
+      "exact_lf_match": "evidence/server_resource_v1/dco_value_review_20260916/returned/random_low_lr128/source/src/pidon/dco.py"
+    },
+    {
+      "path": "evidence/server_resource_v1/imports/server_random_low_lr64_return_20260916T130417Z/random_low_lr64/source/src/pidon/fdtd.py",
+      "sha256": "622a8a7747245d35e07c559b362544e0d61f2f465bcc81f2f686533a1bd405b6",
+      "normalized_sha256": "622a8a7747245d35e07c559b362544e0d61f2f465bcc81f2f686533a1bd405b6",
+      "lines": 260,
+      "exact_lf_match": "evidence/server_resource_v1/dco_value_review_20260916/returned/random_low_lr128/source/src/pidon/fdtd.py"
+    },
+    {
+      "path": "evidence/server_resource_v1/imports/server_random_low_lr64_return_20260916T130417Z/random_low_lr64/source/src/pidon/pidon_recording.py",
+      "sha256": "6a22cf4e2dcafba72d3a483814985ab563f73c3774f3f6f7dacf4a6a1a5dcb20",
+      "normalized_sha256": "6a22cf4e2dcafba72d3a483814985ab563f73c3774f3f6f7dacf4a6a1a5dcb20",
+      "lines": 278,
+      "exact_lf_match": "evidence/server_resource_v1/dco_value_review_20260916/returned/random_low_lr128/source/src/pidon/pidon_recording.py"
+    },
+    {
+      "path": "evidence/server_resource_v1/imports/server_random_low_lr64_return_20260916T130417Z/random_low_lr64/source/src/pidon/pidon_solve.py",
+      "sha256": "5d6eb695526117ef3b6e214b168c373c7a1ea5e01ebd99db1801db7402ce56fd",
+      "normalized_sha256": "5d6eb695526117ef3b6e214b168c373c7a1ea5e01ebd99db1801db7402ce56fd",
+      "lines": 1321,
+      "exact_lf_match": "evidence/server_resource_v1/dco_value_review_20260916/returned/random_low_lr128/source/src/pidon/pidon_solve.py"
+    },
+    {
+      "path": "evidence/server_resource_v1/imports/server_random_low_lr64_return_20260916T130417Z/random_low_lr64/source/tools/server_batch2_queue.py",
+      "sha256": "e33dc2ecea9227597cbef21839b827a20a2aa44d8196091b8772027162ee3da9",
+      "normalized_sha256": "e33dc2ecea9227597cbef21839b827a20a2aa44d8196091b8772027162ee3da9",
+      "lines": 203,
+      "exact_lf_match": "evidence/server_resource_v1/dco_value_review_20260916/returned/random_low_lr128/source/tools/server_batch2_queue.py"
+    },
+    {
+      "path": "evidence/server_resource_v1/imports/server_step36e_low_lr_return_20260916T021355Z/step36e_lr1e4_probe/source/project_paths.py",
+      "sha256": "306099c40fd2fd27d36c98f84d49f9e5abbe398e7a1009cc51d0b1435e8ef840",
+      "normalized_sha256": "21af3868cc12464923dde267f445e6a135150eb8476308f253704a3506de6859",
+      "lines": 50,
+      "exact_lf_match": "evidence/server_resource_v1/dco_value_review_20260916/returned/random_low_lr128/source/project_paths.py"
+    },
+    {
+      "path": "evidence/server_resource_v1/imports/server_step36e_low_lr_return_20260916T021355Z/step36e_lr1e4_probe/source/scripts/experiments/server_short_tol_probe.py",
+      "sha256": "5c586856482a14184fc27319d1c5446acb0bb45ff67a71b1151e789ce6d784e9",
+      "normalized_sha256": "e5ad3e8b32f6540a8c44efed7439b5844322ae8cd69cc4e7ae5c0a5bd5053b01",
+      "lines": 388,
+      "exact_lf_match": "evidence/server_resource_v1/imports/server_64_return_20260916T011046Z/strict64_probe/source/scripts/experiments/server_short_tol_probe.py"
+    },
+    {
+      "path": "evidence/server_resource_v1/imports/server_step36e_low_lr_return_20260916T021355Z/step36e_lr1e4_probe/source/scripts/experiments/server_step36e_budget_probe.py",
+      "sha256": "aea5fb83a2d00d07bd919f1a7f1056cc1d46a0bfaa7e223c1c112a22a10a8a1e",
+      "normalized_sha256": "b1c50cb909ef9eead3425bf7b028ec523875f3c1de34b9d4287b452896bc131e",
+      "lines": 331,
+      "exact_lf_match": "scripts/experiments/server_step36e_budget_probe.py"
+    },
+    {
+      "path": "evidence/server_resource_v1/imports/server_step36e_low_lr_return_20260916T021355Z/step36e_lr1e4_probe/source/src/pidon/dco.py",
+      "sha256": "047f0a7470ab063625eee7571075480f3cf3f9beb914a0e354c8b2b0da50cfca",
+      "normalized_sha256": "1bc6c9de416064e3d4db72418d76dbd0ae54232b965496863c1f71e0065f0149",
+      "lines": 291,
+      "exact_lf_match": "evidence/server_resource_v1/dco_value_review_20260916/returned/random_low_lr128/source/src/pidon/dco.py"
+    },
+    {
+      "path": "evidence/server_resource_v1/imports/server_step36e_low_lr_return_20260916T021355Z/step36e_lr1e4_probe/source/src/pidon/fdtd.py",
+      "sha256": "a387fe5951fb76ce62b7cc304ad0f9b7db7f0a1c857189a2aa98ca96df572903",
+      "normalized_sha256": "622a8a7747245d35e07c559b362544e0d61f2f465bcc81f2f686533a1bd405b6",
+      "lines": 260,
+      "exact_lf_match": "evidence/server_resource_v1/dco_value_review_20260916/returned/random_low_lr128/source/src/pidon/fdtd.py"
+    },
+    {
+      "path": "evidence/server_resource_v1/imports/server_step36e_low_lr_return_20260916T021355Z/step36e_lr1e4_probe/source/src/pidon/pidon_contract.py",
+      "sha256": "7bc29b3cf6864f24483abf6d9508523591e6f7624bcd274b28f0bb4a2f7c5772",
+      "normalized_sha256": "fbf93008fd698a03650906a0d931016090b1dd33f49e74fcf307dcf8266fe11b",
+      "lines": 277,
+      "exact_lf_match": "evidence/server_resource_v1/dco_value_review_20260916_r2/pidon_contract_verified_lf.py"
+    },
+    {
+      "path": "evidence/server_resource_v1/imports/server_step36e_low_lr_return_20260916T021355Z/step36e_lr1e4_probe/source/src/pidon/pidon_recording.py",
+      "sha256": "515791efa958f8c1bb044b6ad7cb3806235168325b38874b3bef7555a97bafe4",
+      "normalized_sha256": "6a22cf4e2dcafba72d3a483814985ab563f73c3774f3f6f7dacf4a6a1a5dcb20",
+      "lines": 278,
+      "exact_lf_match": "evidence/server_resource_v1/dco_value_review_20260916/returned/random_low_lr128/source/src/pidon/pidon_recording.py"
+    },
+    {
+      "path": "evidence/server_resource_v1/imports/server_step36e_low_lr_return_20260916T021355Z/step36e_lr1e4_probe/source/src/pidon/pidon_solve.py",
+      "sha256": "ea1e76d264036e7fff58fb4f4ca54e4d3d980d2556361b69f20209a6b9a149d7",
+      "normalized_sha256": "5d6eb695526117ef3b6e214b168c373c7a1ea5e01ebd99db1801db7402ce56fd",
+      "lines": 1321,
+      "exact_lf_match": "evidence/server_resource_v1/dco_value_review_20260916/returned/random_low_lr128/source/src/pidon/pidon_solve.py"
+    },
+    {
+      "path": "evidence/server_resource_v1/imports/server_step36e_low_lr_return_20260916T021355Z/step36e_lr1e4_probe/source/tools/server_step36e_queue.py",
+      "sha256": "210e2184b21c256337a1cbd1893c721d2d8918385e49d29aa9bbb4c0d8cdb6f4",
+      "normalized_sha256": "5f6bdfa15f8737b8c8ac70a26adef45fe2308b13cf696aecc45d13e0b5dda327",
+      "lines": 138,
+      "exact_lf_match": "archive/transfers/2026-09-16/server_step36e_package_20260916T092913/payload/tools/server_step36e_queue.py"
+    },
+    {
+      "path": "evidence/server_resource_v1/imports/server_step36e_return_20260916T015804Z/step36e_budget_probe/source/project_paths.py",
+      "sha256": "306099c40fd2fd27d36c98f84d49f9e5abbe398e7a1009cc51d0b1435e8ef840",
+      "normalized_sha256": "21af3868cc12464923dde267f445e6a135150eb8476308f253704a3506de6859",
+      "lines": 50,
+      "exact_lf_match": "evidence/server_resource_v1/dco_value_review_20260916/returned/random_low_lr128/source/project_paths.py"
+    },
+    {
+      "path": "evidence/server_resource_v1/imports/server_step36e_return_20260916T015804Z/step36e_budget_probe/source/scripts/experiments/server_short_tol_probe.py",
+      "sha256": "5c586856482a14184fc27319d1c5446acb0bb45ff67a71b1151e789ce6d784e9",
+      "normalized_sha256": "e5ad3e8b32f6540a8c44efed7439b5844322ae8cd69cc4e7ae5c0a5bd5053b01",
+      "lines": 388,
+      "exact_lf_match": "evidence/server_resource_v1/imports/server_64_return_20260916T011046Z/strict64_probe/source/scripts/experiments/server_short_tol_probe.py"
+    },
+    {
+      "path": "evidence/server_resource_v1/imports/server_step36e_return_20260916T015804Z/step36e_budget_probe/source/scripts/experiments/server_step36e_budget_probe.py",
+      "sha256": "2b86701a18576ec2c58fac3370c4078bdd3bebee16ddb513f87de52bd18a82b1",
+      "normalized_sha256": "49a1e2beabf4912d37635a6f7179fcb4fecfad6527b09a6848dfb885fc23d81d",
+      "lines": 317,
+      "exact_lf_match": "archive/transfers/2026-09-16/server_step36e_package_20260916T092913/payload/scripts/experiments/server_step36e_budget_probe.py"
+    },
+    {
+      "path": "evidence/server_resource_v1/imports/server_step36e_return_20260916T015804Z/step36e_budget_probe/source/src/pidon/dco.py",
+      "sha256": "047f0a7470ab063625eee7571075480f3cf3f9beb914a0e354c8b2b0da50cfca",
+      "normalized_sha256": "1bc6c9de416064e3d4db72418d76dbd0ae54232b965496863c1f71e0065f0149",
+      "lines": 291,
+      "exact_lf_match": "evidence/server_resource_v1/dco_value_review_20260916/returned/random_low_lr128/source/src/pidon/dco.py"
+    },
+    {
+      "path": "evidence/server_resource_v1/imports/server_step36e_return_20260916T015804Z/step36e_budget_probe/source/src/pidon/fdtd.py",
+      "sha256": "a387fe5951fb76ce62b7cc304ad0f9b7db7f0a1c857189a2aa98ca96df572903",
+      "normalized_sha256": "622a8a7747245d35e07c559b362544e0d61f2f465bcc81f2f686533a1bd405b6",
+      "lines": 260,
+      "exact_lf_match": "evidence/server_resource_v1/dco_value_review_20260916/returned/random_low_lr128/source/src/pidon/fdtd.py"
+    },
+    {
+      "path": "evidence/server_resource_v1/imports/server_step36e_return_20260916T015804Z/step36e_budget_probe/source/src/pidon/pidon_contract.py",
+      "sha256": "7bc29b3cf6864f24483abf6d9508523591e6f7624bcd274b28f0bb4a2f7c5772",
+      "normalized_sha256": "fbf93008fd698a03650906a0d931016090b1dd33f49e74fcf307dcf8266fe11b",
+      "lines": 277,
+      "exact_lf_match": "evidence/server_resource_v1/dco_value_review_20260916_r2/pidon_contract_verified_lf.py"
+    },
+    {
+      "path": "evidence/server_resource_v1/imports/server_step36e_return_20260916T015804Z/step36e_budget_probe/source/src/pidon/pidon_recording.py",
+      "sha256": "515791efa958f8c1bb044b6ad7cb3806235168325b38874b3bef7555a97bafe4",
+      "normalized_sha256": "6a22cf4e2dcafba72d3a483814985ab563f73c3774f3f6f7dacf4a6a1a5dcb20",
+      "lines": 278,
+      "exact_lf_match": "evidence/server_resource_v1/dco_value_review_20260916/returned/random_low_lr128/source/src/pidon/pidon_recording.py"
+    },
+    {
+      "path": "evidence/server_resource_v1/imports/server_step36e_return_20260916T015804Z/step36e_budget_probe/source/src/pidon/pidon_solve.py",
+      "sha256": "ea1e76d264036e7fff58fb4f4ca54e4d3d980d2556361b69f20209a6b9a149d7",
+      "normalized_sha256": "5d6eb695526117ef3b6e214b168c373c7a1ea5e01ebd99db1801db7402ce56fd",
+      "lines": 1321,
+      "exact_lf_match": "evidence/server_resource_v1/dco_value_review_20260916/returned/random_low_lr128/source/src/pidon/pidon_solve.py"
+    },
+    {
+      "path": "evidence/server_resource_v1/imports/server_step36e_return_20260916T015804Z/step36e_budget_probe/source/tools/server_step36e_queue.py",
+      "sha256": "210e2184b21c256337a1cbd1893c721d2d8918385e49d29aa9bbb4c0d8cdb6f4",
+      "normalized_sha256": "5f6bdfa15f8737b8c8ac70a26adef45fe2308b13cf696aecc45d13e0b5dda327",
+      "lines": 138,
+      "exact_lf_match": "archive/transfers/2026-09-16/server_step36e_package_20260916T092913/payload/tools/server_step36e_queue.py"
+    },
+    {
+      "path": "evidence/server_resource_v1/imports/server_step36_window_return_20260916T030320Z/step36_48_low_lr_window/source/project_paths.py",
+      "sha256": "306099c40fd2fd27d36c98f84d49f9e5abbe398e7a1009cc51d0b1435e8ef840",
+      "normalized_sha256": "21af3868cc12464923dde267f445e6a135150eb8476308f253704a3506de6859",
+      "lines": 50,
+      "exact_lf_match": "evidence/server_resource_v1/dco_value_review_20260916/returned/random_low_lr128/source/project_paths.py"
+    },
+    {
+      "path": "evidence/server_resource_v1/imports/server_step36_window_return_20260916T030320Z/step36_48_low_lr_window/source/scripts/experiments/server_short_tol_probe.py",
+      "sha256": "5c586856482a14184fc27319d1c5446acb0bb45ff67a71b1151e789ce6d784e9",
+      "normalized_sha256": "e5ad3e8b32f6540a8c44efed7439b5844322ae8cd69cc4e7ae5c0a5bd5053b01",
+      "lines": 388,
+      "exact_lf_match": "evidence/server_resource_v1/imports/server_64_return_20260916T011046Z/strict64_probe/source/scripts/experiments/server_short_tol_probe.py"
+    },
+    {
+      "path": "evidence/server_resource_v1/imports/server_step36_window_return_20260916T030320Z/step36_48_low_lr_window/source/scripts/experiments/server_step36_window_probe.py",
+      "sha256": "d08b63bfa3f6f24ab1466887b8c1a5fc8402702b8d52f329c6198fcced673754",
+      "normalized_sha256": "03427ec273af1ac6b5292adea54f0fae5c12f3470167f18455af5b510f09c8aa",
+      "lines": 363,
+      "exact_lf_match": "archive/transfers/2026-09-16/server_step36_window_package_20260916T101646/payload/scripts/experiments/server_step36_window_probe.py"
+    },
+    {
+      "path": "evidence/server_resource_v1/imports/server_step36_window_return_20260916T030320Z/step36_48_low_lr_window/source/scripts/experiments/server_step36e_budget_probe.py",
+      "sha256": "aea5fb83a2d00d07bd919f1a7f1056cc1d46a0bfaa7e223c1c112a22a10a8a1e",
+      "normalized_sha256": "b1c50cb909ef9eead3425bf7b028ec523875f3c1de34b9d4287b452896bc131e",
+      "lines": 331,
+      "exact_lf_match": "scripts/experiments/server_step36e_budget_probe.py"
+    },
+    {
+      "path": "evidence/server_resource_v1/imports/server_step36_window_return_20260916T030320Z/step36_48_low_lr_window/source/src/pidon/dco.py",
+      "sha256": "047f0a7470ab063625eee7571075480f3cf3f9beb914a0e354c8b2b0da50cfca",
+      "normalized_sha256": "1bc6c9de416064e3d4db72418d76dbd0ae54232b965496863c1f71e0065f0149",
+      "lines": 291,
+      "exact_lf_match": "evidence/server_resource_v1/dco_value_review_20260916/returned/random_low_lr128/source/src/pidon/dco.py"
+    },
+    {
+      "path": "evidence/server_resource_v1/imports/server_step36_window_return_20260916T030320Z/step36_48_low_lr_window/source/src/pidon/fdtd.py",
+      "sha256": "a387fe5951fb76ce62b7cc304ad0f9b7db7f0a1c857189a2aa98ca96df572903",
+      "normalized_sha256": "622a8a7747245d35e07c559b362544e0d61f2f465bcc81f2f686533a1bd405b6",
+      "lines": 260,
+      "exact_lf_match": "evidence/server_resource_v1/dco_value_review_20260916/returned/random_low_lr128/source/src/pidon/fdtd.py"
+    },
+    {
+      "path": "evidence/server_resource_v1/imports/server_step36_window_return_20260916T030320Z/step36_48_low_lr_window/source/src/pidon/pidon_contract.py",
+      "sha256": "7bc29b3cf6864f24483abf6d9508523591e6f7624bcd274b28f0bb4a2f7c5772",
+      "normalized_sha256": "fbf93008fd698a03650906a0d931016090b1dd33f49e74fcf307dcf8266fe11b",
+      "lines": 277,
+      "exact_lf_match": "evidence/server_resource_v1/dco_value_review_20260916_r2/pidon_contract_verified_lf.py"
+    },
+    {
+      "path": "evidence/server_resource_v1/imports/server_step36_window_return_20260916T030320Z/step36_48_low_lr_window/source/src/pidon/pidon_recording.py",
+      "sha256": "515791efa958f8c1bb044b6ad7cb3806235168325b38874b3bef7555a97bafe4",
+      "normalized_sha256": "6a22cf4e2dcafba72d3a483814985ab563f73c3774f3f6f7dacf4a6a1a5dcb20",
+      "lines": 278,
+      "exact_lf_match": "evidence/server_resource_v1/dco_value_review_20260916/returned/random_low_lr128/source/src/pidon/pidon_recording.py"
+    },
+    {
+      "path": "evidence/server_resource_v1/imports/server_step36_window_return_20260916T030320Z/step36_48_low_lr_window/source/src/pidon/pidon_solve.py",
+      "sha256": "ea1e76d264036e7fff58fb4f4ca54e4d3d980d2556361b69f20209a6b9a149d7",
+      "normalized_sha256": "5d6eb695526117ef3b6e214b168c373c7a1ea5e01ebd99db1801db7402ce56fd",
+      "lines": 1321,
+      "exact_lf_match": "evidence/server_resource_v1/dco_value_review_20260916/returned/random_low_lr128/source/src/pidon/pidon_solve.py"
+    },
+    {
+      "path": "evidence/server_resource_v1/imports/server_step36_window_return_20260916T030320Z/step36_48_low_lr_window/source/tools/server_step36_window_queue.py",
+      "sha256": "5fe6eae4d3a1f0c6a52df813b3c7cd32bef0b7098089f27b7d681e46b9afecd5",
+      "normalized_sha256": "5c3bcadbec99f593bb6a8e8936ba187f3c67cee91cdfc29982fc0e5767022a1d",
+      "lines": 140,
+      "exact_lf_match": "archive/transfers/2026-09-16/server_step36_window_package_20260916T101646/payload/tools/server_step36_window_queue.py"
+    },
+    {
+      "path": "evidence/server_resource_v1/imports/server_step48_64_return_20260916T035641Z/step48_64_low_lr_window/source/project_paths.py",
+      "sha256": "306099c40fd2fd27d36c98f84d49f9e5abbe398e7a1009cc51d0b1435e8ef840",
+      "normalized_sha256": "21af3868cc12464923dde267f445e6a135150eb8476308f253704a3506de6859",
+      "lines": 50,
+      "exact_lf_match": "evidence/server_resource_v1/dco_value_review_20260916/returned/random_low_lr128/source/project_paths.py"
+    },
+    {
+      "path": "evidence/server_resource_v1/imports/server_step48_64_return_20260916T035641Z/step48_64_low_lr_window/source/scripts/experiments/server_short_tol_probe.py",
+      "sha256": "5c586856482a14184fc27319d1c5446acb0bb45ff67a71b1151e789ce6d784e9",
+      "normalized_sha256": "e5ad3e8b32f6540a8c44efed7439b5844322ae8cd69cc4e7ae5c0a5bd5053b01",
+      "lines": 388,
+      "exact_lf_match": "evidence/server_resource_v1/imports/server_64_return_20260916T011046Z/strict64_probe/source/scripts/experiments/server_short_tol_probe.py"
+    },
+    {
+      "path": "evidence/server_resource_v1/imports/server_step48_64_return_20260916T035641Z/step48_64_low_lr_window/source/scripts/experiments/server_step36_window_probe.py",
+      "sha256": "d08b63bfa3f6f24ab1466887b8c1a5fc8402702b8d52f329c6198fcced673754",
+      "normalized_sha256": "03427ec273af1ac6b5292adea54f0fae5c12f3470167f18455af5b510f09c8aa",
+      "lines": 363,
+      "exact_lf_match": "archive/transfers/2026-09-16/server_step36_window_package_20260916T101646/payload/scripts/experiments/server_step36_window_probe.py"
+    },
+    {
+      "path": "evidence/server_resource_v1/imports/server_step48_64_return_20260916T035641Z/step48_64_low_lr_window/source/scripts/experiments/server_step36e_budget_probe.py",
+      "sha256": "aea5fb83a2d00d07bd919f1a7f1056cc1d46a0bfaa7e223c1c112a22a10a8a1e",
+      "normalized_sha256": "b1c50cb909ef9eead3425bf7b028ec523875f3c1de34b9d4287b452896bc131e",
+      "lines": 331,
+      "exact_lf_match": "scripts/experiments/server_step36e_budget_probe.py"
+    },
+    {
+      "path": "evidence/server_resource_v1/imports/server_step48_64_return_20260916T035641Z/step48_64_low_lr_window/source/src/pidon/dco.py",
+      "sha256": "047f0a7470ab063625eee7571075480f3cf3f9beb914a0e354c8b2b0da50cfca",
+      "normalized_sha256": "1bc6c9de416064e3d4db72418d76dbd0ae54232b965496863c1f71e0065f0149",
+      "lines": 291,
+      "exact_lf_match": "evidence/server_resource_v1/dco_value_review_20260916/returned/random_low_lr128/source/src/pidon/dco.py"
+    },
+    {
+      "path": "evidence/server_resource_v1/imports/server_step48_64_return_20260916T035641Z/step48_64_low_lr_window/source/src/pidon/fdtd.py",
+      "sha256": "a387fe5951fb76ce62b7cc304ad0f9b7db7f0a1c857189a2aa98ca96df572903",
+      "normalized_sha256": "622a8a7747245d35e07c559b362544e0d61f2f465bcc81f2f686533a1bd405b6",
+      "lines": 260,
+      "exact_lf_match": "evidence/server_resource_v1/dco_value_review_20260916/returned/random_low_lr128/source/src/pidon/fdtd.py"
+    },
+    {
+      "path": "evidence/server_resource_v1/imports/server_step48_64_return_20260916T035641Z/step48_64_low_lr_window/source/src/pidon/pidon_contract.py",
+      "sha256": "7bc29b3cf6864f24483abf6d9508523591e6f7624bcd274b28f0bb4a2f7c5772",
+      "normalized_sha256": "fbf93008fd698a03650906a0d931016090b1dd33f49e74fcf307dcf8266fe11b",
+      "lines": 277,
+      "exact_lf_match": "evidence/server_resource_v1/dco_value_review_20260916_r2/pidon_contract_verified_lf.py"
+    },
+    {
+      "path": "evidence/server_resource_v1/imports/server_step48_64_return_20260916T035641Z/step48_64_low_lr_window/source/src/pidon/pidon_recording.py",
+      "sha256": "515791efa958f8c1bb044b6ad7cb3806235168325b38874b3bef7555a97bafe4",
+      "normalized_sha256": "6a22cf4e2dcafba72d3a483814985ab563f73c3774f3f6f7dacf4a6a1a5dcb20",
+      "lines": 278,
+      "exact_lf_match": "evidence/server_resource_v1/dco_value_review_20260916/returned/random_low_lr128/source/src/pidon/pidon_recording.py"
+    },
+    {
+      "path": "evidence/server_resource_v1/imports/server_step48_64_return_20260916T035641Z/step48_64_low_lr_window/source/src/pidon/pidon_solve.py",
+      "sha256": "ea1e76d264036e7fff58fb4f4ca54e4d3d980d2556361b69f20209a6b9a149d7",
+      "normalized_sha256": "5d6eb695526117ef3b6e214b168c373c7a1ea5e01ebd99db1801db7402ce56fd",
+      "lines": 1321,
+      "exact_lf_match": "evidence/server_resource_v1/dco_value_review_20260916/returned/random_low_lr128/source/src/pidon/pidon_solve.py"
+    },
+    {
+      "path": "evidence/server_resource_v1/imports/server_step48_64_return_20260916T035641Z/step48_64_low_lr_window/source/tools/server_step36_window_queue.py",
+      "sha256": "5fe6eae4d3a1f0c6a52df813b3c7cd32bef0b7098089f27b7d681e46b9afecd5",
+      "normalized_sha256": "5c3bcadbec99f593bb6a8e8936ba187f3c67cee91cdfc29982fc0e5767022a1d",
+      "lines": 140,
+      "exact_lf_match": "archive/transfers/2026-09-16/server_step36_window_package_20260916T101646/payload/tools/server_step36_window_queue.py"
+    },
+    {
+      "path": "evidence/workspace_reorganization_20260914/before/root/run_day4.bat",
+      "sha256": "987d5803ccd2b15c55e15153d7319cf1239c46f1955477cd5f82e3f0308ef554",
+      "normalized_sha256": "5b19487f7eb2186c5c0dc45b944d34d090e31961daf51901837d624f5bd514fe",
+      "lines": 73,
+      "exact_lf_match": "archive/legacy_commands/run_day4.bat"
+    },
+    {
+      "path": "evidence/workspace_reorganization_20260914/before/root/run_meal.bat",
+      "sha256": "c0a0dea51cbf462369629992f0eb89fedf83cafcf7191df2ccbc568138d1d42b",
+      "normalized_sha256": "0459fcf5c5bc23c0240a515da74a75dbe5d2db86851c11a8debe5f6669ccba86",
+      "lines": 73,
+      "exact_lf_match": "archive/legacy_commands/run_meal.bat"
+    },
+    {
+      "path": "evidence/workspace_reorganization_20260914/before/root/run_night.bat",
+      "sha256": "77fcad7a57bb9dd2407a74c84c85c44ffa1a1852f1e41a24aad448198b35c517",
+      "normalized_sha256": "e907279a1f789948a75d3f801edd71e5c363d994b596da7308ff3493bd206f5f",
+      "lines": 154,
+      "exact_lf_match": "archive/legacy_commands/run_night.bat"
+    },
+    {
+      "path": "evidence/workspace_reorganization_20260914/before/root/run_night2.bat",
+      "sha256": "b8fdec3a07c3893d26778c90c94b9381499b2e63366d442416724b75e0a98098",
+      "normalized_sha256": "c2b02400a69972c7225dd653a91a5db0a84bb31e4be7dfcb43e1870bc3241508",
+      "lines": 46,
+      "exact_lf_match": "archive/legacy_commands/run_night2.bat"
+    },
+    {
+      "path": "evidence/workspace_reorganization_20260914/before/root/run_night3.bat",
+      "sha256": "080355398c253ed887ee00c14c3148d947274ea13f50b7e77734a1b80c4fbe27",
+      "normalized_sha256": "745cb9a96075a0cbb1bdc9a9456cd7ec2d19ed67241ecbcb06a5cc0a05c5b618",
+      "lines": 87,
+      "exact_lf_match": "archive/legacy_commands/run_night3.bat"
+    },
+    {
+      "path": "evidence/workspace_reorganization_20260914/before/root/run_paper_parity.bat",
+      "sha256": "729bbe4381365e43545d7c5bbc86eba138aa21f83266dfd69faa220bd44f42aa",
+      "normalized_sha256": "61d2790213c03972dc5175b64b4144a386411aa2018ed0513a3e007d398a64b1",
+      "lines": 59,
+      "exact_lf_match": "archive/legacy_commands/run_paper_parity.bat"
+    },
+    {
+      "path": "evidence/workspace_reorganization_20260914/before/root/run_rho32.bat",
+      "sha256": "3cd49dbe65af39b458f03fc7ad9a5660fe2c63f773317a78eb1d72d8e5b48e07",
+      "normalized_sha256": "0149590ba3fb2274aa54fe642bf849033ee11e8bb8b341944b044bf646053b56",
+      "lines": 52,
+      "exact_lf_match": "archive/legacy_commands/run_rho32.bat"
+    },
+    {
+      "path": "evidence/workspace_reorganization_20260914/before/root/run_stage2.bat",
+      "sha256": "47585c114aadf20dfed3c5b37801206c4ac7a05080d42ca0558000e4dcdec49f",
+      "normalized_sha256": "9b7e86e371c30bf58d8314de543ee49aa3e65d2c69db48e3de852362b67502b0",
+      "lines": 79,
+      "exact_lf_match": "archive/legacy_commands/run_stage2.bat"
+    },
+    {
+      "path": "evidence/workspace_reorganization_20260914/before/root/run_stage3.bat",
+      "sha256": "a0af4ec66cb0b95f85233055b4f12a364094a8fbe977cf1e1d07c4853e68af7f",
+      "normalized_sha256": "cd8e7af08702c9bc622e347fa679dec480b07c12c82ba51bb18bc9096818b637",
+      "lines": 52,
+      "exact_lf_match": "archive/legacy_commands/run_stage3.bat"
+    },
+    {
+      "path": "evidence/workspace_reorganization_20260914/before/root/run_stage4.bat",
+      "sha256": "0d4f071a252f417d1da0a4319490a91658255fe5ecaa9d39c236682f74bb3d94",
+      "normalized_sha256": "c5847a2c316c488375ff1affaf8bbf956177d9f82ba8ec572acc7d91a3417edb",
+      "lines": 67,
+      "exact_lf_match": "archive/legacy_commands/run_stage4.bat"
+    },
+    {
+      "path": "evidence/workspace_reorganization_20260914/before/root/run_stage5.bat",
+      "sha256": "1c004684626e39be15d95f637761736b3a2f4f95a25818f75fee0c096708aaa9",
+      "normalized_sha256": "9544afcfa65779957107d9000296539fee10db1ee9815b653e51a0555331b564",
+      "lines": 60,
+      "exact_lf_match": "archive/legacy_commands/run_stage5.bat"
+    },
+    {
+      "path": "evidence/workspace_reorganization_20260914/before/root/run_stage5_big.bat",
+      "sha256": "bd8b06256f0cae13bc3398169741c4e57bfa27fc58dfa1f830b9df979ca6e559",
+      "normalized_sha256": "034c6ffceef4774bab42b5d3ba4fbc5b2d3e6cffee6ea05e88ccc02aafc39637",
+      "lines": 60,
+      "exact_lf_match": "archive/legacy_commands/run_stage5_big.bat"
+    },
+    {
+      "path": "evidence/workspace_reorganization_20260914/before/root/run_stage6.bat",
+      "sha256": "17ef585bf8186a869fb8df4b16619d554aa3fd1d6487fba8559e55b8ba86f431",
+      "normalized_sha256": "1795ee917bac519b076ddf46d474eb94dfb4d219cd0173e1c8e9d2504259aba3",
+      "lines": 59,
+      "exact_lf_match": "archive/legacy_commands/run_stage6.bat"
+    }
+  ],
+  "notes": "Exact content match inherits static review only once its canonical has been reviewed; no proof of historical execution identity."
+}

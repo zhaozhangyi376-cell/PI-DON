@@ -1,0 +1,28 @@
+--- scripts/experiments/mechanism_decision_eval.py
++++ evidence/workspace_reorganization_20260914/before/root/mechanism_decision_eval.py
+@@ -1,14 +1,6 @@
+ """Auditable, no-training evaluation of the registered DCO initialization."""
+ from __future__ import annotations
+-
+-# Project layout bootstrap (imports and paths only).
+-import sys as _layout_sys
+-from pathlib import Path as _LayoutPath
+-_layout_sys.path.insert(0, str(_LayoutPath(__file__).resolve().parents[2]))
+-from project_paths import ROOT as PROJECT_ROOT, configure as _layout_configure, resolve_legacy
+-_layout_configure()
+-
+ 
+ import argparse
+ import json
+ import math
+@@ -22,9 +14,9 @@
+ import paper_protocol as PP
+ from pidon_recording import atomic_json_save, sha256_file
+ 
+ 
+-ROOT = PROJECT_ROOT
++ROOT = Path(__file__).resolve().parent
+ OUT = ROOT / "evidence" / "mechanism_decision_v1"
+ 
+ 
+ def draw_shared_direction(rng: np.random.Generator) -> np.ndarray:

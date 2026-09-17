@@ -1,0 +1,30 @@
+--- scripts/experiments/mechanism_hour_runner.py
++++ evidence/workspace_reorganization_20260914/before/root/mechanism_hour_runner.py
+@@ -5,16 +5,8 @@
+ only a persistent wall clock, independent arm identities, a heartbeat callback,
+ and rolling checkpoint/report plumbing.
+ """
+ from __future__ import annotations
+-
+-# Project layout bootstrap (imports and paths only).
+-import sys as _layout_sys
+-from pathlib import Path as _LayoutPath
+-_layout_sys.path.insert(0, str(_LayoutPath(__file__).resolve().parents[2]))
+-from project_paths import ROOT as PROJECT_ROOT, configure as _layout_configure, resolve_legacy
+-_layout_configure()
+-
+ 
+ import argparse
+ import copy
+ import hashlib
+@@ -31,9 +23,9 @@
+ import fdtd
+ import pidon_solve as S
+ from pidon_recording import RunRecorder, atomic_json_save, sha256_file, source_hashes
+ 
+-ROOT = PROJECT_ROOT
++ROOT = Path(__file__).resolve().parent
+ OUT = ROOT / "evidence" / "mechanism_1h_v2"
+ OLD_PROTOCOL = ROOT / "evidence" / "mechanism_decision_v1" / "protocol.json"
+ MASTER = ROOT / "dco_lr1e3_300.pt"
+ 

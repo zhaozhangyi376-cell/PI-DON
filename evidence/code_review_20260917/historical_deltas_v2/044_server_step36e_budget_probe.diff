@@ -1,0 +1,91 @@
+--- scripts/experiments/server_step36e_budget_probe.py
++++ archive/transfers/2026-09-16/server_step36e_package_20260916T092913/payload/scripts/experiments/server_step36e_budget_probe.py
+@@ -164,9 +164,8 @@
+ 
+ 
+ def run(args: argparse.Namespace) -> dict[str, Any]:
+     source = (ROOT / args.source_run).resolve() if not Path(args.source_run).is_absolute() else Path(args.source_run)
+-    protocol = ROOT / args.protocol
+     out = prepare_output(args.output_name)
+     checkpoint_path, payload = select_clean_checkpoint(source)
+     config = make_config(payload, out, args)
+     solver = S.Solver(config, args.device)
+@@ -174,31 +173,26 @@
+     ref = fdtd.PECCavity(side=solver.a.side, n=solver.a.n, dt=solver.a.dt)
+     S._restore_reference(ref, payload["reference"])
+ 
+     original_max_inner = int(solver.a.max_inner)
+-    original_lr = float(solver.a.lr)
+     solver.a.max_inner = int(args.max_inner)
+-    if args.lr is not None:
+-        solver.a.lr = float(args.lr)
+     solver.a.out_dir = str(out)
+     solver.a.out = str(out / "summary.json")
+     solver.a.device = args.device
+ 
+     metadata = {
+         "schema": SCHEMA,
+         "action_id": args.action_id,
+         "lab_run_id": os.environ.get("PIDON_LAB_RUN_ID"),
+-        "protocol": display(protocol),
+-        "protocol_sha256": sha256_file(protocol),
++        "protocol": display(PLAN),
++        "protocol_sha256": sha256_file(PLAN),
+         "source_run": display(source),
+         "source_checkpoint": display(checkpoint_path),
+         "source_checkpoint_sha256": sha256_file(checkpoint_path),
+         "source_failure_raw": display(source / "failure_raw_000036_attempt_1.pt"),
+         "source_failure_raw_sha256": sha256_file(source / "failure_raw_000036_attempt_1.pt"),
+         "original_max_inner": original_max_inner,
+         "diagnostic_max_inner": int(args.max_inner),
+-        "original_lr": original_lr,
+-        "diagnostic_lr": float(solver.a.lr),
+         "config": vars(solver.a).copy(),
+         "source_hashes": source_hashes(ROOT),
+         **S.formal_run_identity(solver.a),
+     }
+@@ -228,10 +222,8 @@
+         "source_run": display(source),
+         "source_checkpoint": display(checkpoint_path),
+         "original_max_inner": original_max_inner,
+         "diagnostic_max_inner": int(args.max_inner),
+-        "original_lr": original_lr,
+-        "diagnostic_lr": float(solver.a.lr),
+         "fit_traces": S._json_safe(copy.deepcopy(traces)),
+         "row_cost": row_cost(row),
+         "actual_wall_s": time.perf_counter() - started,
+         "no_trajectory_unlock": True,
+@@ -262,11 +254,8 @@
+         "source_run": display(source),
+         "source_checkpoint": display(checkpoint_path),
+         "source_accepted_steps": int(payload.get("accepted_steps", -1)),
+         "source_current_time_layer": int(payload.get("current_time_layer", -1)),
+-        "original_lr": original_lr,
+-        "diagnostic_lr": float(solver.a.lr),
+-        "diagnostic_max_inner": int(args.max_inner),
+         "accepted_steps_after": int(solver.accepted_steps),
+         "new_accepted_steps": int(solver.accepted_steps) - int(payload.get("accepted_steps", 0)),
+         "new_adam_updates": row["row_cost"]["adam"],
+         "new_closures": row["row_cost"]["closures"],
+@@ -293,10 +282,8 @@
+         "",
+         f"- Status: `{status}`; scientific_result: `{summary['scientific_result']}`",
+         f"- Source checkpoint: `{summary['source_checkpoint']}`",
+         f"- Source accepted steps: `{summary['source_accepted_steps']}`",
+-        f"- Original lr / diagnostic lr: `{summary['original_lr']}` / `{summary['diagnostic_lr']}`",
+-        f"- Diagnostic max_inner: `{summary['diagnostic_max_inner']}`",
+         f"- Accepted steps after replay: `{summary['accepted_steps_after']}`",
+         f"- New Adam updates: `{summary['new_adam_updates']}`",
+         f"- Step-36 E residual: `{summary['e_residual_ratio']}`",
+         f"- Step-36 E updates: `{summary['e_updates']}`",
+@@ -323,9 +310,8 @@
+     parser.add_argument("--action-id", required=True)
+     parser.add_argument("--device", choices=("cuda", "cpu"), default="cuda")
+     parser.add_argument("--source-run", default=display(DEFAULT_SOURCE))
+     parser.add_argument("--max-inner", type=int, default=30000)
+-    parser.add_argument("--lr", type=float, default=None)
+     parser.add_argument("--fit-progress-every", type=int, default=500)
+     parser.add_argument("--output-name", default=OUT_NAME)
+-    parser.add_argument("--protocol", default=display(PLAN))
+     run(parser.parse_args())
++

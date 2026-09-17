@@ -1,0 +1,29 @@
+--- project_paths.py
++++ evidence/workspace_reorganization_20260914/before/root/project_paths.py
+@@ -22,9 +22,9 @@
+     absolute = p if p.is_absolute() else PROJECT_DIR / p
+     try:
+         relative = absolute.resolve().relative_to(PROJECT_DIR).as_posix()
+     except ValueError:
+-        relative = p.name if p.is_absolute() else p.as_posix()
++        return p
+     lookup = {row['old']: row['new'] for row in migration_entries()}
+     return PROJECT_DIR / lookup[relative] if relative in lookup else p
+ 
+ 
+@@ -37,14 +37,11 @@
+ ROOT = _ProjectRoot(PROJECT_DIR)
+ 
+ 
+ def configure():
+-    os.environ['PYTHONIOENCODING'] = 'utf-8'
+-    for stream in (sys.stdout, sys.stderr):
+-        if hasattr(stream, 'reconfigure'):
+-            stream.reconfigure(encoding='utf-8', errors='replace')
+     directories = [str(PROJECT_DIR)] + [str(PROJECT_DIR / p) for p in SOURCE_DIRS]
+     for directory in reversed(directories):
+         if directory not in sys.path:
+             sys.path.insert(0, directory)
+     inherited = os.environ.get('PYTHONPATH', '')
+     os.environ['PYTHONPATH'] = os.pathsep.join(dict.fromkeys(directories + ([inherited] if inherited else [])))
++

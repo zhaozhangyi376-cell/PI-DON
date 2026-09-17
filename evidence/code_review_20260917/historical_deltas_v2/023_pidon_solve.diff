@@ -1,0 +1,64 @@
+--- src/pidon/pidon_solve.py
++++ evidence/workspace_reorganization_20260914/before/root/pidon_solve.py
+@@ -43,16 +43,8 @@
+     EXP 3, the network supplies the first n slices of each component and the
+     remaining boundary slice keeps its exact Yee value.  The physics-informed
+     loss is therefore computed over the region the network actually predicts.
+ """
+-
+-# Project layout bootstrap (imports and paths only).
+-import sys as _layout_sys
+-from pathlib import Path as _LayoutPath
+-_layout_sys.path.insert(0, str(_LayoutPath(__file__).resolve().parents[2]))
+-from project_paths import ROOT as PROJECT_ROOT, configure as _layout_configure, resolve_legacy
+-_layout_configure()
+-
+ 
+ import argparse
+ import copy
+ import hashlib
+@@ -147,9 +139,9 @@
+     look like a resume of one another.
+     """
+     source = source_hashes(os.path.dirname(__file__))
+     document = {"frozen_config": frozen_config(a), "source_hashes": source,
+-                "init_sha256": sha256_file(a.init) if _LayoutPath(resolve_legacy(a.init)).is_file() else None}
++                "init_sha256": sha256_file(a.init) if os.path.isfile(a.init) else None}
+     encoded = json.dumps(document, sort_keys=True, separators=(",", ":"), default=str).encode("utf-8")
+     digest = hashlib.sha256(encoded).hexdigest()
+     return {"run_id": str(run_id or uuid.uuid4()), "protocol_hash": digest, **document}
+ 
+@@ -157,20 +149,10 @@
+ def assert_resume_compatible(current, saved):
+     missing = [key for key in RESUME_CONFIG_KEYS if key not in saved]
+     if missing:
+         raise ValueError("checkpoint lacks frozen configuration fields: " + ", ".join(missing))
+-    changed = {}
+-    for key, value in frozen_config(current).items():
+-        if key not in saved:
+-            continue
+-        old = saved[key]
+-        if key == "init":
+-            old_compare = os.fspath(resolve_legacy(old))
+-            new_compare = os.fspath(resolve_legacy(value))
+-            if old_compare != new_compare:
+-                changed[key] = (old, value)
+-        elif old != value:
+-            changed[key] = (old, value)
++    changed = {key: (saved.get(key), value) for key, value in frozen_config(current).items()
++               if key in saved and saved[key] != value}
+     if changed:
+         rendered = ", ".join(f"{key}: saved={old!r}, requested={new!r}"
+                              for key, (old, new) in changed.items())
+         raise ValueError(f"resume configuration differs from checkpoint: {rendered}")
+@@ -256,9 +238,9 @@
+             self.coord_mode, self.norm_mode = a.coords, a.norm
+             self.levels = a.levels
+             net = D.DCO(levels=a.levels, base=a.base).to(device=self.dev, dtype=self.dtype)
+             return net, "random"
+-        ck = torch.load(resolve_legacy(a.init), map_location=self.dev, weights_only=False)
++        ck = torch.load(a.init, map_location=self.dev, weights_only=False)
+         self.coord_mode = ck.get("coords", a.coords)
+         self.norm_mode = ck.get("norm", a.norm)
+         self.levels = ck["levels"]
+         net = D.DCO(levels=ck["levels"], base=ck["base"],

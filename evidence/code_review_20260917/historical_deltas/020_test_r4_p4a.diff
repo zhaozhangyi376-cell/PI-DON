@@ -1,0 +1,16 @@
+--- tests/test_r4_p4a.py
++++ evidence/workspace_reorganization_20260914/before/root/test_r4_p4a.py
+@@ -1,13 +1,5 @@
+ """P4-A driver contract before the bounded optimizer comparison."""
+-
+-# Project layout bootstrap (imports and paths only).
+-import sys as _layout_sys
+-from pathlib import Path as _LayoutPath
+-_layout_sys.path.insert(0, str(_LayoutPath(__file__).resolve().parents[1]))
+-from project_paths import ROOT as PROJECT_ROOT, configure as _layout_configure, resolve_legacy
+-_layout_configure()
+-
+ 
+ import unittest
+ 
+ from r4_p4a import p4a_args

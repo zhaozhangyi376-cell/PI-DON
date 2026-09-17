@@ -1,0 +1,3299 @@
+{
+  "review_only": true,
+  "updates": 0,
+  "coverage_source": "coverage_r4.json",
+  "groups": [
+    {
+      "id": 1,
+      "partition": "support",
+      "representative": "evidence/gpt6_plan_v2/r0_source_snapshot/p5_audit.py",
+      "normalized_sha256": "00e1825b36d9490963895012eabe49d6335c6063514d30f65d62190040de3450",
+      "canonical": "scripts/experiments/p5_audit.py",
+      "diff_file": "001_p5_audit.diff",
+      "diff_lines": 18,
+      "source_lines": 53,
+      "members": [
+        {
+          "path": "evidence/gpt6_plan_v2/r0_source_snapshot/p5_audit.py",
+          "sha256": "7e19c3faa6ac69f04639cfe179e982437ef4ad851a8b1559ca09b7ad4fd5c309"
+        },
+        {
+          "path": "evidence/workspace_reorganization_20260914/before/root/p5_audit.py",
+          "sha256": "7e19c3faa6ac69f04639cfe179e982437ef4ad851a8b1559ca09b7ad4fd5c309"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "partition": "support",
+      "representative": "evidence/workspace_reorganization_20260914/before/root/sweep_report.py",
+      "normalized_sha256": "0282613d3077467193cae4ad6d953e071a8c66ee52e1bea4c988415f426bd72c",
+      "canonical": "scripts/analysis/sweep_report.py",
+      "diff_file": "002_sweep_report.diff",
+      "diff_lines": 19,
+      "source_lines": 116,
+      "members": [
+        {
+          "path": "evidence/workspace_reorganization_20260914/before/root/sweep_report.py",
+          "sha256": "81bfb960f5e49ab13fc94fbd98c98a6b0ed8f08c0cb550e468233caa7b5641cd"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "partition": "support",
+      "representative": "evidence/workspace_reorganization_20260914/before/root/n1_evidence.py",
+      "normalized_sha256": "08ab086cf61ae6d5d32279bc3f79af0d26a4414f5fbbb2d5db054577d38e956c",
+      "canonical": "scripts/analysis/n1_evidence.py",
+      "diff_file": "003_n1_evidence.diff",
+      "diff_lines": 28,
+      "source_lines": 83,
+      "members": [
+        {
+          "path": "evidence/workspace_reorganization_20260914/before/root/n1_evidence.py",
+          "sha256": "824f5bf42868c2df2a371aa5dfd3da00a8316306cb74d3793b23454ca62c6418"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "partition": "support",
+      "representative": "evidence/gpt6_plan_v2/r0_source_snapshot/test_pidon_contract.py",
+      "normalized_sha256": "0b25ba043bdea78df6ef6adb0dd2066f296fd58a9ff13f73f92a0bbe7a9eb63b",
+      "canonical": "tests/test_pidon_contract.py",
+      "diff_file": "004_test_pidon_contract.diff",
+      "diff_lines": 178,
+      "source_lines": 222,
+      "members": [
+        {
+          "path": "evidence/gpt6_plan_v2/r0_source_snapshot/test_pidon_contract.py",
+          "sha256": "a5c7e0880196d3ceef53ad1088b870d0aa880b77bb3da6613dc682985145bfd4"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "partition": "support",
+      "representative": "evidence/workspace_reorganization_20260914/before/root/a2_zero_curl_control.py",
+      "normalized_sha256": "0cb28549c9129ac29e1aec4052aaea022f9026631fa95ace2840126bfc17b7d3",
+      "canonical": "scripts/experiments/a2_zero_curl_control.py",
+      "diff_file": "005_a2_zero_curl_control.diff",
+      "diff_lines": 18,
+      "source_lines": 29,
+      "members": [
+        {
+          "path": "evidence/workspace_reorganization_20260914/before/root/a2_zero_curl_control.py",
+          "sha256": "85d119756bd3e23e68792e21a670d331f2faf9205bb4f9474ea2e0e1a4fc373a"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "partition": "support",
+      "representative": "evidence/trunk_repair_v1/source/test_trunk_repair.py",
+      "normalized_sha256": "0f2631fd25097c577c0df15793afc1c21762ffbe5e8ffa623d63b35485f03bad",
+      "canonical": "tests/test_trunk_repair.py",
+      "diff_file": "006_test_trunk_repair.diff",
+      "diff_lines": 16,
+      "source_lines": 39,
+      "members": [
+        {
+          "path": "evidence/trunk_repair_v1/source/test_trunk_repair.py",
+          "sha256": "44225e62bdb65e25b97dee945b7abaccd7a8ae730552c2c31f0174102f8abb75"
+        },
+        {
+          "path": "evidence/workspace_reorganization_20260914/before/root/test_trunk_repair.py",
+          "sha256": "44225e62bdb65e25b97dee945b7abaccd7a8ae730552c2c31f0174102f8abb75"
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "partition": "support",
+      "representative": "evidence/gpt6_plan_v2/r0_source_snapshot/phase1_ab_pilot.py",
+      "normalized_sha256": "0f26e1f353aa435791ae3b0697d46c3e57164ce7dcda21d584ebd66334a0e595",
+      "canonical": "scripts/experiments/phase1_ab_pilot.py",
+      "diff_file": "007_phase1_ab_pilot.diff",
+      "diff_lines": 18,
+      "source_lines": 132,
+      "members": [
+        {
+          "path": "evidence/gpt6_plan_v2/r0_source_snapshot/phase1_ab_pilot.py",
+          "sha256": "6d801c9e25caa21b180566104703385842fbf926a4770f1751b3abba18f21549"
+        },
+        {
+          "path": "evidence/workspace_reorganization_20260914/before/root/phase1_ab_pilot.py",
+          "sha256": "6d801c9e25caa21b180566104703385842fbf926a4770f1751b3abba18f21549"
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "partition": "support",
+      "representative": "evidence/workspace_reorganization_20260914/before/root/structured_material.py",
+      "normalized_sha256": "0f7f60c0216392fa97a4cda4b4e552442bf18bbe8d5a4b64b2f615902d0b5e99",
+      "canonical": "scripts/exploratory/structured_material.py",
+      "diff_file": "008_structured_material.diff",
+      "diff_lines": 19,
+      "source_lines": 184,
+      "members": [
+        {
+          "path": "evidence/workspace_reorganization_20260914/before/root/structured_material.py",
+          "sha256": "af9d474fab489f494c8a390f66efada6f70191dfee8c50c64a0141144cbf15be"
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "partition": "support",
+      "representative": "evidence/workspace_reorganization_20260914/before/root/mechanism_hour_runner.py",
+      "normalized_sha256": "0fb70a6f87a092896849a142c016cb3f8f3c527b8f622207f596e3c0e381a168",
+      "canonical": "scripts/experiments/mechanism_hour_runner.py",
+      "diff_file": "009_mechanism_hour_runner.diff",
+      "diff_lines": 30,
+      "source_lines": 319,
+      "members": [
+        {
+          "path": "evidence/workspace_reorganization_20260914/before/root/mechanism_hour_runner.py",
+          "sha256": "8a3a330d513ba6394c08b04a0b715eb157527b3f7fba0ccc02b82cd4d82b2835"
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "partition": "support",
+      "representative": "evidence/workspace_reorganization_20260914/before/root/export_storage_revision_handoff.py",
+      "normalized_sha256": "1156f9581714710940ccb02041aad5000cf5f84d2fb0a78c6d09e693c3057a93",
+      "canonical": "scripts/figures/export_storage_revision_handoff.py",
+      "diff_file": "010_export_storage_revision_handoff.diff",
+      "diff_lines": 22,
+      "source_lines": 31,
+      "members": [
+        {
+          "path": "evidence/workspace_reorganization_20260914/before/root/export_storage_revision_handoff.py",
+          "sha256": "f04bc4cba574c274cf076094b274080e9642c6de87ebe364c06f0eb9e138ceed"
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "partition": "support",
+      "representative": "evidence/gpt6_plan_v3_review/source_snapshot/r3_v2_recompute.py",
+      "normalized_sha256": "14259b754e0ead10e3ebab2bc45bbc1c01b1b0f374e2e78ebf161e960e0aa377",
+      "canonical": "scripts/analysis/r3_v2_recompute.py",
+      "diff_file": "011_r3_v2_recompute.diff",
+      "diff_lines": 29,
+      "source_lines": 140,
+      "members": [
+        {
+          "path": "evidence/gpt6_plan_v3_review/source_snapshot/r3_v2_recompute.py",
+          "sha256": "e131612c7fd379c529ce5460cb0bc42e33bf5b152e9e99d855e0553f30fd113d"
+        },
+        {
+          "path": "evidence/workspace_reorganization_20260914/before/root/r3_v2_recompute.py",
+          "sha256": "e131612c7fd379c529ce5460cb0bc42e33bf5b152e9e99d855e0553f30fd113d"
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "partition": "support",
+      "representative": "evidence/server_resource_v1/local_review/source/scripts/experiments/server_phase1_compare.py",
+      "normalized_sha256": "17a283e4ad0a970d6fb032f0d5da09c858abc49a462fba0456e7fbf5a474557f",
+      "canonical": "scripts/experiments/server_phase1_compare.py",
+      "diff_file": "012_server_phase1_compare.diff",
+      "diff_lines": 25,
+      "source_lines": 177,
+      "members": [
+        {
+          "path": "evidence/server_resource_v1/local_review/source/scripts/experiments/server_phase1_compare.py",
+          "sha256": "6847d960b52649f118e6e5179328744f2b6aadc91de480d978d8a973716ff520"
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "partition": "support",
+      "representative": "evidence/workspace_reorganization_20260914/before/root/stage2_interface_probe.py",
+      "normalized_sha256": "18f999b9960405d2d0674787cb5810d100e846ad5f0985c272e6ce7d87a9f905",
+      "canonical": "scripts/experiments/stage2_interface_probe.py",
+      "diff_file": "013_stage2_interface_probe.diff",
+      "diff_lines": 16,
+      "source_lines": 36,
+      "members": [
+        {
+          "path": "evidence/workspace_reorganization_20260914/before/root/stage2_interface_probe.py",
+          "sha256": "38d06a36d4ce5eb4babbb94412486388a9d445697e357aa8494598625e55374d"
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "partition": "support",
+      "representative": "evidence/grid_diagnosis_v1/source/verify_claims_final.py",
+      "normalized_sha256": "1ac72eceec19d69a924fe411cbf4d0435a4d45e32978539d475c04755f988ffd",
+      "canonical": null,
+      "diff_file": "014_verify_claims_final.diff",
+      "diff_lines": 821,
+      "source_lines": 818,
+      "members": [
+        {
+          "path": "evidence/grid_diagnosis_v1/source/verify_claims_final.py",
+          "sha256": "8518769875e958a4b3a025cd37fb4bdd5130158dce293b29720c7da44f944803"
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "partition": "support",
+      "representative": "evidence/workspace_reorganization_20260914/before/root/stop_review_evidence.py",
+      "normalized_sha256": "1c9e86584cc12e90ac5d179893bc1816cabd4ec81554e69888246052fb0c2ef5",
+      "canonical": "scripts/analysis/stop_review_evidence.py",
+      "diff_file": "015_stop_review_evidence.diff",
+      "diff_lines": 22,
+      "source_lines": 47,
+      "members": [
+        {
+          "path": "evidence/workspace_reorganization_20260914/before/root/stop_review_evidence.py",
+          "sha256": "3ea5c1bedbded8f7294f351c397098175690296a03da8eebbe7853e52cfbe3d8"
+        }
+      ]
+    },
+    {
+      "id": 16,
+      "partition": "support",
+      "representative": "evidence/coverage_ab_v1/source/spacing_probe.py",
+      "normalized_sha256": "1df25b9f2b01ba4caf149a55801956992f9ffeb552e2deb79c475d520f6c595a",
+      "canonical": "scripts/experiments/spacing_probe.py",
+      "diff_file": "016_spacing_probe.diff",
+      "diff_lines": 19,
+      "source_lines": 175,
+      "members": [
+        {
+          "path": "evidence/coverage_ab_v1/source/spacing_probe.py",
+          "sha256": "90661806357b08e0eb8f950171eb289de2e3045d0ab3a8ea0ea97e003a89527d"
+        },
+        {
+          "path": "evidence/spacing_probe_v1/source/spacing_probe.py",
+          "sha256": "90661806357b08e0eb8f950171eb289de2e3045d0ab3a8ea0ea97e003a89527d"
+        },
+        {
+          "path": "evidence/trunk_repair_v1/source/spacing_probe.py",
+          "sha256": "90661806357b08e0eb8f950171eb289de2e3045d0ab3a8ea0ea97e003a89527d"
+        },
+        {
+          "path": "evidence/workspace_reorganization_20260914/before/root/spacing_probe.py",
+          "sha256": "90661806357b08e0eb8f950171eb289de2e3045d0ab3a8ea0ea97e003a89527d"
+        }
+      ]
+    },
+    {
+      "id": 17,
+      "partition": "support",
+      "representative": "evidence/workspace_reorganization_20260914/before/root/mechanism_decision_eval.py",
+      "normalized_sha256": "1f7a1bba4ab1a59858b1f11bc1d8da46c8777c9929af6bf5afb5dbd7d0be040d",
+      "canonical": "scripts/experiments/mechanism_decision_eval.py",
+      "diff_file": "017_mechanism_decision_eval.diff",
+      "diff_lines": 28,
+      "source_lines": 205,
+      "members": [
+        {
+          "path": "evidence/workspace_reorganization_20260914/before/root/mechanism_decision_eval.py",
+          "sha256": "aac95e778ec685887d66a86eee5d83c570fb23dcad08b0675c3326ff9dcd71fa"
+        }
+      ]
+    },
+    {
+      "id": 18,
+      "partition": "support",
+      "representative": "evidence/coverage_ab_v1/source/gen_data.py",
+      "normalized_sha256": "1f93aa7e0ea1fa2daebb360665f8e320deff2efb18e8ee93cff0609186746d61",
+      "canonical": "src/pidon/gen_data.py",
+      "diff_file": "018_gen_data.diff",
+      "diff_lines": 19,
+      "source_lines": 196,
+      "members": [
+        {
+          "path": "evidence/coverage_ab_v1/source/gen_data.py",
+          "sha256": "c3cf361c6f3cb43644d96bcb2c853142cacfeba091d50c4e45cac11fbe7268f5"
+        },
+        {
+          "path": "evidence/gpt6_plan_v3_review/source_snapshot/gen_data.py",
+          "sha256": "c3cf361c6f3cb43644d96bcb2c853142cacfeba091d50c4e45cac11fbe7268f5"
+        },
+        {
+          "path": "evidence/grid_diagnosis_v1/source/gen_data.py",
+          "sha256": "c3cf361c6f3cb43644d96bcb2c853142cacfeba091d50c4e45cac11fbe7268f5"
+        },
+        {
+          "path": "evidence/mechanism_decision_v1/source_snapshot/gen_data.py",
+          "sha256": "c3cf361c6f3cb43644d96bcb2c853142cacfeba091d50c4e45cac11fbe7268f5"
+        },
+        {
+          "path": "evidence/spacing_probe_v1/source/gen_data.py",
+          "sha256": "c3cf361c6f3cb43644d96bcb2c853142cacfeba091d50c4e45cac11fbe7268f5"
+        },
+        {
+          "path": "evidence/trunk_repair_v1/source/gen_data.py",
+          "sha256": "c3cf361c6f3cb43644d96bcb2c853142cacfeba091d50c4e45cac11fbe7268f5"
+        },
+        {
+          "path": "evidence/workspace_reorganization_20260914/before/root/gen_data.py",
+          "sha256": "c3cf361c6f3cb43644d96bcb2c853142cacfeba091d50c4e45cac11fbe7268f5"
+        }
+      ]
+    },
+    {
+      "id": 19,
+      "partition": "support",
+      "representative": "evidence/trunk_repair_v1/source/trunk_evidence.py",
+      "normalized_sha256": "21b0a24d2e75bb4a66d82f4cb2f2ebe8af4c97a66913df6e80509d9785ef0c34",
+      "canonical": "scripts/analysis/trunk_evidence.py",
+      "diff_file": "019_trunk_evidence.diff",
+      "diff_lines": 16,
+      "source_lines": 139,
+      "members": [
+        {
+          "path": "evidence/trunk_repair_v1/source/trunk_evidence.py",
+          "sha256": "375b98f1c25f73606700af9ce11971281eeccddbe9f875a5cf5845e64edbc79a"
+        },
+        {
+          "path": "evidence/workspace_reorganization_20260914/before/root/trunk_evidence.py",
+          "sha256": "375b98f1c25f73606700af9ce11971281eeccddbe9f875a5cf5845e64edbc79a"
+        }
+      ]
+    },
+    {
+      "id": 20,
+      "partition": "support",
+      "representative": "evidence/workspace_reorganization_20260914/before/root/test_r4_p4a.py",
+      "normalized_sha256": "21b2a4c62f2b3bd6f2579e86a1f962a802c8983de4a24fa10f53888b335e6bb7",
+      "canonical": "tests/test_r4_p4a.py",
+      "diff_file": "020_test_r4_p4a.diff",
+      "diff_lines": 16,
+      "source_lines": 19,
+      "members": [
+        {
+          "path": "evidence/workspace_reorganization_20260914/before/root/test_r4_p4a.py",
+          "sha256": "8ef15564ca530e7ed6cc8bf571f85ca20e4d40dd14267fecc5f1aeef896ba4d1"
+        }
+      ]
+    },
+    {
+      "id": 21,
+      "partition": "support",
+      "representative": "evidence/server_resource_v1/dco_value_review_20260916/review_dco_pretraining.py",
+      "normalized_sha256": "222b80717213a81e14a3c795bd1d9d0e86bf6a302658c3b650cd2b26a5d18800",
+      "canonical": "tools/review_dco_pretraining.py",
+      "diff_file": "021_review_dco_pretraining.diff",
+      "diff_lines": 84,
+      "source_lines": 297,
+      "members": [
+        {
+          "path": "evidence/server_resource_v1/dco_value_review_20260916/review_dco_pretraining.py",
+          "sha256": "222b80717213a81e14a3c795bd1d9d0e86bf6a302658c3b650cd2b26a5d18800"
+        }
+      ]
+    },
+    {
+      "id": 22,
+      "partition": "support",
+      "representative": "evidence/server_resource_v1/local_review/source/scripts/experiments/server_compute_probe.py",
+      "normalized_sha256": "231b0ee5c437c73ca66c83b69a3ee69648ca733807b94c94f986f0e9c773f264",
+      "canonical": "scripts/experiments/server_compute_probe.py",
+      "diff_file": "022_server_compute_probe.diff",
+      "diff_lines": 85,
+      "source_lines": 132,
+      "members": [
+        {
+          "path": "evidence/server_resource_v1/local_review/source/scripts/experiments/server_compute_probe.py",
+          "sha256": "566faf73e30972e56c1f9af8175241e02053ff82ecf1d1c073e40e910ecc1e28"
+        }
+      ]
+    },
+    {
+      "id": 23,
+      "partition": "core",
+      "representative": "evidence/workspace_reorganization_20260914/before/root/pidon_solve.py",
+      "normalized_sha256": "2771f974f8ee1bbf38f3693a26335d364433f38c9e6a8d17d1b2469d9035f128",
+      "canonical": "src/pidon/pidon_solve.py",
+      "diff_file": "023_pidon_solve.diff",
+      "diff_lines": 64,
+      "source_lines": 1313,
+      "members": [
+        {
+          "path": "evidence/workspace_reorganization_20260914/before/root/pidon_solve.py",
+          "sha256": "42109de3acfb35b422e3ff83025783a13104b40f8329050ff64edadf680d90c8"
+        }
+      ]
+    },
+    {
+      "id": 24,
+      "partition": "support",
+      "representative": "evidence/workspace_reorganization_20260914/before/root/r0_v2_audit.py",
+      "normalized_sha256": "292a9d269b1fc89a58fd17509e6ccb6a537cd675018339626fe9d15883099d7f",
+      "canonical": "scripts/experiments/r0_v2_audit.py",
+      "diff_file": "024_r0_v2_audit.diff",
+      "diff_lines": 29,
+      "source_lines": 114,
+      "members": [
+        {
+          "path": "evidence/workspace_reorganization_20260914/before/root/r0_v2_audit.py",
+          "sha256": "cd69a73cb80d62ca503d291b0e033cd5ce830cba2067fc9693feb69aae656827"
+        }
+      ]
+    },
+    {
+      "id": 25,
+      "partition": "support",
+      "representative": "evidence/coverage_ab_v1/source/test_paper_protocol.py",
+      "normalized_sha256": "29a69e7b4b6704ec564b9d7d9840324ac346d7d99b050d9552ce8160174fb037",
+      "canonical": "tests/test_paper_protocol.py",
+      "diff_file": "025_test_paper_protocol.diff",
+      "diff_lines": 16,
+      "source_lines": 86,
+      "members": [
+        {
+          "path": "evidence/coverage_ab_v1/source/test_paper_protocol.py",
+          "sha256": "35304591ddde52ca95f06c990270fa7580abdcf0d9e1c9dc2d2894cc27d99750"
+        },
+        {
+          "path": "evidence/grid_diagnosis_v1/source/test_paper_protocol.py",
+          "sha256": "35304591ddde52ca95f06c990270fa7580abdcf0d9e1c9dc2d2894cc27d99750"
+        },
+        {
+          "path": "evidence/paper_first_v1/source/test_paper_protocol.py",
+          "sha256": "35304591ddde52ca95f06c990270fa7580abdcf0d9e1c9dc2d2894cc27d99750"
+        },
+        {
+          "path": "evidence/trunk_repair_v1/source/test_paper_protocol.py",
+          "sha256": "35304591ddde52ca95f06c990270fa7580abdcf0d9e1c9dc2d2894cc27d99750"
+        },
+        {
+          "path": "evidence/workspace_reorganization_20260914/before/root/test_paper_protocol.py",
+          "sha256": "35304591ddde52ca95f06c990270fa7580abdcf0d9e1c9dc2d2894cc27d99750"
+        }
+      ]
+    },
+    {
+      "id": 26,
+      "partition": "support",
+      "representative": "evidence/workspace_reorganization_20260914/before/root/structured.py",
+      "normalized_sha256": "2bd874fd0c03a6d464ee4668bb7d118beb3951187ea7330c4f59e417da7411a9",
+      "canonical": "scripts/exploratory/structured.py",
+      "diff_file": "026_structured.diff",
+      "diff_lines": 19,
+      "source_lines": 372,
+      "members": [
+        {
+          "path": "evidence/workspace_reorganization_20260914/before/root/structured.py",
+          "sha256": "413965864e2f77c91196c3d17f2e5e260b7871cdba3c24e09d725c8c2429f38c"
+        }
+      ]
+    },
+    {
+      "id": 27,
+      "partition": "support",
+      "representative": "evidence/workspace_reorganization_20260914/before/root/test_mechanism_first_failure.py",
+      "normalized_sha256": "2bf6b21be3a09b363f1bae68568dc087f63efd9dbee7ec2b8b48d8c4182a1f14",
+      "canonical": "tests/test_mechanism_first_failure.py",
+      "diff_file": "027_test_mechanism_first_failure.diff",
+      "diff_lines": 15,
+      "source_lines": 20,
+      "members": [
+        {
+          "path": "evidence/workspace_reorganization_20260914/before/root/test_mechanism_first_failure.py",
+          "sha256": "199da609248ea22c569ace5dead9ebc2896ae8d2ec65e685e5bd69bc8974743d"
+        }
+      ]
+    },
+    {
+      "id": 28,
+      "partition": "support",
+      "representative": "evidence/workspace_reorganization_20260914/before/root/night_runner.py",
+      "normalized_sha256": "31a4f490dfa94b71d7d0674111d8ca138773f3e158958ae5f2b3abfb9b636396",
+      "canonical": "scripts/experiments/night_runner.py",
+      "diff_file": "028_night_runner.diff",
+      "diff_lines": 28,
+      "source_lines": 93,
+      "members": [
+        {
+          "path": "evidence/workspace_reorganization_20260914/before/root/night_runner.py",
+          "sha256": "8358dd27c72fbf9701d4356d05db1127bacda8f825dab0c91a0dc6e5f6320a6a"
+        }
+      ]
+    },
+    {
+      "id": 29,
+      "partition": "support",
+      "representative": "evidence/workspace_reorganization_20260914/before/root/audit_mechanism_hour.py",
+      "normalized_sha256": "32772c39c121af136c01b4981adf039fbd54e4ca591df8bf03b88825b31a9fec",
+      "canonical": "scripts/analysis/audit_mechanism_hour.py",
+      "diff_file": "029_audit_mechanism_hour.diff",
+      "diff_lines": 22,
+      "source_lines": 56,
+      "members": [
+        {
+          "path": "evidence/workspace_reorganization_20260914/before/root/audit_mechanism_hour.py",
+          "sha256": "5a833e7f605f7e5b2ad620bfb4a0b7bf660dafefdc8bac0753f23ca43bd7d904"
+        }
+      ]
+    },
+    {
+      "id": 30,
+      "partition": "core",
+      "representative": "evidence/gpt6_plan_v2/r0_source_snapshot/pidon_recording.py",
+      "normalized_sha256": "334f0c99eff7c274d042fe6b71b4475d37b1856af5b6269bf0779be691f06380",
+      "canonical": "src/pidon/pidon_recording.py",
+      "diff_file": "030_pidon_recording.diff",
+      "diff_lines": 267,
+      "source_lines": 101,
+      "members": [
+        {
+          "path": "evidence/gpt6_plan_v2/r0_source_snapshot/pidon_recording.py",
+          "sha256": "f0e8aeede7da4306e6457556908467a25925d67d4d23849eecd50235a059e7bd"
+        },
+        {
+          "path": "evidence/gpt6_plan_v3_review/source_snapshot/pidon_recording.py",
+          "sha256": "f0e8aeede7da4306e6457556908467a25925d67d4d23849eecd50235a059e7bd"
+        }
+      ]
+    },
+    {
+      "id": 31,
+      "partition": "support",
+      "representative": "evidence/workspace_reorganization_20260914/before/root/make_night_report.py",
+      "normalized_sha256": "35fb56903ee6101a1e2eca3ca91a3cc8987c93be9dbcc636785c05186dc9bafa",
+      "canonical": "scripts/figures/make_night_report.py",
+      "diff_file": "031_make_night_report.diff",
+      "diff_lines": 28,
+      "source_lines": 152,
+      "members": [
+        {
+          "path": "evidence/workspace_reorganization_20260914/before/root/make_night_report.py",
+          "sha256": "37d92df1cdff6a17d3d19c0fc7c8d4494d20fa785bcd98c66f459bf0845642e6"
+        }
+      ]
+    },
+    {
+      "id": 32,
+      "partition": "core",
+      "representative": "evidence/gpt6_plan_v2/r0_source_snapshot/fdtd.py",
+      "normalized_sha256": "366416d31d8f3655410cdedfa8a2215eb70c845fc765e9e4c35c4e806c3dedfd",
+      "canonical": "src/pidon/fdtd.py",
+      "diff_file": "032_fdtd.diff",
+      "diff_lines": 53,
+      "source_lines": 227,
+      "members": [
+        {
+          "path": "evidence/gpt6_plan_v2/r0_source_snapshot/fdtd.py",
+          "sha256": "2ea96cf4cbe3186fa5f211daab05b92a32b2ee3dc00cabc72e2d2ef464696425"
+        }
+      ]
+    },
+    {
+      "id": 33,
+      "partition": "support",
+      "representative": "evidence/server_resource_v1/local_review_v2/source/scripts/experiments/server_phase1_compare.py",
+      "normalized_sha256": "3788a5a109eded4ac81359722995d4bca38227ee434d2131b91e17891f5cd8ce",
+      "canonical": "scripts/experiments/server_phase1_compare.py",
+      "diff_file": "033_server_phase1_compare.diff",
+      "diff_lines": 14,
+      "source_lines": 177,
+      "members": [
+        {
+          "path": "evidence/server_resource_v1/local_review_v2/source/scripts/experiments/server_phase1_compare.py",
+          "sha256": "039c4b62301ad425e058eb796771833dbba3737c5a35b1324e4bccbe39f2d986"
+        }
+      ]
+    },
+    {
+      "id": 34,
+      "partition": "support",
+      "representative": "evidence/gpt6_plan_v4_night/source_snapshot/g0_verifier.py",
+      "normalized_sha256": "38f618b674876b337cdc46f6c316ad6d85f435f01afd32579254c07bc698b913",
+      "canonical": "scripts/experiments/g0_verifier.py",
+      "diff_file": "034_g0_verifier.diff",
+      "diff_lines": 274,
+      "source_lines": 103,
+      "members": [
+        {
+          "path": "evidence/gpt6_plan_v4_night/source_snapshot/g0_verifier.py",
+          "sha256": "18cfd30343a2b38c51505b9e2c240c0e7da53bd8eb323598229aa506254e8469"
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_review/source_snapshot/g0_verifier.py",
+          "sha256": "18cfd30343a2b38c51505b9e2c240c0e7da53bd8eb323598229aa506254e8469"
+        }
+      ]
+    },
+    {
+      "id": 35,
+      "partition": "support",
+      "representative": "evidence/gpt6_plan_v3_review/source_snapshot/verify_claims.py",
+      "normalized_sha256": "398b6465252ce9c3b9dc5df4347aaf6531626bb90094c020c7a1afbcb444b54f",
+      "canonical": "scripts/analysis/verify_claims.py",
+      "diff_file": "035_verify_claims.diff",
+      "diff_lines": 366,
+      "source_lines": 1271,
+      "members": [
+        {
+          "path": "evidence/gpt6_plan_v3_review/source_snapshot/verify_claims.py",
+          "sha256": "5fd1cccfddbb2550d4443d05837c9d1e0ee1c518117de25dfcfcb9a4e7c545d0"
+        }
+      ]
+    },
+    {
+      "id": 36,
+      "partition": "support",
+      "representative": "evidence/workspace_reorganization_20260914/before/root/test_pidon_contract.py",
+      "normalized_sha256": "3ad1f76d9af932aa7d5d13bf12e9c534846539f6fe7c8a7fcbdc20a6bf0c398e",
+      "canonical": "tests/test_pidon_contract.py",
+      "diff_file": "036_test_pidon_contract.diff",
+      "diff_lines": 18,
+      "source_lines": 278,
+      "members": [
+        {
+          "path": "evidence/workspace_reorganization_20260914/before/root/test_pidon_contract.py",
+          "sha256": "38af8ae0a2722421c5a270b6b8632a511176d541d500739e89bde7c237d1b64b"
+        }
+      ]
+    },
+    {
+      "id": 37,
+      "partition": "support",
+      "representative": "evidence/workspace_reorganization_20260914/before/root/n3_h96_sequential_e.py",
+      "normalized_sha256": "3b446bbb32fe6db7570fad40166c484cb41b22cab5615414b54fde3e94237351",
+      "canonical": "scripts/experiments/n3_h96_sequential_e.py",
+      "diff_file": "037_n3_h96_sequential_e.diff",
+      "diff_lines": 28,
+      "source_lines": 21,
+      "members": [
+        {
+          "path": "evidence/workspace_reorganization_20260914/before/root/n3_h96_sequential_e.py",
+          "sha256": "291c408ea8f74cd9fe35964e70dbae3215b31bc256d4e1da63fa158e5df3dacb"
+        }
+      ]
+    },
+    {
+      "id": 38,
+      "partition": "support",
+      "representative": "evidence/workspace_reorganization_20260914/before/root/structured_scale.py",
+      "normalized_sha256": "3bc87861740e5268ef9f273aa7ea673edbb4dae357d2603b38cf43cdc6f01863",
+      "canonical": "scripts/exploratory/structured_scale.py",
+      "diff_file": "038_structured_scale.diff",
+      "diff_lines": 19,
+      "source_lines": 616,
+      "members": [
+        {
+          "path": "evidence/workspace_reorganization_20260914/before/root/structured_scale.py",
+          "sha256": "7808759e5109cb0aefd7caffa3fd7f0d4318df7f942007018c1318089c011107"
+        }
+      ]
+    },
+    {
+      "id": 39,
+      "partition": "support",
+      "representative": "evidence/workspace_reorganization_20260914/before/root/stage2_shared_interference.py",
+      "normalized_sha256": "3f39d1b5bbd0d0830a2b7d996c654987c19bd5a94bf2685845767c6b3ab1e324",
+      "canonical": "scripts/experiments/stage2_shared_interference.py",
+      "diff_file": "039_stage2_shared_interference.diff",
+      "diff_lines": 16,
+      "source_lines": 33,
+      "members": [
+        {
+          "path": "evidence/workspace_reorganization_20260914/before/root/stage2_shared_interference.py",
+          "sha256": "e9ff4e17ef38108fe16aa6d4f487e02635b0c67e278c4ef72a91df91cbd6a92e"
+        }
+      ]
+    },
+    {
+      "id": 40,
+      "partition": "core",
+      "representative": "evidence/coverage_ab_v1/source/fdtd.py",
+      "normalized_sha256": "3fcf90d9dc8c0440c3b34fd795e4e3910418efff1f8f400c5e846f441872c00b",
+      "canonical": "src/pidon/fdtd.py",
+      "diff_file": "040_fdtd.diff",
+      "diff_lines": 79,
+      "source_lines": 236,
+      "members": [
+        {
+          "path": "evidence/coverage_ab_v1/source/fdtd.py",
+          "sha256": "09d33eb84d788f5a2b089064745b2e76c29c43f82f7bbc0ca7b066258659fb8e"
+        },
+        {
+          "path": "evidence/grid_diagnosis_v1/source/fdtd.py",
+          "sha256": "09d33eb84d788f5a2b089064745b2e76c29c43f82f7bbc0ca7b066258659fb8e"
+        },
+        {
+          "path": "evidence/paper_first_v1/source/fdtd.py",
+          "sha256": "09d33eb84d788f5a2b089064745b2e76c29c43f82f7bbc0ca7b066258659fb8e"
+        },
+        {
+          "path": "evidence/spacing_probe_v1/source/fdtd.py",
+          "sha256": "09d33eb84d788f5a2b089064745b2e76c29c43f82f7bbc0ca7b066258659fb8e"
+        },
+        {
+          "path": "evidence/trunk_repair_v1/source/fdtd.py",
+          "sha256": "09d33eb84d788f5a2b089064745b2e76c29c43f82f7bbc0ca7b066258659fb8e"
+        }
+      ]
+    },
+    {
+      "id": 41,
+      "partition": "support",
+      "representative": "evidence/workspace_reorganization_20260914/before/root/test_pidon_contract_v4.py",
+      "normalized_sha256": "43792751be4846949fd03e134c5bf11d9bf529c4decc247420b3698a9fcd9eab",
+      "canonical": "tests/test_pidon_contract_v4.py",
+      "diff_file": "041_test_pidon_contract_v4.diff",
+      "diff_lines": 17,
+      "source_lines": 157,
+      "members": [
+        {
+          "path": "evidence/workspace_reorganization_20260914/before/root/test_pidon_contract_v4.py",
+          "sha256": "310a3ebcb9b1479e94b811689e0e747b7f256a376bfca508f2f4e1b14de886e5"
+        }
+      ]
+    },
+    {
+      "id": 42,
+      "partition": "support",
+      "representative": "evidence/coverage_ab_v1/source/coverage_ab.py",
+      "normalized_sha256": "43cbc171ad2c79c55b4d2bef276ef33068030103652cbcee14121e7a18487991",
+      "canonical": "scripts/experiments/coverage_ab.py",
+      "diff_file": "042_coverage_ab.diff",
+      "diff_lines": 91,
+      "source_lines": 215,
+      "members": [
+        {
+          "path": "evidence/coverage_ab_v1/source/coverage_ab.py",
+          "sha256": "3f7d9bc09bd731d0fe38e9138cee529ab24921e0866d6c83f21d84e139e064aa"
+        }
+      ]
+    },
+    {
+      "id": 43,
+      "partition": "core",
+      "representative": "evidence/gpt6_plan_v4_night/control_runs/float64_exact/source_snapshot/pidon_recording.py",
+      "normalized_sha256": "499b30a895e686b75789a6333ae5ee6d3cdaff9f668cb07b1e339d790eca2a21",
+      "canonical": "src/pidon/pidon_recording.py",
+      "diff_file": "043_pidon_recording.diff",
+      "diff_lines": 40,
+      "source_lines": 270,
+      "members": [
+        {
+          "path": "evidence/gpt6_plan_v4_night/control_runs/float64_exact/source_snapshot/pidon_recording.py",
+          "sha256": "c2b7ef8493f31e0681f251895af5734b6e0e40cb65a564e00726512ac3fb5c9e"
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_night/g0_after_head_integration/control_runs/float32_exact/source_snapshot/pidon_recording.py",
+          "sha256": "c2b7ef8493f31e0681f251895af5734b6e0e40cb65a564e00726512ac3fb5c9e"
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_night/g0_after_head_integration/control_runs/float64_exact/source_snapshot/pidon_recording.py",
+          "sha256": "c2b7ef8493f31e0681f251895af5734b6e0e40cb65a564e00726512ac3fb5c9e"
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_night/g0_after_head_integration/control_runs/hard_source_only_negative/source_snapshot/pidon_recording.py",
+          "sha256": "c2b7ef8493f31e0681f251895af5734b6e0e40cb65a564e00726512ac3fb5c9e"
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_night/g0_after_head_integration/control_runs/wrong_h_half_negative/source_snapshot/pidon_recording.py",
+          "sha256": "c2b7ef8493f31e0681f251895af5734b6e0e40cb65a564e00726512ac3fb5c9e"
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_night/g0_after_head_integration/control_runs/zero_curl_negative/source_snapshot/pidon_recording.py",
+          "sha256": "c2b7ef8493f31e0681f251895af5734b6e0e40cb65a564e00726512ac3fb5c9e"
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_night/g0_attempt_02/control_runs/float32_exact/source_snapshot/pidon_recording.py",
+          "sha256": "c2b7ef8493f31e0681f251895af5734b6e0e40cb65a564e00726512ac3fb5c9e"
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_night/g0_attempt_02/control_runs/float64_exact/source_snapshot/pidon_recording.py",
+          "sha256": "c2b7ef8493f31e0681f251895af5734b6e0e40cb65a564e00726512ac3fb5c9e"
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_night/g0_attempt_02/control_runs/hard_source_only_negative/source_snapshot/pidon_recording.py",
+          "sha256": "c2b7ef8493f31e0681f251895af5734b6e0e40cb65a564e00726512ac3fb5c9e"
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_night/g0_attempt_02/control_runs/wrong_h_half_negative/source_snapshot/pidon_recording.py",
+          "sha256": "c2b7ef8493f31e0681f251895af5734b6e0e40cb65a564e00726512ac3fb5c9e"
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_night/g0_attempt_02/control_runs/zero_curl_negative/source_snapshot/pidon_recording.py",
+          "sha256": "c2b7ef8493f31e0681f251895af5734b6e0e40cb65a564e00726512ac3fb5c9e"
+        },
+        {
+          "path": "evidence/mechanism_decision_v1/source_snapshot/pidon_recording.py",
+          "sha256": "c2b7ef8493f31e0681f251895af5734b6e0e40cb65a564e00726512ac3fb5c9e"
+        },
+        {
+          "path": "evidence/workspace_reorganization_20260914/before/root/pidon_recording.py",
+          "sha256": "c2b7ef8493f31e0681f251895af5734b6e0e40cb65a564e00726512ac3fb5c9e"
+        }
+      ]
+    },
+    {
+      "id": 44,
+      "partition": "support",
+      "representative": "archive/transfers/2026-09-16/server_step36e_package_20260916T092913/payload/scripts/experiments/server_step36e_budget_probe.py",
+      "normalized_sha256": "49a1e2beabf4912d37635a6f7179fcb4fecfad6527b09a6848dfb885fc23d81d",
+      "canonical": "scripts/experiments/server_step36e_budget_probe.py",
+      "diff_file": "044_server_step36e_budget_probe.diff",
+      "diff_lines": 91,
+      "source_lines": 317,
+      "members": [
+        {
+          "path": "archive/transfers/2026-09-16/server_step36e_package_20260916T092913/payload/scripts/experiments/server_step36e_budget_probe.py",
+          "sha256": "49a1e2beabf4912d37635a6f7179fcb4fecfad6527b09a6848dfb885fc23d81d"
+        }
+      ]
+    },
+    {
+      "id": 45,
+      "partition": "support",
+      "representative": "evidence/workspace_reorganization_20260914/before/root/refine_night_storage_estimate.py",
+      "normalized_sha256": "49dfc0196d169b06cec042e4fd65bd9472df325b7a5191617bc3874922dd74a7",
+      "canonical": "scripts/experiments/refine_night_storage_estimate.py",
+      "diff_file": "045_refine_night_storage_estimate.diff",
+      "diff_lines": 26,
+      "source_lines": 52,
+      "members": [
+        {
+          "path": "evidence/workspace_reorganization_20260914/before/root/refine_night_storage_estimate.py",
+          "sha256": "ba047b3f14d02ccca0b2956463e7ebc22e2671abf4d399861f074beec4f24b8b"
+        }
+      ]
+    },
+    {
+      "id": 46,
+      "partition": "support",
+      "representative": "archive/transfers/2026-09-16/server_clean_low_lr128_package_20260916T141307/payload/scripts/experiments/server_short_tol_probe.py",
+      "normalized_sha256": "4a9740e54c7c07e7e01e8583d37c740a3537df683bf955dd9c9fba60129fb2ba",
+      "canonical": "scripts/experiments/server_short_tol_probe.py",
+      "diff_file": "046_server_short_tol_probe.diff",
+      "diff_lines": 41,
+      "source_lines": 447,
+      "members": [
+        {
+          "path": "archive/transfers/2026-09-16/server_clean_low_lr128_package_20260916T141307/payload/scripts/experiments/server_short_tol_probe.py",
+          "sha256": "4a9740e54c7c07e7e01e8583d37c740a3537df683bf955dd9c9fba60129fb2ba"
+        },
+        {
+          "path": "archive/transfers/2026-09-16/server_clean_low_lr64_package_20260916T115758/payload/scripts/experiments/server_short_tol_probe.py",
+          "sha256": "4a9740e54c7c07e7e01e8583d37c740a3537df683bf955dd9c9fba60129fb2ba"
+        }
+      ]
+    },
+    {
+      "id": 47,
+      "partition": "core",
+      "representative": "evidence/workspace_reorganization_20260914/before/root/head_lstsq.py",
+      "normalized_sha256": "4b151e31e3e017387d35de8f330d54bbd445067c72cd83c66a22dabdfa9c2e5a",
+      "canonical": "src/pidon/head_lstsq.py",
+      "diff_file": "047_head_lstsq.diff",
+      "diff_lines": 17,
+      "source_lines": 44,
+      "members": [
+        {
+          "path": "evidence/workspace_reorganization_20260914/before/root/head_lstsq.py",
+          "sha256": "1adf3d23da12d22eac10a2f0f8bbd094cf498a690847252fdfde668187c0059b"
+        }
+      ]
+    },
+    {
+      "id": 48,
+      "partition": "support",
+      "representative": "evidence/workspace_reorganization_20260914/before/root/night_fixed_state.py",
+      "normalized_sha256": "4b66a4ba71302a83c1d8dc69f1316df53215c732e3f3ff2f050d050945a8e3d0",
+      "canonical": "scripts/experiments/night_fixed_state.py",
+      "diff_file": "048_night_fixed_state.diff",
+      "diff_lines": 28,
+      "source_lines": 115,
+      "members": [
+        {
+          "path": "evidence/workspace_reorganization_20260914/before/root/night_fixed_state.py",
+          "sha256": "4a23039d8f6937ce3cd1ffd506be213496494de8e3b2721c8bf570d342a15473"
+        }
+      ]
+    },
+    {
+      "id": 49,
+      "partition": "support",
+      "representative": "evidence/workspace_reorganization_20260914/before/root/test_r4_fixed_state.py",
+      "normalized_sha256": "4de0cd4e9d8543a1776f2fb0fdabff36ba8d3943cba948dc1358de30bb1a85eb",
+      "canonical": "tests/test_r4_fixed_state.py",
+      "diff_file": "049_test_r4_fixed_state.diff",
+      "diff_lines": 16,
+      "source_lines": 31,
+      "members": [
+        {
+          "path": "evidence/workspace_reorganization_20260914/before/root/test_r4_fixed_state.py",
+          "sha256": "82619d275c78711bfc608d5418dbce6afae609745dd5ec2a8e791a291b028f09"
+        }
+      ]
+    },
+    {
+      "id": 50,
+      "partition": "support",
+      "representative": "evidence/workspace_reorganization_20260914/before/root/mechanism_final_audit.py",
+      "normalized_sha256": "50071e9e8f4b84bafd689f612f2b6eb724d919a1116fde106f2732a26c2b9bc9",
+      "canonical": "scripts/experiments/mechanism_final_audit.py",
+      "diff_file": "050_mechanism_final_audit.diff",
+      "diff_lines": 17,
+      "source_lines": 52,
+      "members": [
+        {
+          "path": "evidence/workspace_reorganization_20260914/before/root/mechanism_final_audit.py",
+          "sha256": "f148da7e75f1cd04a6a71c4ab088dc6e9d94186c388cf49bba1af9ccb045ee81"
+        }
+      ]
+    },
+    {
+      "id": 51,
+      "partition": "support",
+      "representative": "evidence/mechanism_decision_v1/source_snapshot/mechanism_path_check.py",
+      "normalized_sha256": "50d9f99e6faa4d749fe9192aa12477365977088b4c11bbf6e37a2f2d22692a0e",
+      "canonical": "scripts/experiments/mechanism_path_check.py",
+      "diff_file": "051_mechanism_path_check.diff",
+      "diff_lines": 28,
+      "source_lines": 86,
+      "members": [
+        {
+          "path": "evidence/mechanism_decision_v1/source_snapshot/mechanism_path_check.py",
+          "sha256": "f9835157191767bf989aec721e004929cae08b4375922a6696fed75999f6abb4"
+        },
+        {
+          "path": "evidence/workspace_reorganization_20260914/before/root/mechanism_path_check.py",
+          "sha256": "f9835157191767bf989aec721e004929cae08b4375922a6696fed75999f6abb4"
+        }
+      ]
+    },
+    {
+      "id": 52,
+      "partition": "support",
+      "representative": "evidence/workspace_reorganization_20260914/before/root/make_stop_review_report.py",
+      "normalized_sha256": "51df41f1a42a61a98321257350b93759d5457f82bb699535743d7318959fdd2c",
+      "canonical": "scripts/figures/make_stop_review_report.py",
+      "diff_file": "052_make_stop_review_report.diff",
+      "diff_lines": 16,
+      "source_lines": 132,
+      "members": [
+        {
+          "path": "evidence/workspace_reorganization_20260914/before/root/make_stop_review_report.py",
+          "sha256": "ef97ad2fadd1cdd626395cb0b2d730cca6e5f8956bfd4463ada5b979a8445c11"
+        }
+      ]
+    },
+    {
+      "id": 53,
+      "partition": "support",
+      "representative": "evidence/workspace_reorganization_20260914/before/root/train_dco.py",
+      "normalized_sha256": "52eb4e9035df22ab2f60e42f96e3b6e3c12ff8ea1c09c9e756e2a721ff47b0b1",
+      "canonical": "scripts/experiments/train_dco.py",
+      "diff_file": "053_train_dco.diff",
+      "diff_lines": 41,
+      "source_lines": 205,
+      "members": [
+        {
+          "path": "evidence/workspace_reorganization_20260914/before/root/train_dco.py",
+          "sha256": "08ed95ebfc207a70e1df15f77a5a64e5d994565d4dc1000a4d055c80871cc2bf"
+        }
+      ]
+    },
+    {
+      "id": 54,
+      "partition": "support",
+      "representative": "evidence/workspace_reorganization_20260914/before/root/make_night_review_figure.py",
+      "normalized_sha256": "56bda2aec271896a451db7c391951bd9734fdc8d11a2296a3fce27d66b7dcf49",
+      "canonical": "scripts/figures/make_night_review_figure.py",
+      "diff_file": "054_make_night_review_figure.diff",
+      "diff_lines": 16,
+      "source_lines": 34,
+      "members": [
+        {
+          "path": "evidence/workspace_reorganization_20260914/before/root/make_night_review_figure.py",
+          "sha256": "b93b875f48ee32e577d0e99b42b0c0e3de2eed0d2696f89e49266a66cdb7927e"
+        }
+      ]
+    },
+    {
+      "id": 55,
+      "partition": "support",
+      "representative": "evidence/workspace_reorganization_20260914/before/root/audit_night_storage_revision.py",
+      "normalized_sha256": "56c40132a53f228f2393b2ea81c052d5dee187d184b848074fd1f6c136d09efe",
+      "canonical": "scripts/analysis/audit_night_storage_revision.py",
+      "diff_file": "055_audit_night_storage_revision.diff",
+      "diff_lines": 26,
+      "source_lines": 64,
+      "members": [
+        {
+          "path": "evidence/workspace_reorganization_20260914/before/root/audit_night_storage_revision.py",
+          "sha256": "e02d99ccb1d6ca57eb7dcde2204017c51d626dec8f31258863516902b5f34f42"
+        }
+      ]
+    },
+    {
+      "id": 56,
+      "partition": "support",
+      "representative": "evidence/coverage_ab_v1/source/lab_log.py",
+      "normalized_sha256": "573f491273e87c9e4f5f9d5587ef34661c69b60c39a0206a48be147933c1eb2e",
+      "canonical": "lab_log.py",
+      "diff_file": "056_lab_log.diff",
+      "diff_lines": 79,
+      "source_lines": 417,
+      "members": [
+        {
+          "path": "evidence/coverage_ab_v1/source/lab_log.py",
+          "sha256": "a776716d639c194f9884daed30d3cdc6387aa238e3b1681d662879d4cb5bec2c"
+        },
+        {
+          "path": "evidence/gpt6_plan_v2/r0_source_snapshot/lab_log.py",
+          "sha256": "a776716d639c194f9884daed30d3cdc6387aa238e3b1681d662879d4cb5bec2c"
+        },
+        {
+          "path": "evidence/grid_diagnosis_v1/source/lab_log.py",
+          "sha256": "a776716d639c194f9884daed30d3cdc6387aa238e3b1681d662879d4cb5bec2c"
+        },
+        {
+          "path": "evidence/paper_first_v1/source/lab_log.py",
+          "sha256": "a776716d639c194f9884daed30d3cdc6387aa238e3b1681d662879d4cb5bec2c"
+        },
+        {
+          "path": "evidence/spacing_probe_v1/source/lab_log.py",
+          "sha256": "a776716d639c194f9884daed30d3cdc6387aa238e3b1681d662879d4cb5bec2c"
+        },
+        {
+          "path": "evidence/trunk_repair_v1/source/lab_log.py",
+          "sha256": "a776716d639c194f9884daed30d3cdc6387aa238e3b1681d662879d4cb5bec2c"
+        },
+        {
+          "path": "evidence/workspace_reorganization_20260914/before/root/lab_log.py",
+          "sha256": "a776716d639c194f9884daed30d3cdc6387aa238e3b1681d662879d4cb5bec2c"
+        }
+      ]
+    },
+    {
+      "id": 57,
+      "partition": "support",
+      "representative": "evidence/coverage_ab_v1/source/paper_recheck.py",
+      "normalized_sha256": "5752d96dd0d6a9b9b4ed7f8afcc3f005fc5225cd97f6693501e6404a3ae3c7e0",
+      "canonical": "scripts/experiments/paper_recheck.py",
+      "diff_file": "057_paper_recheck.diff",
+      "diff_lines": 19,
+      "source_lines": 174,
+      "members": [
+        {
+          "path": "evidence/coverage_ab_v1/source/paper_recheck.py",
+          "sha256": "526bb9b53f3b828c31a5be25aa018305e7a964548dd9a05fdcd2bd44da6d365b"
+        },
+        {
+          "path": "evidence/grid_diagnosis_v1/source/paper_recheck.py",
+          "sha256": "526bb9b53f3b828c31a5be25aa018305e7a964548dd9a05fdcd2bd44da6d365b"
+        },
+        {
+          "path": "evidence/paper_first_v1/source/paper_recheck.py",
+          "sha256": "526bb9b53f3b828c31a5be25aa018305e7a964548dd9a05fdcd2bd44da6d365b"
+        },
+        {
+          "path": "evidence/spacing_probe_v1/source/paper_recheck.py",
+          "sha256": "526bb9b53f3b828c31a5be25aa018305e7a964548dd9a05fdcd2bd44da6d365b"
+        },
+        {
+          "path": "evidence/trunk_repair_v1/source/paper_recheck.py",
+          "sha256": "526bb9b53f3b828c31a5be25aa018305e7a964548dd9a05fdcd2bd44da6d365b"
+        },
+        {
+          "path": "evidence/workspace_reorganization_20260914/before/root/paper_recheck.py",
+          "sha256": "526bb9b53f3b828c31a5be25aa018305e7a964548dd9a05fdcd2bd44da6d365b"
+        }
+      ]
+    },
+    {
+      "id": 58,
+      "partition": "support",
+      "representative": "evidence/coverage_ab_v1/source/diagnose_grid.py",
+      "normalized_sha256": "57ed09e8a1af2e541e73735cdbc2c1365ba3942d177a2032054d37e334375798",
+      "canonical": "scripts/experiments/diagnose_grid.py",
+      "diff_file": "058_diagnose_grid.diff",
+      "diff_lines": 19,
+      "source_lines": 197,
+      "members": [
+        {
+          "path": "evidence/coverage_ab_v1/source/diagnose_grid.py",
+          "sha256": "30a1de112c08b386dd7d0db8ca6730cfbae7e372a2b1091a61c1d4a001742b5b"
+        },
+        {
+          "path": "evidence/grid_diagnosis_v1/source/diagnose_grid.py",
+          "sha256": "30a1de112c08b386dd7d0db8ca6730cfbae7e372a2b1091a61c1d4a001742b5b"
+        },
+        {
+          "path": "evidence/spacing_probe_v1/source/diagnose_grid.py",
+          "sha256": "30a1de112c08b386dd7d0db8ca6730cfbae7e372a2b1091a61c1d4a001742b5b"
+        },
+        {
+          "path": "evidence/trunk_repair_v1/source/diagnose_grid.py",
+          "sha256": "30a1de112c08b386dd7d0db8ca6730cfbae7e372a2b1091a61c1d4a001742b5b"
+        },
+        {
+          "path": "evidence/workspace_reorganization_20260914/before/root/diagnose_grid.py",
+          "sha256": "30a1de112c08b386dd7d0db8ca6730cfbae7e372a2b1091a61c1d4a001742b5b"
+        }
+      ]
+    },
+    {
+      "id": 59,
+      "partition": "support",
+      "representative": "evidence/workspace_reorganization_20260914/before/root/spectral_dco.py",
+      "normalized_sha256": "5850a4543b31665a6609b08456ca316cdda42328e864160bf9b55e3396469350",
+      "canonical": "scripts/experiments/spectral_dco.py",
+      "diff_file": "059_spectral_dco.diff",
+      "diff_lines": 19,
+      "source_lines": 360,
+      "members": [
+        {
+          "path": "evidence/workspace_reorganization_20260914/before/root/spectral_dco.py",
+          "sha256": "697f542c1945507d43981618aea1268a637e084e52b8a6bff596be1aa5457a1e"
+        }
+      ]
+    },
+    {
+      "id": 60,
+      "partition": "support",
+      "representative": "evidence/gpt6_plan_v2/r0_source_snapshot/p5_ab_audit.py",
+      "normalized_sha256": "596e3b63d9e494de5ea5daa70513a2dc60f8d9db6678cd6bce11acc8bb3acbe8",
+      "canonical": "scripts/experiments/p5_ab_audit.py",
+      "diff_file": "060_p5_ab_audit.diff",
+      "diff_lines": 18,
+      "source_lines": 47,
+      "members": [
+        {
+          "path": "evidence/gpt6_plan_v2/r0_source_snapshot/p5_ab_audit.py",
+          "sha256": "53942c585ff19df1cd4086bb6930817572ce583b33e12247b91a10c6474eb5e0"
+        },
+        {
+          "path": "evidence/workspace_reorganization_20260914/before/root/p5_ab_audit.py",
+          "sha256": "53942c585ff19df1cd4086bb6930817572ce583b33e12247b91a10c6474eb5e0"
+        }
+      ]
+    },
+    {
+      "id": 61,
+      "partition": "support",
+      "representative": "evidence/workspace_reorganization_20260914/before/root/verify_claims.py",
+      "normalized_sha256": "59e2bd17e6d556b55a1b0327bc2cd4922e1888baad7f6f0c8d58dca36789601e",
+      "canonical": "scripts/analysis/verify_claims.py",
+      "diff_file": "061_verify_claims.diff",
+      "diff_lines": 29,
+      "source_lines": 1477,
+      "members": [
+        {
+          "path": "evidence/workspace_reorganization_20260914/before/root/verify_claims.py",
+          "sha256": "e6d9b07edc914032011bf048baa09ed6666bef05f977deeda3b0f70a8312ca4b"
+        }
+      ]
+    },
+    {
+      "id": 62,
+      "partition": "core",
+      "representative": "evidence/server_resource_v1/dco_value_review_20260916/returned/random_low_lr128/source/src/pidon/pidon_solve.py",
+      "normalized_sha256": "5d6eb695526117ef3b6e214b168c373c7a1ea5e01ebd99db1801db7402ce56fd",
+      "canonical": "src/pidon/pidon_solve.py",
+      "diff_file": "062_pidon_solve.diff",
+      "diff_lines": 25,
+      "source_lines": 1321,
+      "members": [
+        {
+          "path": "evidence/server_resource_v1/dco_value_review_20260916/returned/random_low_lr128/source/src/pidon/pidon_solve.py",
+          "sha256": "5d6eb695526117ef3b6e214b168c373c7a1ea5e01ebd99db1801db7402ce56fd"
+        },
+        {
+          "path": "evidence/server_resource_v1/dco_value_review_20260916_r1/returned/random_low_lr128/source/src/pidon/pidon_solve.py",
+          "sha256": "5d6eb695526117ef3b6e214b168c373c7a1ea5e01ebd99db1801db7402ce56fd"
+        }
+      ]
+    },
+    {
+      "id": 63,
+      "partition": "support",
+      "representative": "evidence/trunk_repair_v1/source/coverage_ab.py",
+      "normalized_sha256": "5fde22d847e4738fec1ca15ba3deac6bdd4644c4a210aeb37942699270145a7d",
+      "canonical": "scripts/experiments/coverage_ab.py",
+      "diff_file": "063_coverage_ab.diff",
+      "diff_lines": 19,
+      "source_lines": 225,
+      "members": [
+        {
+          "path": "evidence/trunk_repair_v1/source/coverage_ab.py",
+          "sha256": "3a108edeca2eea9d9f30ffacc2725a6b7c40c4504989953819a8f42eb64a0e99"
+        },
+        {
+          "path": "evidence/workspace_reorganization_20260914/before/root/coverage_ab.py",
+          "sha256": "3a108edeca2eea9d9f30ffacc2725a6b7c40c4504989953819a8f42eb64a0e99"
+        }
+      ]
+    },
+    {
+      "id": 64,
+      "partition": "support",
+      "representative": "evidence/workspace_reorganization_20260914/before/root/test_stop_review_claims.py",
+      "normalized_sha256": "61cfbf630bb0e4862f1a50b4d33d29cc918967947296bcc19024d12ab0bf5d4a",
+      "canonical": "tests/test_stop_review_claims.py",
+      "diff_file": "064_test_stop_review_claims.diff",
+      "diff_lines": 15,
+      "source_lines": 27,
+      "members": [
+        {
+          "path": "evidence/workspace_reorganization_20260914/before/root/test_stop_review_claims.py",
+          "sha256": "44b7528aaf669f73bcc9b6e71829c86c029eafe9484f90e9443e327745089463"
+        }
+      ]
+    },
+    {
+      "id": 65,
+      "partition": "support",
+      "representative": "evidence/gpt6_plan_v2/r0_source_snapshot/phase1_pilot.py",
+      "normalized_sha256": "61edda2f650a2acdcc245e56d6d9f38b7b1596ceb18df7fa697a821ad4fb6b3d",
+      "canonical": "scripts/experiments/phase1_pilot.py",
+      "diff_file": "065_phase1_pilot.diff",
+      "diff_lines": 18,
+      "source_lines": 124,
+      "members": [
+        {
+          "path": "evidence/gpt6_plan_v2/r0_source_snapshot/phase1_pilot.py",
+          "sha256": "e88554ad097fda54710617457c16ac32a1bbbba21d9a52278c1ef1f4bfb814b4"
+        },
+        {
+          "path": "evidence/gpt6_plan_v3_review/source_snapshot/phase1_pilot.py",
+          "sha256": "e88554ad097fda54710617457c16ac32a1bbbba21d9a52278c1ef1f4bfb814b4"
+        },
+        {
+          "path": "evidence/workspace_reorganization_20260914/before/root/phase1_pilot.py",
+          "sha256": "e88554ad097fda54710617457c16ac32a1bbbba21d9a52278c1ef1f4bfb814b4"
+        }
+      ]
+    },
+    {
+      "id": 66,
+      "partition": "support",
+      "representative": "evidence/mechanism_decision_v1/source_snapshot/mechanism_decision_eval.py",
+      "normalized_sha256": "64344c7a2ba799d7741c0eaf442c82e990797d8013903bc49c015edb424c44ff",
+      "canonical": "scripts/experiments/mechanism_decision_eval.py",
+      "diff_file": "066_mechanism_decision_eval.diff",
+      "diff_lines": 69,
+      "source_lines": 195,
+      "members": [
+        {
+          "path": "evidence/mechanism_decision_v1/source_snapshot/mechanism_decision_eval.py",
+          "sha256": "6738fe010b2338d0a71d753f0df3823682eab05085888390f145cd58c186802c"
+        }
+      ]
+    },
+    {
+      "id": 67,
+      "partition": "support",
+      "representative": "evidence/workspace_reorganization_20260914/before/root/audit_mechanism_2h.py",
+      "normalized_sha256": "6621324807627c8c6ec6f5907450e8ad16dd576fb05eb97d56d2bc122b6dc061",
+      "canonical": "scripts/analysis/audit_mechanism_2h.py",
+      "diff_file": "067_audit_mechanism_2h.diff",
+      "diff_lines": 24,
+      "source_lines": 270,
+      "members": [
+        {
+          "path": "evidence/workspace_reorganization_20260914/before/root/audit_mechanism_2h.py",
+          "sha256": "2dd4d8ac24b326984f992fdbc7fd01ad9879ede05b5a94c272bac9a24467d5f3"
+        }
+      ]
+    },
+    {
+      "id": 68,
+      "partition": "support",
+      "representative": "evidence/workspace_reorganization_20260914/before/root/manifold_check.py",
+      "normalized_sha256": "6621cb0790c5bafdfa5b321bbd607be112104bb6da30f6e0bc19e5a38e140762",
+      "canonical": "scripts/exploratory/manifold_check.py",
+      "diff_file": "068_manifold_check.diff",
+      "diff_lines": 19,
+      "source_lines": 128,
+      "members": [
+        {
+          "path": "evidence/workspace_reorganization_20260914/before/root/manifold_check.py",
+          "sha256": "bbc29bbfbd9243374c50d302be216f5b91762f8062e3d7825885fb43087dd003"
+        }
+      ]
+    },
+    {
+      "id": 69,
+      "partition": "support",
+      "representative": "evidence/gpt6_plan_v4_night/source_snapshot/test_night_budget.py",
+      "normalized_sha256": "66c87b01644d392fd69bc189ec6c201e8a36db877be6be8dc9aa5cc95fececee",
+      "canonical": "tests/test_night_budget.py",
+      "diff_file": "069_test_night_budget.diff",
+      "diff_lines": 15,
+      "source_lines": 58,
+      "members": [
+        {
+          "path": "evidence/gpt6_plan_v4_night/source_snapshot/test_night_budget.py",
+          "sha256": "6eeceac1cdd98a90917e4e2ab1810cb2a19430cbe40351d5503fc9a73a91119f"
+        },
+        {
+          "path": "evidence/workspace_reorganization_20260914/before/root/test_night_budget.py",
+          "sha256": "6eeceac1cdd98a90917e4e2ab1810cb2a19430cbe40351d5503fc9a73a91119f"
+        }
+      ]
+    },
+    {
+      "id": 70,
+      "partition": "support",
+      "representative": "evidence/workspace_reorganization_20260914/before/root/diag_exp3.py",
+      "normalized_sha256": "66d1bb9fd48fd7f6c452e962cd5f8abe1ecbe7a4288c70c2b56f4a875345fb88",
+      "canonical": "scripts/exploratory/diag_exp3.py",
+      "diff_file": "070_diag_exp3.diff",
+      "diff_lines": 19,
+      "source_lines": 120,
+      "members": [
+        {
+          "path": "evidence/workspace_reorganization_20260914/before/root/diag_exp3.py",
+          "sha256": "7b7d6b3a5e8ab7cc31e5bc83e846db97f532288b0be6196c2cbe01f1ded8fc39"
+        }
+      ]
+    },
+    {
+      "id": 71,
+      "partition": "core",
+      "representative": "evidence/gpt6_plan_v3_review/source_snapshot/pidon_solve.py",
+      "normalized_sha256": "6801bcff9f416500b8f3f73cc3a737432f317de1412ce7bc1d457ae2d02b183c",
+      "canonical": "src/pidon/pidon_solve.py",
+      "diff_file": "071_pidon_solve.diff",
+      "diff_lines": 967,
+      "source_lines": 959,
+      "members": [
+        {
+          "path": "evidence/gpt6_plan_v3_review/source_snapshot/pidon_solve.py",
+          "sha256": "281dc9627e5ee6842ade3d516ea3299c9ce42e27e2791731bc14ff9e98779502"
+        }
+      ]
+    },
+    {
+      "id": 72,
+      "partition": "support",
+      "representative": "evidence/gpt6_plan_v3/h_layout_candidate/source_snapshot/r4_fixed_state.py",
+      "normalized_sha256": "6abfd362a967c1b7940fc0a6a48b17939088460a6cbbf4823b7732c3bc8dc1a1",
+      "canonical": "scripts/experiments/r4_fixed_state.py",
+      "diff_file": "072_r4_fixed_state.diff",
+      "diff_lines": 29,
+      "source_lines": 168,
+      "members": [
+        {
+          "path": "evidence/gpt6_plan_v3/h_layout_candidate/source_snapshot/r4_fixed_state.py",
+          "sha256": "e05b17dbd0c9ec60f4c4a3f5e056329483bfe493201f50149116b9c2fcb0db2a"
+        },
+        {
+          "path": "evidence/gpt6_plan_v3_review/source_snapshot/r4_fixed_state.py",
+          "sha256": "e05b17dbd0c9ec60f4c4a3f5e056329483bfe493201f50149116b9c2fcb0db2a"
+        },
+        {
+          "path": "evidence/workspace_reorganization_20260914/before/root/r4_fixed_state.py",
+          "sha256": "e05b17dbd0c9ec60f4c4a3f5e056329483bfe493201f50149116b9c2fcb0db2a"
+        }
+      ]
+    },
+    {
+      "id": 73,
+      "partition": "support",
+      "representative": "evidence/workspace_reorganization_20260914/before/root/run_fdtd_cavity.py",
+      "normalized_sha256": "6b5915e129f054a8d9c3983b93e45cad70cdc12039f3edda418019fb1c58d327",
+      "canonical": "scripts/experiments/run_fdtd_cavity.py",
+      "diff_file": "073_run_fdtd_cavity.diff",
+      "diff_lines": 19,
+      "source_lines": 102,
+      "members": [
+        {
+          "path": "evidence/workspace_reorganization_20260914/before/root/run_fdtd_cavity.py",
+          "sha256": "6d593e39d8953c2b9e2d837d6a8c1be379be8434fd467aeb8300c9fc41c8f195"
+        }
+      ]
+    },
+    {
+      "id": 74,
+      "partition": "support",
+      "representative": "evidence/server_resource_v1/failure_mechanism_audit/source/scripts/experiments/server_short_tol_probe.py",
+      "normalized_sha256": "6be3e41dd1662a62bbd97f78e3f1bcb32be65de9003cab12adc4633084095e84",
+      "canonical": "scripts/experiments/server_short_tol_probe.py",
+      "diff_file": "074_server_short_tol_probe.diff",
+      "diff_lines": 269,
+      "source_lines": 370,
+      "members": [
+        {
+          "path": "evidence/server_resource_v1/failure_mechanism_audit/source/scripts/experiments/server_short_tol_probe.py",
+          "sha256": "6ab8541e915056920a56ad45edc306227bf1f53954db5dbbc48c4f7c069750a0"
+        }
+      ]
+    },
+    {
+      "id": 75,
+      "partition": "support",
+      "representative": "evidence/gpt6_plan_v4_night/source_snapshot/night_init.py",
+      "normalized_sha256": "6c0b2ba57837498481baf0bb5cd671c08ff2a49ceab7301e21675b71045006b2",
+      "canonical": "scripts/experiments/night_init.py",
+      "diff_file": "075_night_init.diff",
+      "diff_lines": 28,
+      "source_lines": 110,
+      "members": [
+        {
+          "path": "evidence/gpt6_plan_v4_night/source_snapshot/night_init.py",
+          "sha256": "ab675745f7d32a98a5c13a177f8c409d9f8f37b1626be80d09a97eb2d3066b90"
+        },
+        {
+          "path": "evidence/workspace_reorganization_20260914/before/root/night_init.py",
+          "sha256": "ab675745f7d32a98a5c13a177f8c409d9f8f37b1626be80d09a97eb2d3066b90"
+        }
+      ]
+    },
+    {
+      "id": 76,
+      "partition": "support",
+      "representative": "evidence/gpt6_plan_v2/r0_source_snapshot/p4_report.py",
+      "normalized_sha256": "6cf1e3572163cb5a852eb72e5aaee47e27bd9aadee9f07df68b3b1026b81e1bd",
+      "canonical": "scripts/analysis/p4_report.py",
+      "diff_file": "076_p4_report.diff",
+      "diff_lines": 18,
+      "source_lines": 47,
+      "members": [
+        {
+          "path": "evidence/gpt6_plan_v2/r0_source_snapshot/p4_report.py",
+          "sha256": "bf2d7fc8a644985dd12d8b818ef11a657c8384705ccec3a1a731d8875acdb9e9"
+        },
+        {
+          "path": "evidence/workspace_reorganization_20260914/before/root/p4_report.py",
+          "sha256": "bf2d7fc8a644985dd12d8b818ef11a657c8384705ccec3a1a731d8875acdb9e9"
+        }
+      ]
+    },
+    {
+      "id": 77,
+      "partition": "support",
+      "representative": "evidence/workspace_reorganization_20260914/before/root/test_dco.py",
+      "normalized_sha256": "6d2e190aedbf0bf3e308faf2d82b001be047f0c86fa9e43b0e3d2afd8328c2f5",
+      "canonical": "scripts/experiments/test_dco.py",
+      "diff_file": "077_test_dco.diff",
+      "diff_lines": 30,
+      "source_lines": 403,
+      "members": [
+        {
+          "path": "evidence/workspace_reorganization_20260914/before/root/test_dco.py",
+          "sha256": "7932cc7ff9b85c6a2a994ac3772bc966d1c2ad1ba18a3d5f5f911008e4891cf7"
+        }
+      ]
+    },
+    {
+      "id": 78,
+      "partition": "support",
+      "representative": "evidence/workspace_reorganization_20260914/before/root/night_evidence.py",
+      "normalized_sha256": "6d49cc46099f454d8835d1c61721249b478117e4d648b8d06aaa90d398a41f1a",
+      "canonical": "scripts/analysis/night_evidence.py",
+      "diff_file": "078_night_evidence.diff",
+      "diff_lines": 30,
+      "source_lines": 200,
+      "members": [
+        {
+          "path": "evidence/workspace_reorganization_20260914/before/root/night_evidence.py",
+          "sha256": "62510034b8936f65d1a50501ac00a6763d58d8ea1d294f11666ca19b1551efb7"
+        }
+      ]
+    },
+    {
+      "id": 79,
+      "partition": "core",
+      "representative": "evidence/gpt6_plan_v4_night/control_runs/float64_exact/source_snapshot/pidon_contract.py",
+      "normalized_sha256": "6d4d19222f956ba69a93db9d296305f96a54963050c2020a55859bdfd3d1d03c",
+      "canonical": "src/pidon/pidon_contract.py",
+      "diff_file": "079_pidon_contract.diff",
+      "diff_lines": 19,
+      "source_lines": 269,
+      "members": [
+        {
+          "path": "evidence/gpt6_plan_v4_night/control_runs/float64_exact/source_snapshot/pidon_contract.py",
+          "sha256": "962fbcaea843a631acbf60150a79551c8e03d1f718b54add7d887332aaebb688"
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_night/g0_after_head_integration/control_runs/float32_exact/source_snapshot/pidon_contract.py",
+          "sha256": "962fbcaea843a631acbf60150a79551c8e03d1f718b54add7d887332aaebb688"
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_night/g0_after_head_integration/control_runs/float64_exact/source_snapshot/pidon_contract.py",
+          "sha256": "962fbcaea843a631acbf60150a79551c8e03d1f718b54add7d887332aaebb688"
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_night/g0_after_head_integration/control_runs/hard_source_only_negative/source_snapshot/pidon_contract.py",
+          "sha256": "962fbcaea843a631acbf60150a79551c8e03d1f718b54add7d887332aaebb688"
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_night/g0_after_head_integration/control_runs/wrong_h_half_negative/source_snapshot/pidon_contract.py",
+          "sha256": "962fbcaea843a631acbf60150a79551c8e03d1f718b54add7d887332aaebb688"
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_night/g0_after_head_integration/control_runs/zero_curl_negative/source_snapshot/pidon_contract.py",
+          "sha256": "962fbcaea843a631acbf60150a79551c8e03d1f718b54add7d887332aaebb688"
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_night/g0_attempt_02/control_runs/float32_exact/source_snapshot/pidon_contract.py",
+          "sha256": "962fbcaea843a631acbf60150a79551c8e03d1f718b54add7d887332aaebb688"
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_night/g0_attempt_02/control_runs/float64_exact/source_snapshot/pidon_contract.py",
+          "sha256": "962fbcaea843a631acbf60150a79551c8e03d1f718b54add7d887332aaebb688"
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_night/g0_attempt_02/control_runs/hard_source_only_negative/source_snapshot/pidon_contract.py",
+          "sha256": "962fbcaea843a631acbf60150a79551c8e03d1f718b54add7d887332aaebb688"
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_night/g0_attempt_02/control_runs/wrong_h_half_negative/source_snapshot/pidon_contract.py",
+          "sha256": "962fbcaea843a631acbf60150a79551c8e03d1f718b54add7d887332aaebb688"
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_night/g0_attempt_02/control_runs/zero_curl_negative/source_snapshot/pidon_contract.py",
+          "sha256": "962fbcaea843a631acbf60150a79551c8e03d1f718b54add7d887332aaebb688"
+        },
+        {
+          "path": "evidence/mechanism_decision_v1/source_snapshot/pidon_contract.py",
+          "sha256": "962fbcaea843a631acbf60150a79551c8e03d1f718b54add7d887332aaebb688"
+        },
+        {
+          "path": "evidence/workspace_reorganization_20260914/before/root/pidon_contract.py",
+          "sha256": "962fbcaea843a631acbf60150a79551c8e03d1f718b54add7d887332aaebb688"
+        }
+      ]
+    },
+    {
+      "id": 80,
+      "partition": "support",
+      "representative": "evidence/gpt6_plan_v3/h_layout_candidate/source_snapshot/h_layout_candidate.py",
+      "normalized_sha256": "6e0a64586982b26fe85a4da21bd40cfab5eb45a62f5c954e6f4c8bc650583917",
+      "canonical": "scripts/experiments/h_layout_candidate.py",
+      "diff_file": "080_h_layout_candidate.diff",
+      "diff_lines": 30,
+      "source_lines": 242,
+      "members": [
+        {
+          "path": "evidence/gpt6_plan_v3/h_layout_candidate/source_snapshot/h_layout_candidate.py",
+          "sha256": "eab7051768a3257659266d11f5ba8483bc7a657376adaee2499d11422b39ef53"
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_review/source_snapshot/h_layout_candidate.py",
+          "sha256": "eab7051768a3257659266d11f5ba8483bc7a657376adaee2499d11422b39ef53"
+        },
+        {
+          "path": "evidence/workspace_reorganization_20260914/before/root/h_layout_candidate.py",
+          "sha256": "eab7051768a3257659266d11f5ba8483bc7a657376adaee2499d11422b39ef53"
+        }
+      ]
+    },
+    {
+      "id": 81,
+      "partition": "support",
+      "representative": "evidence/gpt6_plan_v3_review/source_snapshot/r4_p4a.py",
+      "normalized_sha256": "717569b82f401affa063b77c598cb9914ad1ac5bc534e8a72424fcdaed2edec8",
+      "canonical": "scripts/experiments/r4_p4a.py",
+      "diff_file": "081_r4_p4a.diff",
+      "diff_lines": 18,
+      "source_lines": 56,
+      "members": [
+        {
+          "path": "evidence/gpt6_plan_v3_review/source_snapshot/r4_p4a.py",
+          "sha256": "caeb16a7e9e3e356e0f18dcc40dcbefeeeb2d4f20a4e1833270446edde788b52"
+        },
+        {
+          "path": "evidence/workspace_reorganization_20260914/before/root/r4_p4a.py",
+          "sha256": "caeb16a7e9e3e356e0f18dcc40dcbefeeeb2d4f20a4e1833270446edde788b52"
+        }
+      ]
+    },
+    {
+      "id": 82,
+      "partition": "support",
+      "representative": "evidence/gpt6_plan_v2/r0_source_snapshot/pidon_exact_control.py",
+      "normalized_sha256": "7333acf0720c40946fb21efeb4fdb5335589417596ada41c2a907da7bb7862c1",
+      "canonical": "scripts/experiments/pidon_exact_control.py",
+      "diff_file": "082_pidon_exact_control.diff",
+      "diff_lines": 403,
+      "source_lines": 142,
+      "members": [
+        {
+          "path": "evidence/gpt6_plan_v2/r0_source_snapshot/pidon_exact_control.py",
+          "sha256": "d0384993f34c2cd785638688d86149044ab0fac8e1a3d8aa9f323d360448d85b"
+        }
+      ]
+    },
+    {
+      "id": 83,
+      "partition": "support",
+      "representative": "evidence/workspace_reorganization_20260914/before/root/make_a3_evidence_figure.py",
+      "normalized_sha256": "76ab5d3c7990d99af15f5a1f15822539148ca8ee173d39000cee2b8559e7f484",
+      "canonical": "scripts/figures/make_a3_evidence_figure.py",
+      "diff_file": "083_make_a3_evidence_figure.diff",
+      "diff_lines": 29,
+      "source_lines": 45,
+      "members": [
+        {
+          "path": "evidence/workspace_reorganization_20260914/before/root/make_a3_evidence_figure.py",
+          "sha256": "2b1c7f760a23f791a607f13c296d873c7ccb3803e39886f6afb3bb23702f3742"
+        }
+      ]
+    },
+    {
+      "id": 84,
+      "partition": "support",
+      "representative": "evidence/workspace_reorganization_20260914/before/root/g0_verifier.py",
+      "normalized_sha256": "78d5e1fcd403becdcba45ce6a928b8d0e42b22e0c96850b76e465a313eef881b",
+      "canonical": "scripts/experiments/g0_verifier.py",
+      "diff_file": "084_g0_verifier.diff",
+      "diff_lines": 28,
+      "source_lines": 174,
+      "members": [
+        {
+          "path": "evidence/workspace_reorganization_20260914/before/root/g0_verifier.py",
+          "sha256": "07ab5e133aac2158c5804bcf6a101af7491e79c532252f2466c4272174c98d03"
+        }
+      ]
+    },
+    {
+      "id": 85,
+      "partition": "support",
+      "representative": "evidence/workspace_reorganization_20260914/before/root/run.py",
+      "normalized_sha256": "7b05eb46afe176520ee4a63bb23682dba90933611b4b601cfa8d57623e6a2da9",
+      "canonical": "run.py",
+      "diff_file": "085_run.diff",
+      "diff_lines": 90,
+      "source_lines": 43,
+      "members": [
+        {
+          "path": "evidence/workspace_reorganization_20260914/before/root/run.py",
+          "sha256": "814679c5e445daddb60ff220957ea62b1e42e2eea4ed242971bc8d77f0abd9c6"
+        }
+      ]
+    },
+    {
+      "id": 86,
+      "partition": "support",
+      "representative": "evidence/gpt6_plan_v2/r0_source_snapshot/verify_claims.py",
+      "normalized_sha256": "7d66926bbf21f64d5090d2b746fe817aa9fe03f034d12eb8a746380d5213cb17",
+      "canonical": "scripts/analysis/verify_claims.py",
+      "diff_file": "086_verify_claims.diff",
+      "diff_lines": 414,
+      "source_lines": 1203,
+      "members": [
+        {
+          "path": "evidence/gpt6_plan_v2/r0_source_snapshot/verify_claims.py",
+          "sha256": "b924a79504ccbcfbb940d5a259688b26c9f1a5c6c2d57c7ccf898bcae0fc97a5"
+        },
+        {
+          "path": "evidence/trunk_repair_v1/source/verify_claims_final.py",
+          "sha256": "b924a79504ccbcfbb940d5a259688b26c9f1a5c6c2d57c7ccf898bcae0fc97a5"
+        }
+      ]
+    },
+    {
+      "id": 87,
+      "partition": "support",
+      "representative": "evidence/workspace_reorganization_20260914/before/root/symplectic.py",
+      "normalized_sha256": "85749865156607f8326011b373982b7ed05472467a2675f2c1e8286e32afaab8",
+      "canonical": "scripts/exploratory/symplectic.py",
+      "diff_file": "087_symplectic.diff",
+      "diff_lines": 19,
+      "source_lines": 241,
+      "members": [
+        {
+          "path": "evidence/workspace_reorganization_20260914/before/root/symplectic.py",
+          "sha256": "8e80b89079474a45da024ef160da7955a26e2b538c12d5519151f666d5b2b72c"
+        }
+      ]
+    },
+    {
+      "id": 88,
+      "partition": "support",
+      "representative": "evidence/workspace_reorganization_20260914/before/root/diag_coords.py",
+      "normalized_sha256": "8876a6d3507be8641c6dd0ffa3cd8f03396a87fd331911af58b2ba86b9e7bef8",
+      "canonical": "scripts/exploratory/diag_coords.py",
+      "diff_file": "088_diag_coords.diff",
+      "diff_lines": 19,
+      "source_lines": 101,
+      "members": [
+        {
+          "path": "evidence/workspace_reorganization_20260914/before/root/diag_coords.py",
+          "sha256": "a6f1d44c7017097efd4b9079ccc207ad3c520343194906b32c1938e497b74269"
+        }
+      ]
+    },
+    {
+      "id": 89,
+      "partition": "support",
+      "representative": "evidence/workspace_reorganization_20260914/before/root/structured_deep.py",
+      "normalized_sha256": "8882d09a3a8d26b2c078152554a3fbbc07180435880044cf68e916b8e3be7562",
+      "canonical": "scripts/exploratory/structured_deep.py",
+      "diff_file": "089_structured_deep.diff",
+      "diff_lines": 19,
+      "source_lines": 284,
+      "members": [
+        {
+          "path": "evidence/workspace_reorganization_20260914/before/root/structured_deep.py",
+          "sha256": "e27c80908adc1993d12bcfceb658e3af94aa0fb21a0899e02cc223c084e9e455"
+        }
+      ]
+    },
+    {
+      "id": 90,
+      "partition": "support",
+      "representative": "evidence/workspace_reorganization_20260914/before/root/test_pidon_contract_v3.py",
+      "normalized_sha256": "8b3a5c84f0abcb00940af9c46bfed291aa6fd4f0d948d8aef8ed852f2b1f73dc",
+      "canonical": "tests/test_pidon_contract_v3.py",
+      "diff_file": "090_test_pidon_contract_v3.diff",
+      "diff_lines": 18,
+      "source_lines": 286,
+      "members": [
+        {
+          "path": "evidence/workspace_reorganization_20260914/before/root/test_pidon_contract_v3.py",
+          "sha256": "86eb3dbc034da58a8b3ff64fe3de3d961dbbfe5332a94a9a5a5f9acf894825d4"
+        }
+      ]
+    },
+    {
+      "id": 91,
+      "partition": "support",
+      "representative": "evidence/workspace_reorganization_20260914/before/root/rollout.py",
+      "normalized_sha256": "8b7bf16a713d3267e4e64b470007813bcd73c34f8c258f030c95092b0a4ac86b",
+      "canonical": "src/pidon/rollout.py",
+      "diff_file": "091_rollout.diff",
+      "diff_lines": 19,
+      "source_lines": 338,
+      "members": [
+        {
+          "path": "evidence/workspace_reorganization_20260914/before/root/rollout.py",
+          "sha256": "aecda71811e85aa61840cbcd6d8d33ffe969d76c451308eaf0578252d62848ff"
+        }
+      ]
+    },
+    {
+      "id": 92,
+      "partition": "support",
+      "representative": "evidence/workspace_reorganization_20260914/before/root/night_diagnostics.py",
+      "normalized_sha256": "8bb54477439be21420a4a70bad8bf62d933ffe23ad45b3742e04eca8bae4a9a5",
+      "canonical": "scripts/experiments/night_diagnostics.py",
+      "diff_file": "092_night_diagnostics.diff",
+      "diff_lines": 28,
+      "source_lines": 70,
+      "members": [
+        {
+          "path": "evidence/workspace_reorganization_20260914/before/root/night_diagnostics.py",
+          "sha256": "ef6d6d284f0e565614394cdfaf1e91482b6fdb9d09c5b2ce0da6467b9ecb3422"
+        }
+      ]
+    },
+    {
+      "id": 93,
+      "partition": "support",
+      "representative": "evidence/workspace_reorganization_20260914/before/root/test_head_lstsq.py",
+      "normalized_sha256": "8c08957950c5d74c49be7fec5625dabe490a8c599a7f97e2a881e0cac3e87833",
+      "canonical": "tests/test_head_lstsq.py",
+      "diff_file": "093_test_head_lstsq.diff",
+      "diff_lines": 17,
+      "source_lines": 103,
+      "members": [
+        {
+          "path": "evidence/workspace_reorganization_20260914/before/root/test_head_lstsq.py",
+          "sha256": "816c562d4df951c8ffe2fab782561b3e7f0fdbcaaabbad0124329378e1176481"
+        }
+      ]
+    },
+    {
+      "id": 94,
+      "partition": "support",
+      "representative": "evidence/workspace_reorganization_20260914/before/root/structured_pec.py",
+      "normalized_sha256": "8d0a59abf0d6492b2cf88ce2a98f31c51588cd00a7ef3d812ebcd8dc7d3fe83d",
+      "canonical": "scripts/exploratory/structured_pec.py",
+      "diff_file": "094_structured_pec.diff",
+      "diff_lines": 19,
+      "source_lines": 154,
+      "members": [
+        {
+          "path": "evidence/workspace_reorganization_20260914/before/root/structured_pec.py",
+          "sha256": "b2604d7aefe28d209f7eba229381261248d729bde8c9ff01ef742e284b079735"
+        }
+      ]
+    },
+    {
+      "id": 95,
+      "partition": "support",
+      "representative": "evidence/server_resource_v1/local_review/source/scripts/experiments/server_local_review.py",
+      "normalized_sha256": "90f3c7b43246c68d95fc1b01b8094ceaa0bb8710dd889ffcd939ad407929fcec",
+      "canonical": "scripts/experiments/server_local_review.py",
+      "diff_file": "095_server_local_review.diff",
+      "diff_lines": 98,
+      "source_lines": 259,
+      "members": [
+        {
+          "path": "evidence/server_resource_v1/local_review/source/scripts/experiments/server_local_review.py",
+          "sha256": "7167cd475bbe185f3dfc9a13cbe2e7a151c162a2ec65e4eaa1e9a60c30967595"
+        }
+      ]
+    },
+    {
+      "id": 96,
+      "partition": "support",
+      "representative": "evidence/workspace_reorganization_20260914/before/root/train_pidon.py",
+      "normalized_sha256": "933882649d20923e33796c215533fb71e72eadbcd10b06bf2eca2b7eb079b52b",
+      "canonical": "scripts/experiments/train_pidon.py",
+      "diff_file": "096_train_pidon.diff",
+      "diff_lines": 19,
+      "source_lines": 359,
+      "members": [
+        {
+          "path": "evidence/workspace_reorganization_20260914/before/root/train_pidon.py",
+          "sha256": "31dc21f9fb2702e1f9818552bb1b1643dec5f5f22d9c90ab1292dd9700f2b057"
+        }
+      ]
+    },
+    {
+      "id": 97,
+      "partition": "core",
+      "representative": "evidence/gpt6_plan_v3_review/source_snapshot/pidon_contract.py",
+      "normalized_sha256": "93e654569e15946071481ce64a5457d23b8cc21531796591c636eb4c3f1938df",
+      "canonical": "src/pidon/pidon_contract.py",
+      "diff_file": "097_pidon_contract.diff",
+      "diff_lines": 104,
+      "source_lines": 223,
+      "members": [
+        {
+          "path": "evidence/gpt6_plan_v3_review/source_snapshot/pidon_contract.py",
+          "sha256": "3d074aeee5e963170a7fe589d7b151a49c1b07c9a1e34c7d968a2d51301b17a8"
+        }
+      ]
+    },
+    {
+      "id": 98,
+      "partition": "support",
+      "representative": "evidence/workspace_reorganization_20260914/before/root/audit_reproduction.py",
+      "normalized_sha256": "944d5f3748091d77728abdcd66b008391907c2bebd1e73f21454ba9ea9fcf0c7",
+      "canonical": "scripts/analysis/audit_reproduction.py",
+      "diff_file": "098_audit_reproduction.diff",
+      "diff_lines": 30,
+      "source_lines": 358,
+      "members": [
+        {
+          "path": "evidence/workspace_reorganization_20260914/before/root/audit_reproduction.py",
+          "sha256": "5a201d76c492bdcdebce778d6f3033ae23d87bec4b826d4fe7ec6445afa45442"
+        }
+      ]
+    },
+    {
+      "id": 99,
+      "partition": "support",
+      "representative": "evidence/gpt6_plan_v2/r0_source_snapshot/stage2_fixed_state.py",
+      "normalized_sha256": "94c5c48f1deb83e2946dd467f4965b9ef519b69d5f2fdcf4fcf6bcf83707a5f1",
+      "canonical": "scripts/experiments/stage2_fixed_state.py",
+      "diff_file": "099_stage2_fixed_state.diff",
+      "diff_lines": 29,
+      "source_lines": 210,
+      "members": [
+        {
+          "path": "evidence/gpt6_plan_v2/r0_source_snapshot/stage2_fixed_state.py",
+          "sha256": "cec44dcc114ea9859d7e512892056ccc9deadae8f8959dd39e6ef51de3114562"
+        },
+        {
+          "path": "evidence/workspace_reorganization_20260914/before/root/stage2_fixed_state.py",
+          "sha256": "cec44dcc114ea9859d7e512892056ccc9deadae8f8959dd39e6ef51de3114562"
+        }
+      ]
+    },
+    {
+      "id": 100,
+      "partition": "support",
+      "representative": "evidence/coverage_ab_v1/source/test_coverage_ab.py",
+      "normalized_sha256": "951c44e61d4bf10eec703554ead28c5a259cbcfd5795887a4e695375df6ba4a5",
+      "canonical": "tests/test_coverage_ab.py",
+      "diff_file": "100_test_coverage_ab.diff",
+      "diff_lines": 16,
+      "source_lines": 35,
+      "members": [
+        {
+          "path": "evidence/coverage_ab_v1/source/test_coverage_ab.py",
+          "sha256": "e0c76b906950046ef2242b34db87799a108dfed75e4ca8fba2e4846764fc8882"
+        },
+        {
+          "path": "evidence/trunk_repair_v1/source/test_coverage_ab.py",
+          "sha256": "e0c76b906950046ef2242b34db87799a108dfed75e4ca8fba2e4846764fc8882"
+        },
+        {
+          "path": "evidence/workspace_reorganization_20260914/before/root/test_coverage_ab.py",
+          "sha256": "e0c76b906950046ef2242b34db87799a108dfed75e4ca8fba2e4846764fc8882"
+        }
+      ]
+    },
+    {
+      "id": 101,
+      "partition": "support",
+      "representative": "evidence/workspace_reorganization_20260914/before/root/test_mechanism_claims.py",
+      "normalized_sha256": "957bcf9da8474bbc1d18e0b4bf375424fed6adac769777b4594142033c8d3ea2",
+      "canonical": "tests/test_mechanism_claims.py",
+      "diff_file": "101_test_mechanism_claims.diff",
+      "diff_lines": 17,
+      "source_lines": 22,
+      "members": [
+        {
+          "path": "evidence/workspace_reorganization_20260914/before/root/test_mechanism_claims.py",
+          "sha256": "ad9d42d4d84d9bb2116366dfa35241c6689c45ae2916ea1ce355a3760851bcad"
+        }
+      ]
+    },
+    {
+      "id": 102,
+      "partition": "support",
+      "representative": "evidence/trunk_repair_v1/source/trunk_repair.py",
+      "normalized_sha256": "98302dc10f0dec35d677dcacecd857dec8442d4b882a49d6471fbb42504d9fb1",
+      "canonical": "scripts/experiments/trunk_repair.py",
+      "diff_file": "102_trunk_repair.diff",
+      "diff_lines": 16,
+      "source_lines": 76,
+      "members": [
+        {
+          "path": "evidence/trunk_repair_v1/source/trunk_repair.py",
+          "sha256": "752c74250b0d649c745239bfb1cf6672b769f2967b77ed978f826708723da9b0"
+        },
+        {
+          "path": "evidence/workspace_reorganization_20260914/before/root/trunk_repair.py",
+          "sha256": "752c74250b0d649c745239bfb1cf6672b769f2967b77ed978f826708723da9b0"
+        }
+      ]
+    },
+    {
+      "id": 103,
+      "partition": "support",
+      "representative": "evidence/mechanism_decision_v1/source_snapshot/mechanism_decision_init.py",
+      "normalized_sha256": "a04cb5436476db3fcb4da9705b496467910590a8a2819e7b95184c0dc6fd4248",
+      "canonical": "scripts/experiments/mechanism_decision_init.py",
+      "diff_file": "103_mechanism_decision_init.diff",
+      "diff_lines": 30,
+      "source_lines": 151,
+      "members": [
+        {
+          "path": "evidence/mechanism_decision_v1/source_snapshot/mechanism_decision_init.py",
+          "sha256": "e0e52b158dd7bf76b3efacaecdb89bd7d41821069bf8074ea5bb41f8ddc112ab"
+        },
+        {
+          "path": "evidence/workspace_reorganization_20260914/before/root/mechanism_decision_init.py",
+          "sha256": "e0e52b158dd7bf76b3efacaecdb89bd7d41821069bf8074ea5bb41f8ddc112ab"
+        }
+      ]
+    },
+    {
+      "id": 104,
+      "partition": "support",
+      "representative": "evidence/workspace_reorganization_20260914/before/root/adapt_dco_cavity.py",
+      "normalized_sha256": "a1a41a330f920e0bd97a521b8bbeee8b023441c39b2544e8fcc24eb84086aa54",
+      "canonical": "scripts/experiments/adapt_dco_cavity.py",
+      "diff_file": "104_adapt_dco_cavity.diff",
+      "diff_lines": 19,
+      "source_lines": 63,
+      "members": [
+        {
+          "path": "evidence/workspace_reorganization_20260914/before/root/adapt_dco_cavity.py",
+          "sha256": "52231f9bae0db9c8934b2f54081108c0cdd8a81306a90fd9f98d7bb8287d0031"
+        }
+      ]
+    },
+    {
+      "id": 105,
+      "partition": "support",
+      "representative": "evidence/coverage_ab_v1/source/verify_claims_final.py",
+      "normalized_sha256": "a2488d56f410f335ac15805e31055b3cae74f0b66d11c4f08c0ca30ef705be38",
+      "canonical": null,
+      "diff_file": "105_verify_claims_final.diff",
+      "diff_lines": 1063,
+      "source_lines": 1060,
+      "members": [
+        {
+          "path": "evidence/coverage_ab_v1/source/verify_claims_final.py",
+          "sha256": "d2b59539199e0ac10daf20345c31e8b18667324b1775cb2a4c8a0f6d0c3298fa"
+        }
+      ]
+    },
+    {
+      "id": 106,
+      "partition": "support",
+      "representative": "evidence/workspace_reorganization_20260914/before/root/audit_mechanism_decision_review.py",
+      "normalized_sha256": "ae907e97437ac797814ed821d8d4be2859ae403c5b9d75dddd56697c566a8f36",
+      "canonical": "scripts/analysis/audit_mechanism_decision_review.py",
+      "diff_file": "106_audit_mechanism_decision_review.diff",
+      "diff_lines": 27,
+      "source_lines": 116,
+      "members": [
+        {
+          "path": "evidence/workspace_reorganization_20260914/before/root/audit_mechanism_decision_review.py",
+          "sha256": "b26b58a9babb8a23ecb9ff8e7ad3e7368ccdf284c48b841de5ee4cac5e7d5b02"
+        }
+      ]
+    },
+    {
+      "id": 107,
+      "partition": "core",
+      "representative": "evidence/coverage_ab_v1/source/dco.py",
+      "normalized_sha256": "b10b96d5669bce275a22a8db88b6623b7f84374753502200f78d1231297bc3ff",
+      "canonical": "src/pidon/dco.py",
+      "diff_file": "107_dco.diff",
+      "diff_lines": 19,
+      "source_lines": 283,
+      "members": [
+        {
+          "path": "evidence/coverage_ab_v1/source/dco.py",
+          "sha256": "b2dc7240433c9dc3a9bfc3906d1bfc3141ded0dd2f7d4aa63e53a251a8d4b8d8"
+        },
+        {
+          "path": "evidence/gpt6_plan_v2/r0_source_snapshot/dco.py",
+          "sha256": "b2dc7240433c9dc3a9bfc3906d1bfc3141ded0dd2f7d4aa63e53a251a8d4b8d8"
+        },
+        {
+          "path": "evidence/gpt6_plan_v3/A2_control_runs/float32_exact/source_snapshot/dco.py",
+          "sha256": "b2dc7240433c9dc3a9bfc3906d1bfc3141ded0dd2f7d4aa63e53a251a8d4b8d8"
+        },
+        {
+          "path": "evidence/gpt6_plan_v3/A2_control_runs/float64_exact/source_snapshot/dco.py",
+          "sha256": "b2dc7240433c9dc3a9bfc3906d1bfc3141ded0dd2f7d4aa63e53a251a8d4b8d8"
+        },
+        {
+          "path": "evidence/gpt6_plan_v3/A2_control_runs/hard_source_only/source_snapshot/dco.py",
+          "sha256": "b2dc7240433c9dc3a9bfc3906d1bfc3141ded0dd2f7d4aa63e53a251a8d4b8d8"
+        },
+        {
+          "path": "evidence/gpt6_plan_v3/A2_control_runs/wrong_h_half/source_snapshot/dco.py",
+          "sha256": "b2dc7240433c9dc3a9bfc3906d1bfc3141ded0dd2f7d4aa63e53a251a8d4b8d8"
+        },
+        {
+          "path": "evidence/gpt6_plan_v3/A2_control_runs/zero_curl/source_snapshot/dco.py",
+          "sha256": "b2dc7240433c9dc3a9bfc3906d1bfc3141ded0dd2f7d4aa63e53a251a8d4b8d8"
+        },
+        {
+          "path": "evidence/gpt6_plan_v3/h_layout_candidate/source_snapshot/dco.py",
+          "sha256": "b2dc7240433c9dc3a9bfc3906d1bfc3141ded0dd2f7d4aa63e53a251a8d4b8d8"
+        },
+        {
+          "path": "evidence/gpt6_plan_v3_review/source_snapshot/dco.py",
+          "sha256": "b2dc7240433c9dc3a9bfc3906d1bfc3141ded0dd2f7d4aa63e53a251a8d4b8d8"
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_night/control_runs/float64_exact/source_snapshot/dco.py",
+          "sha256": "b2dc7240433c9dc3a9bfc3906d1bfc3141ded0dd2f7d4aa63e53a251a8d4b8d8"
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_night/g0_after_head_integration/control_runs/float32_exact/source_snapshot/dco.py",
+          "sha256": "b2dc7240433c9dc3a9bfc3906d1bfc3141ded0dd2f7d4aa63e53a251a8d4b8d8"
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_night/g0_after_head_integration/control_runs/float64_exact/source_snapshot/dco.py",
+          "sha256": "b2dc7240433c9dc3a9bfc3906d1bfc3141ded0dd2f7d4aa63e53a251a8d4b8d8"
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_night/g0_after_head_integration/control_runs/hard_source_only_negative/source_snapshot/dco.py",
+          "sha256": "b2dc7240433c9dc3a9bfc3906d1bfc3141ded0dd2f7d4aa63e53a251a8d4b8d8"
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_night/g0_after_head_integration/control_runs/wrong_h_half_negative/source_snapshot/dco.py",
+          "sha256": "b2dc7240433c9dc3a9bfc3906d1bfc3141ded0dd2f7d4aa63e53a251a8d4b8d8"
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_night/g0_after_head_integration/control_runs/zero_curl_negative/source_snapshot/dco.py",
+          "sha256": "b2dc7240433c9dc3a9bfc3906d1bfc3141ded0dd2f7d4aa63e53a251a8d4b8d8"
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_night/g0_attempt_02/control_runs/float32_exact/source_snapshot/dco.py",
+          "sha256": "b2dc7240433c9dc3a9bfc3906d1bfc3141ded0dd2f7d4aa63e53a251a8d4b8d8"
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_night/g0_attempt_02/control_runs/float64_exact/source_snapshot/dco.py",
+          "sha256": "b2dc7240433c9dc3a9bfc3906d1bfc3141ded0dd2f7d4aa63e53a251a8d4b8d8"
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_night/g0_attempt_02/control_runs/hard_source_only_negative/source_snapshot/dco.py",
+          "sha256": "b2dc7240433c9dc3a9bfc3906d1bfc3141ded0dd2f7d4aa63e53a251a8d4b8d8"
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_night/g0_attempt_02/control_runs/wrong_h_half_negative/source_snapshot/dco.py",
+          "sha256": "b2dc7240433c9dc3a9bfc3906d1bfc3141ded0dd2f7d4aa63e53a251a8d4b8d8"
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_night/g0_attempt_02/control_runs/zero_curl_negative/source_snapshot/dco.py",
+          "sha256": "b2dc7240433c9dc3a9bfc3906d1bfc3141ded0dd2f7d4aa63e53a251a8d4b8d8"
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_night/source_snapshot/dco.py",
+          "sha256": "b2dc7240433c9dc3a9bfc3906d1bfc3141ded0dd2f7d4aa63e53a251a8d4b8d8"
+        },
+        {
+          "path": "evidence/mechanism_decision_v1/source_snapshot/dco.py",
+          "sha256": "b2dc7240433c9dc3a9bfc3906d1bfc3141ded0dd2f7d4aa63e53a251a8d4b8d8"
+        },
+        {
+          "path": "evidence/spacing_probe_v1/source/dco.py",
+          "sha256": "b2dc7240433c9dc3a9bfc3906d1bfc3141ded0dd2f7d4aa63e53a251a8d4b8d8"
+        },
+        {
+          "path": "evidence/trunk_repair_v1/source/dco.py",
+          "sha256": "b2dc7240433c9dc3a9bfc3906d1bfc3141ded0dd2f7d4aa63e53a251a8d4b8d8"
+        },
+        {
+          "path": "evidence/workspace_reorganization_20260914/before/root/dco.py",
+          "sha256": "b2dc7240433c9dc3a9bfc3906d1bfc3141ded0dd2f7d4aa63e53a251a8d4b8d8"
+        }
+      ]
+    },
+    {
+      "id": 108,
+      "partition": "support",
+      "representative": "evidence/workspace_reorganization_20260914/before/root/mechanism_first_failure.py",
+      "normalized_sha256": "b2b14a43790471ab184b21babd7aeb235072f1382d4a2d32f1754f899be184e9",
+      "canonical": "scripts/experiments/mechanism_first_failure.py",
+      "diff_file": "108_mechanism_first_failure.diff",
+      "diff_lines": 28,
+      "source_lines": 129,
+      "members": [
+        {
+          "path": "evidence/workspace_reorganization_20260914/before/root/mechanism_first_failure.py",
+          "sha256": "e16c6801e212e330ffe1648e5983d4355d06b7a6f2c9a21b8a8be9087cc47845"
+        }
+      ]
+    },
+    {
+      "id": 109,
+      "partition": "core",
+      "representative": "evidence/gpt6_plan_v2/r0_source_snapshot/pidon_solve.py",
+      "normalized_sha256": "b2c12d746bab49e870e2c3cf996a3690c3b7085a913613cd39123e2ecbaa3573",
+      "canonical": "src/pidon/pidon_solve.py",
+      "diff_file": "109_pidon_solve.diff",
+      "diff_lines": 1151,
+      "source_lines": 811,
+      "members": [
+        {
+          "path": "evidence/gpt6_plan_v2/r0_source_snapshot/pidon_solve.py",
+          "sha256": "d8d4d712920fa72d86fd2f8cc583b872b92d7c9d78611b196d06de6aedb6703e"
+        }
+      ]
+    },
+    {
+      "id": 110,
+      "partition": "support",
+      "representative": "evidence/gpt6_plan_v3_review/source_snapshot/audit_v2_stop.py",
+      "normalized_sha256": "b4e3df3913294a9d21ba0f2df2b65ca8838bbddf3261c44bbeee31b2ac4f6ef5",
+      "canonical": "scripts/analysis/audit_v2_stop.py",
+      "diff_file": "110_audit_v2_stop.diff",
+      "diff_lines": 62,
+      "source_lines": 258,
+      "members": [
+        {
+          "path": "evidence/gpt6_plan_v3_review/source_snapshot/audit_v2_stop.py",
+          "sha256": "be9d991c3e99736618db7a53703369e5c81867bd86a67fab57f145afd23a0452"
+        }
+      ]
+    },
+    {
+      "id": 111,
+      "partition": "support",
+      "representative": "evidence/paper_first_v1/source/verify_claims.py",
+      "normalized_sha256": "b52f4c047a2b5cd31a00d95ccd06a25ad48dd1bd22d2f930bf63946cec588e23",
+      "canonical": "scripts/analysis/verify_claims.py",
+      "diff_file": "111_verify_claims.diff",
+      "diff_lines": 977,
+      "source_lines": 682,
+      "members": [
+        {
+          "path": "evidence/paper_first_v1/source/verify_claims.py",
+          "sha256": "b5aea74016c8c176aa02e022a3e0c29575d499114cc5d0d7cbcdbe8969ecbf36"
+        }
+      ]
+    },
+    {
+      "id": 112,
+      "partition": "core",
+      "representative": "evidence/gpt6_plan_v3/h_layout_candidate/source_snapshot/pidon_solve.py",
+      "normalized_sha256": "b5f53101049985efed16e0209b42f38563bb226fdaa3cecfb2ee21f981a6e671",
+      "canonical": "src/pidon/pidon_solve.py",
+      "diff_file": "112_pidon_solve.diff",
+      "diff_lines": 469,
+      "source_lines": 1147,
+      "members": [
+        {
+          "path": "evidence/gpt6_plan_v3/h_layout_candidate/source_snapshot/pidon_solve.py",
+          "sha256": "09b12a3721e1ccd156596b86f79a541d4b01072cad686ba3a288f895f0624343"
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_night/source_snapshot/pidon_solve.py",
+          "sha256": "09b12a3721e1ccd156596b86f79a541d4b01072cad686ba3a288f895f0624343"
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_review/source_snapshot/pidon_solve.py",
+          "sha256": "09b12a3721e1ccd156596b86f79a541d4b01072cad686ba3a288f895f0624343"
+        }
+      ]
+    },
+    {
+      "id": 113,
+      "partition": "core",
+      "representative": "evidence/gpt6_plan_v3/A2_control_runs/float32_exact/source_snapshot/fdtd.py",
+      "normalized_sha256": "b60c661fbb0d4a7cf0c6850918c7a0ec558f17c33084159b680f5f51f2eaae39",
+      "canonical": "src/pidon/fdtd.py",
+      "diff_file": "113_fdtd.diff",
+      "diff_lines": 19,
+      "source_lines": 252,
+      "members": [
+        {
+          "path": "evidence/gpt6_plan_v3/A2_control_runs/float32_exact/source_snapshot/fdtd.py",
+          "sha256": "9512933f90cbb666fcf62d58af98e803e3fd04b5434f55099b27ef71313ac615"
+        },
+        {
+          "path": "evidence/gpt6_plan_v3/A2_control_runs/float64_exact/source_snapshot/fdtd.py",
+          "sha256": "9512933f90cbb666fcf62d58af98e803e3fd04b5434f55099b27ef71313ac615"
+        },
+        {
+          "path": "evidence/gpt6_plan_v3/A2_control_runs/hard_source_only/source_snapshot/fdtd.py",
+          "sha256": "9512933f90cbb666fcf62d58af98e803e3fd04b5434f55099b27ef71313ac615"
+        },
+        {
+          "path": "evidence/gpt6_plan_v3/A2_control_runs/wrong_h_half/source_snapshot/fdtd.py",
+          "sha256": "9512933f90cbb666fcf62d58af98e803e3fd04b5434f55099b27ef71313ac615"
+        },
+        {
+          "path": "evidence/gpt6_plan_v3/A2_control_runs/zero_curl/source_snapshot/fdtd.py",
+          "sha256": "9512933f90cbb666fcf62d58af98e803e3fd04b5434f55099b27ef71313ac615"
+        },
+        {
+          "path": "evidence/gpt6_plan_v3/h_layout_candidate/source_snapshot/fdtd.py",
+          "sha256": "9512933f90cbb666fcf62d58af98e803e3fd04b5434f55099b27ef71313ac615"
+        },
+        {
+          "path": "evidence/gpt6_plan_v3_review/source_snapshot/fdtd.py",
+          "sha256": "9512933f90cbb666fcf62d58af98e803e3fd04b5434f55099b27ef71313ac615"
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_night/control_runs/float64_exact/source_snapshot/fdtd.py",
+          "sha256": "9512933f90cbb666fcf62d58af98e803e3fd04b5434f55099b27ef71313ac615"
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_night/g0_after_head_integration/control_runs/float32_exact/source_snapshot/fdtd.py",
+          "sha256": "9512933f90cbb666fcf62d58af98e803e3fd04b5434f55099b27ef71313ac615"
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_night/g0_after_head_integration/control_runs/float64_exact/source_snapshot/fdtd.py",
+          "sha256": "9512933f90cbb666fcf62d58af98e803e3fd04b5434f55099b27ef71313ac615"
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_night/g0_after_head_integration/control_runs/hard_source_only_negative/source_snapshot/fdtd.py",
+          "sha256": "9512933f90cbb666fcf62d58af98e803e3fd04b5434f55099b27ef71313ac615"
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_night/g0_after_head_integration/control_runs/wrong_h_half_negative/source_snapshot/fdtd.py",
+          "sha256": "9512933f90cbb666fcf62d58af98e803e3fd04b5434f55099b27ef71313ac615"
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_night/g0_after_head_integration/control_runs/zero_curl_negative/source_snapshot/fdtd.py",
+          "sha256": "9512933f90cbb666fcf62d58af98e803e3fd04b5434f55099b27ef71313ac615"
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_night/g0_attempt_02/control_runs/float32_exact/source_snapshot/fdtd.py",
+          "sha256": "9512933f90cbb666fcf62d58af98e803e3fd04b5434f55099b27ef71313ac615"
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_night/g0_attempt_02/control_runs/float64_exact/source_snapshot/fdtd.py",
+          "sha256": "9512933f90cbb666fcf62d58af98e803e3fd04b5434f55099b27ef71313ac615"
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_night/g0_attempt_02/control_runs/hard_source_only_negative/source_snapshot/fdtd.py",
+          "sha256": "9512933f90cbb666fcf62d58af98e803e3fd04b5434f55099b27ef71313ac615"
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_night/g0_attempt_02/control_runs/wrong_h_half_negative/source_snapshot/fdtd.py",
+          "sha256": "9512933f90cbb666fcf62d58af98e803e3fd04b5434f55099b27ef71313ac615"
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_night/g0_attempt_02/control_runs/zero_curl_negative/source_snapshot/fdtd.py",
+          "sha256": "9512933f90cbb666fcf62d58af98e803e3fd04b5434f55099b27ef71313ac615"
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_night/source_snapshot/fdtd.py",
+          "sha256": "9512933f90cbb666fcf62d58af98e803e3fd04b5434f55099b27ef71313ac615"
+        },
+        {
+          "path": "evidence/mechanism_decision_v1/source_snapshot/fdtd.py",
+          "sha256": "9512933f90cbb666fcf62d58af98e803e3fd04b5434f55099b27ef71313ac615"
+        },
+        {
+          "path": "evidence/workspace_reorganization_20260914/before/root/fdtd.py",
+          "sha256": "9512933f90cbb666fcf62d58af98e803e3fd04b5434f55099b27ef71313ac615"
+        }
+      ]
+    },
+    {
+      "id": 114,
+      "partition": "core",
+      "representative": "evidence/gpt6_plan_v2/r0_source_snapshot/pidon_contract.py",
+      "normalized_sha256": "bd43ea4f1fd5aed8f2be76e36d4b2bfc38e0a4515da58f6048026d2292a1bf7a",
+      "canonical": "src/pidon/pidon_contract.py",
+      "diff_file": "114_pidon_contract.diff",
+      "diff_lines": 161,
+      "source_lines": 201,
+      "members": [
+        {
+          "path": "evidence/gpt6_plan_v2/r0_source_snapshot/pidon_contract.py",
+          "sha256": "01dc22622baa14aa20cc5ee3758a00615668bcefefd812d3c01c9af15a5d24fc"
+        }
+      ]
+    },
+    {
+      "id": 115,
+      "partition": "support",
+      "representative": "evidence/gpt6_plan_v3_review/source_snapshot/test_pidon_contract.py",
+      "normalized_sha256": "bd871f604ec687a914470dccdd4c74aeb399a5201d3dd20b83a78ac8689a9717",
+      "canonical": "tests/test_pidon_contract.py",
+      "diff_file": "115_test_pidon_contract.diff",
+      "diff_lines": 92,
+      "source_lines": 286,
+      "members": [
+        {
+          "path": "evidence/gpt6_plan_v3_review/source_snapshot/test_pidon_contract.py",
+          "sha256": "9acc37e8c9390f720fdb015746b94f00ab437becc325e926ae262e563ccc5f02"
+        }
+      ]
+    },
+    {
+      "id": 116,
+      "partition": "support",
+      "representative": "evidence/gpt6_plan_v2/r0_source_snapshot/p3_report.py",
+      "normalized_sha256": "bd8aa6b5398b6a2bd694f9c4cda66886cd0d2b26522ffd65010271a6763589bc",
+      "canonical": "scripts/analysis/p3_report.py",
+      "diff_file": "116_p3_report.diff",
+      "diff_lines": 18,
+      "source_lines": 66,
+      "members": [
+        {
+          "path": "evidence/gpt6_plan_v2/r0_source_snapshot/p3_report.py",
+          "sha256": "245159ff4035bdb3020d75a987119c464d9ebe30876a679ff81916dcfd8c0bc5"
+        },
+        {
+          "path": "evidence/workspace_reorganization_20260914/before/root/p3_report.py",
+          "sha256": "245159ff4035bdb3020d75a987119c464d9ebe30876a679ff81916dcfd8c0bc5"
+        }
+      ]
+    },
+    {
+      "id": 117,
+      "partition": "support",
+      "representative": "evidence/server_resource_v1/local_review_v2/source/scripts/experiments/server_compute_probe.py",
+      "normalized_sha256": "bf2f37b655aeb3e49ba7bac6115d4fbdac7c163a87e4dc916d72440dd9ebc8f8",
+      "canonical": "scripts/experiments/server_compute_probe.py",
+      "diff_file": "117_server_compute_probe.diff",
+      "diff_lines": 26,
+      "source_lines": 138,
+      "members": [
+        {
+          "path": "evidence/server_resource_v1/local_review_v2/source/scripts/experiments/server_compute_probe.py",
+          "sha256": "b8e2e9a33d69422e95b3689496887437b413acf3a054f8875d16a088093e1956"
+        }
+      ]
+    },
+    {
+      "id": 118,
+      "partition": "support",
+      "representative": "evidence/workspace_reorganization_20260914/before/root/review_reproduction_acceptance.py",
+      "normalized_sha256": "c29605c5f1d1f6b6697a7b8a817db96a01ba59e81aae460f4e18587de0c2c6ae",
+      "canonical": "scripts/analysis/review_reproduction_acceptance.py",
+      "diff_file": "118_review_reproduction_acceptance.diff",
+      "diff_lines": 25,
+      "source_lines": 63,
+      "members": [
+        {
+          "path": "evidence/workspace_reorganization_20260914/before/root/review_reproduction_acceptance.py",
+          "sha256": "fcf9be07fb3f7eb70d84f45519bd5fb053fbc1b3eb2c92eeb11c3d2ff4376ffc"
+        }
+      ]
+    },
+    {
+      "id": 119,
+      "partition": "support",
+      "representative": "evidence/mechanism_decision_v1/source_snapshot/mechanism_decision_runner.py",
+      "normalized_sha256": "c2ad7ac9d318f04003c8e3ce608b69da59513d79df517810622da11f831c258b",
+      "canonical": "scripts/experiments/mechanism_decision_runner.py",
+      "diff_file": "119_mechanism_decision_runner.diff",
+      "diff_lines": 28,
+      "source_lines": 135,
+      "members": [
+        {
+          "path": "evidence/mechanism_decision_v1/source_snapshot/mechanism_decision_runner.py",
+          "sha256": "e6e5beb6d033d143ffe0a23eba32f8c47053dfa973ba9fe2668f43fe3bbb631f"
+        },
+        {
+          "path": "evidence/workspace_reorganization_20260914/before/root/mechanism_decision_runner.py",
+          "sha256": "e6e5beb6d033d143ffe0a23eba32f8c47053dfa973ba9fe2668f43fe3bbb631f"
+        }
+      ]
+    },
+    {
+      "id": 120,
+      "partition": "support",
+      "representative": "evidence/gpt6_plan_v4_night/source_snapshot/reference_cache.py",
+      "normalized_sha256": "c694f0505f977034cba8c3df9288c9e7106084f859efc939050ad860a89e57df",
+      "canonical": "src/pidon/reference_cache.py",
+      "diff_file": "120_reference_cache.diff",
+      "diff_lines": 29,
+      "source_lines": 108,
+      "members": [
+        {
+          "path": "evidence/gpt6_plan_v4_night/source_snapshot/reference_cache.py",
+          "sha256": "c7abf37f19987f6ddd76f2655d31575ea7d3358ec854644b39705d10c2bb0447"
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_review/source_snapshot/reference_cache.py",
+          "sha256": "c7abf37f19987f6ddd76f2655d31575ea7d3358ec854644b39705d10c2bb0447"
+        },
+        {
+          "path": "evidence/workspace_reorganization_20260914/before/root/reference_cache.py",
+          "sha256": "c7abf37f19987f6ddd76f2655d31575ea7d3358ec854644b39705d10c2bb0447"
+        }
+      ]
+    },
+    {
+      "id": 121,
+      "partition": "support",
+      "representative": "evidence/workspace_reorganization_20260914/before/root/verify_night_review_delivery.py",
+      "normalized_sha256": "c748cd1ac39f3ef72575da7e2e3b5553756fbc6aff8368a6735bd2e7ac993e42",
+      "canonical": "scripts/analysis/verify_night_review_delivery.py",
+      "diff_file": "121_verify_night_review_delivery.diff",
+      "diff_lines": 16,
+      "source_lines": 40,
+      "members": [
+        {
+          "path": "evidence/workspace_reorganization_20260914/before/root/verify_night_review_delivery.py",
+          "sha256": "2a70395ac962b3326deabe0759506a8b25ca4e08836a4c4657efc906ce2d68a5"
+        }
+      ]
+    },
+    {
+      "id": 122,
+      "partition": "support",
+      "representative": "evidence/workspace_reorganization_20260914/before/root/structured_cavity.py",
+      "normalized_sha256": "c7e24db08d574dd7a252a0f43444c5788a4ba27fb5b308ae02d2f70516854d97",
+      "canonical": "scripts/exploratory/structured_cavity.py",
+      "diff_file": "122_structured_cavity.diff",
+      "diff_lines": 19,
+      "source_lines": 324,
+      "members": [
+        {
+          "path": "evidence/workspace_reorganization_20260914/before/root/structured_cavity.py",
+          "sha256": "aea7aa7b68cd72424713aa0ec7b2ed622184df9c9681f5c9f6be5ce808c917c6"
+        }
+      ]
+    },
+    {
+      "id": 123,
+      "partition": "support",
+      "representative": "evidence/gpt6_plan_v4_night/g0_after_head_integration/control_runs/float32_exact/source_snapshot/pidon_exact_control.py",
+      "normalized_sha256": "c856e79dde052b91d61092f0acd654a5e7b3a9c272bfb9df91394c680efeee67",
+      "canonical": "scripts/experiments/pidon_exact_control.py",
+      "diff_file": "123_pidon_exact_control.diff",
+      "diff_lines": 30,
+      "source_lines": 286,
+      "members": [
+        {
+          "path": "evidence/gpt6_plan_v4_night/g0_after_head_integration/control_runs/float32_exact/source_snapshot/pidon_exact_control.py",
+          "sha256": "a921604fc76c041413f1312d18ebb2e9581bdc776a49725c8b8abdb91ac317ee"
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_night/g0_after_head_integration/control_runs/float64_exact/source_snapshot/pidon_exact_control.py",
+          "sha256": "a921604fc76c041413f1312d18ebb2e9581bdc776a49725c8b8abdb91ac317ee"
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_night/g0_after_head_integration/control_runs/hard_source_only_negative/source_snapshot/pidon_exact_control.py",
+          "sha256": "a921604fc76c041413f1312d18ebb2e9581bdc776a49725c8b8abdb91ac317ee"
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_night/g0_after_head_integration/control_runs/wrong_h_half_negative/source_snapshot/pidon_exact_control.py",
+          "sha256": "a921604fc76c041413f1312d18ebb2e9581bdc776a49725c8b8abdb91ac317ee"
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_night/g0_after_head_integration/control_runs/zero_curl_negative/source_snapshot/pidon_exact_control.py",
+          "sha256": "a921604fc76c041413f1312d18ebb2e9581bdc776a49725c8b8abdb91ac317ee"
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_night/g0_attempt_02/control_runs/float32_exact/source_snapshot/pidon_exact_control.py",
+          "sha256": "a921604fc76c041413f1312d18ebb2e9581bdc776a49725c8b8abdb91ac317ee"
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_night/g0_attempt_02/control_runs/float64_exact/source_snapshot/pidon_exact_control.py",
+          "sha256": "a921604fc76c041413f1312d18ebb2e9581bdc776a49725c8b8abdb91ac317ee"
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_night/g0_attempt_02/control_runs/hard_source_only_negative/source_snapshot/pidon_exact_control.py",
+          "sha256": "a921604fc76c041413f1312d18ebb2e9581bdc776a49725c8b8abdb91ac317ee"
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_night/g0_attempt_02/control_runs/wrong_h_half_negative/source_snapshot/pidon_exact_control.py",
+          "sha256": "a921604fc76c041413f1312d18ebb2e9581bdc776a49725c8b8abdb91ac317ee"
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_night/g0_attempt_02/control_runs/zero_curl_negative/source_snapshot/pidon_exact_control.py",
+          "sha256": "a921604fc76c041413f1312d18ebb2e9581bdc776a49725c8b8abdb91ac317ee"
+        },
+        {
+          "path": "evidence/workspace_reorganization_20260914/before/root/pidon_exact_control.py",
+          "sha256": "a921604fc76c041413f1312d18ebb2e9581bdc776a49725c8b8abdb91ac317ee"
+        }
+      ]
+    },
+    {
+      "id": 124,
+      "partition": "core",
+      "representative": "evidence/grid_diagnosis_v1/source/dco.py",
+      "normalized_sha256": "c9399476b020a35670d2d4537fe23436bd1b3985ce8d7a8e9cae1fcecb86b001",
+      "canonical": "src/pidon/dco.py",
+      "diff_file": "124_dco.diff",
+      "diff_lines": 78,
+      "source_lines": 291,
+      "members": [
+        {
+          "path": "evidence/grid_diagnosis_v1/source/dco.py",
+          "sha256": "7cd5d57a364fc4d229376ff584454ec55bdf39bb1393dc644ad2e870f4d1f1b1"
+        },
+        {
+          "path": "evidence/paper_first_v1/source/dco.py",
+          "sha256": "7cd5d57a364fc4d229376ff584454ec55bdf39bb1393dc644ad2e870f4d1f1b1"
+        }
+      ]
+    },
+    {
+      "id": 125,
+      "partition": "support",
+      "representative": "evidence/workspace_reorganization_20260914/before/root/night_report.py",
+      "normalized_sha256": "cae0b1e80ad33246d4bd9d1b4d8cb9dff22563971cc766b77c90978e957c75de",
+      "canonical": "scripts/analysis/night_report.py",
+      "diff_file": "125_night_report.diff",
+      "diff_lines": 19,
+      "source_lines": 519,
+      "members": [
+        {
+          "path": "evidence/workspace_reorganization_20260914/before/root/night_report.py",
+          "sha256": "f3caba36c780b1ddc52c9e9fe19fa1ca859b89011178afc097355664fbc40ca0"
+        }
+      ]
+    },
+    {
+      "id": 126,
+      "partition": "core",
+      "representative": "evidence/gpt6_plan_v3/A2_control_runs/float32_exact/source_snapshot/pidon_recording.py",
+      "normalized_sha256": "cb58b7d03ce344c9d01744769a8896d4c6d37d98234d1ced70d5bc911d0cbf15",
+      "canonical": "src/pidon/pidon_recording.py",
+      "diff_file": "126_pidon_recording.diff",
+      "diff_lines": 194,
+      "source_lines": 179,
+      "members": [
+        {
+          "path": "evidence/gpt6_plan_v3/A2_control_runs/float32_exact/source_snapshot/pidon_recording.py",
+          "sha256": "00547a4419bc148694971a1820fd47c3616d06c715d1d10fe22dd7d8b2f9913e"
+        },
+        {
+          "path": "evidence/gpt6_plan_v3/A2_control_runs/float64_exact/source_snapshot/pidon_recording.py",
+          "sha256": "00547a4419bc148694971a1820fd47c3616d06c715d1d10fe22dd7d8b2f9913e"
+        },
+        {
+          "path": "evidence/gpt6_plan_v3/A2_control_runs/hard_source_only/source_snapshot/pidon_recording.py",
+          "sha256": "00547a4419bc148694971a1820fd47c3616d06c715d1d10fe22dd7d8b2f9913e"
+        },
+        {
+          "path": "evidence/gpt6_plan_v3/A2_control_runs/wrong_h_half/source_snapshot/pidon_recording.py",
+          "sha256": "00547a4419bc148694971a1820fd47c3616d06c715d1d10fe22dd7d8b2f9913e"
+        },
+        {
+          "path": "evidence/gpt6_plan_v3/A2_control_runs/zero_curl/source_snapshot/pidon_recording.py",
+          "sha256": "00547a4419bc148694971a1820fd47c3616d06c715d1d10fe22dd7d8b2f9913e"
+        },
+        {
+          "path": "evidence/gpt6_plan_v3/h_layout_candidate/source_snapshot/pidon_recording.py",
+          "sha256": "00547a4419bc148694971a1820fd47c3616d06c715d1d10fe22dd7d8b2f9913e"
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_night/source_snapshot/pidon_recording.py",
+          "sha256": "00547a4419bc148694971a1820fd47c3616d06c715d1d10fe22dd7d8b2f9913e"
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_review/source_snapshot/pidon_recording.py",
+          "sha256": "00547a4419bc148694971a1820fd47c3616d06c715d1d10fe22dd7d8b2f9913e"
+        }
+      ]
+    },
+    {
+      "id": 127,
+      "partition": "support",
+      "representative": "evidence/workspace_reorganization_20260914/before/root/test_mechanism_decision_eval.py",
+      "normalized_sha256": "ccc5f354bc2db62789d9e74ae62c1dd4a39352a543d36561f48a55383cf5c5a9",
+      "canonical": "tests/test_mechanism_decision_eval.py",
+      "diff_file": "127_test_mechanism_decision_eval.diff",
+      "diff_lines": 15,
+      "source_lines": 23,
+      "members": [
+        {
+          "path": "evidence/workspace_reorganization_20260914/before/root/test_mechanism_decision_eval.py",
+          "sha256": "06b76421fb7d15ccd1a1a4ba1bd59123231e9fa4a85aacec2d844b55797f1022"
+        }
+      ]
+    },
+    {
+      "id": 128,
+      "partition": "support",
+      "representative": "evidence/server_resource_v1/dco_value_review_20260916_r1/review_dco_pretraining.py",
+      "normalized_sha256": "cd5335a23b7a2d48a78e05aa5c6665c3efa9dfdf7899c25ec7709e4e0251039c",
+      "canonical": "tools/review_dco_pretraining.py",
+      "diff_file": "128_review_dco_pretraining.diff",
+      "diff_lines": 84,
+      "source_lines": 297,
+      "members": [
+        {
+          "path": "evidence/server_resource_v1/dco_value_review_20260916_r1/review_dco_pretraining.py",
+          "sha256": "cd5335a23b7a2d48a78e05aa5c6665c3efa9dfdf7899c25ec7709e4e0251039c"
+        }
+      ]
+    },
+    {
+      "id": 129,
+      "partition": "support",
+      "representative": "evidence/workspace_reorganization_20260914/before/root/structured3d.py",
+      "normalized_sha256": "d07391c4f06002dc9d0fec2f823db052b93f5692fcf12b82c2b9f2e0ec9704c5",
+      "canonical": "scripts/exploratory/structured3d.py",
+      "diff_file": "129_structured3d.diff",
+      "diff_lines": 19,
+      "source_lines": 243,
+      "members": [
+        {
+          "path": "evidence/workspace_reorganization_20260914/before/root/structured3d.py",
+          "sha256": "a231f83d4c5b6938fdc8a31e0418333c5ffb155735eb32d24938a2f485d0730a"
+        }
+      ]
+    },
+    {
+      "id": 130,
+      "partition": "support",
+      "representative": "evidence/workspace_reorganization_20260914/before/root/make_figs.py",
+      "normalized_sha256": "d1b34103b409b9f8e4dd4015231fd36065fba41e94f0c9f4eb66fa830a6ed480",
+      "canonical": "scripts/figures/make_figs.py",
+      "diff_file": "130_make_figs.diff",
+      "diff_lines": 19,
+      "source_lines": 565,
+      "members": [
+        {
+          "path": "evidence/workspace_reorganization_20260914/before/root/make_figs.py",
+          "sha256": "98a17b08160ec5b8f27990f8bf8026365531d31f6053a9de82e18e0ad094b5cf"
+        }
+      ]
+    },
+    {
+      "id": 131,
+      "partition": "support",
+      "representative": "evidence/workspace_reorganization_20260914/before/root/audit_h_layout.py",
+      "normalized_sha256": "d2a759de27c198917de0cc1fe720f65b4d8edbd40e88c1709bd704fea86f73a6",
+      "canonical": "scripts/analysis/audit_h_layout.py",
+      "diff_file": "131_audit_h_layout.diff",
+      "diff_lines": 16,
+      "source_lines": 47,
+      "members": [
+        {
+          "path": "evidence/workspace_reorganization_20260914/before/root/audit_h_layout.py",
+          "sha256": "47d35697b095822b4390be571c102250b41300d20b47f639654d060c1cac3660"
+        }
+      ]
+    },
+    {
+      "id": 132,
+      "partition": "support",
+      "representative": "evidence/workspace_reorganization_20260914/before/root/a3_readback.py",
+      "normalized_sha256": "d4bedfca23536d5c8c3586c77132ef786e1164c292b9e22bf4361b88f2f85ca8",
+      "canonical": "scripts/analysis/a3_readback.py",
+      "diff_file": "132_a3_readback.diff",
+      "diff_lines": 29,
+      "source_lines": 49,
+      "members": [
+        {
+          "path": "evidence/workspace_reorganization_20260914/before/root/a3_readback.py",
+          "sha256": "a0b7db26d1162b2bbb3d8db4c1b06601b76b0e795965f9b4932e39ea6aec8fed"
+        }
+      ]
+    },
+    {
+      "id": 133,
+      "partition": "support",
+      "representative": "evidence/workspace_reorganization_20260914/before/root/test_phase1_pilot.py",
+      "normalized_sha256": "d5fd94c3f61765898483f87274d7fe302ee25ae4fcb4dc305ea45964ef0e42b6",
+      "canonical": "tests/test_phase1_pilot.py",
+      "diff_file": "133_test_phase1_pilot.diff",
+      "diff_lines": 15,
+      "source_lines": 25,
+      "members": [
+        {
+          "path": "evidence/workspace_reorganization_20260914/before/root/test_phase1_pilot.py",
+          "sha256": "669260dccd39cdcddedaea337943230642749878b3a6ce9f5a8c3882ba0e7645"
+        }
+      ]
+    },
+    {
+      "id": 134,
+      "partition": "support",
+      "representative": "evidence/gpt6_plan_v4_night/control_runs/float64_exact/source_snapshot/pidon_exact_control.py",
+      "normalized_sha256": "d6093e9fa0f5ad7395c6dcc174ecbd86dbab52de5bccf6a9a09f2848ca890659",
+      "canonical": "scripts/experiments/pidon_exact_control.py",
+      "diff_file": "134_pidon_exact_control.diff",
+      "diff_lines": 41,
+      "source_lines": 286,
+      "members": [
+        {
+          "path": "evidence/gpt6_plan_v4_night/control_runs/float64_exact/source_snapshot/pidon_exact_control.py",
+          "sha256": "f63d2e5b5210e167839d152f53d1c37c73f0c925f554e1325844a6afdc648209"
+        }
+      ]
+    },
+    {
+      "id": 135,
+      "partition": "core",
+      "representative": "evidence/gpt6_plan_v4_night/control_runs/float64_exact/source_snapshot/pidon_solve.py",
+      "normalized_sha256": "d7549a3787612ceb88ba8ffaebdc9c0028979b5646f4a72ec527a4c5efb91439",
+      "canonical": "src/pidon/pidon_solve.py",
+      "diff_file": "135_pidon_solve.diff",
+      "diff_lines": 275,
+      "source_lines": 1223,
+      "members": [
+        {
+          "path": "evidence/gpt6_plan_v4_night/control_runs/float64_exact/source_snapshot/pidon_solve.py",
+          "sha256": "409e4a5e4e6be6eeec287cdb15121b93899cf9c5a913333831cdfea9c9239139"
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_night/g0_attempt_02/control_runs/float32_exact/source_snapshot/pidon_solve.py",
+          "sha256": "409e4a5e4e6be6eeec287cdb15121b93899cf9c5a913333831cdfea9c9239139"
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_night/g0_attempt_02/control_runs/float64_exact/source_snapshot/pidon_solve.py",
+          "sha256": "409e4a5e4e6be6eeec287cdb15121b93899cf9c5a913333831cdfea9c9239139"
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_night/g0_attempt_02/control_runs/hard_source_only_negative/source_snapshot/pidon_solve.py",
+          "sha256": "409e4a5e4e6be6eeec287cdb15121b93899cf9c5a913333831cdfea9c9239139"
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_night/g0_attempt_02/control_runs/wrong_h_half_negative/source_snapshot/pidon_solve.py",
+          "sha256": "409e4a5e4e6be6eeec287cdb15121b93899cf9c5a913333831cdfea9c9239139"
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_night/g0_attempt_02/control_runs/zero_curl_negative/source_snapshot/pidon_solve.py",
+          "sha256": "409e4a5e4e6be6eeec287cdb15121b93899cf9c5a913333831cdfea9c9239139"
+        }
+      ]
+    },
+    {
+      "id": 136,
+      "partition": "support",
+      "representative": "evidence/workspace_reorganization_20260914/before/root/exact_stencil.py",
+      "normalized_sha256": "d7b6e78be395acfaf90954bcb3fa0f197f1299cfa0087b5bcbcc68a3a7484801",
+      "canonical": "src/pidon/exact_stencil.py",
+      "diff_file": "136_exact_stencil.diff",
+      "diff_lines": 19,
+      "source_lines": 135,
+      "members": [
+        {
+          "path": "evidence/workspace_reorganization_20260914/before/root/exact_stencil.py",
+          "sha256": "e53b076ddd4b9b1e9b31b6d65ce19659f9e371344c57f703b93f5cd629b2f94f"
+        }
+      ]
+    },
+    {
+      "id": 137,
+      "partition": "core",
+      "representative": "evidence/gpt6_plan_v3/A2_control_runs/float32_exact/source_snapshot/pidon_contract.py",
+      "normalized_sha256": "d8700d584a4b2d8d289c15e187388da7ce0a63e18e92bd25c7e523cffbd7e065",
+      "canonical": "src/pidon/pidon_contract.py",
+      "diff_file": "137_pidon_contract.diff",
+      "diff_lines": 85,
+      "source_lines": 257,
+      "members": [
+        {
+          "path": "evidence/gpt6_plan_v3/A2_control_runs/float32_exact/source_snapshot/pidon_contract.py",
+          "sha256": "e5dde73a7361009b81eee2c917f6f0e03a1fcfefda64718a3c9a9390a38ddfd2"
+        },
+        {
+          "path": "evidence/gpt6_plan_v3/A2_control_runs/float64_exact/source_snapshot/pidon_contract.py",
+          "sha256": "e5dde73a7361009b81eee2c917f6f0e03a1fcfefda64718a3c9a9390a38ddfd2"
+        },
+        {
+          "path": "evidence/gpt6_plan_v3/A2_control_runs/hard_source_only/source_snapshot/pidon_contract.py",
+          "sha256": "e5dde73a7361009b81eee2c917f6f0e03a1fcfefda64718a3c9a9390a38ddfd2"
+        },
+        {
+          "path": "evidence/gpt6_plan_v3/A2_control_runs/wrong_h_half/source_snapshot/pidon_contract.py",
+          "sha256": "e5dde73a7361009b81eee2c917f6f0e03a1fcfefda64718a3c9a9390a38ddfd2"
+        },
+        {
+          "path": "evidence/gpt6_plan_v3/A2_control_runs/zero_curl/source_snapshot/pidon_contract.py",
+          "sha256": "e5dde73a7361009b81eee2c917f6f0e03a1fcfefda64718a3c9a9390a38ddfd2"
+        },
+        {
+          "path": "evidence/gpt6_plan_v3/h_layout_candidate/source_snapshot/pidon_contract.py",
+          "sha256": "e5dde73a7361009b81eee2c917f6f0e03a1fcfefda64718a3c9a9390a38ddfd2"
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_night/source_snapshot/pidon_contract.py",
+          "sha256": "e5dde73a7361009b81eee2c917f6f0e03a1fcfefda64718a3c9a9390a38ddfd2"
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_review/source_snapshot/pidon_contract.py",
+          "sha256": "e5dde73a7361009b81eee2c917f6f0e03a1fcfefda64718a3c9a9390a38ddfd2"
+        }
+      ]
+    },
+    {
+      "id": 138,
+      "partition": "support",
+      "representative": "evidence/workspace_reorganization_20260914/before/root/project_paths.py",
+      "normalized_sha256": "dc166fc0062981b1feaa9007686008ee66c2f22876c33484d033685051d7a421",
+      "canonical": "project_paths.py",
+      "diff_file": "138_project_paths.diff",
+      "diff_lines": 29,
+      "source_lines": 47,
+      "members": [
+        {
+          "path": "evidence/workspace_reorganization_20260914/before/root/project_paths.py",
+          "sha256": "ffa49399fd8263b4cb5bb9525a4d981592e64db55c068529591f97eee37f9067"
+        }
+      ]
+    },
+    {
+      "id": 139,
+      "partition": "support",
+      "representative": "evidence/workspace_reorganization_20260914/before/root/gap_analysis.py",
+      "normalized_sha256": "dfaa697a9f49302054a523b27df8a155449167c6ffe1a84fb4e6d854db85e9bd",
+      "canonical": "scripts/experiments/gap_analysis.py",
+      "diff_file": "139_gap_analysis.diff",
+      "diff_lines": 19,
+      "source_lines": 270,
+      "members": [
+        {
+          "path": "evidence/workspace_reorganization_20260914/before/root/gap_analysis.py",
+          "sha256": "9eabf73cf5d7badf82b2356c9bec77c7284116a8b616197147dac8d1955b8bef"
+        }
+      ]
+    },
+    {
+      "id": 140,
+      "partition": "support",
+      "representative": "evidence/gpt6_plan_v4_night/source_snapshot/night_budget.py",
+      "normalized_sha256": "e0176a46b243afab68904ddcfecf836bd248ad76fe0b46d0c8a8eb36a45db0c7",
+      "canonical": "scripts/experiments/night_budget.py",
+      "diff_file": "140_night_budget.diff",
+      "diff_lines": 19,
+      "source_lines": 198,
+      "members": [
+        {
+          "path": "evidence/gpt6_plan_v4_night/source_snapshot/night_budget.py",
+          "sha256": "cc4293ee69da107d08d84fc50b99109ab39436f7a1845e6b93112748bdf5b5e0"
+        },
+        {
+          "path": "evidence/workspace_reorganization_20260914/before/root/night_budget.py",
+          "sha256": "cc4293ee69da107d08d84fc50b99109ab39436f7a1845e6b93112748bdf5b5e0"
+        }
+      ]
+    },
+    {
+      "id": 141,
+      "partition": "support",
+      "representative": "evidence/gpt6_plan_v4_review/source_snapshot/a1_contract_report.py",
+      "normalized_sha256": "e0e34cfe4439f121f55dfa0fafc0732985f7c5ef148e3a29a1c6c57a89faecd7",
+      "canonical": "scripts/analysis/a1_contract_report.py",
+      "diff_file": "141_a1_contract_report.diff",
+      "diff_lines": 29,
+      "source_lines": 95,
+      "members": [
+        {
+          "path": "evidence/gpt6_plan_v4_review/source_snapshot/a1_contract_report.py",
+          "sha256": "a7fbea1d05de858e0c69355c964e567e6e6de2815f22f0957de6dc928d5dcb8e"
+        },
+        {
+          "path": "evidence/workspace_reorganization_20260914/before/root/a1_contract_report.py",
+          "sha256": "a7fbea1d05de858e0c69355c964e567e6e6de2815f22f0957de6dc928d5dcb8e"
+        }
+      ]
+    },
+    {
+      "id": 142,
+      "partition": "core",
+      "representative": "evidence/gpt6_plan_v4_night/g0_after_head_integration/control_runs/float32_exact/source_snapshot/pidon_solve.py",
+      "normalized_sha256": "e900e308f7234acb826990a1fa177a1d8aa91131e2addf43fa19bbe0f4f7ec5e",
+      "canonical": "src/pidon/pidon_solve.py",
+      "diff_file": "142_pidon_solve.diff",
+      "diff_lines": 108,
+      "source_lines": 1304,
+      "members": [
+        {
+          "path": "evidence/gpt6_plan_v4_night/g0_after_head_integration/control_runs/float32_exact/source_snapshot/pidon_solve.py",
+          "sha256": "1e50c4f388a7bd84350129b6057d86f5d660a02063b85aec2ff165b304bf5361"
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_night/g0_after_head_integration/control_runs/float64_exact/source_snapshot/pidon_solve.py",
+          "sha256": "1e50c4f388a7bd84350129b6057d86f5d660a02063b85aec2ff165b304bf5361"
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_night/g0_after_head_integration/control_runs/hard_source_only_negative/source_snapshot/pidon_solve.py",
+          "sha256": "1e50c4f388a7bd84350129b6057d86f5d660a02063b85aec2ff165b304bf5361"
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_night/g0_after_head_integration/control_runs/wrong_h_half_negative/source_snapshot/pidon_solve.py",
+          "sha256": "1e50c4f388a7bd84350129b6057d86f5d660a02063b85aec2ff165b304bf5361"
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_night/g0_after_head_integration/control_runs/zero_curl_negative/source_snapshot/pidon_solve.py",
+          "sha256": "1e50c4f388a7bd84350129b6057d86f5d660a02063b85aec2ff165b304bf5361"
+        },
+        {
+          "path": "evidence/mechanism_decision_v1/source_snapshot/pidon_solve.py",
+          "sha256": "1e50c4f388a7bd84350129b6057d86f5d660a02063b85aec2ff165b304bf5361"
+        }
+      ]
+    },
+    {
+      "id": 143,
+      "partition": "support",
+      "representative": "evidence/workspace_reorganization_20260914/before/root/n3_recover_continue.py",
+      "normalized_sha256": "ea8053485a65547199187c0231ed1f6b206894e0e169c7cf95ef94286769d8b2",
+      "canonical": "scripts/experiments/n3_recover_continue.py",
+      "diff_file": "143_n3_recover_continue.diff",
+      "diff_lines": 28,
+      "source_lines": 37,
+      "members": [
+        {
+          "path": "evidence/workspace_reorganization_20260914/before/root/n3_recover_continue.py",
+          "sha256": "9550c55addecac2f2d4169eb4311dce15dece75a830f14e0ab2fc710437e3244"
+        }
+      ]
+    },
+    {
+      "id": 144,
+      "partition": "core",
+      "representative": "evidence/gpt6_plan_v3/A2_control_runs/float32_exact/source_snapshot/pidon_solve.py",
+      "normalized_sha256": "eb195c79ab5c95ddbe69857e752697ad472f60f1ffaeeb71affe0f4d4f64b7c8",
+      "canonical": "src/pidon/pidon_solve.py",
+      "diff_file": "144_pidon_solve.diff",
+      "diff_lines": 558,
+      "source_lines": 1132,
+      "members": [
+        {
+          "path": "evidence/gpt6_plan_v3/A2_control_runs/float32_exact/source_snapshot/pidon_solve.py",
+          "sha256": "6012cfd0f2d71425e3fa067b04f0632ad057c35027569de15303bb9a18bdf829"
+        },
+        {
+          "path": "evidence/gpt6_plan_v3/A2_control_runs/float64_exact/source_snapshot/pidon_solve.py",
+          "sha256": "6012cfd0f2d71425e3fa067b04f0632ad057c35027569de15303bb9a18bdf829"
+        },
+        {
+          "path": "evidence/gpt6_plan_v3/A2_control_runs/hard_source_only/source_snapshot/pidon_solve.py",
+          "sha256": "6012cfd0f2d71425e3fa067b04f0632ad057c35027569de15303bb9a18bdf829"
+        },
+        {
+          "path": "evidence/gpt6_plan_v3/A2_control_runs/wrong_h_half/source_snapshot/pidon_solve.py",
+          "sha256": "6012cfd0f2d71425e3fa067b04f0632ad057c35027569de15303bb9a18bdf829"
+        },
+        {
+          "path": "evidence/gpt6_plan_v3/A2_control_runs/zero_curl/source_snapshot/pidon_solve.py",
+          "sha256": "6012cfd0f2d71425e3fa067b04f0632ad057c35027569de15303bb9a18bdf829"
+        }
+      ]
+    },
+    {
+      "id": 145,
+      "partition": "support",
+      "representative": "evidence/spacing_probe_v1/source/verify_claims_final.py",
+      "normalized_sha256": "ebd4f9d3de18ddfdea33e32b087dbf99a35ad77aba0338f0b351b9d7ab61c4bb",
+      "canonical": null,
+      "diff_file": "145_verify_claims_final.diff",
+      "diff_lines": 925,
+      "source_lines": 922,
+      "members": [
+        {
+          "path": "evidence/spacing_probe_v1/source/verify_claims_final.py",
+          "sha256": "c997130fe869da7b54e2244fe71e35cf6083e191885d26fbc44246e66e140d99"
+        }
+      ]
+    },
+    {
+      "id": 146,
+      "partition": "support",
+      "representative": "evidence/gpt6_plan_v3_review/source_snapshot/audit_v2_stop_reference_corrected.py",
+      "normalized_sha256": "ec2214ec26b21843ca8ab78205c91b22c125f5dcceacdf9ffaabc75076f42b56",
+      "canonical": null,
+      "diff_file": "146_audit_v2_stop_reference_corrected.diff",
+      "diff_lines": 275,
+      "source_lines": 272,
+      "members": [
+        {
+          "path": "evidence/gpt6_plan_v3_review/source_snapshot/audit_v2_stop_reference_corrected.py",
+          "sha256": "691de92647a1b59e613d6c72ca856f9164107e4580ef266cc21d45a5ff2a4f4e"
+        },
+        {
+          "path": "evidence/workspace_reorganization_20260914/before/root/audit_v2_stop.py",
+          "sha256": "691de92647a1b59e613d6c72ca856f9164107e4580ef266cc21d45a5ff2a4f4e"
+        }
+      ]
+    },
+    {
+      "id": 147,
+      "partition": "support",
+      "representative": "evidence/gpt6_plan_v3_review/source_snapshot/r1_r2_reports.py",
+      "normalized_sha256": "eebbf3c134ba189352878baacdae9bbd66fd3e613513072b6f7c9e7d9f192637",
+      "canonical": "scripts/analysis/r1_r2_reports.py",
+      "diff_file": "147_r1_r2_reports.diff",
+      "diff_lines": 25,
+      "source_lines": 62,
+      "members": [
+        {
+          "path": "evidence/gpt6_plan_v3_review/source_snapshot/r1_r2_reports.py",
+          "sha256": "374d4dfc5439c52ce1c0c9d5775bc127c32ffea7264940824868e08aea4a1ef4"
+        },
+        {
+          "path": "evidence/workspace_reorganization_20260914/before/root/r1_r2_reports.py",
+          "sha256": "374d4dfc5439c52ce1c0c9d5775bc127c32ffea7264940824868e08aea4a1ef4"
+        }
+      ]
+    },
+    {
+      "id": 148,
+      "partition": "support",
+      "representative": "evidence/workspace_reorganization_20260914/before/root/stage2_evidence.py",
+      "normalized_sha256": "ef006ce94e2417a5455e7bff32a3732a6f672f7a8812cfb1b09f168ebef3fdf6",
+      "canonical": "scripts/analysis/stage2_evidence.py",
+      "diff_file": "148_stage2_evidence.diff",
+      "diff_lines": 16,
+      "source_lines": 48,
+      "members": [
+        {
+          "path": "evidence/workspace_reorganization_20260914/before/root/stage2_evidence.py",
+          "sha256": "39e84a49435a708a23dad67daadf419c168e0c8f9ee4de3a8f7d2c6b2fb25dd6"
+        }
+      ]
+    },
+    {
+      "id": 149,
+      "partition": "support",
+      "representative": "evidence/workspace_reorganization_20260914/before/root/test_night_evidence.py",
+      "normalized_sha256": "f1bd5860411259707e2e61c66fd8860f89da974a0a59bfbdd646411e4edccfac",
+      "canonical": "tests/test_night_evidence.py",
+      "diff_file": "149_test_night_evidence.diff",
+      "diff_lines": 15,
+      "source_lines": 27,
+      "members": [
+        {
+          "path": "evidence/workspace_reorganization_20260914/before/root/test_night_evidence.py",
+          "sha256": "285d39b3868c373116b236d5c2a0a10c3c6ea7ea146a9c4c72de111ba5a07d85"
+        }
+      ]
+    },
+    {
+      "id": 150,
+      "partition": "support",
+      "representative": "evidence/workspace_reorganization_20260914/before/root/check_files.py",
+      "normalized_sha256": "f327113c608b79d45f7f018a0f547ad670cb15d89faef966d0009f48cb866e7c",
+      "canonical": "scripts/analysis/check_files.py",
+      "diff_file": "150_check_files.diff",
+      "diff_lines": 19,
+      "source_lines": 62,
+      "members": [
+        {
+          "path": "evidence/workspace_reorganization_20260914/before/root/check_files.py",
+          "sha256": "3e2e8ec5b2d717c36a8b086db80c9207bba93fe15c4a17d895e514701c04aa17"
+        }
+      ]
+    },
+    {
+      "id": 151,
+      "partition": "support",
+      "representative": "evidence/workspace_reorganization_20260914/before/root/night_review_evidence.py",
+      "normalized_sha256": "fb53a043031a1f754e455a04a3e0b20428d5a0b1fe534107ceed908af1a04a84",
+      "canonical": "scripts/analysis/night_review_evidence.py",
+      "diff_file": "151_night_review_evidence.diff",
+      "diff_lines": 21,
+      "source_lines": 23,
+      "members": [
+        {
+          "path": "evidence/workspace_reorganization_20260914/before/root/night_review_evidence.py",
+          "sha256": "27532bf4cbaf5eeb4708e4f8f133f736d6811ba1eb5117e8a135db330551d610"
+        }
+      ]
+    },
+    {
+      "id": 152,
+      "partition": "core",
+      "representative": "evidence/coverage_ab_v1/source/paper_protocol.py",
+      "normalized_sha256": "fba58b0548a6e99d96423942aef5d97e55d8a8e0dfa85021a0fa8b0553e12427",
+      "canonical": "src/pidon/paper_protocol.py",
+      "diff_file": "152_paper_protocol.diff",
+      "diff_lines": 19,
+      "source_lines": 82,
+      "members": [
+        {
+          "path": "evidence/coverage_ab_v1/source/paper_protocol.py",
+          "sha256": "ff5ac86760eae0fa7bd5919e73810c54a1a08747598d8e7cde1d14cba05bbb77"
+        },
+        {
+          "path": "evidence/grid_diagnosis_v1/source/paper_protocol.py",
+          "sha256": "ff5ac86760eae0fa7bd5919e73810c54a1a08747598d8e7cde1d14cba05bbb77"
+        },
+        {
+          "path": "evidence/paper_first_v1/source/paper_protocol.py",
+          "sha256": "ff5ac86760eae0fa7bd5919e73810c54a1a08747598d8e7cde1d14cba05bbb77"
+        },
+        {
+          "path": "evidence/spacing_probe_v1/source/paper_protocol.py",
+          "sha256": "ff5ac86760eae0fa7bd5919e73810c54a1a08747598d8e7cde1d14cba05bbb77"
+        },
+        {
+          "path": "evidence/trunk_repair_v1/source/paper_protocol.py",
+          "sha256": "ff5ac86760eae0fa7bd5919e73810c54a1a08747598d8e7cde1d14cba05bbb77"
+        },
+        {
+          "path": "evidence/workspace_reorganization_20260914/before/root/paper_protocol.py",
+          "sha256": "ff5ac86760eae0fa7bd5919e73810c54a1a08747598d8e7cde1d14cba05bbb77"
+        }
+      ]
+    },
+    {
+      "id": 153,
+      "partition": "support",
+      "representative": "evidence/workspace_reorganization_20260914/before/root/test_mechanism_hour.py",
+      "normalized_sha256": "fbb705657f95d2106c03d6899a4c9ee1a3e45a9bf9a2a874f819a420aa0cb0f6",
+      "canonical": "tests/test_mechanism_hour.py",
+      "diff_file": "153_test_mechanism_hour.diff",
+      "diff_lines": 15,
+      "source_lines": 38,
+      "members": [
+        {
+          "path": "evidence/workspace_reorganization_20260914/before/root/test_mechanism_hour.py",
+          "sha256": "94f177d790038153ec28355f3a5dcadf8ef161581245f490a23dbd2de4c3e471"
+        }
+      ]
+    },
+    {
+      "id": 154,
+      "partition": "support",
+      "representative": "evidence/gpt6_plan_v4_review/source_snapshot/audit_night_v4.py",
+      "normalized_sha256": "fbfa34c52d431f3d8cf0e54429f4df32c92a4458b29180069bd57a74a54e3715",
+      "canonical": "scripts/analysis/audit_night_v4.py",
+      "diff_file": "154_audit_night_v4.diff",
+      "diff_lines": 27,
+      "source_lines": 149,
+      "members": [
+        {
+          "path": "evidence/gpt6_plan_v4_review/source_snapshot/audit_night_v4.py",
+          "sha256": "665235956451df7d55012918122e7c5f59065ec45ba0ba88526e30bc259b4fdd"
+        },
+        {
+          "path": "evidence/workspace_reorganization_20260914/before/root/audit_night_v4.py",
+          "sha256": "665235956451df7d55012918122e7c5f59065ec45ba0ba88526e30bc259b4fdd"
+        }
+      ]
+    },
+    {
+      "id": 155,
+      "partition": "support",
+      "representative": "evidence/gpt6_plan_v3/A2_control_runs/float32_exact/source_snapshot/pidon_exact_control.py",
+      "normalized_sha256": "fcb69becc6e2324eea02dc1341b4174c39a4d215533547f2cd970d6e883ef557",
+      "canonical": "scripts/experiments/pidon_exact_control.py",
+      "diff_file": "155_pidon_exact_control.diff",
+      "diff_lines": 130,
+      "source_lines": 258,
+      "members": [
+        {
+          "path": "evidence/gpt6_plan_v3/A2_control_runs/float32_exact/source_snapshot/pidon_exact_control.py",
+          "sha256": "6e5fad7a613092a672a18f7bac9f805e4860bc784d00f3433d6bdf1a39b18981"
+        },
+        {
+          "path": "evidence/gpt6_plan_v3/A2_control_runs/float64_exact/source_snapshot/pidon_exact_control.py",
+          "sha256": "6e5fad7a613092a672a18f7bac9f805e4860bc784d00f3433d6bdf1a39b18981"
+        },
+        {
+          "path": "evidence/gpt6_plan_v3/A2_control_runs/hard_source_only/source_snapshot/pidon_exact_control.py",
+          "sha256": "6e5fad7a613092a672a18f7bac9f805e4860bc784d00f3433d6bdf1a39b18981"
+        },
+        {
+          "path": "evidence/gpt6_plan_v3/A2_control_runs/wrong_h_half/source_snapshot/pidon_exact_control.py",
+          "sha256": "6e5fad7a613092a672a18f7bac9f805e4860bc784d00f3433d6bdf1a39b18981"
+        },
+        {
+          "path": "evidence/gpt6_plan_v3/A2_control_runs/zero_curl/source_snapshot/pidon_exact_control.py",
+          "sha256": "6e5fad7a613092a672a18f7bac9f805e4860bc784d00f3433d6bdf1a39b18981"
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_night/source_snapshot/pidon_exact_control.py",
+          "sha256": "6e5fad7a613092a672a18f7bac9f805e4860bc784d00f3433d6bdf1a39b18981"
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_review/source_snapshot/pidon_exact_control.py",
+          "sha256": "6e5fad7a613092a672a18f7bac9f805e4860bc784d00f3433d6bdf1a39b18981"
+        }
+      ]
+    },
+    {
+      "id": 156,
+      "partition": "support",
+      "representative": "evidence/server_resource_v1/local_review_v2/source/scripts/experiments/server_local_review.py",
+      "normalized_sha256": "fcfe323ea60504f855f52e021dce63a2de8c63ff241092bde00b03f9b79554a4",
+      "canonical": "scripts/experiments/server_local_review.py",
+      "diff_file": "156_server_local_review.diff",
+      "diff_lines": 18,
+      "source_lines": 279,
+      "members": [
+        {
+          "path": "evidence/server_resource_v1/local_review_v2/source/scripts/experiments/server_local_review.py",
+          "sha256": "beabcfd834ee11a2c22e804fcb3852d26ebb955aaaaba5973ec37de162149166"
+        }
+      ]
+    },
+    {
+      "id": 157,
+      "partition": "support",
+      "representative": "evidence/workspace_reorganization_20260914/before/root/mini2d.py",
+      "normalized_sha256": "fef6eed4da73fa1d5e39a0dfd84185eb0ddd1bfd94422195420e7359098b13f6",
+      "canonical": "scripts/exploratory/mini2d.py",
+      "diff_file": "157_mini2d.diff",
+      "diff_lines": 19,
+      "source_lines": 236,
+      "members": [
+        {
+          "path": "evidence/workspace_reorganization_20260914/before/root/mini2d.py",
+          "sha256": "065d6934b68758ca425598c1ff907a9f5999c043640e4fb440e756175c75dec6"
+        }
+      ]
+    },
+    {
+      "id": 158,
+      "partition": "support",
+      "representative": "evidence/workspace_reorganization_20260914/before/root/a3_gate_report.py",
+      "normalized_sha256": "ff64895d771ad9d7bdc14803dcdc9fa66ea1e51fe6aa417299941c0eb6216df5",
+      "canonical": "scripts/analysis/a3_gate_report.py",
+      "diff_file": "158_a3_gate_report.diff",
+      "diff_lines": 28,
+      "source_lines": 79,
+      "members": [
+        {
+          "path": "evidence/workspace_reorganization_20260914/before/root/a3_gate_report.py",
+          "sha256": "e82178eb620926639598d4529a494efb27c5bfae186171ae939617f1c671c52a"
+        }
+      ]
+    }
+  ],
+  "counts": {
+    "support": 136,
+    "core": 22
+  },
+  "diff_lines": {
+    "core": 4771,
+    "support": 9513
+  }
+}

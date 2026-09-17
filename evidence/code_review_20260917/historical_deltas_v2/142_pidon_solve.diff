@@ -1,0 +1,108 @@
+--- src/pidon/pidon_solve.py
++++ evidence/gpt6_plan_v4_night/g0_after_head_integration/control_runs/float32_exact/source_snapshot/pidon_solve.py
+@@ -43,16 +43,8 @@
+     EXP 3, the network supplies the first n slices of each component and the
+     remaining boundary slice keeps its exact Yee value.  The physics-informed
+     loss is therefore computed over the region the network actually predicts.
+ """
+-
+-# Project layout bootstrap (imports and paths only).
+-import sys as _layout_sys
+-from pathlib import Path as _LayoutPath
+-_layout_sys.path.insert(0, str(_LayoutPath(__file__).resolve().parents[2]))
+-from project_paths import ROOT as PROJECT_ROOT, configure as _layout_configure, resolve_legacy
+-_layout_configure()
+-
+ 
+ import argparse
+ import copy
+ import hashlib
+@@ -147,9 +139,9 @@
+     look like a resume of one another.
+     """
+     source = source_hashes(os.path.dirname(__file__))
+     document = {"frozen_config": frozen_config(a), "source_hashes": source,
+-                "init_sha256": sha256_file(a.init) if _LayoutPath(resolve_legacy(a.init)).is_file() else None}
++                "init_sha256": sha256_file(a.init) if os.path.isfile(a.init) else None}
+     encoded = json.dumps(document, sort_keys=True, separators=(",", ":"), default=str).encode("utf-8")
+     digest = hashlib.sha256(encoded).hexdigest()
+     return {"run_id": str(run_id or uuid.uuid4()), "protocol_hash": digest, **document}
+ 
+@@ -157,20 +149,10 @@
+ def assert_resume_compatible(current, saved):
+     missing = [key for key in RESUME_CONFIG_KEYS if key not in saved]
+     if missing:
+         raise ValueError("checkpoint lacks frozen configuration fields: " + ", ".join(missing))
+-    changed = {}
+-    for key, value in frozen_config(current).items():
+-        if key not in saved:
+-            continue
+-        old = saved[key]
+-        if key == "init":
+-            old_compare = os.fspath(resolve_legacy(old))
+-            new_compare = os.fspath(resolve_legacy(value))
+-            if old_compare != new_compare:
+-                changed[key] = (old, value)
+-        elif old != value:
+-            changed[key] = (old, value)
++    changed = {key: (saved.get(key), value) for key, value in frozen_config(current).items()
++               if key in saved and saved[key] != value}
+     if changed:
+         rendered = ", ".join(f"{key}: saved={old!r}, requested={new!r}"
+                              for key, (old, new) in changed.items())
+         raise ValueError(f"resume configuration differs from checkpoint: {rendered}")
+@@ -256,9 +238,9 @@
+             self.coord_mode, self.norm_mode = a.coords, a.norm
+             self.levels = a.levels
+             net = D.DCO(levels=a.levels, base=a.base).to(device=self.dev, dtype=self.dtype)
+             return net, "random"
+-        ck = torch.load(resolve_legacy(a.init), map_location=self.dev, weights_only=False)
++        ck = torch.load(a.init, map_location=self.dev, weights_only=False)
+         self.coord_mode = ck.get("coords", a.coords)
+         self.norm_mode = ck.get("norm", a.norm)
+         self.levels = ck["levels"]
+         net = D.DCO(levels=ck["levels"], base=ck["base"],
+@@ -947,10 +929,9 @@
+ 
+ # --------------------------------------------------------------------------- #
+ def diagnose(hist, a):
+     """Print a descriptive nMAE trend only; it is not a stability proof."""
+-    ok = [r for r in hist
+-          if r.get("nmae") is not None and np.isfinite(float(r["nmae"])) and float(r["nmae"]) > 0]
++    ok = [r for r in hist if np.isfinite(r["nmae"]) and r["nmae"] > 0]
+     if len(ok) < 8:
+         return
+     x = np.array([r["step"] for r in ok], float)
+     y = np.log(np.array([r["nmae"] for r in ok], float))
+@@ -1035,16 +1016,8 @@
+         return float(value) if np.isfinite(value) else None
+     if isinstance(value, (np.integer,)):
+         return int(value)
+     return value
+-
+-
+-def _fmt_optional_sci(value):
+-    return "n/a" if value is None else f"{float(value):.2e}"
+-
+-
+-def _fmt_optional_nmae(value):
+-    return "n/a" if value is None else f"{float(value):.3e}"
+ 
+ 
+ def _reference_payload(ref):
+     return {name: torch.from_numpy(np.ascontiguousarray(getattr(ref, name)))
+@@ -1284,11 +1257,11 @@
+                 recorder.checkpoint(_checkpoint_payload(s, ref, requested_steps=a.steps, source_index=t + 1))
+             if s.accepted_steps <= 5 or s.accepted_steps % max(a.steps // 20, 1) == 0:
+                 print(f"  step {s.accepted_steps:>5d} updates H/E "
+                       f"{fit_h.n_updates if fit_h else 0}/{fit_e.n_updates if fit_e else 0}"
+-                      f" loss {_fmt_optional_sci(fit_h.loss_final if fit_h else None)}/"
+-                      f"{_fmt_optional_sci(fit_e.loss_final if fit_e else None)}"
+-                      f" Ez-nMAE {_fmt_optional_nmae(summary['six_component_metrics']['components']['Ez']['nmae'])}"
++                      f" loss {fit_h.loss_final if fit_h else float('nan'):.2e}/"
++                      f"{fit_e.loss_final if fit_e else float('nan'):.2e}"
++                      f" Ez-nMAE {summary['six_component_metrics']['components']['Ez']['nmae']:.3e}"
+                       f" {(time.time() - t0) / s.accepted_steps:.2f}s/step")
+         else:
+             stop_record = summary
+             if recorder:

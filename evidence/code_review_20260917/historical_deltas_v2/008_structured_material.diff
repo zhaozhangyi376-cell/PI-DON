@@ -1,0 +1,19 @@
+--- scripts/exploratory/structured_material.py
++++ evidence/workspace_reorganization_20260914/before/root/structured_material.py
+@@ -39,16 +39,8 @@
+ 
+     That is the prediction.  Below it is measured, together with the
+     single-curl control, which should fail.
+ """
+-
+-# Project layout bootstrap (imports and paths only).
+-import sys as _layout_sys
+-from pathlib import Path as _LayoutPath
+-_layout_sys.path.insert(0, str(_LayoutPath(__file__).resolve().parents[2]))
+-from project_paths import ROOT as PROJECT_ROOT, configure as _layout_configure, resolve_legacy
+-_layout_configure()
+-
+ 
+ import numpy as np
+ import torch
+ 

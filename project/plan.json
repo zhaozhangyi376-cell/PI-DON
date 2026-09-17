@@ -973,17 +973,21 @@
       "id": "PAPER01-S1-THETA-FULL",
       "goal_id": "G-REPRO",
       "title": "PAPER01角度过滤完整第一阶段诊断",
-      "status": "READY",
+      "status": "PASS",
       "depends": [
         "PAPER01-ABLATION-SMOKE"
       ],
       "reason": "PAPER01-ABLATION-SMOKE显示theta_min_0p5短预算显著优于baseline；完整25000 Adam诊断角度过滤是否值得进入后续盲测。",
       "evidence": [
-        "docs/plans/2026-09-17-paper01-theta-full-protocol.md"
+        "docs/plans/2026-09-17-paper01-theta-full-protocol.md",
+        "evidence/paper01_s1/imports/server_paper01_theta_full_return_20260917T110529Z/_01/evidence/paper01_theta_full_v1/summary.json",
+        "evidence/paper01_s1/paper01_theta_full_return_review.json",
+        "evidence/paper01_s1/paper01_theta_full_return_review.md"
       ],
       "kind": "diagnostic",
-      "scientific_result": "NOT_RUN",
-      "execution_plan": "docs/plans/2026-09-17-paper01-theta-full-protocol.md"
+      "scientific_result": "DIAGNOSTIC_ONLY",
+      "execution_plan": "docs/plans/2026-09-17-paper01-theta-full-protocol.md",
+      "summary": "PAPER01 theta full returned PASS; updates=25000; macro_nMAE=0.0720422450794528; relL2_p90=0.45308546423912044; Eq5_MRE=1.1524533810963233; no stage-two or long-run unlock."
     }
   ]
 }

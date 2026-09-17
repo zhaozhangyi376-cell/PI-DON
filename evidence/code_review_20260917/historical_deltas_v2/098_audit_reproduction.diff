@@ -1,0 +1,30 @@
+--- scripts/analysis/audit_reproduction.py
++++ evidence/workspace_reorganization_20260914/before/root/audit_reproduction.py
+@@ -5,16 +5,8 @@
+ that later phases cannot silently reinterpret historical trajectories.
+ """
+ 
+ from __future__ import annotations
+-
+-# Project layout bootstrap (imports and paths only).
+-import sys as _layout_sys
+-from pathlib import Path as _LayoutPath
+-_layout_sys.path.insert(0, str(_LayoutPath(__file__).resolve().parents[2]))
+-from project_paths import ROOT as PROJECT_ROOT, configure as _layout_configure, resolve_legacy
+-_layout_configure()
+-
+ 
+ import argparse
+ import hashlib
+ import json
+@@ -29,9 +21,9 @@
+ 
+ from fdtd import gaussian_pulse
+ 
+ 
+-ROOT = PROJECT_ROOT
++ROOT = Path(__file__).resolve().parent
+ 
+ ARTIFACTS = {
+     "phase1_checkpoint_lr1e3": "dco_lr1e3_300.pt",
+     "phase1_checkpoint_paper32": "dco_paper32.pt",

@@ -1,0 +1,28 @@
+--- scripts/analysis/n1_evidence.py
++++ evidence/workspace_reorganization_20260914/before/root/n1_evidence.py
+@@ -1,14 +1,6 @@
+ """Create the N1 C01--C15 audit from an actual successful lab_log run."""
+ from __future__ import annotations
+-
+-# Project layout bootstrap (imports and paths only).
+-import sys as _layout_sys
+-from pathlib import Path as _LayoutPath
+-_layout_sys.path.insert(0, str(_LayoutPath(__file__).resolve().parents[2]))
+-from project_paths import ROOT as PROJECT_ROOT, configure as _layout_configure, resolve_legacy
+-_layout_configure()
+-
+ 
+ import argparse
+ import json
+ import os
+@@ -16,9 +8,9 @@
+ 
+ from pidon_recording import sha256_file, source_hashes
+ 
+ 
+-ROOT = PROJECT_ROOT
++ROOT = Path(__file__).resolve().parent
+ CHECKS = {
+     "C01": ("total physical R 严格小于门槛", "test_component_loss_cannot_pass_when_physical_total_R_fails"),
+     "C02": ("仅完整零输入/零靶值走捷径", "test_nonzero_irrotational_input_is_not_zero_shortcut"),
+     "C03": ("H失败不改变E、源或H", "test_h_failure_does_not_advance_transaction"),

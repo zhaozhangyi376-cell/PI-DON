@@ -1,0 +1,28 @@
+--- scripts/experiments/n3_recover_continue.py
++++ evidence/workspace_reorganization_20260914/before/root/n3_recover_continue.py
+@@ -1,14 +1,6 @@
+ """Continue N3 after the #205 JSON serialization stop without rerunning H43."""
+ from __future__ import annotations
+-
+-# Project layout bootstrap (imports and paths only).
+-import sys as _layout_sys
+-from pathlib import Path as _LayoutPath
+-_layout_sys.path.insert(0, str(_LayoutPath(__file__).resolve().parents[2]))
+-from project_paths import ROOT as PROJECT_ROOT, configure as _layout_configure, resolve_legacy
+-_layout_configure()
+-
+ 
+ import json
+ import time
+ from pathlib import Path
+@@ -20,9 +12,9 @@
+ from night_budget import NightPaths, append_ledger, assert_can_start, assert_task_budget, stable_task_id
+ from pidon_recording import sha256_file, source_hashes
+ from pidon_solve import Solver, to_t
+ 
+-ROOT=PROJECT_ROOT
++ROOT=Path(__file__).resolve().parent
+ 
+ def brief(item): return {k:v for k,v in item.items() if k not in ("prediction","target")}
+ 
+ def recovered_h43(root, pair, device):

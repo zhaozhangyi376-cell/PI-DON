@@ -1,0 +1,16 @@
+--- scripts/analysis/trunk_evidence.py
++++ evidence/trunk_repair_v1/source/trunk_evidence.py
+@@ -1,13 +1,5 @@
+ """Raw-array and checkpoint verification for the registered C200 experiment."""
+-
+-# Project layout bootstrap (imports and paths only).
+-import sys as _layout_sys
+-from pathlib import Path as _LayoutPath
+-_layout_sys.path.insert(0, str(_LayoutPath(__file__).resolve().parents[2]))
+-from project_paths import ROOT as PROJECT_ROOT, configure as _layout_configure, resolve_legacy
+-_layout_configure()
+-
+ import json
+ from pathlib import Path
+ import numpy as np
+ import torch

@@ -1,0 +1,21 @@
+--- scripts/analysis/night_review_evidence.py
++++ evidence/workspace_reorganization_20260914/before/root/night_review_evidence.py
+@@ -1,17 +1,9 @@
+ """Shared read-only evidence for v4 review figures and claims."""
+-
+-# Project layout bootstrap (imports and paths only).
+-import sys as _layout_sys
+-from pathlib import Path as _LayoutPath
+-_layout_sys.path.insert(0, str(_LayoutPath(__file__).resolve().parents[2]))
+-from project_paths import ROOT as PROJECT_ROOT, configure as _layout_configure, resolve_legacy
+-_layout_configure()
+-
+ import json
+ from pathlib import Path
+ 
+-ROOT = PROJECT_ROOT
++ROOT = Path(__file__).resolve().parent
+ 
+ 
+ def load_review():
+     return json.loads((ROOT / 'evidence/gpt6_plan_v4_review/audit.json').read_text(encoding='utf-8'))

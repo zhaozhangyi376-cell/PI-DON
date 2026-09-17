@@ -1,0 +1,41 @@
+--- scripts/experiments/train_dco.py
++++ evidence/workspace_reorganization_20260914/before/root/train_dco.py
+@@ -15,16 +15,8 @@
+ below ~1e-2 already demonstrates the operator has been learnt; report the number
+ you actually get and say what was reduced.
+ """
+ 
+-# Project layout bootstrap (imports and paths only).
+-import sys as _layout_sys
+-from pathlib import Path as _LayoutPath
+-_layout_sys.path.insert(0, str(_LayoutPath(__file__).resolve().parents[2]))
+-from project_paths import ROOT as PROJECT_ROOT, configure as _layout_configure, resolve_legacy
+-_layout_configure()
+-
+-
+ import argparse
+ import json
+ import time
+ 
+@@ -38,9 +30,9 @@
+ from gen_data import coords_mm
+ 
+ 
+ def load(path, device, coord_mode="centered"):
+-    z = np.load(resolve_legacy(path))
++    z = np.load(path)
+     E = torch.from_numpy(z["E"])
+     C = torch.from_numpy(z["C"])
+     d = torch.from_numpy(z["D"]) * 1e3            # metres -> mm
+     n = int(z["n"])
+@@ -125,9 +117,9 @@
+     Ete, Cte, Xte, dte = E[ntr:], C[ntr:], X[ntr:], d[ntr:]
+ 
+     net = D.DCO(levels=a.levels, base=a.base).to(dev)
+     if a.init:
+-        ck = torch.load(resolve_legacy(a.init), map_location=dev, weights_only=False)
++        ck = torch.load(a.init, map_location=dev, weights_only=False)
+         for k in ("levels", "base", "coords", "norm"):
+             got, want = ck.get(k), getattr(a, k, None)
+             if want is not None and got is not None and got != want:
+                 raise SystemExit(

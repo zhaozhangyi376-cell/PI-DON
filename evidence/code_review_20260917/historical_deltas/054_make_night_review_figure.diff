@@ -1,0 +1,16 @@
+--- scripts/figures/make_night_review_figure.py
++++ evidence/workspace_reorganization_20260914/before/root/make_night_review_figure.py
+@@ -1,13 +1,5 @@
+ """Figure uses the same saved audit and checks as verify_claims."""
+-
+-# Project layout bootstrap (imports and paths only).
+-import sys as _layout_sys
+-from pathlib import Path as _LayoutPath
+-_layout_sys.path.insert(0, str(_LayoutPath(__file__).resolve().parents[2]))
+-from project_paths import ROOT as PROJECT_ROOT, configure as _layout_configure, resolve_legacy
+-_layout_configure()
+-
+ import matplotlib
+ matplotlib.use('Agg')
+ import matplotlib.pyplot as plt
+ from matplotlib.font_manager import FontProperties

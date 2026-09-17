@@ -1,0 +1,90 @@
+--- run.py
++++ evidence/workspace_reorganization_20260914/before/root/run.py
+@@ -1,45 +1,21 @@
+ """Unified entry: py -3.11 run.py <script-name> [arguments]."""
+ from __future__ import annotations
+ 
+ import os
+-import json
+ import runpy
+ import sys
+ from pathlib import Path
+ 
+ from project_paths import PROJECT_DIR, SOURCE_DIRS, configure, resolve_legacy
+ 
+ 
+-def require_action(action_id):
+-    from project_harness import read_events, load_plan, evidence_path, sha256
+-    if not os.environ.get('PIDON_LAB_RUN_ID'):
+-        raise SystemExit('数值主入口必须通过 lab_log.py run 启动。')
+-    if not action_id:
+-        raise SystemExit('数值主入口必须先预登记行动，再用 run.py --action <ID> <脚本>。')
+-    events = read_events(PROJECT_DIR)
+-    starts = [e for e in events if e.get('event') == 'start' and e.get('action_id') == action_id]
+-    if len(starts) != 1 or any(e.get('event') == 'finish' and e.get('action_id') == action_id for e in events):
+-        raise SystemExit('行动不存在、身份重复或已结束；不得重领旧预算。')
+-    event = starts[0]
+-    plan = load_plan(PROJECT_DIR)
+-    if event.get('goal_id') != plan['goal']['id'] or not any(t['id'] == event.get('task_id') for t in plan['tasks']):
+-        raise SystemExit('行动未绑定当前唯一目标和任务。')
+-    if sha256(evidence_path(event['protocol'], PROJECT_DIR)) != event['protocol_sha256']:
+-        raise SystemExit('预登记协议已改变；保留原行动，不以修改协议覆盖旧结果。')
+-
+-
+ def main():
+     configure()
+     os.chdir(PROJECT_DIR)
+     args = sys.argv[1:]
+-    action_id = None
+-    if args[:1] == ['--action']:
+-        if len(args) < 3:
+-            raise SystemExit('用法: run.py --action <行动ID> <脚本名> [参数]')
+-        action_id, args = args[1], args[2:]
+     if not args or args[0] in {'-h', '--help', 'list'}:
+-        print('用法: py -3.11 run.py [--action <行动ID>] <脚本名> [参数]')
++        print('用法: py -3.11 run.py <脚本名> [参数]')
+         print('进度: py -3.11 run.py project_harness status')
+         print('测试: py -3.11 run.py unittest -v test_project_harness')
+         if args and args[0] == 'list':
+             for directory in SOURCE_DIRS:
+@@ -56,38 +32,10 @@
+     candidates = [explicit] if explicit.is_file() else [PROJECT_DIR / d / f'{stem}.py' for d in SOURCE_DIRS]
+     matches = [p for p in candidates if p.is_file()]
+     if len(matches) != 1:
+         raise SystemExit(f'脚本不存在或名称不唯一: {name}；用 run.py list 查看。')
+-    registry = PROJECT_DIR / 'project/script_registry.json'
+-    if registry.exists():
+-        retired = json.loads(registry.read_text(encoding='utf-8')).get('historical_entrypoints', [])
+-        if matches[0].relative_to(PROJECT_DIR).as_posix() in retired:
+-            raise SystemExit('历史入口已封存：它可能写回旧实验目录。请先复制为新入口、改为新的 evidence 输出并登记新协议；原文件可阅读和导入。')
+-    # Only inputs may use historical aliases. Never redirect an output to an old asset.
+-    resolved = list(args)
+-    inputs = {'--init', '--data', '--config', '--resume', '--ckpt', '--checkpoint'}
+-    for i, token in enumerate(args):
+-        if token in inputs and i + 1 < len(args) and args[i + 1] != 'random':
+-            resolved[i + 1] = str(resolve_legacy(args[i + 1]))
+-        elif '=' in token and token.split('=', 1)[0] in inputs:
+-            flag, value = token.split('=', 1)
+-            resolved[i] = flag + '=' + str(resolve_legacy(value))
+-    if stem in {'train_dco', 'gen_data', 'pidon_solve', 'train_pidon', 'test_dco'} and not any(s in {'-h', '--help'} for s in args):
+-        flag = '--out-dir' if stem == 'pidon_solve' else '--out'
+-        if flag not in args or args.index(flag) + 1 >= len(args):
+-            raise SystemExit(f'数值运行必须显式提供 {flag} evidence/<新实验>/...，并包 lab_log。')
+-        destination = (PROJECT_DIR / args[args.index(flag) + 1]).resolve()
+-        try:
+-            destination.relative_to(PROJECT_DIR / 'evidence')
+-        except ValueError:
+-            raise SystemExit('新数值输出必须在 evidence 的独立实验目录中。')
+-        if destination == PROJECT_DIR / 'evidence':
+-            raise SystemExit('请选择 evidence 下的独立实验目录。')
+-        if destination.exists() and '--resume' not in args:
+-            raise SystemExit('输出已存在；不得覆盖旧实验，恢复须满足原协议。')
+-    is_experiment = matches[0].relative_to(PROJECT_DIR).as_posix().startswith('scripts/experiments/')
+-    if (is_experiment or stem in {'pidon_solve', 'gen_data'}) and not any(s in {'-h', '--help'} for s in args):
+-        require_action(action_id)
++    # Resolve old file inputs passed by the caller. No global open()/torch patch.
++    resolved = [str(resolve_legacy(s)) if not s.startswith('-') and Path(s).suffix in {'.pt', '.npz', '.json', '.py', '.txt'} else s for s in args]
+     sys.argv = [str(matches[0]), *resolved]
+     runpy.run_path(str(matches[0]), run_name='__main__')
+ 
+ 

@@ -1,0 +1,22 @@
+--- scripts/figures/export_storage_revision_handoff.py
++++ evidence/workspace_reorganization_20260914/before/root/export_storage_revision_handoff.py
+@@ -1,18 +1,10 @@
+ """Export exact goal handoff and document hashes; not a G0 verifier."""
+-
+-# Project layout bootstrap (imports and paths only).
+-import sys as _layout_sys
+-from pathlib import Path as _LayoutPath
+-_layout_sys.path.insert(0, str(_LayoutPath(__file__).resolve().parents[2]))
+-from project_paths import ROOT as PROJECT_ROOT, configure as _layout_configure, resolve_legacy
+-_layout_configure()
+-
+ import json
+ from pathlib import Path
+ from pidon_recording import sha256_file
+ 
+-ROOT=PROJECT_ROOT
++ROOT=Path(__file__).resolve().parent
+ OUT=ROOT/'evidence/gpt6_plan_v4_review/storage_revision'
+ plan=ROOT/'docs/superpowers/plans/2026-09-13-pidon-10h-goal-night-plan.md'
+ body=plan.read_text(encoding='utf-8')
+ section=body.split('## 七、给下一会话的 goal 执行指令',1)[1]

@@ -1,0 +1,19 @@
+--- scripts/experiments/diagnose_grid.py
++++ evidence/coverage_ab_v1/source/diagnose_grid.py
+@@ -2,16 +2,8 @@
+ 
+ Shape, spacing and input normalization extent are separate experimental factors.
+ Only the same physical central 8^3 Yee samples are scored across shapes.
+ """
+-
+-# Project layout bootstrap (imports and paths only).
+-import sys as _layout_sys
+-from pathlib import Path as _LayoutPath
+-_layout_sys.path.insert(0, str(_LayoutPath(__file__).resolve().parents[2]))
+-from project_paths import ROOT as PROJECT_ROOT, configure as _layout_configure, resolve_legacy
+-_layout_configure()
+-
+ import argparse
+ import copy
+ import io
+ import json

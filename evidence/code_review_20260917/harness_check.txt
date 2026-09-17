@@ -1,0 +1,52 @@
+
+计划检查未通过：
+- M2 的证据不存在：evidence/direct_mechanism_v1/runs/A_R/summary.json
+- M2 的证据不存在：evidence/direct_mechanism_v1/runs/A_P/summary.json
+- M2 的证据不存在：evidence/direct_mechanism_v1/runs/B_R/summary.json
+- M2 的证据不存在：evidence/direct_mechanism_v1/runs/B_P/summary.json
+- SR-COMPARE 的证据不存在：evidence/server_resource_v1/imports/server_resource_return_20260915T100510Z/server_resource_return/phase1_compare/summary.json
+- SR-COMPARE 的证据不存在：evidence/server_resource_v1/imports/server_resource_return_20260915T100510Z/server_resource_return/phase1_compare/REPORT.md
+- SR-PERF 的证据不存在：evidence/server_resource_v1/imports/server_resource_return_20260915T100510Z/server_resource_return/compute_probe/summary.json
+- SR-PERF 的证据不存在：evidence/server_resource_v1/imports/server_resource_return_20260915T100510Z/server_resource_return/compute_probe/REPORT.md
+- SR-SHORT 的证据不存在：evidence/server_resource_v1/imports/server_batch2_return_r2_full_20260915T141612Z/short_tol_probe_r2/summary.json
+- SR-SHORT 的证据不存在：evidence/server_resource_v1/imports/server_batch2_return_r2_full_20260915T141612Z/short_tol_probe_r2/REPORT.md
+- SR-SHORT-R2 的证据不存在：evidence/server_resource_v1/imports/server_batch2_return_r2_full_20260915T141612Z/short_tol_probe_r2/summary.json
+- SR-SHORT-R2 的证据不存在：evidence/server_resource_v1/imports/server_batch2_return_r2_full_20260915T141612Z/short_tol_probe_r2/REPORT.md
+- SR-E1-BUDGET 的证据不存在：evidence/server_resource_v1/imports/server_first_e_return_20260915T145629Z/first_e_budget_probe/summary.json
+- SR-E1-BUDGET 的证据不存在：evidence/server_resource_v1/imports/server_first_e_return_20260915T145629Z/first_e_budget_probe/REPORT.md
+- SR-E1-BUDGET 的证据不存在：evidence/server_resource_v1/imports/server_first_e_return_20260915T145629Z/first_e_budget_probe/manifest.json
+- SR-MICRO4 的证据不存在：evidence/server_resource_v1/imports/server_micro4_return_20260915T152352Z/micro4_strict_probe/summary.json
+- SR-MICRO4 的证据不存在：evidence/server_resource_v1/imports/server_micro4_return_20260915T152352Z/micro4_strict_probe/REPORT.md
+- SR-MICRO4 的证据不存在：evidence/server_resource_v1/imports/server_micro4_return_20260915T152352Z/micro4_strict_probe/manifest.json
+- SR-MICRO16 的证据不存在：evidence/server_resource_v1/imports/server_micro16_return_20260915T154708Z/micro16_strict_probe/summary.json
+- SR-MICRO16 的证据不存在：evidence/server_resource_v1/imports/server_micro16_return_20260915T154708Z/micro16_strict_probe/REPORT.md
+- SR-MICRO16 的证据不存在：evidence/server_resource_v1/imports/server_micro16_return_20260915T154708Z/micro16_strict_probe/manifest.json
+- SR-64 的证据不存在：evidence/server_resource_v1/imports/server_64_return_20260916T011046Z/strict64_probe/summary.json
+- SR-64 的证据不存在：evidence/server_resource_v1/imports/server_64_return_20260916T011046Z/strict64_probe/REPORT.md
+- SR-64 的证据不存在：evidence/server_resource_v1/imports/server_64_return_20260916T011046Z/strict64_probe/manifest.json
+- SR-36E-BUDGET 的证据不存在：evidence/server_resource_v1/imports/server_step36e_return_20260916T015804Z/step36e_budget_probe/summary.json
+- SR-36E-BUDGET 的证据不存在：evidence/server_resource_v1/imports/server_step36e_return_20260916T015804Z/step36e_budget_probe/REPORT.md
+- SR-36E-BUDGET 的证据不存在：evidence/server_resource_v1/imports/server_step36e_return_20260916T015804Z/step36e_budget_probe/manifest.json
+- SR-36E-LOWLR 的证据不存在：evidence/server_resource_v1/imports/server_step36e_low_lr_return_20260916T021355Z/step36e_lr1e4_probe/summary.json
+- SR-36E-LOWLR 的证据不存在：evidence/server_resource_v1/imports/server_step36e_low_lr_return_20260916T021355Z/step36e_lr1e4_probe/REPORT.md
+- SR-36E-LOWLR 的证据不存在：evidence/server_resource_v1/imports/server_step36e_low_lr_return_20260916T021355Z/step36e_lr1e4_probe/manifest.json
+- SR-36-48-LOWLR 的证据不存在：evidence/server_resource_v1/imports/server_step36_window_return_20260916T030320Z/step36_48_low_lr_window/summary.json
+- SR-36-48-LOWLR 的证据不存在：evidence/server_resource_v1/imports/server_step36_window_return_20260916T030320Z/step36_48_low_lr_window/REPORT.md
+- SR-36-48-LOWLR 的证据不存在：evidence/server_resource_v1/imports/server_step36_window_return_20260916T030320Z/step36_48_low_lr_window/manifest.json
+- SR-48-64-LOWLR 的证据不存在：evidence/server_resource_v1/imports/server_step48_64_return_20260916T035641Z/step48_64_low_lr_window/summary.json
+- SR-48-64-LOWLR 的证据不存在：evidence/server_resource_v1/imports/server_step48_64_return_20260916T035641Z/step48_64_low_lr_window/REPORT.md
+- SR-48-64-LOWLR 的证据不存在：evidence/server_resource_v1/imports/server_step48_64_return_20260916T035641Z/step48_64_low_lr_window/manifest.json
+- SR-64-LOWLR-CLEAN 的证据不存在：evidence/server_resource_v1/imports/server_clean_low_lr64_return_20260916T061148Z/clean_low_lr64/summary.json
+- SR-64-LOWLR-CLEAN 的证据不存在：evidence/server_resource_v1/imports/server_clean_low_lr64_return_20260916T061148Z/clean_low_lr64/REPORT.md
+- SR-64-LOWLR-CLEAN 的证据不存在：evidence/server_resource_v1/imports/server_clean_low_lr64_return_20260916T061148Z/clean_low_lr64/manifest.json
+- SR-128-LOWLR-CLEAN 的证据不存在：evidence/server_resource_v1/imports/server_clean_low_lr128_return_20260916T092721Z/clean_low_lr128/summary.json
+- SR-128-LOWLR-CLEAN 的证据不存在：evidence/server_resource_v1/imports/server_clean_low_lr128_return_20260916T092721Z/clean_low_lr128/REPORT.md
+- SR-128-LOWLR-CLEAN 的证据不存在：evidence/server_resource_v1/imports/server_clean_low_lr128_return_20260916T092721Z/clean_low_lr128/manifest.json
+- SR-128-PAPER-TOL-DIAG 的证据不存在：evidence/server_resource_v1/imports/server_paper_tol128_return_20260916T114443Z/paper_tol128_diag/summary.json
+- SR-128-PAPER-TOL-DIAG 的证据不存在：evidence/server_resource_v1/imports/server_paper_tol128_return_20260916T114443Z/paper_tol128_diag/REPORT.md
+- SR-128-PAPER-TOL-DIAG 的证据不存在：evidence/server_resource_v1/imports/server_paper_tol128_return_20260916T114443Z/paper_tol128_diag/manifest.json
+- SR-64-LOWLR-RANDOM 的证据不存在：evidence/server_resource_v1/imports/server_random_low_lr64_return_20260916T130417Z/random_low_lr64/summary.json
+- SR-64-LOWLR-RANDOM 的证据不存在：evidence/server_resource_v1/imports/server_random_low_lr64_return_20260916T130417Z/random_low_lr64/REPORT.md
+- SR-64-LOWLR-RANDOM 的证据不存在：evidence/server_resource_v1/imports/server_random_low_lr64_return_20260916T130417Z/random_low_lr64/manifest.json
+- 差距 SHORT 的证据不存在：evidence/server_resource_v1/imports/server_batch2_return_r2_full_20260915T141612Z/short_tol_probe_r2/summary.json
+- 差距 SHORT 的证据不存在：evidence/server_resource_v1/imports/server_batch2_return_r2_full_20260915T141612Z/short_tol_probe_r2/REPORT.md

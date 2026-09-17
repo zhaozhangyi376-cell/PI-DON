@@ -1,0 +1,69 @@
+--- scripts/experiments/mechanism_decision_eval.py
++++ evidence/mechanism_decision_v1/source_snapshot/mechanism_decision_eval.py
+@@ -1,14 +1,6 @@
+ """Auditable, no-training evaluation of the registered DCO initialization."""
+ from __future__ import annotations
+-
+-# Project layout bootstrap (imports and paths only).
+-import sys as _layout_sys
+-from pathlib import Path as _LayoutPath
+-_layout_sys.path.insert(0, str(_LayoutPath(__file__).resolve().parents[2]))
+-from project_paths import ROOT as PROJECT_ROOT, configure as _layout_configure, resolve_legacy
+-_layout_configure()
+-
+ 
+ import argparse
+ import json
+ import math
+@@ -22,9 +14,9 @@
+ import paper_protocol as PP
+ from pidon_recording import atomic_json_save, sha256_file
+ 
+ 
+-ROOT = PROJECT_ROOT
++ROOT = Path(__file__).resolve().parent
+ OUT = ROOT / "evidence" / "mechanism_decision_v1"
+ 
+ 
+ def draw_shared_direction(rng: np.random.Generator) -> np.ndarray:
+@@ -51,16 +43,8 @@
+                       "theta_singularity_rejection_abs_cos_min": 0.15})
+     return specs
+ 
+ 
+-def wave_numbers(spec: dict) -> list[float]:
+-    """Read the declared rad/m wave-number array from either registered schema."""
+-    values = spec.get("k_rad_per_m", spec.get("k"))
+-    if values is None:
+-        raise KeyError("wave specification needs k_rad_per_m or k")
+-    return values
+-
+-
+ def sample_spec(spec: dict, shape: tuple[int, int, int], extent_m: float) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
+     """Sample a continuous analytic field at declared E and curl locations.
+ 
+     The convention is explicit: shape is a number of cells, d=extent/shape,
+@@ -72,11 +56,9 @@
+                       indexing="ij", sparse=True)
+     e = np.zeros((3, *shape), dtype=np.float64)
+     c = np.zeros_like(e)
+     direction = np.asarray(spec["direction"], dtype=np.float64)
+-    # `make_specs` records units in the key.  The existing paper reconstruction
+-    # records the same rad/m values as `k`; accept both declared schemas.
+-    for k, amp, phase0 in zip(wave_numbers(spec), spec["amplitude"], spec["phase_rad"]):
++    for k, amp, phase0 in zip(spec["k_rad_per_m"], spec["amplitude"], spec["phase_rad"]):
+         kv, amp = k * direction, np.asarray(amp, dtype=np.float64)
+         phase = phase0 + sum(kv[q] * xyz[q] for q in range(3))
+         cross = np.cross(kv, amp)
+         for component in range(3):
+@@ -114,9 +96,9 @@
+         for spec in specs:
+             e, c, h = sample_spec(spec, shape, 19.2e-3)
+             pred, yee = predict(net, e, h, device)
+             rows.append({"group": label, "shape": list(shape), "sample_id": spec["sample_id"],
+-                         "d_m": h.tolist(), "max_k_rad_per_m": max(wave_numbers(spec)),
++                         "d_m": h.tolist(), "max_k_rad_per_m": max(spec["k_rad_per_m"]),
+                          "dco": interior_metrics(pred, c), "yee_discrete": interior_metrics(yee, c)})
+             if device == "cuda":
+                 torch.cuda.empty_cache()
+     return rows

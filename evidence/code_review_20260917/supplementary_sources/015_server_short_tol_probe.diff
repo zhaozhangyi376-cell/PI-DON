@@ -1,0 +1,112 @@
+--- archive/transfers/2026-09-16/server_clean_low_lr128_package_20260916T141307/payload/scripts/experiments/server_short_tol_probe.py
++++ evidence/server_resource_v1/imports/server_64_return_20260916T011046Z/strict64_probe/source/scripts/experiments/server_short_tol_probe.py
+@@ -105,35 +105,8 @@
+         "components": component_rows,
+         "source_outside_probes": row.get("source_outside_probes"),
+         "source_probe_Ez": row.get("source_probe_Ez"),
+     }
+-
+-
+-def fmt_progress(value: Any, precision: int = 3) -> str:
+-    if value is None:
+-        return "-"
+-    if isinstance(value, float):
+-        return f"{value:.{precision}e}"
+-    return str(value)
+-
+-
+-def progress_line(row: dict[str, Any], requested_steps: int, total_cost: dict[str, int], started: float) -> str:
+-    fit_h = row.get("fit_H") or {}
+-    fit_e = row.get("fit_E") or {}
+-    metrics = row.get("six_component_metrics") or {}
+-    q = metrics.get("global_weighted_relative_l2")
+-    accepted = bool(row.get("accepted"))
+-    shown_step = int(row.get("accepted_steps") or 0)
+-    if not accepted:
+-        shown_step += 1
+-    status = "OK" if accepted else f"FAIL:{row.get('phase')}:{row.get('reason')}"
+-    return (
+-        f"[step {shown_step:03d}/{requested_steps:03d}] {status} | "
+-        f"H R={fmt_progress(fit_h.get('residual_ratio'))} u={fit_h.get('n_updates')} | "
+-        f"E R={fmt_progress(fit_e.get('residual_ratio'))} u={fit_e.get('n_updates')} | "
+-        f"Q={fmt_progress(q)} | total_adam={total_cost.get('adam')} | "
+-        f"elapsed={time.perf_counter() - started:.1f}s"
+-    )
+ 
+ 
+ def make_config(out: Path, args: argparse.Namespace, steps: int) -> argparse.Namespace:
+     return argparse.Namespace(
+@@ -211,33 +184,8 @@
+     solver.inner_train = wrapped
+     return traces
+ 
+ 
+-def attach_progress_printer(solver: S.Solver, every: int, started: float) -> None:
+-    if every <= 0:
+-        return
+-    seen: dict[str, int] = {}
+-
+-    def callback(which, progress):
+-        updates = int(progress.get("updates", 0) or 0)
+-        key = f"{solver.current_time_layer}:{which}:{updates}"
+-        if updates <= 0 or updates % every != 0 or seen.get(key):
+-            return False
+-        seen[key] = 1
+-        trace = getattr(solver, "last_fit_trace", [])
+-        loss = trace[-1].get("loss") if trace else None
+-        loss_text = "-" if loss is None else f"{float(loss):.3e}"
+-        print(
+-            f"[fit step {solver.current_time_layer + 1:03d}] {which} "
+-            f"updates={updates}/{solver.a.max_inner} residual~{loss_text} "
+-            f"elapsed={time.perf_counter() - started:.1f}s",
+-            flush=True,
+-        )
+-        return False
+-
+-    solver.on_inner_update = callback
+-
+-
+ def budget_wrapper(solver: S.Solver, rows: list[dict[str, Any]], args: argparse.Namespace) -> dict[str, Any]:
+     original = solver.inner_train
+     state: dict[str, Any] = {"caps": {}, "resource_limited": False, "events": []}
+ 
+@@ -299,9 +247,8 @@
+     budget_state = budget_wrapper(solver, rows, args)
+     waveform = fdtd.source_waveform(requested_steps, solver.dt, config.fmax, "hard")
+     source_cell = config.n // 2
+     started = time.perf_counter()
+-    attach_progress_printer(solver, int(args.fit_progress_every), started)
+     stop: dict[str, Any] | None = None
+     gate64: dict[str, Any] | None = None
+     gate128: dict[str, Any] | None = None
+     snapshot_steps = {32, 64, 128}
+@@ -331,9 +278,8 @@
+         })
+         row["row_cost"] = row_cost(row)
+         recorder.append(row)
+         rows.append(row)
+-        print(progress_line(row, requested_steps, sum_cost(rows), started), flush=True)
+         recorder.rolling_checkpoint(S._checkpoint_payload(
+             solver, ref, requested_steps=requested_steps, source_index=solver.current_time_layer))
+         if record.accepted and solver.accepted_steps in snapshot_steps:
+             recorder.snapshot(solver.accepted_steps, S._checkpoint_payload(
+@@ -372,12 +318,8 @@
+     if int(args.micro_gate_steps) > 0:
+         reached_micro = int(solver.accepted_steps) >= int(args.micro_gate_steps)
+         status = "PASS" if reached_micro else ("RESOURCE_LIMIT" if (stop or {}).get("reason") == "RESOURCE_LIMIT" else "FAIL")
+         scientific = "PASS_MICRO" if micro_gate and micro_gate["pass"] else "FAIL"
+-    elif int(requested_steps) >= 128:
+-        reached128 = int(solver.accepted_steps) >= 128
+-        status = "PASS" if reached128 else ("RESOURCE_LIMIT" if (stop or {}).get("reason") == "RESOURCE_LIMIT" else "FAIL")
+-        scientific = "PASS_128" if gate128 and gate128["pass"] else "FAIL"
+     else:
+         reached64 = int(solver.accepted_steps) >= 64
+         status = "PASS" if reached64 else ("RESOURCE_LIMIT" if (stop or {}).get("reason") == "RESOURCE_LIMIT" else "FAIL")
+         scientific = "PASS_64" if gate64 and gate64["pass"] else "FAIL"
+@@ -442,6 +384,5 @@
+     parser.add_argument("--per-fit-cap", type=int, default=PER_FIT_CAP)
+     parser.add_argument("--overall-adam-cap", type=int, default=ADAM_CAP)
+     parser.add_argument("--micro-gate-steps", type=int, default=0)
+     parser.add_argument("--protocol", default=display(PLAN))
+-    parser.add_argument("--fit-progress-every", type=int, default=0)
+     run(parser.parse_args())

@@ -1,0 +1,19 @@
+--- src/pidon/gen_data.py
++++ evidence/coverage_ab_v1/source/gen_data.py
+@@ -44,16 +44,8 @@
+     within sampling noise and must not be reported as a ranking.  The large
+     effects (17.3x for absolute coordinates, 16.7x for L=4) are far outside it
+     and stand.
+ """
+-
+-# Project layout bootstrap (imports and paths only).
+-import sys as _layout_sys
+-from pathlib import Path as _LayoutPath
+-_layout_sys.path.insert(0, str(_LayoutPath(__file__).resolve().parents[2]))
+-from project_paths import ROOT as PROJECT_ROOT, configure as _layout_configure, resolve_legacy
+-_layout_configure()
+-
+ 
+ import numpy as np
+ import argparse
+ 

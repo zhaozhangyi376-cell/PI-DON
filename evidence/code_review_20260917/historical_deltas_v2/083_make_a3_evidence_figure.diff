@@ -1,0 +1,29 @@
+--- scripts/figures/make_a3_evidence_figure.py
++++ evidence/workspace_reorganization_20260914/before/root/make_a3_evidence_figure.py
+@@ -1,15 +1,7 @@
+ """Plot the stored, registered A3 residuals without recomputing a fit."""
+ 
+ from __future__ import annotations
+-
+-# Project layout bootstrap (imports and paths only).
+-import sys as _layout_sys
+-from pathlib import Path as _LayoutPath
+-_layout_sys.path.insert(0, str(_LayoutPath(__file__).resolve().parents[2]))
+-from project_paths import ROOT as PROJECT_ROOT, configure as _layout_configure, resolve_legacy
+-_layout_configure()
+-
+ 
+ import json
+ from pathlib import Path
+ 
+@@ -17,9 +9,9 @@
+ import numpy as np
+ from matplotlib.font_manager import FontProperties
+ 
+ 
+-ROOT = PROJECT_ROOT
++ROOT = Path(__file__).resolve().parent
+ DATA = ROOT / "evidence" / "gpt6_plan_v3" / "h_layout_candidate" / "A3_GATE.json"
+ OUT = ROOT / "evidence" / "gpt6_plan_v3" / "h_layout_candidate" / "A3_residuals_readable.png"
+ CN = FontProperties(fname=r"C:\Windows\Fonts\msyh.ttc")
+ 

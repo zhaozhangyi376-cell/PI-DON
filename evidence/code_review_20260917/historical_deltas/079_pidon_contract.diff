@@ -1,0 +1,19 @@
+--- src/pidon/pidon_contract.py
++++ evidence/gpt6_plan_v4_night/control_runs/float64_exact/source_snapshot/pidon_contract.py
+@@ -5,16 +5,8 @@
+ retrofitting scientific claims from a trajectory JSON after the fact.
+ """
+ 
+ from __future__ import annotations
+-
+-# Project layout bootstrap (imports and paths only).
+-import sys as _layout_sys
+-from pathlib import Path as _LayoutPath
+-_layout_sys.path.insert(0, str(_LayoutPath(__file__).resolve().parents[2]))
+-from project_paths import ROOT as PROJECT_ROOT, configure as _layout_configure, resolve_legacy
+-_layout_configure()
+-
+ 
+ from dataclasses import asdict, dataclass
+ import math
+ from typing import Any, Iterable, Sequence

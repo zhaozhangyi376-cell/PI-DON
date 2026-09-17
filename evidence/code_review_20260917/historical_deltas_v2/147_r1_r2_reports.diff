@@ -1,0 +1,25 @@
+--- scripts/analysis/r1_r2_reports.py
++++ evidence/gpt6_plan_v3_review/source_snapshot/r1_r2_reports.py
+@@ -1,21 +1,13 @@
+ """Generate Chinese R1/R2 reports from recorded v2 evidence without rerunning it."""
+ 
+ from __future__ import annotations
+-
+-# Project layout bootstrap (imports and paths only).
+-import sys as _layout_sys
+-from pathlib import Path as _LayoutPath
+-_layout_sys.path.insert(0, str(_LayoutPath(__file__).resolve().parents[2]))
+-from project_paths import ROOT as PROJECT_ROOT, configure as _layout_configure, resolve_legacy
+-_layout_configure()
+-
+ 
+ import json
+ from pathlib import Path
+ 
+ 
+-ROOT = PROJECT_ROOT
++ROOT = Path(__file__).resolve().parent
+ OUT = ROOT / "evidence" / "gpt6_plan_v2"
+ 
+ 
+ def runs_by_id():

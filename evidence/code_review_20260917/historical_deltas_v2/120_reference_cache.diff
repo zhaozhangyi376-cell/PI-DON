@@ -1,0 +1,29 @@
+--- src/pidon/reference_cache.py
++++ evidence/gpt6_plan_v4_night/source_snapshot/reference_cache.py
+@@ -1,15 +1,7 @@
+ """Stream the registered 8192-step double-precision Yee reference cache."""
+ 
+ from __future__ import annotations
+-
+-# Project layout bootstrap (imports and paths only).
+-import sys as _layout_sys
+-from pathlib import Path as _LayoutPath
+-_layout_sys.path.insert(0, str(_LayoutPath(__file__).resolve().parents[2]))
+-from project_paths import ROOT as PROJECT_ROOT, configure as _layout_configure, resolve_legacy
+-_layout_configure()
+-
+ 
+ import argparse
+ import hashlib
+ import json
+@@ -22,9 +14,9 @@
+                             dual_volumes)
+ from pidon_recording import sha256_file, source_hashes
+ 
+ 
+-ROOT = PROJECT_ROOT
++ROOT = Path(__file__).resolve().parent
+ NAMES = ("Ex", "Ey", "Ez", "Hx", "Hy", "Hz")
+ 
+ 
+ def _sample_numpy(values, xyz_m, dxyz, offsets):

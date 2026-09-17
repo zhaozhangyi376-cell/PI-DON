@@ -1,0 +1,28 @@
+--- scripts/experiments/mechanism_decision_runner.py
++++ evidence/mechanism_decision_v1/source_snapshot/mechanism_decision_runner.py
+@@ -1,14 +1,6 @@
+ """Run one registered P/R sequential arm without changing solver source."""
+ from __future__ import annotations
+-
+-# Project layout bootstrap (imports and paths only).
+-import sys as _layout_sys
+-from pathlib import Path as _LayoutPath
+-_layout_sys.path.insert(0, str(_LayoutPath(__file__).resolve().parents[2]))
+-from project_paths import ROOT as PROJECT_ROOT, configure as _layout_configure, resolve_legacy
+-_layout_configure()
+-
+ 
+ import argparse
+ import copy
+ import json
+@@ -23,9 +15,9 @@
+ import pidon_solve as S
+ from pidon_recording import RunRecorder, atomic_json_save, sha256_file, source_hashes
+ 
+ 
+-ROOT = PROJECT_ROOT
++ROOT = Path(__file__).resolve().parent
+ OUT = ROOT / "evidence" / "mechanism_decision_v1"
+ 
+ 
+ def now_utc() -> datetime:

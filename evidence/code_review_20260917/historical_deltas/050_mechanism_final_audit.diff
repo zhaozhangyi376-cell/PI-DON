@@ -1,0 +1,17 @@
+--- scripts/experiments/mechanism_final_audit.py
++++ evidence/workspace_reorganization_20260914/before/root/mechanism_final_audit.py
+@@ -1,14 +1,6 @@
+ # -*- coding: utf-8 -*-
+ """Write a small, read-only manifest for the bounded mechanism decision."""
+-
+-# Project layout bootstrap (imports and paths only).
+-import sys as _layout_sys
+-from pathlib import Path as _LayoutPath
+-_layout_sys.path.insert(0, str(_LayoutPath(__file__).resolve().parents[2]))
+-from project_paths import ROOT as PROJECT_ROOT, configure as _layout_configure, resolve_legacy
+-_layout_configure()
+-
+ 
+ import hashlib
+ import json
+ from pathlib import Path

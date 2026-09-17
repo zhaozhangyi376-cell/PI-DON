@@ -1,0 +1,19 @@
+--- scripts/exploratory/symplectic.py
++++ evidence/workspace_reorganization_20260914/before/root/symplectic.py
+@@ -67,16 +67,8 @@
+     symmetric kernel, or W^T W), it keeps every guarantee the leapfrog relies
+     on, and it still lets the operator adapt where the twelve-weight stencil
+     is wrong -- inhomogeneous media, coarse cells, material interfaces.
+ """
+-
+-# Project layout bootstrap (imports and paths only).
+-import sys as _layout_sys
+-from pathlib import Path as _LayoutPath
+-_layout_sys.path.insert(0, str(_LayoutPath(__file__).resolve().parents[2]))
+-from project_paths import ROOT as PROJECT_ROOT, configure as _layout_configure, resolve_legacy
+-_layout_configure()
+-
+ 
+ import numpy as np
+ import torch
+ import torch.nn.functional as F

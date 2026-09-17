@@ -1,0 +1,85 @@
+--- src/pidon/pidon_contract.py
++++ evidence/gpt6_plan_v3/A2_control_runs/float32_exact/source_snapshot/pidon_contract.py
+@@ -5,16 +5,8 @@
+ retrofitting scientific claims from a trajectory JSON after the fact.
+ """
+ 
+ from __future__ import annotations
+-
+-# Project layout bootstrap (imports and paths only).
+-import sys as _layout_sys
+-from pathlib import Path as _LayoutPath
+-_layout_sys.path.insert(0, str(_LayoutPath(__file__).resolve().parents[2]))
+-from project_paths import ROOT as PROJECT_ROOT, configure as _layout_configure, resolve_legacy
+-_layout_configure()
+-
+ 
+ from dataclasses import asdict, dataclass
+ import math
+ from typing import Any, Iterable, Sequence
+@@ -158,37 +150,26 @@
+     ref_ss = float(np.sum(vol * mask * r * r))
+     err_ss = float(np.sum(vol * mask * delta * delta))
+     denom_max = float(np.max(np.abs(r[active]))) if support_count else 0.0
+     weighted_abs = float(np.sum(vol * mask * np.abs(delta)))
+-    volume_absolute_mae = weighted_abs / support_volume if support_volume > 0 else float("nan")
++    absolute_mae = weighted_abs / support_volume if support_volume > 0 else float("nan")
+     nonzero = active & (np.abs(r) > 0.0)
+     strict_zero = active & ~nonzero
+     nonzero_count = int(np.count_nonzero(nonzero))
+     strict_zero_count = int(np.count_nonzero(strict_zero))
+-    ordinary_absolute_mae = float(np.mean(np.abs(delta[active]))) if support_count else float("nan")
+-    eq5_terms = np.empty(int(np.count_nonzero(active)), dtype=np.float64)
+-    active_delta, active_ref = delta[active], r[active]
+-    active_nonzero = np.abs(active_ref) > 0.0
+-    eq5_terms[active_nonzero] = np.abs(active_delta[active_nonzero] / active_ref[active_nonzero])
+-    # Eq. (5) cannot divide by zero.  Its disclosed strict-zero branch uses
+-    # physical absolute error; it is never silently replaced with epsilon.
+-    eq5_terms[~active_nonzero] = np.abs(active_delta[~active_nonzero])
+     return {
+         "weighted_l2_error": math.sqrt(err_ss),
+         "weighted_ref_l2": math.sqrt(ref_ss),
+         "relative_l2": math.sqrt(err_ss / ref_ss) if ref_ss > 0 else float("nan"),
+         # nMAE is MAE/max on exactly this declared support.  It is the
+         # implementation-compatible paper comparison column; it is not MRE.
+-        "nmae": ordinary_absolute_mae / denom_max if denom_max > 0 else float("nan"),
+-        "absolute_mae": ordinary_absolute_mae,
+-        "volume_nmae": volume_absolute_mae / denom_max if denom_max > 0 else float("nan"),
+-        "volume_absolute_mae": volume_absolute_mae,
++        "nmae": absolute_mae / denom_max if denom_max > 0 else float("nan"),
++        "absolute_mae": absolute_mae,
+         # Literal pointwise MRE is undefined at zeros.  Keep a separate
+         # non-zero-support MRE and disclose the zero support/absolute error;
+         # never relabel either number as nMAE.
+         "mre_nonzero": float(np.mean(np.abs(delta[nonzero]) / np.abs(r[nonzero])))
+                        if nonzero_count else float("nan"),
+-        "mre_eq5_physical": float(np.mean(eq5_terms)) if support_count else float("nan"),
+         "mre_nonzero_count": nonzero_count,
+         "strict_zero_reference_count": strict_zero_count,
+         "strict_zero_absolute_mae": float(np.mean(np.abs(delta[strict_zero])))
+                                     if strict_zero_count else 0.0,
+@@ -198,9 +179,9 @@
+         "sse": err_ss,
+         "reference_energy": ref_ss,
+         "weak_reference": denom_max < 1e-6,
+         "weak_absolute_gate": 1e-5,
+-        "weak_absolute_pass": ordinary_absolute_mae <= 1e-5 if denom_max < 1e-6 else None,
++        "weak_absolute_pass": absolute_mae <= 1e-5 if denom_max < 1e-6 else None,
+     }
+ 
+ 
+ def six_component_metrics(
+@@ -236,11 +217,10 @@
+     result["weighted_error_numerator"] = total_err
+     result["weighted_reference_denominator"] = total_ref
+     result["fixed_volume_denominator"] = total_volume
+     result["metric_contract"] = {
+-        "nmae": "ordinary masked MAE/reference_max on the declared component support",
+-        "volume_nmae": "dual-volume-weighted MAE/reference_max, reported separately",
+-        "mre": "mre_eq5_physical uses absolute error at strict zeros; mre_nonzero excludes them",
++        "nmae": "volume-weighted MAE/reference_max on the declared component support",
++        "mre": "mre_nonzero only; strict zero reference points use absolute error",
+         "weak_reference_threshold": 1e-6,
+         "weak_absolute_mae_threshold": 1e-5,
+         "hard_source_excluded_from_Ez": source_ez_index is not None,
+     }

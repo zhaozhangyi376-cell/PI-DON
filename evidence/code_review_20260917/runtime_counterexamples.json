@@ -1,0 +1,48 @@
+{
+  "review_only": true,
+  "production_updates": 0,
+  "toy_cost": {
+    "adam": 5,
+    "closures": 2,
+    "lbfgs_steps": 0
+  },
+  "tests": 5,
+  "errors": 0,
+  "failures": 0,
+  "observations": {
+    "interrupt": {
+      "adam": 1,
+      "closures_after_interrupt": 2,
+      "lbfgs_steps": 0,
+      "final_reason": "closure_budget"
+    },
+    "terminal_exception": {
+      "accepted_steps": 128,
+      "reason": "EXCEPTION",
+      "classified": "PASS"
+    },
+    "missing_summary_cost": {
+      "committed_row_updates": 123,
+      "reported_cost": {
+        "adam": 0,
+        "closures": 0,
+        "lbfgs_steps": 0
+      }
+    },
+    "benefit_flags": {
+      "comparable_residual_128": false,
+      "field_gate_benefit_pass": true,
+      "residual_cost_benefit_pass": false,
+      "scientific_result": "FAIL"
+    },
+    "m0_count": {
+      "observed_adam_step_calls": 4,
+      "summed_fit_n_updates": 5,
+      "interrupted_fit_counts": [
+        1,
+        2
+      ],
+      "accepted_steps": 0
+    }
+  }
+}

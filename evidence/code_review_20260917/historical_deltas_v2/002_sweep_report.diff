@@ -1,0 +1,19 @@
+--- scripts/analysis/sweep_report.py
++++ evidence/workspace_reorganization_20260914/before/root/sweep_report.py
+@@ -15,16 +15,8 @@
+     哪个损失函数无关。test 列保留只为看收敛形状，带 * 的行不可与他行比大小。
+   * 报「末段均值 / 首段均值」作为改善幅度，以及末段的抖动幅度 —— 一个还在
+     剧烈抖动的配置，即使均值好看也不能算赢。
+ """
+-
+-# Project layout bootstrap (imports and paths only).
+-import sys as _layout_sys
+-from pathlib import Path as _LayoutPath
+-_layout_sys.path.insert(0, str(_LayoutPath(__file__).resolve().parents[2]))
+-from project_paths import ROOT as PROJECT_ROOT, configure as _layout_configure, resolve_legacy
+-_layout_configure()
+-
+ 
+ import glob
+ import json
+ import os

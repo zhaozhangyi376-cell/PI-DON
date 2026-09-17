@@ -1,0 +1,19 @@
+--- scripts/exploratory/structured.py
++++ evidence/workspace_reorganization_20260914/before/root/structured.py
+@@ -54,16 +54,8 @@
+     positive, even in k, and therefore exactly a symmetric positive circulant.
+     The ideal operator is inside the parameterisation, and it is EIGHT numbers
+     against the free network's 28k.
+ """
+-
+-# Project layout bootstrap (imports and paths only).
+-import sys as _layout_sys
+-from pathlib import Path as _LayoutPath
+-_layout_sys.path.insert(0, str(_LayoutPath(__file__).resolve().parents[2]))
+-from project_paths import ROOT as PROJECT_ROOT, configure as _layout_configure, resolve_legacy
+-_layout_configure()
+-
+ 
+ import numpy as np
+ import torch
+ import torch.nn as nn

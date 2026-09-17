@@ -1,0 +1,19 @@
+--- scripts/experiments/spectral_dco.py
++++ evidence/workspace_reorganization_20260914/before/root/spectral_dco.py
+@@ -50,16 +50,8 @@
+     rescue a trained DCO?  For the free 2-D CNN in structured.py the answer was
+     no, all the way down to CFL 0.08.  Whether that holds for the 3-D U-Net is
+     what this script is for.
+ """
+-
+-# Project layout bootstrap (imports and paths only).
+-import sys as _layout_sys
+-from pathlib import Path as _LayoutPath
+-_layout_sys.path.insert(0, str(_LayoutPath(__file__).resolve().parents[2]))
+-from project_paths import ROOT as PROJECT_ROOT, configure as _layout_configure, resolve_legacy
+-_layout_configure()
+-
+ 
+ import argparse
+ import json
+ import math

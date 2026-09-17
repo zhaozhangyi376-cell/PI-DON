@@ -1,0 +1,41 @@
+[
+  {
+    "name": "root_tests",
+    "command": [
+      "C:\\Users\\DELL\\AppData\\Local\\Programs\\Python\\Python311\\python.exe",
+      "run.py",
+      "unittest",
+      "discover",
+      "-s",
+      "tests",
+      "-v"
+    ],
+    "returncode": 1,
+    "output": "root_tests.txt"
+  },
+  {
+    "name": "paper01_tests",
+    "command": [
+      "C:\\Users\\DELL\\AppData\\Local\\Programs\\Python\\Python311\\python.exe",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "_01/tests",
+      "-v"
+    ],
+    "returncode": 0,
+    "output": "paper01_tests.txt"
+  },
+  {
+    "name": "harness_check",
+    "command": [
+      "C:\\Users\\DELL\\AppData\\Local\\Programs\\Python\\Python311\\python.exe",
+      "run.py",
+      "project_harness",
+      "check"
+    ],
+    "returncode": 2,
+    "output": "harness_check.txt"
+  }
+]

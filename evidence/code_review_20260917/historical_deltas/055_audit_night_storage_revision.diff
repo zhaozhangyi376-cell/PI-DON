@@ -1,0 +1,26 @@
+--- scripts/analysis/audit_night_storage_revision.py
++++ evidence/workspace_reorganization_20260914/before/root/audit_night_storage_revision.py
+@@ -1,22 +1,14 @@
+ """Read-only storage refresh after user cleanup; no training or cleanup."""
+-
+-# Project layout bootstrap (imports and paths only).
+-import sys as _layout_sys
+-from pathlib import Path as _LayoutPath
+-_layout_sys.path.insert(0, str(_LayoutPath(__file__).resolve().parents[2]))
+-from project_paths import ROOT as PROJECT_ROOT, configure as _layout_configure, resolve_legacy
+-_layout_configure()
+-
+ from datetime import datetime, timezone
+ from pathlib import Path
+ import json
+ import math
+ import shutil
+ 
+ from pidon_recording import sha256_file
+ 
+-ROOT = PROJECT_ROOT
++ROOT = Path(__file__).resolve().parent
+ OUT = ROOT / 'evidence/gpt6_plan_v4_review/storage_revision'
+ PLAN = ROOT / 'docs/superpowers/plans/2026-09-13-pidon-10h-goal-night-plan.md'
+ GIB = 1024 ** 3
+ 

@@ -1,0 +1,79 @@
+--- src/pidon/fdtd.py
++++ evidence/coverage_ab_v1/source/fdtd.py
+@@ -27,16 +27,8 @@
+     The intended meaning is unambiguous, so this file implements the standard,
+     self-consistent Yee curl (components at the H positions, all three signs
+     positive).  Flag this in the report -- it is a real, checkable finding.
+ """
+-
+-# Project layout bootstrap (imports and paths only).
+-import sys as _layout_sys
+-from pathlib import Path as _LayoutPath
+-_layout_sys.path.insert(0, str(_LayoutPath(__file__).resolve().parents[2]))
+-from project_paths import ROOT as PROJECT_ROOT, configure as _layout_configure, resolve_legacy
+-_layout_configure()
+-
+ 
+ import numpy as np
+ 
+ C0 = 2.99792458e8          # physical speed of light, used for the solver
+@@ -73,12 +65,21 @@
+ 
+     The paper quotes dt = 3.075e-12 s for a 50 mm air cavity "discretized into
+     32 cells in each direction".
+ 
+-    Treating the nominal 32 cells as 31 intervals gives dx = 1.6129 mm and
+-    0.99*CFL = 3.0751 ps, which matches the paper's quoted dt to four figures.
+-    This is a useful reconstruction hypothesis, not author-confirmed mesh
+-    metadata.  In this implementation n=32 with dt=3.075 ps is above CFL.
++    2026-09-11 CORRECTION.  This docstring used to say that value was 1.022x
++    the Courant limit and therefore unstable.  That was OUR misreading, not
++    the paper's error: taking "32 cells" as 32 INTERVALS gives dx = 1.5625 mm
++    and CFL = 3.009 ps, so 3.075 ps looks 1.022x over.  Taking it as 32 grid
++    POINTS -- 31 intervals -- gives dx = 1.6129 mm, CFL = 3.1062 ps, and
++
++        0.99 x 3.1062 ps = 3.0751 ps,
++
++    which is the paper's number to four figures, with exactly the standard
++    0.99 safety factor.  The paper is self-consistent; run the cavity with
++    n = 31 to reproduce its mesh.  Running n = 32 puts dt above the limit and
++    plain Yee diverges -- which is what happened to a 2000-step run before
++    this was understood.
+     """
+     return safety / (c * np.sqrt(1.0 / dx**2 + 1.0 / dy**2 + 1.0 / dz**2))
+ 
+ 
+@@ -140,33 +141,8 @@
+             else:
+                 self.Ez[i, j, k_] += src_value
+ 
+         self.apply_pec()
+-
+-    def step_e_source_h(self, src_value=None, src_idx=None):
+-        """Algorithm-1 ordering on this independent Yee state.
+-
+-        The ordinary :meth:`step` starts with the H half-step.  PI-DON's
+-        Algorithm 1 instead begins from the already available H half-layer,
+-        updates E, inserts its hard source, then forms the next H half-layer.
+-        Keeping this method on ``PECCavity`` makes the reference use the same
+-        tested Yee stencils without importing the PI-DON solver.
+-        """
+-        d = (self.dx, self.dy, self.dz)
+-        hx, hy, hz = curl_H(self.Hx, self.Hy, self.Hz, *d)
+-        ke = self.dt / EPS0
+-        self.Ex[:, 1:-1, 1:-1] += ke * hx
+-        self.Ey[1:-1, :, 1:-1] += ke * hy
+-        self.Ez[1:-1, 1:-1, :] += ke * hz
+-        if src_value is not None:
+-            i, j, k_ = src_idx
+-            self.Ez[i, j, k_] = src_value
+-        self.apply_pec()
+-        cx, cy, cz = curl_E(self.Ex, self.Ey, self.Ez, *d)
+-        kh = self.dt / self.mu
+-        self.Hx -= kh * cx
+-        self.Hy -= kh * cy
+-        self.Hz -= kh * cz
+ 
+ 
+ def gaussian_pulse(n_steps, dt, f_max=15e9, level=0.1):
+     """Unit-amplitude Gaussian whose spectrum falls to `level` at f_max."""

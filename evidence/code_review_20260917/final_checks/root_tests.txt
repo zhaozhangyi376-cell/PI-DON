@@ -1,0 +1,215 @@
+{
+  "status": "PASS",
+  "checks": {
+    "pending_resume_matches_uninterrupted": true,
+    "pending_checkpoint_saved": true,
+    "terminal_budget_not_production_resumable": true,
+    "none_metric_reportable": true,
+    "closure_budget_counted": true
+  },
+  "total_m0_engineering_budget": {
+    "adam": 5,
+    "closures": 1,
+    "accepted_steps": 0,
+    "failed_candidates": 4
+  },
+  "report": "evidence/direct_mechanism_v1/m0/M0_REPORT.md"
+}
+microbatch 4 INCOMPLETE committed 5
+microbatch 8 PASS committed 5
+microbatch 16 PASS committed 5
+{"status": "INCOMPLETE", "output": "C:\\Users\\DELL\\AppData\\Local\\Temp\\tmp655pgr64\\output", "updates": 15}
+C200 update 10/200: last10 training loss=1.60288, 0.0s
+C200 update 20/200: last10 training loss=1.60162, 0.0s
+C200 update 30/200: last10 training loss=1.60035, 0.0s
+C200 update 40/200: last10 training loss=1.59909, 0.0s
+C200 update 50/200: last10 training loss=1.59782, 0.0s
+C200 update 60/200: last10 training loss=1.59656, 0.1s
+C200 update 70/200: last10 training loss=1.5953, 0.1s
+C200 update 80/200: last10 training loss=1.59403, 0.1s
+C200 update 90/200: last10 training loss=1.59277, 0.1s
+C200 update 100/200: last10 training loss=1.59151, 0.1s
+C200 update 110/200: last10 training loss=1.59025, 0.1s
+C200 update 120/200: last10 training loss=1.589, 0.1s
+C200 update 130/200: last10 training loss=1.58774, 0.1s
+C200 update 140/200: last10 training loss=1.58648, 0.1s
+C200 update 150/200: last10 training loss=1.58522, 0.1s
+C200 update 160/200: last10 training loss=1.58397, 0.1s
+C200 update 170/200: last10 training loss=1.58271, 0.2s
+C200 update 180/200: last10 training loss=1.58146, 0.2s
+C200 update 190/200: last10 training loss=1.58021, 0.2s
+C200 update 200/200: last10 training loss=1.57895, 0.2s
+
+test_fig5_reconstruction_freezes_disclosed_parameters (test_briefing_operator_audit.BriefingOperatorAuditTests.test_fig5_reconstruction_freezes_disclosed_parameters) ... ok
+test_panel_contains_input_target_prediction_and_error (test_briefing_operator_audit.BriefingOperatorAuditTests.test_panel_contains_input_target_prediction_and_error) ... ok
+test_spatial_coordinates_vary_and_encode_spacing (test_briefing_operator_audit.BriefingOperatorAuditTests.test_spatial_coordinates_vary_and_encode_spacing) ... ok
+test_state_hash_changes_only_when_parameters_change (test_briefing_operator_audit.BriefingOperatorAuditTests.test_state_hash_changes_only_when_parameters_change) ... ok
+test_gradient_demo_distinguishes_loss_before_and_after_projection (test_briefing_pec_audit.BriefingPECAuditTests.test_gradient_demo_distinguishes_loss_before_and_after_projection) ... ok
+test_production_apply_pec_matches_expected_masks (test_briefing_pec_audit.BriefingPECAuditTests.test_production_apply_pec_matches_expected_masks) ... ok
+test_tangential_masks_cover_four_faces_per_e_component (test_briefing_pec_audit.BriefingPECAuditTests.test_tangential_masks_cover_four_faces_per_e_component) ... ok
+test_budget_has_exactly_200_complete_batches (test_coverage_ab.CoverageTests.test_budget_has_exactly_200_complete_batches) ... ok
+test_paired_samples_match_existing_generator (test_coverage_ab.CoverageTests.test_paired_samples_match_existing_generator) ... ok
+test_relative_loss_weights_samples_equally (test_coverage_ab.CoverageTests.test_relative_loss_weights_samples_equally) ... ok
+test_m0_core_checks_pass_in_temp_evidence (test_direct_mechanism_m0.DirectMechanismM0Tests.test_m0_core_checks_pass_in_temp_evidence) ... ok
+test_none_metric_case_is_json_reportable (test_direct_mechanism_m0.DirectMechanismM0Tests.test_none_metric_case_is_json_reportable) ... ok
+test_component_summary_separates_weak_components (test_failure_mechanism_audit.FailureMechanismAuditTests.test_component_summary_separates_weak_components) ... ok
+test_same_first_target_requires_scale_and_initial_loss (test_failure_mechanism_audit.FailureMechanismAuditTests.test_same_first_target_requires_scale_and_initial_loss) ... ok
+test_trace_crossing_reports_first_update (test_failure_mechanism_audit.FailureMechanismAuditTests.test_trace_crossing_reports_first_update) ... ok
+test_classify_reports_remaining_factor (test_first_e_budget_probe.FirstEBudgetProbeTests.test_classify_reports_remaining_factor) ... ok
+test_trace_crossing_uses_first_threshold_hit (test_first_e_budget_probe.FirstEBudgetProbeTests.test_trace_crossing_uses_first_threshold_hit) ... ok
+test_h01_full_rank_recovers_affine_coefficients (test_head_lstsq.HeadLeastSquaresTests.test_h01_full_rank_recovers_affine_coefficients) ... ok
+test_h02_rank_deficient_and_zero_target_are_finite_and_recomputed (test_head_lstsq.HeadLeastSquaresTests.test_h02_rank_deficient_and_zero_target_are_finite_and_recomputed) ... ok
+test_h03_h04_production_hook_padding_and_component_support (test_head_lstsq.HeadLeastSquaresTests.test_h03_h04_production_hook_padding_and_component_support) ... ok
+test_h05_h08_one_commit_and_adam_state_reset_only_for_head (test_head_lstsq.HeadLeastSquaresTests.test_h05_h08_one_commit_and_adam_state_reset_only_for_head) ... ok
+test_h06_terminal_checkpoint_does_not_repeat_head_commit (test_head_lstsq.HeadLeastSquaresTests.test_h06_terminal_checkpoint_does_not_repeat_head_commit) ... ok
+test_h07_replaced_head_does_not_cache_target_for_other_input (test_head_lstsq.HeadLeastSquaresTests.test_h07_replaced_head_does_not_cache_target_for_other_input) ... ok
+test_h08_interrupted_adam_resumes_without_a_second_head_commit (test_head_lstsq.HeadLeastSquaresTests.test_h08_interrupted_adam_resumes_without_a_second_head_commit) ... ok
+test_apply_plan_update_marks_ablation_task_delivered (test_ingest_paper01_ablation_return.Paper01AblationReturnIngestTests.test_apply_plan_update_marks_ablation_task_delivered) ... ok
+test_review_extracts_variant_table_and_best_macro_nmae (test_ingest_paper01_ablation_return.Paper01AblationReturnIngestTests.test_review_extracts_variant_table_and_best_macro_nmae) ... ok
+test_complete_return_checks_contract_history_and_registered_gates (test_ingest_paper01_return.Paper01ReturnAuditTests.test_complete_return_checks_contract_history_and_registered_gates) ... ok
+test_missing_history_is_incomplete (test_ingest_paper01_return.Paper01ReturnAuditTests.test_missing_history_is_incomplete) ... ok
+test_reader_preserves_failed_and_incomplete_statuses (test_mechanism_claims.MechanismDecisionClaimTests.test_reader_preserves_failed_and_incomplete_statuses) ... ok
+test_paper_protocol_wave_spec_is_a_valid_analytic_sampling_input (test_mechanism_decision_eval.MechanismDecisionEvaluationTests.test_paper_protocol_wave_spec_is_a_valid_analytic_sampling_input) ... ok
+test_wave_number_accessor_accepts_both_registered_metadata_schemas (test_mechanism_decision_eval.MechanismDecisionEvaluationTests.test_wave_number_accessor_accepts_both_registered_metadata_schemas) ... ok
+test_component_residual_keeps_total_and_each_component_separate (test_mechanism_first_failure.FirstFailureTests.test_component_residual_keeps_total_and_each_component_separate) ... ok
+test_budget_is_monotonic_and_separates_strict_explore (test_mechanism_hour.MechanismHourTests.test_budget_is_monotonic_and_separates_strict_explore) ... ok
+test_failure_does_not_become_success_or_reset_budget (test_mechanism_hour.MechanismHourTests.test_failure_does_not_become_success_or_reset_budget) ... ok
+test_interrupt_callback_does_not_depend_on_stdout (test_mechanism_hour.MechanismHourTests.test_interrupt_callback_does_not_depend_on_stdout) ... ok
+test_duplicate_ledger_sequence_is_rejected (test_night_budget.NightBudgetTests.test_duplicate_ledger_sequence_is_rejected) ... ok
+test_ledger_never_reuses_sequence_or_task_budget (test_night_budget.NightBudgetTests.test_ledger_never_reuses_sequence_or_task_budget) ... ok
+test_plan_change_cannot_reopen_window (test_night_budget.NightBudgetTests.test_plan_change_cannot_reopen_window) ... ok
+test_second_initialization_keeps_original_deadline (test_night_budget.NightBudgetTests.test_second_initialization_keeps_original_deadline) ... ok
+test_training_stops_at_nine_and_a_half_hours (test_night_budget.NightBudgetTests.test_training_stops_at_nine_and_a_half_hours) ... ok
+test_disk_remeasurements_and_metric_labels_are_explicit (test_night_evidence.NightEvidenceTests.test_disk_remeasurements_and_metric_labels_are_explicit) ... ok
+test_registered_gate_is_not_promoted_by_controls_or_oracles (test_night_evidence.NightEvidenceTests.test_registered_gate_is_not_promoted_by_controls_or_oracles) ... ok
+test_bundle_contains_ablation_source_queue_and_no_old_evidence (test_paper01_ablation_bundle.Paper01AblationBundleTests.test_bundle_contains_ablation_source_queue_and_no_old_evidence) ... ok
+test_bundle_hash_is_reproducible (test_paper01_ablation_bundle.Paper01AblationBundleTests.test_bundle_hash_is_reproducible) ... ok
+test_paper01_ablation_data (unittest.loader._FailedTest.test_paper01_ablation_data) ... ERROR
+test_collect_status_reports_running_and_complete_variants (test_paper01_ablation_status.Paper01AblationStatusTests.test_collect_status_reports_running_and_complete_variants) ... ok
+test_bins_preserve_last_edge_and_report_counts (test_paper01_data_contract_audit.Paper01DataContractAuditTests.test_bins_preserve_last_edge_and_report_counts) ... ok
+test_safe_corr_rejects_constant_axis (test_paper01_data_contract_audit.Paper01DataContractAuditTests.test_safe_corr_rejects_constant_axis) ... ok
+test_transversality_reports_near_zero_for_constructed_wave (test_paper01_data_contract_audit.Paper01DataContractAuditTests.test_transversality_reports_near_zero_for_constructed_wave) ... ok
+test_group_by_bins_reports_counts_and_error_summary (test_paper01_s1_diagnosis.Paper01S1DiagnosisTests.test_group_by_bins_reports_counts_and_error_summary) ... ok
+test_history_trend_uses_validation_rows (test_paper01_s1_diagnosis.Paper01S1DiagnosisTests.test_history_trend_uses_validation_rows) ... ok
+test_safe_corr_handles_constant_and_linear_inputs (test_paper01_s1_diagnosis.Paper01S1DiagnosisTests.test_safe_corr_handles_constant_and_linear_inputs) ... ok
+test_bundle_contains_fresh_source_and_logged_queue_but_no_weights (test_paper01_server_bundle.Paper01ServerBundleTests.test_bundle_contains_fresh_source_and_logged_queue_but_no_weights) ... ok
+test_component_aggregation (test_paper_protocol.PaperProtocolTests.test_component_aggregation) ... ok
+test_eq5_uses_exact_zero_branch_not_small_value_cutoff (test_paper_protocol.PaperProtocolTests.test_eq5_uses_exact_zero_branch_not_small_value_cutoff) ... ok
+test_fixed_case_reuses_wave_spec_across_grids (test_paper_protocol.PaperProtocolTests.test_fixed_case_reuses_wave_spec_across_grids) ... ok
+test_metric_zero_branch_is_unit_sensitive (test_paper_protocol.PaperProtocolTests.test_metric_zero_branch_is_unit_sensitive) ... ok
+test_mre_scaling_is_not_nmae (test_paper_protocol.PaperProtocolTests.test_mre_scaling_is_not_nmae) ... ok
+test_nonfinite_metrics_rejected (test_paper_protocol.PaperProtocolTests.test_nonfinite_metrics_rejected) ... ok
+test_pec_and_zero_field_fixed_point (test_paper_protocol.PaperProtocolTests.test_pec_and_zero_field_fixed_point) ... ok
+test_single_wave_analytic_curl (test_paper_protocol.PaperProtocolTests.test_single_wave_analytic_curl) ... ok
+test_three_curl_components_at_yee_positions (test_paper_protocol.PaperProtocolTests.test_three_curl_components_at_yee_positions) ... ok
+test_declared_escalation_counts_actual_cumulative_updates (test_phase1_pilot.Phase1PilotTests.test_declared_escalation_counts_actual_cumulative_updates) ... ok
+test_invalid_budget_is_rejected (test_phase1_pilot.Phase1PilotTests.test_invalid_budget_is_rejected) ... ok
+test_paired_batch_schedule_is_seed_deterministic (test_phase1_pilot.Phase1PilotTests.test_paired_batch_schedule_is_seed_deterministic) ... ok
+test_atomic_recorder_keeps_jsonl_and_latest_checkpoint (test_pidon_contract.PidonContractTests.test_atomic_recorder_keeps_jsonl_and_latest_checkpoint) ... ok
+test_e_pending_resume_does_not_repeat_source_or_e_update (test_pidon_contract.PidonContractTests.test_e_pending_resume_does_not_repeat_source_or_e_update) ... ok
+test_exact_control_128_steps_is_not_dco_and_meets_precision_gates (test_pidon_contract.PidonContractTests.test_exact_control_128_steps_is_not_dco_and_meets_precision_gates) ... ok
+test_exhausted_inner_budget_is_rejected_before_resume (test_pidon_contract.PidonContractTests.test_exhausted_inner_budget_is_rejected_before_resume) ... ok
+test_h_failure_does_not_advance_transaction (test_pidon_contract.PidonContractTests.test_h_failure_does_not_advance_transaction) ... ok
+test_nonfinite_raw_state_precedes_safe_rollback (test_pidon_contract.PidonContractTests.test_nonfinite_raw_state_precedes_safe_rollback) ... ok
+test_nonzero_irrotational_input_is_not_zero_shortcut (test_pidon_contract.PidonContractTests.test_nonzero_irrotational_input_is_not_zero_shortcut) ... ok
+test_pec_normal_curl_e_faces_are_explicitly_zero (test_pidon_contract.PidonContractTests.test_pec_normal_curl_e_faces_are_explicitly_zero) ... ok
+test_production_control_serializes_weak_component_metrics_as_null (test_pidon_contract.PidonContractTests.test_production_control_serializes_weak_component_metrics_as_null) ... ok
+test_reached_is_strict_and_finite (test_pidon_contract.PidonContractTests.test_reached_is_strict_and_finite) ... ok
+test_resume_rejects_changed_frozen_configuration (test_pidon_contract.PidonContractTests.test_resume_rejects_changed_frozen_configuration) ... ok
+test_staggered_probe_and_dual_boundary_volume (test_pidon_contract.PidonContractTests.test_staggered_probe_and_dual_boundary_volume) ... ok
+test_terminal_e_pending_checkpoint_is_not_resumable (test_pidon_contract.PidonContractTests.test_terminal_e_pending_checkpoint_is_not_resumable) ... ok
+test_three_axis_discrete_plane_wave_symbols_and_div_curl (test_pidon_contract.PidonContractTests.test_three_axis_discrete_plane_wave_symbols_and_div_curl) ... ok
+test_yee_constant_and_linear_curls_have_expected_sign_and_support (test_pidon_contract.PidonContractTests.test_yee_constant_and_linear_curls_have_expected_sign_and_support) ... ok
+test_zero_curl_control_is_rejected_after_propagation (test_pidon_contract.PidonContractTests.test_zero_curl_control_is_rejected_after_propagation) ... ok
+test_elapsed_budget_is_cumulative_across_resume (test_pidon_contract_v3.A1ContractRegressionTests.test_elapsed_budget_is_cumulative_across_resume) ... ok
+test_failed_half_transaction_has_no_accepted_field_metric (test_pidon_contract_v3.A1ContractRegressionTests.test_failed_half_transaction_has_no_accepted_field_metric) ... ok
+test_formal_config_rejects_explicit_cli_conflict (test_pidon_contract_v3.A1ContractRegressionTests.test_formal_config_rejects_explicit_cli_conflict) ... ok
+test_formal_config_requires_every_frozen_field (test_pidon_contract_v3.A1ContractRegressionTests.test_formal_config_requires_every_frozen_field) ... ok
+test_interrupted_adam_resume_matches_uninterrupted_trajectory (test_pidon_contract_v3.A1ContractRegressionTests.test_interrupted_adam_resume_matches_uninterrupted_trajectory) ... ok
+test_interrupted_lbfgs_resume_matches_uninterrupted_trajectory (test_pidon_contract_v3.A1ContractRegressionTests.test_interrupted_lbfgs_resume_matches_uninterrupted_trajectory) ... ok
+test_lbfgs_budget_interrupt_restores_last_completed_call (test_pidon_contract_v3.A1ContractRegressionTests.test_lbfgs_budget_interrupt_restores_last_completed_call) ... ok
+test_mre_and_nmae_are_separate_with_strict_zero_reporting (test_pidon_contract_v3.A1ContractRegressionTests.test_mre_and_nmae_are_separate_with_strict_zero_reporting) ... ok
+test_new_run_refuses_foreign_identity_in_existing_directory (test_pidon_contract_v3.A1ContractRegressionTests.test_new_run_refuses_foreign_identity_in_existing_directory) ... ok
+test_new_run_rejects_nonempty_directory_without_metadata (test_pidon_contract_v3.A1ContractRegressionTests.test_new_run_rejects_nonempty_directory_without_metadata) ... ok
+test_payload_has_explicit_attempt_identity_and_optimizer_phase (test_pidon_contract_v3.A1ContractRegressionTests.test_payload_has_explicit_attempt_identity_and_optimizer_phase) ... ok
+test_production_exact_control_records_and_restores_midrun (test_pidon_contract_v3.A1ContractRegressionTests.test_production_exact_control_records_and_restores_midrun) ... ok
+test_production_h_shift_adapter_uses_registered_staggered_slices (test_pidon_contract_v3.A1ContractRegressionTests.test_production_h_shift_adapter_uses_registered_staggered_slices) ... ok
+test_recorder_classifies_uncheckpointed_jsonl_tail_on_resume (test_pidon_contract_v3.A1ContractRegressionTests.test_recorder_classifies_uncheckpointed_jsonl_tail_on_resume) ... ok
+test_recorder_commits_monotonic_sequence_to_durable_metadata (test_pidon_contract_v3.A1ContractRegressionTests.test_recorder_commits_monotonic_sequence_to_durable_metadata) ... ok
+test_recorder_save_failure_keeps_the_prior_complete_checkpoint (test_pidon_contract_v3.A1ContractRegressionTests.test_recorder_save_failure_keeps_the_prior_complete_checkpoint) ... ok
+test_resume_accepts_only_same_identity (test_pidon_contract_v3.A1ContractRegressionTests.test_resume_accepts_only_same_identity) ... ok
+test_resume_rejects_lbfgs_budget_change (test_pidon_contract_v3.A1ContractRegressionTests.test_resume_rejects_lbfgs_budget_change) ... ok
+test_atomic_recorder_keeps_jsonl_and_latest_checkpoint (test_pidon_contract.PidonContractTests.test_atomic_recorder_keeps_jsonl_and_latest_checkpoint) ... ok
+test_e_pending_resume_does_not_repeat_source_or_e_update (test_pidon_contract.PidonContractTests.test_e_pending_resume_does_not_repeat_source_or_e_update) ... ok
+test_exact_control_128_steps_is_not_dco_and_meets_precision_gates (test_pidon_contract.PidonContractTests.test_exact_control_128_steps_is_not_dco_and_meets_precision_gates) ... ok
+test_exhausted_inner_budget_is_rejected_before_resume (test_pidon_contract.PidonContractTests.test_exhausted_inner_budget_is_rejected_before_resume) ... ok
+test_h_failure_does_not_advance_transaction (test_pidon_contract.PidonContractTests.test_h_failure_does_not_advance_transaction) ... ok
+test_nonfinite_raw_state_precedes_safe_rollback (test_pidon_contract.PidonContractTests.test_nonfinite_raw_state_precedes_safe_rollback) ... ok
+test_nonzero_irrotational_input_is_not_zero_shortcut (test_pidon_contract.PidonContractTests.test_nonzero_irrotational_input_is_not_zero_shortcut) ... ok
+test_pec_normal_curl_e_faces_are_explicitly_zero (test_pidon_contract.PidonContractTests.test_pec_normal_curl_e_faces_are_explicitly_zero) ... ok
+test_production_control_serializes_weak_component_metrics_as_null (test_pidon_contract.PidonContractTests.test_production_control_serializes_weak_component_metrics_as_null) ... ok
+test_reached_is_strict_and_finite (test_pidon_contract.PidonContractTests.test_reached_is_strict_and_finite) ... ok
+test_resume_rejects_changed_frozen_configuration (test_pidon_contract.PidonContractTests.test_resume_rejects_changed_frozen_configuration) ... ok
+test_staggered_probe_and_dual_boundary_volume (test_pidon_contract.PidonContractTests.test_staggered_probe_and_dual_boundary_volume) ... ok
+test_terminal_e_pending_checkpoint_is_not_resumable (test_pidon_contract.PidonContractTests.test_terminal_e_pending_checkpoint_is_not_resumable) ... ok
+test_three_axis_discrete_plane_wave_symbols_and_div_curl (test_pidon_contract.PidonContractTests.test_three_axis_discrete_plane_wave_symbols_and_div_curl) ... ok
+test_yee_constant_and_linear_curls_have_expected_sign_and_support (test_pidon_contract.PidonContractTests.test_yee_constant_and_linear_curls_have_expected_sign_and_support) ... ok
+test_zero_curl_control_is_rejected_after_propagation (test_pidon_contract.PidonContractTests.test_zero_curl_control_is_rejected_after_propagation) ... ok
+test_component_loss_cannot_pass_when_physical_total_R_fails (test_pidon_contract_v4.NightContractRegressionTests.test_component_loss_cannot_pass_when_physical_total_R_fails) ... ok
+test_failure_raw_does_not_claim_a_recovery_checkpoint (test_pidon_contract_v4.NightContractRegressionTests.test_failure_raw_does_not_claim_a_recovery_checkpoint) ... ok
+test_jsonl_commit_crash_recovers_unique_next_sequence_and_tail (test_pidon_contract_v4.NightContractRegressionTests.test_jsonl_commit_crash_recovers_unique_next_sequence_and_tail) ... ok
+test_nonfinite_gradient_is_terminal_before_optimizer_step (test_pidon_contract_v4.NightContractRegressionTests.test_nonfinite_gradient_is_terminal_before_optimizer_step) ... ok
+test_nonfinite_parameter_after_step_is_raw_then_rolled_back (test_pidon_contract_v4.NightContractRegressionTests.test_nonfinite_parameter_after_step_is_raw_then_rolled_back) ... ok
+test_payload_schema_and_independent_run_identity_are_explicit (test_pidon_contract_v4.NightContractRegressionTests.test_payload_schema_and_independent_run_identity_are_explicit) ... ok
+test_recorder_rejects_nonfinite_jsonl_constant_on_resume (test_pidon_contract_v4.NightContractRegressionTests.test_recorder_rejects_nonfinite_jsonl_constant_on_resume) ... ok
+test_recorder_rejects_truncated_or_duplicate_jsonl_on_resume (test_pidon_contract_v4.NightContractRegressionTests.test_recorder_rejects_truncated_or_duplicate_jsonl_on_resume) ... ok
+test_rolling_checkpoint_pointer_keeps_prior_slot_if_new_pointer_fails (test_pidon_contract_v4.NightContractRegressionTests.test_rolling_checkpoint_pointer_keeps_prior_slot_if_new_pointer_fails) ... ok
+test_terminal_state_is_rejected_but_diagnostic_load_is_read_only (test_pidon_contract_v4.NightContractRegressionTests.test_terminal_state_is_rejected_but_diagnostic_load_is_read_only) ... ok
+test_corrupt_log_preserved_and_blocks_new_action (test_project_harness.ProjectHarnessTests.test_corrupt_log_preserved_and_blocks_new_action) ... ok
+test_failure_is_append_only_and_does_not_stop_independent_task (test_project_harness.ProjectHarnessTests.test_failure_is_append_only_and_does_not_stop_independent_task) ... ok
+test_goal_binding_and_unique_ids (test_project_harness.ProjectHarnessTests.test_goal_binding_and_unique_ids) ... ok
+test_migration_lookup_and_exact_historical_evidence (test_project_harness.ProjectHarnessTests.test_migration_lookup_and_exact_historical_evidence) ... ok
+test_ready_and_start_cannot_bypass_unreviewed_predecessor (test_project_harness.ProjectHarnessTests.test_ready_and_start_cannot_bypass_unreviewed_predecessor) ... ok
+test_reject_missing_evidence_protocol_and_blank_reason (test_project_harness.ProjectHarnessTests.test_reject_missing_evidence_protocol_and_blank_reason) ... ok
+test_reported_pass_does_not_certify_or_unlock_dependency (test_project_harness.ProjectHarnessTests.test_reported_pass_does_not_certify_or_unlock_dependency) ... ok
+test_unknown_dependency_and_cycles_rejected (test_project_harness.ProjectHarnessTests.test_unknown_dependency_and_cycles_rejected) ... ok
+test_no_update_baseline_has_zero_inner_budget (test_r4_fixed_state.FixedStateV2Tests.test_no_update_baseline_has_zero_inner_budget) ... ok
+test_pairs_follow_e_source_h_and_keep_complete_six_fields (test_r4_fixed_state.FixedStateV2Tests.test_pairs_follow_e_source_h_and_keep_complete_six_fields) ... ok
+test_p4a_budget_is_frozen (test_r4_p4a.P4ADriverTests.test_p4a_budget_is_frozen) ... ok
+test_historical_report_entry_is_blocked_before_execution (test_run_entrypoint.EntryPointTests.test_historical_report_entry_is_blocked_before_execution) ... ok
+test_old_weight_cannot_be_an_output (test_run_entrypoint.EntryPointTests.test_old_weight_cannot_be_an_output) ... ok
+test_only_explicit_inputs_are_migrated (test_run_entrypoint.EntryPointTests.test_only_explicit_inputs_are_migrated) ... ok
+test_registered_action_requires_unchanged_protocol_and_cannot_reopen (test_run_entrypoint.EntryPointTests.test_registered_action_requires_unchanged_protocol_and_cannot_reopen) ... ok
+test_without_logger_or_action_cannot_train (test_run_entrypoint.EntryPointTests.test_without_logger_or_action_cannot_train) ... ok
+test_checkpoint_normalization_cannot_be_silently_changed (test_server_resource.ServerResourceTests.test_checkpoint_normalization_cannot_be_silently_changed) ... ok
+test_checkpoint_save_failure_keeps_committed_cost (test_server_resource.ServerResourceTests.test_checkpoint_save_failure_keeps_committed_cost) ... ok
+test_failed_candidate_cost_is_included (test_server_resource.ServerResourceTests.test_failed_candidate_cost_is_included) ... ok
+test_install_is_idempotent_and_preserves_existing_failures (test_server_resource.ServerResourceTests.test_install_is_idempotent_and_preserves_existing_failures) ... ok
+test_mean_pass_does_not_imply_every_sample_pass (test_server_resource.ServerResourceTests.test_mean_pass_does_not_imply_every_sample_pass) ... ok
+test_missing_cost_is_not_silently_zero (test_server_resource.ServerResourceTests.test_missing_cost_is_not_silently_zero) ... ok
+test_missing_head_metadata_is_not_guessed (test_server_resource.ServerResourceTests.test_missing_head_metadata_is_not_guessed) ... ok
+test_both_curls_required (test_stop_review_claims.ReviewGateTests.test_both_curls_required) ... ok
+test_development_pass_is_distinct_from_full_g1 (test_stop_review_claims.ReviewGateTests.test_development_pass_is_distinct_from_full_g1) ... ok
+test_one_successful_state_is_not_complete_development (test_stop_review_claims.ReviewGateTests.test_one_successful_state_is_not_complete_development) ... ok
+test_scientific_failure_is_not_relabelled_missing (test_stop_review_claims.ReviewGateTests.test_scientific_failure_is_not_relabelled_missing) ... ok
+test_actual_helper_freezes_branch_and_updates_only_trunk (test_trunk_repair.TrunkTests.test_actual_helper_freezes_branch_and_updates_only_trunk) ... ok
+
+======================================================================
+ERROR: test_paper01_ablation_data (unittest.loader._FailedTest.test_paper01_ablation_data)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_paper01_ablation_data
+Traceback (most recent call last):
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\unittest\loader.py", line 419, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\unittest\loader.py", line 362, in _get_module_from_name
+    __import__(name)
+  File "C:\PI-DON\tests\test_paper01_ablation_data.py", line 5, in <module>
+    from paper01.ablation_data import draw_variant_spec, ez_amplification, variant_contract_stats
+ModuleNotFoundError: No module named 'paper01'
+
+
+----------------------------------------------------------------------
+Ran 153 tests in 28.512s
+
+FAILED (errors=1)

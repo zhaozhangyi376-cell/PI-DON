@@ -1,0 +1,19 @@
+--- scripts/analysis/night_report.py
++++ evidence/workspace_reorganization_20260914/before/root/night_report.py
+@@ -15,16 +15,8 @@
+ 
+     (For next time: in PowerShell,  .\\run_night.bat 2>&1 | Tee-Object night.log
+      keeps the screen AND writes the log.)
+ """
+-
+-# Project layout bootstrap (imports and paths only).
+-import sys as _layout_sys
+-from pathlib import Path as _LayoutPath
+-_layout_sys.path.insert(0, str(_LayoutPath(__file__).resolve().parents[2]))
+-from project_paths import ROOT as PROJECT_ROOT, configure as _layout_configure, resolve_legacy
+-_layout_configure()
+-
+ 
+ import glob
+ import json
+ import os

@@ -1,0 +1,18 @@
+--- scripts/analysis/p3_report.py
++++ evidence/gpt6_plan_v2/r0_source_snapshot/p3_report.py
+@@ -1,15 +1,7 @@
+ """Turn the raw P3 fixed-state JSON into a compact, reviewable Chinese report."""
+ 
+ from __future__ import annotations
+-
+-# Project layout bootstrap (imports and paths only).
+-import sys as _layout_sys
+-from pathlib import Path as _LayoutPath
+-_layout_sys.path.insert(0, str(_LayoutPath(__file__).resolve().parents[2]))
+-from project_paths import ROOT as PROJECT_ROOT, configure as _layout_configure, resolve_legacy
+-_layout_configure()
+-
+ 
+ import argparse
+ import json
+ from pathlib import Path

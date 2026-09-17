@@ -1,0 +1,28 @@
+--- scripts/experiments/night_runner.py
++++ evidence/workspace_reorganization_20260914/before/root/night_runner.py
+@@ -1,14 +1,6 @@
+ """Bounded v4 night-stage runner.  G0 contains no DCO optimization."""
+ from __future__ import annotations
+-
+-# Project layout bootstrap (imports and paths only).
+-import sys as _layout_sys
+-from pathlib import Path as _LayoutPath
+-_layout_sys.path.insert(0, str(_LayoutPath(__file__).resolve().parents[2]))
+-from project_paths import ROOT as PROJECT_ROOT, configure as _layout_configure, resolve_legacy
+-_layout_configure()
+-
+ 
+ import argparse
+ import json
+ import os
+@@ -22,9 +14,9 @@
+ import reference_cache
+ from night_budget import NightPaths, append_ledger, assert_can_start
+ from pidon_recording import sha256_file
+ 
+-ROOT = PROJECT_ROOT
++ROOT = Path(__file__).resolve().parent
+ 
+ 
+ def atomic_json(path: Path, value: dict) -> None:
+     tmp = path.with_suffix(path.suffix + ".tmp")

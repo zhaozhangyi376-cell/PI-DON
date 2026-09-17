@@ -12427,3 +12427,963 @@ py -3.11 run.py --action A-20260917T024939-e9ba35f9 audit_paper01_data_contract 
 ```
 
 </details>
+
+## #306　2026-09-17T16:47:18　FAILED (exit 1)
+
+**REVIEW-20260917: isolated CPU counterexamples; read-only production audit; zero production updates**
+
+```
+py -3.11 evidence/code_review_20260917/reproduce_findings.py
+```
+
+- 耗时 3s ｜ commit `1407761` (main) ⚠ **跟踪文件与该 commit 不一致，此次运行无法仅凭 commit 复现**
+- DESKTOP-0K8A2KS ｜ Windows 10 ｜ python 3.11.9 ｜ torch 2.14.0+cu126 ｜ NVIDIA GeForce GTX 1660 SUPER
+
+<details><summary>输出末尾</summary>
+
+```
+test_component_scaling_changes_vector_rel_l2 (__main__.ReviewCounterexamples.test_component_scaling_changes_vector_rel_l2) ... ok
+test_field_gate_ignores_wrong_probe (__main__.ReviewCounterexamples.test_field_gate_ignores_wrong_probe) ... ok
+test_field_gate_passes_without_any_components_or_probes (__main__.ReviewCounterexamples.test_field_gate_passes_without_any_components_or_probes) ... ok
+test_legacy_resolution_discards_explicit_external_model_identity (__main__.ReviewCounterexamples.test_legacy_resolution_discards_explicit_external_model_identity) ... ok
+test_material_parameter_does_not_change_evolution (__main__.ReviewCounterexamples.test_material_parameter_does_not_change_evolution) ... ok
+test_physical_mre_name_contains_scaled_zero_branch (__main__.ReviewCounterexamples.test_physical_mre_name_contains_scaled_zero_branch) ... ok
+test_rollover_after_metadata_crash_can_destroy_pointed_slot (__main__.ReviewCounterexamples.test_rollover_after_metadata_crash_can_destroy_pointed_slot) ... ok
+test_theta_ingest_passes_summary_without_raw_evidence (__main__.ReviewCounterexamples.test_theta_ingest_passes_summary_without_raw_evidence) ... ok
+test_theta_variant_also_changes_test_distribution (__main__.ReviewCounterexamples.test_theta_variant_also_changes_test_distribution) ... ok
+test_yee_curls_match_independent_linear_field_derivatives (__main__.ReviewCounterexamples.test_yee_curls_match_independent_linear_field_derivatives) ... ok
+
+----------------------------------------------------------------------
+Ran 12 tests in 1.298s
+
+OK
+Traceback (most recent call last):
+  File "C:\PI-DON\evidence\code_review_20260917\reproduce_findings.py", line 216, in <module>
+    target.write_text(json.dumps({"review_only": True, "production_parameter_updates": 0,
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\json\__init__.py", line 238, in dumps
+    **kw).encode(obj)
+          ^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\json\encoder.py", line 202, in encode
+    chunks = list(chunks)
+             ^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\json\encoder.py", line 432, in _iterencode
+    yield from _iterencode_dict(o, _current_indent_level)
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\json\encoder.py", line 406, in _iterencode_dict
+    yield from chunks
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\json\encoder.py", line 406, in _iterencode_dict
+    yield from chunks
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\json\encoder.py", line 406, in _iterencode_dict
+    yield from chunks
+  [Previous line repeated 1 more time]
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\json\encoder.py", line 439, in _iterencode
+    o = _default(o)
+        ^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\json\encoder.py", line 180, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type int64 is not JSON serializable
+```
+
+</details>
+
+## #307　2026-09-17T16:47:42　OK
+
+**REVIEW-20260917-R1: serialize counterexample integer; preserve run306 failed export; zero production updates**
+
+```
+py -3.11 evidence/code_review_20260917/reproduce_findings.py
+```
+
+- 耗时 3s ｜ commit `1407761` (main) ⚠ **跟踪文件与该 commit 不一致，此次运行无法仅凭 commit 复现**
+- DESKTOP-0K8A2KS ｜ Windows 10 ｜ python 3.11.9 ｜ torch 2.14.0+cu126 ｜ NVIDIA GeForce GTX 1660 SUPER
+
+| 产生/修改的文件 | 大小 | sha256 (前 16 位) |
+|---|---|---|
+| `evidence/code_review_20260917/counterexamples.json` | 2 KB | `bbcc7dcb1b61a0c7` |
+
+<details><summary>输出末尾</summary>
+
+```
+test_absolute_mode_stops_on_relative_ratio (__main__.ReviewCounterexamples.test_absolute_mode_stops_on_relative_ratio) ... ok
+test_cfl_violation_is_accepted_by_constructor (__main__.ReviewCounterexamples.test_cfl_violation_is_accepted_by_constructor) ... ok
+test_component_scaling_changes_vector_rel_l2 (__main__.ReviewCounterexamples.test_component_scaling_changes_vector_rel_l2) ... ok
+test_field_gate_ignores_wrong_probe (__main__.ReviewCounterexamples.test_field_gate_ignores_wrong_probe) ... ok
+test_field_gate_passes_without_any_components_or_probes (__main__.ReviewCounterexamples.test_field_gate_passes_without_any_components_or_probes) ... ok
+test_legacy_resolution_discards_explicit_external_model_identity (__main__.ReviewCounterexamples.test_legacy_resolution_discards_explicit_external_model_identity) ... ok
+test_material_parameter_does_not_change_evolution (__main__.ReviewCounterexamples.test_material_parameter_does_not_change_evolution) ... ok
+test_physical_mre_name_contains_scaled_zero_branch (__main__.ReviewCounterexamples.test_physical_mre_name_contains_scaled_zero_branch) ... ok
+test_rollover_after_metadata_crash_can_destroy_pointed_slot (__main__.ReviewCounterexamples.test_rollover_after_metadata_crash_can_destroy_pointed_slot) ... ok
+test_theta_ingest_passes_summary_without_raw_evidence (__main__.ReviewCounterexamples.test_theta_ingest_passes_summary_without_raw_evidence) ... ok
+test_theta_variant_also_changes_test_distribution (__main__.ReviewCounterexamples.test_theta_variant_also_changes_test_distribution) ... ok
+test_yee_curls_match_independent_linear_field_derivatives (__main__.ReviewCounterexamples.test_yee_curls_match_independent_linear_field_derivatives) ... ok
+
+----------------------------------------------------------------------
+Ran 12 tests in 1.219s
+
+OK
+```
+
+</details>
+
+## #308　2026-09-17T16:49:45　OK
+
+**REVIEW-20260917: source inventory and existing regression suites; review only**
+
+```
+py -3.11 evidence/code_review_20260917/collect_review.py
+```
+
+- 耗时 35s ｜ commit `1407761` (main) ⚠ **跟踪文件与该 commit 不一致，此次运行无法仅凭 commit 复现**
+- DESKTOP-0K8A2KS ｜ Windows 10 ｜ python 3.11.9 ｜ torch 2.14.0+cu126 ｜ NVIDIA GeForce GTX 1660 SUPER
+
+| 产生/修改的文件 | 大小 | sha256 (前 16 位) |
+|---|---|---|
+| `evidence/code_review_20260917/source_inventory.json` | 186 KB | `78244a2926167102` |
+| `evidence/code_review_20260917/root_tests.txt` | 26 KB | `53ed3b7c41e5b86a` |
+| `evidence/code_review_20260917/harness_check.txt` | 7 KB | `cb2c174097b4283d` |
+| `evidence/code_review_20260917/paper01_tests.txt` | 1 KB | `289bf0276cfa5b76` |
+| `evidence/code_review_20260917/checks.json` | 1 KB | `3e84e800a282c4d3` |
+
+<details><summary>输出末尾</summary>
+
+```
+{"files": 659, "pending_active": 228, "syntax_errors": 0}
+Running root_tests
+{"name": "root_tests", "command": ["C:\\Users\\DELL\\AppData\\Local\\Programs\\Python\\Python311\\python.exe", "run.py", "unittest", "discover", "-s", "tests", "-v"], "returncode": 1, "output": "root_tests.txt"}
+    from paper01.ablation_data import draw_variant_spec, ez_amplification, variant_contract_stats
+ModuleNotFoundError: No module named 'paper01'
+
+
+----------------------------------------------------------------------
+Ran 153 tests in 27.251s
+
+FAILED (errors=1)
+Running paper01_tests
+{"name": "paper01_tests", "command": ["C:\\Users\\DELL\\AppData\\Local\\Programs\\Python\\Python311\\python.exe", "-m", "unittest", "discover", "-s", "_01/tests", "-v"], "returncode": 0, "output": "paper01_tests.txt"}
+test_local_max_is_independent_for_each_output_component (test_model.PaperModelTests.test_local_max_is_independent_for_each_output_component) ... ok
+test_fresh_output_refuses_nonempty_directory (test_runner.PaperRunnerTests.test_fresh_output_refuses_nonempty_directory) ... ok
+test_preflight_keeps_constant_learning_rate_and_writes_contract (test_runner.PaperRunnerTests.test_preflight_keeps_constant_learning_rate_and_writes_contract) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 1.261s
+
+OK
+Running harness_check
+{"name": "harness_check", "command": ["C:\\Users\\DELL\\AppData\\Local\\Programs\\Python\\Python311\\python.exe", "run.py", "project_harness", "check"], "returncode": 2, "output": "harness_check.txt"}
+- SR-128-PAPER-TOL-DIAG 的证据不存在：evidence/server_resource_v1/imports/server_paper_tol128_return_20260916T114443Z/paper_tol128_diag/summary.json
+- SR-128-PAPER-TOL-DIAG 的证据不存在：evidence/server_resource_v1/imports/server_paper_tol128_return_20260916T114443Z/paper_tol128_diag/REPORT.md
+- SR-128-PAPER-TOL-DIAG 的证据不存在：evidence/server_resource_v1/imports/server_paper_tol128_return_20260916T114443Z/paper_tol128_diag/manifest.json
+- SR-64-LOWLR-RANDOM 的证据不存在：evidence/server_resource_v1/imports/server_random_low_lr64_return_20260916T130417Z/random_low_lr64/summary.json
+- SR-64-LOWLR-RANDOM 的证据不存在：evidence/server_resource_v1/imports/server_random_low_lr64_return_20260916T130417Z/random_low_lr64/REPORT.md
+- SR-64-LOWLR-RANDOM 的证据不存在：evidence/server_resource_v1/imports/server_random_low_lr64_return_20260916T130417Z/random_low_lr64/manifest.json
+- 差距 SHORT 的证据不存在：evidence/server_resource_v1/imports/server_batch2_return_r2_full_20260915T141612Z/short_tol_probe_r2/summary.json
+- 差距 SHORT 的证据不存在：evidence/server_resource_v1/imports/server_batch2_return_r2_full_20260915T141612Z/short_tol_probe_r2/REPORT.md
+```
+
+</details>
+
+## #309　2026-09-17T17:02:12　FAILED (exit 1)
+
+**CODE-REVIEW integrity counterexamples; isolated fixtures; no production edits**
+
+```
+py -3.11 evidence/code_review_20260917/reproduce_integrity.py
+```
+
+- 耗时 3s ｜ commit `1407761` (main) ⚠ **跟踪文件与该 commit 不一致，此次运行无法仅凭 commit 复现**
+- DESKTOP-0K8A2KS ｜ Windows 10 ｜ python 3.11.9 ｜ torch 2.14.0+cu126 ｜ NVIDIA GeForce GTX 1660 SUPER
+
+| 产生/修改的文件 | 大小 | sha256 (前 16 位) |
+|---|---|---|
+| `evidence/code_review_20260917/integrity_counterexamples.json` | 0 KB | `232cf413d449182e` |
+
+<details><summary>输出末尾</summary>
+
+```
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\unittest\mock.py", line 1128, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\unittest\mock.py", line 1189, in _execute_mock_call
+    result = effect(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\PI-DON\evidence\code_review_20260917\reproduce_integrity.py", line 115, in zero_display_summary
+    result = original_summary(*args)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\PI-DON\src\pidon\pidon_solve.py", line 1102, in _step_summary
+    "dut_Ez": trilinear_sample(solver.E[2], xyz, dxyz, (0.0, 0.0, 0.5)),
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\PI-DON\src\pidon\pidon_contract.py", line 263, in trilinear_sample
+    raise ValueError(f"probe {tuple(xyz_m)} lies outside staggered support {tuple(shape)}")
+ValueError: probe (0.2, 0.2, 0.21666666666666667) lies outside staggered support (4, 4, 3)
+
+----------------------------------------------------------------------
+Ran 7 tests in 1.176s
+
+FAILED (errors=1, skipped=1)
+Traceback (most recent call last):
+  File "C:\PI-DON\evidence\code_review_20260917\reproduce_integrity.py", line 175, in <module>
+    json.dump({"review_only": True, "production_updates": 0, "tests": result.testsRun,
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\json\__init__.py", line 179, in dump
+    for chunk in iterable:
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\json\encoder.py", line 432, in _iterencode
+    yield from _iterencode_dict(o, _current_indent_level)
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\json\encoder.py", line 406, in _iterencode_dict
+    yield from chunks
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\json\encoder.py", line 326, in _iterencode_list
+    yield from chunks
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\json\encoder.py", line 326, in _iterencode_list
+    yield from chunks
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\json\encoder.py", line 439, in _iterencode
+    o = _default(o)
+        ^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\json\encoder.py", line 180, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type IntegrityReview is not JSON serializable
+```
+
+</details>
+
+## #310　2026-09-17T17:03:20　FAILED (exit 1)
+
+**CODE-REVIEW integrity fixture correction; retain attempt309; zero production updates**
+
+```
+py -3.11 evidence/code_review_20260917/reproduce_integrity.py
+```
+
+- 耗时 3s ｜ commit `1407761` (main) ⚠ **跟踪文件与该 commit 不一致，此次运行无法仅凭 commit 复现**
+- DESKTOP-0K8A2KS ｜ Windows 10 ｜ python 3.11.9 ｜ torch 2.14.0+cu126 ｜ NVIDIA GeForce GTX 1660 SUPER
+
+| 产生/修改的文件 | 大小 | sha256 (前 16 位) |
+|---|---|---|
+| `evidence/code_review_20260917/integrity_counterexamples_r1.json` | 2 KB | `43650dcbf4a4f931` |
+
+<details><summary>输出末尾</summary>
+
+```
+test_formal_resume_accepts_old_snapshot_and_replays_logged_step (__main__.IntegrityReview.test_formal_resume_accepts_old_snapshot_and_replays_logged_step) ... ERROR
+test_history_counter_accepts_duplicate_update_rows (__main__.IntegrityReview.test_history_counter_accepts_duplicate_update_rows) ... ok
+test_known_snapshot_code_differences_are_newlines_only (__main__.IntegrityReview.test_known_snapshot_code_differences_are_newlines_only) ... ok
+test_lab_output_manifest_silently_drops_small_files (__main__.IntegrityReview.test_lab_output_manifest_silently_drops_small_files) ... ok
+test_lab_start_ids_are_not_reserved (__main__.IntegrityReview.test_lab_start_ids_are_not_reserved) ... ok
+test_lab_verify_missing_artifact_still_exits_zero (__main__.IntegrityReview.test_lab_verify_missing_artifact_still_exits_zero) ... ok
+test_reinstall_resets_completed_task_before_rerun_check (__main__.IntegrityReview.test_reinstall_resets_completed_task_before_rerun_check) ... ok
+
+======================================================================
+ERROR: test_formal_resume_accepts_old_snapshot_and_replays_logged_step (__main__.IntegrityReview.test_formal_resume_accepts_old_snapshot_and_replays_logged_step)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\PI-DON\evidence\code_review_20260917\reproduce_integrity.py", line 131, in test_formal_resume_accepts_old_snapshot_and_replays_logged_step
+    call(["--n", "3", "--levels", "2", "--base", "2", "--init", "random",
+  File "C:\PI-DON\evidence\code_review_20260917\reproduce_integrity.py", line 129, in call
+    solve.main()
+  File "C:\PI-DON\src\pidon\pidon_solve.py", line 1323, in main
+    print(f"  final Ez nMAE vs FDTD {hist[-1]['nmae']:.3e}")
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: unsupported format string passed to NoneType.__format__
+
+----------------------------------------------------------------------
+Ran 7 tests in 1.319s
+
+FAILED (errors=1)
+```
+
+</details>
+
+## #311　2026-09-17T17:03:56　FAILED (exit 1)
+
+**CODE-REVIEW stale resume counterexample; isolate zero-reference display; preserve earlier tests**
+
+```
+py -3.11 evidence/code_review_20260917/reproduce_integrity.py
+```
+
+- 耗时 3s ｜ commit `1407761` (main) ⚠ **跟踪文件与该 commit 不一致，此次运行无法仅凭 commit 复现**
+- DESKTOP-0K8A2KS ｜ Windows 10 ｜ python 3.11.9 ｜ torch 2.14.0+cu126 ｜ NVIDIA GeForce GTX 1660 SUPER
+
+| 产生/修改的文件 | 大小 | sha256 (前 16 位) |
+|---|---|---|
+| `evidence/code_review_20260917/integrity_counterexamples_r2.json` | 2 KB | `43650dcbf4a4f931` |
+
+<details><summary>输出末尾</summary>
+
+```
+test_formal_resume_accepts_old_snapshot_and_replays_logged_step (__main__.IntegrityReview.test_formal_resume_accepts_old_snapshot_and_replays_logged_step) ... ERROR
+test_history_counter_accepts_duplicate_update_rows (__main__.IntegrityReview.test_history_counter_accepts_duplicate_update_rows) ... ok
+test_known_snapshot_code_differences_are_newlines_only (__main__.IntegrityReview.test_known_snapshot_code_differences_are_newlines_only) ... ok
+test_lab_output_manifest_silently_drops_small_files (__main__.IntegrityReview.test_lab_output_manifest_silently_drops_small_files) ... ok
+test_lab_start_ids_are_not_reserved (__main__.IntegrityReview.test_lab_start_ids_are_not_reserved) ... ok
+test_lab_verify_missing_artifact_still_exits_zero (__main__.IntegrityReview.test_lab_verify_missing_artifact_still_exits_zero) ... ok
+test_reinstall_resets_completed_task_before_rerun_check (__main__.IntegrityReview.test_reinstall_resets_completed_task_before_rerun_check) ... ok
+
+======================================================================
+ERROR: test_formal_resume_accepts_old_snapshot_and_replays_logged_step (__main__.IntegrityReview.test_formal_resume_accepts_old_snapshot_and_replays_logged_step)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\PI-DON\evidence\code_review_20260917\reproduce_integrity.py", line 141, in test_formal_resume_accepts_old_snapshot_and_replays_logged_step
+    call(["--config", str(config), "--resume", str(snapshot), "--out-dir", str(out),
+  File "C:\PI-DON\evidence\code_review_20260917\reproduce_integrity.py", line 129, in call
+    solve.main()
+  File "C:\PI-DON\src\pidon\pidon_solve.py", line 1248, in main
+    metadata_path = Path(a.out_dir) / "run_metadata.json"
+                    ^^^^
+NameError: name 'Path' is not defined
+
+----------------------------------------------------------------------
+Ran 7 tests in 1.364s
+
+FAILED (errors=1)
+```
+
+</details>
+
+## #312　2026-09-17T17:04:43　FAILED (exit 1)
+
+**CODE-REVIEW resume import failure and conditional stale replay; no implementation edits**
+
+```
+py -3.11 evidence/code_review_20260917/reproduce_integrity.py
+```
+
+- 耗时 3s ｜ commit `1407761` (main) ⚠ **跟踪文件与该 commit 不一致，此次运行无法仅凭 commit 复现**
+- DESKTOP-0K8A2KS ｜ Windows 10 ｜ python 3.11.9 ｜ torch 2.14.0+cu126 ｜ NVIDIA GeForce GTX 1660 SUPER
+
+| 产生/修改的文件 | 大小 | sha256 (前 16 位) |
+|---|---|---|
+| `evidence/code_review_20260917/integrity_counterexamples_r3.json` | 2 KB | `d42228c4ec7cba20` |
+
+<details><summary>输出末尾</summary>
+
+```
+test_formal_resume_accepts_old_snapshot_and_replays_logged_step (__main__.IntegrityReview.test_formal_resume_accepts_old_snapshot_and_replays_logged_step) ... ERROR
+test_history_counter_accepts_duplicate_update_rows (__main__.IntegrityReview.test_history_counter_accepts_duplicate_update_rows) ... ok
+test_known_snapshot_code_differences_are_newlines_only (__main__.IntegrityReview.test_known_snapshot_code_differences_are_newlines_only) ... ok
+test_lab_output_manifest_silently_drops_small_files (__main__.IntegrityReview.test_lab_output_manifest_silently_drops_small_files) ... ok
+test_lab_start_ids_are_not_reserved (__main__.IntegrityReview.test_lab_start_ids_are_not_reserved) ... ok
+test_lab_verify_missing_artifact_still_exits_zero (__main__.IntegrityReview.test_lab_verify_missing_artifact_still_exits_zero) ... ok
+test_reinstall_resets_completed_task_before_rerun_check (__main__.IntegrityReview.test_reinstall_resets_completed_task_before_rerun_check) ... ok
+
+======================================================================
+ERROR: test_formal_resume_accepts_old_snapshot_and_replays_logged_step (__main__.IntegrityReview.test_formal_resume_accepts_old_snapshot_and_replays_logged_step)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\PI-DON\evidence\code_review_20260917\reproduce_integrity.py", line 151, in test_formal_resume_accepts_old_snapshot_and_replays_logged_step
+    layers = [r["time_layer"] for r in rows]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\PI-DON\evidence\code_review_20260917\reproduce_integrity.py", line 151, in <listcomp>
+    layers = [r["time_layer"] for r in rows]
+              ~^^^^^^^^^^^^^^
+KeyError: 'time_layer'
+
+----------------------------------------------------------------------
+Ran 7 tests in 1.503s
+
+FAILED (errors=1)
+```
+
+</details>
+
+## #313　2026-09-17T17:05:38　OK
+
+**CODE-REVIEW integrity checks with actual step key; temporary fixtures only**
+
+```
+py -3.11 evidence/code_review_20260917/reproduce_integrity.py
+```
+
+- 耗时 4s ｜ commit `1407761` (main) ⚠ **跟踪文件与该 commit 不一致，此次运行无法仅凭 commit 复现**
+- DESKTOP-0K8A2KS ｜ Windows 10 ｜ python 3.11.9 ｜ torch 2.14.0+cu126 ｜ NVIDIA GeForce GTX 1660 SUPER
+
+| 产生/修改的文件 | 大小 | sha256 (前 16 位) |
+|---|---|---|
+| `evidence/code_review_20260917/integrity_counterexamples_r4.json` | 2 KB | `529a3919cb695190` |
+
+<details><summary>输出末尾</summary>
+
+```
+test_formal_resume_accepts_old_snapshot_and_replays_logged_step (__main__.IntegrityReview.test_formal_resume_accepts_old_snapshot_and_replays_logged_step) ... ok
+test_history_counter_accepts_duplicate_update_rows (__main__.IntegrityReview.test_history_counter_accepts_duplicate_update_rows) ... ok
+test_known_snapshot_code_differences_are_newlines_only (__main__.IntegrityReview.test_known_snapshot_code_differences_are_newlines_only) ... ok
+test_lab_output_manifest_silently_drops_small_files (__main__.IntegrityReview.test_lab_output_manifest_silently_drops_small_files) ... ok
+test_lab_start_ids_are_not_reserved (__main__.IntegrityReview.test_lab_start_ids_are_not_reserved) ... ok
+test_lab_verify_missing_artifact_still_exits_zero (__main__.IntegrityReview.test_lab_verify_missing_artifact_still_exits_zero) ... ok
+test_reinstall_resets_completed_task_before_rerun_check (__main__.IntegrityReview.test_reinstall_resets_completed_task_before_rerun_check) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 1.496s
+
+OK
+```
+
+</details>
+
+## #314　2026-09-17T17:11:07　OK
+
+**CODE-REVIEW negative controls for S1 M2 validators; synthetic CPU data only**
+
+```
+py -3.11 evidence/code_review_20260917/reproduce_validators.py
+```
+
+- 耗时 2s ｜ commit `1407761` (main) ⚠ **跟踪文件与该 commit 不一致，此次运行无法仅凭 commit 复现**
+- DESKTOP-0K8A2KS ｜ Windows 10 ｜ python 3.11.9 ｜ torch 2.14.0+cu126 ｜ NVIDIA GeForce GTX 1660 SUPER
+
+| 产生/修改的文件 | 大小 | sha256 (前 16 位) |
+|---|---|---|
+| `evidence/code_review_20260917/validator_counterexamples.json` | 1 KB | `30df1e57baf45a11` |
+
+<details><summary>输出末尾</summary>
+
+```
+test_equivalence_checker_passes_unequal_gradients (__main__.ValidatorReview.test_equivalence_checker_passes_unequal_gradients) ... ok
+test_m2_gate_ignores_q_weak_failure_and_nonfinite_component (__main__.ValidatorReview.test_m2_gate_ignores_q_weak_failure_and_nonfinite_component) ... ok
+test_s1_gate_checks_average_not_every_sample (__main__.ValidatorReview.test_s1_gate_checks_average_not_every_sample) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.047s
+
+OK
+```
+
+</details>
+
+## #315　2026-09-17T17:20:01　OK
+
+**CODE-REVIEW: isolated runtime bookkeeping and interrupt counterexamples; no production changes**
+
+```
+py -3.11 evidence/code_review_20260917/reproduce_runtime.py
+```
+
+- 耗时 4s ｜ commit `1407761` (main) ⚠ **跟踪文件与该 commit 不一致，此次运行无法仅凭 commit 复现**
+- DESKTOP-0K8A2KS ｜ Windows 10 ｜ python 3.11.9 ｜ torch 2.14.0+cu126 ｜ NVIDIA GeForce GTX 1660 SUPER
+
+| 产生/修改的文件 | 大小 | sha256 (前 16 位) |
+|---|---|---|
+| `evidence/code_review_20260917/runtime_counterexamples.json` | 1 KB | `20e6f8a3dd319dc7` |
+
+<details><summary>输出末尾</summary>
+
+```
+test_adam_interrupt_still_enters_lbfgs (__main__.RuntimeReview.test_adam_interrupt_still_enters_lbfgs) ... ok
+test_exception_at_target_is_classified_as_pass (__main__.RuntimeReview.test_exception_at_target_is_classified_as_pass) ... ok
+test_existing_cost_ignores_unfinished_logged_updates (__main__.RuntimeReview.test_existing_cost_ignores_unfinished_logged_updates) ... ok
+test_field_benefit_flag_ignores_cost_and_second_random (__main__.RuntimeReview.test_field_benefit_flag_ignores_cost_and_second_random) ... ok
+test_m0_resume_sums_cumulative_updates_twice (__main__.RuntimeReview.test_m0_resume_sums_cumulative_updates_twice) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 1.406s
+
+OK
+```
+
+</details>
+
+## #316　2026-09-17T17:26:21　OK
+
+**CODE-REVIEW: historical validator negative controls; zero parameter updates**
+
+```
+py -3.11 evidence/code_review_20260917/reproduce_historical_validators.py
+```
+
+- 耗时 2s ｜ commit `1407761` (main) ⚠ **跟踪文件与该 commit 不一致，此次运行无法仅凭 commit 复现**
+- DESKTOP-0K8A2KS ｜ Windows 10 ｜ python 3.11.9 ｜ torch 2.14.0+cu126 ｜ NVIDIA GeForce GTX 1660 SUPER
+
+| 产生/修改的文件 | 大小 | sha256 (前 16 位) |
+|---|---|---|
+| `evidence/code_review_20260917/exploratory_review.md` | 38 KB | `c184c1553a3c6366` |
+| `evidence/code_review_20260917/historical_validator_counterexamples.json` | 1 KB | `56211a77e65a0964` |
+
+<details><summary>输出末尾</summary>
+
+```
+test_finalize_overwrites_failed_status_from_pointer_existence (__main__.HistoricalValidatorReview.test_finalize_overwrites_failed_status_from_pointer_existence) ... ok
+test_g0_does_not_compare_summary_numbers_to_disk_rows (__main__.HistoricalValidatorReview.test_g0_does_not_compare_summary_numbers_to_disk_rows) ... ok
+test_g0_negative_control_can_pass_for_missing_probe_instead_of_wrong_physics (__main__.HistoricalValidatorReview.test_g0_negative_control_can_pass_for_missing_probe_instead_of_wrong_physics) ... ok
+test_m1_missing_residual_writes_interpretation_on_previous_case (__main__.HistoricalValidatorReview.test_m1_missing_residual_writes_interpretation_on_previous_case) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.049s
+
+OK
+{
+  "arm": "S-R",
+  "status": "RESOURCE_LIMIT",
+  "accepted_steps": 1,
+  "total_actual_updates": 7,
+  "recovery_eligible": true
+}
+```
+
+</details>
+
+## #317　2026-09-17T17:27:53　OK
+
+**CODE-REVIEW: verify offline output and head identity findings with temporary tiny models**
+
+```
+py -3.11 evidence/code_review_20260917/reproduce_offline_output.py
+```
+
+- 耗时 3s ｜ commit `1407761` (main) ⚠ **跟踪文件与该 commit 不一致，此次运行无法仅凭 commit 复现**
+- DESKTOP-0K8A2KS ｜ Windows 10 ｜ python 3.11.9 ｜ torch 2.14.0+cu126 ｜ NVIDIA GeForce GTX 1660 SUPER
+- 抓到的关键数：`relL2 = 6.113e+02`　`nMAE = 5.971e+02`　`exp2_relL2 = 6.113e+02`　`train_seconds = 0.0`
+
+| 产生/修改的文件 | 大小 | sha256 (前 16 位) |
+|---|---|---|
+| `evidence/code_review_20260917/offline_output_counterexamples.json` | 1 KB | `486359b44e56381a` |
+
+<details><summary>输出末尾</summary>
+
+```
+test_identical_parameter_keys_do_not_preserve_head_semantics (__main__.OfflineOutputReview.test_identical_parameter_keys_do_not_preserve_head_semantics) ... ok
+test_missing_parent_detected_after_training_update (__main__.OfflineOutputReview.test_missing_parent_detected_after_training_update) ... ok
+test_non_pt_extension_overwrites_checkpoint_with_history (__main__.OfflineOutputReview.test_non_pt_extension_overwrites_checkpoint_with_history) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 1.189s
+
+OK
+[train_dco.py  version 2026-09-09a]
+device=cpu  grid=4^3  train/test=4/1  L=2 base=2  params=0.00M  coords=centered norm=max
+ep    1  train 2.797e+05  test 2.774e+05  relL2 5.266e+02  nMAE 4.992e+02  eq5 4.99e+02   [x 6.73e+02 y 5.47e+02 z 2.83e+02]     0.1s
+[train_dco.py  version 2026-09-09a]
+device=cpu  grid=4^3  train/test=4/1  L=2 base=2  params=0.00M  coords=centered norm=max
+ep    1  train 3.766e+05  test 3.737e+05  relL2 6.113e+02  nMAE 5.971e+02  eq5 5.97e+02   [x 5.37e+02 y 4.77e+02 z 7.77e+02]     0.0s
+
+saved C:\Users\DELL\AppData\Local\Temp\tmpv4smvs09\model.bin   total 0.0s
+
+FINAL  relative L2 = 6.113e+02   <-- report this one
+       nMAE        = 5.971e+02
+       eq.(5) MRE  = 5.971e+02   (pathological, see dco.py)
+Paper Table I (32^3, 1000 samples): L=3 5.3e-3, L=4 7.7e-4
+```
+
+</details>
+
+## #318　2026-09-17T17:36:27　OK
+
+**CODE-REVIEW coverage inventory r2, read-only production, zero updates**
+
+```
+py -3.11 evidence/code_review_20260917/update_coverage.py --revision r2
+```
+
+- 耗时 0s ｜ commit `1407761` (main) ⚠ **跟踪文件与该 commit 不一致，此次运行无法仅凭 commit 复现**
+- DESKTOP-0K8A2KS ｜ Windows 10 ｜ python 3.11.9 ｜ torch 2.14.0+cu126 ｜ NVIDIA GeForce GTX 1660 SUPER
+
+| 产生/修改的文件 | 大小 | sha256 (前 16 位) |
+|---|---|---|
+| `evidence/code_review_20260917/coverage_r2.json` | 179 KB | `859608188a00555d` |
+| `evidence/server_resource_v1/imports/server_step36_window_return_20260916T030320Z/step36_48_low_lr_window/summary.json` | 52 KB | `ff3bf62a5a1d4e29` |
+
+<details><summary>输出末尾</summary>
+
+```
+scripts/experiments/stage2_fixed_state.py 218 PENDING_REVIEW
+scripts/experiments/stage2_interface_probe.py 44 PENDING_REVIEW
+scripts/experiments/stage2_shared_interference.py 41 PENDING_REVIEW
+tests/test_briefing_operator_audit.py 54 PENDING_REVIEW
+tests/test_briefing_pec_audit.py 37 PENDING_REVIEW
+tests/test_coverage_ab.py 43 PENDING_REVIEW
+tests/test_failure_mechanism_audit.py 37 PENDING_REVIEW
+tests/test_first_e_budget_probe.py 26 PENDING_REVIEW
+tests/test_head_lstsq.py 111 PENDING_REVIEW
+tests/test_ingest_paper01_ablation_return.py 82 PENDING_REVIEW
+tests/test_ingest_paper01_return.py 78 PENDING_REVIEW
+tests/test_mechanism_claims.py 30 PENDING_REVIEW
+tests/test_mechanism_decision_eval.py 31 PENDING_REVIEW
+tests/test_mechanism_first_failure.py 28 PENDING_REVIEW
+tests/test_mechanism_hour.py 46 PENDING_REVIEW
+tests/test_night_evidence.py 35 PENDING_REVIEW
+tests/test_paper01_ablation_bundle.py 68 PENDING_REVIEW
+tests/test_paper01_ablation_data.py 38 PENDING_REVIEW
+tests/test_paper01_ablation_status.py 56 PENDING_REVIEW
+tests/test_paper01_data_contract_audit.py 30 PENDING_REVIEW
+tests/test_paper01_s1_diagnosis.py 39 PENDING_REVIEW
+tests/test_paper01_server_bundle.py 37 PENDING_REVIEW
+tests/test_paper_protocol.py 94 PENDING_REVIEW
+tests/test_phase1_pilot.py 33 PENDING_REVIEW
+tests/test_pidon_contract.py 286 PENDING_REVIEW
+tests/test_pidon_contract_v3.py 294 PENDING_REVIEW
+tests/test_project_harness.py 147 PENDING_REVIEW
+tests/test_r4_fixed_state.py 39 PENDING_REVIEW
+tests/test_r4_p4a.py 27 PENDING_REVIEW
+tests/test_run_entrypoint.py 71 PENDING_REVIEW
+tests/test_server_resource.py 97 PENDING_REVIEW
+tests/test_stop_review_claims.py 35 PENDING_REVIEW
+tests/test_trunk_repair.py 47 PENDING_REVIEW
+tools/audit_reorganization_delivery.py 108 PENDING_REVIEW
+tools/build_project_state.py 67 PENDING_REVIEW
+tools/finalize_layout.py 42 PENDING_REVIEW
+tools/reorganize_workspace.py 124 PENDING_REVIEW
+tools/repair_layout_paths.py 69 PENDING_REVIEW
+tools/validate_workspace_layout.py 129 PENDING_REVIEW
+tools/write_reorganization_report.py 75 PENDING_REVIEW
+```
+
+</details>
+
+## #319　2026-09-17T17:39:45　OK
+
+**CODE-REVIEW diagnostic logic counterexamples, zero optimizer updates**
+
+```
+py -3.11 evidence/code_review_20260917/reproduce_diagnostic_logic.py
+```
+
+- 耗时 2s ｜ commit `1407761` (main) ⚠ **跟踪文件与该 commit 不一致，此次运行无法仅凭 commit 复现**
+- DESKTOP-0K8A2KS ｜ Windows 10 ｜ python 3.11.9 ｜ torch 2.14.0+cu126 ｜ NVIDIA GeForce GTX 1660 SUPER
+
+| 产生/修改的文件 | 大小 | sha256 (前 16 位) |
+|---|---|---|
+| `evidence/code_review_20260917/diagnostic_logic_counterexamples.json` | 1 KB | `63b7f7cbe8f863f4` |
+
+<details><summary>输出末尾</summary>
+
+```
+test_all_not_run_can_pass_a3_development (__main__.DiagnosticLogicTests.test_all_not_run_can_pass_a3_development) ... ok
+test_partial_task_list_can_pass_r4_development (__main__.DiagnosticLogicTests.test_partial_task_list_can_pass_r4_development) ... ok
+test_shared_interference_changes_reference_target (__main__.DiagnosticLogicTests.test_shared_interference_changes_reference_target) ... ok
+test_superposition_compares_different_input_sums (__main__.DiagnosticLogicTests.test_superposition_compares_different_input_sums) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.050s
+
+OK
+```
+
+</details>
+
+## #320　2026-09-17T17:47:35　OK
+
+**REVIEW: negative fixtures for legacy claims, no training**
+
+```
+py -3.11 evidence/code_review_20260917/reproduce_legacy_claims.py
+```
+
+- 耗时 0s ｜ commit `1407761` (main) ⚠ **跟踪文件与该 commit 不一致，此次运行无法仅凭 commit 复现**
+- DESKTOP-0K8A2KS ｜ Windows 10 ｜ python 3.11.9 ｜ torch 2.14.0+cu126 ｜ NVIDIA GeForce GTX 1660 SUPER
+
+| 产生/修改的文件 | 大小 | sha256 (前 16 位) |
+|---|---|---|
+| `evidence/code_review_20260917/legacy_claim_counterexamples.json` | 2 KB | `13c5799e78f34920` |
+
+<details><summary>输出末尾</summary>
+
+```
+test_empty_fixed_state_tasks_pass (__main__.LegacyClaimTests.test_empty_fixed_state_tasks_pass) ... ok
+test_material_claim_accepts_missing_or_contradictory_second_marker (__main__.LegacyClaimTests.test_material_claim_accepts_missing_or_contradictory_second_marker) ... ok
+test_zero_step_exact_control_summary_claims_128 (__main__.LegacyClaimTests.test_zero_step_exact_control_summary_claims_128) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.005s
+
+OK
+```
+
+</details>
+
+## #321　2026-09-17T17:49:32　OK
+
+**REVIEW: versioned source coverage after test and layout reviews**
+
+```
+py -3.11 evidence/code_review_20260917/update_coverage.py --revision r3
+```
+
+- 耗时 0s ｜ commit `1407761` (main) ⚠ **跟踪文件与该 commit 不一致，此次运行无法仅凭 commit 复现**
+- DESKTOP-0K8A2KS ｜ Windows 10 ｜ python 3.11.9 ｜ torch 2.14.0+cu126 ｜ NVIDIA GeForce GTX 1660 SUPER
+
+| 产生/修改的文件 | 大小 | sha256 (前 16 位) |
+|---|---|---|
+| `evidence/code_review_20260917/coverage_r3.json` | 180 KB | `f7476ef1203b3fbc` |
+
+<details><summary>输出末尾</summary>
+
+```
+{"active_counts": {"FULL_SOURCE_READ": 194, "PENDING_REVIEW": 24, "FULL_TEMPLATE_DIFF": 37}, "all_counts": {"FULL_SOURCE_READ": 194, "CONTENT_MATCH_LF_NORMALIZED": 55, "PENDING_REVIEW": 371, "REVIEW_TOOL": 2, "FULL_TEMPLATE_DIFF": 37}, "changes_since_initial": []}
+PENDING ACTIVE:
+scripts/analysis/a1_contract_report.py 103 PENDING_REVIEW
+scripts/analysis/a3_gate_report.py 87 PENDING_REVIEW
+scripts/analysis/a3_readback.py 57 PENDING_REVIEW
+scripts/analysis/audit_h_layout.py 55 PENDING_REVIEW
+scripts/analysis/audit_mechanism_decision_review.py 124 PENDING_REVIEW
+scripts/analysis/audit_night_storage_revision.py 72 PENDING_REVIEW
+scripts/analysis/audit_night_v4.py 157 PENDING_REVIEW
+scripts/analysis/audit_reproduction.py 366 PENDING_REVIEW
+scripts/analysis/audit_v2_stop.py 280 PENDING_REVIEW
+scripts/analysis/check_files.py 70 PENDING_REVIEW
+scripts/analysis/goal_completion_audit.py 187 PENDING_REVIEW
+scripts/analysis/n1_evidence.py 91 PENDING_REVIEW
+scripts/analysis/night_evidence.py 208 PENDING_REVIEW
+scripts/analysis/night_report.py 527 PENDING_REVIEW
+scripts/analysis/p3_report.py 74 PENDING_REVIEW
+scripts/analysis/p4_report.py 55 PENDING_REVIEW
+scripts/analysis/r1_r2_reports.py 70 PENDING_REVIEW
+scripts/analysis/r3_v2_recompute.py 148 PENDING_REVIEW
+scripts/analysis/review_reproduction_acceptance.py 71 PENDING_REVIEW
+scripts/analysis/s1_interrupted_audit.py 205 PENDING_REVIEW
+scripts/analysis/stage2_evidence.py 56 PENDING_REVIEW
+scripts/analysis/stop_review_evidence.py 55 PENDING_REVIEW
+scripts/analysis/sweep_report.py 124 PENDING_REVIEW
+scripts/analysis/trunk_evidence.py 147 PENDING_REVIEW
+```
+
+</details>
+
+## #322　2026-09-17T17:50:49　OK
+
+**REVIEW: active source coverage with all completed topical reports**
+
+```
+py -3.11 evidence/code_review_20260917/update_coverage.py --revision r4
+```
+
+- 耗时 0s ｜ commit `1407761` (main) ⚠ **跟踪文件与该 commit 不一致，此次运行无法仅凭 commit 复现**
+- DESKTOP-0K8A2KS ｜ Windows 10 ｜ python 3.11.9 ｜ torch 2.14.0+cu126 ｜ NVIDIA GeForce GTX 1660 SUPER
+
+| 产生/修改的文件 | 大小 | sha256 (前 16 位) |
+|---|---|---|
+| `evidence/code_review_20260917/coverage_r4.json` | 180 KB | `ed767144d51d67ea` |
+
+<details><summary>输出末尾</summary>
+
+```
+{"active_counts": {"FULL_SOURCE_READ": 218, "FULL_TEMPLATE_DIFF": 37}, "all_counts": {"FULL_SOURCE_READ": 218, "CONTENT_MATCH_LF_NORMALIZED": 55, "PENDING_REVIEW": 347, "REVIEW_TOOL": 2, "FULL_TEMPLATE_DIFF": 37}, "changes_since_initial": []}
+PENDING ACTIVE:
+```
+
+</details>
+
+## #323　2026-09-17T17:57:04　FAILED (exit 4294967295)
+
+**REVIEW: inventory historical source deltas, no numerical computation**
+
+```
+py -3.11 evidence/code_review_20260917/inventory_historical_deltas.py
+```
+
+- 耗时 364s ｜ commit `1407761` (main) ⚠ **跟踪文件与该 commit 不一致，此次运行无法仅凭 commit 复现**
+- DESKTOP-0K8A2KS ｜ Windows 10 ｜ python 3.11.9 ｜ torch 2.14.0+cu126 ｜ NVIDIA GeForce GTX 1660 SUPER
+
+| 产生/修改的文件 | 大小 | sha256 (前 16 位) |
+|---|---|---|
+| `evidence/code_review_20260917/historical_deltas/105_verify_claims_final.diff` | 56 KB | `a2948d1abec01c21` |
+| `evidence/code_review_20260917/historical_deltas/071_pidon_solve.diff` | 53 KB | `04e0c1ce1ba171e7` |
+| `evidence/code_review_20260917/historical_deltas/014_verify_claims_final.diff` | 41 KB | `f9b77682381919d0` |
+| `evidence/code_review_20260917/REVIEW.md` | 36 KB | `0a891762566be28d` |
+| `evidence/code_review_20260917/historical_deltas/086_verify_claims.diff` | 23 KB | `479232d14bfe53ca` |
+| `evidence/code_review_20260917/historical_deltas/035_verify_claims.diff` | 21 KB | `2178b3d04306cf4d` |
+| `evidence/code_review_20260917/historical_deltas/082_pidon_exact_control.diff` | 21 KB | `26c195ca6452b019` |
+| `evidence/code_review_20260917/historical_deltas/034_g0_verifier.diff` | 18 KB | `fae3ad8b20f9a79c` |
+| `evidence/code_review_20260917/historical_deltas/030_pidon_recording.diff` | 14 KB | `12a8326114f39455` |
+| `evidence/code_review_20260917/historical_deltas/074_server_short_tol_probe.diff` | 12 KB | `4751e37543d79f92` |
+| `evidence/code_review_20260917/historical_deltas/004_test_pidon_contract.diff` | 8 KB | `24289bf4036e1826` |
+| `evidence/code_review_20260917/historical_deltas/021_review_dco_pretraining.diff` | 6 KB | `09d67e0f8302b5ac` |
+| … 另有 13 个 | | |
+
+<details><summary>输出末尾</summary>
+
+```
+```
+
+</details>
+
+## #324　2026-09-17T17:57:30　OK
+
+**REVIEW: historical source deltas v2; retain stopped char-comparison run323**
+
+```
+py -3.11 evidence/code_review_20260917/inventory_historical_deltas.py --output-dir historical_deltas_v2
+```
+
+- 耗时 0s ｜ commit `1407761` (main) ⚠ **跟踪文件与该 commit 不一致，此次运行无法仅凭 commit 复现**
+- DESKTOP-0K8A2KS ｜ Windows 10 ｜ python 3.11.9 ｜ torch 2.14.0+cu126 ｜ NVIDIA GeForce GTX 1660 SUPER
+
+| 产生/修改的文件 | 大小 | sha256 (前 16 位) |
+|---|---|---|
+| `evidence/code_review_20260917/historical_deltas_v2/index.json` | 140 KB | `f5104270c02f6251` |
+| `evidence/code_review_20260917/historical_deltas_v2/109_pidon_solve.diff` | 64 KB | `4b32d86d37ce6389` |
+| `evidence/code_review_20260917/historical_deltas_v2/111_verify_claims.diff` | 57 KB | `5de9f7ee65244a3d` |
+| `evidence/code_review_20260917/historical_deltas_v2/105_verify_claims_final.diff` | 56 KB | `a2948d1abec01c21` |
+| `evidence/code_review_20260917/historical_deltas_v2/071_pidon_solve.diff` | 53 KB | `04e0c1ce1ba171e7` |
+| `evidence/code_review_20260917/historical_deltas_v2/145_verify_claims_final.diff` | 47 KB | `7a4b5ae0f8784691` |
+| `evidence/code_review_20260917/historical_deltas_v2/014_verify_claims_final.diff` | 41 KB | `f9b77682381919d0` |
+| `evidence/code_review_20260917/historical_deltas_v2/144_pidon_solve.diff` | 30 KB | `9e51f63b99c924e2` |
+| `evidence/code_review_20260917/historical_deltas_v2/112_pidon_solve.diff` | 26 KB | `1505b373b479eae2` |
+| `evidence/code_review_20260917/historical_deltas_v2/086_verify_claims.diff` | 23 KB | `479232d14bfe53ca` |
+| `evidence/code_review_20260917/historical_deltas_v2/035_verify_claims.diff` | 21 KB | `2178b3d04306cf4d` |
+| `evidence/code_review_20260917/historical_deltas_v2/082_pidon_exact_control.diff` | 21 KB | `26c195ca6452b019` |
+| … 另有 13 个 | | |
+
+<details><summary>输出末尾</summary>
+
+```
+Grouped 25/158 distinct historical sources
+Grouped 50/158 distinct historical sources
+Grouped 75/158 distinct historical sources
+Grouped 100/158 distinct historical sources
+Grouped 125/158 distinct historical sources
+Grouped 150/158 distinct historical sources
+{"counts": {"support": 136, "core": 22}, "diff_lines": {"core": 4771, "support": 9513}}
+```
+
+</details>
+
+## #325　2026-09-17T17:59:36　OK
+
+**REVIEW: metric precision and interpolation edge counterexamples, zero updates**
+
+```
+py -3.11 evidence/code_review_20260917/reproduce_metric_edges.py
+```
+
+- 耗时 2s ｜ commit `1407761` (main) ⚠ **跟踪文件与该 commit 不一致，此次运行无法仅凭 commit 复现**
+- DESKTOP-0K8A2KS ｜ Windows 10 ｜ python 3.11.9 ｜ torch 2.14.0+cu126 ｜ NVIDIA GeForce GTX 1660 SUPER
+
+| 产生/修改的文件 | 大小 | sha256 (前 16 位) |
+|---|---|---|
+| `evidence/code_review_20260917/metric_edge_counterexamples.json` | 1 KB | `6795b5ae6be3a95f` |
+
+<details><summary>输出末尾</summary>
+
+```
+test_identical_float64_arrays_have_nonzero_reported_error (__main__.MeasurementEdgeTests.test_identical_float64_arrays_have_nonzero_reported_error) ... ok
+test_legal_upper_grid_node_is_rejected (__main__.MeasurementEdgeTests.test_legal_upper_grid_node_is_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.010s
+
+OK
+```
+
+</details>
+
+## #326　2026-09-17T18:00:20　OK
+
+**REVIEW: fresh complete existing root and paper01 tests plus harness; collect failures without fixes**
+
+```
+py -3.11 evidence/code_review_20260917/final_checks.py
+```
+
+- 耗时 35s ｜ commit `1407761` (main) ⚠ **跟踪文件与该 commit 不一致，此次运行无法仅凭 commit 复现**
+- DESKTOP-0K8A2KS ｜ Windows 10 ｜ python 3.11.9 ｜ torch 2.14.0+cu126 ｜ NVIDIA GeForce GTX 1660 SUPER
+
+| 产生/修改的文件 | 大小 | sha256 (前 16 位) |
+|---|---|---|
+| `evidence/code_review_20260917/final_checks/root_tests.txt` | 26 KB | `6086156f8eeaf9cb` |
+| `evidence/code_review_20260917/final_checks/paper01_tests.txt` | 1 KB | `21610a8930e886d7` |
+| `evidence/code_review_20260917/final_checks/checks.json` | 1 KB | `3e84e800a282c4d3` |
+| `evidence/code_review_20260917/final_checks/harness_check.txt` | 0 KB | `9985f7a34f5fb15b` |
+
+<details><summary>输出末尾</summary>
+
+```
+Running root_tests
+{"name": "root_tests", "command": ["C:\\Users\\DELL\\AppData\\Local\\Programs\\Python\\Python311\\python.exe", "run.py", "unittest", "discover", "-s", "tests", "-v"], "returncode": 1, "output": "root_tests.txt"}
+    from paper01.ablation_data import draw_variant_spec, ez_amplification, variant_contract_stats
+ModuleNotFoundError: No module named 'paper01'
+
+
+----------------------------------------------------------------------
+Ran 153 tests in 28.512s
+
+FAILED (errors=1)
+Running paper01_tests
+{"name": "paper01_tests", "command": ["C:\\Users\\DELL\\AppData\\Local\\Programs\\Python\\Python311\\python.exe", "-m", "unittest", "discover", "-s", "_01/tests", "-v"], "returncode": 0, "output": "paper01_tests.txt"}
+test_local_max_is_independent_for_each_output_component (test_model.PaperModelTests.test_local_max_is_independent_for_each_output_component) ... ok
+test_fresh_output_refuses_nonempty_directory (test_runner.PaperRunnerTests.test_fresh_output_refuses_nonempty_directory) ... ok
+test_preflight_keeps_constant_learning_rate_and_writes_contract (test_runner.PaperRunnerTests.test_preflight_keeps_constant_learning_rate_and_writes_contract) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 1.224s
+
+OK
+Running harness_check
+{"name": "harness_check", "command": ["C:\\Users\\DELL\\AppData\\Local\\Programs\\Python\\Python311\\python.exe", "run.py", "project_harness", "check"], "returncode": 2, "output": "harness_check.txt"}
+计划检查未通过：
+- M2 的证据不存在：evidence/direct_mechanism_v1/runs/A_R/summary.json
+- M2 的证据不存在：evidence/direct_mechanism_v1/runs/A_P/summary.json
+- M2 的证据不存在：evidence/direct_mechanism_v1/runs/B_R/summary.json
+- M2 的证据不存在：evidence/direct_mechanism_v1/runs/B_P/summary.json
+```
+
+</details>
+
+## #327　2026-09-17T18:11:08　OK
+
+**REVIEW: expanded census including batch files and newly available source snapshots**
+
+```
+py -3.11 evidence/code_review_20260917/supplement_source_inventory.py
+```
+
+- 耗时 0s ｜ commit `1407761` (main) ⚠ **跟踪文件与该 commit 不一致，此次运行无法仅凭 commit 复现**
+- DESKTOP-0K8A2KS ｜ Windows 10 ｜ python 3.11.9 ｜ torch 2.14.0+cu126 ｜ NVIDIA GeForce GTX 1660 SUPER
+
+| 产生/修改的文件 | 大小 | sha256 (前 16 位) |
+|---|---|---|
+| `evidence/code_review_20260917/supplementary_sources/index.json` | 64 KB | `ade7eee6f4f4680a` |
+| `evidence/code_review_20260917/supplementary_sources/064_server_short_tol_probe.diff` | 7 KB | `2d10ffa938c16c45` |
+| `evidence/code_review_20260917/supplementary_sources/015_server_short_tol_probe.diff` | 5 KB | `cd994f5bd4813fe7` |
+
+<details><summary>输出末尾</summary>
+
+```
+{"additional_files": 137, "bat_files": 26, "exact_lf_matches": 122, "new_diffs": ["015_server_short_tol_probe.diff", "064_server_short_tol_probe.diff"]}
+```
+
+</details>
+
+## #328　2026-09-17T18:34:31　OK
+
+**CODE-REVIEW: finalize original source coverage, no training or production edits**
+
+```
+py -3.11 evidence/code_review_20260917/update_coverage.py --revision r5
+```
+
+- 耗时 0s ｜ commit `1407761` (main) ⚠ **跟踪文件与该 commit 不一致，此次运行无法仅凭 commit 复现**
+- DESKTOP-0K8A2KS ｜ Windows 10 ｜ python 3.11.9 ｜ torch 2.14.0+cu126 ｜ NVIDIA GeForce GTX 1660 SUPER
+
+| 产生/修改的文件 | 大小 | sha256 (前 16 位) |
+|---|---|---|
+| `evidence/code_review_20260917/coverage_r5.json` | 230 KB | `61ff4188238f7200` |
+
+<details><summary>输出末尾</summary>
+
+```
+{"active_counts": {"FULL_SOURCE_READ": 218, "FULL_TEMPLATE_DIFF": 37}, "all_counts": {"FULL_SOURCE_READ": 218, "CONTENT_MATCH_LF_NORMALIZED": 55, "FULL_HISTORICAL_DELTA_REVIEW": 347, "REVIEW_TOOL": 2, "FULL_TEMPLATE_DIFF": 37}, "changes_since_initial": []}
+PENDING ACTIVE:
+```
+
+</details>
+
+## #329　2026-09-17T18:35:56　OK
+
+**CODE-REVIEW: verify final coverage and artifact hashes, no scientific certification**
+
+```
+py -3.11 evidence/code_review_20260917/validate_review_delivery.py --coverage coverage_r5.json --output delivery_verification.json
+```
+
+- 耗时 0s ｜ commit `1407761` (main) ⚠ **跟踪文件与该 commit 不一致，此次运行无法仅凭 commit 复现**
+- DESKTOP-0K8A2KS ｜ Windows 10 ｜ python 3.11.9 ｜ torch 2.14.0+cu126 ｜ NVIDIA GeForce GTX 1660 SUPER
+
+| 产生/修改的文件 | 大小 | sha256 (前 16 位) |
+|---|---|---|
+| `evidence/code_review_20260917/delivery_verification.json` | 367 KB | `f96b055b3ac947d7` |
+
+<details><summary>输出末尾</summary>
+
+```
+{"review_delivery_complete": true, "scientific_certification": false, "project_source_files": 794, "coverage_counts": {"FULL_SOURCE_READ": 231, "CONTENT_MATCH_LF_NORMALIZED": 177, "FULL_HISTORICAL_DELTA_REVIEW": 349, "FULL_TEMPLATE_DIFF": 37}, "all_existing_tests_pass": false}
+[{"name": "root_tests", "command": ["C:\\Users\\DELL\\AppData\\Local\\Programs\\Python\\Python311\\python.exe", "run.py", "unittest", "discover", "-s", "tests", "-v"], "returncode": 1, "output": "root_tests.txt"}, {"name": "paper01_tests", "command": ["C:\\Users\\DELL\\AppData\\Local\\Programs\\Python\\Python311\\python.exe", "-m", "unittest", "discover", "-s", "_01/tests", "-v"], "returncode": 0, "output": "paper01_tests.txt"}, {"name": "harness_check", "command": ["C:\\Users\\DELL\\AppData\\Local\\Programs\\Python\\Python311\\python.exe", "run.py", "project_harness", "check"], "returncode": 2, "output": "harness_check.txt"}]
+```
+
+</details>

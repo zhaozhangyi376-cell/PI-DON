@@ -1,0 +1,366 @@
+--- scripts/analysis/verify_claims.py
++++ evidence/gpt6_plan_v3_review/source_snapshot/verify_claims.py
+@@ -26,28 +26,19 @@
+     RESULTS.md and small JSON manifests can be versioned. Large .pt/.npz
+     artifacts are ignored; hashes and source snapshots identify local evidence.
+ """
+ 
+-# Project layout bootstrap (imports and paths only).
+-import sys as _layout_sys
+-from pathlib import Path as _LayoutPath
+-_layout_sys.path.insert(0, str(_LayoutPath(__file__).resolve().parents[2]))
+-from project_paths import ROOT as PROJECT_ROOT, configure as _layout_configure, resolve_legacy
+-_layout_configure()
+-
+-
+ import argparse
+ import glob
+-import hashlib
+ import json
+ import os
+ import re
+ import subprocess
+ import sys
+ 
+ import numpy as np
+ 
+-SCRIPT_VERSION = "pidon-v4-night-v1"
++SCRIPT_VERSION = "trunk-repair-v1"
+ 
+ # Paper-first audit: legacy numbers remain, but disputed scientific readings
+ # must not be promoted to PASS. Do not delete the C7 adverse observation.
+ AUDIT_NOTES = {
+@@ -57,118 +48,8 @@
+     'C5': '撤回替代性解读：两个不同配置的局部rho接近不能替代Algorithm1。',
+     'C6': '待重新解释：原文明写坐标输入；cellsize常量张量和输入RMS是本实现选择。',
+     'C8': '撤回普遍不可能性：两点/局部谱外推及1/N估算不是全局证明。',
+ }
+-
+-
+-# --------------------------------------------------------------------------- #
+-# Bounded mechanism/benefit decision (2026-09-14).  These checks are
+-# deliberately read-only: they describe this registered trajectory and do not
+-# revive its failed checkpoint or spend another training budget.
+-
+-
+-def _sha256_path(path):
+-    h = hashlib.sha256()
+-    with open(path, 'rb') as f:
+-        for block in iter(lambda: f.read(1024 * 1024), b''):
+-            h.update(block)
+-    return h.hexdigest()
+-
+-
+-def mechanism_decision_claims_data():
+-    from pathlib import Path
+-    root = Path('evidence/mechanism_decision_v1')
+-    protocol_path = root / 'protocol.json'
+-    phase_path = root / 'phase1_raw.json'
+-    failure_path = root / 'first_failure_diagnosis.json'
+-    p_steps_path = root / 'runs' / 'P' / 'steps.jsonl'
+-    r_steps_path = root / 'runs' / 'R' / 'steps.jsonl'
+-    required = [protocol_path, phase_path, failure_path, p_steps_path, r_steps_path]
+-    missing = [str(p) for p in required if not p.exists()]
+-    if missing:
+-        raise FileNotFoundError('机制证据缺失: ' + ', '.join(missing))
+-
+-    protocol = json.loads(protocol_path.read_text(encoding='utf-8'))
+-    phase = json.loads(phase_path.read_text(encoding='utf-8'))
+-    failure = json.loads(failure_path.read_text(encoding='utf-8'))
+-    p_rows = [json.loads(line) for line in p_steps_path.read_text(encoding='utf-8').splitlines() if line.strip()]
+-    r_rows = [json.loads(line) for line in r_steps_path.read_text(encoding='utf-8').splitlines() if line.strip()]
+-    if len(p_rows) != 1:
+-        raise ValueError(f'P应只有一条第0层失败记录，实际 {len(p_rows)} 条')
+-    if not r_rows:
+-        raise ValueError('R部分轨迹为空')
+-
+-    proto_sha = _sha256_path(protocol_path)
+-    if phase['protocol_sha256'] != proto_sha or failure['protocol_sha256'] != proto_sha:
+-        raise ValueError('phase/首次失败诊断与协议哈希不匹配')
+-    if protocol.get('schema') != 'pidon-mechanism-decision-v1':
+-        raise ValueError('机制协议schema不匹配')
+-    for name, expected in protocol['source_hashes'].items():
+-        if failure['source_hashes'].get(name) != expected:
+-            raise ValueError('首次失败诊断源哈希不匹配: ' + name)
+-
+-    p = p_rows[0]
+-    pfit = p['fit_E']
+-    diag_r = float(failure['recorded_R'])
+-    if abs(float(pfit['residual_ratio']) - diag_r) > 1e-12:
+-        raise ValueError('P记录R与首次失败诊断不一致')
+-    cube32 = phase['master_summary']['cube32']
+-    r_accepted = all(bool(row.get('accepted')) for row in r_rows)
+-    r_term = failure['R_partial']['termination']
+-    return {
+-        'protocol_sha256': proto_sha,
+-        's1_cube32_pass': bool(cube32['S1_pass_for_cube_only']),
+-        's1_cube32_macro_nmae_max': float(cube32['dco_macro_nmae_max']),
+-        's1_cube32_rel_l2_p90': float(cube32['dco_global_rel_l2_p90']),
+-        'p_passed': bool(pfit['passed']),
+-        'p_updates': int(pfit['n_updates']),
+-        'p_R': float(pfit['residual_ratio']),
+-        'p_stop_reason': pfit['stop_reason'],
+-        'p_accepted_steps': int(p['accepted_steps']),
+-        'first_failure_recomputed': abs(float(failure['recomputed']['total_R']) - diag_r) <= 1e-9,
+-        'first_failure_abs_difference': float(failure['recorded_and_recomputed_abs_difference']),
+-        'r_partial_rows': len(r_rows),
+-        'r_all_accepted': r_accepted,
+-        'r_status': 'PARTIAL_ABORTED_BY_AGENT' if 'PARTIAL_ABORTED_BY_AGENT' in r_term else r_term,
+-        'r_last_step': int(failure['R_partial']['last_step']),
+-        'r_last_Q': float(failure['R_partial']['last_global_Q']),
+-    }
+-
+-
+-def z0_mechanism_s1(_):
+-    d = mechanism_decision_claims_data()
+-    ok = d['s1_cube32_pass']
+-    return ('PASS' if ok else 'FAIL',
+-            f"32³宏nMAE最大 {d['s1_cube32_macro_nmae_max']:.6g}；整体相对L2的90分位 {d['s1_cube32_rel_l2_p90']:.6g}",
+-            '预登记判据：未见解析32³的DCO宏nMAE最大值 < 0.01；相对L2仅独立报告，不能替代nMAE。')
+-
+-
+-def z1_mechanism_p_start(_):
+-    d = mechanism_decision_claims_data()
+-    ok = d['p_passed'] and d['p_updates'] <= 500 and d['p_accepted_steps'] >= 1
+-    return ('PASS' if ok else 'FAIL',
+-            f"P第0层curl-E: R={d['p_R']:.12g}，Adam更新={d['p_updates']}，接受完整步={d['p_accepted_steps']}，停止={d['p_stop_reason']}",
+-            '预登记判据：首个非零拟合须在不超过500次Adam更新内达到 R < 1e-4，才允许进入64/128门槛。')
+-
+-
+-def z2_mechanism_r_partial(_):
+-    d = mechanism_decision_claims_data()
+-    return ('INCOMPLETE',
+-            f"R保存{d['r_partial_rows']}个严格接受步（至层{d['r_last_step']}，Q={d['r_last_Q']:.6g}），状态={d['r_status']}",
+-            'R由代理提前终止、没有可恢复检查点；不能用于预训练收益B、1024步或论文第二阶段结论。')
+-
+-
+-def z3_mechanism_not_run(_):
+-    return ('NOT_RUN', '1024步、收益B、冻结复用与8192步均未运行。',
+-            '前置P首个非零拟合严格通过未满足；按预登记门槛停止，不得续跑失败权重。')
+-
+-
+-MECHANISM_DECISION_CLAIMS = [
+-    ('Z0', '预训练DCO在未见解析32³上的S1精度门槛', z0_mechanism_s1),
+-    ('Z1', 'P预训练初始化的首个非零Algorithm 1拟合门槛', z1_mechanism_p_start),
+-    ('Z2', 'R随机初始化对照的实际完整性', z2_mechanism_r_partial),
+-    ('Z3', '被门槛阻止的长程与收益阶段', z3_mechanism_not_run),
+-]
+ 
+ 
+ def paper_evidence():
+     """Verified files and recomputed metrics are shared by ledger and figures."""
+@@ -1104,20 +985,20 @@
+     j = json.load(open(os.path.join(root, 'acceptance.json'), encoding='utf-8'))
+     ok = (j.get('g0', {}).get('nonzero_target_R_lt') == 1e-4
+           and j.get('g1', {}).get('max_adam_updates') == 500
+           and j.get('g3', {}).get('steps') == 8192)
+-    return ('INCOMPLETE' if ok else 'FAIL', f"R={j['g0']['nonzero_target_R_lt']}; Adam={j['g1']['max_adam_updates']}; G3={j['g3']['steps']}步",
+-            '已冻结部分数字；原验证仅检查三项数值。完整公式、弱场/支撑、阶段预算及所有执行源码快照尚不能由此认证。见v3停止点复核。')
++    return ('PASS' if ok else 'FAIL', f"R={j['g0']['nonzero_target_R_lt']}; Adam={j['g1']['max_adam_updates']}; G3={j['g3']['steps']}步",
++            '判据：v2 数字门槛、预算和长程禁止条件在新实验前已冻结。')
+ 
+ 
+ def v2_r1_contract(_):
+-    p = 'evidence/gpt6_plan_v3_review/audit.json'
++    p = 'evidence/gpt6_plan_v2/R1_REPORT.md'
+     if not os.path.exists(p):
+-        return 'INCOMPLETE', '旧微型测试有记录', '报告关键词不能认证完整恢复合同。'
+-    from stop_review_evidence import engineering_status
+-    status, failed = engineering_status()
+-    return (status, '反例：' + ', '.join(failed),
+-            'run137实际复现：累计时间未扣、LBFGS配置冲突未拒绝、运行目录冲突未拒绝、LBFGS未回滚至最近接受状态。完整G0撤回；旧成功测试保留。')
++        return 'NODATA', '缺少 R1 报告', '停止/恢复合同尚无记录。'
++    text = open(p, encoding='utf-8').read()
++    ok = all(token in text for token in ('E_pending', '不会重新获得更新次数', 'NaN'))
++    return ('PASS' if ok else 'FAIL', 'R1 微型事务回归已记录',
++            '判据：同配置恢复、累计预算、非有限 raw/safe、零目标与测量合同均有运行记录；不是 DCO 精度。')
+ 
+ 
+ def v2_r2_control(_):
+     p = 'evidence/gpt6_plan_v2/R2_exact_control.json'
+@@ -1127,12 +1008,11 @@
+     d, s, z = j['float64'], j['float32'], j['zero_curl_negative']
+     ok = (d['finite'] and s['finite'] and d['max_global_relative_l2'] <= 1e-10
+           and s['max_global_relative_l2'] <= 1e-4 and z['max_global_relative_l2'] > .05
+           and 'not a DCO' in d['classification'])
+-    complete_rows = all(len(j[k].get('rows', [])) == 128 for k in ('float64','float32','zero_curl_negative'))
+-    return ('PASS' if ok and complete_rows else 'FAIL',
++    return ('PASS' if ok else 'FAIL',
+             f"double/single={d['max_global_relative_l2']:.3e}/{s['max_global_relative_l2']:.3e}; zero={z['max_global_relative_l2']:.3e}",
+-            '窄结论：128步生产事务对同序参考及零旋度负例通过；run138补证原step+测量H半步与同序参考等价。尚不认证完整G0；非DCO成绩。')
++            '判据：128步生产事务对独立参考满足 double<=1e-10、single<=1e-4，且零旋度负例被拒绝；非 DCO 成绩。')
+ 
+ 
+ def v2_r3_p5(_):
+     p = 'evidence/gpt6_plan_v2/R3_recompute.json'
+@@ -1149,106 +1029,18 @@
+     if not os.path.exists(p):
+         return 'NODATA', '缺少 R4/P4-A', '开发状态或唯一优化分支尚未完成。'
+     j = json.load(open(p, encoding='utf-8'))
+     value = j['adam200_lbfgs']['residual_ratio']
+-    from stop_review_evidence import g1_development_status
+-    dev_path = 'evidence/gpt6_plan_v2/R4_development_corrected/R4_development.json'
+-    tasks = json.load(open(dev_path, encoding='utf-8'))['tasks'] if os.path.exists(dev_path) else []
+-    dev_status = g1_development_status(tasks)
+-    status = 'FAIL' if not j['pass'] or dev_status == 'FAIL' else 'INCOMPLETE'
+-    return (status, f"43步 curl-H P4-A R={value:.6e}",
+-            'run137重载保存权重复算确认局部FAIL。G1还需G0、43/96双curl完整顺序单步、全部原/新增验证；一个P4-A成功也不能自动G1 PASS。')
++    return ('PASS' if j['pass'] else 'FAIL', f"43步 curl-H P4-A R={value:.6e}",
++            '判据：开发与冻结状态都须 R<1e-4 且 A_fixed<=1e-3；当前开发 P4-A 未过，后段为 NOT_RUN。')
+ 
+ 
+ PIDON_V2_CONTRACT_CLAIMS = [
+     ('W0', 'R0 v2 门槛与证据账本冻结', v2_r0_contract),
+     ('W1', 'R1 停止、恢复与测量合同', v2_r1_contract),
+-    ('W2', 'R2 生产路径同序控制的窄结论（非G0总认证、非DCO）', v2_r2_control),
++    ('W2', 'R2 生产路径精确 Yee 控制（非DCO）', v2_r2_control),
+     ('W3', 'R3 正确口径的 P5 固定样本门槛', v2_r3_p5),
+     ('W4', 'R4/P4-A G1 开发门槛', v2_r4_g1),
+-]
+-
+-
+-def v3_g0_complete(_):
+-    # Preserve the historical artifact, but do not continue certifying it
+-    # after reproducible counterexamples invalidate its verifier.
+-    review = 'evidence/gpt6_plan_v4_review/audit.json'
+-    if os.path.exists(review):
+-        from night_review_evidence import load_review, contract_checks
+-        checks = contract_checks(load_review())
+-        failed = [name for name, passed in checks.items() if not passed]
+-        if failed:
+-            return ('FAIL', 'v3认证撤回；#173反例：' + ', '.join(failed),
+-                    '历史G0.json原样保留；数值破坏、缺行、恢复与测量反例否定完整认证。'
+-                    '这不抹去#166/#167保存权重的局部残差FAIL。新版本须另行完整认证。')
+-    p = 'evidence/gpt6_plan_v3/G0.json'
+-    if not os.path.exists(p):
+-        return 'NODATA', '缺少 G0.json', 'A1/A2 尚未形成机器可读的完整 G0 清单。'
+-    j = json.load(open(p, encoding='utf-8'))
+-    checks = j.get('required_g0_checks', [])
+-    ok = j.get('G0') == 'PASS' and bool(checks) and all(row.get('status') == 'PASS' for row in checks)
+-    return ('PASS' if ok else 'FAIL', f"G0={j.get('G0')}; checks={len(checks)}",
+-            'G0 只认证合同、测量、参考时层与负对照；精确 Yee 控制不计为 DCO 成绩。')
+-
+-
+-def v3_h_layout_candidate(_):
+-    p = 'evidence/gpt6_plan_v3/h_layout_candidate/A3_GATE.json'
+-    if not os.path.exists(p):
+-        return 'NODATA', 'A3 未执行', '唯一 h_shift=True 候选尚未完成，不能推断后续短程或长程。'
+-    j = json.load(open(p, encoding='utf-8'))
+-    rows = j.get('tasks', [])
+-    detail = '; '.join(f"{row['step']} H={row['H_R']:.3e}, E({row['E_mode']})={row['E_R']:.3e}"
+-                       for row in rows)
+-    return ('PASS' if j.get('G1_development') == 'PASS' else 'FAIL', detail,
+-            '只改变 H 交错位置后，43/96 开发状态仍必须顺序 H/E 均 R<1e-4 且 A_fixed<=1e-3 才能进入验证。'
+-            '当前 oracle E 仅诊断，固定验证及64/128/1024/8192均未运行。')
+-
+-
+-PIDON_V3_CLAIMS = [
+-    ('X0', 'v3 完整G0机器认证（非DCO成绩）', v3_g0_complete),
+-    ('X1', 'v3 唯一h_shift候选的G1开发门槛', v3_h_layout_candidate),
+-]
+-
+-# --------------------------------------------------------------------------- #
+-# N0--N6 night evidence.  These call the same read-only recomputation entry
+-# point as make_night_report.py; they never infer a DCO PASS from a control.
+-# --------------------------------------------------------------------------- #
+-
+-def night_v4_data():
+-    import night_evidence
+-    return night_evidence.compute()
+-
+-
+-def y0_g0(_):
+-    e = night_v4_data(); g = e['G0']
+-    return (g['status'], f"{g['checks_passed']}/{g['checks_required']} 项；lab_log #{g['lab_run_id']}",
+-            '判据：C01–C15及M01–M13完整重算均通过，包含磁盘恢复、8192参考缓存和负对照；精确Yee控制仅认证工程/测量链，不计作DCO成绩。')
+-
+-
+-def y1_fixed_gate(_):
+-    e = night_v4_data(); n = e['N3']; rows = n['registered_rows']
+-    val = '; '.join(f"{r['phase']} R_disk={r['R_disk']:.6g} ({r['status']})" for r in rows)
+-    return (n['G1'], val,
+-            '判据：登记的顺序H/E开发目标均需物理R<1e-4；H43和顺序E96失败，oracle-E已保留且从G1排除。')
+-
+-
+-def y2_trajectory(_):
+-    e = night_v4_data()
+-    return ('NOT_RUN', '主1024与第二seed128均未启动',
+-            '前置：G1必须PASS。G1为FAIL，故没有合法DCO轨迹、六分量或源外探针可报告。')
+-
+-
+-def y3_longrun(_):
+-    e = night_v4_data()
+-    return ('NOT_RUN', '8192步DCO轨迹未启动',
+-            '前置：G2必须PASS且同一主轨迹续进。G1已经FAIL；8192参考缓存和Yee控制不是DCO长程成绩。')
+-
+-
+-PIDON_V4_NIGHT_CLAIMS = [
+-    ('Y0', 'v4夜间完整G0工程/测量认证（非DCO成绩）', y0_g0),
+-    ('Y1', 'head_lstsq_once_adam499固定状态G1门', y1_fixed_gate),
+-    ('Y2', '主1024与第二seed128机制门', y2_trajectory),
+-    ('Y3', '同轨迹8192 DCO长程门', y3_longrun),
+ ]
+ 
+ # --------------------------------------------------------------------------- #
+ # claims that need a (cheap) run
+@@ -1285,9 +1077,8 @@
+ ]
+ 
+ 
+ def run_claim(cid, name, cmd, pat, ok_fn, crit):
+-    cmd = [cmd[0], str(resolve_legacy(cmd[1])), *cmd[2:]]
+     if not os.path.exists(cmd[1]):
+         return "NODATA", "缺脚本", f"{cmd[1]} 不在当前目录"
+     try:
+         p = subprocess.run(cmd, capture_output=True, text=True,
+@@ -1328,12 +1119,8 @@
+     ap.add_argument('--trunk-repair',action='store_true',help='加入仅trunk训练U0-U3，并保留此前项')
+     ap.add_argument('--stage2-longrun', action='store_true', help='加入Algorithm 1长程证据V1-V3')
+     ap.add_argument('--pidon-v2', action='store_true', help='加入P0-P4的新版证据与门槛N0-N4')
+     ap.add_argument('--pidon-v2-contract', action='store_true', help='加入R0-R4修订合同与门槛W0-W4')
+-    ap.add_argument('--pidon-v3', action='store_true', help='加入v3完整G0与唯一h_shift候选门槛X0-X1')
+-    ap.add_argument('--pidon-v4-night', action='store_true', help='加入N0–N6夜间证据Y0–Y3；读取同一重算入口，不启动训练')
+-    ap.add_argument('--mechanism-decision', action='store_true',
+-                    help='加入2026-09-14有界机制/收益验证Z0-Z3；只读已登记证据，不启动训练')
+     a = ap.parse_args()
+     if a.trunk_repair:a.coverage_ab=True
+     if a.coverage_ab:a.spacing_probe=True
+     if a.spacing_probe:a.grid_diagnosis=True
+@@ -1344,9 +1131,9 @@
+     print('当前指标由产物重算。旧结论存在待重审项；检查通过不等于充分的科学证明。\n')
+ 
+     results = []
+     from trunk_evidence import CLAIMS as TRUNK_CLAIMS
+-    for cid, name, fn in DISK_CLAIMS + (STAGE2_CLAIMS if a.stage2_longrun else []) + (PIDON_V2_CLAIMS if a.pidon_v2 else []) + (PIDON_V2_CONTRACT_CLAIMS if a.pidon_v2_contract else []) + (PIDON_V3_CLAIMS if a.pidon_v3 else []) + (PIDON_V4_NIGHT_CLAIMS if a.pidon_v4_night else []) + (MECHANISM_DECISION_CLAIMS if a.mechanism_decision else []) + (PAPER_CLAIMS if a.paper_first else []) + (GRID_CLAIMS if a.grid_diagnosis else []) + (SPACING_CLAIMS if a.spacing_probe else []) + (COVERAGE_CLAIMS if a.coverage_ab else []) + (TRUNK_CLAIMS if a.trunk_repair else []):
++    for cid, name, fn in DISK_CLAIMS + (STAGE2_CLAIMS if a.stage2_longrun else []) + (PIDON_V2_CLAIMS if a.pidon_v2 else []) + (PIDON_V2_CONTRACT_CLAIMS if a.pidon_v2_contract else []) + (PAPER_CLAIMS if a.paper_first else []) + (GRID_CLAIMS if a.grid_diagnosis else []) + (SPACING_CLAIMS if a.spacing_probe else []) + (COVERAGE_CLAIMS if a.coverage_ab else []) + (TRUNK_CLAIMS if a.trunk_repair else []):
+         try:
+             v, val, det = fn(None)
+             if cid in AUDIT_NOTES:
+                 v, det = 'REVIEW', AUDIT_NOTES[cid] + ' 历史数值仅供溯源。'
+@@ -1444,11 +1231,10 @@
+                                 timeout=10).stdout.strip()
+     except Exception:
+         pass
+     ids={r[0] for r in results}
+-    flag=('--mechanism-decision' if 'Z0' in ids else '--pidon-v4-night' if 'Y0' in ids else '--trunk-repair' if 'U0' in ids else '--coverage-ab' if 'T0' in ids else '--spacing-probe' if 'S0' in ids
++    flag=('--trunk-repair' if 'U0' in ids else '--coverage-ab' if 'T0' in ids else '--spacing-probe' if 'S0' in ids
+           else '--grid-diagnosis' if 'D0' in ids else '--paper-first' if 'P0' in ids else '')
+-    command_suffix = f"{flag} --md" if flag in ('--pidon-v4-night', '--mechanism-decision') else f"{flag} --run --md"
+     with open("RESULTS.md", "w", encoding="utf-8") as f:
+         f.write("# 复现结论核对表\n\n")
+         f.write(f"> `verify_claims.py` 自动生成于 "
+                 f"{dt.datetime.now().strftime('%Y-%m-%d %H:%M')}"
+@@ -1458,11 +1244,10 @@
+                 "> 分项诊断用 --grid-diagnosis 加入D0-D3并保留P0-P2。D项通过指诊断证据支持该项陈述，不代表DCO通过精度验收。\n"
+                 "> 单轴/单波诊断用 --spacing-probe 加入S0-S2并保留P/D项；S项也是诊断判据。\n"
+                 "> A/B修复用 --coverage-ab 加入T0-T3并保留此前项；T1-T3是批准的修复门槛，不能替代论文复现验收。\n"
+                 "> 坐标分支修复用 --trunk-repair 加入U0-U3；新种子终验与已知探针诊断分开，仍不替代论文复现验收。\n"
+-                "> 有界机制/收益验证用 --mechanism-decision 加入Z0-Z3；它只读取登记的失败、部分对照和诊断证据，不重启训练。\n"
+-                f"> 本表复算：`py -3.11 lab_log.py run -m verify-evidence -- py -3.11 verify_claims.py {command_suffix}`。\n"
+-                "> 复算指标不等于重新训练或推理；P0T是其他协议下的解析测试。\n"
++                f"> 本表复算：`py -3.11 lab_log.py run -m verify-evidence -- py -3.11 verify_claims.py {flag} --run --md`。\n"
++                "> 复算指标不等于重新训练或推理；P0T是此次现跑的解析测试。\n"
+                 "> 大数组/权重（.pt/.npz）被 .gitignore 忽略；小型JSON清单、脚本和本表可保存进版本控制。\n"
+                 "> 每次运行的命令、commit、耗时和输出文件的 sha256 在 "
+                 "`LAB_NOTEBOOK.md`。本轮源代码快照与权重哈希另见 `evidence/paper_first_v1/manifest.json`。\n\n")
+         def cell(t):

@@ -1,0 +1,91 @@
+--- scripts/experiments/coverage_ab.py
++++ evidence/coverage_ab_v1/source/coverage_ab.py
+@@ -2,16 +2,8 @@
+ 
+ The only arm factor is the mapping of shared U[0,1] spacing draws to ranges.
+ No scheduler, model selection, adaptive budget or validation-driven retraining.
+ """
+-
+-# Project layout bootstrap (imports and paths only).
+-import sys as _layout_sys
+-from pathlib import Path as _LayoutPath
+-_layout_sys.path.insert(0, str(_LayoutPath(__file__).resolve().parents[2]))
+-from project_paths import ROOT as PROJECT_ROOT, configure as _layout_configure, resolve_legacy
+-_layout_configure()
+-
+ import argparse
+ import copy
+ import io
+ import json
+@@ -74,23 +66,15 @@
+     meta={k:ck[k] for k in ['levels','base','grid','norm','coords']}
+     return net,meta
+ 
+ 
+-def train_arm(arm,data,initial,batches,root,device,trainable_prefix=None):
++def train_arm(arm,data,initial,batches,root,device):
+     torch.manual_seed(SEED)
+     net,meta=load_net(initial,device);net.train()
+-    if trainable_prefix is not None:
+-        for name,p in net.named_parameters():p.requires_grad_(name.startswith(trainable_prefix))
+-    active=[p for p in net.parameters() if p.requires_grad]
+-    frozen={n:p.detach().cpu().clone() for n,p in net.named_parameters() if not p.requires_grad}
+-    opt=torch.optim.Adam(active,lr=1e-4)
++    opt=torch.optim.Adam(net.parameters(),lr=1e-4)
+     e=torch.from_numpy(data['E']);c=torch.from_numpy(data['C']);dd=torch.from_numpy(data['D'])*1e3
+     hist=dict(arm=arm,updates=[],config=dict(lr=1e-4,batch=4,max_updates=200,loss='per-sample relative MSE',
+-                                          spacing_mm=RANGES.get(arm,RANGES['B200']),initial_sha256=sha256(initial),
+-                                          trainable_prefix=trainable_prefix,
+-                                          trainable_names=[n for n,p in net.named_parameters() if p.requires_grad],
+-                                          trainable_count=sum(p.numel() for p in active),
+-                                          frozen_count=sum(p.numel() for p in frozen.values())))
++                                          spacing_mm=RANGES[arm],initial_sha256=sha256(initial)))
+     start=time.perf_counter()
+     for step,indices in enumerate(batches,1):
+         x=e[indices].to(device);y=c[indices].to(device);d=dd[indices].to(device)
+         coords=d[:,:,None,None,None].expand(-1,-1,32,32,32).contiguous()
+@@ -107,11 +91,9 @@
+             avg=np.mean([r['loss_before_update'] for r in hist['updates'][-10:]])
+             print(f'{arm} update {step}/200: last10 training loss={avg:.6g}, {time.perf_counter()-start:.1f}s',flush=True)
+     if not all(torch.isfinite(p).all().item() for p in net.parameters()):raise RuntimeError('nonfinite final parameters')
+     steps=[int(v['step'].item()) for v in opt.state.values()]
+-    if len(batches)!=200 or len(steps)!=len(active) or min(steps)!=200 or max(steps)!=200:raise AssertionError('update budget mismatch')
+-    if any(not torch.equal(p.detach().cpu(),frozen[n]) for n,p in net.named_parameters() if n in frozen):
+-        raise AssertionError('frozen parameter changed')
++    if len(batches)!=200 or min(steps)!=200 or max(steps)!=200:raise AssertionError('update budget mismatch')
+     path=root/(arm+'.pt')
+     torch.save(dict(state=net.state_dict(),**meta,head='direct',target='analytic',updates=200,
+                     source_epoch=300,hist=hist,optimizer_state=opt.state_dict()),path)
+     hist['seconds']=time.perf_counter()-start;dump(root/(arm+'_hist.json'),hist)
+@@ -122,17 +104,17 @@
+     if device=='cuda':torch.cuda.empty_cache()
+     return record
+ 
+ 
+-def evaluate(models,root,device,seeds=(10,11,12),include_probes=True):
+-    arrays={};rows=[];probe_rows=[];test_specs=[P.wave_spec(s) for s in seeds]
++def evaluate(models,root,device):
++    arrays={};rows=[];probe_rows=[];test_specs=[P.wave_spec(s) for s in [10,11,12]]
+     tests=[]
+     for spec in test_specs:
+         for shape in P.SHAPES:
+             e,c,h=P.sample_wave(spec,shape);size='x'.join(map(str,shape));key=f's{spec["seed"]}_{size}'
+             arrays[key+'_E']=e;arrays[key+'_true']=c
+             tests.append((spec['seed'],size,key,e,c,h))
+-    probes=[case for case in S.cases() if case['family']=='trunk_only'] if include_probes else []
++    probes=[case for case in S.cases() if case['family']=='trunk_only']
+     bases={(case['axis'],case['pol']):S.generate(case) for case in probes if case['value']==.6}
+     for model in models:
+         before=sha256(model['path']);net,_=load_net(model['path'],device);net.eval()
+         for seed,size,key,e,c,h in tests:
+@@ -156,9 +138,9 @@
+             arrays[pk]=roi(p);arrays[tk]=roi(c)
+             probe_rows.append(dict(model=model['tag'],axis=case['axis'],pol=case['pol'],value=case['value'],pred_key=pk,true_key=tk))
+         model['sha256_after_evaluation']=sha256(model['path'])
+         if before!=model['sha256_after_evaluation']:raise RuntimeError('evaluation changed weights')
+-        print('Evaluated',model['tag'],len(tests),'cases; seeds',list(seeds),'and',len(probes),'coordinate probes',flush=True)
++        print('Evaluated',model['tag'],'12 independent-seed cases and 30 coordinate probes',flush=True)
+         del net
+         if device=='cuda':torch.cuda.empty_cache()
+     np.savez_compressed(root/'evaluation.npz',**arrays)
+     return dict(models=models,rows=rows,probe_rows=probe_rows,test_specs=test_specs,

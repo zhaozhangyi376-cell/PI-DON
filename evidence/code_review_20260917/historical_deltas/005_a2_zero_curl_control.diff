@@ -1,0 +1,18 @@
+--- scripts/experiments/a2_zero_curl_control.py
++++ evidence/workspace_reorganization_20260914/before/root/a2_zero_curl_control.py
+@@ -1,15 +1,7 @@
+ """Run the separately registered zero-curl negative control for A2."""
+ 
+ from __future__ import annotations
+-
+-# Project layout bootstrap (imports and paths only).
+-import sys as _layout_sys
+-from pathlib import Path as _LayoutPath
+-_layout_sys.path.insert(0, str(_LayoutPath(__file__).resolve().parents[2]))
+-from project_paths import ROOT as PROJECT_ROOT, configure as _layout_configure, resolve_legacy
+-_layout_configure()
+-
+ 
+ import json
+ from pathlib import Path
+ 

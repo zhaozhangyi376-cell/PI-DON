@@ -1,0 +1,1941 @@
+{
+  "schema": "historical-core-review-v1",
+  "date": "2026-09-17",
+  "index_path": "evidence/code_review_20260917/historical_deltas_v2/index.json",
+  "index_sha256": "f5104270c02f62511f2acf14271069bc097636ac70b7e5925174f59b29bf77a0",
+  "partition": "core",
+  "coverage_mode": "FULL_DELTA_REVIEW",
+  "reviewed_group_ids": [
+    23,
+    30,
+    32,
+    40,
+    43,
+    47,
+    62,
+    71,
+    79,
+    97,
+    107,
+    109,
+    112,
+    113,
+    114,
+    124,
+    126,
+    135,
+    137,
+    142,
+    144,
+    152
+  ],
+  "expected_group_count": 22,
+  "reviewed_group_count": 22,
+  "historical_member_count": 132,
+  "reviewed_diff_lines": 4771,
+  "groups_without_canonical": [],
+  "identity_verification": {
+    "member_raw_sha256_matches": 132,
+    "member_normalized_sha256_matches": 132,
+    "missing_members": [],
+    "mismatches": [],
+    "delta_reconstruction_matches": 22,
+    "source_and_diff_line_count_matches": 22,
+    "normalization": "UTF-8 text, CRLF/CR to LF; raw byte hash verified separately",
+    "method": "Read-only PowerShell/.NET hashing and in-memory unified-diff reconstruction; no audited code imported or executed"
+  },
+  "execution": {
+    "audited_script_runs": 0,
+    "imports": 0,
+    "tests": 0,
+    "inference": 0,
+    "training": 0,
+    "optimizer_updates": 0,
+    "checkpoint_deserializations": 0,
+    "git_mutations": 0,
+    "delegated_agents": 0,
+    "action_or_ledger_writes": 0
+  },
+  "output_files": [
+    "evidence/code_review_20260917/historical_core_review.md",
+    "evidence/code_review_20260917/historical_core_coverage.json"
+  ],
+  "scope_boundary": "Only complete historical deltas plus listed source context were semantically read; unchanged whole files are not claimed as newly full-read. Identity applies to source files, not execution or numerical artifacts.",
+  "groups": [
+    {
+      "group_id": 23,
+      "coverage_mode": "FULL_DELTA_REVIEW",
+      "representative": "evidence/workspace_reorganization_20260914/before/root/pidon_solve.py",
+      "normalized_sha256": "2771f974f8ee1bbf38f3693a26335d364433f38c9e6a8d17d1b2469d9035f128",
+      "canonical": "src/pidon/pidon_solve.py",
+      "canonical_sha256": "f4a92760f3b4fd400be6926acc88ff653018d280d111d5961217305f468afc7f",
+      "diff_path": "evidence/code_review_20260917/historical_deltas_v2/023_pidon_solve.diff",
+      "diff_sha256": "ff7f5c76088b052a751c9160f4244deb824dcc056f2214085fd14e956d4994f2",
+      "diff_lines": 64,
+      "diff_read_ranges": [
+        [
+          1,
+          64
+        ]
+      ],
+      "source_lines": 1313,
+      "source_extra_numbered_read_ranges": [],
+      "source_context_note": "All diff contexts plus targeted symbol-line reads where needed; no full original-file claim.",
+      "hunks": 4,
+      "delta_reconstructs_original": true,
+      "source_and_diff_line_counts_match": true,
+      "finding_ids": [],
+      "review_note": "仅布局引导、init 路径解析及恢复比较迁移；数值核与 head 规则无差异。F07 新的恢复路径别名比较不能回溯到本组；F18 裸 Path 原已存在。",
+      "untested_boundary": "未执行迁移路径或恢复；不声称外部同名权重曾被替换。",
+      "members": [
+        {
+          "path": "evidence/workspace_reorganization_20260914/before/root/pidon_solve.py",
+          "expected_byte_sha256": "42109de3acfb35b422e3ff83025783a13104b40f8329050ff64edadf680d90c8",
+          "actual_byte_sha256": "42109de3acfb35b422e3ff83025783a13104b40f8329050ff64edadf680d90c8",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "2771f974f8ee1bbf38f3693a26335d364433f38c9e6a8d17d1b2469d9035f128",
+          "normalized_sha256_matches": true
+        }
+      ]
+    },
+    {
+      "group_id": 30,
+      "coverage_mode": "FULL_DELTA_REVIEW",
+      "representative": "evidence/gpt6_plan_v2/r0_source_snapshot/pidon_recording.py",
+      "normalized_sha256": "334f0c99eff7c274d042fe6b71b4475d37b1856af5b6269bf0779be691f06380",
+      "canonical": "src/pidon/pidon_recording.py",
+      "canonical_sha256": "515791efa958f8c1bb044b6ad7cb3806235168325b38874b3bef7555a97bafe4",
+      "diff_path": "evidence/code_review_20260917/historical_deltas_v2/030_pidon_recording.diff",
+      "diff_sha256": "12a8326114f39455f5b8797df4fcfab045e39c7ee06b6cbec4b438530e709c1a",
+      "diff_lines": 267,
+      "diff_read_ranges": [
+        [
+          1,
+          267
+        ]
+      ],
+      "source_lines": 101,
+      "source_extra_numbered_read_ranges": [
+        [
+          1,
+          101
+        ]
+      ],
+      "source_context_note": "Listed extra original-source ranges plus all diff contexts and targeted symbol-line reads.",
+      "hunks": 4,
+      "delta_reconstructs_original": true,
+      "source_and_diff_line_counts_match": true,
+      "finding_ids": [
+        "HC10",
+        "HC11"
+      ],
+      "review_note": "完整比较旧 101 行记录器；缺独立身份、序号与尾部扫描；latest 先移走、failure_raw 固定覆盖。无 A/B 接口，F06 不能套用。",
+      "untested_boundary": "未注入断电/中断，未检查某次历史目录是否混写。",
+      "members": [
+        {
+          "path": "evidence/gpt6_plan_v2/r0_source_snapshot/pidon_recording.py",
+          "expected_byte_sha256": "f0e8aeede7da4306e6457556908467a25925d67d4d23849eecd50235a059e7bd",
+          "actual_byte_sha256": "f0e8aeede7da4306e6457556908467a25925d67d4d23849eecd50235a059e7bd",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "334f0c99eff7c274d042fe6b71b4475d37b1856af5b6269bf0779be691f06380",
+          "normalized_sha256_matches": true
+        },
+        {
+          "path": "evidence/gpt6_plan_v3_review/source_snapshot/pidon_recording.py",
+          "expected_byte_sha256": "f0e8aeede7da4306e6457556908467a25925d67d4d23849eecd50235a059e7bd",
+          "actual_byte_sha256": "f0e8aeede7da4306e6457556908467a25925d67d4d23849eecd50235a059e7bd",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "334f0c99eff7c274d042fe6b71b4475d37b1856af5b6269bf0779be691f06380",
+          "normalized_sha256_matches": true
+        }
+      ]
+    },
+    {
+      "group_id": 32,
+      "coverage_mode": "FULL_DELTA_REVIEW",
+      "representative": "evidence/gpt6_plan_v2/r0_source_snapshot/fdtd.py",
+      "normalized_sha256": "366416d31d8f3655410cdedfa8a2215eb70c845fc765e9e4c35c4e806c3dedfd",
+      "canonical": "src/pidon/fdtd.py",
+      "canonical_sha256": "a387fe5951fb76ce62b7cc304ad0f9b7db7f0a1c857189a2aa98ca96df572903",
+      "diff_path": "evidence/code_review_20260917/historical_deltas_v2/032_fdtd.diff",
+      "diff_sha256": "ec87327ca0235585f911d867ba7e6dcf760a9e8e9c67d26d8bcc4169d51a3137",
+      "diff_lines": 53,
+      "diff_read_ranges": [
+        [
+          1,
+          53
+        ]
+      ],
+      "source_lines": 227,
+      "source_extra_numbered_read_ranges": [
+        [
+          40,
+          65
+        ],
+        [
+          80,
+          139
+        ]
+      ],
+      "source_context_note": "Listed extra original-source ranges plus all diff contexts and targeted symbol-line reads.",
+      "hunks": 2,
+      "delta_reconstructs_original": true,
+      "source_and_diff_line_counts_match": true,
+      "finding_ids": [
+        "HC08"
+      ],
+      "review_note": "仅缺 step_e_source_h 与布局引导；原 step 为 H→E→source。与 G109 调用一起构成 H 时间层未对齐；curl 差分本身未改。",
+      "untested_boundary": "未重算参考轨迹；独立使用原 step 不构成错误。",
+      "members": [
+        {
+          "path": "evidence/gpt6_plan_v2/r0_source_snapshot/fdtd.py",
+          "expected_byte_sha256": "2ea96cf4cbe3186fa5f211daab05b92a32b2ee3dc00cabc72e2d2ef464696425",
+          "actual_byte_sha256": "2ea96cf4cbe3186fa5f211daab05b92a32b2ee3dc00cabc72e2d2ef464696425",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "366416d31d8f3655410cdedfa8a2215eb70c845fc765e9e4c35c4e806c3dedfd",
+          "normalized_sha256_matches": true
+        }
+      ]
+    },
+    {
+      "group_id": 40,
+      "coverage_mode": "FULL_DELTA_REVIEW",
+      "representative": "evidence/coverage_ab_v1/source/fdtd.py",
+      "normalized_sha256": "3fcf90d9dc8c0440c3b34fd795e4e3910418efff1f8f400c5e846f441872c00b",
+      "canonical": "src/pidon/fdtd.py",
+      "canonical_sha256": "a387fe5951fb76ce62b7cc304ad0f9b7db7f0a1c857189a2aa98ca96df572903",
+      "diff_path": "evidence/code_review_20260917/historical_deltas_v2/040_fdtd.diff",
+      "diff_sha256": "83ece6af1245df2428a6b851f60650e4572691bbc9da71c0c830e7b2c4a91367",
+      "diff_lines": 79,
+      "diff_read_ranges": [
+        [
+          1,
+          79
+        ]
+      ],
+      "source_lines": 236,
+      "source_extra_numbered_read_ranges": [],
+      "source_context_note": "All diff contexts plus targeted symbol-line reads where needed; no full original-file claim.",
+      "hunks": 3,
+      "delta_reconstructs_original": true,
+      "source_and_diff_line_counts_match": true,
+      "finding_ids": [
+        "HC08",
+        "HC13"
+      ],
+      "review_note": "缺 E→source→H 便利接口；另有 31 间隔已获论文确认式的过强注释，当前改为假设。数值 cfl 公式不变。",
+      "untested_boundary": "未核验本组各实验的外部调用顺序，不能仅凭接口缺失判其场结果错误。",
+      "members": [
+        {
+          "path": "evidence/coverage_ab_v1/source/fdtd.py",
+          "expected_byte_sha256": "09d33eb84d788f5a2b089064745b2e76c29c43f82f7bbc0ca7b066258659fb8e",
+          "actual_byte_sha256": "09d33eb84d788f5a2b089064745b2e76c29c43f82f7bbc0ca7b066258659fb8e",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "3fcf90d9dc8c0440c3b34fd795e4e3910418efff1f8f400c5e846f441872c00b",
+          "normalized_sha256_matches": true
+        },
+        {
+          "path": "evidence/grid_diagnosis_v1/source/fdtd.py",
+          "expected_byte_sha256": "09d33eb84d788f5a2b089064745b2e76c29c43f82f7bbc0ca7b066258659fb8e",
+          "actual_byte_sha256": "09d33eb84d788f5a2b089064745b2e76c29c43f82f7bbc0ca7b066258659fb8e",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "3fcf90d9dc8c0440c3b34fd795e4e3910418efff1f8f400c5e846f441872c00b",
+          "normalized_sha256_matches": true
+        },
+        {
+          "path": "evidence/paper_first_v1/source/fdtd.py",
+          "expected_byte_sha256": "09d33eb84d788f5a2b089064745b2e76c29c43f82f7bbc0ca7b066258659fb8e",
+          "actual_byte_sha256": "09d33eb84d788f5a2b089064745b2e76c29c43f82f7bbc0ca7b066258659fb8e",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "3fcf90d9dc8c0440c3b34fd795e4e3910418efff1f8f400c5e846f441872c00b",
+          "normalized_sha256_matches": true
+        },
+        {
+          "path": "evidence/spacing_probe_v1/source/fdtd.py",
+          "expected_byte_sha256": "09d33eb84d788f5a2b089064745b2e76c29c43f82f7bbc0ca7b066258659fb8e",
+          "actual_byte_sha256": "09d33eb84d788f5a2b089064745b2e76c29c43f82f7bbc0ca7b066258659fb8e",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "3fcf90d9dc8c0440c3b34fd795e4e3910418efff1f8f400c5e846f441872c00b",
+          "normalized_sha256_matches": true
+        },
+        {
+          "path": "evidence/trunk_repair_v1/source/fdtd.py",
+          "expected_byte_sha256": "09d33eb84d788f5a2b089064745b2e76c29c43f82f7bbc0ca7b066258659fb8e",
+          "actual_byte_sha256": "09d33eb84d788f5a2b089064745b2e76c29c43f82f7bbc0ca7b066258659fb8e",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "3fcf90d9dc8c0440c3b34fd795e4e3910418efff1f8f400c5e846f441872c00b",
+          "normalized_sha256_matches": true
+        }
+      ]
+    },
+    {
+      "group_id": 43,
+      "coverage_mode": "FULL_DELTA_REVIEW",
+      "representative": "evidence/gpt6_plan_v4_night/control_runs/float64_exact/source_snapshot/pidon_recording.py",
+      "normalized_sha256": "499b30a895e686b75789a6333ae5ee6d3cdaff9f668cb07b1e339d790eca2a21",
+      "canonical": "src/pidon/pidon_recording.py",
+      "canonical_sha256": "515791efa958f8c1bb044b6ad7cb3806235168325b38874b3bef7555a97bafe4",
+      "diff_path": "evidence/code_review_20260917/historical_deltas_v2/043_pidon_recording.diff",
+      "diff_sha256": "0229c70edb37b3e00c4869771f47aa2e708338f7864f9c459806c92e9c7b1ae1",
+      "diff_lines": 40,
+      "diff_read_ranges": [
+        [
+          1,
+          40
+        ]
+      ],
+      "source_lines": 270,
+      "source_extra_numbered_read_ranges": [],
+      "source_context_note": "All diff contexts plus targeted symbol-line reads where needed; no full original-file claim.",
+      "hunks": 3,
+      "delta_reconstructs_original": true,
+      "source_and_diff_line_counts_match": true,
+      "finding_ids": [
+        "HC11"
+      ],
+      "review_note": "仅布局/sha256_file 路径解析变化；A/B、JSONL 尾部协调及 checkpoint 数值逻辑与当前一致。F06 已存在。",
+      "untested_boundary": "未做恢复或故障注入；五文件哈希清单仍非全执行依赖。",
+      "members": [
+        {
+          "path": "evidence/gpt6_plan_v4_night/control_runs/float64_exact/source_snapshot/pidon_recording.py",
+          "expected_byte_sha256": "c2b7ef8493f31e0681f251895af5734b6e0e40cb65a564e00726512ac3fb5c9e",
+          "actual_byte_sha256": "c2b7ef8493f31e0681f251895af5734b6e0e40cb65a564e00726512ac3fb5c9e",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "499b30a895e686b75789a6333ae5ee6d3cdaff9f668cb07b1e339d790eca2a21",
+          "normalized_sha256_matches": true
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_night/g0_after_head_integration/control_runs/float32_exact/source_snapshot/pidon_recording.py",
+          "expected_byte_sha256": "c2b7ef8493f31e0681f251895af5734b6e0e40cb65a564e00726512ac3fb5c9e",
+          "actual_byte_sha256": "c2b7ef8493f31e0681f251895af5734b6e0e40cb65a564e00726512ac3fb5c9e",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "499b30a895e686b75789a6333ae5ee6d3cdaff9f668cb07b1e339d790eca2a21",
+          "normalized_sha256_matches": true
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_night/g0_after_head_integration/control_runs/float64_exact/source_snapshot/pidon_recording.py",
+          "expected_byte_sha256": "c2b7ef8493f31e0681f251895af5734b6e0e40cb65a564e00726512ac3fb5c9e",
+          "actual_byte_sha256": "c2b7ef8493f31e0681f251895af5734b6e0e40cb65a564e00726512ac3fb5c9e",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "499b30a895e686b75789a6333ae5ee6d3cdaff9f668cb07b1e339d790eca2a21",
+          "normalized_sha256_matches": true
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_night/g0_after_head_integration/control_runs/hard_source_only_negative/source_snapshot/pidon_recording.py",
+          "expected_byte_sha256": "c2b7ef8493f31e0681f251895af5734b6e0e40cb65a564e00726512ac3fb5c9e",
+          "actual_byte_sha256": "c2b7ef8493f31e0681f251895af5734b6e0e40cb65a564e00726512ac3fb5c9e",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "499b30a895e686b75789a6333ae5ee6d3cdaff9f668cb07b1e339d790eca2a21",
+          "normalized_sha256_matches": true
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_night/g0_after_head_integration/control_runs/wrong_h_half_negative/source_snapshot/pidon_recording.py",
+          "expected_byte_sha256": "c2b7ef8493f31e0681f251895af5734b6e0e40cb65a564e00726512ac3fb5c9e",
+          "actual_byte_sha256": "c2b7ef8493f31e0681f251895af5734b6e0e40cb65a564e00726512ac3fb5c9e",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "499b30a895e686b75789a6333ae5ee6d3cdaff9f668cb07b1e339d790eca2a21",
+          "normalized_sha256_matches": true
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_night/g0_after_head_integration/control_runs/zero_curl_negative/source_snapshot/pidon_recording.py",
+          "expected_byte_sha256": "c2b7ef8493f31e0681f251895af5734b6e0e40cb65a564e00726512ac3fb5c9e",
+          "actual_byte_sha256": "c2b7ef8493f31e0681f251895af5734b6e0e40cb65a564e00726512ac3fb5c9e",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "499b30a895e686b75789a6333ae5ee6d3cdaff9f668cb07b1e339d790eca2a21",
+          "normalized_sha256_matches": true
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_night/g0_attempt_02/control_runs/float32_exact/source_snapshot/pidon_recording.py",
+          "expected_byte_sha256": "c2b7ef8493f31e0681f251895af5734b6e0e40cb65a564e00726512ac3fb5c9e",
+          "actual_byte_sha256": "c2b7ef8493f31e0681f251895af5734b6e0e40cb65a564e00726512ac3fb5c9e",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "499b30a895e686b75789a6333ae5ee6d3cdaff9f668cb07b1e339d790eca2a21",
+          "normalized_sha256_matches": true
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_night/g0_attempt_02/control_runs/float64_exact/source_snapshot/pidon_recording.py",
+          "expected_byte_sha256": "c2b7ef8493f31e0681f251895af5734b6e0e40cb65a564e00726512ac3fb5c9e",
+          "actual_byte_sha256": "c2b7ef8493f31e0681f251895af5734b6e0e40cb65a564e00726512ac3fb5c9e",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "499b30a895e686b75789a6333ae5ee6d3cdaff9f668cb07b1e339d790eca2a21",
+          "normalized_sha256_matches": true
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_night/g0_attempt_02/control_runs/hard_source_only_negative/source_snapshot/pidon_recording.py",
+          "expected_byte_sha256": "c2b7ef8493f31e0681f251895af5734b6e0e40cb65a564e00726512ac3fb5c9e",
+          "actual_byte_sha256": "c2b7ef8493f31e0681f251895af5734b6e0e40cb65a564e00726512ac3fb5c9e",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "499b30a895e686b75789a6333ae5ee6d3cdaff9f668cb07b1e339d790eca2a21",
+          "normalized_sha256_matches": true
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_night/g0_attempt_02/control_runs/wrong_h_half_negative/source_snapshot/pidon_recording.py",
+          "expected_byte_sha256": "c2b7ef8493f31e0681f251895af5734b6e0e40cb65a564e00726512ac3fb5c9e",
+          "actual_byte_sha256": "c2b7ef8493f31e0681f251895af5734b6e0e40cb65a564e00726512ac3fb5c9e",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "499b30a895e686b75789a6333ae5ee6d3cdaff9f668cb07b1e339d790eca2a21",
+          "normalized_sha256_matches": true
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_night/g0_attempt_02/control_runs/zero_curl_negative/source_snapshot/pidon_recording.py",
+          "expected_byte_sha256": "c2b7ef8493f31e0681f251895af5734b6e0e40cb65a564e00726512ac3fb5c9e",
+          "actual_byte_sha256": "c2b7ef8493f31e0681f251895af5734b6e0e40cb65a564e00726512ac3fb5c9e",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "499b30a895e686b75789a6333ae5ee6d3cdaff9f668cb07b1e339d790eca2a21",
+          "normalized_sha256_matches": true
+        },
+        {
+          "path": "evidence/mechanism_decision_v1/source_snapshot/pidon_recording.py",
+          "expected_byte_sha256": "c2b7ef8493f31e0681f251895af5734b6e0e40cb65a564e00726512ac3fb5c9e",
+          "actual_byte_sha256": "c2b7ef8493f31e0681f251895af5734b6e0e40cb65a564e00726512ac3fb5c9e",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "499b30a895e686b75789a6333ae5ee6d3cdaff9f668cb07b1e339d790eca2a21",
+          "normalized_sha256_matches": true
+        },
+        {
+          "path": "evidence/workspace_reorganization_20260914/before/root/pidon_recording.py",
+          "expected_byte_sha256": "c2b7ef8493f31e0681f251895af5734b6e0e40cb65a564e00726512ac3fb5c9e",
+          "actual_byte_sha256": "c2b7ef8493f31e0681f251895af5734b6e0e40cb65a564e00726512ac3fb5c9e",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "499b30a895e686b75789a6333ae5ee6d3cdaff9f668cb07b1e339d790eca2a21",
+          "normalized_sha256_matches": true
+        }
+      ]
+    },
+    {
+      "group_id": 47,
+      "coverage_mode": "FULL_DELTA_REVIEW",
+      "representative": "evidence/workspace_reorganization_20260914/before/root/head_lstsq.py",
+      "normalized_sha256": "4b151e31e3e017387d35de8f330d54bbd445067c72cd83c66a22dabdfa9c2e5a",
+      "canonical": "src/pidon/head_lstsq.py",
+      "canonical_sha256": "6bd17af8da88bf3bebe6be6813eb084e7f9b77b864aed686aa8d8e5f3cc38e43",
+      "diff_path": "evidence/code_review_20260917/historical_deltas_v2/047_head_lstsq.diff",
+      "diff_sha256": "6e5a41d63e4b18a940a6c651837c9684a89dc2aae7c28bbb1da8b10a03ab1fb3",
+      "diff_lines": 17,
+      "diff_read_ranges": [
+        [
+          1,
+          17
+        ]
+      ],
+      "source_lines": 44,
+      "source_extra_numbered_read_ranges": [],
+      "source_context_note": "All diff contexts plus targeted symbol-line reads where needed; no full original-file claim.",
+      "hunks": 1,
+      "delta_reconstructs_original": true,
+      "source_and_diff_line_counts_match": true,
+      "finding_ids": [],
+      "review_note": "仅新增布局引导的反向差异；head 最小二乘与 Adam 状态清理无差异。",
+      "untested_boundary": "未运行 SVD、写回或数值稳定性测试。",
+      "members": [
+        {
+          "path": "evidence/workspace_reorganization_20260914/before/root/head_lstsq.py",
+          "expected_byte_sha256": "1adf3d23da12d22eac10a2f0f8bbd094cf498a690847252fdfde668187c0059b",
+          "actual_byte_sha256": "1adf3d23da12d22eac10a2f0f8bbd094cf498a690847252fdfde668187c0059b",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "4b151e31e3e017387d35de8f330d54bbd445067c72cd83c66a22dabdfa9c2e5a",
+          "normalized_sha256_matches": true
+        }
+      ]
+    },
+    {
+      "group_id": 62,
+      "coverage_mode": "FULL_DELTA_REVIEW",
+      "representative": "evidence/server_resource_v1/dco_value_review_20260916/returned/random_low_lr128/source/src/pidon/pidon_solve.py",
+      "normalized_sha256": "5d6eb695526117ef3b6e214b168c373c7a1ea5e01ebd99db1801db7402ce56fd",
+      "canonical": "src/pidon/pidon_solve.py",
+      "canonical_sha256": "f4a92760f3b4fd400be6926acc88ff653018d280d111d5961217305f468afc7f",
+      "diff_path": "evidence/code_review_20260917/historical_deltas_v2/062_pidon_solve.diff",
+      "diff_sha256": "4e9ab27c22d424acdb65604b6ea87f390d2dcb87f3ef22c736445357f471776b",
+      "diff_lines": 25,
+      "diff_read_ranges": [
+        [
+          1,
+          25
+        ]
+      ],
+      "source_lines": 1321,
+      "source_extra_numbered_read_ranges": [],
+      "source_context_note": "All diff contexts plus targeted symbol-line reads where needed; no full original-file claim.",
+      "hunks": 1,
+      "delta_reconstructs_original": true,
+      "source_and_diff_line_counts_match": true,
+      "finding_ids": [],
+      "review_note": "唯一差异为 assert_resume_compatible 的 init 原字符串比较；加载时已有 resolve_legacy。从零的训练及测量公式不因该差异变化。",
+      "untested_boundary": "未复算 random128；只排除这一差异改变从零演化，F07 加载侧仍适用。",
+      "members": [
+        {
+          "path": "evidence/server_resource_v1/dco_value_review_20260916/returned/random_low_lr128/source/src/pidon/pidon_solve.py",
+          "expected_byte_sha256": "5d6eb695526117ef3b6e214b168c373c7a1ea5e01ebd99db1801db7402ce56fd",
+          "actual_byte_sha256": "5d6eb695526117ef3b6e214b168c373c7a1ea5e01ebd99db1801db7402ce56fd",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "5d6eb695526117ef3b6e214b168c373c7a1ea5e01ebd99db1801db7402ce56fd",
+          "normalized_sha256_matches": true
+        },
+        {
+          "path": "evidence/server_resource_v1/dco_value_review_20260916_r1/returned/random_low_lr128/source/src/pidon/pidon_solve.py",
+          "expected_byte_sha256": "5d6eb695526117ef3b6e214b168c373c7a1ea5e01ebd99db1801db7402ce56fd",
+          "actual_byte_sha256": "5d6eb695526117ef3b6e214b168c373c7a1ea5e01ebd99db1801db7402ce56fd",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "5d6eb695526117ef3b6e214b168c373c7a1ea5e01ebd99db1801db7402ce56fd",
+          "normalized_sha256_matches": true
+        }
+      ]
+    },
+    {
+      "group_id": 71,
+      "coverage_mode": "FULL_DELTA_REVIEW",
+      "representative": "evidence/gpt6_plan_v3_review/source_snapshot/pidon_solve.py",
+      "normalized_sha256": "6801bcff9f416500b8f3f73cc3a737432f317de1412ce7bc1d457ae2d02b183c",
+      "canonical": "src/pidon/pidon_solve.py",
+      "canonical_sha256": "f4a92760f3b4fd400be6926acc88ff653018d280d111d5961217305f468afc7f",
+      "diff_path": "evidence/code_review_20260917/historical_deltas_v2/071_pidon_solve.diff",
+      "diff_sha256": "04e0c1ce1ba171e72d568a1b6b81908675b75993f49c37433a7963ecb9782c8c",
+      "diff_lines": 967,
+      "diff_read_ranges": [
+        [
+          1,
+          330
+        ],
+        [
+          331,
+          660
+        ],
+        [
+          661,
+          967
+        ]
+      ],
+      "source_lines": 959,
+      "source_extra_numbered_read_ranges": [
+        [
+          70,
+          90
+        ],
+        [
+          111,
+          185
+        ],
+        [
+          269,
+          438
+        ],
+        [
+          468,
+          518
+        ],
+        [
+          833,
+          848
+        ],
+        [
+          882,
+          905
+        ]
+      ],
+      "source_context_note": "Listed extra original-source ranges plus all diff contexts and targeted symbol-line reads.",
+      "hunks": 29,
+      "delta_reconstructs_original": true,
+      "source_and_diff_line_counts_match": true,
+      "finding_ids": [
+        "HC03",
+        "HC04",
+        "HC05",
+        "HC06",
+        "HC08",
+        "HC10"
+      ],
+      "review_note": "完整审查 967 行差异：旧停止目标、局部 LBFGS 回滚/预算、dtype、缺冻结字段及旧 recorder 调用；有低高 PEC 投影，不能套 G109 的边界缺口。",
+      "untested_boundary": "未推理、未复现旧 optimizer；该版本未实现 Adam/LBFGS 中断回调，不套 F24 的同一路径。",
+      "members": [
+        {
+          "path": "evidence/gpt6_plan_v3_review/source_snapshot/pidon_solve.py",
+          "expected_byte_sha256": "281dc9627e5ee6842ade3d516ea3299c9ce42e27e2791731bc14ff9e98779502",
+          "actual_byte_sha256": "281dc9627e5ee6842ade3d516ea3299c9ce42e27e2791731bc14ff9e98779502",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "6801bcff9f416500b8f3f73cc3a737432f317de1412ce7bc1d457ae2d02b183c",
+          "normalized_sha256_matches": true
+        }
+      ]
+    },
+    {
+      "group_id": 79,
+      "coverage_mode": "FULL_DELTA_REVIEW",
+      "representative": "evidence/gpt6_plan_v4_night/control_runs/float64_exact/source_snapshot/pidon_contract.py",
+      "normalized_sha256": "6d4d19222f956ba69a93db9d296305f96a54963050c2020a55859bdfd3d1d03c",
+      "canonical": "src/pidon/pidon_contract.py",
+      "canonical_sha256": "7bc29b3cf6864f24483abf6d9508523591e6f7624bcd274b28f0bb4a2f7c5772",
+      "diff_path": "evidence/code_review_20260917/historical_deltas_v2/079_pidon_contract.diff",
+      "diff_sha256": "6f5df12c99b72ca2a243c04dbe96c9759b8260aaa0f8eb53c38f617983bf080a",
+      "diff_lines": 19,
+      "diff_read_ranges": [
+        [
+          1,
+          19
+        ]
+      ],
+      "source_lines": 269,
+      "source_extra_numbered_read_ranges": [],
+      "source_context_note": "All diff contexts plus targeted symbol-line reads where needed; no full original-file claim.",
+      "hunks": 1,
+      "delta_reconstructs_original": true,
+      "source_and_diff_line_counts_match": true,
+      "finding_ids": [
+        "HC09"
+      ],
+      "review_note": "仅布局引导；普通/体积 nMAE 已分列，mre_eq5_physical 已加入，F08 因而适用。",
+      "untested_boundary": "未重算数组；与 G137 的旧体积 nMAE 不能无条件混列。",
+      "members": [
+        {
+          "path": "evidence/gpt6_plan_v4_night/control_runs/float64_exact/source_snapshot/pidon_contract.py",
+          "expected_byte_sha256": "962fbcaea843a631acbf60150a79551c8e03d1f718b54add7d887332aaebb688",
+          "actual_byte_sha256": "962fbcaea843a631acbf60150a79551c8e03d1f718b54add7d887332aaebb688",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "6d4d19222f956ba69a93db9d296305f96a54963050c2020a55859bdfd3d1d03c",
+          "normalized_sha256_matches": true
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_night/g0_after_head_integration/control_runs/float32_exact/source_snapshot/pidon_contract.py",
+          "expected_byte_sha256": "962fbcaea843a631acbf60150a79551c8e03d1f718b54add7d887332aaebb688",
+          "actual_byte_sha256": "962fbcaea843a631acbf60150a79551c8e03d1f718b54add7d887332aaebb688",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "6d4d19222f956ba69a93db9d296305f96a54963050c2020a55859bdfd3d1d03c",
+          "normalized_sha256_matches": true
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_night/g0_after_head_integration/control_runs/float64_exact/source_snapshot/pidon_contract.py",
+          "expected_byte_sha256": "962fbcaea843a631acbf60150a79551c8e03d1f718b54add7d887332aaebb688",
+          "actual_byte_sha256": "962fbcaea843a631acbf60150a79551c8e03d1f718b54add7d887332aaebb688",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "6d4d19222f956ba69a93db9d296305f96a54963050c2020a55859bdfd3d1d03c",
+          "normalized_sha256_matches": true
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_night/g0_after_head_integration/control_runs/hard_source_only_negative/source_snapshot/pidon_contract.py",
+          "expected_byte_sha256": "962fbcaea843a631acbf60150a79551c8e03d1f718b54add7d887332aaebb688",
+          "actual_byte_sha256": "962fbcaea843a631acbf60150a79551c8e03d1f718b54add7d887332aaebb688",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "6d4d19222f956ba69a93db9d296305f96a54963050c2020a55859bdfd3d1d03c",
+          "normalized_sha256_matches": true
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_night/g0_after_head_integration/control_runs/wrong_h_half_negative/source_snapshot/pidon_contract.py",
+          "expected_byte_sha256": "962fbcaea843a631acbf60150a79551c8e03d1f718b54add7d887332aaebb688",
+          "actual_byte_sha256": "962fbcaea843a631acbf60150a79551c8e03d1f718b54add7d887332aaebb688",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "6d4d19222f956ba69a93db9d296305f96a54963050c2020a55859bdfd3d1d03c",
+          "normalized_sha256_matches": true
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_night/g0_after_head_integration/control_runs/zero_curl_negative/source_snapshot/pidon_contract.py",
+          "expected_byte_sha256": "962fbcaea843a631acbf60150a79551c8e03d1f718b54add7d887332aaebb688",
+          "actual_byte_sha256": "962fbcaea843a631acbf60150a79551c8e03d1f718b54add7d887332aaebb688",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "6d4d19222f956ba69a93db9d296305f96a54963050c2020a55859bdfd3d1d03c",
+          "normalized_sha256_matches": true
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_night/g0_attempt_02/control_runs/float32_exact/source_snapshot/pidon_contract.py",
+          "expected_byte_sha256": "962fbcaea843a631acbf60150a79551c8e03d1f718b54add7d887332aaebb688",
+          "actual_byte_sha256": "962fbcaea843a631acbf60150a79551c8e03d1f718b54add7d887332aaebb688",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "6d4d19222f956ba69a93db9d296305f96a54963050c2020a55859bdfd3d1d03c",
+          "normalized_sha256_matches": true
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_night/g0_attempt_02/control_runs/float64_exact/source_snapshot/pidon_contract.py",
+          "expected_byte_sha256": "962fbcaea843a631acbf60150a79551c8e03d1f718b54add7d887332aaebb688",
+          "actual_byte_sha256": "962fbcaea843a631acbf60150a79551c8e03d1f718b54add7d887332aaebb688",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "6d4d19222f956ba69a93db9d296305f96a54963050c2020a55859bdfd3d1d03c",
+          "normalized_sha256_matches": true
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_night/g0_attempt_02/control_runs/hard_source_only_negative/source_snapshot/pidon_contract.py",
+          "expected_byte_sha256": "962fbcaea843a631acbf60150a79551c8e03d1f718b54add7d887332aaebb688",
+          "actual_byte_sha256": "962fbcaea843a631acbf60150a79551c8e03d1f718b54add7d887332aaebb688",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "6d4d19222f956ba69a93db9d296305f96a54963050c2020a55859bdfd3d1d03c",
+          "normalized_sha256_matches": true
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_night/g0_attempt_02/control_runs/wrong_h_half_negative/source_snapshot/pidon_contract.py",
+          "expected_byte_sha256": "962fbcaea843a631acbf60150a79551c8e03d1f718b54add7d887332aaebb688",
+          "actual_byte_sha256": "962fbcaea843a631acbf60150a79551c8e03d1f718b54add7d887332aaebb688",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "6d4d19222f956ba69a93db9d296305f96a54963050c2020a55859bdfd3d1d03c",
+          "normalized_sha256_matches": true
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_night/g0_attempt_02/control_runs/zero_curl_negative/source_snapshot/pidon_contract.py",
+          "expected_byte_sha256": "962fbcaea843a631acbf60150a79551c8e03d1f718b54add7d887332aaebb688",
+          "actual_byte_sha256": "962fbcaea843a631acbf60150a79551c8e03d1f718b54add7d887332aaebb688",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "6d4d19222f956ba69a93db9d296305f96a54963050c2020a55859bdfd3d1d03c",
+          "normalized_sha256_matches": true
+        },
+        {
+          "path": "evidence/mechanism_decision_v1/source_snapshot/pidon_contract.py",
+          "expected_byte_sha256": "962fbcaea843a631acbf60150a79551c8e03d1f718b54add7d887332aaebb688",
+          "actual_byte_sha256": "962fbcaea843a631acbf60150a79551c8e03d1f718b54add7d887332aaebb688",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "6d4d19222f956ba69a93db9d296305f96a54963050c2020a55859bdfd3d1d03c",
+          "normalized_sha256_matches": true
+        },
+        {
+          "path": "evidence/workspace_reorganization_20260914/before/root/pidon_contract.py",
+          "expected_byte_sha256": "962fbcaea843a631acbf60150a79551c8e03d1f718b54add7d887332aaebb688",
+          "actual_byte_sha256": "962fbcaea843a631acbf60150a79551c8e03d1f718b54add7d887332aaebb688",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "6d4d19222f956ba69a93db9d296305f96a54963050c2020a55859bdfd3d1d03c",
+          "normalized_sha256_matches": true
+        }
+      ]
+    },
+    {
+      "group_id": 97,
+      "coverage_mode": "FULL_DELTA_REVIEW",
+      "representative": "evidence/gpt6_plan_v3_review/source_snapshot/pidon_contract.py",
+      "normalized_sha256": "93e654569e15946071481ce64a5457d23b8cc21531796591c636eb4c3f1938df",
+      "canonical": "src/pidon/pidon_contract.py",
+      "canonical_sha256": "7bc29b3cf6864f24483abf6d9508523591e6f7624bcd274b28f0bb4a2f7c5772",
+      "diff_path": "evidence/code_review_20260917/historical_deltas_v2/097_pidon_contract.diff",
+      "diff_sha256": "b269db282dbd0a58a9e8f563904602327517e921ba3127a915b4f54bd2075880",
+      "diff_lines": 104,
+      "diff_read_ranges": [
+        [
+          1,
+          104
+        ]
+      ],
+      "source_lines": 223,
+      "source_extra_numbered_read_ranges": [
+        [
+          125,
+          223
+        ]
+      ],
+      "source_context_note": "Listed extra original-source ranges plus all diff contexts and targeted symbol-line reads.",
+      "hunks": 3,
+      "delta_reconstructs_original": true,
+      "source_and_diff_line_counts_match": true,
+      "finding_ids": [
+        "HC03",
+        "HC09"
+      ],
+      "review_note": "去源 mask 仅影响误差分子与部分分母，reference_max 仍含源；缺新增 MRE/weak/support 字段。",
+      "untested_boundary": "未检查每个历史时刻源点是否为最大值；不把缺字段补成当前口径。",
+      "members": [
+        {
+          "path": "evidence/gpt6_plan_v3_review/source_snapshot/pidon_contract.py",
+          "expected_byte_sha256": "3d074aeee5e963170a7fe589d7b151a49c1b07c9a1e34c7d968a2d51301b17a8",
+          "actual_byte_sha256": "3d074aeee5e963170a7fe589d7b151a49c1b07c9a1e34c7d968a2d51301b17a8",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "93e654569e15946071481ce64a5457d23b8cc21531796591c636eb4c3f1938df",
+          "normalized_sha256_matches": true
+        }
+      ]
+    },
+    {
+      "group_id": 107,
+      "coverage_mode": "FULL_DELTA_REVIEW",
+      "representative": "evidence/coverage_ab_v1/source/dco.py",
+      "normalized_sha256": "b10b96d5669bce275a22a8db88b6623b7f84374753502200f78d1231297bc3ff",
+      "canonical": "src/pidon/dco.py",
+      "canonical_sha256": "047f0a7470ab063625eee7571075480f3cf3f9beb914a0e354c8b2b0da50cfca",
+      "diff_path": "evidence/code_review_20260917/historical_deltas_v2/107_dco.diff",
+      "diff_sha256": "a19c145b65cd9684e871db8fc414aff5cb30b0e97fa2c0357fd2fe45ae728b37",
+      "diff_lines": 19,
+      "diff_read_ranges": [
+        [
+          1,
+          19
+        ]
+      ],
+      "source_lines": 283,
+      "source_extra_numbered_read_ranges": [],
+      "source_context_note": "All diff contexts plus targeted symbol-line reads where needed; no full original-file claim.",
+      "hunks": 1,
+      "delta_reconstructs_original": true,
+      "source_and_diff_line_counts_match": true,
+      "finding_ids": [],
+      "review_note": "25 份成员仅差布局引导；网络、归一化、坐标计算无数值差异。",
+      "untested_boundary": "源码相同不证明训练数据、head 元数据或权重相同；未载入模型。",
+      "members": [
+        {
+          "path": "evidence/coverage_ab_v1/source/dco.py",
+          "expected_byte_sha256": "b2dc7240433c9dc3a9bfc3906d1bfc3141ded0dd2f7d4aa63e53a251a8d4b8d8",
+          "actual_byte_sha256": "b2dc7240433c9dc3a9bfc3906d1bfc3141ded0dd2f7d4aa63e53a251a8d4b8d8",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "b10b96d5669bce275a22a8db88b6623b7f84374753502200f78d1231297bc3ff",
+          "normalized_sha256_matches": true
+        },
+        {
+          "path": "evidence/gpt6_plan_v2/r0_source_snapshot/dco.py",
+          "expected_byte_sha256": "b2dc7240433c9dc3a9bfc3906d1bfc3141ded0dd2f7d4aa63e53a251a8d4b8d8",
+          "actual_byte_sha256": "b2dc7240433c9dc3a9bfc3906d1bfc3141ded0dd2f7d4aa63e53a251a8d4b8d8",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "b10b96d5669bce275a22a8db88b6623b7f84374753502200f78d1231297bc3ff",
+          "normalized_sha256_matches": true
+        },
+        {
+          "path": "evidence/gpt6_plan_v3/A2_control_runs/float32_exact/source_snapshot/dco.py",
+          "expected_byte_sha256": "b2dc7240433c9dc3a9bfc3906d1bfc3141ded0dd2f7d4aa63e53a251a8d4b8d8",
+          "actual_byte_sha256": "b2dc7240433c9dc3a9bfc3906d1bfc3141ded0dd2f7d4aa63e53a251a8d4b8d8",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "b10b96d5669bce275a22a8db88b6623b7f84374753502200f78d1231297bc3ff",
+          "normalized_sha256_matches": true
+        },
+        {
+          "path": "evidence/gpt6_plan_v3/A2_control_runs/float64_exact/source_snapshot/dco.py",
+          "expected_byte_sha256": "b2dc7240433c9dc3a9bfc3906d1bfc3141ded0dd2f7d4aa63e53a251a8d4b8d8",
+          "actual_byte_sha256": "b2dc7240433c9dc3a9bfc3906d1bfc3141ded0dd2f7d4aa63e53a251a8d4b8d8",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "b10b96d5669bce275a22a8db88b6623b7f84374753502200f78d1231297bc3ff",
+          "normalized_sha256_matches": true
+        },
+        {
+          "path": "evidence/gpt6_plan_v3/A2_control_runs/hard_source_only/source_snapshot/dco.py",
+          "expected_byte_sha256": "b2dc7240433c9dc3a9bfc3906d1bfc3141ded0dd2f7d4aa63e53a251a8d4b8d8",
+          "actual_byte_sha256": "b2dc7240433c9dc3a9bfc3906d1bfc3141ded0dd2f7d4aa63e53a251a8d4b8d8",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "b10b96d5669bce275a22a8db88b6623b7f84374753502200f78d1231297bc3ff",
+          "normalized_sha256_matches": true
+        },
+        {
+          "path": "evidence/gpt6_plan_v3/A2_control_runs/wrong_h_half/source_snapshot/dco.py",
+          "expected_byte_sha256": "b2dc7240433c9dc3a9bfc3906d1bfc3141ded0dd2f7d4aa63e53a251a8d4b8d8",
+          "actual_byte_sha256": "b2dc7240433c9dc3a9bfc3906d1bfc3141ded0dd2f7d4aa63e53a251a8d4b8d8",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "b10b96d5669bce275a22a8db88b6623b7f84374753502200f78d1231297bc3ff",
+          "normalized_sha256_matches": true
+        },
+        {
+          "path": "evidence/gpt6_plan_v3/A2_control_runs/zero_curl/source_snapshot/dco.py",
+          "expected_byte_sha256": "b2dc7240433c9dc3a9bfc3906d1bfc3141ded0dd2f7d4aa63e53a251a8d4b8d8",
+          "actual_byte_sha256": "b2dc7240433c9dc3a9bfc3906d1bfc3141ded0dd2f7d4aa63e53a251a8d4b8d8",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "b10b96d5669bce275a22a8db88b6623b7f84374753502200f78d1231297bc3ff",
+          "normalized_sha256_matches": true
+        },
+        {
+          "path": "evidence/gpt6_plan_v3/h_layout_candidate/source_snapshot/dco.py",
+          "expected_byte_sha256": "b2dc7240433c9dc3a9bfc3906d1bfc3141ded0dd2f7d4aa63e53a251a8d4b8d8",
+          "actual_byte_sha256": "b2dc7240433c9dc3a9bfc3906d1bfc3141ded0dd2f7d4aa63e53a251a8d4b8d8",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "b10b96d5669bce275a22a8db88b6623b7f84374753502200f78d1231297bc3ff",
+          "normalized_sha256_matches": true
+        },
+        {
+          "path": "evidence/gpt6_plan_v3_review/source_snapshot/dco.py",
+          "expected_byte_sha256": "b2dc7240433c9dc3a9bfc3906d1bfc3141ded0dd2f7d4aa63e53a251a8d4b8d8",
+          "actual_byte_sha256": "b2dc7240433c9dc3a9bfc3906d1bfc3141ded0dd2f7d4aa63e53a251a8d4b8d8",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "b10b96d5669bce275a22a8db88b6623b7f84374753502200f78d1231297bc3ff",
+          "normalized_sha256_matches": true
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_night/control_runs/float64_exact/source_snapshot/dco.py",
+          "expected_byte_sha256": "b2dc7240433c9dc3a9bfc3906d1bfc3141ded0dd2f7d4aa63e53a251a8d4b8d8",
+          "actual_byte_sha256": "b2dc7240433c9dc3a9bfc3906d1bfc3141ded0dd2f7d4aa63e53a251a8d4b8d8",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "b10b96d5669bce275a22a8db88b6623b7f84374753502200f78d1231297bc3ff",
+          "normalized_sha256_matches": true
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_night/g0_after_head_integration/control_runs/float32_exact/source_snapshot/dco.py",
+          "expected_byte_sha256": "b2dc7240433c9dc3a9bfc3906d1bfc3141ded0dd2f7d4aa63e53a251a8d4b8d8",
+          "actual_byte_sha256": "b2dc7240433c9dc3a9bfc3906d1bfc3141ded0dd2f7d4aa63e53a251a8d4b8d8",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "b10b96d5669bce275a22a8db88b6623b7f84374753502200f78d1231297bc3ff",
+          "normalized_sha256_matches": true
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_night/g0_after_head_integration/control_runs/float64_exact/source_snapshot/dco.py",
+          "expected_byte_sha256": "b2dc7240433c9dc3a9bfc3906d1bfc3141ded0dd2f7d4aa63e53a251a8d4b8d8",
+          "actual_byte_sha256": "b2dc7240433c9dc3a9bfc3906d1bfc3141ded0dd2f7d4aa63e53a251a8d4b8d8",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "b10b96d5669bce275a22a8db88b6623b7f84374753502200f78d1231297bc3ff",
+          "normalized_sha256_matches": true
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_night/g0_after_head_integration/control_runs/hard_source_only_negative/source_snapshot/dco.py",
+          "expected_byte_sha256": "b2dc7240433c9dc3a9bfc3906d1bfc3141ded0dd2f7d4aa63e53a251a8d4b8d8",
+          "actual_byte_sha256": "b2dc7240433c9dc3a9bfc3906d1bfc3141ded0dd2f7d4aa63e53a251a8d4b8d8",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "b10b96d5669bce275a22a8db88b6623b7f84374753502200f78d1231297bc3ff",
+          "normalized_sha256_matches": true
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_night/g0_after_head_integration/control_runs/wrong_h_half_negative/source_snapshot/dco.py",
+          "expected_byte_sha256": "b2dc7240433c9dc3a9bfc3906d1bfc3141ded0dd2f7d4aa63e53a251a8d4b8d8",
+          "actual_byte_sha256": "b2dc7240433c9dc3a9bfc3906d1bfc3141ded0dd2f7d4aa63e53a251a8d4b8d8",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "b10b96d5669bce275a22a8db88b6623b7f84374753502200f78d1231297bc3ff",
+          "normalized_sha256_matches": true
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_night/g0_after_head_integration/control_runs/zero_curl_negative/source_snapshot/dco.py",
+          "expected_byte_sha256": "b2dc7240433c9dc3a9bfc3906d1bfc3141ded0dd2f7d4aa63e53a251a8d4b8d8",
+          "actual_byte_sha256": "b2dc7240433c9dc3a9bfc3906d1bfc3141ded0dd2f7d4aa63e53a251a8d4b8d8",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "b10b96d5669bce275a22a8db88b6623b7f84374753502200f78d1231297bc3ff",
+          "normalized_sha256_matches": true
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_night/g0_attempt_02/control_runs/float32_exact/source_snapshot/dco.py",
+          "expected_byte_sha256": "b2dc7240433c9dc3a9bfc3906d1bfc3141ded0dd2f7d4aa63e53a251a8d4b8d8",
+          "actual_byte_sha256": "b2dc7240433c9dc3a9bfc3906d1bfc3141ded0dd2f7d4aa63e53a251a8d4b8d8",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "b10b96d5669bce275a22a8db88b6623b7f84374753502200f78d1231297bc3ff",
+          "normalized_sha256_matches": true
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_night/g0_attempt_02/control_runs/float64_exact/source_snapshot/dco.py",
+          "expected_byte_sha256": "b2dc7240433c9dc3a9bfc3906d1bfc3141ded0dd2f7d4aa63e53a251a8d4b8d8",
+          "actual_byte_sha256": "b2dc7240433c9dc3a9bfc3906d1bfc3141ded0dd2f7d4aa63e53a251a8d4b8d8",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "b10b96d5669bce275a22a8db88b6623b7f84374753502200f78d1231297bc3ff",
+          "normalized_sha256_matches": true
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_night/g0_attempt_02/control_runs/hard_source_only_negative/source_snapshot/dco.py",
+          "expected_byte_sha256": "b2dc7240433c9dc3a9bfc3906d1bfc3141ded0dd2f7d4aa63e53a251a8d4b8d8",
+          "actual_byte_sha256": "b2dc7240433c9dc3a9bfc3906d1bfc3141ded0dd2f7d4aa63e53a251a8d4b8d8",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "b10b96d5669bce275a22a8db88b6623b7f84374753502200f78d1231297bc3ff",
+          "normalized_sha256_matches": true
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_night/g0_attempt_02/control_runs/wrong_h_half_negative/source_snapshot/dco.py",
+          "expected_byte_sha256": "b2dc7240433c9dc3a9bfc3906d1bfc3141ded0dd2f7d4aa63e53a251a8d4b8d8",
+          "actual_byte_sha256": "b2dc7240433c9dc3a9bfc3906d1bfc3141ded0dd2f7d4aa63e53a251a8d4b8d8",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "b10b96d5669bce275a22a8db88b6623b7f84374753502200f78d1231297bc3ff",
+          "normalized_sha256_matches": true
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_night/g0_attempt_02/control_runs/zero_curl_negative/source_snapshot/dco.py",
+          "expected_byte_sha256": "b2dc7240433c9dc3a9bfc3906d1bfc3141ded0dd2f7d4aa63e53a251a8d4b8d8",
+          "actual_byte_sha256": "b2dc7240433c9dc3a9bfc3906d1bfc3141ded0dd2f7d4aa63e53a251a8d4b8d8",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "b10b96d5669bce275a22a8db88b6623b7f84374753502200f78d1231297bc3ff",
+          "normalized_sha256_matches": true
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_night/source_snapshot/dco.py",
+          "expected_byte_sha256": "b2dc7240433c9dc3a9bfc3906d1bfc3141ded0dd2f7d4aa63e53a251a8d4b8d8",
+          "actual_byte_sha256": "b2dc7240433c9dc3a9bfc3906d1bfc3141ded0dd2f7d4aa63e53a251a8d4b8d8",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "b10b96d5669bce275a22a8db88b6623b7f84374753502200f78d1231297bc3ff",
+          "normalized_sha256_matches": true
+        },
+        {
+          "path": "evidence/mechanism_decision_v1/source_snapshot/dco.py",
+          "expected_byte_sha256": "b2dc7240433c9dc3a9bfc3906d1bfc3141ded0dd2f7d4aa63e53a251a8d4b8d8",
+          "actual_byte_sha256": "b2dc7240433c9dc3a9bfc3906d1bfc3141ded0dd2f7d4aa63e53a251a8d4b8d8",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "b10b96d5669bce275a22a8db88b6623b7f84374753502200f78d1231297bc3ff",
+          "normalized_sha256_matches": true
+        },
+        {
+          "path": "evidence/spacing_probe_v1/source/dco.py",
+          "expected_byte_sha256": "b2dc7240433c9dc3a9bfc3906d1bfc3141ded0dd2f7d4aa63e53a251a8d4b8d8",
+          "actual_byte_sha256": "b2dc7240433c9dc3a9bfc3906d1bfc3141ded0dd2f7d4aa63e53a251a8d4b8d8",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "b10b96d5669bce275a22a8db88b6623b7f84374753502200f78d1231297bc3ff",
+          "normalized_sha256_matches": true
+        },
+        {
+          "path": "evidence/trunk_repair_v1/source/dco.py",
+          "expected_byte_sha256": "b2dc7240433c9dc3a9bfc3906d1bfc3141ded0dd2f7d4aa63e53a251a8d4b8d8",
+          "actual_byte_sha256": "b2dc7240433c9dc3a9bfc3906d1bfc3141ded0dd2f7d4aa63e53a251a8d4b8d8",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "b10b96d5669bce275a22a8db88b6623b7f84374753502200f78d1231297bc3ff",
+          "normalized_sha256_matches": true
+        },
+        {
+          "path": "evidence/workspace_reorganization_20260914/before/root/dco.py",
+          "expected_byte_sha256": "b2dc7240433c9dc3a9bfc3906d1bfc3141ded0dd2f7d4aa63e53a251a8d4b8d8",
+          "actual_byte_sha256": "b2dc7240433c9dc3a9bfc3906d1bfc3141ded0dd2f7d4aa63e53a251a8d4b8d8",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "b10b96d5669bce275a22a8db88b6623b7f84374753502200f78d1231297bc3ff",
+          "normalized_sha256_matches": true
+        }
+      ]
+    },
+    {
+      "group_id": 109,
+      "coverage_mode": "FULL_DELTA_REVIEW",
+      "representative": "evidence/gpt6_plan_v2/r0_source_snapshot/pidon_solve.py",
+      "normalized_sha256": "b2c12d746bab49e870e2c3cf996a3690c3b7085a913613cd39123e2ecbaa3573",
+      "canonical": "src/pidon/pidon_solve.py",
+      "canonical_sha256": "f4a92760f3b4fd400be6926acc88ff653018d280d111d5961217305f468afc7f",
+      "diff_path": "evidence/code_review_20260917/historical_deltas_v2/109_pidon_solve.diff",
+      "diff_sha256": "4b32d86d37ce6389708133190b6bc9a548b4f3598fbd6f5fac849cb1dea255d0",
+      "diff_lines": 1151,
+      "diff_read_ranges": [
+        [
+          1,
+          380
+        ],
+        [
+          381,
+          770
+        ],
+        [
+          771,
+          1151
+        ]
+      ],
+      "source_lines": 811,
+      "source_extra_numbered_read_ranges": [
+        [
+          165,
+          365
+        ],
+        [
+          368,
+          489
+        ],
+        [
+          602,
+          640
+        ],
+        [
+          670,
+          687
+        ],
+        [
+          724,
+          784
+        ]
+      ],
+      "source_context_note": "Listed extra original-source ranges plus all diff contexts and targeted symbol-line reads.",
+      "hunks": 19,
+      "delta_reconstructs_original": true,
+      "source_and_diff_line_counts_match": true,
+      "finding_ids": [
+        "HC01",
+        "HC02",
+        "HC05",
+        "HC06",
+        "HC07",
+        "HC08",
+        "HC10"
+      ],
+      "review_note": "完整审查 1151 行差异：低侧 H 法向面、原始快照别名、无累计恢复合同、零靶/默认非严格门、LBFGS 计数与中断、参考时层与未去源指标。",
+      "untested_boundary": "不知各旧调用实际启用开关；不能由保存源码推定所有训练走此 main；无科学重算。",
+      "members": [
+        {
+          "path": "evidence/gpt6_plan_v2/r0_source_snapshot/pidon_solve.py",
+          "expected_byte_sha256": "d8d4d712920fa72d86fd2f8cc583b872b92d7c9d78611b196d06de6aedb6703e",
+          "actual_byte_sha256": "d8d4d712920fa72d86fd2f8cc583b872b92d7c9d78611b196d06de6aedb6703e",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "b2c12d746bab49e870e2c3cf996a3690c3b7085a913613cd39123e2ecbaa3573",
+          "normalized_sha256_matches": true
+        }
+      ]
+    },
+    {
+      "group_id": 112,
+      "coverage_mode": "FULL_DELTA_REVIEW",
+      "representative": "evidence/gpt6_plan_v3/h_layout_candidate/source_snapshot/pidon_solve.py",
+      "normalized_sha256": "b5f53101049985efed16e0209b42f38563bb226fdaa3cecfb2ee21f981a6e671",
+      "canonical": "src/pidon/pidon_solve.py",
+      "canonical_sha256": "f4a92760f3b4fd400be6926acc88ff653018d280d111d5961217305f468afc7f",
+      "diff_path": "evidence/code_review_20260917/historical_deltas_v2/112_pidon_solve.diff",
+      "diff_sha256": "1505b373b479eae290abef01b753030bbbacc7567ce3cba79b76d36b09553621",
+      "diff_lines": 469,
+      "diff_read_ranges": [
+        [
+          1,
+          469
+        ]
+      ],
+      "source_lines": 1147,
+      "source_extra_numbered_read_ranges": [
+        [
+          128,
+          167
+        ],
+        [
+          281,
+          304
+        ],
+        [
+          394,
+          420
+        ],
+        [
+          631,
+          684
+        ],
+        [
+          1068,
+          1085
+        ]
+      ],
+      "source_context_note": "Listed extra original-source ranges plus all diff contexts and targeted symbol-line reads.",
+      "hunks": 22,
+      "delta_reconstructs_original": true,
+      "source_and_diff_line_counts_match": true,
+      "finding_ids": [
+        "HC06",
+        "HC10",
+        "HC12"
+      ],
+      "review_note": "完整审查 469 行差异：抽取 H core 为同义实现；终态可重入、run_id=协议哈希、旧分量停止门、无 head 接入；失败场摘要已置空。",
+      "untested_boundary": "已保存耗费不等于可续训；未重放候选，不改局部 FAIL。",
+      "members": [
+        {
+          "path": "evidence/gpt6_plan_v3/h_layout_candidate/source_snapshot/pidon_solve.py",
+          "expected_byte_sha256": "09b12a3721e1ccd156596b86f79a541d4b01072cad686ba3a288f895f0624343",
+          "actual_byte_sha256": "09b12a3721e1ccd156596b86f79a541d4b01072cad686ba3a288f895f0624343",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "b5f53101049985efed16e0209b42f38563bb226fdaa3cecfb2ee21f981a6e671",
+          "normalized_sha256_matches": true
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_night/source_snapshot/pidon_solve.py",
+          "expected_byte_sha256": "09b12a3721e1ccd156596b86f79a541d4b01072cad686ba3a288f895f0624343",
+          "actual_byte_sha256": "09b12a3721e1ccd156596b86f79a541d4b01072cad686ba3a288f895f0624343",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "b5f53101049985efed16e0209b42f38563bb226fdaa3cecfb2ee21f981a6e671",
+          "normalized_sha256_matches": true
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_review/source_snapshot/pidon_solve.py",
+          "expected_byte_sha256": "09b12a3721e1ccd156596b86f79a541d4b01072cad686ba3a288f895f0624343",
+          "actual_byte_sha256": "09b12a3721e1ccd156596b86f79a541d4b01072cad686ba3a288f895f0624343",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "b5f53101049985efed16e0209b42f38563bb226fdaa3cecfb2ee21f981a6e671",
+          "normalized_sha256_matches": true
+        }
+      ]
+    },
+    {
+      "group_id": 113,
+      "coverage_mode": "FULL_DELTA_REVIEW",
+      "representative": "evidence/gpt6_plan_v3/A2_control_runs/float32_exact/source_snapshot/fdtd.py",
+      "normalized_sha256": "b60c661fbb0d4a7cf0c6850918c7a0ec558f17c33084159b680f5f51f2eaae39",
+      "canonical": "src/pidon/fdtd.py",
+      "canonical_sha256": "a387fe5951fb76ce62b7cc304ad0f9b7db7f0a1c857189a2aa98ca96df572903",
+      "diff_path": "evidence/code_review_20260917/historical_deltas_v2/113_fdtd.diff",
+      "diff_sha256": "40df0a3af92b350052f26d2a7e1357c7da0d5c15b21469f027bd776b5b300d97",
+      "diff_lines": 19,
+      "diff_read_ranges": [
+        [
+          1,
+          19
+        ]
+      ],
+      "source_lines": 252,
+      "source_extra_numbered_read_ranges": [],
+      "source_context_note": "All diff contexts plus targeted symbol-line reads where needed; no full original-file claim.",
+      "hunks": 1,
+      "delta_reconstructs_original": true,
+      "source_and_diff_line_counts_match": true,
+      "finding_ids": [],
+      "review_note": "仅布局引导；E→source→H 与传统 step 两接口均已存在，curl/材料/CFL 行为同当前。",
+      "untested_boundary": "F01/F12 是已有家族，不重计；未证明各历史调用用了哪个接口。",
+      "members": [
+        {
+          "path": "evidence/gpt6_plan_v3/A2_control_runs/float32_exact/source_snapshot/fdtd.py",
+          "expected_byte_sha256": "9512933f90cbb666fcf62d58af98e803e3fd04b5434f55099b27ef71313ac615",
+          "actual_byte_sha256": "9512933f90cbb666fcf62d58af98e803e3fd04b5434f55099b27ef71313ac615",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "b60c661fbb0d4a7cf0c6850918c7a0ec558f17c33084159b680f5f51f2eaae39",
+          "normalized_sha256_matches": true
+        },
+        {
+          "path": "evidence/gpt6_plan_v3/A2_control_runs/float64_exact/source_snapshot/fdtd.py",
+          "expected_byte_sha256": "9512933f90cbb666fcf62d58af98e803e3fd04b5434f55099b27ef71313ac615",
+          "actual_byte_sha256": "9512933f90cbb666fcf62d58af98e803e3fd04b5434f55099b27ef71313ac615",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "b60c661fbb0d4a7cf0c6850918c7a0ec558f17c33084159b680f5f51f2eaae39",
+          "normalized_sha256_matches": true
+        },
+        {
+          "path": "evidence/gpt6_plan_v3/A2_control_runs/hard_source_only/source_snapshot/fdtd.py",
+          "expected_byte_sha256": "9512933f90cbb666fcf62d58af98e803e3fd04b5434f55099b27ef71313ac615",
+          "actual_byte_sha256": "9512933f90cbb666fcf62d58af98e803e3fd04b5434f55099b27ef71313ac615",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "b60c661fbb0d4a7cf0c6850918c7a0ec558f17c33084159b680f5f51f2eaae39",
+          "normalized_sha256_matches": true
+        },
+        {
+          "path": "evidence/gpt6_plan_v3/A2_control_runs/wrong_h_half/source_snapshot/fdtd.py",
+          "expected_byte_sha256": "9512933f90cbb666fcf62d58af98e803e3fd04b5434f55099b27ef71313ac615",
+          "actual_byte_sha256": "9512933f90cbb666fcf62d58af98e803e3fd04b5434f55099b27ef71313ac615",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "b60c661fbb0d4a7cf0c6850918c7a0ec558f17c33084159b680f5f51f2eaae39",
+          "normalized_sha256_matches": true
+        },
+        {
+          "path": "evidence/gpt6_plan_v3/A2_control_runs/zero_curl/source_snapshot/fdtd.py",
+          "expected_byte_sha256": "9512933f90cbb666fcf62d58af98e803e3fd04b5434f55099b27ef71313ac615",
+          "actual_byte_sha256": "9512933f90cbb666fcf62d58af98e803e3fd04b5434f55099b27ef71313ac615",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "b60c661fbb0d4a7cf0c6850918c7a0ec558f17c33084159b680f5f51f2eaae39",
+          "normalized_sha256_matches": true
+        },
+        {
+          "path": "evidence/gpt6_plan_v3/h_layout_candidate/source_snapshot/fdtd.py",
+          "expected_byte_sha256": "9512933f90cbb666fcf62d58af98e803e3fd04b5434f55099b27ef71313ac615",
+          "actual_byte_sha256": "9512933f90cbb666fcf62d58af98e803e3fd04b5434f55099b27ef71313ac615",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "b60c661fbb0d4a7cf0c6850918c7a0ec558f17c33084159b680f5f51f2eaae39",
+          "normalized_sha256_matches": true
+        },
+        {
+          "path": "evidence/gpt6_plan_v3_review/source_snapshot/fdtd.py",
+          "expected_byte_sha256": "9512933f90cbb666fcf62d58af98e803e3fd04b5434f55099b27ef71313ac615",
+          "actual_byte_sha256": "9512933f90cbb666fcf62d58af98e803e3fd04b5434f55099b27ef71313ac615",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "b60c661fbb0d4a7cf0c6850918c7a0ec558f17c33084159b680f5f51f2eaae39",
+          "normalized_sha256_matches": true
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_night/control_runs/float64_exact/source_snapshot/fdtd.py",
+          "expected_byte_sha256": "9512933f90cbb666fcf62d58af98e803e3fd04b5434f55099b27ef71313ac615",
+          "actual_byte_sha256": "9512933f90cbb666fcf62d58af98e803e3fd04b5434f55099b27ef71313ac615",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "b60c661fbb0d4a7cf0c6850918c7a0ec558f17c33084159b680f5f51f2eaae39",
+          "normalized_sha256_matches": true
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_night/g0_after_head_integration/control_runs/float32_exact/source_snapshot/fdtd.py",
+          "expected_byte_sha256": "9512933f90cbb666fcf62d58af98e803e3fd04b5434f55099b27ef71313ac615",
+          "actual_byte_sha256": "9512933f90cbb666fcf62d58af98e803e3fd04b5434f55099b27ef71313ac615",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "b60c661fbb0d4a7cf0c6850918c7a0ec558f17c33084159b680f5f51f2eaae39",
+          "normalized_sha256_matches": true
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_night/g0_after_head_integration/control_runs/float64_exact/source_snapshot/fdtd.py",
+          "expected_byte_sha256": "9512933f90cbb666fcf62d58af98e803e3fd04b5434f55099b27ef71313ac615",
+          "actual_byte_sha256": "9512933f90cbb666fcf62d58af98e803e3fd04b5434f55099b27ef71313ac615",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "b60c661fbb0d4a7cf0c6850918c7a0ec558f17c33084159b680f5f51f2eaae39",
+          "normalized_sha256_matches": true
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_night/g0_after_head_integration/control_runs/hard_source_only_negative/source_snapshot/fdtd.py",
+          "expected_byte_sha256": "9512933f90cbb666fcf62d58af98e803e3fd04b5434f55099b27ef71313ac615",
+          "actual_byte_sha256": "9512933f90cbb666fcf62d58af98e803e3fd04b5434f55099b27ef71313ac615",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "b60c661fbb0d4a7cf0c6850918c7a0ec558f17c33084159b680f5f51f2eaae39",
+          "normalized_sha256_matches": true
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_night/g0_after_head_integration/control_runs/wrong_h_half_negative/source_snapshot/fdtd.py",
+          "expected_byte_sha256": "9512933f90cbb666fcf62d58af98e803e3fd04b5434f55099b27ef71313ac615",
+          "actual_byte_sha256": "9512933f90cbb666fcf62d58af98e803e3fd04b5434f55099b27ef71313ac615",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "b60c661fbb0d4a7cf0c6850918c7a0ec558f17c33084159b680f5f51f2eaae39",
+          "normalized_sha256_matches": true
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_night/g0_after_head_integration/control_runs/zero_curl_negative/source_snapshot/fdtd.py",
+          "expected_byte_sha256": "9512933f90cbb666fcf62d58af98e803e3fd04b5434f55099b27ef71313ac615",
+          "actual_byte_sha256": "9512933f90cbb666fcf62d58af98e803e3fd04b5434f55099b27ef71313ac615",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "b60c661fbb0d4a7cf0c6850918c7a0ec558f17c33084159b680f5f51f2eaae39",
+          "normalized_sha256_matches": true
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_night/g0_attempt_02/control_runs/float32_exact/source_snapshot/fdtd.py",
+          "expected_byte_sha256": "9512933f90cbb666fcf62d58af98e803e3fd04b5434f55099b27ef71313ac615",
+          "actual_byte_sha256": "9512933f90cbb666fcf62d58af98e803e3fd04b5434f55099b27ef71313ac615",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "b60c661fbb0d4a7cf0c6850918c7a0ec558f17c33084159b680f5f51f2eaae39",
+          "normalized_sha256_matches": true
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_night/g0_attempt_02/control_runs/float64_exact/source_snapshot/fdtd.py",
+          "expected_byte_sha256": "9512933f90cbb666fcf62d58af98e803e3fd04b5434f55099b27ef71313ac615",
+          "actual_byte_sha256": "9512933f90cbb666fcf62d58af98e803e3fd04b5434f55099b27ef71313ac615",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "b60c661fbb0d4a7cf0c6850918c7a0ec558f17c33084159b680f5f51f2eaae39",
+          "normalized_sha256_matches": true
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_night/g0_attempt_02/control_runs/hard_source_only_negative/source_snapshot/fdtd.py",
+          "expected_byte_sha256": "9512933f90cbb666fcf62d58af98e803e3fd04b5434f55099b27ef71313ac615",
+          "actual_byte_sha256": "9512933f90cbb666fcf62d58af98e803e3fd04b5434f55099b27ef71313ac615",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "b60c661fbb0d4a7cf0c6850918c7a0ec558f17c33084159b680f5f51f2eaae39",
+          "normalized_sha256_matches": true
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_night/g0_attempt_02/control_runs/wrong_h_half_negative/source_snapshot/fdtd.py",
+          "expected_byte_sha256": "9512933f90cbb666fcf62d58af98e803e3fd04b5434f55099b27ef71313ac615",
+          "actual_byte_sha256": "9512933f90cbb666fcf62d58af98e803e3fd04b5434f55099b27ef71313ac615",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "b60c661fbb0d4a7cf0c6850918c7a0ec558f17c33084159b680f5f51f2eaae39",
+          "normalized_sha256_matches": true
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_night/g0_attempt_02/control_runs/zero_curl_negative/source_snapshot/fdtd.py",
+          "expected_byte_sha256": "9512933f90cbb666fcf62d58af98e803e3fd04b5434f55099b27ef71313ac615",
+          "actual_byte_sha256": "9512933f90cbb666fcf62d58af98e803e3fd04b5434f55099b27ef71313ac615",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "b60c661fbb0d4a7cf0c6850918c7a0ec558f17c33084159b680f5f51f2eaae39",
+          "normalized_sha256_matches": true
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_night/source_snapshot/fdtd.py",
+          "expected_byte_sha256": "9512933f90cbb666fcf62d58af98e803e3fd04b5434f55099b27ef71313ac615",
+          "actual_byte_sha256": "9512933f90cbb666fcf62d58af98e803e3fd04b5434f55099b27ef71313ac615",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "b60c661fbb0d4a7cf0c6850918c7a0ec558f17c33084159b680f5f51f2eaae39",
+          "normalized_sha256_matches": true
+        },
+        {
+          "path": "evidence/mechanism_decision_v1/source_snapshot/fdtd.py",
+          "expected_byte_sha256": "9512933f90cbb666fcf62d58af98e803e3fd04b5434f55099b27ef71313ac615",
+          "actual_byte_sha256": "9512933f90cbb666fcf62d58af98e803e3fd04b5434f55099b27ef71313ac615",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "b60c661fbb0d4a7cf0c6850918c7a0ec558f17c33084159b680f5f51f2eaae39",
+          "normalized_sha256_matches": true
+        },
+        {
+          "path": "evidence/workspace_reorganization_20260914/before/root/fdtd.py",
+          "expected_byte_sha256": "9512933f90cbb666fcf62d58af98e803e3fd04b5434f55099b27ef71313ac615",
+          "actual_byte_sha256": "9512933f90cbb666fcf62d58af98e803e3fd04b5434f55099b27ef71313ac615",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "b60c661fbb0d4a7cf0c6850918c7a0ec558f17c33084159b680f5f51f2eaae39",
+          "normalized_sha256_matches": true
+        }
+      ]
+    },
+    {
+      "group_id": 114,
+      "coverage_mode": "FULL_DELTA_REVIEW",
+      "representative": "evidence/gpt6_plan_v2/r0_source_snapshot/pidon_contract.py",
+      "normalized_sha256": "bd43ea4f1fd5aed8f2be76e36d4b2bfc38e0a4515da58f6048026d2292a1bf7a",
+      "canonical": "src/pidon/pidon_contract.py",
+      "canonical_sha256": "7bc29b3cf6864f24483abf6d9508523591e6f7624bcd274b28f0bb4a2f7c5772",
+      "diff_path": "evidence/code_review_20260917/historical_deltas_v2/114_pidon_contract.diff",
+      "diff_sha256": "1142b5aa402dbeab37803c4c4e9a25b02cb2de978d8a0186701d914e3b1a3764",
+      "diff_lines": 161,
+      "diff_read_ranges": [
+        [
+          1,
+          161
+        ]
+      ],
+      "source_lines": 201,
+      "source_extra_numbered_read_ranges": [
+        [
+          125,
+          201
+        ]
+      ],
+      "source_context_note": "Listed extra original-source ranges plus all diff contexts and targeted symbol-line reads.",
+      "hunks": 4,
+      "delta_reconstructs_original": true,
+      "source_and_diff_line_counts_match": true,
+      "finding_ids": [
+        "HC07",
+        "HC09"
+      ],
+      "review_note": "缺 curl 固定尺度、残差规则字段、去源 mask/A_fixed、弱场及 MRE；旧 nMAE 为全支撑普通均值。",
+      "untested_boundary": "未按当前规则重判旧数值，缺失量仍需原始数组。",
+      "members": [
+        {
+          "path": "evidence/gpt6_plan_v2/r0_source_snapshot/pidon_contract.py",
+          "expected_byte_sha256": "01dc22622baa14aa20cc5ee3758a00615668bcefefd812d3c01c9af15a5d24fc",
+          "actual_byte_sha256": "01dc22622baa14aa20cc5ee3758a00615668bcefefd812d3c01c9af15a5d24fc",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "bd43ea4f1fd5aed8f2be76e36d4b2bfc38e0a4515da58f6048026d2292a1bf7a",
+          "normalized_sha256_matches": true
+        }
+      ]
+    },
+    {
+      "group_id": 124,
+      "coverage_mode": "FULL_DELTA_REVIEW",
+      "representative": "evidence/grid_diagnosis_v1/source/dco.py",
+      "normalized_sha256": "c9399476b020a35670d2d4537fe23436bd1b3985ce8d7a8e9cae1fcecb86b001",
+      "canonical": "src/pidon/dco.py",
+      "canonical_sha256": "047f0a7470ab063625eee7571075480f3cf3f9beb914a0e354c8b2b0da50cfca",
+      "diff_path": "evidence/code_review_20260917/historical_deltas_v2/124_dco.diff",
+      "diff_sha256": "6ada59e7635b351b7d1fed5e5812a1610fbca679d91a9a3d70c5b0290f008382",
+      "diff_lines": 78,
+      "diff_read_ranges": [
+        [
+          1,
+          78
+        ]
+      ],
+      "source_lines": 291,
+      "source_extra_numbered_read_ranges": [
+        [
+          169,
+          205
+        ],
+        [
+          245,
+          290
+        ]
+      ],
+      "source_context_note": "Listed extra original-source ranges plus all diff contexts and targeted symbol-line reads.",
+      "hunks": 3,
+      "delta_reconstructs_original": true,
+      "source_and_diff_line_counts_match": true,
+      "finding_ids": [
+        "HC13"
+      ],
+      "review_note": "除布局外仅 docstring 不同；RMS/绝对坐标/cellsize 的强泛化说法被修正，执行公式没变。",
+      "untested_boundary": "没有因此新增网络精度改善，也不能据旧注释确认作者实现。",
+      "members": [
+        {
+          "path": "evidence/grid_diagnosis_v1/source/dco.py",
+          "expected_byte_sha256": "7cd5d57a364fc4d229376ff584454ec55bdf39bb1393dc644ad2e870f4d1f1b1",
+          "actual_byte_sha256": "7cd5d57a364fc4d229376ff584454ec55bdf39bb1393dc644ad2e870f4d1f1b1",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "c9399476b020a35670d2d4537fe23436bd1b3985ce8d7a8e9cae1fcecb86b001",
+          "normalized_sha256_matches": true
+        },
+        {
+          "path": "evidence/paper_first_v1/source/dco.py",
+          "expected_byte_sha256": "7cd5d57a364fc4d229376ff584454ec55bdf39bb1393dc644ad2e870f4d1f1b1",
+          "actual_byte_sha256": "7cd5d57a364fc4d229376ff584454ec55bdf39bb1393dc644ad2e870f4d1f1b1",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "c9399476b020a35670d2d4537fe23436bd1b3985ce8d7a8e9cae1fcecb86b001",
+          "normalized_sha256_matches": true
+        }
+      ]
+    },
+    {
+      "group_id": 126,
+      "coverage_mode": "FULL_DELTA_REVIEW",
+      "representative": "evidence/gpt6_plan_v3/A2_control_runs/float32_exact/source_snapshot/pidon_recording.py",
+      "normalized_sha256": "cb58b7d03ce344c9d01744769a8896d4c6d37d98234d1ced70d5bc911d0cbf15",
+      "canonical": "src/pidon/pidon_recording.py",
+      "canonical_sha256": "515791efa958f8c1bb044b6ad7cb3806235168325b38874b3bef7555a97bafe4",
+      "diff_path": "evidence/code_review_20260917/historical_deltas_v2/126_pidon_recording.diff",
+      "diff_sha256": "bb6cad684036602d09a32b2cfb3d6eeb7a3853312d6c21a5e40c084782a6a812",
+      "diff_lines": 194,
+      "diff_read_ranges": [
+        [
+          1,
+          194
+        ]
+      ],
+      "source_lines": 179,
+      "source_extra_numbered_read_ranges": [
+        [
+          1,
+          179
+        ]
+      ],
+      "source_context_note": "Listed extra original-source ranges plus all diff contexts and targeted symbol-line reads.",
+      "hunks": 7,
+      "delta_reconstructs_original": true,
+      "source_and_diff_line_counts_match": true,
+      "finding_ids": [
+        "HC11"
+      ],
+      "review_note": "完整比较及全文原文：无 A/B；尾部只信 metadata；任意 checkpoint label 都前移正式标记；E failure 名字取 H attempt；torch 文件无 fsync。",
+      "untested_boundary": "不套 F06 双指针问题；故障窗口未在本轮执行；已知旧问题不重复计数。",
+      "members": [
+        {
+          "path": "evidence/gpt6_plan_v3/A2_control_runs/float32_exact/source_snapshot/pidon_recording.py",
+          "expected_byte_sha256": "00547a4419bc148694971a1820fd47c3616d06c715d1d10fe22dd7d8b2f9913e",
+          "actual_byte_sha256": "00547a4419bc148694971a1820fd47c3616d06c715d1d10fe22dd7d8b2f9913e",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "cb58b7d03ce344c9d01744769a8896d4c6d37d98234d1ced70d5bc911d0cbf15",
+          "normalized_sha256_matches": true
+        },
+        {
+          "path": "evidence/gpt6_plan_v3/A2_control_runs/float64_exact/source_snapshot/pidon_recording.py",
+          "expected_byte_sha256": "00547a4419bc148694971a1820fd47c3616d06c715d1d10fe22dd7d8b2f9913e",
+          "actual_byte_sha256": "00547a4419bc148694971a1820fd47c3616d06c715d1d10fe22dd7d8b2f9913e",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "cb58b7d03ce344c9d01744769a8896d4c6d37d98234d1ced70d5bc911d0cbf15",
+          "normalized_sha256_matches": true
+        },
+        {
+          "path": "evidence/gpt6_plan_v3/A2_control_runs/hard_source_only/source_snapshot/pidon_recording.py",
+          "expected_byte_sha256": "00547a4419bc148694971a1820fd47c3616d06c715d1d10fe22dd7d8b2f9913e",
+          "actual_byte_sha256": "00547a4419bc148694971a1820fd47c3616d06c715d1d10fe22dd7d8b2f9913e",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "cb58b7d03ce344c9d01744769a8896d4c6d37d98234d1ced70d5bc911d0cbf15",
+          "normalized_sha256_matches": true
+        },
+        {
+          "path": "evidence/gpt6_plan_v3/A2_control_runs/wrong_h_half/source_snapshot/pidon_recording.py",
+          "expected_byte_sha256": "00547a4419bc148694971a1820fd47c3616d06c715d1d10fe22dd7d8b2f9913e",
+          "actual_byte_sha256": "00547a4419bc148694971a1820fd47c3616d06c715d1d10fe22dd7d8b2f9913e",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "cb58b7d03ce344c9d01744769a8896d4c6d37d98234d1ced70d5bc911d0cbf15",
+          "normalized_sha256_matches": true
+        },
+        {
+          "path": "evidence/gpt6_plan_v3/A2_control_runs/zero_curl/source_snapshot/pidon_recording.py",
+          "expected_byte_sha256": "00547a4419bc148694971a1820fd47c3616d06c715d1d10fe22dd7d8b2f9913e",
+          "actual_byte_sha256": "00547a4419bc148694971a1820fd47c3616d06c715d1d10fe22dd7d8b2f9913e",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "cb58b7d03ce344c9d01744769a8896d4c6d37d98234d1ced70d5bc911d0cbf15",
+          "normalized_sha256_matches": true
+        },
+        {
+          "path": "evidence/gpt6_plan_v3/h_layout_candidate/source_snapshot/pidon_recording.py",
+          "expected_byte_sha256": "00547a4419bc148694971a1820fd47c3616d06c715d1d10fe22dd7d8b2f9913e",
+          "actual_byte_sha256": "00547a4419bc148694971a1820fd47c3616d06c715d1d10fe22dd7d8b2f9913e",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "cb58b7d03ce344c9d01744769a8896d4c6d37d98234d1ced70d5bc911d0cbf15",
+          "normalized_sha256_matches": true
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_night/source_snapshot/pidon_recording.py",
+          "expected_byte_sha256": "00547a4419bc148694971a1820fd47c3616d06c715d1d10fe22dd7d8b2f9913e",
+          "actual_byte_sha256": "00547a4419bc148694971a1820fd47c3616d06c715d1d10fe22dd7d8b2f9913e",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "cb58b7d03ce344c9d01744769a8896d4c6d37d98234d1ced70d5bc911d0cbf15",
+          "normalized_sha256_matches": true
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_review/source_snapshot/pidon_recording.py",
+          "expected_byte_sha256": "00547a4419bc148694971a1820fd47c3616d06c715d1d10fe22dd7d8b2f9913e",
+          "actual_byte_sha256": "00547a4419bc148694971a1820fd47c3616d06c715d1d10fe22dd7d8b2f9913e",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "cb58b7d03ce344c9d01744769a8896d4c6d37d98234d1ced70d5bc911d0cbf15",
+          "normalized_sha256_matches": true
+        }
+      ]
+    },
+    {
+      "group_id": 135,
+      "coverage_mode": "FULL_DELTA_REVIEW",
+      "representative": "evidence/gpt6_plan_v4_night/control_runs/float64_exact/source_snapshot/pidon_solve.py",
+      "normalized_sha256": "d7549a3787612ceb88ba8ffaebdc9c0028979b5646f4a72ec527a4c5efb91439",
+      "canonical": "src/pidon/pidon_solve.py",
+      "canonical_sha256": "f4a92760f3b4fd400be6926acc88ff653018d280d111d5961217305f468afc7f",
+      "diff_path": "evidence/code_review_20260917/historical_deltas_v2/135_pidon_solve.diff",
+      "diff_sha256": "3cd78e55f413df11bb30e667fe10324da1f842afcc18f80240aab26f1b42193f",
+      "diff_lines": 275,
+      "diff_read_ranges": [
+        [
+          1,
+          275
+        ]
+      ],
+      "source_lines": 1223,
+      "source_extra_numbered_read_ranges": [],
+      "source_context_note": "All diff contexts plus targeted symbol-line reads where needed; no full original-file claim.",
+      "hunks": 15,
+      "delta_reconstructs_original": true,
+      "source_and_diff_line_counts_match": true,
+      "finding_ids": [],
+      "review_note": "完整审查 275 行差异：未接 head；物理 R/终态保护/UUID 已有；缺可空值展示保护；直接旧路径。",
+      "untested_boundary": "纯精确控制不等于 DCO head 训练；旧 main 的零参考打印与 F18 问题不证明控制 runner 未执行。",
+      "members": [
+        {
+          "path": "evidence/gpt6_plan_v4_night/control_runs/float64_exact/source_snapshot/pidon_solve.py",
+          "expected_byte_sha256": "409e4a5e4e6be6eeec287cdb15121b93899cf9c5a913333831cdfea9c9239139",
+          "actual_byte_sha256": "409e4a5e4e6be6eeec287cdb15121b93899cf9c5a913333831cdfea9c9239139",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "d7549a3787612ceb88ba8ffaebdc9c0028979b5646f4a72ec527a4c5efb91439",
+          "normalized_sha256_matches": true
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_night/g0_attempt_02/control_runs/float32_exact/source_snapshot/pidon_solve.py",
+          "expected_byte_sha256": "409e4a5e4e6be6eeec287cdb15121b93899cf9c5a913333831cdfea9c9239139",
+          "actual_byte_sha256": "409e4a5e4e6be6eeec287cdb15121b93899cf9c5a913333831cdfea9c9239139",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "d7549a3787612ceb88ba8ffaebdc9c0028979b5646f4a72ec527a4c5efb91439",
+          "normalized_sha256_matches": true
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_night/g0_attempt_02/control_runs/float64_exact/source_snapshot/pidon_solve.py",
+          "expected_byte_sha256": "409e4a5e4e6be6eeec287cdb15121b93899cf9c5a913333831cdfea9c9239139",
+          "actual_byte_sha256": "409e4a5e4e6be6eeec287cdb15121b93899cf9c5a913333831cdfea9c9239139",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "d7549a3787612ceb88ba8ffaebdc9c0028979b5646f4a72ec527a4c5efb91439",
+          "normalized_sha256_matches": true
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_night/g0_attempt_02/control_runs/hard_source_only_negative/source_snapshot/pidon_solve.py",
+          "expected_byte_sha256": "409e4a5e4e6be6eeec287cdb15121b93899cf9c5a913333831cdfea9c9239139",
+          "actual_byte_sha256": "409e4a5e4e6be6eeec287cdb15121b93899cf9c5a913333831cdfea9c9239139",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "d7549a3787612ceb88ba8ffaebdc9c0028979b5646f4a72ec527a4c5efb91439",
+          "normalized_sha256_matches": true
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_night/g0_attempt_02/control_runs/wrong_h_half_negative/source_snapshot/pidon_solve.py",
+          "expected_byte_sha256": "409e4a5e4e6be6eeec287cdb15121b93899cf9c5a913333831cdfea9c9239139",
+          "actual_byte_sha256": "409e4a5e4e6be6eeec287cdb15121b93899cf9c5a913333831cdfea9c9239139",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "d7549a3787612ceb88ba8ffaebdc9c0028979b5646f4a72ec527a4c5efb91439",
+          "normalized_sha256_matches": true
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_night/g0_attempt_02/control_runs/zero_curl_negative/source_snapshot/pidon_solve.py",
+          "expected_byte_sha256": "409e4a5e4e6be6eeec287cdb15121b93899cf9c5a913333831cdfea9c9239139",
+          "actual_byte_sha256": "409e4a5e4e6be6eeec287cdb15121b93899cf9c5a913333831cdfea9c9239139",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "d7549a3787612ceb88ba8ffaebdc9c0028979b5646f4a72ec527a4c5efb91439",
+          "normalized_sha256_matches": true
+        }
+      ]
+    },
+    {
+      "group_id": 137,
+      "coverage_mode": "FULL_DELTA_REVIEW",
+      "representative": "evidence/gpt6_plan_v3/A2_control_runs/float32_exact/source_snapshot/pidon_contract.py",
+      "normalized_sha256": "d8700d584a4b2d8d289c15e187388da7ce0a63e18e92bd25c7e523cffbd7e065",
+      "canonical": "src/pidon/pidon_contract.py",
+      "canonical_sha256": "7bc29b3cf6864f24483abf6d9508523591e6f7624bcd274b28f0bb4a2f7c5772",
+      "diff_path": "evidence/code_review_20260917/historical_deltas_v2/137_pidon_contract.diff",
+      "diff_sha256": "5f175afb3482f379f3f69161b4dd300a492d751e4bea0b280d05fd42abbf102b",
+      "diff_lines": 85,
+      "diff_read_ranges": [
+        [
+          1,
+          85
+        ]
+      ],
+      "source_lines": 257,
+      "source_extra_numbered_read_ranges": [
+        [
+          125,
+          227
+        ]
+      ],
+      "source_context_note": "Listed extra original-source ranges plus all diff contexts and targeted symbol-line reads.",
+      "hunks": 4,
+      "delta_reconstructs_original": true,
+      "source_and_diff_line_counts_match": true,
+      "finding_ids": [
+        "HC09"
+      ],
+      "review_note": "旧 nMAE 和 weak_absolute_pass 使用 dual-volume MAE；无 Eq.(5) strict-zero 合成字段。",
+      "untested_boundary": "F08 字段不存在，不能回溯套用；未重算普通均值与体积均值的差值。",
+      "members": [
+        {
+          "path": "evidence/gpt6_plan_v3/A2_control_runs/float32_exact/source_snapshot/pidon_contract.py",
+          "expected_byte_sha256": "e5dde73a7361009b81eee2c917f6f0e03a1fcfefda64718a3c9a9390a38ddfd2",
+          "actual_byte_sha256": "e5dde73a7361009b81eee2c917f6f0e03a1fcfefda64718a3c9a9390a38ddfd2",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "d8700d584a4b2d8d289c15e187388da7ce0a63e18e92bd25c7e523cffbd7e065",
+          "normalized_sha256_matches": true
+        },
+        {
+          "path": "evidence/gpt6_plan_v3/A2_control_runs/float64_exact/source_snapshot/pidon_contract.py",
+          "expected_byte_sha256": "e5dde73a7361009b81eee2c917f6f0e03a1fcfefda64718a3c9a9390a38ddfd2",
+          "actual_byte_sha256": "e5dde73a7361009b81eee2c917f6f0e03a1fcfefda64718a3c9a9390a38ddfd2",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "d8700d584a4b2d8d289c15e187388da7ce0a63e18e92bd25c7e523cffbd7e065",
+          "normalized_sha256_matches": true
+        },
+        {
+          "path": "evidence/gpt6_plan_v3/A2_control_runs/hard_source_only/source_snapshot/pidon_contract.py",
+          "expected_byte_sha256": "e5dde73a7361009b81eee2c917f6f0e03a1fcfefda64718a3c9a9390a38ddfd2",
+          "actual_byte_sha256": "e5dde73a7361009b81eee2c917f6f0e03a1fcfefda64718a3c9a9390a38ddfd2",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "d8700d584a4b2d8d289c15e187388da7ce0a63e18e92bd25c7e523cffbd7e065",
+          "normalized_sha256_matches": true
+        },
+        {
+          "path": "evidence/gpt6_plan_v3/A2_control_runs/wrong_h_half/source_snapshot/pidon_contract.py",
+          "expected_byte_sha256": "e5dde73a7361009b81eee2c917f6f0e03a1fcfefda64718a3c9a9390a38ddfd2",
+          "actual_byte_sha256": "e5dde73a7361009b81eee2c917f6f0e03a1fcfefda64718a3c9a9390a38ddfd2",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "d8700d584a4b2d8d289c15e187388da7ce0a63e18e92bd25c7e523cffbd7e065",
+          "normalized_sha256_matches": true
+        },
+        {
+          "path": "evidence/gpt6_plan_v3/A2_control_runs/zero_curl/source_snapshot/pidon_contract.py",
+          "expected_byte_sha256": "e5dde73a7361009b81eee2c917f6f0e03a1fcfefda64718a3c9a9390a38ddfd2",
+          "actual_byte_sha256": "e5dde73a7361009b81eee2c917f6f0e03a1fcfefda64718a3c9a9390a38ddfd2",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "d8700d584a4b2d8d289c15e187388da7ce0a63e18e92bd25c7e523cffbd7e065",
+          "normalized_sha256_matches": true
+        },
+        {
+          "path": "evidence/gpt6_plan_v3/h_layout_candidate/source_snapshot/pidon_contract.py",
+          "expected_byte_sha256": "e5dde73a7361009b81eee2c917f6f0e03a1fcfefda64718a3c9a9390a38ddfd2",
+          "actual_byte_sha256": "e5dde73a7361009b81eee2c917f6f0e03a1fcfefda64718a3c9a9390a38ddfd2",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "d8700d584a4b2d8d289c15e187388da7ce0a63e18e92bd25c7e523cffbd7e065",
+          "normalized_sha256_matches": true
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_night/source_snapshot/pidon_contract.py",
+          "expected_byte_sha256": "e5dde73a7361009b81eee2c917f6f0e03a1fcfefda64718a3c9a9390a38ddfd2",
+          "actual_byte_sha256": "e5dde73a7361009b81eee2c917f6f0e03a1fcfefda64718a3c9a9390a38ddfd2",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "d8700d584a4b2d8d289c15e187388da7ce0a63e18e92bd25c7e523cffbd7e065",
+          "normalized_sha256_matches": true
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_review/source_snapshot/pidon_contract.py",
+          "expected_byte_sha256": "e5dde73a7361009b81eee2c917f6f0e03a1fcfefda64718a3c9a9390a38ddfd2",
+          "actual_byte_sha256": "e5dde73a7361009b81eee2c917f6f0e03a1fcfefda64718a3c9a9390a38ddfd2",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "d8700d584a4b2d8d289c15e187388da7ce0a63e18e92bd25c7e523cffbd7e065",
+          "normalized_sha256_matches": true
+        }
+      ]
+    },
+    {
+      "group_id": 142,
+      "coverage_mode": "FULL_DELTA_REVIEW",
+      "representative": "evidence/gpt6_plan_v4_night/g0_after_head_integration/control_runs/float32_exact/source_snapshot/pidon_solve.py",
+      "normalized_sha256": "e900e308f7234acb826990a1fa177a1d8aa91131e2addf43fa19bbe0f4f7ec5e",
+      "canonical": "src/pidon/pidon_solve.py",
+      "canonical_sha256": "f4a92760f3b4fd400be6926acc88ff653018d280d111d5961217305f468afc7f",
+      "diff_path": "evidence/code_review_20260917/historical_deltas_v2/142_pidon_solve.diff",
+      "diff_sha256": "42448f6e4c5840432998d2b5858a7b7588f4e38988e61a991c40114804d9067a",
+      "diff_lines": 108,
+      "diff_read_ranges": [
+        [
+          1,
+          108
+        ]
+      ],
+      "source_lines": 1304,
+      "source_extra_numbered_read_ranges": [],
+      "source_context_note": "All diff contexts plus targeted symbol-line reads where needed; no full original-file claim.",
+      "hunks": 7,
+      "delta_reconstructs_original": true,
+      "source_and_diff_line_counts_match": true,
+      "finding_ids": [],
+      "review_note": "完整审查 108 行差异：head 已接入，数值训练相同；旧路径与 None 展示保护差异；F18 已存在。",
+      "untested_boundary": "head 接入不等于各臂启用 head；未运行求解/保存，不能量化旧零参考异常次数。",
+      "members": [
+        {
+          "path": "evidence/gpt6_plan_v4_night/g0_after_head_integration/control_runs/float32_exact/source_snapshot/pidon_solve.py",
+          "expected_byte_sha256": "1e50c4f388a7bd84350129b6057d86f5d660a02063b85aec2ff165b304bf5361",
+          "actual_byte_sha256": "1e50c4f388a7bd84350129b6057d86f5d660a02063b85aec2ff165b304bf5361",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "e900e308f7234acb826990a1fa177a1d8aa91131e2addf43fa19bbe0f4f7ec5e",
+          "normalized_sha256_matches": true
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_night/g0_after_head_integration/control_runs/float64_exact/source_snapshot/pidon_solve.py",
+          "expected_byte_sha256": "1e50c4f388a7bd84350129b6057d86f5d660a02063b85aec2ff165b304bf5361",
+          "actual_byte_sha256": "1e50c4f388a7bd84350129b6057d86f5d660a02063b85aec2ff165b304bf5361",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "e900e308f7234acb826990a1fa177a1d8aa91131e2addf43fa19bbe0f4f7ec5e",
+          "normalized_sha256_matches": true
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_night/g0_after_head_integration/control_runs/hard_source_only_negative/source_snapshot/pidon_solve.py",
+          "expected_byte_sha256": "1e50c4f388a7bd84350129b6057d86f5d660a02063b85aec2ff165b304bf5361",
+          "actual_byte_sha256": "1e50c4f388a7bd84350129b6057d86f5d660a02063b85aec2ff165b304bf5361",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "e900e308f7234acb826990a1fa177a1d8aa91131e2addf43fa19bbe0f4f7ec5e",
+          "normalized_sha256_matches": true
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_night/g0_after_head_integration/control_runs/wrong_h_half_negative/source_snapshot/pidon_solve.py",
+          "expected_byte_sha256": "1e50c4f388a7bd84350129b6057d86f5d660a02063b85aec2ff165b304bf5361",
+          "actual_byte_sha256": "1e50c4f388a7bd84350129b6057d86f5d660a02063b85aec2ff165b304bf5361",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "e900e308f7234acb826990a1fa177a1d8aa91131e2addf43fa19bbe0f4f7ec5e",
+          "normalized_sha256_matches": true
+        },
+        {
+          "path": "evidence/gpt6_plan_v4_night/g0_after_head_integration/control_runs/zero_curl_negative/source_snapshot/pidon_solve.py",
+          "expected_byte_sha256": "1e50c4f388a7bd84350129b6057d86f5d660a02063b85aec2ff165b304bf5361",
+          "actual_byte_sha256": "1e50c4f388a7bd84350129b6057d86f5d660a02063b85aec2ff165b304bf5361",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "e900e308f7234acb826990a1fa177a1d8aa91131e2addf43fa19bbe0f4f7ec5e",
+          "normalized_sha256_matches": true
+        },
+        {
+          "path": "evidence/mechanism_decision_v1/source_snapshot/pidon_solve.py",
+          "expected_byte_sha256": "1e50c4f388a7bd84350129b6057d86f5d660a02063b85aec2ff165b304bf5361",
+          "actual_byte_sha256": "1e50c4f388a7bd84350129b6057d86f5d660a02063b85aec2ff165b304bf5361",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "e900e308f7234acb826990a1fa177a1d8aa91131e2addf43fa19bbe0f4f7ec5e",
+          "normalized_sha256_matches": true
+        }
+      ]
+    },
+    {
+      "group_id": 144,
+      "coverage_mode": "FULL_DELTA_REVIEW",
+      "representative": "evidence/gpt6_plan_v3/A2_control_runs/float32_exact/source_snapshot/pidon_solve.py",
+      "normalized_sha256": "eb195c79ab5c95ddbe69857e752697ad472f60f1ffaeeb71affe0f4d4f64b7c8",
+      "canonical": "src/pidon/pidon_solve.py",
+      "canonical_sha256": "f4a92760f3b4fd400be6926acc88ff653018d280d111d5961217305f468afc7f",
+      "diff_path": "evidence/code_review_20260917/historical_deltas_v2/144_pidon_solve.diff",
+      "diff_sha256": "9e51f63b99c924e22e9af6d6e5392febb96ac1c9f948ee0ea16c04dfd20ccd9a",
+      "diff_lines": 558,
+      "diff_read_ranges": [
+        [
+          1,
+          300
+        ],
+        [
+          301,
+          558
+        ]
+      ],
+      "source_lines": 1132,
+      "source_extra_numbered_read_ranges": [
+        [
+          124,
+          148
+        ],
+        [
+          273,
+          295
+        ],
+        [
+          394,
+          422
+        ],
+        [
+          654,
+          678
+        ],
+        [
+          904,
+          934
+        ],
+        [
+          1051,
+          1078
+        ]
+      ],
+      "source_context_note": "Listed extra original-source ranges plus all diff contexts and targeted symbol-line reads.",
+      "hunks": 25,
+      "delta_reconstructs_original": true,
+      "source_and_diff_line_counts_match": true,
+      "finding_ids": [
+        "HC06",
+        "HC08",
+        "HC10",
+        "HC12"
+      ],
+      "review_note": "完整审查 558 行差异：与 G112 同代预算/身份；H core 尚内联；失败半事务仍出场指标；无 head。",
+      "untested_boundary": "这些快照也用于 exact/negative 子类，未把继承后绕开的训练分支缺陷说成控制实测失败。",
+      "members": [
+        {
+          "path": "evidence/gpt6_plan_v3/A2_control_runs/float32_exact/source_snapshot/pidon_solve.py",
+          "expected_byte_sha256": "6012cfd0f2d71425e3fa067b04f0632ad057c35027569de15303bb9a18bdf829",
+          "actual_byte_sha256": "6012cfd0f2d71425e3fa067b04f0632ad057c35027569de15303bb9a18bdf829",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "eb195c79ab5c95ddbe69857e752697ad472f60f1ffaeeb71affe0f4d4f64b7c8",
+          "normalized_sha256_matches": true
+        },
+        {
+          "path": "evidence/gpt6_plan_v3/A2_control_runs/float64_exact/source_snapshot/pidon_solve.py",
+          "expected_byte_sha256": "6012cfd0f2d71425e3fa067b04f0632ad057c35027569de15303bb9a18bdf829",
+          "actual_byte_sha256": "6012cfd0f2d71425e3fa067b04f0632ad057c35027569de15303bb9a18bdf829",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "eb195c79ab5c95ddbe69857e752697ad472f60f1ffaeeb71affe0f4d4f64b7c8",
+          "normalized_sha256_matches": true
+        },
+        {
+          "path": "evidence/gpt6_plan_v3/A2_control_runs/hard_source_only/source_snapshot/pidon_solve.py",
+          "expected_byte_sha256": "6012cfd0f2d71425e3fa067b04f0632ad057c35027569de15303bb9a18bdf829",
+          "actual_byte_sha256": "6012cfd0f2d71425e3fa067b04f0632ad057c35027569de15303bb9a18bdf829",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "eb195c79ab5c95ddbe69857e752697ad472f60f1ffaeeb71affe0f4d4f64b7c8",
+          "normalized_sha256_matches": true
+        },
+        {
+          "path": "evidence/gpt6_plan_v3/A2_control_runs/wrong_h_half/source_snapshot/pidon_solve.py",
+          "expected_byte_sha256": "6012cfd0f2d71425e3fa067b04f0632ad057c35027569de15303bb9a18bdf829",
+          "actual_byte_sha256": "6012cfd0f2d71425e3fa067b04f0632ad057c35027569de15303bb9a18bdf829",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "eb195c79ab5c95ddbe69857e752697ad472f60f1ffaeeb71affe0f4d4f64b7c8",
+          "normalized_sha256_matches": true
+        },
+        {
+          "path": "evidence/gpt6_plan_v3/A2_control_runs/zero_curl/source_snapshot/pidon_solve.py",
+          "expected_byte_sha256": "6012cfd0f2d71425e3fa067b04f0632ad057c35027569de15303bb9a18bdf829",
+          "actual_byte_sha256": "6012cfd0f2d71425e3fa067b04f0632ad057c35027569de15303bb9a18bdf829",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "eb195c79ab5c95ddbe69857e752697ad472f60f1ffaeeb71affe0f4d4f64b7c8",
+          "normalized_sha256_matches": true
+        }
+      ]
+    },
+    {
+      "group_id": 152,
+      "coverage_mode": "FULL_DELTA_REVIEW",
+      "representative": "evidence/coverage_ab_v1/source/paper_protocol.py",
+      "normalized_sha256": "fba58b0548a6e99d96423942aef5d97e55d8a8e0dfa85021a0fa8b0553e12427",
+      "canonical": "src/pidon/paper_protocol.py",
+      "canonical_sha256": "eb968132f192cbef997ffdaac6df4ffb9e04107a062080da88be53d5b4fd045d",
+      "diff_path": "evidence/code_review_20260917/historical_deltas_v2/152_paper_protocol.diff",
+      "diff_sha256": "44171dcf87780e34af3ae748a204c4c477fad44a8f20aee13567a8ea83ac8665",
+      "diff_lines": 19,
+      "diff_read_ranges": [
+        [
+          1,
+          19
+        ]
+      ],
+      "source_lines": 82,
+      "source_extra_numbered_read_ranges": [],
+      "source_context_note": "All diff contexts plus targeted symbol-line reads where needed; no full original-file claim.",
+      "hunks": 1,
+      "delta_reconstructs_original": true,
+      "source_and_diff_line_counts_match": true,
+      "finding_ids": [],
+      "review_note": "仅布局引导；paper_protocol 的物理输入/精确零分支指标公式未变。",
+      "untested_boundary": "不能与 pidon_contract 的归一化 Eq.(5) 字段混同；未运行指标。",
+      "members": [
+        {
+          "path": "evidence/coverage_ab_v1/source/paper_protocol.py",
+          "expected_byte_sha256": "ff5ac86760eae0fa7bd5919e73810c54a1a08747598d8e7cde1d14cba05bbb77",
+          "actual_byte_sha256": "ff5ac86760eae0fa7bd5919e73810c54a1a08747598d8e7cde1d14cba05bbb77",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "fba58b0548a6e99d96423942aef5d97e55d8a8e0dfa85021a0fa8b0553e12427",
+          "normalized_sha256_matches": true
+        },
+        {
+          "path": "evidence/grid_diagnosis_v1/source/paper_protocol.py",
+          "expected_byte_sha256": "ff5ac86760eae0fa7bd5919e73810c54a1a08747598d8e7cde1d14cba05bbb77",
+          "actual_byte_sha256": "ff5ac86760eae0fa7bd5919e73810c54a1a08747598d8e7cde1d14cba05bbb77",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "fba58b0548a6e99d96423942aef5d97e55d8a8e0dfa85021a0fa8b0553e12427",
+          "normalized_sha256_matches": true
+        },
+        {
+          "path": "evidence/paper_first_v1/source/paper_protocol.py",
+          "expected_byte_sha256": "ff5ac86760eae0fa7bd5919e73810c54a1a08747598d8e7cde1d14cba05bbb77",
+          "actual_byte_sha256": "ff5ac86760eae0fa7bd5919e73810c54a1a08747598d8e7cde1d14cba05bbb77",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "fba58b0548a6e99d96423942aef5d97e55d8a8e0dfa85021a0fa8b0553e12427",
+          "normalized_sha256_matches": true
+        },
+        {
+          "path": "evidence/spacing_probe_v1/source/paper_protocol.py",
+          "expected_byte_sha256": "ff5ac86760eae0fa7bd5919e73810c54a1a08747598d8e7cde1d14cba05bbb77",
+          "actual_byte_sha256": "ff5ac86760eae0fa7bd5919e73810c54a1a08747598d8e7cde1d14cba05bbb77",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "fba58b0548a6e99d96423942aef5d97e55d8a8e0dfa85021a0fa8b0553e12427",
+          "normalized_sha256_matches": true
+        },
+        {
+          "path": "evidence/trunk_repair_v1/source/paper_protocol.py",
+          "expected_byte_sha256": "ff5ac86760eae0fa7bd5919e73810c54a1a08747598d8e7cde1d14cba05bbb77",
+          "actual_byte_sha256": "ff5ac86760eae0fa7bd5919e73810c54a1a08747598d8e7cde1d14cba05bbb77",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "fba58b0548a6e99d96423942aef5d97e55d8a8e0dfa85021a0fa8b0553e12427",
+          "normalized_sha256_matches": true
+        },
+        {
+          "path": "evidence/workspace_reorganization_20260914/before/root/paper_protocol.py",
+          "expected_byte_sha256": "ff5ac86760eae0fa7bd5919e73810c54a1a08747598d8e7cde1d14cba05bbb77",
+          "actual_byte_sha256": "ff5ac86760eae0fa7bd5919e73810c54a1a08747598d8e7cde1d14cba05bbb77",
+          "byte_sha256_matches": true,
+          "actual_normalized_sha256": "fba58b0548a6e99d96423942aef5d97e55d8a8e0dfa85021a0fa8b0553e12427",
+          "normalized_sha256_matches": true
+        }
+      ]
+    }
+  ]
+}

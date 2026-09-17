@@ -1,0 +1,29 @@
+--- scripts/analysis/r3_v2_recompute.py
++++ evidence/gpt6_plan_v3_review/source_snapshot/r3_v2_recompute.py
+@@ -1,15 +1,7 @@
+ """Read-only re-evaluation of saved P5 assets using the v2 metric contract."""
+ 
+ from __future__ import annotations
+-
+-# Project layout bootstrap (imports and paths only).
+-import sys as _layout_sys
+-from pathlib import Path as _LayoutPath
+-_layout_sys.path.insert(0, str(_LayoutPath(__file__).resolve().parents[2]))
+-from project_paths import ROOT as PROJECT_ROOT, configure as _layout_configure, resolve_legacy
+-_layout_configure()
+-
+ 
+ import hashlib
+ import json
+ from pathlib import Path
+@@ -19,9 +11,9 @@
+ 
+ import dco as D
+ 
+ 
+-ROOT = PROJECT_ROOT
++ROOT = Path(__file__).resolve().parent
+ V1 = ROOT / "evidence" / "gpt6_plan_v1"
+ OUT = ROOT / "evidence" / "gpt6_plan_v2"
+ 
+ 

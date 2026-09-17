@@ -1,0 +1,30 @@
+--- scripts/analysis/night_evidence.py
++++ evidence/workspace_reorganization_20260914/before/root/night_evidence.py
+@@ -5,16 +5,8 @@
+ FAIL is the expected gate outcome here, not a parser failure.
+ """
+ from __future__ import annotations
+ 
+-# Project layout bootstrap (imports and paths only).
+-import sys as _layout_sys
+-from pathlib import Path as _LayoutPath
+-_layout_sys.path.insert(0, str(_LayoutPath(__file__).resolve().parents[2]))
+-from project_paths import ROOT as PROJECT_ROOT, configure as _layout_configure, resolve_legacy
+-_layout_configure()
+-
+-
+ import argparse
+ import hashlib
+ import json
+ import math
+@@ -24,9 +16,9 @@
+ 
+ import night_fixed_state as fixed
+ from pidon_solve import Solver
+ 
+-ROOT = PROJECT_ROOT
++ROOT = Path(__file__).resolve().parent
+ DEFAULT_ROOT = ROOT / "evidence" / "gpt6_plan_v4_night"
+ R_TOL = 1e-4
+ 
+ 

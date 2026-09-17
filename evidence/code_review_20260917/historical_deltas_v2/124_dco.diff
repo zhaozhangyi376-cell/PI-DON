@@ -1,0 +1,78 @@
+--- src/pidon/dco.py
++++ evidence/grid_diagnosis_v1/source/dco.py
+@@ -32,16 +32,8 @@
+   * channel counts        -> base=32, doubling per level  [MVP; paper silent]
+   * where exactly the residual lands -> out = act(c2(act(c1(x)))) + proj(x)
+   * how the output is de-normalised -> see normalise() below
+ """
+-
+-# Project layout bootstrap (imports and paths only).
+-import sys as _layout_sys
+-from pathlib import Path as _LayoutPath
+-_layout_sys.path.insert(0, str(_LayoutPath(__file__).resolve().parents[2]))
+-from project_paths import ROOT as PROJECT_ROOT, configure as _layout_configure, resolve_legacy
+-_layout_configure()
+-
+ 
+ import torch
+ import torch.nn as nn
+ 
+@@ -186,13 +178,14 @@
+         -> at inference:  curl = net(E/a, coords) * a / Lc
+ 
+     norm="max" uses a = max|E|; norm="rms" uses a = sqrt(mean(E^2)).
+ 
+-    Both max and RMS depend on the sampled field and physical window. Neither
+-    guarantees invariant prediction accuracy across grid sizes. Run #18 fixes
+-    the RMS explicitly to separate normalization from context effects; run #13
+-    instead resamples one fixed physical window. Do not conflate these tests.
+-    Existing checkpoints must keep the normalization used in their training.
++    max IS NOT GRID-SIZE INVARIANT.  The maximum of a random field grows with
++    the number of voxels sampled (roughly sqrt(2 ln N) sigma), so 16^3 (4096
++    voxels) and 48^3 (110592) divide the SAME physical field by scales that
++    differ by ~18%.  The network then sees a shifted input distribution at the
++    larger grid.  RMS is a statistic, not an extreme, so it does not drift --
++    use norm="rms" when grid-size invariance is what is being measured.
+ 
+     Returns (E_hat, C_hat, a, Lc).  Pass C=None to normalise inputs only.
+     """
+     if norm == "rms":
+@@ -252,21 +245,28 @@
+ # --------------------------------------------------------------------------- #
+ def make_coords(shape, d_mm, mode="centered", device=None, dtype=torch.float32):
+     """Build the trunk input, (1,3,*shape).
+ 
++    THIS ENCODING DECIDES WHETHER DIMENSION INVARIANCE WORKS.
++
+     The paper feeds "the coordinates of E and H fields" into the trunk, which
+-    "decodes coordinate information into cell sizes". Direct cell-size channels
+-    are an implementation alternative, not proof of the author's encoding.
+-    Coordinates can leave the training range when physical extent changes;
+-    transfer must be evaluated under a declared grid/physical-window protocol.
++    "decodes coordinate information into cell sizes".  Taken literally that is
++    absolute position, and absolute position DOES NOT TRANSFER across grid
++    sizes: train on 16^3 with dx up to 0.8 mm and the trunk never sees a
++    coordinate above 12 mm, but a 48^3 grid at the same dx reaches 37.6 mm --
++    a 3x extrapolation, and the prediction falls apart.  (The paper trained at
++    32^3 and tested at a fixed 19.2 mm total extent, which happens to stay
++    inside its training range, so the problem never showed up there.)
+ 
+     modes
+-      abs       (i)*d           -- node coordinates; origin convention explicit
+-      centered  (i-(n-1)/2)*d   -- coordinates centered on this tensor's window
+-      cellsize  dx,dy,dz        -- constant channels; tensor shapes can change,
+-                                   but prediction invariance is NOT guaranteed.
+-                                   Convolutions, pooling and boundary context
+-                                   still matter (run #18 common-ROI evidence).
++      abs       (i)*d           -- literal reading of the paper; extent-dependent
++      centered  (i-(n-1)/2)*d   -- same spacing information, symmetric, half the
++                                   magnitude; degrades more gracefully
++      cellsize  dx,dy,dz        -- constant channels.  Carries exactly the
++                                   information the paper says the trunk is for
++                                   and nothing else, so it is EXACTLY invariant
++                                   to grid size.  Use this when the dimension
++                                   invariance demo is the point.
+     """
+     if isinstance(shape, int):
+         shape = (shape, shape, shape)
+     d = torch.as_tensor(d_mm, dtype=dtype).view(3)

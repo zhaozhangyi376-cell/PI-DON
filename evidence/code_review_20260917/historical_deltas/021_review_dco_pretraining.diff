@@ -1,0 +1,84 @@
+--- tools/review_dco_pretraining.py
++++ evidence/server_resource_v1/dco_value_review_20260916/review_dco_pretraining.py
+@@ -179,9 +179,8 @@
+     ap = argparse.ArgumentParser()
+     ap.add_argument("--action-id", required=True)
+     ap.add_argument("--zip", type=Path, required=True)
+     ap.add_argument("--output", type=Path, required=True)
+-    ap.add_argument("--import-directory", type=Path)
+     args = ap.parse_args()
+     from run import require_action
+     require_action(args.action_id)
+     torch.set_num_threads(2)
+@@ -189,15 +188,12 @@
+     out.relative_to(BASE.resolve())
+     out.mkdir(parents=True, exist_ok=False)
+     shutil.copy2(__file__, out / "review_dco_pretraining.py")
+     print("Extracting and hashing random128 return", flush=True)
+-    imported = args.import_directory.resolve() if args.import_directory else out / "returned"
+-    imported.relative_to(BASE.resolve())
+-    if not args.import_directory:
+-        extract(args.zip, imported)
+-    rnd = imported / "random_low_lr128"
++    extract(args.zip, out / "returned")
++    rnd = out / "returned/random_low_lr128"
+     summary, manifest = read(rnd / "summary.json"), read(rnd / "manifest.json")
+-    labs = jsonl(imported / "lab_runs.jsonl")
++    labs = jsonl(out / "returned/lab_runs.jsonl")
+     lab = [r for r in labs if str(r["id"]) == summary["lab_run_id"]]
+     assert len(lab) == 1
+     lab = lab[0]
+     assert lab["exit_code"] == 0 and summary["action_id"] in lab["argv"]
+@@ -208,20 +204,16 @@
+         path = rnd / item["path"][len(prefix):]
+         digest = sha(path)
+         assert digest == item["sha256"] and path.stat().st_size == item["bytes"]
+         file_checks.append({"path": item["path"], "sha256": digest})
+-    events = [e for e in jsonl(imported / "actions.jsonl") if e.get("action_id") == summary["action_id"]]
++    events = [e for e in jsonl(out / "returned/actions.jsonl") if e["action_id"] == summary["action_id"]]
+     assert [e["event"] for e in events] == ["start", "finish"]
+     assert events[0]["task_id"] == "SR-128-LOWLR-RANDOM"
+     assert events[0]["protocol_sha256"] == manifest["protocol_sha256"]
+     assert sha(rnd / "source" / manifest["protocol"]) == manifest["protocol_sha256"]
+     for rel, digest in manifest["source_snapshot_hashes"].items():
+         assert sha(rnd / "source" / rel) == digest
+-    contract_path = ROOT / "src/pidon/pidon_contract.py"
+-    contract_lf = contract_path.read_bytes().replace(b"\r\n", b"\n")
+-    contract_lf_sha = hashlib.sha256(contract_lf).hexdigest()
+-    assert contract_lf_sha == manifest["source_hashes"]["pidon_contract.py"]
+-    (out / "pidon_contract_verified_lf.py").write_bytes(contract_lf)
++    assert sha(ROOT / "src/pidon/pidon_contract.py") == manifest["source_hashes"]["pidon_contract.py"]
+     print("Verifying random128 and clean128 checkpoints and saved field metrics", flush=True)
+     random_result, random_rows, random_meta = audit_probe(rnd)
+     pretrained_dir = BASE / "imports/server_clean_low_lr128_return_20260916T092721Z/clean_low_lr128"
+     pretrained, pretrained_rows, pretrained_meta = audit_probe(pretrained_dir)
+@@ -244,27 +236,26 @@
+         "One pretrained checkpoint and one random seed at 128; no population-level speed claim.",
+         "Both 128 field gates fail; cost comparison is not successful same-accuracy solver certification.",
+         "Random metadata master/row arm labels still name pretrained legacy defaults; init=random and init_sha256=null define actual initialization.",
+         "No initial model snapshot before the first update; initialization verified through config, command and saved code, not a zero-step tensor hash.",
+-        "pidon_contract.py was not copied into returned source; local copy matches the production hash exactly after CRLF-to-LF conversion. Verified LF bytes saved here.",
++        "pidon_contract.py was not copied into returned source; local copy hash matches the recorded production hash.",
+         "Milestone saved fields remeasured; no forward/backward training run and no independent reconstruction of every inter-milestone field.",
+         "Saved reference fields checked against saved metrics, not an independent accuracy certification of Yee against a continuum solution.",
+         "Source-outside whole-window L2 reported as retrospective diagnostic, not a substituted registered active-window gate.",
+         "No current checkpoint authorizes continuation: scientific FAIL and recovery_eligible=False.",
+     ]
+     result = {"status": "PASS", "action_id": args.action_id, "lab_run_id": os.environ.get("PIDON_LAB_RUN_ID"),
+               "new_adam_updates": 0, "new_closures": 0, "zip_sha256": sha(args.zip),
+               "server_lab_id": lab["id"], "server_lab_wall_s": lab["seconds"],
+-              "metric_source_raw_sha256": sha(contract_path), "metric_source_lf_sha256": contract_lf_sha,
+               "verified_files": file_checks, "pretrained": pretrained, "random": random_result,
+               "frozen_config_differences": differences, "core_source_hashes_identical": True,
+               "old_weight_metadata": weight_meta, "first_E_comparison": first_e,
+               "random_update_saving": 1-random_result["row_sum_adam"]/pretrained["row_sum_adam"],
+               "random_wall_saving": 1-summary["elapsed_s"]/pretrained["summary"]["elapsed_s"],
+               "limitations": limitation, "long_run_unlocked": False}
+     save(out / "audit.json", result)
+     plot([("预训练", pretrained_rows, "#236b8e"), ("随机初始化", random_rows, "#ba4f32")], out)
+-    lines = ["# DCO预训练价值：128步证据审计", "", f"本次仅读取、复算和绘图，参数更新为0。原始回传保存在`{imported.relative_to(ROOT)}`。", "",
++    lines = ["# DCO预训练价值：128步证据审计", "", "本次仅读取、复算和绘图，参数更新为0。原始回传保存在returned/。", "",
+              "| 指标 | 预训练初始化 | 随机初始化 |", "|---|---:|---:|"]
+     p, r = pretrained["summary"], random_result["summary"]
+     for label, a, b in [("完整时间步", p["accepted_steps"], r["accepted_steps"]),
+                         ("Adam更新", p["new_adam_updates"], r["new_adam_updates"]),

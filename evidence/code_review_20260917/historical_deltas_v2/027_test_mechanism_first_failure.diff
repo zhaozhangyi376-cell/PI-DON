@@ -1,0 +1,15 @@
+--- tests/test_mechanism_first_failure.py
++++ evidence/workspace_reorganization_20260914/before/root/test_mechanism_first_failure.py
+@@ -1,12 +1,4 @@
+-
+-# Project layout bootstrap (imports and paths only).
+-import sys as _layout_sys
+-from pathlib import Path as _LayoutPath
+-_layout_sys.path.insert(0, str(_LayoutPath(__file__).resolve().parents[1]))
+-from project_paths import ROOT as PROJECT_ROOT, configure as _layout_configure, resolve_legacy
+-_layout_configure()
+-
+ import unittest
+ 
+ import torch
+ 

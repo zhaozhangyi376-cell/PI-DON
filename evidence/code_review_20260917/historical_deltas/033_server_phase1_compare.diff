@@ -1,0 +1,14 @@
+--- scripts/experiments/server_phase1_compare.py
++++ evidence/server_resource_v1/local_review_v2/source/scripts/experiments/server_phase1_compare.py
+@@ -120,11 +120,8 @@
+               'action_id': args.action_id, 'lab_run_id': os.environ.get('PIDON_LAB_RUN_ID'),
+               'new_closures': 0, 'strict_scores': {}, 'diagnostic_scores': [], 'errors': [],
+               'source_point': 'N/A_phase1', 'six_EM_components': 'N/A_phase1',
+               'blind_label': 'previously exposed set; diagnostic reevaluation only'}
+-    result['environment'] = {'torch': str(torch.__version__), 'numpy': np.__version__,
+-                             'cuda_runtime': torch.version.cuda, 'device': str(device),
+-                             'gpu': torch.cuda.get_device_name() if device.type == 'cuda' and torch.cuda.is_available() else None}
+     start = time.perf_counter()
+     try:
+         result['s1r_audit'] = audit_s1r()
+     except Exception as exc:

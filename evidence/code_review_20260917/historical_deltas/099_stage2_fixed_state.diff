@@ -1,0 +1,29 @@
+--- scripts/experiments/stage2_fixed_state.py
++++ evidence/gpt6_plan_v2/r0_source_snapshot/stage2_fixed_state.py
+@@ -1,15 +1,7 @@
+ """P3 fixed Yee-state inner-fit diagnosis (not a closed-loop rollout)."""
+ 
+ from __future__ import annotations
+-
+-# Project layout bootstrap (imports and paths only).
+-import sys as _layout_sys
+-from pathlib import Path as _LayoutPath
+-_layout_sys.path.insert(0, str(_LayoutPath(__file__).resolve().parents[2]))
+-from project_paths import ROOT as PROJECT_ROOT, configure as _layout_configure, resolve_legacy
+-_layout_configure()
+-
+ 
+ import argparse
+ import copy
+ import json
+@@ -206,9 +198,9 @@
+                                                   live_fits[(step, "E")],
+                                                   a.n, a.side, a.dt)
+     payload = {
+         "schema": "pidon-p3-fixed-state-v1", "classification": "fixed FDTD state diagnostic; not a closed-loop DCO trajectory",
+-        "config": vars(a), "device": device, "source_hashes": source_hashes(PROJECT_ROOT),
++        "config": vars(a), "device": device, "source_hashes": source_hashes(Path(__file__).parent),
+         "init_sha256": sha256_file(a.init), "tasks": tasks, "single_step_errors": by_step,
+         "elapsed_s": time.perf_counter() - started, "stopped_for_total_budget": stopped_for_budget,
+     }
+     (out / "fixed_state_report.json").write_text(json.dumps(payload, ensure_ascii=False, indent=2, allow_nan=False) + "\n", encoding="utf-8")

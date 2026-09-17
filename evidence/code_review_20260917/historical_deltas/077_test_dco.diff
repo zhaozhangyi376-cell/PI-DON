@@ -1,0 +1,30 @@
+--- scripts/experiments/test_dco.py
++++ evidence/workspace_reorganization_20260914/before/root/test_dco.py
+@@ -21,16 +21,8 @@
+             32^3 != the 16^3 the net was trained on, so it doubles as the
+             dimension-invariance demo.  This is the default here.
+ """
+ 
+-# Project layout bootstrap (imports and paths only).
+-import sys as _layout_sys
+-from pathlib import Path as _LayoutPath
+-_layout_sys.path.insert(0, str(_LayoutPath(__file__).resolve().parents[2]))
+-from project_paths import ROOT as PROJECT_ROOT, configure as _layout_configure, resolve_legacy
+-_layout_configure()
+-
+-
+ import argparse
+ import os
+ import time
+ 
+@@ -45,9 +37,9 @@
+ from train_pidon import yee_curl_t
+ 
+ 
+ def load_net(path, device):
+-    ck = torch.load(resolve_legacy(path), map_location=device, weights_only=False)
++    ck = torch.load(path, map_location=device, weights_only=False)
+     net = D.DCO(levels=ck["levels"], base=ck["base"],
+                 head=ck.get("head", "direct")).to(device)
+     net.load_state_dict(ck["state"])
+     net.eval()

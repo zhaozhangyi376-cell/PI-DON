@@ -1,0 +1,19 @@
+--- src/pidon/rollout.py
++++ evidence/workspace_reorganization_20260914/before/root/rollout.py
+@@ -31,16 +31,8 @@
+     Ex (i+1/2, j,     k    )      Hx (i,     j+1/2, k+1/2)
+     Ey (i,     j+1/2, k    )      Hy (i+1/2, j,     k+1/2)
+     Ez (i,     j,     k+1/2)      Hz (i+1/2, j+1/2, k    )
+ """
+-
+-# Project layout bootstrap (imports and paths only).
+-import sys as _layout_sys
+-from pathlib import Path as _LayoutPath
+-_layout_sys.path.insert(0, str(_LayoutPath(__file__).resolve().parents[2]))
+-from project_paths import ROOT as PROJECT_ROOT, configure as _layout_configure, resolve_legacy
+-_layout_configure()
+-
+ 
+ import argparse
+ 
+ import numpy as np

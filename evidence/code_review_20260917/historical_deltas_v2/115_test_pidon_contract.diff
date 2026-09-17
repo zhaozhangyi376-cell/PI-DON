@@ -1,0 +1,92 @@
+--- tests/test_pidon_contract.py
++++ evidence/gpt6_plan_v3_review/source_snapshot/test_pidon_contract.py
+@@ -1,15 +1,7 @@
+ """P1 contract tests: stop decisions, Yee measurement and transaction recovery."""
+ 
+ from __future__ import annotations
+-
+-# Project layout bootstrap (imports and paths only).
+-import sys as _layout_sys
+-from pathlib import Path as _LayoutPath
+-_layout_sys.path.insert(0, str(_LayoutPath(__file__).resolve().parents[1]))
+-from project_paths import ROOT as PROJECT_ROOT, configure as _layout_configure, resolve_legacy
+-_layout_configure()
+-
+ 
+ import argparse
+ import json
+ import tempfile
+@@ -119,32 +111,37 @@
+         self.assertGreater(result.n_evals, 0)
+         self.assertIsNone(result.residual_ratio)
+         self.assertEqual(result.residual_rule, "zero_target_fixed_scale")
+ 
+-    def test_terminal_e_pending_checkpoint_is_not_resumable(self):
++    def test_cpu_checkpoint_e_pending_resume_is_deterministic(self):
+         torch.manual_seed(7)
+         pending_solver = Solver(self._tiny_args(0.0), "cpu")
+         pending = pending_solver.step(1.0)
+         self.assertFalse(pending.accepted)
+         self.assertEqual(pending_solver.phase, "E_pending")
+         payload = pending_solver.state_payload()
+-        # An exhausted E attempt is a terminal evidence state.  It can be
+-        # loaded only for diagnosis; production resume must not manufacture a
+-        # second chance by re-entering the optimizer.
+-        with self.assertRaisesRegex(ValueError, "terminal"):
+-            pending_solver.step(123.0)
++        # The uninterrupted transaction and a restored transaction use the
++        # identical frozen configuration.  Both stop at the same E half-step;
++        # the different source argument must not be inserted a second time.
++        uninterrupted = pending_solver
++        direct = uninterrupted.step(123.0)
++        self.assertFalse(direct.accepted)
+         restored = Solver(self._tiny_args(0.0), "cpu")
+-        with self.assertRaisesRegex(ValueError, "terminal"):
+-            restored.load_state_payload(payload)
++        restored.load_state_payload(payload)
++        resumed = restored.step(-456.0)
++        self.assertFalse(resumed.accepted)
++        self.assertEqual(resumed.phase, "E_pending")
++        for lhs, rhs in zip(uninterrupted.E + uninterrupted.H, restored.E + restored.H):
++            self.assertTrue(torch.equal(lhs, rhs))
+ 
+     def test_resume_rejects_changed_frozen_configuration(self):
+         solver = Solver(self._tiny_args(0.0), "cpu")
+         solver.step(1.0)
+         incompatible = self._tiny_args(1e-4)
+         with self.assertRaisesRegex(ValueError, "tol"):
+             Solver(incompatible, "cpu").load_state_payload(solver.state_payload())
+ 
+-    def test_exhausted_inner_budget_is_rejected_before_resume(self):
++    def test_exhausted_inner_budget_is_not_reset_after_resume(self):
+         args = self._tiny_args(0.0)
+         args.max_inner = 1
+         solver = Solver(args, "cpu")
+         first = solver.step(1.0)
+@@ -152,10 +149,13 @@
+         self.assertEqual(first.phase, "E_pending")
+         self.assertEqual(first.fit_E.n_updates, 1)
+         payload = solver.state_payload()
+         restored = Solver(args, "cpu")
+-        with self.assertRaisesRegex(ValueError, "terminal"):
+-            restored.load_state_payload(payload)
++        restored.load_state_payload(payload)
++        second = restored.step(99.0)
++        self.assertFalse(second.accepted)
++        self.assertEqual(second.fit_E.n_updates, 1)
++        self.assertEqual(restored.fit_progress["E"]["updates"], 1)
+ 
+     def test_nonfinite_raw_state_precedes_safe_rollback(self):
+         solver = Solver(self._tiny_args(0.0), "cpu")
+         original = [part.detach().clone() for part in solver.net_H.parameters()]
+@@ -189,9 +189,9 @@
+         self.assertEqual(volumes[1, 1, 1], 1.0)
+ 
+     def test_atomic_recorder_keeps_jsonl_and_latest_checkpoint(self):
+         with tempfile.TemporaryDirectory() as directory:
+-            recorder = RunRecorder(directory, {"case": "unit", "run_id": "unit", "protocol_hash": "unit"})
++            recorder = RunRecorder(directory, {"case": "unit"})
+             recorder.append({"step": 0, "accepted": False})
+             recorder.checkpoint({"value": 1})
+             recorder.checkpoint({"value": 2})
+             self.assertTrue((Path(directory) / "checkpoint_previous.pt").is_file())

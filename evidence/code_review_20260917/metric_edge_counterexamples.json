@@ -1,0 +1,26 @@
+{
+  "review_only": true,
+  "production_updates": 0,
+  "toy_optimizer_updates": 0,
+  "tests": 2,
+  "failures": 0,
+  "errors": 0,
+  "observations": {
+    "identical_float64_arrays": {
+      "true_error": 0.0,
+      "reported_Q": 9.313225055948939e-10,
+      "fixture": "Constant arrays for measurement, not a PEC physical trajectory",
+      "reference_conversion_dtype": "torch.float32",
+      "DUT_dtype": "torch.float64"
+    },
+    "upper_node": {
+      "xyz": [
+        2.0,
+        1.0,
+        1.0
+      ],
+      "correct_node_value": 22.0,
+      "exception": "probe (2.0, 1.0, 1.0) lies outside staggered support (3, 3, 3)"
+    }
+  }
+}

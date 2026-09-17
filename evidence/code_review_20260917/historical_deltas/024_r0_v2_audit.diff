@@ -1,0 +1,29 @@
+--- scripts/experiments/r0_v2_audit.py
++++ evidence/workspace_reorganization_20260914/before/root/r0_v2_audit.py
+@@ -1,15 +1,7 @@
+ """Freeze the v2 protocol inputs before altering the stage-2 implementation."""
+ 
+ from __future__ import annotations
+-
+-# Project layout bootstrap (imports and paths only).
+-import sys as _layout_sys
+-from pathlib import Path as _LayoutPath
+-_layout_sys.path.insert(0, str(_LayoutPath(__file__).resolve().parents[2]))
+-from project_paths import ROOT as PROJECT_ROOT, configure as _layout_configure, resolve_legacy
+-_layout_configure()
+-
+ 
+ import hashlib
+ import json
+ import shutil
+@@ -17,9 +9,9 @@
+ from datetime import datetime, timezone
+ from pathlib import Path
+ 
+ 
+-ROOT = PROJECT_ROOT
++ROOT = Path(__file__).resolve().parent
+ OUT = ROOT / "evidence" / "gpt6_plan_v2"
+ SNAPSHOT = OUT / "r0_source_snapshot"
+ SOURCE_FILES = (
+     "pidon_solve.py", "pidon_contract.py", "pidon_recording.py", "pidon_exact_control.py",

@@ -1,0 +1,28 @@
+--- scripts/experiments/night_init.py
++++ evidence/gpt6_plan_v4_night/source_snapshot/night_init.py
+@@ -1,14 +1,6 @@
+ """N0: freeze the v4 night identity, source snapshot and resource baseline."""
+ from __future__ import annotations
+-
+-# Project layout bootstrap (imports and paths only).
+-import sys as _layout_sys
+-from pathlib import Path as _LayoutPath
+-_layout_sys.path.insert(0, str(_LayoutPath(__file__).resolve().parents[2]))
+-from project_paths import ROOT as PROJECT_ROOT, configure as _layout_configure, resolve_legacy
+-_layout_configure()
+-
+ 
+ import argparse
+ import json
+ import os
+@@ -23,9 +15,9 @@
+ from night_budget import NightPaths, append_ledger, init_or_load, sha256_file
+ from pidon_recording import source_hashes
+ 
+ 
+-ROOT = PROJECT_ROOT
++ROOT = Path(__file__).resolve().parent
+ MASTER_SHA256 = '3f259bc887a10fac77f6bdf77b43ba1ad6b45827a3f8b9bd685934acc47ca5d7'
+ HISTORICAL = (
+     'dco_lr1e3_300.pt',
+     'evidence/gpt6_plan_v3/h_layout_candidate/H_step_0043.pt',

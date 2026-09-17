@@ -1,0 +1,6 @@
+
+计划检查未通过：
+- M2 的证据不存在：evidence/direct_mechanism_v1/runs/A_R/summary.json
+- M2 的证据不存在：evidence/direct_mechanism_v1/runs/A_P/summary.json
+- M2 的证据不存在：evidence/direct_mechanism_v1/runs/B_R/summary.json
+- M2 的证据不存在：evidence/direct_mechanism_v1/runs/B_P/summary.json

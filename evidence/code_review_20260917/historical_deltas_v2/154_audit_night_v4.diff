@@ -1,0 +1,27 @@
+--- scripts/analysis/audit_night_v4.py
++++ evidence/gpt6_plan_v4_review/source_snapshot/audit_night_v4.py
+@@ -1,13 +1,5 @@
+ """Isolated v3 audit. No production edits or formal model updates."""
+-
+-# Project layout bootstrap (imports and paths only).
+-import sys as _layout_sys
+-from pathlib import Path as _LayoutPath
+-_layout_sys.path.insert(0, str(_LayoutPath(__file__).resolve().parents[2]))
+-from project_paths import ROOT as PROJECT_ROOT, configure as _layout_configure, resolve_legacy
+-_layout_configure()
+-
+ from pathlib import Path
+ from unittest.mock import patch
+ from collections import Counter
+ import copy
+@@ -21,9 +13,9 @@
+ import pidon_solve as sol
+ from pidon_exact_control import control_args, _reference_tensors
+ from test_pidon_contract_v3 import tiny_args
+ 
+-ROOT = PROJECT_ROOT
++ROOT = Path(__file__).resolve().parent
+ OUT = ROOT / 'evidence/gpt6_plan_v4_review'
+ OLD = ROOT / 'evidence/gpt6_plan_v3'
+ 
+ 

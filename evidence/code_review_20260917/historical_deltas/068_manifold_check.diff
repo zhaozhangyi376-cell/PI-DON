@@ -1,0 +1,19 @@
+--- scripts/exploratory/manifold_check.py
++++ evidence/workspace_reorganization_20260914/before/root/manifold_check.py
+@@ -38,16 +38,8 @@
+     --dirs per-wave in gen_data.py draws an independent direction per wave.  It
+     costs nothing and moves the training distribution most of the way towards
+     the cavity.
+ """
+-
+-# Project layout bootstrap (imports and paths only).
+-import sys as _layout_sys
+-from pathlib import Path as _LayoutPath
+-_layout_sys.path.insert(0, str(_LayoutPath(__file__).resolve().parents[2]))
+-from project_paths import ROOT as PROJECT_ROOT, configure as _layout_configure, resolve_legacy
+-_layout_configure()
+-
+ 
+ import numpy as np
+ import matplotlib
+ matplotlib.use("Agg")

@@ -1,0 +1,19 @@
+--- scripts/exploratory/structured_deep.py
++++ evidence/workspace_reorganization_20260914/before/root/structured_deep.py
+@@ -27,16 +27,8 @@
+     单层：卷积的转置 = 用翻转核做相关，并交换输入/输出通道（AdjPair 已在用）。
+     多层：(A_k ... A_1)^T = A_1^T ... A_k^T —— 逆序逐层取转置。
+     --selftest 用随机向量直接验 <T x, y> = <x, T^T y>，不靠推导。
+ """
+-
+-# Project layout bootstrap (imports and paths only).
+-import sys as _layout_sys
+-from pathlib import Path as _LayoutPath
+-_layout_sys.path.insert(0, str(_LayoutPath(__file__).resolve().parents[2]))
+-from project_paths import ROOT as PROJECT_ROOT, configure as _layout_configure, resolve_legacy
+-_layout_configure()
+-
+ 
+ import argparse
+ 
+ import numpy as np
