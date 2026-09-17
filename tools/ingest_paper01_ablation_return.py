@@ -5,8 +5,12 @@ import json
 import shutil
 import zipfile
 from datetime import datetime, timezone
+import sys
 from pathlib import Path
 from typing import Any
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from ingest_contract import delivery_verdict, finite
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -68,11 +72,38 @@ def review(summary_path: Path, import_dir: Path) -> dict[str, Any]:
     ratio = None
     if baseline and best and baseline.get("macro_nmae_mean"):
         ratio = float(best["macro_nmae_mean"]) / float(baseline["macro_nmae_mean"])
-    recommendation = recommend_next_step(summary.get("status"), baseline, best, ratio, len(rows))
+    # F04 (same family): a returned summary asserting its own PASS with four
+    # variant entries is not an audit.  Require each arm to be named, to carry
+    # a finite metric and a positive update count, and refuse a PASS when any
+    # of that is absent.  Each arm also reports its own seed and test-split
+    # identity so a reader can see that the four arms were NOT scored on one
+    # common paper (F03) before comparing their numbers.
+    checks = {
+        "summary_status_claims_pass": summary.get("status") == "PASS",
+        "four_variants": len(rows) == 4,
+        "all_variants_named": all(row.get("variant") for row in rows),
+        "all_variants_have_finite_macro_nmae": all(
+            finite(row.get("macro_nmae_mean")) is not None for row in rows),
+        "all_variants_report_updates": all(
+            finite(row.get("updates")) is not None and float(row["updates"]) > 0 for row in rows),
+        "baseline_present": baseline is not None,
+        "variant_names_unique": len({row.get("variant") for row in rows}) == len(rows),
+    }
+    verdict = delivery_verdict(read_ok=True, integrity_checks=checks)
+    recommendation = recommend_next_step(
+        "PASS" if verdict["status"] == "PASS" else verdict["status"], baseline, best, ratio, len(rows))
     return {
-        "schema": "pidon-paper01-ablation-return-review-v1",
-        "status": "PASS" if summary.get("status") == "PASS" and len(rows) == 4 else "INCOMPLETE",
-        "scientific_result": "DIAGNOSTIC_ONLY",
+        "schema": "pidon-paper01-ablation-return-review-v2",
+        "status": verdict["status"],
+        "read_status": verdict["read_status"],
+        "delivery_integrity": verdict["delivery_integrity"],
+        "scientific_result": "DIAGNOSTIC_ONLY" if verdict["status"] == "PASS" else "INCOMPLETE",
+        "comparison_validity": {
+            "common_test_set": False,
+            "shared_initialization": False,
+            "note": "F03：各臂的种子同时改变初始化、训练分布和测试分布，"
+                    "臂间比值只能作为各自分布内的诊断，不能单独证明某个干预的因果收益。",
+        },
         "import_dir": str(import_dir),
         "summary_path": str(summary_path),
         "parameter_updates": summary.get("parameter_updates"),

@@ -5,6 +5,7 @@ import argparse
 import json
 import math
 import os
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
@@ -85,7 +86,16 @@ def probe_waveform_metrics(summary: dict[str, Any]) -> list[dict[str, Any]]:
 
 def arm_summary(name: str, path: Path) -> dict[str, Any]:
     if not path.exists():
-        return {"arm": name, "status": "NOT_RUN", "path": display(path)}
+        # F22: "the summary file is not here" is not the same claim as "this
+        # experiment was never executed".  Look at the run directory before
+        # writing a completed arm down as NOT_RUN.
+        run_dir = path.parent
+        if run_dir.exists() and any(run_dir.iterdir()):
+            return {"arm": name, "status": "INCOMPLETE", "path": display(path),
+                    "reason": "run directory holds evidence but summary.json is absent",
+                    "evidence_present": sorted(item.name for item in run_dir.iterdir())[:20]}
+        return {"arm": name, "status": "NOT_RUN", "path": display(path),
+                "reason": "run directory is absent or empty"}
     summary = read_json(path)
     last = summary.get("last_accepted_step") or {}
     row = last or summary.get("stop_row") or {}
@@ -228,7 +238,7 @@ def build_audit(action_id: str) -> dict[str, Any]:
     }
 
 
-def write_report(audit: dict[str, Any]) -> None:
+def write_report(audit: dict[str, Any], out_dir: Path) -> None:
     lines = [
         "# Final Report - Direct Mechanism v1",
         "",
@@ -289,13 +299,13 @@ def write_report(audit: dict[str, Any]) -> None:
         "",
         "## Files",
         "",
-        f"- Final audit JSON: `{display(OUT / 'FINAL_JUDGMENT.json')}`",
+        f"- Final audit JSON: `{display(out_dir / 'FINAL_JUDGMENT.json')}`",
         f"- M2 audit: `{display(OUT / 'm2_audit.json')}`",
         f"- B audit: `{display(BENEFIT / 'B_audit.json')}`",
         f"- S1 audit: `{display(S1 / 'interrupted_audit.json')}`",
         "",
     ])
-    (OUT / "FINAL_REPORT.md").write_text("\n".join(lines), encoding="utf-8")
+    (out_dir / "FINAL_REPORT.md").write_text("\n".join(lines), encoding="utf-8")
 
 
 def update_stage_status(audit: dict[str, Any]) -> None:
@@ -316,17 +326,43 @@ def update_stage_status(audit: dict[str, Any]) -> None:
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--action-id", required=True)
+    parser.add_argument("--out-dir", default="",
+                        help="new output directory; without it a re-run refuses to "
+                             "overwrite the historical FINAL_REPORT/FINAL_JUDGMENT")
+    parser.add_argument("--overwrite-historical", action="store_true",
+                        help="explicitly allow rewriting the original fixed evidence files")
     args = parser.parse_args()
+    # F22: this entry point rewrote FINAL_JUDGMENT.json, FINAL_REPORT.md and
+    # stage_status.json in place.  Run it once with the evidence missing and
+    # the historical judgement is replaced by one derived from absent files.
+    if args.out_dir:
+        out_dir = Path(args.out_dir)
+    elif args.overwrite_historical:
+        out_dir = OUT
+    else:
+        stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
+        out_dir = OUT / "rejudgment" / stamp
+    out_dir.mkdir(parents=True, exist_ok=True)
     audit = build_audit(args.action_id)
-    write_json(OUT / "FINAL_JUDGMENT.json", audit)
-    write_report(audit)
-    update_stage_status(audit)
+    audit["output_dir"] = display(out_dir)
+    incomplete = sorted(key for key, arm in audit.get("arms", {}).items()
+                        if arm.get("status") in ("INCOMPLETE", "NOT_RUN"))
+    audit["input_completeness"] = {
+        "arms_without_summary": incomplete,
+        "note": "INCOMPLETE 表示证据不在当前路径，不是科学 FAIL；缺件不改判旧结论。",
+    }
+    write_json(out_dir / "FINAL_JUDGMENT.json", audit)
+    write_report(audit, out_dir)
+    if out_dir == OUT:
+        update_stage_status(audit)
+    else:
+        print(f"  stage_status.json 未改写；本次为只读输入/新输出重审：{display(out_dir)}")
     print(json.dumps({
         "paper_mechanism_reproduced": audit["scientific_conclusion"]["paper_mechanism_reproduced"],
         "research_direction_supported_as_current_implementation": audit["scientific_conclusion"]["research_direction_supported_as_current_implementation"],
         "longrun_unlocked": audit["final_gates"]["longrun_unlocked"],
-        "report": display(OUT / "FINAL_REPORT.md"),
-        "audit": display(OUT / "FINAL_JUDGMENT.json"),
+        "report": display(out_dir / "FINAL_REPORT.md"),
+        "audit": display(out_dir / "FINAL_JUDGMENT.json"),
     }, ensure_ascii=False, indent=2))
 
 

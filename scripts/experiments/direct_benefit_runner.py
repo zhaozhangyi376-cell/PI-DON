@@ -267,9 +267,38 @@ def audit_benefit(action_id: str) -> dict[str, Any]:
     m2_audit_path = OUT / "m2_audit.json"
     m2_audit = read_json(m2_audit_path) if m2_audit_path.exists() else {}
     field_gate_pass_arms = m2_audit.get("field_gate_pass_arms", [])
-    field_valid_benefit = bool("B-P" in field_gate_pass_arms and "B-R" in field_gate_pass_arms)
+    # F27: ``field_gate_benefit_pass`` only asked whether the two NAMES B-P and
+    # B-R appeared in the M2 pass list.  It ignored B-R2 entirely and ignored
+    # cost, so it could report True while the other two fields of the same
+    # document said the comparison was invalid and the result FAIL.  Build the
+    # verdict from three named layers and derive the sentence from them.
+    required_arms = sorted(arms)
+    all_field_gates_pass = bool(required_arms) and all(
+        name in field_gate_pass_arms for name in required_arms)
+    cost_saving_pass = residual_cost_pass
+    residual_window_comparable = comparable
+    benefit_pass = bool(residual_window_comparable and all_field_gates_pass and cost_saving_pass)
+    if not m2_audit:
+        benefit_status = "INCOMPLETE"
+        reason = ("M2 field-gate audit is not available at this path, so no benefit "
+                  "claim can be made either way.")
+    elif benefit_pass:
+        benefit_status = "PASS"
+        reason = ("All compared arms passed the registered field gate and the pretrained "
+                  "arm saved both updates and wall time against every random control.")
+    else:
+        benefit_status = "FAIL"
+        blockers = []
+        if not residual_window_comparable:
+            blockers.append("the three arms are not a comparable 128-step residual window")
+        if not all_field_gates_pass:
+            absent = [name for name in required_arms if name not in field_gate_pass_arms]
+            blockers.append("field gate not passed by: " + ", ".join(absent))
+        if not cost_saving_pass:
+            blockers.append("cost saving against every random control is below the registered 20%")
+        reason = "No supported benefit because " + "; ".join(blockers) + "."
     audit = {
-        "schema": "direct-benefit-audit-v1",
+        "schema": "direct-benefit-audit-v2",
         "action_id": action_id,
         "audit_lab_run_id": os.environ.get("PIDON_LAB_RUN_ID"),
         "arms": arms,
@@ -277,13 +306,23 @@ def audit_benefit(action_id: str) -> dict[str, Any]:
         "p_vs_random_adam_savings": adam_savings,
         "p_vs_random_time_savings": time_savings,
         "residual_cost_benefit_pass": residual_cost_pass,
-        "field_gate_benefit_pass": field_valid_benefit,
-        "scientific_result": "FAIL",
-        "reason": (
-            "No benefit can support the paper mechanism because G128 field gate failed. "
-            "Residual-window cost savings are reported separately."
-        ),
-        "recommendation": "do_not_use_benefit_to_unlock_longrun",
+        "benefit_layers": {
+            "residual_window_comparable": residual_window_comparable,
+            "all_field_gates_pass": all_field_gates_pass,
+            "field_gate_pass_arms": list(field_gate_pass_arms),
+            "arms_required_to_pass": required_arms,
+            "cost_saving_pass": cost_saving_pass,
+        },
+        # Kept under the historical key so old consumers keep working, but it
+        # now means what its name says: the benefit verdict, not "two names
+        # appeared in a list".
+        "field_gate_benefit_pass": benefit_pass,
+        "benefit_pass": benefit_pass,
+        "benefit_status": benefit_status,
+        "scientific_result": "PASS" if benefit_pass else benefit_status,
+        "reason": reason,
+        "recommendation": ("run_G128_selection_before_longrun" if benefit_pass
+                           else "do_not_use_benefit_to_unlock_longrun"),
     }
     write_json(BENEFIT / "B_audit.json", S._json_safe(audit))
     write_report(audit)

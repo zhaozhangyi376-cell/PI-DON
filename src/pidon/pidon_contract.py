@@ -168,10 +168,20 @@ def component_metric(
     eq5_terms = np.empty(int(np.count_nonzero(active)), dtype=np.float64)
     active_delta, active_ref = delta[active], r[active]
     active_nonzero = np.abs(active_ref) > 0.0
-    eq5_terms[active_nonzero] = np.abs(active_delta[active_nonzero] / active_ref[active_nonzero])
-    # Eq. (5) cannot divide by zero.  Its disclosed strict-zero branch uses
-    # physical absolute error; it is never silently replaced with epsilon.
-    eq5_terms[~active_nonzero] = np.abs(active_delta[~active_nonzero])
+    ratio_terms = np.abs(active_delta[active_nonzero] / active_ref[active_nonzero])
+    # Eq. (5) cannot divide by zero, so its strict-zero branch falls back to an
+    # absolute error -- and that absolute error has UNITS.  F08: both p and r
+    # were divided by ``scale`` at the top of this function, so the old
+    # ``mre_eq5_physical`` fed the NORMALISED absolute error into the zero
+    # branch while the non-zero branch cancelled the scale.  A 0.002654 A/m
+    # error was reported as 1.  Report both readings under honest names: the
+    # physical branch multiplies the scale back in, the normalised branch is
+    # kept for continuity with previously recorded tables.
+    eq5_terms[active_nonzero] = ratio_terms
+    eq5_terms[~active_nonzero] = np.abs(active_delta[~active_nonzero]) * scale
+    eq5_normalized = np.empty_like(eq5_terms)
+    eq5_normalized[active_nonzero] = ratio_terms
+    eq5_normalized[~active_nonzero] = np.abs(active_delta[~active_nonzero])
     return {
         "weighted_l2_error": math.sqrt(err_ss),
         "weighted_ref_l2": math.sqrt(ref_ss),
@@ -188,10 +198,16 @@ def component_metric(
         "mre_nonzero": float(np.mean(np.abs(delta[nonzero]) / np.abs(r[nonzero])))
                        if nonzero_count else float("nan"),
         "mre_eq5_physical": float(np.mean(eq5_terms)) if support_count else float("nan"),
+        "mre_eq5_normalized": float(np.mean(eq5_normalized)) if support_count else float("nan"),
+        "mre_eq5_zero_branch_units": "physical" if strict_zero_count else "none",
+        "mre_eq5_zero_branch_count": strict_zero_count,
         "mre_nonzero_count": nonzero_count,
         "strict_zero_reference_count": strict_zero_count,
         "strict_zero_absolute_mae": float(np.mean(np.abs(delta[strict_zero])))
                                     if strict_zero_count else 0.0,
+        "strict_zero_absolute_mae_physical": float(np.mean(np.abs(delta[strict_zero])) * scale)
+                                             if strict_zero_count else 0.0,
+        "normalization_scale": float(scale),
         "reference_max": denom_max,
         "support_count": support_count,
         "support_volume": support_volume,
@@ -239,7 +255,14 @@ def six_component_metrics(
     result["metric_contract"] = {
         "nmae": "ordinary masked MAE/reference_max on the declared component support",
         "volume_nmae": "dual-volume-weighted MAE/reference_max, reported separately",
-        "mre": "mre_eq5_physical uses absolute error at strict zeros; mre_nonzero excludes them",
+        "mre": "mre_eq5_physical uses PHYSICAL absolute error at strict zeros "
+               "(scale multiplied back in); mre_eq5_normalized keeps the "
+               "normalised reading; mre_nonzero excludes zeros entirely",
+        "mre_eq5_mixed_units": "the zero branch is an absolute error and the "
+                               "non-zero branch a ratio; the mean of the two is "
+                               "not a single-unit quantity and must not be "
+                               "compared across components with different "
+                               "zero-support fractions",
         "weak_reference_threshold": 1e-6,
         "weak_absolute_mae_threshold": 1e-5,
         "hard_source_excluded_from_Ez": source_ez_index is not None,
@@ -257,8 +280,17 @@ def trilinear_sample(
     """
     grid = [(x / d) - off for x, d, off in zip(xyz_m, dxyz, offsets)]
     lo = [math.floor(q) for q in grid]
-    hi = [q + 1 for q in lo]
     shape = values.shape
+    # A point that lands exactly on the HIGHEST legal node has lo = size - 1
+    # and needed hi = size, which the bounds test rejected.  That made the top
+    # node of the support unreachable although it is inside the domain.  Use a
+    # degenerate interval there; a genuinely outside point is still refused.
+    hi = []
+    for axis, low in enumerate(lo):
+        if low == shape[axis] - 1 and abs(grid[axis] - low) <= 1e-12:
+            hi.append(low)
+        else:
+            hi.append(low + 1)
     if any(a < 0 or b >= shape[i] for i, (a, b) in enumerate(zip(lo, hi))):
         raise ValueError(f"probe {tuple(xyz_m)} lies outside staggered support {tuple(shape)}")
     frac = [q - a for q, a in zip(grid, lo)]

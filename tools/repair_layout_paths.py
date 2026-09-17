@@ -4,17 +4,31 @@ import ast
 import hashlib
 import json
 import re
+import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from layout_guard import LayoutSafetyError, safe_target, validate_migration_table
 
 
 def main():
     manifest_path = ROOT / 'project/migration_map.json'
     manifest = json.loads(manifest_path.read_text(encoding='utf-8'))
+    # L01: validate the whole table before touching a single file.  The old
+    # code did ROOT / row['new'] and read/wrote it straight away, so an
+    # absolute path, a '..' segment or a registered directory replaced by a
+    # link would have been followed out of the project -- and the new hash
+    # written back into the table as an ordinary layout adaptation.
+    problems = validate_migration_table(ROOT, manifest['files'], must_exist=False)
+    if problems:
+        raise LayoutSafetyError('migration table is not safe to apply:\n  '
+                                + '\n  '.join(problems))
     changed = []
     for row in manifest['files']:
-        p = ROOT / row['new']
+        if not str(row['new']).endswith('.py'):
+            continue
+        p = safe_target(ROOT, row['new'])
         if p.suffix != '.py':
             continue
         original = p.read_text(encoding='utf-8-sig')

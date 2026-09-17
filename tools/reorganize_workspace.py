@@ -65,10 +65,29 @@ def destination(p):
 
 
 def contained(path):
-    path = path.resolve()
-    path.relative_to(ROOT.resolve())
-    if path == ROOT:
+    """Verify a path lies in the project and return it UNRESOLVED.
+
+    L02: this used to return the RESOLVED path, and the caller then renamed
+    that return value.  A root-level symlink pointing into ``evidence/``
+    therefore passed the containment test while the rename moved the real
+    checkpoint out of evidence and left a dangling link behind -- and the
+    migration table only recorded the alias, so equal content hashes could
+    never reveal the location error.  A link is now refused outright and the
+    caller gets back the literal path it asked about.
+    """
+    if path.is_symlink():
+        raise ValueError(f'refusing to move or overwrite a link: {path}')
+    resolved = path.resolve()
+    resolved.relative_to(ROOT.resolve())
+    if resolved == ROOT.resolve():
         raise ValueError('root is not a file target')
+    parent = path.parent
+    while True:
+        if parent.is_symlink():
+            raise ValueError(f'path sits under a link: {parent}')
+        if parent.resolve() == ROOT.resolve() or parent == parent.parent:
+            break
+        parent = parent.parent
     return path
 
 
@@ -82,6 +101,8 @@ def main():
         raise FileExistsError('migration already registered; inspect before retrying')
     rows = []
     for p in sorted(ROOT.iterdir()):
+        if p.is_symlink():
+            raise ValueError(f'refusing to classify a link in the project root: {p}')
         if p.is_file() and (dest := destination(p)):
             q = contained(ROOT / dest)
             contained(p)

@@ -78,24 +78,138 @@ def cfl_dt(dx, dy, dz, c=C0, safety=0.99):
     0.99*CFL = 3.0751 ps, which matches the paper's quoted dt to four figures.
     This is a useful reconstruction hypothesis, not author-confirmed mesh
     metadata.  In this implementation n=32 with dt=3.075 ps is above CFL.
+
+    ``c`` must be the FASTEST local wave speed in the mesh.  In a filled
+    cavity that is ``C0 / sqrt(min(eps_r))``, not ``C0``; see
+    :func:`material_max_speed`.
     """
     return safety / (c * np.sqrt(1.0 / dx**2 + 1.0 / dy**2 + 1.0 / dz**2))
+
+
+# --------------------------------------------------------------------------- #
+#  material support contract (code review 20260917 F01)
+# --------------------------------------------------------------------------- #
+#  Before the 20260917 review the constructor accepted ``eps_r`` and threw it
+#  away: ``self.eps`` was filled with EPS0 whatever the argument said, and both
+#  E updates divided by the bare EPS0 constant.  eps_r=1 and eps_r=4 therefore
+#  produced bit-identical trajectories.  The contract below makes the material
+#  explicit instead:
+#
+#      eps_r=None or 1.0      vacuum.  Scalar coefficients, so a vacuum run is
+#                             bit-identical to the pre-fix solver.
+#      eps_r=<float>          uniform relative permittivity.
+#      eps_r=<callable>       inhomogeneous medium, sampled INDEPENDENTLY on
+#                             each of the three staggered E supports at that
+#                             component's own physical coordinate.
+#
+#  Sampling on the E supports (not on the nodes) is the part that a "just fill
+#  one array" fix gets wrong: Ex, Ey and Ez live at three different places in
+#  the Yee cell, so one node array cannot serve all three without an averaging
+#  rule that nobody declared.
+E_COMPONENT_OFFSETS = ((0.5, 0.0, 0.0), (0.0, 0.5, 0.0), (0.0, 0.0, 0.5))
+
+
+def _component_coordinates(shape, offsets, dxyz):
+    """Physical coordinates of one staggered E component's own support."""
+    axes = [(np.arange(size) + off) * d
+            for size, off, d in zip(shape, offsets, dxyz)]
+    return np.meshgrid(*axes, indexing="ij")
+
+
+def sample_eps(eps_r, shapes, dxyz):
+    """Return (eps_x, eps_y, eps_z) for the three staggered E supports.
+
+    Each entry is a float for a uniform medium and an ndarray otherwise.  A
+    uniform medium deliberately stays scalar: that keeps the vacuum path free
+    of three (n+1)^3 arrays and bit-identical to the pre-fix coefficient.
+    """
+    if eps_r is None:
+        return (EPS0, EPS0, EPS0), {"kind": "vacuum", "eps_r_min": 1.0, "eps_r_max": 1.0}
+    if callable(eps_r):
+        out, lo, hi = [], np.inf, -np.inf
+        for shape, offsets in zip(shapes, E_COMPONENT_OFFSETS):
+            grid = _component_coordinates(shape, offsets, dxyz)
+            values = np.asarray(eps_r(*grid), dtype=float)
+            if values.shape != tuple(shape):
+                raise ValueError(
+                    f"eps_r callable returned {values.shape}, expected {tuple(shape)}")
+            if not np.all(np.isfinite(values)) or np.any(values <= 0.0):
+                raise ValueError("eps_r must be finite and strictly positive everywhere")
+            out.append(EPS0 * values)
+            lo, hi = min(lo, float(values.min())), max(hi, float(values.max()))
+        return tuple(out), {"kind": "inhomogeneous", "eps_r_min": lo, "eps_r_max": hi}
+    if isinstance(eps_r, np.ndarray):
+        raise TypeError(
+            "eps_r as a bare array has no declared staggering rule; pass a callable "
+            "eps_r(x, y, z) so each E component samples its own support")
+    value = float(eps_r)
+    if not np.isfinite(value) or value <= 0.0:
+        raise ValueError("eps_r must be finite and strictly positive")
+    return ((EPS0 * value,) * 3,
+            {"kind": "vacuum" if value == 1.0 else "uniform",
+             "eps_r_min": value, "eps_r_max": value})
+
+
+def material_max_speed(eps_r_min, mu_r=1.0):
+    """Fastest wave speed in the mesh, which is what the Courant limit uses."""
+    return C0 / np.sqrt(float(eps_r_min) * float(mu_r))
+
+
+def _co(coefficient, region):
+    """Slice a per-support coefficient; a uniform medium stays a plain float."""
+    return coefficient if np.isscalar(coefficient) else coefficient[region]
 
 
 # --------------------------------------------------------------------------- #
 #  PEC cavity solver
 # --------------------------------------------------------------------------- #
 class PECCavity:
-    """Air-filled rectangular cavity, PEC on all six faces, point Ez source."""
+    """Rectangular cavity, PEC on all six faces, point Ez source.
 
-    def __init__(self, side=50e-3, n=32, dt=None, eps_r=None):
+    ``eps_r`` defaults to vacuum.  A scalar fills the cavity uniformly and a
+    callable ``eps_r(x, y, z)`` is sampled on each staggered E support; see
+    :func:`sample_eps`.  ``mu_r`` is uniform only -- no magnetic material
+    contract has been declared, so a non-unit value is accepted but recorded,
+    and an inhomogeneous mu is refused rather than silently averaged.
+    """
+
+    def __init__(self, side=50e-3, n=32, dt=None, eps_r=None, mu_r=1.0,
+                 allow_super_cfl=False):
         self.n = n
         self.dx = self.dy = self.dz = side / n
-        self.dt = cfl_dt(self.dx, self.dy, self.dz) if dt is None else dt
         self.side = side
 
-        self.eps = np.full((n + 1, n + 1, n + 1), EPS0 * (1.0 if eps_r is None else 1.0))
-        self.mu = MU0
+        shapes = ((n, n + 1, n + 1), (n + 1, n, n + 1), (n + 1, n + 1, n))
+        dxyz = (self.dx, self.dy, self.dz)
+        (self.eps_x, self.eps_y, self.eps_z), self.material = sample_eps(eps_r, shapes, dxyz)
+        if callable(mu_r) or isinstance(mu_r, np.ndarray):
+            raise TypeError("inhomogeneous mu_r has no declared H-support contract")
+        mu_r = float(mu_r)
+        if not np.isfinite(mu_r) or mu_r <= 0.0:
+            raise ValueError("mu_r must be finite and strictly positive")
+        self.mu = MU0 * mu_r
+        self.material["mu_r"] = mu_r
+        # Kept for callers that only want "the permittivity the solver used".
+        # A uniform medium keeps a plain float so a vacuum run is bit-identical
+        # to the pre-20260917 coefficient dt/EPS0.
+        self.eps = self.eps_x
+
+        # F12: the Courant limit is a stability contract, not a hint.  A run
+        # above it is not a reference solution, so the formal constructor
+        # refuses it; a deliberately super-Courant study must say so.
+        self.cfl_limit = cfl_dt(self.dx, self.dy, self.dz,
+                                c=material_max_speed(self.material["eps_r_min"], mu_r),
+                                safety=1.0)
+        self.dt = cfl_dt(self.dx, self.dy, self.dz,
+                         c=material_max_speed(self.material["eps_r_min"], mu_r)) if dt is None else dt
+        self.super_cfl = bool(self.dt > self.cfl_limit)
+        if self.super_cfl and not allow_super_cfl:
+            raise ValueError(
+                f"dt={self.dt:.6e} s exceeds the Courant limit {self.cfl_limit:.6e} s "
+                f"(ratio {self.dt / self.cfl_limit:.6f}); a super-Courant FDTD reference "
+                "diverges by construction.  Use n=31 for the 50 mm / 3.075 ps cavity, or "
+                "pass allow_super_cfl=True from a labelled diagnostic entry point.")
+        self.allow_super_cfl = bool(allow_super_cfl)
 
         self.Ex = np.zeros((n, n + 1, n + 1))
         self.Ey = np.zeros((n + 1, n, n + 1))
@@ -103,6 +217,18 @@ class PECCavity:
         self.Hx = np.zeros((n + 1, n, n))
         self.Hy = np.zeros((n, n + 1, n))
         self.Hz = np.zeros((n, n, n + 1))
+
+    # -- material coefficients --------------------------------------------- #
+    def e_coefficients(self):
+        """(dt/eps) on each of the three staggered E supports.
+
+        A uniform medium returns three floats, so the vacuum arithmetic is
+        exactly the historical ``dt / EPS0``.
+        """
+        return (self.dt / self.eps_x, self.dt / self.eps_y, self.dt / self.eps_z)
+
+    def is_vacuum(self):
+        return (self.material["kind"] == "vacuum" and self.material.get("mu_r", 1.0) == 1.0)
 
     # -- boundaries -------------------------------------------------------- #
     def apply_pec(self):
@@ -127,10 +253,10 @@ class PECCavity:
 
         # 5.  E update from curl H  (interior only; PEC faces stay zero)
         hx, hy, hz = curl_H(self.Hx, self.Hy, self.Hz, *d)
-        ke = self.dt / EPS0
-        self.Ex[:, 1:-1, 1:-1] += ke * hx
-        self.Ey[1:-1, :, 1:-1] += ke * hy
-        self.Ez[1:-1, 1:-1, :] += ke * hz
+        kx, ky, kz = self.e_coefficients()
+        self.Ex[:, 1:-1, 1:-1] += _co(kx, (slice(None), slice(1, -1), slice(1, -1))) * hx
+        self.Ey[1:-1, :, 1:-1] += _co(ky, (slice(1, -1), slice(None), slice(1, -1))) * hy
+        self.Ez[1:-1, 1:-1, :] += _co(kz, (slice(1, -1), slice(1, -1), slice(None))) * hz
 
         # 6.  excitation -- written AFTER the E update, exactly as Algorithm 1
         if src_value is not None:
@@ -153,10 +279,10 @@ class PECCavity:
         """
         d = (self.dx, self.dy, self.dz)
         hx, hy, hz = curl_H(self.Hx, self.Hy, self.Hz, *d)
-        ke = self.dt / EPS0
-        self.Ex[:, 1:-1, 1:-1] += ke * hx
-        self.Ey[1:-1, :, 1:-1] += ke * hy
-        self.Ez[1:-1, 1:-1, :] += ke * hz
+        kx, ky, kz = self.e_coefficients()
+        self.Ex[:, 1:-1, 1:-1] += _co(kx, (slice(None), slice(1, -1), slice(1, -1))) * hx
+        self.Ey[1:-1, :, 1:-1] += _co(ky, (slice(1, -1), slice(None), slice(1, -1))) * hy
+        self.Ez[1:-1, 1:-1, :] += _co(kz, (slice(1, -1), slice(1, -1), slice(None))) * hz
         if src_value is not None:
             i, j, k_ = src_idx
             self.Ez[i, j, k_] = src_value

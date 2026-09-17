@@ -235,13 +235,37 @@ def init():
                       "deadline": manifest["deadline"], "experiment_id": manifest["experiment_id"]}, ensure_ascii=False, indent=2))
 
 
+#: Verdicts that are the end of an arm's story and must never be overwritten
+#: by a later bookkeeping pass.
+TERMINAL_ARM_STATUS = ("FAIL", "PASS")
+
+
 def update_status(manifest, arm, summary):
     status = json.loads((OUT / "stage_status.json").read_text(encoding="utf-8"))
     status["status"][arm] = summary["status"]
-    status.setdefault("runs", {})[arm] = {k: summary.get(k) for k in ("status", "accepted_steps", "total_actual_updates", "elapsed_s", "recovery_eligible")}
+    fields = ("status", "accepted_steps", "total_actual_updates", "elapsed_s", "recovery_eligible")
+    status.setdefault("runs", {})[arm] = {k: summary.get(k) for k in fields}
     atomic_json_save(status, OUT / "stage_status.json")
     manifest.setdefault("status", {})[arm] = summary["status"]
-    manifest.setdefault("runs", {})[arm] = {k: summary.get(k) for k in ("status", "accepted_steps", "total_actual_updates", "elapsed_s", "recovery_eligible")}
+    manifest.setdefault("runs", {})[arm] = {k: summary.get(k) for k in fields}
+    # F28: only the per-arm cost was maintained, so the manifest's own
+    # ``updates_this_experiment`` stayed at 0 while arms were consuming
+    # updates.  Recompute the top-level total from the same per-arm numbers
+    # and mark it a lower bound whenever any arm's cost is unknown.
+    totals, unknown = 0, []
+    for name, row in manifest.get("runs", {}).items():
+        value = row.get("total_actual_updates")
+        if isinstance(value, int):
+            totals += value
+        else:
+            unknown.append(name)
+    manifest["updates_this_experiment"] = totals
+    manifest["updates_accounting"] = {
+        "sum_of_arm_totals": totals,
+        "arms_with_unknown_cost": unknown,
+        "status": "LOWER_BOUND" if unknown else "SUM_OF_ARMS",
+        "note": "逐臂求和不等于完整实际更新总数；未结算臂保留 UNKNOWN/下界。",
+    }
     atomic_json_save(manifest, OUT / "manifest.json")
 
 
@@ -270,6 +294,40 @@ def report():
     print("\n".join(report_lines))
 
 
+def verified_recovery_eligible(out: Path, rows: list) -> dict:
+    """Recovery eligibility from a checkpoint that actually loads.
+
+    F28: the old field was ``checkpoint_pointer.json exists``.  An empty
+    pointer JSON with no checkpoint beside it therefore certified recovery.
+    Load the pointer, verify it names a real slot whose hash matches, and
+    check that it reaches the end of the durable log.
+    """
+    detail: dict = {"pointer_exists": (out / "checkpoint_pointer.json").is_file()}
+    if not detail["pointer_exists"]:
+        return {**detail, "eligible": False, "reason": "no checkpoint pointer"}
+    try:
+        pointer = json.loads((out / "checkpoint_pointer.json").read_text(encoding="utf-8"))
+    except (json.JSONDecodeError, OSError, UnicodeDecodeError) as error:
+        return {**detail, "eligible": False, "reason": f"pointer unreadable: {error}"}
+    if not isinstance(pointer, dict) or pointer.get("schema") != "pidon-rolling-checkpoint-v1":
+        return {**detail, "eligible": False, "reason": "pointer schema is invalid"}
+    slot_path = out / str(pointer.get("path", ""))
+    detail["slot_exists"] = slot_path.is_file()
+    if not detail["slot_exists"]:
+        return {**detail, "eligible": False, "reason": "pointer names a checkpoint that is not there"}
+    detail["hash_matches"] = sha256_file(slot_path) == pointer.get("sha256")
+    if not detail["hash_matches"]:
+        return {**detail, "eligible": False, "reason": "checkpoint hash differs from pointer"}
+    committed = pointer.get("last_committed_sequence_id")
+    detail["checkpoint_sequence_id"] = committed
+    detail["durable_rows"] = len(rows)
+    if committed is None or int(committed) != len(rows) - 1:
+        return {**detail, "eligible": False,
+                "reason": "checkpoint does not reach the end of the durable log"}
+    return {**detail, "eligible": True, "reason": "verified pointer, slot and log tail",
+            "note": "身份/模型/优化器/RNG 的逐项核对仍由恢复入口执行；本字段只认证磁盘提交点。"}
+
+
 def finalize_arm(manifest: dict, arm: str):
     """Close a deliberately sliced process after its last durable row."""
     out = OUT / "runs" / arm.replace("-", "_")
@@ -279,13 +337,30 @@ def finalize_arm(manifest: dict, arm: str):
     rows = [json.loads(line) for line in rows_path.read_text(encoding="utf-8").splitlines() if line.strip()]
     accepted = int(rows[-1].get("accepted_steps", 0)) if rows else 0
     updates = sum(classify_row(row, arm)["budget_consumed_updates"] for row in rows)
-    summary = {"schema": "mechanism-1h-summary-v1", "arm": arm,
+    # F28: a terminal verdict is evidence, not a draft.  This entry point used
+    # to write RESOURCE_LIMIT unconditionally, so calling it on an arm that had
+    # already FAILED silently promoted an optimisation failure into a resource
+    # interruption.  Read the existing summary first and refuse.
+    existing_path = out / "summary.json"
+    if existing_path.is_file():
+        try:
+            existing = json.loads(existing_path.read_text(encoding="utf-8"))
+        except (json.JSONDecodeError, OSError, UnicodeDecodeError):
+            existing = {}
+        if existing.get("status") in TERMINAL_ARM_STATUS:
+            raise SystemExit(
+                f"拒绝改写终态：{arm} 已记录 `{existing['status']}`。"
+                "资源中断与优化失败是两件事，原 FAIL 不改判；"
+                "如需记录新的中断事件，请写入独立的新文件。")
+    recovery = verified_recovery_eligible(out, rows)
+    summary = {"schema": "mechanism-1h-summary-v2", "arm": arm,
                "status": "RESOURCE_LIMIT", "threshold": arm_spec(arm)["tol"],
                "accepted_steps": accepted, "target_steps": 128,
                "elapsed_s": sum(float(row.get("actual_wall_s", 0.0)) for row in rows[-1:]),
                "stop": {"reason": "SLICE_END", "detail": "deliberate arm boundary after durable checkpoint"},
                "rows": rows, "source_hashes": source_hashes(ROOT),
-               "recovery_eligible": (OUT / "runs" / arm.replace("-", "_") / "checkpoint_pointer.json").exists(),
+               "recovery_eligible": recovery["eligible"],
+               "recovery_check": recovery,
                "total_actual_updates": updates,
                "device": "cuda" if torch.cuda.is_available() else "cpu",
                "checkpoint_pointer": str(out / "checkpoint_pointer.json")}

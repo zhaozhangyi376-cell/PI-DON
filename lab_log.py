@@ -22,7 +22,10 @@ WHY THIS EXISTS
       * python / torch / GPU / host, because "it worked on my machine" is
         only meaningful if the machine is written down
       * wall time and exit code
-      * EVERY file the run created or modified, with its size and sha256
+      * EVERY file the run created or modified, with its size and sha256.
+        The JSONL row carries the 25 largest INLINE; the complete list always
+        goes to a side-car manifest whose own sha256 is in the row, so the
+        machine evidence is never the truncated one (see F14 below).
       * the tail of stdout, and any "key: value" numbers matched from it
 
     The hashes are the part that makes it checkable by someone else: they can
@@ -45,6 +48,7 @@ import shlex
 import subprocess
 import sys
 import time
+import uuid
 from project_paths import PROJECT_DIR, configure, resolve_legacy
 
 configure()
@@ -57,7 +61,9 @@ JSONL = "records/lab_runs.jsonl"
 # them made a make_figs.py run record "0 file(s) touched".
 IGNORE_DIRS = {".git", "__pycache__", "cst"}
 IGNORE_EXT = {".pyc", ".log", ".tmp"}
-MAX_HASH_MB = 400            # skip hashing anything bigger; record size only
+MAX_HASH_MB = 400            # inline-hash limit; larger files stream instead
+MANIFEST_DIR = "records/output_manifests"
+INLINE_OUTPUTS = 25          # rows kept inline; the manifest always holds all
 
 
 # --------------------------------------------------------------------------- #
@@ -136,9 +142,16 @@ def snapshot(root="."):
     return out
 
 
-def sha256(path):
+def sha256(path, *, stream_large=True):
+    """sha256 of a file.
+
+    F14: files above ``MAX_HASH_MB`` used to return None, i.e. "recorded but
+    NOT hashed", and a reader could not tell that from "hashed".  Large files
+    are streamed as well now -- the reader is the same loop either way -- and
+    the caller records ``hash_method`` so a skip is always visible.
+    """
     n = os.path.getsize(path)
-    if n > MAX_HASH_MB * 1024 * 1024:
+    if n > MAX_HASH_MB * 1024 * 1024 and not stream_large:
         return None
     h = hashlib.sha256()
     with open(path, "rb") as fh:
@@ -171,10 +184,74 @@ def harvest(text):
 
 # --------------------------------------------------------------------------- #
 def next_id():
-    if not os.path.exists(JSONL):
-        return 1
-    with open(JSONL, encoding="utf-8") as f:
-        return sum(1 for _ in f) + 1
+    """Reserve a run id under an exclusive lock.
+
+    F15: the id used to be "number of finished rows + 1", computed at start
+    and never reserved.  Two wrappers launched before either finished were
+    handed the SAME id, and the two runs became indistinguishable in the
+    ledger.  A reservation file, written under an O_EXCL lock, hands out a
+    monotonically increasing id even while earlier runs are still going.
+    """
+    os.makedirs("records", exist_ok=True)
+    reservation = "records/lab_run_reservation.json"
+    lock = reservation + ".lock"
+    handle = None
+    for _ in range(600):
+        try:
+            handle = os.open(lock, os.O_CREAT | os.O_EXCL | os.O_WRONLY)
+            break
+        except FileExistsError:
+            time.sleep(0.05)
+    try:
+        committed = 0
+        if os.path.exists(JSONL):
+            with open(JSONL, encoding="utf-8") as f:
+                committed = sum(1 for _ in f)
+        reserved = 0
+        if os.path.exists(reservation):
+            try:
+                with open(reservation, encoding="utf-8") as f:
+                    reserved = int(json.load(f).get("last_reserved_id", 0))
+            except (json.JSONDecodeError, OSError, ValueError, TypeError):
+                reserved = 0
+        rid = max(committed, reserved) + 1
+        tmp = reservation + ".tmp"
+        with open(tmp, "w", encoding="utf-8") as f:
+            json.dump({"last_reserved_id": rid,
+                       "reserved_at": dt.datetime.now().isoformat(timespec="seconds"),
+                       "host": platform.node(), "pid": os.getpid()}, f)
+            f.flush()
+            os.fsync(f.fileno())
+        os.replace(tmp, reservation)
+        return rid
+    finally:
+        if handle is not None:
+            os.close(handle)
+            try:
+                os.unlink(lock)
+            except OSError:
+                pass
+
+
+def write_output_manifest(rid, run_uuid, touched):
+    """Persist the COMPLETE output list and return its own identity."""
+    os.makedirs(MANIFEST_DIR, exist_ok=True)
+    path = f"{MANIFEST_DIR}/run_{rid:05d}_{run_uuid}.json"
+    document = {
+        "schema": "pidon-lab-output-manifest-v1",
+        "run_id": rid, "run_uuid": run_uuid,
+        "written_at": dt.datetime.now().isoformat(timespec="seconds"),
+        "count": len(touched),
+        "outputs": touched,
+        "note": "完整产出清单；JSONL 行内只保留最大的若干条，机器证据以本文件为准。",
+    }
+    tmp = path + ".tmp"
+    with open(tmp, "w", encoding="utf-8") as f:
+        json.dump(document, f, ensure_ascii=False, indent=1)
+        f.flush()
+        os.fsync(f.fileno())
+    os.replace(tmp, path)
+    return {"path": path, "sha256": sha256(path), "count": len(touched)}
 
 
 def quote(argv):
@@ -185,7 +262,7 @@ def quote(argv):
     return " ".join(out)
 
 
-def launch(argv, run_id=None):
+def launch(argv, run_id=None, run_uuid=None):
     """Popen the child.  No shell, so an argument with spaces stays ONE
     argument -- ' '.join + shell=True silently splits it and you get a
     different run than the one written in the log.
@@ -200,6 +277,8 @@ def launch(argv, run_id=None):
     env = dict(os.environ, PYTHONIOENCODING="utf-8", PYTHONUTF8="1")
     if run_id is not None:
         env['PIDON_LAB_RUN_ID'] = str(run_id)
+    if run_uuid is not None:
+        env['PIDON_LAB_RUN_UUID'] = str(run_uuid)
     return subprocess.Popen(argv, stdout=subprocess.PIPE,
                             stderr=subprocess.STDOUT, text=True,
                             encoding="utf-8", errors="replace", bufsize=1,
@@ -212,6 +291,9 @@ def do_run(a):
     argv = list(a.cmd)
     cmd = quote(argv)
     rid = next_id()
+    # F15: the host+id pair was not unique while runs overlapped.  A per-run
+    # UUID makes every wrapper invocation addressable on its own.
+    run_uuid = uuid.uuid4().hex[:16]
     env = environment()
     before = snapshot()
 
@@ -236,14 +318,35 @@ def do_run(a):
     t0 = time.time()
     lines = []
     try:
-        proc = launch(argv, run_id=rid)
+        proc = launch(argv, run_id=rid, run_uuid=run_uuid)
     except OSError as exc:
         raise SystemExit(f"could not start {argv[0]!r}: {exc}")
-    for line in proc.stdout:
-        sys.stdout.write(line)
-        sys.stdout.flush()
-        lines.append(line)
-    rc = proc.wait()
+    # F15: a Ctrl+C (or a killed wrapper) used to leave NOTHING in the ledger
+    # -- the row was only written after the child exited -- so the cost of an
+    # interrupted training run simply vanished from the accounting.  Catch the
+    # interrupt, stop the child, and fall through to the same bookkeeping with
+    # an explicit interrupted flag.
+    interrupted = False
+    try:
+        for line in proc.stdout:
+            sys.stdout.write(line)
+            sys.stdout.flush()
+            lines.append(line)
+        rc = proc.wait()
+    except KeyboardInterrupt:
+        interrupted = True
+        print("\n  *** 收到中断：正在停止子进程并落账，成本不丢失 ***", flush=True)
+        try:
+            proc.terminate()
+            rc = proc.wait(timeout=30)
+        except Exception:                                        # noqa: BLE001
+            try:
+                proc.kill()
+            except Exception:                                    # noqa: BLE001
+                pass
+            rc = proc.poll()
+        if rc is None:
+            rc = -1
     dur = time.time() - t0
     text = "".join(lines)
 
@@ -258,17 +361,28 @@ def do_run(a):
             except OSError:
                 pass
     touched.sort(key=lambda d: -d["bytes"])
+    # F14: the row keeps the largest few for human reading, but the complete
+    # list -- with the small summaries, protocols and source files that used
+    # to be squeezed out -- is written to its own manifest and identified by
+    # its own hash.  Console output is bounded; machine evidence is not.
+    manifest = write_output_manifest(rid, run_uuid, touched)
 
     entry = {
         "id": rid,
+        "run_uuid": run_uuid,
         "when": dt.datetime.now().isoformat(timespec="seconds"),
         "note": a.message or "",
         "cmd": cmd,
         "argv": argv,
         "exit_code": rc,
+        "interrupted": interrupted,
+        "cost_accounting": "LOWER_BOUND" if interrupted else "COMPLETE",
         "seconds": round(dur, 1),
         "env": env,
-        "outputs": touched[:25],
+        "outputs": touched[:INLINE_OUTPUTS],
+        "outputs_total_count": len(touched),
+        "outputs_truncated_inline": len(touched) > INLINE_OUTPUTS,
+        "output_manifest": manifest,
         "harvested": harvest(text),
         "stdout_tail": lines[-40:],
     }
@@ -283,6 +397,8 @@ def do_run(a):
     if entry["harvested"]:
         for k, v in entry["harvested"].items():
             print(f"     {k} = {v}")
+    if interrupted:
+        print("  本次为人为中断：已落账的成本是下界，未落盘的尾部记 UNKNOWN。")
     return rc
 
 
@@ -392,7 +508,21 @@ def do_verify(a):
     if badc:
         print("\n  「不符」不一定是坏事 —— 重跑同名输出就会变。它说明的是："
               "\n  这个文件已经不是那条记录产生的那一个了，引用时要指向新的那次运行。")
-    return 0
+    # F16: this printed its findings and then returned 0 whatever it found, so
+    # an automated caller that only inspects the exit code read "three recorded
+    # outputs are gone" as a clean verification.  Report the states in the exit
+    # code; the human-readable text above is unchanged.
+    #   0 complete and consistent
+    #   3 one or more recorded outputs are missing
+    #   4 one or more recorded outputs hash differently
+    #   5 both
+    status = (3 if gone else 0) + (4 if badc else 0)
+    if status == 7:
+        status = 5
+    if status:
+        print(f"\n  退出码 {status}：缺失={gone}，不符={badc}。"
+              "读取成功不等于证据一致，自动流程请按退出码分支，不要只看进程成功。")
+    return status
 
 
 def main():

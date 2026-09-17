@@ -122,21 +122,68 @@ def evaluate_net(net: D.DCO, specs: list[dict], groups: list[tuple[str, tuple[in
     return rows
 
 
+def _subset_spec(spec: dict, indices: list[int]) -> dict:
+    """A spec holding only the listed plane waves, keeping their own phases."""
+    out = dict(spec)
+    out["k_rad_per_m"] = [spec["k_rad_per_m"][i] for i in indices]
+    out["amplitude"] = [spec["amplitude"][i] for i in indices]
+    if "phase_rad" in spec:
+        out["phase_rad"] = [spec["phase_rad"][i] for i in indices]
+    return out
+
+
 def diagnostics(net: D.DCO, spec: dict, device: str) -> dict:
-    e, _, h = sample_spec(spec, (32, 32, 32), 19.2e-3)
+    """Additivity and homogeneity controls.
+
+    E01: the superposition test used to compare ``D(e)`` -- the network on ALL
+    of the sampled waves -- against ``D(e1) + D(e2)``, the network on the first
+    TWO waves only.  A generator that draws 4 to 16 waves therefore charged
+    every wave it left out to "nonlinearity": a strictly linear identity
+    operator scores 0.829798 on that comparison and 0 on the real one.  The
+    same-input test below splits the SAME wave set into two halves whose sum
+    is the full input, and the historical partial-sum quantity is kept under a
+    name that says what it was.
+    """
+    shape = (32, 32, 32)
+    e, _, h = sample_spec(spec, shape, 19.2e-3)
     p, _ = predict(net, e, h, device)
     p2, _ = predict(net, 2.0 * e, h, device)
     zero, _ = predict(net, np.zeros_like(e), h, device)
-    first = dict(spec); first["k_rad_per_m"] = [spec["k_rad_per_m"][0]]; first["amplitude"] = [spec["amplitude"][0]]; first["phase_rad"] = [0.0]
-    second = dict(spec); second["k_rad_per_m"] = [spec["k_rad_per_m"][1]]; second["amplitude"] = [spec["amplitude"][1]]; second["phase_rad"] = [0.0]
-    e1, _, _ = sample_spec(first, (32, 32, 32), 19.2e-3)
-    e2, _, _ = sample_spec(second, (32, 32, 32), 19.2e-3)
-    p1, _ = predict(net, e1, h, device); p_2, _ = predict(net, e2, h, device)
+
+    count = len(spec["k_rad_per_m"])
+    half = max(1, count // 2)
+    spec_a = _subset_spec(spec, list(range(half)))
+    spec_b = _subset_spec(spec, list(range(half, count)))
+    e_a, _, _ = sample_spec(spec_a, shape, 19.2e-3)
+    e_b, _, _ = sample_spec(spec_b, shape, 19.2e-3)
+    # The split must reconstruct the original input exactly, otherwise the
+    # additivity number is measuring the split and not the operator.
+    split_residual = float(np.max(np.abs(e_a + e_b - e)))
+    p_a, _ = predict(net, e_a, h, device)
+    p_b, _ = predict(net, e_b, h, device)
+    additivity = float(np.linalg.norm((p - p_a - p_b).ravel()) /
+                       max(np.linalg.norm(p.ravel()), 1e-30))
+
+    # The historical (incorrect) comparison, reproduced so old and new numbers
+    # can be lined up.  It is NOT a nonlinearity measurement.
+    first = _subset_spec(spec, [0])
+    second = _subset_spec(spec, [1]) if count > 1 else _subset_spec(spec, [0])
+    e1, _, _ = sample_spec(first, shape, 19.2e-3)
+    e2, _, _ = sample_spec(second, shape, 19.2e-3)
+    p1, _ = predict(net, e1, h, device)
+    p_2, _ = predict(net, e2, h, device)
+    legacy = float(np.linalg.norm((p - p1 - p_2).ravel()) / max(np.linalg.norm(p.ravel()), 1e-30))
     return {
         "zero_output_max_abs": float(np.max(np.abs(zero))),
         "positive_amplitude_homogeneity_max_abs": float(np.max(np.abs(p2 - 2.0 * p))),
-        "superposition_defect_relative_l2": float(np.linalg.norm((p - p1 - p_2).ravel()) /
-                                                     max(np.linalg.norm(p.ravel()), 1e-30)),
+        "superposition_defect_relative_l2": additivity,
+        "superposition_wave_count": count,
+        "superposition_split": [half, count - half],
+        "superposition_split_input_residual_max_abs": split_residual,
+        "legacy_partial_sum_defect_relative_l2": legacy,
+        "legacy_partial_sum_note": (
+            "E01：旧字段把全部波的输出与前两束波输出之和比较，漏掉的波会被计入"
+            "“非线性”；严格线性算子也会得到较大值。它不是非线性度量，只保留作对照。"),
         "note": "幅值齐次性受输入RMS归一化和可逆反归一化强烈约束，只作控制，不计泛化成绩。",
     }
 

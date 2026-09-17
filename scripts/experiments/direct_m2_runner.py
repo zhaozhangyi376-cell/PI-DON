@@ -174,26 +174,88 @@ def sum_cost(rows: list[dict[str, Any]]) -> dict[str, int]:
     return total
 
 
+def jsonl_cost(run_dir: Path) -> dict[str, int] | None:
+    """Recover a lower bound on an arm's cost from its committed step log.
+
+    An arm that died before writing summary.json still has every committed
+    row on disk.  Reading them is what makes a missing summary an UNKNOWN
+    tail instead of a zero.
+    """
+    steps_path = run_dir / "steps.jsonl"
+    if not steps_path.is_file():
+        return None
+    rows: list[dict[str, Any]] = []
+    try:
+        for line in steps_path.read_text(encoding="utf-8").splitlines():
+            if line.strip():
+                rows.append(json.loads(line))
+    except (json.JSONDecodeError, OSError, UnicodeDecodeError):
+        return None
+    return sum_cost(rows)
+
+
 def existing_m2_cost(exclude_arm: str | None = None) -> dict[str, int]:
+    """Cost already spent by the other arms, with an explicit unknown tail.
+
+    F26: this used to walk only well-formed summaries and ``continue`` past
+    everything else, so an arm whose summary was missing or unparsable counted
+    as ZERO -- and the next arm then started against a budget that had already
+    been spent.  A committed steps.jsonl is now read as a lower bound, and an
+    arm whose cost cannot be established at all is listed under
+    ``unknown_arms``.  Callers must treat a non-empty ``unknown_arms`` as "the
+    remaining budget is not known", never as "nothing was spent".
+    """
     total = {"adam": 0, "closures": 0, "lbfgs_steps": 0}
-    for summary_path in RUNS.glob("*/summary.json"):
-        if exclude_arm and summary_path.parent.name == exclude_arm.replace("-", "_"):
+    unknown: list[str] = []
+    lower_bound_only: list[str] = []
+    seen: set[str] = set()
+    for run_dir in sorted(path for path in RUNS.glob("*") if path.is_dir()):
+        if exclude_arm and run_dir.name == exclude_arm.replace("-", "_"):
             continue
-        try:
-            summary = read_json(summary_path)
-        except Exception:
+        seen.add(run_dir.name)
+        summary_path = run_dir / "summary.json"
+        summary = None
+        if summary_path.is_file():
+            try:
+                candidate = read_json(summary_path)
+            except Exception:                                     # noqa: BLE001
+                candidate = None
+            if isinstance(candidate, dict) and candidate.get("schema") == "direct-mechanism-m2-arm-summary-v1":
+                summary = candidate
+        if summary is not None:
+            budget = summary.get("budget", {})
+            total["adam"] += int(budget.get("adam", 0) or 0)
+            total["closures"] += int(budget.get("closures", 0) or 0)
+            total["lbfgs_steps"] += int(budget.get("lbfgs_steps", 0) or 0)
             continue
-        if summary.get("schema") != "direct-mechanism-m2-arm-summary-v1":
+        recovered = jsonl_cost(run_dir)
+        if recovered is None:
+            unknown.append(run_dir.name)
             continue
-        budget = summary.get("budget", {})
-        total["adam"] += int(budget.get("adam", 0) or 0)
-        total["closures"] += int(budget.get("closures", 0) or 0)
-        total["lbfgs_steps"] += int(budget.get("lbfgs_steps", 0) or 0)
+        lower_bound_only.append(run_dir.name)
+        for key in total:
+            total[key] += recovered[key]
+    total["unknown_arms"] = unknown
+    total["lower_bound_arms"] = lower_bound_only
+    total["is_lower_bound"] = bool(unknown or lower_bound_only)
+    total["cost_accounting_status"] = "UNKNOWN" if unknown else (
+        "LOWER_BOUND" if lower_bound_only else "COMPLETE")
     return total
 
 
 def classify_stop(stop: dict[str, Any] | None, accepted_steps: int, target_steps: int) -> str:
+    """Numerical progress and engineering delivery are two different verdicts.
+
+    F25: reaching the target step count was tested FIRST, so an arm whose final
+    checkpoint write raised was still classified PASS.  Physics that advanced
+    but could not be persisted is not a deliverable result -- an exception
+    outranks the step count.
+    """
+    if stop and stop.get("reason") == "EXCEPTION":
+        return "EXCEPTION"
     if accepted_steps >= target_steps:
+        if stop and stop.get("reason") not in (None, "TARGET_REACHED"):
+            return "INCOMPLETE"
         return "PASS"
     if not stop:
         return "INCOMPLETE"
@@ -201,8 +263,6 @@ def classify_stop(stop: dict[str, Any] | None, accepted_steps: int, target_steps
         return "RESOURCE_LIMIT"
     if stop.get("reason") == "FIT_FAIL":
         return "FAIL"
-    if stop.get("reason") == "EXCEPTION":
-        return "EXCEPTION"
     return "INCOMPLETE"
 
 
@@ -283,6 +343,17 @@ def run_arm(arm: str, action_id: str, device: str) -> dict[str, Any]:
     np.random.seed(config.seed)
     torch.manual_seed(config.seed)
     global_base = existing_m2_cost(exclude_arm=arm)
+    # F26: never start a new arm against a budget whose spent total is only a
+    # lower bound.  An unresolved arm has to be audited or explicitly written
+    # off before the remaining allowance means anything.
+    if global_base.get("unknown_arms"):
+        raise SystemExit(
+            "拒绝开训：以下臂的成本无法确定，剩余预算是 UNKNOWN 而不是零："
+            f"{global_base['unknown_arms']}。请先核对这些运行的 steps.jsonl/行动日志，"
+            "或登记独立新实验，不要用重算出的“未消耗”重新领取总预算。")
+    if global_base.get("lower_bound_arms"):
+        print("  警告：以下臂只能由 steps.jsonl 复原成本下界，总预算按下界计算："
+              f"{global_base['lower_bound_arms']}", flush=True)
     solver = S.Solver(config, device)
     ref = fdtd.PECCavity(side=config.side, n=config.n, dt=config.dt)
     run_id = hashlib.sha256(f"{manifest['experiment_id']}|{SCHEMA}|{arm}".encode()).hexdigest()[:24]
@@ -380,6 +451,7 @@ def run_arm(arm: str, action_id: str, device: str) -> dict[str, Any]:
         "stop": stop,
         "budget": budget,
         "global_budget_before": global_base,
+        "global_budget_accounting_status": global_base.get("cost_accounting_status"),
         "global_budget_after": {
             "adam": global_base["adam"] + budget["adam"],
             "closures": global_base["closures"] + budget["closures"],

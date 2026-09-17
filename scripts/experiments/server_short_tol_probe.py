@@ -75,37 +75,235 @@ def copy_source_snapshot(out: Path, protocol_rel: str | None = None) -> dict[str
     return copied
 
 
+#: Every component the registered field gate claims to cover.  F02: the gate
+#: started from ``component_pass = True`` and then iterated over whatever
+#: components happened to be present, so an empty or three-component record
+#: passed the component half of the gate outright.
+REQUIRED_COMPONENTS = ("Ex", "Ey", "Ez", "Hx", "Hy", "Hz")
+COMPONENT_NMAE_GATE = 0.01
+Q_GATE = 0.05
+FIXED_AMPLITUDE_GATE = 1e-3
+#: Relative L2 of the whole source-outside Ez probe waveform, DUT vs reference.
+SOURCE_OUTSIDE_REL_L2_GATE = 0.05
+
+
+def _finite(value: Any) -> float | None:
+    """A float that is present and finite, else None.  NaN never passes a gate."""
+    if value is None:
+        return None
+    try:
+        number = float(value)
+    except (TypeError, ValueError):
+        return None
+    return number if np.isfinite(number) else None
+
+
 def field_gate(row: dict[str, Any]) -> dict[str, Any]:
+    """Endpoint field gate.
+
+    Three things changed after the 20260917 review:
+    absent components are INCOMPLETE instead of silently passing, a non-finite
+    metric can no longer be read as "small enough", and the source-outside
+    probes take part in the verdict instead of being copied into the result.
+    """
     metrics = row.get("six_component_metrics") or {}
     components = metrics.get("components") or {}
-    component_rows = {}
-    component_pass = True
-    for name, item in components.items():
+    component_rows: dict[str, Any] = {}
+    missing = [name for name in REQUIRED_COMPONENTS if name not in components]
+    unexpected = sorted(set(components) - set(REQUIRED_COMPONENTS))
+    component_pass = not missing and not unexpected
+    for name in REQUIRED_COMPONENTS:
+        item = components.get(name)
+        if not isinstance(item, dict):
+            component_rows[name] = {"pass": False, "weak_reference": None,
+                                    "reason": "component_absent"}
+            continue
         weak = bool(item.get("weak_reference"))
         if weak:
-            passed = bool(item.get("weak_absolute_pass"))
-            reason = f"weak_absolute_pass={passed}"
+            absolute = _finite(item.get("absolute_mae"))
+            declared = item.get("weak_absolute_pass")
+            gate = _finite(item.get("weak_absolute_gate")) or 1e-5
+            passed = bool(declared) and absolute is not None and absolute <= gate
+            reason = f"weak_absolute_mae={item.get('absolute_mae')} gate={gate} declared={declared}"
         else:
-            nmae = item.get("nmae")
-            passed = nmae is not None and float(nmae) <= 0.01
-            reason = f"nmae={nmae}"
+            nmae = _finite(item.get("nmae"))
+            passed = nmae is not None and nmae <= COMPONENT_NMAE_GATE
+            reason = f"nmae={item.get('nmae')}"
         component_rows[name] = {"pass": passed, "weak_reference": weak, "reason": reason}
         component_pass = component_pass and passed
-    q = metrics.get("global_weighted_relative_l2")
-    fixed = metrics.get("fixed_amplitude_error")
-    q_pass = q is not None and float(q) <= 0.05
-    fixed_pass = fixed is not None and float(fixed) <= 1e-3
+    q = _finite(metrics.get("global_weighted_relative_l2"))
+    fixed = _finite(metrics.get("fixed_amplitude_error"))
+    q_pass = q is not None and q <= Q_GATE
+    fixed_pass = fixed is not None and fixed <= FIXED_AMPLITUDE_GATE
+    probe = source_outside_probe_check(row.get("source_outside_probes"))
+    complete = not missing and not unexpected and probe["complete"]
+    status = "PASS" if (complete and component_pass and q_pass and fixed_pass and probe["pass"]) \
+        else ("INCOMPLETE" if not complete else "FAIL")
     return {
-        "pass": bool(component_pass and q_pass and fixed_pass),
-        "global_weighted_relative_l2": q,
+        "pass": status == "PASS",
+        "status": status,
+        "complete": complete,
+        "missing_components": missing,
+        "unexpected_components": unexpected,
+        "global_weighted_relative_l2": metrics.get("global_weighted_relative_l2"),
         "global_weighted_relative_l2_le_5pct": q_pass,
-        "fixed_amplitude_error": fixed,
+        "fixed_amplitude_error": metrics.get("fixed_amplitude_error"),
         "fixed_amplitude_error_le_1e_minus_3": fixed_pass,
         "component_pass": component_pass,
         "components": component_rows,
+        "source_outside_probe_check": probe,
         "source_outside_probes": row.get("source_outside_probes"),
         "source_probe_Ez": row.get("source_probe_Ez"),
     }
+
+
+def source_outside_probe_check(probes: Any) -> dict[str, Any]:
+    """Score the registered source-outside probes instead of only copying them.
+
+    F02: the probes existed in the record but never entered the verdict, so a
+    gate could pass while the field away from the hard source disagreed with
+    the reference.
+    """
+    if not isinstance(probes, list) or not probes:
+        return {"complete": False, "pass": False, "reason": "no_source_outside_probes",
+                "probe_count": 0}
+    error_ss = reference_ss = 0.0
+    worst = None
+    for item in probes:
+        if not isinstance(item, dict):
+            return {"complete": False, "pass": False, "reason": "malformed_probe",
+                    "probe_count": len(probes)}
+        dut = _finite(item.get("dut_Ez"))
+        ref = _finite(item.get("ref_Ez"))
+        if dut is None or ref is None:
+            return {"complete": False, "pass": False, "reason": "non_finite_probe",
+                    "probe_count": len(probes)}
+        error_ss += (dut - ref) ** 2
+        reference_ss += ref * ref
+        worst = max(worst if worst is not None else 0.0, abs(dut - ref))
+    relative = float(np.sqrt(error_ss / reference_ss)) if reference_ss > 0 else None
+    passed = relative is not None and relative <= SOURCE_OUTSIDE_REL_L2_GATE
+    return {
+        "complete": True,
+        "pass": bool(passed),
+        "probe_count": len(probes),
+        "relative_l2": relative,
+        "max_abs_error": worst,
+        "reference_energy": reference_ss,
+        "gate": SOURCE_OUTSIDE_REL_L2_GATE,
+        "reason": "zero_reference_energy" if relative is None else "relative_l2",
+    }
+
+
+def window_field_gate(rows: list[dict[str, Any]], through_step: int) -> dict[str, Any]:
+    """The whole-window gate the plan asks for, not just the endpoint.
+
+    Endpoint metrics cannot see a trajectory that is good at step 64 and bad
+    at step 40, and they cannot see the source-outside waveform at all.  This
+    scores every accepted layer up to ``through_step`` and, separately, the
+    full source-outside Ez waveform as one relative L2.
+    """
+    accepted = [row for row in rows
+                if row.get("accepted") and int(row.get("accepted_steps") or 0) <= through_step]
+    if not accepted:
+        return {"status": "INCOMPLETE", "pass": False, "reason": "no_accepted_rows",
+                "through_step": through_step, "rows_scored": 0}
+    if int(accepted[-1].get("accepted_steps") or 0) != through_step:
+        return {"status": "INCOMPLETE", "pass": False, "reason": "window_not_reached",
+                "through_step": through_step, "rows_scored": len(accepted)}
+    seen = sorted(int(row.get("accepted_steps") or 0) for row in accepted)
+    if seen != list(range(1, through_step + 1)):
+        return {"status": "INCOMPLETE", "pass": False, "reason": "window_has_gaps",
+                "through_step": through_step, "rows_scored": len(accepted)}
+    worst_q = worst_q_step = None
+    worst_component: dict[str, Any] = {}
+    incomplete_steps: list[int] = []
+    error_ss = reference_ss = 0.0
+    probe_steps = 0
+    for row in accepted:
+        step = int(row.get("accepted_steps") or 0)
+        gate = field_gate(row)
+        if not gate["complete"]:
+            incomplete_steps.append(step)
+        q = _finite((row.get("six_component_metrics") or {}).get("global_weighted_relative_l2"))
+        if q is None:
+            incomplete_steps.append(step)
+        elif worst_q is None or q > worst_q:
+            worst_q, worst_q_step = q, step
+        for name, item in gate["components"].items():
+            if not item["pass"] and name not in worst_component:
+                worst_component[name] = {"step": step, "reason": item["reason"]}
+        probes = row.get("source_outside_probes")
+        if isinstance(probes, list) and probes:
+            probe_steps += 1
+            for entry in probes:
+                dut = _finite((entry or {}).get("dut_Ez"))
+                ref = _finite((entry or {}).get("ref_Ez"))
+                if dut is None or ref is None:
+                    incomplete_steps.append(step)
+                    continue
+                error_ss += (dut - ref) ** 2
+                reference_ss += ref * ref
+        else:
+            incomplete_steps.append(step)
+    waveform_relative = float(np.sqrt(error_ss / reference_ss)) if reference_ss > 0 else None
+    incomplete = sorted(set(incomplete_steps))
+    q_pass = worst_q is not None and worst_q <= Q_GATE
+    component_pass = not worst_component
+    waveform_pass = waveform_relative is not None and waveform_relative <= SOURCE_OUTSIDE_REL_L2_GATE
+    if incomplete:
+        status = "INCOMPLETE"
+    elif q_pass and component_pass and waveform_pass:
+        status = "PASS"
+    else:
+        status = "FAIL"
+    return {
+        "status": status,
+        "pass": status == "PASS",
+        "through_step": through_step,
+        "rows_scored": len(accepted),
+        "incomplete_steps": incomplete,
+        "worst_global_weighted_relative_l2": worst_q,
+        "worst_global_weighted_relative_l2_step": worst_q_step,
+        "worst_global_weighted_relative_l2_le_5pct": q_pass,
+        "first_failing_component_step": worst_component,
+        "component_pass_all_steps": component_pass,
+        "source_outside_waveform_relative_l2": waveform_relative,
+        "source_outside_waveform_pass": waveform_pass,
+        "source_outside_waveform_steps": probe_steps,
+        "gates": {"component_nmae": COMPONENT_NMAE_GATE, "global_relative_l2": Q_GATE,
+                  "source_outside_relative_l2": SOURCE_OUTSIDE_REL_L2_GATE},
+    }
+
+
+def recovery_eligible(recorder: Any, solver: Any, status: str, stop: dict[str, Any] | None) -> dict[str, Any]:
+    """Recovery eligibility from verified state, not from "we stopped nicely".
+
+    A resumable claim needs a committed checkpoint that actually loads, a
+    non-terminal fit state, and a stop that was a resource limit rather than a
+    fit failure.  Each condition is reported so a reader can see WHICH one
+    failed instead of a bare boolean.
+    """
+    reasons: dict[str, Any] = {
+        "status_is_resource_limit": status == "RESOURCE_LIMIT",
+        "stopped_without_failed_row": stop is not None and not stop.get("row"),
+    }
+    try:
+        payload = recorder.load_rolling_checkpoint()
+        reasons["committed_checkpoint_loads"] = True
+        reasons["checkpoint_sequence_id"] = payload.get("last_committed_sequence_id")
+    except Exception as error:                                  # noqa: BLE001
+        reasons["committed_checkpoint_loads"] = False
+        reasons["checkpoint_error"] = f"{type(error).__name__}: {error}"
+    progress = getattr(solver, "fit_progress", {}) or {}
+    terminal = [which for which, item in progress.items()
+                if not bool((item or {}).get("resumable", True))
+                or (item or {}).get("stop_reason") in S.TERMINAL_FIT_REASONS]
+    reasons["terminal_fit_roles"] = terminal
+    reasons["eligible"] = bool(
+        reasons["status_is_resource_limit"] and reasons["stopped_without_failed_row"]
+        and reasons.get("committed_checkpoint_loads") and not terminal)
+    return reasons
 
 
 def fmt_progress(value: Any, precision: int = 3) -> str:
@@ -370,18 +568,30 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
     if last and int(args.micro_gate_steps) > 0 and int(last.get("accepted_steps", 0)) >= int(args.micro_gate_steps):
         micro_gate = field_gate(last)
     budget = sum_cost(rows)
+    # The endpoint gate is one snapshot.  The registered protocol asks for the
+    # whole active window plus the source-outside waveform, so score that too
+    # and let a scientific PASS require BOTH.  A window that is not complete
+    # reports INCOMPLETE and never a PASS.
+    def verdict(label: str, window_step: int, endpoint: dict[str, Any] | None) -> tuple[str, dict[str, Any]]:
+        window = window_field_gate(rows, window_step)
+        if endpoint is None:
+            return "FAIL" if window["status"] == "FAIL" else "INCOMPLETE", window
+        if endpoint["status"] == "INCOMPLETE" or window["status"] == "INCOMPLETE":
+            return "INCOMPLETE", window
+        return (label if (endpoint["pass"] and window["pass"]) else "FAIL"), window
+
     if int(args.micro_gate_steps) > 0:
         reached_micro = int(solver.accepted_steps) >= int(args.micro_gate_steps)
         status = "PASS" if reached_micro else ("RESOURCE_LIMIT" if (stop or {}).get("reason") == "RESOURCE_LIMIT" else "FAIL")
-        scientific = "PASS_MICRO" if micro_gate and micro_gate["pass"] else "FAIL"
+        scientific, window_gate = verdict("PASS_MICRO", int(args.micro_gate_steps), micro_gate)
     elif int(requested_steps) >= 128:
         reached128 = int(solver.accepted_steps) >= 128
         status = "PASS" if reached128 else ("RESOURCE_LIMIT" if (stop or {}).get("reason") == "RESOURCE_LIMIT" else "FAIL")
-        scientific = "PASS_128" if gate128 and gate128["pass"] else "FAIL"
+        scientific, window_gate = verdict("PASS_128", 128, gate128)
     else:
         reached64 = int(solver.accepted_steps) >= 64
         status = "PASS" if reached64 else ("RESOURCE_LIMIT" if (stop or {}).get("reason") == "RESOURCE_LIMIT" else "FAIL")
-        scientific = "PASS_64" if gate64 and gate64["pass"] else "FAIL"
+        scientific, window_gate = verdict("PASS_64", 64, gate64)
     summary = {
         "schema": SCHEMA,
         "action_id": args.action_id,
@@ -399,8 +609,9 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
         "field_gate_64": gate64,
         "field_gate_128": gate128,
         "field_gate_micro": micro_gate,
+        "field_gate_window": window_gate,
         "last_accepted_step": last,
-        "recovery_eligible": status == "RESOURCE_LIMIT" and stop is not None and not stop.get("row"),
+        "recovery_eligible": recovery_eligible(recorder, solver, status, stop),
         "run_dir": display(out),
         "checkpoint_pointer": display(out / "checkpoint_pointer.json"),
     }
@@ -413,9 +624,13 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
         f"- Status: `{status}`; scientific_result: `{scientific}`",
         f"- Accepted steps: `{summary['accepted_steps']}`",
         f"- Adam updates: `{budget['adam']}`; closures: `{budget['closures']}`",
-        f"- Micro-step field gate: `{None if micro_gate is None else micro_gate['pass']}`",
-        f"- 64-step field gate: `{None if gate64 is None else gate64['pass']}`",
-        f"- Recovery eligible: `{summary['recovery_eligible']}`",
+        f"- Micro-step field gate: `{None if micro_gate is None else micro_gate['status']}`",
+        f"- 64-step field gate: `{None if gate64 is None else gate64['status']}`",
+        f"- Whole-window field gate: `{window_gate['status']}` "
+        f"(worst Q `{window_gate.get('worst_global_weighted_relative_l2')}`, "
+        f"source-outside waveform relL2 `{window_gate.get('source_outside_waveform_relative_l2')}`)",
+        f"- Recovery eligible: `{summary['recovery_eligible']['eligible']}` "
+        f"({S._json_safe(summary['recovery_eligible'])})",
         "",
         "Original G128 failure remains unchanged. 1024/8192 require a separate SR-G128 review.",
     ]

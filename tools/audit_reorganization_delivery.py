@@ -43,6 +43,50 @@ def runs(folder):
     return result
 
 
+def backup_reverification():
+    """Compare each saved original backup with its REGISTERED sha256_before.
+
+    Reports what differs; never writes a corrected hash back into the
+    migration map.  A line-ending-only difference is reported separately from
+    an unexplained one, because the two mean different things.
+    """
+    mapping_path = ROOT / 'project/migration_map.json'
+    backup_dir = OUT / 'before/root'
+    if not mapping_path.is_file() or not backup_dir.is_dir():
+        return {'status': 'INCOMPLETE', 'reason': 'migration map or backup directory is absent'}
+    rows = json.loads(mapping_path.read_text(encoding='utf-8')).get('files', [])
+    matched, line_ending_only, unexplained, absent = [], [], [], []
+    for row in rows:
+        name = row.get('old')
+        registered = row.get('sha256_before')
+        if not name or not registered:
+            continue
+        path = backup_dir / name
+        if not path.is_file():
+            absent.append(name)
+            continue
+        raw = path.read_bytes()
+        if hashlib.sha256(raw).hexdigest() == registered:
+            matched.append(name)
+            continue
+        variants = (raw.replace(b'\r\n', b'\n'), raw.replace(b'\n', b'\r\n'))
+        if any(hashlib.sha256(variant).hexdigest() == registered for variant in variants):
+            line_ending_only.append(name)
+        else:
+            unexplained.append(name)
+    return {
+        'status': 'COMPLETE',
+        'checked': len(matched) + len(line_ending_only) + len(unexplained),
+        'matched': len(matched),
+        'line_ending_only': sorted(line_ending_only),
+        'unexplained': sorted(unexplained),
+        'backups_absent': sorted(absent),
+        'registered_hashes_rewritten': False,
+        'note': '登记的 sha256_before 保持原值；差异只报告不覆盖，'
+                '换行差异与未解释差异分列，二者都不证明权重或场数据损坏。',
+    }
+
+
 def main():
     from project_paths import configure
     configure()
@@ -88,9 +132,24 @@ def main():
         'root_files': root_files, 'unexpected_root_files': unexpected,
         'plan_validation_errors': errors,
         'next_tasks': [t['id'] for t in available_tasks(state, read_events(ROOT))],
-        'migration_integrity': layout['all_file_checks_pass'], 'moved_files': layout['moved_file_count'],
+        # L07: ``all_file_checks_pass`` is a CACHED verdict from an earlier
+        # layout_validation run.  Re-verify the original backups against the
+        # registered sha256_before here, because a consumer that reads only
+        # the cached boolean cannot notice that 89 of 114 backups no longer
+        # match their registered bytes.  The registered values are never
+        # overwritten with fresh hashes -- that would erase the discrepancy
+        # instead of reporting it.
+        'migration_integrity': layout['all_file_checks_pass'],
+        'migration_integrity_cached_from': 'layout_validation.json',
+        'backup_reverification': backup_reverification(),
+        'moved_files': layout['moved_file_count'],
         'lab_runs': required_runs, 'production_training_updates_this_delivery': 0,
         'all_new_research_stages': 'NOT_RUN',
+        # L06: the JSON used to be published BEFORE the assertions below ran,
+        # so a failed audit could leave a document whose three fields still
+        # satisfied the report generator.  The status starts as INCOMPLETE and
+        # is only rewritten to COMPLETE once every assertion has passed.
+        'audit_status': 'INCOMPLETE',
     }
     (OUT / 'audit.json').write_text(json.dumps(result, ensure_ascii=False, indent=2, default=str), encoding='utf-8')
     assert old_sum == 34939 and new_sum == 4719
@@ -98,6 +157,8 @@ def main():
     assert not errors and not unexpected and result['migration_integrity']
     assert required_runs['268']['exit_code'] == 0 and required_runs['270']['exit_code'] == 0
     assert required_runs['272']['exit_code'] == 0
+    result['audit_status'] = 'COMPLETE'
+    (OUT / 'audit.json').write_text(json.dumps(result, ensure_ascii=False, indent=2, default=str), encoding='utf-8')
     print(json.dumps({'old_recorded': old_sum, 'old_exact': None, 'old_lower_bound': old_sum + tail_lower,
                       'new_recorded': new_sum, 'moved_files': result['moved_files'],
                       'plan_check': 'PASS', 'next_tasks': result['next_tasks'],

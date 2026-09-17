@@ -45,26 +45,72 @@ def lab_record(run_id: int) -> dict[str, Any] | None:
     return None
 
 
+#: A control is only verified against a source manifest that actually names
+#: the modules whose bytes define the dynamics.  F29: the old loops iterated
+#: over whatever the table happened to hold, so an EMPTY hash table satisfied
+#: both of them vacuously.
+REQUIRED_SNAPSHOT_SOURCES = ("pidon_solve.py", "pidon_contract.py", "fdtd.py", "dco.py")
+EXPECTED_CONTROL_ROWS = 128
+
+
+def disk_rows(run_dir: Path) -> list[dict[str, Any]] | None:
+    """The run's own steps.jsonl, which is the single source of truth."""
+    steps_path = run_dir / "steps.jsonl"
+    if not steps_path.is_file():
+        return None
+    try:
+        return [json.loads(line) for line in steps_path.read_text(encoding="utf-8").splitlines() if line.strip()]
+    except json.JSONDecodeError:
+        return None
+
+
 def control_integrity(result: dict[str, Any], run_dir: Path) -> bool:
-    metadata_path, steps_path = run_dir / "run_metadata.json", run_dir / "steps.jsonl"
-    if not metadata_path.is_file() or not steps_path.is_file(): return False
+    metadata_path = run_dir / "run_metadata.json"
+    if not metadata_path.is_file(): return False
     metadata = load_json(metadata_path)
     identity = result.get("identity", {})
     if any(metadata.get(key) != identity.get(key) for key in ("run_id", "protocol_hash")): return False
     snapshot_hashes = result.get("source_snapshot_hashes") or {}
-    for name, digest in snapshot_hashes.items():
-        if sha256_file(run_dir / "source_snapshot" / name) != digest: return False
-    for name, digest in identity.get("source_hashes", {}).items():
-        if sha256_file(run_dir / "source_snapshot" / name) != digest: return False
-    try:
-        rows = [json.loads(line) for line in steps_path.read_text(encoding="utf-8").splitlines()]
-    except json.JSONDecodeError:
-        return False
-    return [row.get("sequence_id") for row in rows] == list(range(len(rows))) == list(range(128))
+    identity_hashes = identity.get("source_hashes", {}) or {}
+    # An absent or partial source manifest is a failure, not a pass by default.
+    for table in (snapshot_hashes, identity_hashes):
+        if not table: return False
+        if any(name not in table for name in REQUIRED_SNAPSHOT_SOURCES): return False
+        for name, digest in table.items():
+            if not digest: return False
+            if sha256_file(run_dir / "source_snapshot" / name) != digest: return False
+    rows = disk_rows(run_dir)
+    if rows is None: return False
+    if [row.get("sequence_id") for row in rows] != list(range(EXPECTED_CONTROL_ROWS)): return False
+    # Bind the summary's own rows to the disk rows.  Without this the numeric
+    # check scored a private copy inside the summary that nothing on disk had
+    # to agree with.
+    summary_rows = result.get("rows", [])
+    if len(summary_rows) != len(rows): return False
+    for recorded, stored in zip(summary_rows, rows):
+        for key in ("step", "accepted", "accepted_steps"):
+            if recorded.get(key) != stored.get(key): return False
+    return True
 
 
-def control_numeric(result: dict[str, Any], *, threshold: float, should_pass: bool) -> tuple[bool, dict[str, Any]]:
+def control_numeric(result: dict[str, Any], *, threshold: float, should_pass: bool,
+                    run_dir: Path | None = None) -> tuple[bool, dict[str, Any]]:
+    """Score one control run.
+
+    ``should_pass=False`` means "this is a negative control: the checker must
+    REJECT it".  F29: that used to be satisfied by ``not numeric_ok``, so
+    deleting a probe list -- a structural defect, not a physical error -- made
+    a negative control "succeed" without showing that the verifier can spot a
+    wrong field.  A negative control now has to be structurally complete FIRST
+    and then be rejected on its numbers.
+    """
     rows = result.get("rows", [])
+    if run_dir is not None:
+        stored = disk_rows(run_dir)
+        if stored is None or len(stored) != len(rows):
+            return False, {"rows": len(rows), "disk_rows": None if stored is None else len(stored),
+                           "structural_complete": False, "numeric_ok": False,
+                           "status": "INCOMPLETE", "reason": "summary rows do not bind to steps.jsonl"}
     steps = [row.get("step") for row in rows]
     accepted = all(row.get("accepted") is True and row.get("accepted_steps") == i + 1
                    for i, row in enumerate(rows))
@@ -82,15 +128,33 @@ def control_numeric(result: dict[str, Any], *, threshold: float, should_pass: bo
     max_rel = max(rel) if finite and rel else None
     max_fixed = max(fixed) if finite and fixed else None
     max_probe = max(probe) if finite and probe else None
-    numeric_ok = (len(rows) == 128 and steps == list(range(128)) and accepted and six and fields and
-                  len(probe) == 384 and finite and max_rel <= threshold and max_fixed <= threshold and
-                  max_probe <= threshold and result.get("support", {}).get("uncovered") == 0 and
-                  result.get("reference_dtype") == "float64" and result.get("control_only") is True)
-    return (numeric_ok if should_pass else not numeric_ok), {
+    # Structure and numbers are two different verdicts.  "The record is
+    # missing rows/probes/fields" is INCOMPLETE; "the record is whole but the
+    # field is wrong" is the numeric rejection a negative control must earn.
+    structural_complete = (len(rows) == 128 and steps == list(range(128)) and accepted and six
+                           and fields and len(probe) == 384 and finite
+                           and result.get("support", {}).get("uncovered") == 0
+                           and result.get("reference_dtype") == "float64"
+                           and result.get("control_only") is True)
+    within_threshold = (structural_complete and max_rel is not None and max_fixed is not None
+                        and max_probe is not None and max_rel <= threshold
+                        and max_fixed <= threshold and max_probe <= threshold)
+    numeric_ok = bool(structural_complete and within_threshold)
+    if should_pass:
+        verdict = numeric_ok
+        status = "PASS" if numeric_ok else ("INCOMPLETE" if not structural_complete else "FAIL")
+    else:
+        # A valid negative control: complete record, detectably wrong numbers.
+        verdict = bool(structural_complete and not within_threshold)
+        status = ("PASS" if verdict else
+                  "INCOMPLETE" if not structural_complete else "FAIL")
+    return verdict, {
         "rows": len(rows), "step_sequence_ok": steps == list(range(128)), "accepted_rows": accepted,
         "six_components": six, "metric_fields": fields, "finite": finite, "max_Q": max_rel,
-        "max_A_fixed": max_fixed, "max_probe_abs": max_probe,
-        "threshold": threshold, "numeric_ok": numeric_ok, "restored_at": result.get("restored_at_accepted_step"),
+        "max_A_fixed": max_fixed, "max_probe_abs": max_probe, "probe_count": len(probe),
+        "threshold": threshold, "numeric_ok": numeric_ok,
+        "structural_complete": structural_complete, "within_threshold": within_threshold,
+        "status": status, "restored_at": result.get("restored_at_accepted_step"),
         "control_only": result.get("control_only"), "reference_dtype": result.get("reference_dtype")}
 
 
@@ -102,13 +166,26 @@ def negative_self_tests(exact_result: dict[str, Any], run_dir: Path) -> dict[str
     no_probe = copy.deepcopy(exact_result); no_probe["rows"][0]["source_outside_probes"] = []
     bad_hash = copy.deepcopy(exact_result); bad_hash["identity"]["source_hashes"]["dco.py"] = "spoofed"
     disguised = copy.deepcopy(exact_result); disguised["control_only"] = False
-    return {"missing_rows_rejected": not control_numeric(missing, threshold=1e-10, should_pass=True)[0],
-            "duplicate_step_rejected": not control_numeric(duplicated, threshold=1e-10, should_pass=True)[0],
-            "bad_numeric_rejected": not control_numeric(bad_numeric, threshold=1e-10, should_pass=True)[0],
-            "missing_probe_rejected": not control_numeric(no_probe, threshold=1e-10, should_pass=True)[0],
+    empty_hashes = copy.deepcopy(exact_result)
+    empty_hashes["identity"]["source_hashes"] = {}
+    empty_hashes["source_snapshot_hashes"] = {}
+    unbound = copy.deepcopy(exact_result)
+    unbound["rows"][0]["accepted_steps"] = 999
+    # Structural defects must report INCOMPLETE, and a physical error must be
+    # rejected as FAIL.  Both are "rejected", but only the second one proves
+    # the verifier can see a wrong field.
+    def detail(candidate: dict[str, Any]) -> dict[str, Any]:
+        return control_numeric(candidate, threshold=1e-10, should_pass=True)[1]
+    return {"missing_rows_incomplete": detail(missing)["status"] == "INCOMPLETE",
+            "duplicate_step_incomplete": detail(duplicated)["status"] == "INCOMPLETE",
+            "bad_numeric_rejected_as_fail": detail(bad_numeric)["status"] == "FAIL",
+            "bad_numeric_is_structurally_complete": detail(bad_numeric)["structural_complete"],
+            "missing_probe_incomplete": detail(no_probe)["status"] == "INCOMPLETE",
             "hash_tamper_rejected": not control_integrity(bad_hash, run_dir),
+            "empty_source_hash_table_rejected": not control_integrity(empty_hashes, run_dir),
+            "summary_disk_mismatch_rejected": not control_integrity(unbound, run_dir),
             "empty_required_set_rejected": bool(C_IDS + M_IDS) and set() != set(C_IDS + M_IDS),
-            "control_disguised_as_dco_rejected": not control_numeric(disguised, threshold=1e-10, should_pass=True)[0]}
+            "control_disguised_as_dco_incomplete": detail(disguised)["status"] == "INCOMPLETE"}
 
 
 def verify(root: Path, *, contract_run: int, n1_path: Path | None = None) -> dict[str, Any]:
@@ -129,11 +206,13 @@ def verify(root: Path, *, contract_run: int, n1_path: Path | None = None) -> dic
         ("M06", "float64", 1e-10, True), ("M07", "float32", 1e-4, True),
         ("M08", "zero_curl_negative", 1e-10, False), ("M09", "hard_source_only_negative", 1e-10, False),
         ("M10", "wrong_h_half_negative", 1e-10, False)):
-        passed, observed = control_numeric(controls[key], threshold=threshold, should_pass=should_pass)
         run_name = {"float64": "float64_exact", "float32": "float32_exact",
                     "zero_curl_negative": "zero_curl_negative", "hard_source_only_negative": "hard_source_only_negative",
                     "wrong_h_half_negative": "wrong_h_half_negative"}[key]
-        integrity = control_integrity(controls[key], root / "control_runs" / run_name)
+        run_dir = root / "control_runs" / run_name
+        passed, observed = control_numeric(controls[key], threshold=threshold,
+                                           should_pass=should_pass, run_dir=run_dir)
+        integrity = control_integrity(controls[key], run_dir)
         observed["identity_and_jsonl_integrity"] = integrity
         passed = passed and integrity
         if identifier in {"M06", "M07"}:
@@ -157,7 +236,8 @@ def verify(root: Path, *, contract_run: int, n1_path: Path | None = None) -> dic
                         "hash_match": sha256_file(snapshot) == cache.get("snapshot_sha256") if snapshot.is_file() else False,
                         "steps": cache.get("protocol", {}).get("steps")}, cache_pass, cache_path))
     selftest = negative_self_tests(controls["float64"], root / "control_runs" / "float64_exact")
-    checks.append(check("M13", "缺行、重复、坏数值、漏probe和控制伪装全部被拒绝", selftest, all(selftest.values()), controls_path))
+    checks.append(check("M13", "结构缺项记INCOMPLETE、物理错误记FAIL、空源码哈希表和摘要/磁盘不一致均被拒绝",
+                        selftest, all(selftest.values()), controls_path))
     required = set(C_IDS + M_IDS)
     actual = {row["id"] for row in checks}
     return {"schema": "pidon-g0-v4", "contract_lab_run": contract_run, "required_ids": sorted(required),

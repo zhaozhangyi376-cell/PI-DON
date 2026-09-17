@@ -988,6 +988,24 @@
       "scientific_result": "DIAGNOSTIC_ONLY",
       "execution_plan": "docs/plans/2026-09-17-paper01-theta-full-protocol.md",
       "summary": "PAPER01 theta full returned PASS; updates=25000; macro_nMAE=0.0720422450794528; relL2_p90=0.45308546423912044; Eq5_MRE=1.1524533810963233; no stage-two or long-run unlock."
+    },
+    {
+      "id": "CODE-REVIEW-FIX",
+      "goal_id": "G-REPRO",
+      "title": "20260917代码审查生产修复",
+      "status": "PASS",
+      "depends": [],
+      "reason": "审查确认验收器可接受不完整记录、恢复合同不完整、成本记账重复或归零；不修则后续实验的PASS范围和预算都不可信",
+      "kind": "delivery",
+      "scientific_result": "NOT_APPLICABLE",
+      "execution_plan": "evidence/code_review_20260917_fixes/FIX_LOG.md",
+      "evidence": [
+        "evidence/code_review_20260917_fixes/FIX_LOG.md",
+        "evidence/code_review_20260917/REVIEW.md",
+        "evidence/code_review_20260917/DECISION_BRIEF.md",
+        "tests/test_code_review_20260917_fixes.py"
+      ],
+      "summary": "按F01-F30及专题发现修复物理/测量合同、验收器、恢复与记账、第一阶段比较合同；0参数更新；未改写历史证据；未改判任何旧FAIL；真空系数逐位不变。"
     }
   ]
 }

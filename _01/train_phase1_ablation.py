@@ -3,6 +3,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import os
 import random
 import shutil
 import sys
@@ -43,6 +44,18 @@ class AblationConfig:
     seed: int = 2026091702
     validation_every: int = 250
     progress_every: int = 50
+    # --- F03: what makes the arms comparable -------------------------------
+    # The variant index used to be folded into the seed, so every arm changed
+    # its network initialisation, its training draw AND its own test draw at
+    # the same time.  Each arm was then scored on a test set drawn from its
+    # OWN filtered distribution, which is why "the filtered arm scores better
+    # on its own paper" cannot be read as "the filter learns the original task
+    # better".  These three switches make the intervention the only变量.
+    paired_seed: bool = True          # every arm starts from the same RNG stream
+    shared_initialization: bool = True  # every arm starts from the same weights
+    common_test_variant: str = "baseline"  # one frozen paper all arms also sit
+    common_test_samples: int = 200
+    common_test_seed_offset: int = 7_000_001
 
 
 def utc() -> str:
@@ -83,15 +96,31 @@ def seed_all(seed: int) -> None:
 
 def save_checkpoint(path: Path, net: DCO, optimizer: torch.optim.Optimizer, update: int, best_mse: float,
                     config: AblationConfig, variant: str) -> None:
-    torch.save({
-        "schema": "pidon-paper01-ablation-checkpoint-v1",
+    """Write a checkpoint atomically.
+
+    A direct ``torch.save`` onto the live best.pt leaves a truncated file if
+    the process dies mid-write, and the previous good checkpoint is already
+    gone.  Write beside it and rename.
+    """
+    payload = {
+        "schema": "pidon-paper01-ablation-checkpoint-v2",
         "variant": variant,
         "model": net.state_dict(),
         "optimizer": optimizer.state_dict(),
         "update": update,
         "best_test_mse": best_mse,
         "config": {**asdict(config), "output": str(config.output)},
-    }, path)
+        "torch_rng_state": torch.get_rng_state(),
+        "numpy_rng_state": np.random.get_state(),
+        "resume_contract": "weights/optimizer/RNG only; the shuffle cursor is not "
+                           "persisted, so this file does not authorise an exact resume",
+    }
+    path = Path(path)
+    temporary = path.with_suffix(path.suffix + ".tmp")
+    torch.save(payload, temporary)
+    with temporary.open("r+b") as handle:
+        os.fsync(handle.fileno())
+    os.replace(temporary, path)
 
 
 def batch_loss(net: DCO, fields: torch.Tensor, curls: torch.Tensor, coords: torch.Tensor,
@@ -122,25 +151,35 @@ def evaluate(net: DCO, fields: torch.Tensor, curls: torch.Tensor, coords: torch.
     targets: list[np.ndarray] = []
     mse_sum = 0.0
     count = 0
+    scales: list[np.ndarray] = []
     for start in range(0, int(indices.numel()), microbatch):
         idx = indices[start:start + microbatch]
         field = fields[idx].to(device)
         target = curls[idx].to(device)
         coord = coords[idx].to(device)
-        normalized, _ = component_local_max_normalize(target)
+        normalized, scale = component_local_max_normalize(target)
         prediction = net(field, coord)
         mse_sum += float(torch.nn.functional.mse_loss(prediction, normalized, reduction="sum").cpu())
         count += normalized.numel()
         predictions.append(prediction.cpu().numpy())
         targets.append(normalized.cpu().numpy())
+        # F09/F11: keep the per-component scale the normalisation removed, so
+        # a physical-unit relL2 can be reported next to the normalised one and
+        # the restoration rule is visible rather than implicit.
+        scales.append(scale.reshape(scale.shape[0], 3).cpu().numpy())
     net.train()
-    return mse_sum / count, summarize(np.concatenate(predictions), np.concatenate(targets))
+    return mse_sum / count, summarize(np.concatenate(predictions), np.concatenate(targets),
+                                      np.concatenate(scales))
 
 
-def run_variant(config: AblationConfig, variant: str, index: int, total_variants: int) -> dict[str, Any]:
+def run_variant(config: AblationConfig, variant: str, index: int, total_variants: int,
+                common_paper: dict[str, Any] | None = None,
+                initial_state: dict[str, Any] | None = None) -> dict[str, Any]:
     out = config.output / variant
     fresh(out)
-    seed = config.seed + index * 1000
+    # F03: with paired_seed the data stream and the initialisation are the
+    # same for every arm, so the variant rule is the single difference.
+    seed = config.seed if config.paired_seed else config.seed + index * 1000
     seed_all(seed)
     dev = device_for(config.device)
     shape = (config.grid, config.grid, config.grid)
@@ -163,12 +202,22 @@ def run_variant(config: AblationConfig, variant: str, index: int, total_variants
     cursor = 0
 
     net = DCO(config.levels, config.base).to(dev)
+    if config.shared_initialization and initial_state is not None:
+        net.load_state_dict({key: value.to(dev) for key, value in initial_state.items()})
     optimizer = torch.optim.Adam(net.parameters(), lr=config.learning_rate)
     manifest = {
-        "schema": "pidon-paper01-ablation-run-v1",
+        "schema": "pidon-paper01-ablation-run-v2",
         "created_utc": utc(),
         "variant": variant,
         "claim": "diagnostic ablation; not paper reproduction",
+        "comparison_contract": {
+            "paired_seed": bool(config.paired_seed),
+            "shared_initialization": bool(config.shared_initialization and initial_state is not None),
+            "own_test_split_is_variant_distribution": True,
+            "common_test_variant": config.common_test_variant,
+            "note": "自测集来自本臂自己的变体分布，只能作臂内诊断；"
+                    "臂间比较看 common_test_metrics（共同试卷）。",
+        },
         "config": {**asdict(config), "output": str(config.output)},
         "contract_sha256": sha256(CONTRACT),
         "old_checkpoint_loaded": False,
@@ -224,9 +273,17 @@ def run_variant(config: AblationConfig, variant: str, index: int, total_variants
             save_checkpoint(out / "last.pt", net, optimizer, update, best_mse, config, variant)
 
     final_mse, final_metrics = evaluate(net, fields, curls, coords, test_indices, config.microbatch, dev)
+    # F03: also score this arm on the one frozen paper every arm sits, so the
+    # arms can be compared on identical questions rather than on four
+    # different ones.
+    common_mse = common_metrics = None
+    if common_paper is not None:
+        common_mse, common_metrics = evaluate(
+            net, common_paper["fields"], common_paper["curls"], common_paper["coords"],
+            common_paper["indices"], config.microbatch, dev)
     elapsed = time.perf_counter() - started
     summary = {
-        "schema": "pidon-paper01-ablation-variant-summary-v1",
+        "schema": "pidon-paper01-ablation-variant-summary-v2",
         "status": "COMPLETE",
         "scientific_result": "DIAGNOSTIC_ONLY",
         "variant": variant,
@@ -235,6 +292,11 @@ def run_variant(config: AblationConfig, variant: str, index: int, total_variants
         "best_update": best_update,
         "final_test_mse": final_mse,
         "final_metrics": final_metrics,
+        "own_test_distribution": variant,
+        "common_test_mse": common_mse,
+        "common_test_metrics": common_metrics,
+        "common_test_variant": config.common_test_variant if common_paper is not None else None,
+        "comparison_contract": manifest["comparison_contract"],
         "data_seconds": data_seconds,
         "elapsed_seconds": elapsed,
         "contract_stats": variant_contract_stats(specs),
@@ -263,17 +325,21 @@ def write_root_report(out: Path, summaries: list[dict[str, Any]]) -> None:
         "- 状态：`PASS`；科学含义：`DIAGNOSTIC_ONLY`",
         "- 目的：比较角度奇异处理、Ez幅值限制和幅值构造对短训趋势的影响。",
         "",
-        "| 变体 | 更新数 | best test MSE | macro nMAE | relL2 p90 | Eq.(5) MRE | Ez amp p90 |",
+        "| 变体 | 更新数 | best 自测 MSE | 自测 macro nMAE | 共同试卷 macro nMAE | 共同试卷 relL2 p90 | Ez amp p90 |",
         "|---|---:|---:|---:|---:|---:|---:|",
     ]
+    def cell(value: Any) -> str:
+        return "—" if value is None else f"{value:.6g}"
     for item in summaries:
         stats = item["contract_stats"]
         metrics = item["final_metrics"]
+        common = item.get("common_test_metrics") or {}
         lines.append(
-            f"| {item['variant']} | {item['parameter_updates']} | {item['best_test_mse']:.6g} | "
-            f"{metrics['macro_nmae_mean']:.6g} | {metrics['global_rel_l2_p90']:.6g} | "
-            f"{metrics['macro_mre_eq5_mean']:.6g} | {stats['ez_amplification_p90']:.6g} |"
+            f"| {item['variant']} | {item['parameter_updates']} | {cell(item['best_test_mse'])} | "
+            f"{cell(metrics['macro_nmae_mean'])} | {cell(common.get('macro_nmae_mean'))} | "
+            f"{cell(common.get('global_rel_l2_p90'))} | {cell(stats['ez_amplification_p90'])} |"
         )
+    contract = summaries[0].get("comparison_contract", {}) if summaries else {}
     lines += [
         "",
         "## 判读边界",
@@ -281,23 +347,83 @@ def write_root_report(out: Path, summaries: list[dict[str, Any]]) -> None:
         "- 本行动是短预算消融，只判断方向，不认证第一阶段最终精度。",
         "- `projected_amp`改变了论文Eq.(4)幅值生成方式，只是诊断对照，不能声称更忠实论文。",
         "- 只有某个变体在短训趋势上显著改善，才值得登记完整1000 epoch重训。",
+        "",
+        "## 比较合同（F03）",
+        "",
+        f"- 配对种子：`{contract.get('paired_seed')}`；共同初始权重：`{contract.get('shared_initialization')}`。",
+        f"- 共同试卷分布：`{contract.get('common_test_variant')}`。",
+        "- 「自测」列来自各臂自己的变体分布，只能作臂内诊断；臂间改善倍数只看共同试卷列。",
+        "- 训练干预与测试分布分开登记：过滤掉难角度既改变了训练集，也改变了该臂原来的自测集。",
     ]
     (out / "REPORT.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 
+def build_common_paper(config: AblationConfig) -> dict[str, Any] | None:
+    """One frozen evaluation set, drawn once, never trained on.
+
+    Its seed is deliberately far from every training seed so no arm can have
+    seen these samples.  It is the only set on which the arms are compared.
+    """
+    if not config.common_test_variant:
+        return None
+    seed = config.seed + config.common_test_seed_offset
+    shape = (config.grid, config.grid, config.grid)
+    fields_np, curls_np, coords_np, specs = generate_variant_dataset(
+        config.common_test_samples, shape, seed, config.common_test_variant)
+    return {
+        "fields": torch.from_numpy(fields_np),
+        "curls": torch.from_numpy(curls_np),
+        "coords": torch.from_numpy(coords_np),
+        "indices": torch.arange(config.common_test_samples),
+        "specs": specs,
+        "seed": seed,
+        "variant": config.common_test_variant,
+        "samples": int(config.common_test_samples),
+    }
+
+
+def build_initial_state(config: AblationConfig) -> dict[str, Any] | None:
+    """One set of starting weights shared by every arm."""
+    if not config.shared_initialization:
+        return None
+    seed_all(config.seed)
+    net = DCO(config.levels, config.base)
+    return {key: value.detach().cpu().clone() for key, value in net.state_dict().items()}
+
+
 def run(config: AblationConfig) -> dict[str, Any]:
     fresh(config.output)
+    common_paper = build_common_paper(config)
+    initial_state = build_initial_state(config)
+    if common_paper is not None:
+        write_json(config.output / "common_test_specs.json", common_paper["specs"])
+        write_json(config.output / "common_test_contract.json", {
+            "variant": common_paper["variant"],
+            "seed": common_paper["seed"],
+            "samples": common_paper["samples"],
+            "stats": variant_contract_stats(common_paper["specs"]),
+            "note": "共同试卷：每臂都在这一份题目上评分，种子与任何训练集分离。",
+        })
     summaries = []
     for index, variant in enumerate(config.variants):
-        summaries.append(run_variant(config, variant, index, len(config.variants)))
+        summaries.append(run_variant(config, variant, index, len(config.variants),
+                                     common_paper=common_paper, initial_state=initial_state))
     summary = {
-        "schema": "pidon-paper01-ablation-summary-v1",
+        "schema": "pidon-paper01-ablation-summary-v2",
         "status": "PASS",
         "scientific_result": "DIAGNOSTIC_ONLY",
         "parameter_updates": int(config.updates) * len(config.variants),
         "variants": summaries,
         "config": {**asdict(config), "output": str(config.output)},
         "old_checkpoint_loaded": False,
+        "comparison_contract": {
+            "paired_seed": bool(config.paired_seed),
+            "shared_initialization": bool(initial_state is not None),
+            "common_test_variant": config.common_test_variant if common_paper else None,
+            "common_test_samples": int(config.common_test_samples) if common_paper else 0,
+            "note": "臂间比较只用 common_test_metrics；各臂 final_metrics 来自"
+                    "各自变体分布，是臂内诊断。",
+        },
     }
     write_json(config.output / "summary.json", summary)
     write_root_report(config.output, summaries)
@@ -315,6 +441,11 @@ def parser() -> argparse.ArgumentParser:
     p.add_argument("--validation-every", type=int, default=250)
     p.add_argument("--progress-every", type=int, default=50)
     p.add_argument("--variants", nargs="+", default=list(VARIANTS), choices=list(VARIANTS))
+    p.add_argument("--common-test-variant", default="baseline", choices=list(VARIANTS) + [""],
+                   help="每臂共同评分的冻结试卷分布；空字符串表示不建共同试卷")
+    p.add_argument("--common-test-samples", type=int, default=200)
+    p.add_argument("--legacy-variant-seeds", action="store_true",
+                   help="复现修复前行为：变体索引同时改变种子/初始化/数据（仅用于对照旧结果）")
     return p
 
 
@@ -330,6 +461,10 @@ def main() -> None:
         device=args.device,
         validation_every=args.validation_every,
         progress_every=args.progress_every,
+        paired_seed=not args.legacy_variant_seeds,
+        shared_initialization=not args.legacy_variant_seeds,
+        common_test_variant=args.common_test_variant,
+        common_test_samples=args.common_test_samples,
     )
     summary = run(config)
     print(json.dumps({

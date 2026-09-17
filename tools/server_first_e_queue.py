@@ -7,6 +7,8 @@ import subprocess
 import sys
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from plan_state import ensure_task as ensure_plan_task
 
 ROOT = Path(__file__).resolve().parents[1]
 TASK = "SR-E1-BUDGET"
@@ -56,9 +58,12 @@ def ensure_task():
             "execution_plan": PROTOCOL,
             "summary": "固定首个E目标，max_inner=9000，tol=1e-5；不解锁长程。",
         })
+    # F17: an existing task keeps its recorded status, scientific result and
+    # evidence; only a task with no recorded outcome may be reset to READY.
     elif tasks[TASK]["status"] == "BLOCKED":
-        tasks[TASK].update({"status": "READY", "depends": [], "execution_plan": PROTOCOL})
-    plan["current_task"] = TASK
+        ensure_plan_task(plan, {"id": TASK, "status": "READY", "depends": [],
+                                "execution_plan": PROTOCOL})
+    plan["current_task"] = plan.get("current_task") or TASK
     write_json(plan_path, plan)
 
 

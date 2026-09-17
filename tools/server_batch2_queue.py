@@ -7,6 +7,9 @@ import subprocess
 import sys
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from plan_state import ensure_task as ensure_plan_task
+
 ROOT = Path(__file__).resolve().parents[1]
 PROTOCOL = "docs/plans/2026-09-15-server-batch2-protocol.md"
 REPAIR_PROTOCOL = "docs/plans/2026-09-15-server-batch2-recorder-fix.md"
@@ -59,13 +62,16 @@ def ensure_tasks():
             "execution_plan": PROTOCOL,
         })
     else:
-        tasks["SR-DESIGN"].update({
+        # F17: keep a recorded outcome.  ensure_plan_task refreshes only the
+        # descriptive fields once a status/evidence pair exists.
+        ensure_plan_task(plan, {
+            "id": "SR-DESIGN",
             "status": "PASS",
             "evidence": [REPORT],
             "scientific_result": "NOT_APPLICABLE",
             "execution_plan": PROTOCOL,
             "summary": "Batch2 design froze one tolerance probe; no long run unlocked.",
-        })
+        }, set_current=False)
     tasks = {task["id"]: task for task in plan["tasks"]}
     if "SR-SHORT" not in tasks:
         plan["tasks"].append({
@@ -81,7 +87,8 @@ def ensure_tasks():
             "execution_plan": PROTOCOL,
         })
     elif tasks["SR-SHORT"]["status"] == "BLOCKED":
-        tasks["SR-SHORT"].update({"status": "READY", "depends": ["SR-DESIGN"], "execution_plan": PROTOCOL})
+        ensure_plan_task(plan, {"id": "SR-SHORT", "status": "READY", "depends": ["SR-DESIGN"],
+                                "execution_plan": PROTOCOL}, set_current=False)
     tasks = {task["id"]: task for task in plan["tasks"]}
     next_retry = None
     for retry in range(1, 6):
@@ -106,7 +113,8 @@ def ensure_tasks():
                 "execution_plan": REPAIR_PROTOCOL,
             })
         elif tasks[task_id]["status"] == "BLOCKED":
-            tasks[task_id].update({"status": "READY", "depends": ["SR-DESIGN"], "execution_plan": REPAIR_PROTOCOL})
+            ensure_plan_task(plan, {"id": task_id, "status": "READY", "depends": ["SR-DESIGN"],
+                                    "execution_plan": REPAIR_PROTOCOL}, set_current=False)
         plan["current_task"] = task_id
     else:
         plan["current_task"] = "SR-SHORT"

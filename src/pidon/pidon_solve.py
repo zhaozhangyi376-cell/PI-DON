@@ -48,6 +48,10 @@ ONE DOCUMENTED DEVIATION
 # Project layout bootstrap (imports and paths only).
 import sys as _layout_sys
 from pathlib import Path as _LayoutPath
+# F18: the resume branch and several output branches use a bare ``Path``.  The
+# layout bootstrap only bound ``_LayoutPath``, so ``--resume`` raised
+# NameError before it could read run_metadata.json.  Bind both names.
+Path = _LayoutPath
 _layout_sys.path.insert(0, str(_LayoutPath(__file__).resolve().parents[2]))
 from project_paths import ROOT as PROJECT_ROOT, configure as _layout_configure, resolve_legacy
 _layout_configure()
@@ -72,7 +76,7 @@ from pidon_contract import (CURL_E0, CURL_H0, FitRecord, StepRecord, SOURCE_OUTS
                             all_finite, reached, six_component_metrics,
                             trilinear_sample, finite_scalar)
 from pidon_recording import (RunRecorder, capture_rng, restore_rng, sha256_file,
-                             source_hashes)
+                             source_hash_gaps, source_hashes)
 
 SCRIPT_VERSION = "2026-09-13b"
 STATE_SCHEMA = "pidon-solver-state-v4"
@@ -148,6 +152,7 @@ def formal_run_identity(a, *, run_id=None):
     """
     source = source_hashes(os.path.dirname(__file__))
     document = {"frozen_config": frozen_config(a), "source_hashes": source,
+                "source_hash_gaps": source_hash_gaps(source),
                 "init_sha256": sha256_file(a.init) if _LayoutPath(resolve_legacy(a.init)).is_file() else None}
     encoded = json.dumps(document, sort_keys=True, separators=(",", ":"), default=str).encode("utf-8")
     digest = hashlib.sha256(encoded).hexdigest()
@@ -500,11 +505,20 @@ class Solver:
                     physical = [part / h_scale for part in physical]
                 physical_sse = sum((part - ref).pow(2).sum()
                                    for part, ref in zip(physical, physical_tgt))
-                physical_ratio = float((physical_sse / max(physical_target_ss, 1e-30)).detach())
                 # Component-wise relative objectives are useful gradients,
                 # but Algorithm 1's acceptance contract is the total physical
                 # residual on the declared Yee support.  Never accept a fit
                 # merely because two small components hide a large one.
+                #
+                # F05: the stopping QUANTITY has to be the one the declared
+                # tol_mode names.  ``abs`` means the literal eq. (7) sum of
+                # squares in physical units; only ``rel`` divides by the
+                # target energy.  Before the fix an absolute-mode run was
+                # judged by the relative residual, so a fit with SSE 8.1e-9
+                # never met tol=1e-4.
+                if self.a.tol_mode == "abs":
+                    return reached(float(physical_sse.detach()), self.a.tol)
+                physical_ratio = float((physical_sse / max(physical_target_ss, 1e-30)).detach())
                 return reached(physical_ratio, self.a.tol)
             physical = prediction
             if out_scale != 1.0:
@@ -610,7 +624,11 @@ class Solver:
         # parameter update.
         closure_budget = max(0, int(getattr(self.a, "lbfgs_closures", 0)) - prior_closures)
         lbfgs_budget_s = float(getattr(self.a, "lbfgs_time_budget_s", 0.0))
-        if (not stop_met(pred, loss) and closure_budget > 0):
+        # F24: a stop request raised inside the Adam loop used to break only
+        # that loop, after which LBFGS still spent closures and overwrote the
+        # resumable ``interrupt`` reason with ``closure_budget``.  Honour the
+        # request before the phase switch.
+        if (stop_reason != "interrupt" and not stop_met(pred, loss) and closure_budget > 0):
             lbfgs_started = time.perf_counter()
             progress["optimization_phase"] = "lbfgs"
             lbfgs = self._lbfgs_for(which, max_eval=closure_budget)
@@ -868,13 +886,35 @@ class Solver:
 
     def _update_E_and_source(self, predicted_curl_H, g_t):
         ch = self._insert_prediction(self.yee_curl_H(), predicted_curl_H, "H")
-        ke = self.dt / fdtd.EPS0
-        self.E[0][:, 1:-1, 1:-1] += ke * ch[0]
-        self.E[1][1:-1, :, 1:-1] += ke * ch[1]
-        self.E[2][1:-1, 1:-1, :] += ke * ch[2]
+        # F01: read dt/eps from the cavity that defines this run's material
+        # instead of dividing by the EPS0 constant.  For the registered vacuum
+        # configuration the three coefficients are exactly dt/EPS0, so this is
+        # bit-identical there; for any declared medium the DUT now moves with
+        # the same permittivity as its own reference.
+        kx, ky, kz = self._e_coefficients()
+        self.E[0][:, 1:-1, 1:-1] += kx * ch[0]
+        self.E[1][1:-1, :, 1:-1] += ky * ch[1]
+        self.E[2][1:-1, 1:-1, :] += kz * ch[2]
         c = self.n // 2
         self.E[2][c, c, c] = g_t
         self.apply_pec()
+
+    def _e_coefficients(self):
+        """dt/eps on the three interior E supports, as torch scalars/tensors."""
+        cached = getattr(self, "_e_coeff_cache", None)
+        if cached is not None:
+            return cached
+        regions = ((slice(None), slice(1, -1), slice(1, -1)),
+                   (slice(1, -1), slice(None), slice(1, -1)),
+                   (slice(1, -1), slice(1, -1), slice(None)))
+        out = []
+        for coefficient, region in zip(self.cav.e_coefficients(), regions):
+            if np.isscalar(coefficient):
+                out.append(float(coefficient))
+            else:
+                out.append(to_t(coefficient[region], self.dev, self.dtype))
+        self._e_coeff_cache = tuple(out)
+        return self._e_coeff_cache
 
     def _update_H(self, predicted_curl_E):
         ce = self._insert_prediction(self.yee_curl_E(), predicted_curl_E, "E")
@@ -1068,6 +1108,96 @@ def _checkpoint_payload(solver, ref, *, requested_steps, source_index):
     return payload
 
 
+def assert_checkpoint_continues_log(recorder, payload, solver, requested_steps):
+    """Refuse a resume that would re-run already recorded physical layers.
+
+    F19: ``--resume`` only compared run_id and protocol_hash, so an OLD
+    snapshot could be replayed on top of a longer log.  The recorder's
+    sequence ids stayed contiguous while the physical ``step`` column went
+    [0, 1, 1, 2]: the accounting looked continuous while one time layer was
+    paid for twice.  A formal resume must therefore start from the single
+    committed checkpoint at the very end of the durable log.
+    """
+    rows = recorder.durable_rows()
+    committed = int(recorder.metadata.get("last_committed_sequence_id", -1))
+    checkpointed = int(recorder.metadata.get("last_checkpoint_sequence_id", -1))
+    payload_sequence = int(payload.get("last_committed_sequence_id", -1))
+    tail = [int(x) for x in recorder.metadata.get("recovery_tail_sequence_ids", []) or []]
+    if tail:
+        raise ValueError(
+            "formal resume refused: rows "
+            f"{tail} are recorded after the last checkpoint, so their solver state "
+            "does not exist.  Replay them in a read-only diagnostic branch; do not "
+            "append them to this formal log a second time.")
+    if payload_sequence != committed or payload_sequence != checkpointed:
+        raise ValueError(
+            "formal resume refused: checkpoint stops at sequence "
+            f"{payload_sequence} while the durable log is committed to {committed} "
+            f"(last checkpoint {checkpointed}).  An older snapshot would replay "
+            "already recorded time layers.")
+    if rows:
+        last = rows[-1]
+        recorded_accepted = int(last.get("accepted_steps", -1))
+        recorded_layer = int(last.get("step", -1))
+        expected_layer = recorded_layer + 1 if bool(last.get("accepted")) else recorded_layer
+        if recorded_accepted != int(solver.accepted_steps):
+            raise ValueError(
+                f"formal resume refused: log ends at accepted_steps={recorded_accepted} "
+                f"but the checkpoint restores {solver.accepted_steps}")
+        if expected_layer != int(solver.current_time_layer):
+            raise ValueError(
+                f"formal resume refused: log ends at time layer {recorded_layer} "
+                f"(accepted={bool(last.get('accepted'))}), so the next layer is "
+                f"{expected_layer}, but the checkpoint restores "
+                f"{solver.current_time_layer}")
+        if last.get("phase") is not None and not bool(last.get("accepted")):
+            if str(last.get("phase")) != str(solver.phase):
+                raise ValueError(
+                    f"formal resume refused: log ends in phase {last.get('phase')!r} "
+                    f"but the checkpoint restores phase {solver.phase!r}")
+    elif int(solver.accepted_steps) or int(solver.current_time_layer):
+        raise ValueError("formal resume refused: checkpoint advances past an empty log")
+    source_index = payload.get("source_index")
+    if source_index is not None and int(source_index) != int(solver.current_time_layer):
+        raise ValueError(
+            f"formal resume refused: checkpoint source_index={int(source_index)} "
+            f"does not match the next time layer {solver.current_time_layer}")
+    if int(requested_steps) < int(solver.accepted_steps):
+        raise ValueError("--steps is a target total and cannot precede accepted_steps in checkpoint")
+    return {
+        "resumed_from_sequence_id": payload_sequence,
+        "resumed_accepted_steps": int(solver.accepted_steps),
+        "resumed_time_layer": int(solver.current_time_layer),
+        "resumed_phase": solver.phase,
+    }
+
+
+def validate_source_outside_probes(solver, probes=SOURCE_OUTSIDE_PROBES_CELLS):
+    """Reject fixed probe coordinates that do not exist on this mesh.
+
+    The registered probes are absolute cell coordinates chosen for the n=31
+    cavity.  On a smaller grid ``trilinear_sample`` used to raise only after
+    the first step was already accepted, which wasted the run and produced a
+    half-written evidence directory.  Check the geometry up front instead --
+    and never silently move a registered physical probe.
+    """
+    dxyz = (solver.cav.dx, solver.cav.dy, solver.cav.dz)
+    offsets = (0.0, 0.0, 0.5)
+    outside = []
+    for cells in probes:
+        xyz = tuple(q * d for q, d in zip(cells, dxyz))
+        try:
+            trilinear_sample(solver.E[2], xyz, dxyz, offsets)
+        except ValueError as error:
+            outside.append(f"{cells}: {error}")
+    if outside:
+        raise ValueError(
+            "registered source-outside probes do not exist on this mesh (n="
+            f"{solver.n}); 请先登记适用该网格的探针，不要暗改已登记物理位置: "
+            + "; ".join(outside))
+    return True
+
+
 def _step_summary(solver, ref, step_record):
     base = {
         "step": step_record.time_layer,
@@ -1088,8 +1218,12 @@ def _step_summary(solver, ref, step_record):
                      "source_probe_Ez": None, "source_outside_probes": None})
         return base
     dxyz = (solver.cav.dx, solver.cav.dy, solver.cav.dz)
-    reference_E = [to_t(getattr(ref, name), solver.dev) for name in ("Ex", "Ey", "Ez")]
-    reference_H = [to_t(getattr(ref, name), solver.dev) for name in ("Hx", "Hy", "Hz")]
+    # The Yee reference is float64.  Converting it with ``to_t``'s default
+    # float32 silently down-cast the reference before the comparison, so a
+    # float64 DUT was scored against a degraded target and a bit-identical
+    # pair reported a non-zero Q.  Measure at the solver's declared precision.
+    reference_E = [to_t(getattr(ref, name), solver.dev, solver.dtype) for name in ("Ex", "Ey", "Ez")]
+    reference_H = [to_t(getattr(ref, name), solver.dev, solver.dtype) for name in ("Hx", "Hy", "Hz")]
     c = solver.n // 2
     metrics = six_component_metrics(solver.E, solver.H, reference_E, reference_H, dxyz,
                                    source_ez_index=(c, c, c))
@@ -1221,13 +1355,21 @@ def main():
         if "frozen_config" not in resume_payload:
             raise ValueError("checkpoint predates v2 frozen configuration and may not be resumed formally")
         assert_resume_compatible(a, resume_payload["frozen_config"])
+    # F12: a super-Courant reference diverges by construction, so the formal
+    # entry point refuses it here rather than printing a warning and running.
+    requested_dt = a.dt if a.dt is not None else fdtd.cfl_dt(a.side / a.n, a.side / a.n, a.side / a.n)
+    cfl = fdtd.cfl_dt(a.side / a.n, a.side / a.n, a.side / a.n, safety=1.0)
+    if requested_dt > cfl:
+        raise SystemExit(
+            f"  dt = {requested_dt * 1e12:.4f} ps 超出 Courant 限 {cfl * 1e12:.4f} ps "
+            f"(dt/CFL = {requested_dt / cfl:.6f})。超 CFL 的 FDTD 参考一定发散，"
+            "不能作为验收参考；50 mm 腔体请用 --n 31，"
+            "确需研究超 CFL 请改用单独登记的诊断入口。")
     s = Solver(a, dev)
     print(f"  cavity {a.side * 1e3:.1f} mm / {a.n} cells  dx = "
           f"{s.cav.dx * 1e3:.4f} mm   dt = {s.dt * 1e12:.4f} ps")
-    cfl = fdtd.cfl_dt(s.cav.dx, s.cav.dy, s.cav.dz, safety=1.0)
-    print(f"  CFL limit {cfl * 1e12:.4f} ps  ->  dt / CFL = {s.dt / cfl:.4f}"
-          + ("   *** 超出 Courant 限，连参考 FDTD 都会发散，"
-             "腔体请用 --n 31" if s.dt > cfl else "   ok"))
+    print(f"  CFL limit {cfl * 1e12:.4f} ps  ->  dt / CFL = {s.dt / cfl:.4f}   ok")
+    validate_source_outside_probes(s)
     print(f"  init = {s.tag}   coords={s.coord_mode} norm={s.norm_mode}   "
           f"{sum(p.numel() for p in s.net.parameters()) / 1e6:.2f}M params")
     print(f"  inner training: stop below {a.tol:.0e}, at most {a.max_inner} "
@@ -1261,6 +1403,8 @@ def main():
             current_identity = {key: identity[key] for key in RunRecorder.IDENTITY_KEYS}
             if checkpoint_identity != current_identity:
                 raise ValueError("checkpoint run identity differs from output directory/configuration")
+            resume_report = assert_checkpoint_continues_log(recorder, resume_payload, s, a.steps)
+            print("  resume verified: " + json.dumps(resume_report, ensure_ascii=False))
     hist, t0, stop_record = [], time.time(), None
     snapshot_steps = {1, 2, 16, 32, 43, 64, 96, 128, 192, 300, 600, 900, 1024, 2048, 4096, 8192}
     while s.accepted_steps < a.steps:
@@ -1320,7 +1464,7 @@ def main():
     if hist:
         print(f"  mean actual updates: curlH {np.mean([r['updatesH'] for r in hist]):.1f}"
               f"  curlE {np.mean([r['updatesE'] for r in hist]):.1f}")
-        print(f"  final Ez nMAE vs FDTD {hist[-1]['nmae']:.3e}")
+        print(f"  final Ez nMAE vs FDTD {_fmt_optional_nmae(hist[-1]['nmae'])}")
     print(f"  saved {out}")
     print("\n  Fig 8's y-axis is the 'cum' column -- the loss summed over all"
           "\n  inner epochs at each time step.  Run this again with "

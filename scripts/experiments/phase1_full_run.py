@@ -273,8 +273,18 @@ def metric_summary(pred: np.ndarray, true: np.ndarray) -> dict[str, Any]:
         "components": components,
         "individual": samples,
         "gate": {
+            # F21: the registered S1 wording was "per-sample three-component
+            # macro nMAE <= 1%", but this gate is the MEAN over samples.  One
+            # sample at 2% among 99 at 0% passes the mean and fails the
+            # per-sample reading.  Both reductions are reported, the mean
+            # stays the registered criterion, and neither is described as the
+            # other.
             "macro_nmae_mean_le_1pct": bool(float(np.mean(macro_nmae)) <= NMAE_GATE),
+            "macro_nmae_every_sample_le_1pct": bool(float(np.max(macro_nmae)) <= NMAE_GATE),
+            "samples_above_nmae_gate": int(np.count_nonzero(macro_nmae > NMAE_GATE)),
             "global_rel_l2_p90_le_5pct": bool(float(np.percentile(rel_l2, 90)) <= REL_L2_P90_GATE),
+            "reduction": "mean over samples (registered); the per-sample reading "
+                         "is reported separately and is NOT interchangeable",
             "pass": bool(float(np.mean(macro_nmae)) <= NMAE_GATE and float(np.percentile(rel_l2, 90)) <= REL_L2_P90_GATE),
         },
     }
@@ -316,6 +326,12 @@ def save_checkpoint(path: Path, net: torch.nn.Module, optimizer: torch.optim.Opt
             "torch_cuda": torch.cuda.get_rng_state_all() if torch.cuda.is_available() else None,
         },
     }, path)
+
+
+#: Microbatch accumulation is mathematically identical to one full batch, so
+#: the only differences allowed here are floating-point reassociation.
+EQUIVALENCE_LOSS_REL_TOL = 1e-5
+EQUIVALENCE_GRAD_REL_TOL = 1e-4
 
 
 def full_batch_equivalence(E: torch.Tensor, C: torch.Tensor, Dm: torch.Tensor,
@@ -370,14 +386,30 @@ def full_batch_equivalence(E: torch.Tensor, C: torch.Tensor, Dm: torch.Tensor,
             denom = gf.abs().max().item() + 1e-30
             max_grad_abs = max(max_grad_abs, diff)
             max_grad_rel = max(max_grad_rel, diff / denom)
-        status = "PASS"
+        # F21: this used to compute the differences and then write PASS
+        # unconditionally.  A deliberately batch-size-dependent toy network
+        # with a 98.44% relative gradient difference still produced PASS, and
+        # the caller did not reject on the numbers either.  Compare against
+        # the declared tolerances and say which one failed.
+        failures = []
+        loss_abs_diff = abs(full_loss - micro_loss)
+        loss_rel_diff = loss_abs_diff / (abs(full_loss) + 1e-30)
+        if not math.isfinite(loss_abs_diff) or loss_rel_diff > EQUIVALENCE_LOSS_REL_TOL:
+            failures.append(f"loss relative difference {loss_rel_diff:.6g} > {EQUIVALENCE_LOSS_REL_TOL:g}")
+        if not math.isfinite(max_grad_rel) or max_grad_rel > EQUIVALENCE_GRAD_REL_TOL:
+            failures.append(f"gradient relative difference {max_grad_rel:.6g} > {EQUIVALENCE_GRAD_REL_TOL:g}")
+        status = "FAIL" if failures else "PASS"
         return {
             "status": status,
+            "failures": failures,
             "full_loss": full_loss,
             "micro_loss": micro_loss,
-            "loss_abs_diff": abs(full_loss - micro_loss),
+            "loss_abs_diff": loss_abs_diff,
+            "loss_rel_diff": loss_rel_diff,
             "max_checked_grad_abs_diff": max_grad_abs,
             "max_checked_grad_rel_diff": max_grad_rel,
+            "loss_rel_tolerance": EQUIVALENCE_LOSS_REL_TOL,
+            "grad_rel_tolerance": EQUIVALENCE_GRAD_REL_TOL,
             "microbatch": microbatch,
         }
     except RuntimeError as exc:
@@ -473,8 +505,16 @@ def update_stage_status(summary: dict[str, Any]) -> None:
 
 
 def run(args: argparse.Namespace) -> dict[str, Any]:
-    if OUT.exists() and any(OUT.iterdir()) and not args.allow_existing:
-        raise FileExistsError(f"S1 output already exists: {display(OUT)}")
+    # F21: ``--allow-existing`` was not a resume.  It rebuilt the model from
+    # scratch, overwrote best.pt/last.pt and appended a second training curve
+    # to the same history file, so the directory ended up describing two runs
+    # as one.  There is no verified resume path here, so the flag now refuses
+    # instead of pretending.
+    if OUT.exists() and any(OUT.iterdir()):
+        raise FileExistsError(
+            f"S1 output already exists: {display(OUT)}。"
+            "本入口没有经过验证的恢复路径：重开会重置模型、覆盖权重并把两条训练曲线"
+            "追加进同一个 history。请使用新的输出目录，并把续跑登记为独立新实验。")
     OUT.mkdir(parents=True, exist_ok=True)
     started = time.perf_counter()
     device = torch.device(args.device)
@@ -535,6 +575,11 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
     equivalence = full_batch_equivalence(E_cpu, C_cpu, D_cpu, device, args.microbatch)
     microbatch, preflight = preflight_microbatch(E_cpu, C_cpu, D_cpu, device, args.microbatch)
     write_json(OUT / "preflight.json", {"equivalence": equivalence, "microbatch_preflight": preflight})
+    if equivalence.get("status") == "FAIL":
+        raise SystemExit(
+            "拒绝开训：微批累积与等效整批不数值等价 -> "
+            + "; ".join(equivalence.get("failures", []))
+            + "。等效batch声明不成立时，训练成本与论文口径无法对齐。")
     if microbatch <= 0:
         summary = {
             "schema": SCHEMA,
@@ -671,7 +716,22 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
         "blind_metrics": blind_metrics,
         "source_point": "N/A_phase1_no_source",
         "source_outside_probes": "N/A_phase1_no_source",
-        "recovery_eligible": True,
+        # F21: this was literally ``True``.  The shuffle order comes from an
+        # independent torch.Generator whose state is NOT in the checkpoint,
+        # ``best.pt`` is not necessarily the last state, and ``last.pt`` is
+        # only written at the end -- so a resume cannot reproduce the batch
+        # sequence.  Report the conditions instead of asserting the verdict.
+        "recovery_eligible": False,
+        "recovery_contract": {
+            "eligible": False,
+            "shuffle_generator_state_persisted": False,
+            "batch_cursor_persisted": False,
+            "global_rng_persisted": True,
+            "last_state_written_only_at_end": True,
+            "best_is_not_necessarily_last": True,
+            "note": "完成本次登记预算不产生追加资格；恢复需要独立 Generator 状态、"
+                    "批游标和可验证的最新状态，当前都不满足。",
+        },
         "elapsed_s": time.perf_counter() - started,
         "files": {
             "manifest": OUT / "manifest.json",
@@ -709,7 +769,8 @@ def main() -> None:
     parser.add_argument("--device", default="cuda" if torch.cuda.is_available() else "cpu")
     parser.add_argument("--microbatch", type=int, default=4)
     parser.add_argument("--eval-batch", type=int, default=2)
-    parser.add_argument("--allow-existing", action="store_true")
+    parser.add_argument("--allow-existing", action="store_true",
+                        help="已停用：它从来不是恢复，只会重开模型并混合 history（F21）")
     args = parser.parse_args()
     summary = run(args)
     print(json.dumps({

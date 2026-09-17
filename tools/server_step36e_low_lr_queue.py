@@ -7,6 +7,8 @@ import subprocess
 import sys
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from plan_state import ensure_task as ensure_plan_task
 
 ROOT = Path(__file__).resolve().parents[1]
 TASK = "SR-36E-LOWLR"
@@ -58,11 +60,9 @@ def ensure_task():
         "execution_plan": PROTOCOL,
         "summary": "从strict64_probe干净checkpoint重放step36；低学习率单步诊断，不解锁长程。",
     }
-    if TASK not in tasks:
-        plan["tasks"].append(task)
-    else:
-        tasks[TASK].update(task)
-    plan["current_task"] = TASK
+    # F17: protect an audited outcome instead of resetting it to READY.
+    del tasks
+    ensure_plan_task(plan, task)
     write_json(plan_path, plan)
 
 

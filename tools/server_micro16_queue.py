@@ -7,6 +7,8 @@ import subprocess
 import sys
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from plan_state import ensure_task as ensure_plan_task
 
 ROOT = Path(__file__).resolve().parents[1]
 TASK = "SR-MICRO16"
@@ -57,8 +59,11 @@ def ensure_task():
             "summary": "tol=1e-5, per-fit cap=9000, target=16 steps; no 64/128/1024 unlock.",
         })
     else:
-        tasks[TASK].update({"status": "READY", "depends": ["SR-MICRO4"], "execution_plan": PROTOCOL})
-    plan["current_task"] = TASK
+    # F17: an existing task keeps its recorded status, scientific result and
+    # evidence; only a task with no recorded outcome may be reset to READY.
+        ensure_plan_task(plan, {"id": TASK, "status": "READY", "depends": ["SR-MICRO4"],
+                                "execution_plan": PROTOCOL})
+    plan["current_task"] = plan.get("current_task") or TASK
     write_json(plan_path, plan)
 
 

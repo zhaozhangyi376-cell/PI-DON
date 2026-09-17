@@ -6,11 +6,14 @@ import hashlib
 import json
 import zipfile
 from datetime import datetime, timezone
+import sys
 from pathlib import Path
 from typing import Any
 
 from project_paths import PROJECT_DIR, configure
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from ingest_contract import verify_history, verify_optimizer_steps
 
 configure()
 
@@ -72,6 +75,12 @@ def find_output(base: Path) -> Path:
 
 
 def count_history(path: Path) -> tuple[int, int | None]:
+    """Row count and last number only.  Kept for callers that want the raw pair.
+
+    F20: this pair is NOT a completeness check.  25,000 rows that all say
+    ``update=25000`` satisfy it.  Use :func:`ingest_contract.verify_history`
+    for the audit itself.
+    """
     count = 0
     last_update = None
     for line in path.read_text(encoding="utf-8-sig").splitlines():
@@ -100,6 +109,12 @@ def audit_output(output: Path) -> dict[str, Any]:
     local_contract_hash = sha256(PROJECT_DIR / "_01/paper_contract.json")
     returned_contract_hash = sha256(output / "paper_contract.json")
     history_rows, history_last_update = count_history(output / "history.jsonl")
+    # F20: verify the numbering itself -- exactly 1..25000, each once, in
+    # order, every row carrying a finite loss -- instead of trusting the count
+    # and the final number.  The optimizer state inside last.pt is read as an
+    # independent witness of the parameter-update total.
+    history_audit = verify_history(output / "history.jsonl", 25000)
+    optimizer_audit = verify_optimizer_steps(output / "last.pt", 25000)
     config = manifest.get("config") or {}
     rates = summary.get("learning_rates") or []
     checks = {
@@ -110,7 +125,9 @@ def audit_output(output: Path) -> dict[str, Any]:
         "complete_25000_updates": summary.get("status") == "COMPLETE"
         and summary.get("updates") == 25000
         and summary.get("parameter_updates") == 25000,
-        "history_complete": history_rows == 25000 and history_last_update == 25000,
+        "history_complete": bool(history_audit["complete"]),
+        "history_row_count_and_last": history_rows == 25000 and history_last_update == 25000,
+        "history_updates_are_unique_and_contiguous": history_audit["unique_updates"] == 25000,
         "constant_lr_1e4": len(rates) == 25000
         and all(float(rate) == 1e-4 for rate in rates)
         and recorded.get("constant_lr") is True,
@@ -130,6 +147,8 @@ def audit_output(output: Path) -> dict[str, Any]:
         "last_checkpoint_hash": sha256(output / "last.pt") == recorded.get("last_checkpoint_sha256"),
         "sample_specs_1000": len(read_json(output / "sample_specs.json")) == 1000,
     }
+    if optimizer_audit.get("available"):
+        checks["optimizer_step_matches_25000"] = bool(optimizer_audit.get("matches_expected"))
     engineering_pass = all(checks.values())
 
     metrics = summary.get("final_metrics") or {}

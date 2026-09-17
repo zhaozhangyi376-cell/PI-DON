@@ -7,6 +7,8 @@ import subprocess
 import sys
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from plan_state import ensure_task as ensure_plan_task
 
 ROOT = Path(__file__).resolve().parents[1]
 TASK = "SR-36E-BUDGET"
@@ -55,11 +57,11 @@ def ensure_task():
         "execution_plan": PROTOCOL,
         "summary": "从strict64_probe干净checkpoint重放step36；per-fit cap=30000；不解锁64/128/1024/8192。",
     }
-    if TASK not in tasks:
-        plan["tasks"].append(task)
-    else:
-        tasks[TASK].update(task)
-    plan["current_task"] = TASK
+    # F17: an unconditional update rewrote an audited task back to
+    # READY/NOT_RUN/evidence=[].  Installing is now idempotent and protects a
+    # recorded outcome; see tools/plan_state.py.
+    del tasks
+    ensure_plan_task(plan, task)
     write_json(plan_path, plan)
 
 

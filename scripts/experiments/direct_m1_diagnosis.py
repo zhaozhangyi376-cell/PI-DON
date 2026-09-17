@@ -312,16 +312,34 @@ def diagnose_case(case: dict[str, Any], device: str) -> dict[str, Any]:
 
 
 def interpretation(case_results: list[dict[str, Any]]) -> dict[str, Any]:
+    """One complete note per case, keyed by its own case_id.
+
+    F30: a note was appended only when BOTH readback and recorded values were
+    present, but the reading was then written to ``notes[-1]`` unconditionally.
+    With a case missing its recorded value the second case's numbers landed on
+    the first case's id; with the FIRST case missing it, the assignment raised
+    IndexError.  Build the note first, fill what exists, and mark the rest
+    INCOMPLETE.
+    """
     notes = []
     for item in case_results:
         readback = item["readback_E"]["residual_ratio"]
         head_best = item["head_projection_E"]["best_physical"]["residual_ratio"]
         recorded = item["recorded_fit_E"]["residual_ratio"]
+        note: dict[str, Any] = {
+            "case_id": item["case_id"],
+            "head_best_R": head_best,
+            "readback_R": readback,
+            "recorded_R": recorded,
+            "missing_quantities": [name for name, value in
+                                   (("readback_R", readback), ("recorded_R", recorded),
+                                    ("head_best_R", head_best)) if value is None],
+        }
         if readback is not None and recorded is not None:
-            notes.append({
-                "case_id": item["case_id"],
-                "readback_matches_recorded_within_5pct": abs(readback - recorded) / max(abs(recorded), 1e-30) <= 0.05,
-            })
+            note["readback_matches_recorded_within_5pct"] = (
+                abs(readback - recorded) / max(abs(recorded), 1e-30) <= 0.05)
+        else:
+            note["readback_matches_recorded_within_5pct"] = None
         support = "undetermined"
         if head_best is not None and head_best >= THRESHOLD:
             support = "frozen_features_head_projection_cannot_reach_strict_R"
@@ -329,12 +347,13 @@ def interpretation(case_results: list[dict[str, Any]]) -> dict[str, Any]:
             support = "frozen_features_head_projection_can_reach_R_but_optimizer_did_not"
         elif head_best is not None and readback is not None and head_best < readback:
             support = "head_projection_improves_but_not_a_strict_pass"
-        notes[-1]["primary_read"] = support
-        notes[-1]["head_best_R"] = head_best
-        notes[-1]["readback_R"] = readback
+        note["primary_read"] = support
+        note["status"] = "INCOMPLETE" if note["missing_quantities"] else "READ"
+        notes.append(note)
     return {
         "threshold": THRESHOLD,
         "case_interpretations": notes,
+        "incomplete_cases": [note["case_id"] for note in notes if note["status"] == "INCOMPLETE"],
         "global_read": (
             "M1 is diagnostic only: a head projection pass would support changing optimizer rules; "
             "a head projection fail supports feature/state limitations for the frozen representation."

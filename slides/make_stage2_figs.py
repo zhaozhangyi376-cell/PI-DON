@@ -27,7 +27,10 @@ def main():
     axs[0].set(title='场误差：32步保持有限', xlabel='时间步', ylabel='相对 nMAE / FDTD', yscale='log')
     axs[1].plot(x, [r['lossH'] for r in rows], label='curl H', color='#D55E00')
     axs[1].plot(x, [r['lossE'] for r in rows], label='curl E', color='#009E73')
-    axs[1].axhline(1e-4, color='#555', ls='--', label='论文停止阈值')
+    # PR02（审查20260917）：纵轴是本项目的相对平方损失，论文式(7)的 1e-4 是
+    # 绝对平方和上的停止阈值。两者单位/归约的等价关系尚未确认，所以这条线只
+    # 能标成“本项目的相对损失门”，不能标成论文阈值。
+    axs[1].axhline(1e-4, color='#555', ls='--', label='本项目相对损失门 1e-4（非论文绝对阈值）')
     axs[1].set(title='内层损失：未稳定满足阈值', xlabel='时间步', ylabel='相对平方损失', yscale='log')
     axs[1].legend(fontsize=8); axs[1].grid(alpha=.2)
     axs[2].plot(x, [r['cum'] for r in rows], color='#CC79A7', marker='o', ms=3)

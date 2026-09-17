@@ -13,8 +13,25 @@ def main():
     audit = json.loads((OUT / 'audit.json').read_text(encoding='utf-8'))
     layout = json.loads((OUT / 'layout_validation.json').read_text(encoding='utf-8'))
     mapping = json.loads((ROOT / 'project/migration_map.json').read_text(encoding='utf-8'))
+    # L06: the report used to check three fields of audit.json and then write
+    # "全部通过" plus W0=PASS.  A delivery audit that died on a cost or test
+    # assertion still left a document satisfying those three fields.  Require
+    # the auditor's own completion status, and require the re-verified backup
+    # check (L07) rather than the cached migration_integrity boolean alone.
+    if audit.get('audit_status') != 'COMPLETE':
+        raise SystemExit(
+            'delivery audit did not complete its assertions '
+            f"(audit_status={audit.get('audit_status')!r}); 不能据此把 W0 写成 PASS。")
     if not audit['migration_integrity'] or audit['plan_validation_errors'] or audit['unexpected_root_files']:
         raise SystemExit('delivery audit has unresolved errors')
+    backups = audit.get('backup_reverification') or {}
+    if backups.get('status') != 'COMPLETE':
+        raise SystemExit('原备份字节未重新核对，不能声称原源码字节保留。')
+    if backups.get('unexplained') or backups.get('backups_absent'):
+        raise SystemExit(
+            '原备份与登记字节不符且未解释：'
+            f"unexplained={backups.get('unexplained')}, absent={backups.get('backups_absent')}。"
+            '保留登记原值，另查差异；不得用新哈希覆盖来消除。')
     counts = Counter(str(Path(r['new']).parent).replace('\\', '/') for r in mapping['files'])
     report = [
         '# 核查、工作区整理与总计划交付', '',
@@ -43,7 +60,10 @@ def main():
         '', 'delivery任务PASS只表示交付完成；G128/G1024必须数值逐项通过才PASS。harness本身不认证论文，也不能阻止直接绕过入口调用Python。模型正确性仍由实验数值合同保证。',
         '', '旧报告/历史固定输出驱动通过script_registry封存主入口，源码可阅读/导入。它们的根目录glob与所有默认路径未全部重构，不能承诺每条历史命令可直接重跑；这样避免把已迁移证据误写为NODATA，或覆盖旧失败。新实验按新计划建立明确输出。', '',
         '## 验证与实际边界', '',
-        f"- 移动完整性：{layout['moved_file_count']}项文件存在、哈希和旧名解析均通过，原Python备份哈希一致。",
+        f"- 移动完整性：{layout['moved_file_count']}项文件存在、哈希和旧名解析均通过。",
+        f"- 原备份重新核对：{backups.get('matched')}/{backups.get('checked')}份与登记字节一致；"
+        f"仅换行差异{len(backups.get('line_ending_only') or [])}份，未解释差异{len(backups.get('unexplained') or [])}份。"
+        "登记的 sha256_before 未被覆盖。",
         '- 核心dco、fdtd、pidon_contract、head_lstsq的函数/类AST完全一致；Solver仅_make_net读取路径与formal_run_identity的文件存在判断适配，内层拟合、场推进、指标数学未更改。源码字节变化真实记录，不伪造旧协议哈希恢复。',
         f"- #268执行{layout['test_run']['execution_count']}项、去重{layout['test_run']['unique_test_count']}个ID；全部通过。#270/#272验证入口保护，最终5个入口ID通过；合计60个不同测试ID，不将重复执行算额外覆盖。",
         '- 工程登记检查通过，新的科学门/训练阶段仍NOT_RUN；局部测试不将旧完整G0升为PASS。',

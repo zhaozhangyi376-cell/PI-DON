@@ -35,12 +35,34 @@ def sha256_file(path: str | Path) -> str | None:
     return digest.hexdigest()
 
 
-def source_hashes(root: str | Path) -> dict[str, str | None]:
+#: The solver modules whose bytes define the frozen dynamics.  This is the
+#: DECLARED closure, not a proof of a complete one: ``head_lstsq.py`` and
+#: ``paper_protocol.py`` were imported by pidon_solve but absent from the old
+#: five-name list, so a run could change behaviour with an unchanged manifest.
+SOURCE_HASH_NAMES = (
+    "pidon_solve.py", "pidon_contract.py", "pidon_recording.py",
+    "fdtd.py", "dco.py", "head_lstsq.py", "paper_protocol.py",
+    "reference_cache.py", "project_paths.py",
+)
+
+
+def source_hashes(root: str | Path, names: tuple[str, ...] = SOURCE_HASH_NAMES) -> dict[str, str | None]:
+    """Hash every declared solver dependency.
+
+    A ``None`` entry means the file was not found and therefore NOT hashed.
+    Callers must treat that as an incomplete freeze rather than as "no such
+    dependency"; :func:`source_hash_gaps` names them.
+    """
     root = Path(root)
     return {
         name: sha256_file(root / name if (root / name).is_file() else PROJECT_ROOT / name)
-        for name in ("pidon_solve.py", "pidon_contract.py", "pidon_recording.py", "fdtd.py", "dco.py")
+        for name in names
     }
+
+
+def source_hash_gaps(hashes: dict[str, str | None]) -> list[str]:
+    """Declared dependencies that could not be hashed, sorted."""
+    return sorted(name for name, digest in hashes.items() if not digest)
 
 
 def capture_rng() -> dict[str, Any]:
@@ -190,7 +212,16 @@ class RunRecorder:
         compatibility tests and historical artifacts.
         """
         payload = self._checkpoint_payload(payload)
-        active = self.metadata.get("active_checkpoint_slot")
+        # F06: the pointer file is committed BEFORE the metadata mirror, so a
+        # crash in between left metadata naming the previous slot.  The next
+        # call then picked the slot the pointer was already pointing at and
+        # overwrote the only recovery point; a second crash left a pointer
+        # whose hash no longer matched anything.  Choose the slot from the
+        # committed pointer -- the single durable source of truth -- and fall
+        # back to the metadata mirror only when no pointer is committed.
+        active = self._committed_slot()
+        if active is None:
+            active = self.metadata.get("active_checkpoint_slot")
         slot = "B" if active == "A" else "A"
         path = self.out_dir / f"checkpoint_{slot}.pt"
         atomic_torch_save(payload, path)
@@ -211,6 +242,42 @@ class RunRecorder:
         atomic_json_save(self.metadata, self.metadata_path)
         return path
 
+    def _committed_slot(self) -> str | None:
+        """The slot named by a fully verified pointer, or None."""
+        pointer_path = self.out_dir / "checkpoint_pointer.json"
+        if not pointer_path.is_file():
+            return None
+        try:
+            pointer = json.loads(pointer_path.read_text(encoding="utf-8"))
+        except (json.JSONDecodeError, OSError, UnicodeDecodeError):
+            return None
+        if not isinstance(pointer, dict) or pointer.get("schema") != "pidon-rolling-checkpoint-v1":
+            return None
+        slot = pointer.get("slot")
+        if slot not in ("A", "B"):
+            return None
+        path = self.out_dir / str(pointer.get("path", ""))
+        if path.name != f"checkpoint_{slot}.pt" or not path.is_file():
+            return None
+        if sha256_file(path) != pointer.get("sha256"):
+            return None
+        return slot
+
+    def durable_rows(self) -> list[dict[str, Any]]:
+        """Every committed JSONL row, in order.  Malformed logs raise."""
+        rows: list[dict[str, Any]] = []
+        if not self.jsonl.exists():
+            return rows
+        with self.jsonl.open("r", encoding="utf-8") as handle:
+            for line_number, line in enumerate(handle, start=1):
+                if not line.strip():
+                    raise ValueError(f"invalid JSONL at line {line_number}: blank row")
+                try:
+                    rows.append(json.loads(line))
+                except json.JSONDecodeError as error:
+                    raise ValueError(f"invalid JSONL at line {line_number}") from error
+        return rows
+
     def load_rolling_checkpoint(self) -> dict[str, Any]:
         pointer_path = self.out_dir / "checkpoint_pointer.json"
         if not pointer_path.is_file():
@@ -227,6 +294,13 @@ class RunRecorder:
         expected = {key: self.metadata.get(key) for key in self.IDENTITY_KEYS}
         if payload.get("recorder_identity") != expected:
             raise ValueError("rolling checkpoint identity differs from recorder")
+        pointer_sequence = pointer.get("last_committed_sequence_id")
+        payload_sequence = payload.get("last_committed_sequence_id")
+        if pointer_sequence != payload_sequence:
+            raise ValueError("rolling checkpoint pointer and payload disagree on committed sequence")
+        committed = int(self.metadata.get("last_committed_sequence_id", -1))
+        if payload_sequence is not None and int(payload_sequence) > committed:
+            raise ValueError("rolling checkpoint claims rows absent from the durable log")
         return payload
 
     def append(self, record: dict[str, Any]) -> None:

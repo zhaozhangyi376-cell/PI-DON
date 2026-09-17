@@ -201,17 +201,47 @@ def run_one_step(args: argparse.Namespace, out_dir: Path, case: str, manifest: d
 
 
 def budget_from_rows(rows: list[dict[str, Any]]) -> dict[str, int]:
-    adam = closures = accepted = failed = 0
+    """Cost of a set of rows, counting each half-step fit exactly once.
+
+    F23: ``FitRecord.n_updates`` is CUMULATIVE for its half-step -- a resumed
+    fit reports the interrupted segment plus the new one.  Adding the
+    interrupted row to the resumed row therefore charged the first segment
+    twice: a run that really applied 4 Adam steps was reported as 2+1+2 = 5.
+    Group by (time layer, half) and take the cumulative maximum, which is that
+    fit's true total, then add the groups together.
+
+    Both numbers are returned so an old table can still be reconciled:
+    ``adam`` is the de-duplicated total and ``adam_row_sum`` is the historical
+    row-wise sum.
+    """
+    totals: dict[tuple[Any, str], dict[str, int]] = {}
+    row_sum_adam = row_sum_closures = 0
+    accepted = failed = 0
     for row in rows:
         if row.get("accepted"):
             accepted += 1
         else:
             failed += 1
+        layer = row.get("step", row.get("time_layer"))
         for key in ("fit_H", "fit_E"):
             fit = row.get(key) or {}
-            adam += int(fit.get("n_updates", 0) or 0)
-            closures += int(fit.get("n_closures", 0) or 0)
-    return {"adam": adam, "closures": closures, "accepted_steps": accepted, "failed_candidates": failed}
+            if not fit:
+                continue
+            updates = int(fit.get("n_updates", 0) or 0)
+            closures = int(fit.get("n_closures", 0) or 0)
+            row_sum_adam += updates
+            row_sum_closures += closures
+            slot = totals.setdefault((layer, key), {"adam": 0, "closures": 0})
+            # A later row for the same half-step carries the cumulative value.
+            slot["adam"] = max(slot["adam"], updates)
+            slot["closures"] = max(slot["closures"], closures)
+    adam = sum(slot["adam"] for slot in totals.values())
+    closures = sum(slot["closures"] for slot in totals.values())
+    return {"adam": adam, "closures": closures,
+            "accepted_steps": accepted, "failed_candidates": failed,
+            "adam_row_sum": row_sum_adam, "closures_row_sum": row_sum_closures,
+            "resume_double_counted_adam": row_sum_adam - adam,
+            "counted_half_steps": len(totals)}
 
 
 def tensor_max_abs_delta(a: list[torch.Tensor], b: list[torch.Tensor]) -> float:
@@ -306,15 +336,23 @@ def run_m0() -> dict[str, Any]:
         "none_metric_reportable": bool(none_case["json_serializable"]),
         "closure_budget_counted": int(closure_fit.get("n_closures", 0) or 0) >= 1,
     }
+    # F23: the interrupted branch and its resume are ONE trajectory, so their
+    # rows are de-duplicated together rather than summed as two independent
+    # cases.  The other two cases are separate runs and are added normally.
+    resumed_budget = budget_from_rows(resumed["first_rows"] + resumed["second_rows"])
+    case_budgets = (
+        budget_from_rows(uninterrupted_rows),
+        resumed_budget,
+        budget_from_rows(closure_rows),
+    )
     total_budget = {
-        key: sum(case[key] for case in (
-            budget_from_rows(uninterrupted_rows),
-            budget_from_rows(resumed["first_rows"]),
-            budget_from_rows(resumed["second_rows"]),
-            budget_from_rows(closure_rows),
-        ))
-        for key in ("adam", "closures", "accepted_steps", "failed_candidates")
+        key: sum(case[key] for case in case_budgets)
+        for key in ("adam", "closures", "accepted_steps", "failed_candidates",
+                    "adam_row_sum", "closures_row_sum", "resume_double_counted_adam")
     }
+    total_budget["counting_rule"] = (
+        "per (time layer, half) cumulative maximum; adam_row_sum is the old "
+        "row-wise sum kept only for reconciling historical tables")
     audit = {
         "schema": "direct-mechanism-m0-audit-v1",
         "created_at_utc": utc_now(),
@@ -335,6 +373,7 @@ def run_m0() -> dict[str, Any]:
             "uninterrupted_terminal": budget_from_rows(uninterrupted_rows),
             "pending_interrupt_first": budget_from_rows(resumed["first_rows"]),
             "pending_resume_second": budget_from_rows(resumed["second_rows"]),
+            "pending_interrupt_resume_deduplicated": resumed_budget,
             "closure_budget_counts": budget_from_rows(closure_rows),
         },
         "total_m0_engineering_budget": total_budget,

@@ -5,6 +5,7 @@ import argparse
 import json
 import math
 import os
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
@@ -16,6 +17,11 @@ ROOT = PROJECT_DIR
 OUT = ROOT / "evidence" / "direct_mechanism_v1"
 RUNS = OUT / "runs"
 ARMS = ("A-R", "A-P", "B-R", "B-P")
+REQUIRED_COMPONENTS = ("Ex", "Ey", "Ez", "Hx", "Hy", "Hz")
+COMPONENT_NMAE_GATE = 0.01
+Q_GATE = 0.05
+FIXED_AMPLITUDE_GATE = 1e-3
+WEAK_ABSOLUTE_GATE = 1e-5
 
 
 def read_json(path: Path) -> dict[str, Any]:
@@ -74,11 +80,37 @@ def probe_metrics(summary: dict[str, Any]) -> list[dict[str, Any]]:
     return result
 
 
+def missing_summary_state(run_dir: Path) -> dict[str, Any]:
+    """Tell "never started" apart from "evidence is not here any more".
+
+    F22: a missing summary.json was reported as NOT_RUN, so re-running this
+    generator after the evidence moved would have rewritten a completed
+    experiment into one that never happened.  Any other artefact in the run
+    directory -- a log, a checkpoint, a pointer -- means the run did start and
+    the summary is what is missing, which is INCOMPLETE.
+    """
+    markers = ["steps.jsonl", "run_metadata.json", "checkpoint_pointer.json",
+               "checkpoint_A.pt", "checkpoint_B.pt", "checkpoint_latest.pt"]
+    present = [name for name in markers if (run_dir / name).exists()]
+    if not run_dir.exists():
+        return {"status": "NOT_RUN", "evidence_present": [],
+                "reason": "run directory does not exist at this path"}
+    if present or any(run_dir.iterdir()):
+        return {"status": "INCOMPLETE", "evidence_present": present,
+                "reason": "run directory holds evidence but summary.json is absent"}
+    return {"status": "NOT_RUN", "evidence_present": [],
+            "reason": "run directory is empty"}
+
+
 def summarize_arm(arm: str) -> dict[str, Any]:
     run_dir = RUNS / arm.replace("-", "_")
     path = run_dir / "summary.json"
     if not path.exists():
-        return {"arm": arm, "status": "NOT_RUN", "run_dir": display(run_dir)}
+        state = missing_summary_state(run_dir)
+        return {"arm": arm, "status": state["status"], "run_dir": display(run_dir),
+                "field_gate_pass": False, "field_gate_status": "INCOMPLETE",
+                "residual_128_pass": False,
+                "missing_summary": state}
     summary = read_json(path)
     last = summary.get("last_accepted_step") or {}
     stop_row = summary.get("stop_row") or {}
@@ -89,34 +121,63 @@ def summarize_arm(arm: str) -> dict[str, Any]:
     components = metrics.get("components") or {}
     effective_nmae = {}
     weak_abs = {}
-    for name, comp in components.items():
+    # F02 (supplement): the old loop skipped absent components entirely and
+    # then dropped every non-finite nMAE before taking the max, so a record
+    # with three components, a NaN Ey and a weak Hz that missed its absolute
+    # gate still produced field_gate_pass=True.  Missing or non-finite is now
+    # INCOMPLETE, never "small enough".
+    component_failures: list[str] = []
+    missing_components = [name for name in REQUIRED_COMPONENTS if name not in components]
+    for name in REQUIRED_COMPONENTS:
+        comp = components.get(name)
+        if not isinstance(comp, dict):
+            continue
         if comp.get("weak_reference"):
+            absolute = safe_float(comp.get("absolute_mae"))
+            gate = safe_float(comp.get("weak_absolute_gate")) or WEAK_ABSOLUTE_GATE
             weak_abs[name] = {
                 "absolute_mae": comp.get("absolute_mae"),
                 "weak_absolute_pass": comp.get("weak_absolute_pass"),
+                "weak_absolute_gate": gate,
                 "reference_max": comp.get("reference_max"),
             }
+            if absolute is None or absolute > gate or not bool(comp.get("weak_absolute_pass")):
+                component_failures.append(f"{name}: weak absolute {comp.get('absolute_mae')} > {gate}")
         else:
             effective_nmae[name] = comp.get("nmae")
+            value = safe_float(comp.get("nmae"))
+            if value is None:
+                component_failures.append(f"{name}: nmae is not a finite number ({comp.get('nmae')!r})")
+            elif value > COMPONENT_NMAE_GATE:
+                component_failures.append(f"{name}: nmae {value} > {COMPONENT_NMAE_GATE}")
     finite_nmae = [safe_float(value) for value in effective_nmae.values()]
     finite_nmae = [value for value in finite_nmae if value is not None]
     max_effective_nmae = max(finite_nmae) if finite_nmae else None
     fixed_amp = (metrics or {}).get("fixed_amplitude_error")
+    q_value = safe_float(metrics.get("global_weighted_relative_l2"))
     probes = probe_metrics(summary)
     valid_probes = [p for p in probes if p.get("valid")]
     probe_pass = len(valid_probes) >= 2 and all(p.get("pass_5pct") for p in valid_probes)
     residual_128_pass = summary.get("status") == "PASS" and int(summary.get("accepted_steps", 0)) >= 128
+    complete = bool(components) and not missing_components and len(valid_probes) >= 2
     field_gate_pass = bool(
-        residual_128_pass and
-        max_effective_nmae is not None and max_effective_nmae <= 0.01 and
-        safe_float(fixed_amp) is not None and safe_float(fixed_amp) <= 1e-3 and
+        complete and residual_128_pass and not component_failures and
+        q_value is not None and q_value <= Q_GATE and
+        safe_float(fixed_amp) is not None and safe_float(fixed_amp) <= FIXED_AMPLITUDE_GATE and
         probe_pass
     )
+    field_gate_status = ("PASS" if field_gate_pass
+                         else "INCOMPLETE" if not complete else "FAIL")
     return {
         "arm": arm,
         "status": summary.get("status"),
         "residual_128_pass": residual_128_pass,
         "field_gate_pass": field_gate_pass,
+        "field_gate_status": field_gate_status,
+        "field_gate_complete": complete,
+        "missing_components": missing_components,
+        "component_failures": component_failures,
+        "global_weighted_relative_l2_le_5pct": q_value is not None and q_value <= Q_GATE,
         "accepted_steps": summary.get("accepted_steps"),
         "target_steps": summary.get("target_steps"),
         "elapsed_s": summary.get("elapsed_s"),
@@ -138,7 +199,43 @@ def summarize_arm(arm: str) -> dict[str, Any]:
     }
 
 
-def write_report(audit: dict[str, Any]) -> None:
+def interpretation_lines(audit: dict[str, Any]) -> list[str]:
+    """Derive the narrative from the audited rows.
+
+    F22: this section used to be a hard-coded retelling of one historical
+    outcome, so re-running the generator on different (or absent) evidence
+    printed conclusions the data no longer supported.
+    """
+    lines: list[str] = []
+    for arm in audit["arms"]:
+        name = arm["arm"]
+        if arm.get("missing_summary"):
+            state = arm["missing_summary"]
+            lines.append(f"- {name}: `{arm['status']}` -- {state['reason']}; "
+                         f"evidence present: {state['evidence_present'] or 'none'}.")
+            continue
+        accepted = arm.get("accepted_steps") or 0
+        detail = f"- {name}: status `{arm.get('status')}`, accepted {accepted} steps, "
+        detail += f"field gate `{arm.get('field_gate_status')}`"
+        failures = arm.get("component_failures") or []
+        if arm.get("missing_components"):
+            detail += f"; components absent: {', '.join(arm['missing_components'])}"
+        if failures:
+            detail += "; " + "; ".join(failures[:4])
+        lines.append(detail + ".")
+    passed = audit["field_gate_pass_arms"]
+    if passed:
+        lines.append(f"- Field gate passed for: {', '.join(passed)}; a G128 selection review is required "
+                     "before any long run.")
+    else:
+        lines.append("- No arm passed the registered field gate, so 1024/8192 stay NOT_RUN.")
+    incomplete = [a["arm"] for a in audit["arms"] if a.get("field_gate_status") == "INCOMPLETE"]
+    if incomplete:
+        lines.append(f"- INCOMPLETE (evidence absent or partial, NOT a scientific FAIL): {', '.join(incomplete)}.")
+    return lines
+
+
+def write_report(audit: dict[str, Any], out_dir: Path) -> None:
     lines = [
         "# M2 Report - Direct 128 Queue Audit",
         "",
@@ -154,32 +251,44 @@ def write_report(audit: dict[str, Any]) -> None:
         valid_probe_l2 = [p.get("relative_l2") for p in arm.get("probe_waveform", []) if p.get("valid") and p.get("relative_l2") is not None]
         max_probe = max(valid_probe_l2) if valid_probe_l2 else None
         lines.append(
-            f"| {arm['arm']} | {arm['status']} | {arm['residual_128_pass']} | {arm['field_gate_pass']} | "
+            f"| {arm['arm']} | {arm['status']} | {arm['residual_128_pass']} | {arm.get('field_gate_status')} | "
             f"{arm.get('accepted_steps') or 0} | {budget.get('adam', 0)} | {budget.get('closures', 0)} | "
             f"{arm.get('final_H_R')} | {arm.get('final_E_R')} | {arm.get('max_effective_component_nmae')} | {max_probe} |"
         )
+    lines.extend(["", "## Interpretation", ""])
+    lines.extend(interpretation_lines(audit))
     lines.extend([
-        "",
-        "## Interpretation",
-        "",
-        "- A-R failed at 33 accepted steps; its failed E residual is far above the strict gate.",
-        "- A-P, B-R and B-P all reached 128 residual-accepted steps.",
-        "- All 128-step arms fail the field gate because effective component nMAE is about 4.8% to 5.1%, above the 1% gate; source-outside waveform errors are also not all within 5%.",
-        "- Therefore M2 produces useful mechanism/optimizer evidence but does not unlock 1024/8192.",
         "",
         "## Files",
         "",
-        f"- Audit JSON: `{display(OUT / 'm2_audit.json')}`",
+        f"- Audit JSON: `{display(out_dir / 'm2_audit.json')}`",
         f"- Runs: `{display(RUNS)}`",
         "",
     ])
-    (OUT / "M2_REPORT.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
+    (out_dir / "M2_REPORT.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--action-id", default="")
+    parser.add_argument("--out-dir", default="",
+                        help="new output directory; defaults to a fresh timestamped "
+                             "directory so a re-run never overwrites a historical audit")
+    parser.add_argument("--overwrite-historical", action="store_true",
+                        help="explicitly allow writing into the original fixed evidence directory")
     args = parser.parse_args()
+    # F22: this generator wrote m2_audit.json and M2_REPORT.md straight back
+    # into the historical evidence directory.  Re-running it after the runs
+    # moved would have replaced an audited result with one derived from
+    # missing files.  Read-only inputs, new outputs.
+    if args.out_dir:
+        out_dir = Path(args.out_dir)
+    elif args.overwrite_historical:
+        out_dir = OUT
+    else:
+        stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
+        out_dir = OUT / "reaudit" / stamp
+    out_dir.mkdir(parents=True, exist_ok=True)
     arms = [summarize_arm(arm) for arm in ARMS]
     residual_pass = [a for a in arms if a.get("residual_128_pass")]
     field_pass = [a for a in arms if a.get("field_gate_pass")]
@@ -194,8 +303,10 @@ def main() -> None:
         "long_run_unlocked": bool(field_pass),
         "recommendation": "do_not_start_1024_or_8192" if not field_pass else "run_G128_selection_before_longrun",
     }
-    (OUT / "m2_audit.json").write_text(json.dumps(audit, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    write_report(audit)
+    audit["output_dir"] = display(out_dir)
+    audit["inputs_read_only"] = True
+    (out_dir / "m2_audit.json").write_text(json.dumps(audit, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    write_report(audit, out_dir)
     print(json.dumps({
         "residual_128_pass_arms": audit["residual_128_pass_arms"],
         "field_gate_pass_arms": audit["field_gate_pass_arms"],
