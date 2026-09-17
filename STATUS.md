@@ -75,7 +75,8 @@ PEC计算图审计已完成：生产`apply_pec`对Ex/Ey/Ez的切向边界掩膜�
 | PAPER01-S1 | 交付PASS / 科学FAIL | 服务器完整25000 Adam；合同、history、checkpoint哈希均通过；宏nMAE=9.2334%，relL2 p90=57.9028%，Eq.(5) MRE=2.0180，三项登记门均失败 |
 | PAPER01-DIAG | 诊断PASS，本地lab304，0更新 | 后5000更新test MSE仅降2.42%；curl-z为主导误差；近奇异角`abs(cos theta)<0.25`组最差；原样重训优先级低 |
 | PAPER01-DATA-AUDIT | 诊断PASS，本地lab305，0更新 | `k dot E0`相对最大≤1.23e-16；Ez放大p90=3.09、最大=7.89；近奇异角组Ez放大均值=4.54且宏nMAE最高 |
-| PAPER01-ABLATION-SMOKE | READY，服务器包已生成 | `server_paper01_ablation_bundle.zip`及`.sha256`；SHA256 `F75C64788AF9DD76203784EC60D5F35DA7872E52E1D92209C124D6A2D03204FF`；四臂各2000 Adam，比较baseline、theta_min_0p5、ez_cap3、projected_amp短训趋势；执行说明见[服务器消融指南](docs/guides/PAPER01_ABLATION_SERVER.md) |
+| PAPER01-ABLATION-SMOKE | PASS，服务器回传审计完成 | 四臂各2000 Adam；baseline macro nMAE=0.26390，theta_min_0p5=0.19156，ez_cap3=0.20495，projected_amp=0.19261；最优论文式变体theta_min_0p5为baseline的0.726倍；建议登记同类完整重训，不解锁第二阶段 |
+| PAPER01-S1-THETA-FULL | READY，服务器包待执行 | 角度过滤`abs(cos(theta))>=0.5`，25000 Adam完整第一阶段诊断；只判断是否值得后续盲测/换网格，不改判PAPER01-S1 |
 | SR-S1/SR-G128 | BLOCKED | SR-S1本批不消耗；SR-G128需新64/128场门证据后再审 |
 | L1/G1024/L2/U | NOT_RUN | 无新合格128轨迹，不启动1024/8192 |
 

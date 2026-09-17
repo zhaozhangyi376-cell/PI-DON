@@ -63,7 +63,8 @@ S1R是第一阶段DCO训练。旧局部成绩不被新盲测失败抹除，但�
 | PAPER01-S1 | 32³、1000样本、四级、Adam、恒定1e-4、等效batch32、25000更新 | 回传审计PASS：history=25000、恒定lr、fresh随机初始化、contract/checkpoint哈希均通过；科学FAIL：宏nMAE=9.2334%，relL2 p90=57.9028%，Eq.(5) MRE=2.0180 | 交付PASS / 科学FAIL；不进入第二阶段 |
 | PAPER01-DIAG | `PAPER01-S1` best checkpoint、200个保留样本、0更新分量/样本/角度/波数/幅值诊断 | 后5000更新test MSE仅降2.42%；curl-z平均nMAE=13.25%，x=7.49%，y=6.96%；`abs(cos theta)<0.25`组宏nMAE=13.45% | PASS；支持先查Eq.(4)、z分量归一化/支撑和近奇异角处理，不支持原样重训 |
 | PAPER01-DATA-AUDIT | `sample_specs`与上一轮per-sample误差，0更新公式/归一化合同审计 | `k dot E0`相对最大≤1.23e-16，说明横向条件自洽；Ez放大比均值1.26、p90=3.09、最大7.89；近奇异角组Ez放大均值4.54且宏nMAE最高 | PASS；后续只支持小型角度/幅值/归一化消融，不支持直接长程 |
-| PAPER01-ABLATION-SMOKE | 四臂短预算第一阶段消融：baseline、theta_min_0p5、ez_cap3、projected_amp；每臂2000 Adam | 服务器包`server_paper01_ablation_bundle.zip`已生成；用楼式进度输出和lab_log记录，跑完回传审计 | READY；只判断是否值得完整重训，不认证论文复现 |
+| PAPER01-ABLATION-SMOKE | 四臂短预算第一阶段消融：baseline、theta_min_0p5、ez_cap3、projected_amp；每臂2000 Adam | 回传审计PASS；`theta_min_0p5`在论文式幅值构造中macro nMAE最低，为baseline的0.726倍；`projected_amp` relL2/MRE略优但不忠实论文幅值构造 | PASS；支持登记角度过滤完整第一阶段诊断，不认证论文复现 |
+| PAPER01-S1-THETA-FULL | `theta_min_0p5`，32³、1000样本、四级、Adam、恒定1e-4、等效batch32、25000更新 | 新服务器包待执行；只检验短预算方向延长后是否仍改善 | READY；不改判PAPER01-S1，不进入第二阶段 |
 | SR-G128 | 新轨迹全段残差、六分量、去源场和波形认证 | 失败转研究判断；通过才依首次更新前冻结的长程晋级合同执行 | BLOCKED |
 | L1/G1024/L2/U | 原1024→8192及合格问题训练后的冻结复用目标 | 新合格128轨迹+累计预算/模型/优化器/RNG认证 | NOT_RUN；clean128科学FAIL，不启动 |
 

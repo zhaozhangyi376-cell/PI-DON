@@ -932,18 +932,21 @@
       "id": "PAPER01-ABLATION-SMOKE",
       "goal_id": "G-REPRO",
       "title": "PAPER01第一阶段角度幅值归一化短预算消融",
-      "status": "READY",
+      "status": "PASS",
       "depends": [
         "PAPER01-DATA-AUDIT"
       ],
       "reason": "数据合同审计显示横向条件自洽但Eq.(4)近奇异角和Ez放大与失败相关；用短预算比较角度拒绝、Ez上限和幅值构造，决定是否值得完整重训",
       "evidence": [
         "docs/plans/2026-09-17-paper01-ablation-smoke-protocol.md",
-        "docs/guides/PAPER01_ABLATION_SERVER.md"
+        "evidence/paper01_s1/imports/server_paper01_ablation_return_20260917T045055Z/_01/evidence/paper01_ablation_v1/summary.json",
+        "evidence/paper01_s1/paper01_ablation_return_review.json",
+        "evidence/paper01_s1/paper01_ablation_return_review.md"
       ],
       "kind": "diagnostic",
-      "scientific_result": "NOT_RUN",
-      "execution_plan": "docs/plans/2026-09-17-paper01-ablation-smoke-protocol.md"
+      "scientific_result": "DIAGNOSTIC_ONLY",
+      "execution_plan": "docs/plans/2026-09-17-paper01-ablation-smoke-protocol.md",
+      "summary": "PAPER01 ablation returned PASS; updates=8000; best=theta_min_0p5; best_vs_baseline_macro_nmae_ratio=0.725887118853348; recommendation=REGISTER_FULL_S1_WITH_MATCHING_FILTER; no stage-two or long-run unlock."
     },
     {
       "id": "PAPER01-PREFLIGHT-R1",
@@ -965,6 +968,22 @@
       "kind": "engineering",
       "scientific_result": "NOT_APPLICABLE",
       "execution_plan": "docs/plans/2026-09-17-paper01-s1-r1-protocol.md"
+    },
+    {
+      "id": "PAPER01-S1-THETA-FULL",
+      "goal_id": "G-REPRO",
+      "title": "PAPER01角度过滤完整第一阶段诊断",
+      "status": "READY",
+      "depends": [
+        "PAPER01-ABLATION-SMOKE"
+      ],
+      "reason": "PAPER01-ABLATION-SMOKE显示theta_min_0p5短预算显著优于baseline；完整25000 Adam诊断角度过滤是否值得进入后续盲测。",
+      "evidence": [
+        "docs/plans/2026-09-17-paper01-theta-full-protocol.md"
+      ],
+      "kind": "diagnostic",
+      "scientific_result": "NOT_RUN",
+      "execution_plan": "docs/plans/2026-09-17-paper01-theta-full-protocol.md"
     }
   ]
 }

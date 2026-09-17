@@ -1,0 +1,77 @@
+{
+  "schema": "pidon-paper01-ablation-return-review-v1",
+  "status": "PASS",
+  "scientific_result": "DIAGNOSTIC_ONLY",
+  "import_dir": "C:\\PI-DON\\evidence\\paper01_s1\\imports\\server_paper01_ablation_return_20260917T045055Z",
+  "summary_path": "C:\\PI-DON\\evidence\\paper01_s1\\imports\\server_paper01_ablation_return_20260917T045055Z\\_01\\evidence\\paper01_ablation_v1\\summary.json",
+  "parameter_updates": 8000,
+  "variant_count": 4,
+  "variants": [
+    {
+      "variant": "baseline",
+      "updates": 2000,
+      "best_test_mse": 0.1494113200902939,
+      "macro_nmae_mean": 0.26389667216688395,
+      "rel_l2_p90": 1.2612284898757933,
+      "mre_eq5_mean": 7.230413322250049,
+      "ez_amplification_p90": 3.012220520077973,
+      "diagnostic_not_paper_literal": false
+    },
+    {
+      "variant": "theta_min_0p5",
+      "updates": 2000,
+      "best_test_mse": 0.07506816804409028,
+      "macro_nmae_mean": 0.1915591950342059,
+      "rel_l2_p90": 0.8400662779808044,
+      "mre_eq5_mean": 5.2960451016823455,
+      "ez_amplification_p90": 1.2798486921778756,
+      "diagnostic_not_paper_literal": false
+    },
+    {
+      "variant": "ez_cap3",
+      "updates": 2000,
+      "best_test_mse": 0.09062718788782756,
+      "macro_nmae_mean": 0.20494638483971359,
+      "rel_l2_p90": 0.9268864393234253,
+      "mre_eq5_mean": 14.434707493583364,
+      "ez_amplification_p90": 2.0518115352865185,
+      "diagnostic_not_paper_literal": false
+    },
+    {
+      "variant": "projected_amp",
+      "updates": 2000,
+      "best_test_mse": 0.06917007684707642,
+      "macro_nmae_mean": 0.1926053537800908,
+      "rel_l2_p90": 0.752285897731781,
+      "mre_eq5_mean": 5.227230664988358,
+      "ez_amplification_p90": 1.1927031550696816,
+      "diagnostic_not_paper_literal": true
+    }
+  ],
+  "baseline": {
+    "variant": "baseline",
+    "updates": 2000,
+    "best_test_mse": 0.1494113200902939,
+    "macro_nmae_mean": 0.26389667216688395,
+    "rel_l2_p90": 1.2612284898757933,
+    "mre_eq5_mean": 7.230413322250049,
+    "ez_amplification_p90": 3.012220520077973,
+    "diagnostic_not_paper_literal": false
+  },
+  "best_macro_nmae_variant": {
+    "variant": "theta_min_0p5",
+    "updates": 2000,
+    "best_test_mse": 0.07506816804409028,
+    "macro_nmae_mean": 0.1915591950342059,
+    "rel_l2_p90": 0.8400662779808044,
+    "mre_eq5_mean": 5.2960451016823455,
+    "ez_amplification_p90": 1.2798486921778756,
+    "diagnostic_not_paper_literal": false
+  },
+  "best_vs_baseline_macro_nmae_ratio": 0.725887118853348,
+  "recommendation": {
+    "code": "REGISTER_FULL_S1_WITH_MATCHING_FILTER",
+    "text": "论文式数据的受控过滤显著优于baseline；下一步可登记同类完整第一阶段重训，仍不解锁第二阶段。"
+  },
+  "long_run_unlocked": false
+}
