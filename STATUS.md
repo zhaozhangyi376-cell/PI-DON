@@ -75,7 +75,7 @@ PEC计算图审计已完成：生产`apply_pec`对Ex/Ey/Ez的切向边界掩膜�
 | PAPER01-S1 | 交付PASS / 科学FAIL | 服务器完整25000 Adam；合同、history、checkpoint哈希均通过；宏nMAE=9.2334%，relL2 p90=57.9028%，Eq.(5) MRE=2.0180，三项登记门均失败 |
 | PAPER01-DIAG | 诊断PASS，本地lab304，0更新 | 后5000更新test MSE仅降2.42%；curl-z为主导误差；近奇异角`abs(cos theta)<0.25`组最差；原样重训优先级低 |
 | PAPER01-DATA-AUDIT | 诊断PASS，本地lab305，0更新 | `k dot E0`相对最大≤1.23e-16；Ez放大p90=3.09、最大=7.89；近奇异角组Ez放大均值=4.54且宏nMAE最高 |
-| PAPER01-ABLATION-SMOKE | READY，服务器包已生成 | `server_paper01_ablation_bundle.zip`及`.sha256`；SHA256 `176650C39549646BA554E6CBC757F1A46BBF5393F85D696ECC5B6DCAF691469F`；四臂各2000 Adam，比较baseline、theta_min_0p5、ez_cap3、projected_amp短训趋势；执行说明见[服务器消融指南](docs/guides/PAPER01_ABLATION_SERVER.md) |
+| PAPER01-ABLATION-SMOKE | READY，服务器包已生成 | `server_paper01_ablation_bundle.zip`及`.sha256`；SHA256 `F75C64788AF9DD76203784EC60D5F35DA7872E52E1D92209C124D6A2D03204FF`；四臂各2000 Adam，比较baseline、theta_min_0p5、ez_cap3、projected_amp短训趋势；执行说明见[服务器消融指南](docs/guides/PAPER01_ABLATION_SERVER.md) |
 | SR-S1/SR-G128 | BLOCKED | SR-S1本批不消耗；SR-G128需新64/128场门证据后再审 |
 | L1/G1024/L2/U | NOT_RUN | 无新合格128轨迹，不启动1024/8192 |
 

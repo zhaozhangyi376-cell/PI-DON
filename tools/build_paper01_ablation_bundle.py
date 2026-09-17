@@ -45,11 +45,17 @@ shutil.copy2(protocol_source, protocol_target)
 plan_path = ROOT / "project" / "plan.json"
 plan = json.loads(plan_path.read_text(encoding="utf-8-sig"))
 task = json.loads((UPDATE / "paper01_ablation_task.json").read_text(encoding="utf-8"))
+changed = False
 for existing in plan["tasks"]:
     if existing.get("id") == task["id"]:
+        if existing.get("status") not in {"PASS", "FAIL"}:
+            existing.update(task)
+            changed = True
         break
 else:
     plan["tasks"].append(task)
+    changed = True
+if changed:
     plan_path.write_text(json.dumps(plan, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 print(f"Installed PAPER01 ablation payload. Backup: {backup if backup.exists() else 'none'}")
 '''
@@ -173,6 +179,10 @@ def task_payload() -> dict:
     # The installer adds this task as a standalone diagnostic queue entry while
     # preserving the local protocol and action evidence in the return bundle.
     task["depends"] = []
+    task["status"] = "READY"
+    task["evidence"] = []
+    task["summary"] = "Server-side clean READY task generated from local reviewed protocol; no local evidence paths required before execution."
+    task["scientific_result"] = "NOT_RUN"
     task["reason"] += "；服务器部署时不声明跨主机机器依赖，本地PAPER01-DATA-AUDIT已审核。"
     return task
 

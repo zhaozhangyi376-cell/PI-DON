@@ -44,6 +44,8 @@ class Paper01AblationBundleTests(unittest.TestCase):
                 task = json.loads(archive.read("paper01_ablation_task.json").decode("utf-8"))
                 self.assertEqual(task["id"], "PAPER01-ABLATION-SMOKE")
                 self.assertEqual(task["depends"], [])
+                self.assertEqual(task["status"], "READY")
+                self.assertEqual(task["evidence"], [])
                 self.assertTrue(task["execution_plan"].endswith("paper01-ablation-smoke-protocol.md"))
 
                 queue = archive.read("server_paper01_ablation_queue.py").decode("utf-8")
@@ -51,6 +53,7 @@ class Paper01AblationBundleTests(unittest.TestCase):
                 self.assertIn("UPDATE = Path(__file__).resolve().parent", installer)
                 self.assertIn("ROOT = UPDATE.parent", installer)
                 self.assertIn("SOURCE = UPDATE / \"payload\" / \"_01\"", installer)
+                self.assertIn("existing.update(task)", installer)
                 self.assertIn("UPDATE = Path(__file__).resolve().parent", queue)
                 self.assertIn("ROOT = UPDATE.parent", queue)
                 self.assertIn("PAPER01 ablation installer expected project root", installer)
