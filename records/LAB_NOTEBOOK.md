@@ -12057,3 +12057,318 @@ py -3.11 run.py --action A-20260915T142904-a8ebc3e9 server_failure_mechanism_aud
 ```
 
 </details>
+
+## #296　2026-09-16T23:29:32　FAILED (exit 1)
+
+**SR-DCO-REVIEW zero-update returned evidence audit**
+
+```
+py -3.11 run.py --action A-20260916T152910-1ea2bb53 review_dco_pretraining --action-id A-20260916T152910-1ea2bb53 --zip evidence/server_resource_v1/server_random_low_lr128_return.zip --output evidence/server_resource_v1/dco_value_review_20260916
+```
+
+- 耗时 10s ｜ commit `4a8fcae` (main) ⚠ **跟踪文件与该 commit 不一致，此次运行无法仅凭 commit 复现**
+- DESKTOP-0K8A2KS ｜ Windows 10 ｜ python 3.11.9 ｜ torch 2.14.0+cu126 ｜ NVIDIA GeForce GTX 1660 SUPER
+
+| 产生/修改的文件 | 大小 | sha256 (前 16 位) |
+|---|---|---|
+| `evidence/server_resource_v1/dco_value_review_20260916/returned/random_low_lr128/checkpoint_A.pt` | 219,102 KB | `6df7141bfe9d3c34` |
+| `evidence/server_resource_v1/dco_value_review_20260916/returned/random_low_lr128/checkpoint_B.pt` | 219,102 KB | `31f5d3e0630eedcd` |
+| `evidence/server_resource_v1/dco_value_review_20260916/returned/random_low_lr128/snapshot_step_0032.pt` | 219,102 KB | `0c50de4a45d07693` |
+| `evidence/server_resource_v1/dco_value_review_20260916/returned/random_low_lr128/snapshot_step_0064.pt` | 219,102 KB | `8965452d67985969` |
+| `evidence/server_resource_v1/dco_value_review_20260916/returned/random_low_lr128/snapshot_step_0128.pt` | 219,102 KB | `1f85284e3c37afc6` |
+| `evidence/server_resource_v1/dco_value_review_20260916/returned/random_low_lr128/steps.jsonl` | 2,347 KB | `7115ca796df69137` |
+| `evidence/server_resource_v1/dco_value_review_20260916/returned/lab_runs.jsonl` | 961 KB | `025cef4d804654dd` |
+| `evidence/server_resource_v1/dco_value_review_20260916/returned/random_low_lr128/source/src/pidon/pidon_solve.py` | 70 KB | `5d6eb695526117ef` |
+| `evidence/server_resource_v1/dco_value_review_20260916/returned/actions.jsonl` | 41 KB | `eff02adfacbecdfa` |
+| `evidence/server_resource_v1/dco_value_review_20260916/returned/random_low_lr128/summary.json` | 29 KB | `2ffdfe4d3e61cbd9` |
+| `evidence/server_resource_v1/dco_value_review_20260916/returned/plan.json` | 20 KB | `eb77531aac5c8640` |
+| `evidence/server_resource_v1/dco_value_review_20260916/returned/random_low_lr128/source/scripts/experiments/server_short_tol_probe.py` | 18 KB | `83202064b0fde02b` |
+| … 另有 13 个 | | |
+
+<details><summary>输出末尾</summary>
+
+```
+Extracting and hashing random128 return
+Traceback (most recent call last):
+  File "C:\PI-DON\run.py", line 95, in <module>
+    main()
+  File "C:\PI-DON\run.py", line 91, in main
+    runpy.run_path(str(matches[0]), run_name='__main__')
+  File "<frozen runpy>", line 291, in run_path
+  File "<frozen runpy>", line 98, in _run_module_code
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\PI-DON\tools\review_dco_pretraining.py", line 297, in <module>
+    main()
+  File "C:\PI-DON\tools\review_dco_pretraining.py", line 208, in main
+    events = [e for e in jsonl(out / "returned/actions.jsonl") if e["action_id"] == summary["action_id"]]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\PI-DON\tools\review_dco_pretraining.py", line 208, in <listcomp>
+    events = [e for e in jsonl(out / "returned/actions.jsonl") if e["action_id"] == summary["action_id"]]
+                                                                  ~^^^^^^^^^^^^^
+KeyError: 'action_id'
+```
+
+</details>
+
+## #297　2026-09-16T23:30:09　FAILED (exit 1)
+
+**SR-DCO-REVIEW zero-update audit retry; heterogeneous ledger event parsing fixed**
+
+```
+py -3.11 run.py --action A-20260916T152910-1ea2bb53 review_dco_pretraining --action-id A-20260916T152910-1ea2bb53 --zip evidence/server_resource_v1/server_random_low_lr128_return.zip --output evidence/server_resource_v1/dco_value_review_20260916_r1
+```
+
+- 耗时 10s ｜ commit `4a8fcae` (main) ⚠ **跟踪文件与该 commit 不一致，此次运行无法仅凭 commit 复现**
+- DESKTOP-0K8A2KS ｜ Windows 10 ｜ python 3.11.9 ｜ torch 2.14.0+cu126 ｜ NVIDIA GeForce GTX 1660 SUPER
+
+| 产生/修改的文件 | 大小 | sha256 (前 16 位) |
+|---|---|---|
+| `evidence/server_resource_v1/dco_value_review_20260916_r1/returned/random_low_lr128/checkpoint_A.pt` | 219,102 KB | `6df7141bfe9d3c34` |
+| `evidence/server_resource_v1/dco_value_review_20260916_r1/returned/random_low_lr128/checkpoint_B.pt` | 219,102 KB | `31f5d3e0630eedcd` |
+| `evidence/server_resource_v1/dco_value_review_20260916_r1/returned/random_low_lr128/snapshot_step_0032.pt` | 219,102 KB | `0c50de4a45d07693` |
+| `evidence/server_resource_v1/dco_value_review_20260916_r1/returned/random_low_lr128/snapshot_step_0064.pt` | 219,102 KB | `8965452d67985969` |
+| `evidence/server_resource_v1/dco_value_review_20260916_r1/returned/random_low_lr128/snapshot_step_0128.pt` | 219,102 KB | `1f85284e3c37afc6` |
+| `evidence/server_resource_v1/dco_value_review_20260916_r1/returned/random_low_lr128/steps.jsonl` | 2,347 KB | `7115ca796df69137` |
+| `evidence/server_resource_v1/dco_value_review_20260916_r1/returned/lab_runs.jsonl` | 961 KB | `025cef4d804654dd` |
+| `evidence/server_resource_v1/dco_value_review_20260916_r1/returned/random_low_lr128/source/src/pidon/pidon_solve.py` | 70 KB | `5d6eb695526117ef` |
+| `evidence/server_resource_v1/dco_value_review_20260916_r1/returned/actions.jsonl` | 41 KB | `eff02adfacbecdfa` |
+| `evidence/server_resource_v1/dco_value_review_20260916_r1/returned/random_low_lr128/summary.json` | 29 KB | `2ffdfe4d3e61cbd9` |
+| `evidence/server_resource_v1/dco_value_review_20260916_r1/returned/plan.json` | 20 KB | `eb77531aac5c8640` |
+| `evidence/server_resource_v1/dco_value_review_20260916_r1/returned/random_low_lr128/source/scripts/experiments/server_short_tol_probe.py` | 18 KB | `83202064b0fde02b` |
+| … 另有 13 个 | | |
+
+<details><summary>输出末尾</summary>
+
+```
+Extracting and hashing random128 return
+Traceback (most recent call last):
+  File "C:\PI-DON\run.py", line 95, in <module>
+    main()
+  File "C:\PI-DON\run.py", line 91, in main
+    runpy.run_path(str(matches[0]), run_name='__main__')
+  File "<frozen runpy>", line 291, in run_path
+  File "<frozen runpy>", line 98, in _run_module_code
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\PI-DON\tools\review_dco_pretraining.py", line 297, in <module>
+    main()
+  File "C:\PI-DON\tools\review_dco_pretraining.py", line 215, in main
+    assert sha(ROOT / "src/pidon/pidon_contract.py") == manifest["source_hashes"]["pidon_contract.py"]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError
+```
+
+</details>
+
+## #298　2026-09-16T23:34:15　OK
+
+**SR-DCO-REVIEW zero-update audit; verified metric source LF hash**
+
+```
+py -3.11 run.py --action A-20260916T152910-1ea2bb53 review_dco_pretraining --action-id A-20260916T152910-1ea2bb53 --zip evidence/server_resource_v1/server_random_low_lr128_return.zip --output evidence/server_resource_v1/dco_value_review_20260916_r2 --import-directory evidence/server_resource_v1/dco_value_review_20260916_r1/returned
+```
+
+- 耗时 8s ｜ commit `4a8fcae` (main) ⚠ **跟踪文件与该 commit 不一致，此次运行无法仅凭 commit 复现**
+- DESKTOP-0K8A2KS ｜ Windows 10 ｜ python 3.11.9 ｜ torch 2.14.0+cu126 ｜ NVIDIA GeForce GTX 1660 SUPER
+
+| 产生/修改的文件 | 大小 | sha256 (前 16 位) |
+|---|---|---|
+| `evidence/server_resource_v1/dco_value_review_20260916_r2/pretraining_comparison.png` | 294 KB | `26b41f8f3434079a` |
+| `evidence/server_resource_v1/dco_value_review_20260916_r2/audit.json` | 81 KB | `e2c449791f5db845` |
+| `evidence/server_resource_v1/dco_value_review_20260916_r2/pretraining_comparison.pdf` | 58 KB | `4cc76a23bc31de74` |
+| `evidence/server_resource_v1/dco_value_review_20260916_r2/review_dco_pretraining.py` | 19 KB | `dd26464d06a73663` |
+| `evidence/server_resource_v1/dco_value_review_20260916_r2/pidon_contract_verified_lf.py` | 11 KB | `fbf93008fd698a03` |
+| `evidence/server_resource_v1/dco_value_review_20260916_r2/REPORT.md` | 5 KB | `3a2f7f5b70005d2f` |
+
+<details><summary>输出末尾</summary>
+
+```
+Extracting and hashing random128 return
+Verifying random128 and clean128 checkpoints and saved field metrics
+{"status": "PASS", "new_updates": 0, "report": "C:\\PI-DON\\evidence\\server_resource_v1\\dco_value_review_20260916_r2\\REPORT.md", "random_scientific_result": "FAIL", "random_adam": 159240}
+```
+
+</details>
+
+## #299　2026-09-17T00:59:08　FAILED (exit 1)
+
+**BRIEF-OP：固定权重旋度算子只读证据**
+
+```
+py -3.11 run.py --action A-20260916T165849-3119b648 briefing_operator_audit --action-id A-20260916T165849-3119b648 --device cuda
+```
+
+- 耗时 12s ｜ commit `4a8fcae` (main) ⚠ **跟踪文件与该 commit 不一致，此次运行无法仅凭 commit 复现**
+- DESKTOP-0K8A2KS ｜ Windows 10 ｜ python 3.11.9 ｜ torch 2.14.0+cu126 ｜ NVIDIA GeForce GTX 1660 SUPER
+
+| 产生/修改的文件 | 大小 | sha256 (前 16 位) |
+|---|---|---|
+| `evidence/briefing_20260917/operator_audit/old_lr1e3_fig5_arrays.npz` | 433 KB | `48fc28cfeacd76b5` |
+| `evidence/briefing_20260917/operator_audit/random_fig5_arrays.npz` | 427 KB | `0c003a364fe155e9` |
+| `evidence/briefing_20260917/operator_audit/old_lr1e3_first_e_arrays.npz` | 327 KB | `1dee96367b2b2db7` |
+| `evidence/briefing_20260917/operator_audit/old_lr1e3_fig5_panel.png` | 249 KB | `a2de16cac5e2c5c9` |
+| `evidence/briefing_20260917/operator_audit/random_fig5_panel.png` | 244 KB | `7394b610f938d7db` |
+| `evidence/briefing_20260917/operator_audit/old_lr1e3_first_e_panel.png` | 185 KB | `d703dd253755c24e` |
+| `evidence/briefing_20260917/operator_audit/fig5_reconstruction_input_target.npz` | 80 KB | `34d03c4991d40a12` |
+| `evidence/briefing_20260917/operator_audit/fig5_reconstruction_spec.json` | 5 KB | `71803993f0030d19` |
+
+<details><summary>输出末尾</summary>
+
+```
+Traceback (most recent call last):
+  File "C:\PI-DON\run.py", line 95, in <module>
+    main()
+  File "C:\PI-DON\run.py", line 91, in main
+    runpy.run_path(str(matches[0]), run_name='__main__')
+  File "<frozen runpy>", line 291, in run_path
+  File "<frozen runpy>", line 98, in _run_module_code
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\PI-DON\scripts\analysis\briefing_operator_audit.py", line 297, in <module>
+    run(parser.parse_args())
+  File "C:\PI-DON\scripts\analysis\briefing_operator_audit.py", line 228, in run
+    first_cases[tag] = {"metrics": _metric_row(prediction, yee_target),
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\PI-DON\scripts\analysis\briefing_operator_audit.py", line 130, in _metric_row
+    return F.metric_summary(prediction[None], target[None])
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\PI-DON\scripts\experiments\phase1_full_run.py", line 256, in metric_summary
+    "mean_nmae": float(np.mean([s["components"][name]["nmae"] for s in samples])),
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\numpy\_core\fromnumeric.py", line 3824, in mean
+    return _methods._mean(a, axis=axis, dtype=dtype,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python311\Lib\site-packages\numpy\_core\_methods.py", line 144, in _mean
+    ret = ret / rcount
+          ~~~~^~~~~~~~
+TypeError: unsupported operand type(s) for /: 'NoneType' and 'int'
+```
+
+</details>
+
+## #300　2026-09-17T01:01:07　OK
+
+**BRIEF-OP-R1：固定权重旋度算子只读证据（零分量显式）**
+
+```
+py -3.11 run.py --action A-20260916T170046-dc84e60e briefing_operator_audit --action-id A-20260916T170046-dc84e60e --device cuda --out-dir evidence/briefing_20260917/operator_audit_r1
+```
+
+- 耗时 13s ｜ commit `4a8fcae` (main) ⚠ **跟踪文件与该 commit 不一致，此次运行无法仅凭 commit 复现**
+- DESKTOP-0K8A2KS ｜ Windows 10 ｜ python 3.11.9 ｜ torch 2.14.0+cu126 ｜ NVIDIA GeForce GTX 1660 SUPER
+
+| 产生/修改的文件 | 大小 | sha256 (前 16 位) |
+|---|---|---|
+| `evidence/briefing_20260917/operator_audit_r1/old_lr1e3_fig5_arrays.npz` | 433 KB | `48fc28cfeacd76b5` |
+| `evidence/briefing_20260917/operator_audit_r1/random_fig5_arrays.npz` | 427 KB | `0c003a364fe155e9` |
+| `evidence/briefing_20260917/operator_audit_r1/old_lr1e3_first_e_arrays.npz` | 327 KB | `1dee96367b2b2db7` |
+| `evidence/briefing_20260917/operator_audit_r1/random_first_e_arrays.npz` | 302 KB | `70eb51c76edf2777` |
+| `evidence/briefing_20260917/operator_audit_r1/old_lr1e3_fig5_panel.png` | 249 KB | `a2de16cac5e2c5c9` |
+| `evidence/briefing_20260917/operator_audit_r1/random_fig5_panel.png` | 244 KB | `7394b610f938d7db` |
+| `evidence/briefing_20260917/operator_audit_r1/old_lr1e3_first_e_panel.png` | 185 KB | `d703dd253755c24e` |
+| `evidence/briefing_20260917/operator_audit_r1/random_first_e_panel.png` | 166 KB | `7e693b5bebda8909` |
+| `evidence/briefing_20260917/operator_audit_r1/summary.json` | 134 KB | `8a323fd0c054615c` |
+| `evidence/briefing_20260917/operator_audit_r1/fig5_reconstruction_input_target.npz` | 80 KB | `34d03c4991d40a12` |
+| `evidence/briefing_20260917/operator_audit_r1/fig5_reconstruction_spec.json` | 5 KB | `71803993f0030d19` |
+| `evidence/briefing_20260917/operator_audit_r1/REPORT.md` | 1 KB | `ea4ba5d533e2b777` |
+| … 另有 1 个 | | |
+
+<details><summary>输出末尾</summary>
+
+```
+{"status": "PASS_WITH_DECLARED_S1R_VISUAL_LIMIT", "parameter_updates": 0, "output": "C:\\PI-DON\\evidence\\briefing_20260917\\operator_audit_r1"}
+```
+
+</details>
+
+## #301　2026-09-17T01:02:03　OK
+
+**BRIEF-PEC：PEC对象、支持域与梯度路径只读审计**
+
+```
+py -3.11 run.py --action A-20260916T170151-ddca0224 briefing_pec_audit --action-id A-20260916T170151-ddca0224 --out-dir evidence/briefing_20260917/pec_audit
+```
+
+- 耗时 4s ｜ commit `4a8fcae` (main) ⚠ **跟踪文件与该 commit 不一致，此次运行无法仅凭 commit 复现**
+- DESKTOP-0K8A2KS ｜ Windows 10 ｜ python 3.11.9 ｜ torch 2.14.0+cu126 ｜ NVIDIA GeForce GTX 1660 SUPER
+
+| 产生/修改的文件 | 大小 | sha256 (前 16 位) |
+|---|---|---|
+| `evidence/briefing_20260917/pec_audit/pec_tangential_masks.png` | 53 KB | `abed034497a51a47` |
+| `evidence/briefing_20260917/pec_audit/projection_gradient_support.png` | 41 KB | `9834fa390c3345ec` |
+| `evidence/briefing_20260917/pec_audit/current_pec_compute_flow.png` | 38 KB | `bddc94bb9ca9d47c` |
+| `evidence/briefing_20260917/pec_audit/summary.json` | 3 KB | `74632b74ee2f0456` |
+| `evidence/briefing_20260917/pec_audit/REPORT.md` | 1 KB | `2fb1bf8459ceb679` |
+| `evidence/briefing_20260917/pec_audit/audit.json` | 0 KB | `8d4afcd24cae6dfe` |
+
+<details><summary>输出末尾</summary>
+
+```
+{"status": "PASS", "parameter_updates": 0, "output": "C:\\PI-DON\\evidence\\briefing_20260917\\pec_audit"}
+```
+
+</details>
+
+## #302　2026-09-17T01:21:16　OK
+
+**PAPER01-PREFLIGHT：独立论文显式第一阶段CUDA预检，action A-20260916T172101-57ec2bd9**
+
+```
+py -3.11 _01/train_phase1.py preflight --output _01/evidence/preflight_cuda_20260917 --device cuda
+```
+
+- 耗时 4s ｜ commit `4a8fcae` (main) ⚠ **跟踪文件与该 commit 不一致，此次运行无法仅凭 commit 复现**
+- DESKTOP-0K8A2KS ｜ Windows 10 ｜ python 3.11.9 ｜ torch 2.14.0+cu126 ｜ NVIDIA GeForce GTX 1660 SUPER
+
+| 产生/修改的文件 | 大小 | sha256 (前 16 位) |
+|---|---|---|
+| `_01/evidence/preflight_cuda_20260917/best.pt` | 65 KB | `add9685b35c669e9` |
+| `_01/evidence/preflight_cuda_20260917/last.pt` | 65 KB | `3e0dd5b7900b10d0` |
+| `_01/evidence/preflight_cuda_20260917/sample_specs.json` | 24 KB | `6f75b64818a7851e` |
+| `_01/evidence/preflight_cuda_20260917/paper_contract.json` | 4 KB | `d515742e49eecdc8` |
+| `_01/evidence/preflight_cuda_20260917/history.jsonl` | 2 KB | `7638e581db5f5601` |
+| `_01/evidence/preflight_cuda_20260917/summary.json` | 2 KB | `197a63faba4caa6c` |
+| `_01/evidence/preflight_cuda_20260917/manifest.json` | 1 KB | `de7534f40875ef10` |
+| `_01/evidence/preflight_cuda_20260917/audit.json` | 0 KB | `6ca1f28fe510a985` |
+| `_01/evidence/preflight_cuda_20260917/REPORT.md` | 0 KB | `963e0c763613ad8c` |
+
+<details><summary>输出末尾</summary>
+
+```
+[update 00001/00002] epoch~   0.67 train_mse=1.360e+01 test_mse=1.037e+01 lr=1.0e-04 gpu_mem=0.00GiB elapsed=0.4s eta=0.4s
+[update 00002/00002] epoch~   1.33 train_mse=8.577e+00 test_mse=1.022e+01 lr=1.0e-04 gpu_mem=0.00GiB elapsed=0.4s eta=0.0s
+{"status": "PASS", "scientific_result": "PREFLIGHT_ONLY", "updates": 2, "output": "_01\\evidence\\preflight_cuda_20260917"}
+```
+
+</details>
+
+## #303　2026-09-17T01:33:53　OK
+
+**PAPER01-PREFLIGHT-R1 corrected contract CUDA preflight**
+
+```
+py -3.11 _01\train_phase1.py preflight --output _01\evidence\preflight_cuda_20260917_r1 --device cuda
+```
+
+- 耗时 5s ｜ commit `4a8fcae` (main) ⚠ **跟踪文件与该 commit 不一致，此次运行无法仅凭 commit 复现**
+- DESKTOP-0K8A2KS ｜ Windows 10 ｜ python 3.11.9 ｜ torch 2.14.0+cu126 ｜ NVIDIA GeForce GTX 1660 SUPER
+
+| 产生/修改的文件 | 大小 | sha256 (前 16 位) |
+|---|---|---|
+| `_01/evidence/preflight_cuda_20260917_r1/best.pt` | 65 KB | `3c70a019baf73b82` |
+| `_01/evidence/preflight_cuda_20260917_r1/last.pt` | 65 KB | `65edc74948bd4c49` |
+| `_01/evidence/preflight_cuda_20260917_r1/sample_specs.json` | 24 KB | `75c9ac063af6996a` |
+| `_01/evidence/preflight_cuda_20260917_r1/paper_contract.json` | 4 KB | `370a93df76cd3846` |
+| `_01/evidence/preflight_cuda_20260917_r1/history.jsonl` | 2 KB | `af9c773ace34e259` |
+| `_01/evidence/preflight_cuda_20260917_r1/summary.json` | 2 KB | `2afe28838fbc9c90` |
+| `_01/evidence/preflight_cuda_20260917_r1/manifest.json` | 1 KB | `46720404735a630d` |
+| `_01/evidence/preflight_cuda_20260917_r1/audit.json` | 0 KB | `8541952ecd478720` |
+| `_01/evidence/preflight_cuda_20260917_r1/REPORT.md` | 0 KB | `9eacd6aa9930ad32` |
+
+<details><summary>输出末尾</summary>
+
+```
+[update 00001/00002] epoch~   0.67 train_mse=9.989e+01 test_mse=8.707e+01 lr=1.0e-04 gpu_mem=0.00GiB elapsed=0.4s eta=0.4s
+[update 00002/00002] epoch~   1.33 train_mse=1.357e+02 test_mse=8.543e+01 lr=1.0e-04 gpu_mem=0.00GiB elapsed=0.4s eta=0.0s
+{"status": "PASS", "scientific_result": "PREFLIGHT_ONLY", "updates": 2, "output": "_01\\evidence\\preflight_cuda_20260917_r1"}
+```
+
+</details>

@@ -1,0 +1,108 @@
+{
+  "schema": "pidon-briefing-pec-audit-v1",
+  "status": "PASS",
+  "scientific_result": "DIAGNOSTIC_ONLY",
+  "action_id": "A-20260916T170151-ddca0224",
+  "lab_run_id": "301",
+  "parameter_updates": 0,
+  "production_apply_pec": {
+    "all_expected_zero": true,
+    "all_interior_preserved": true,
+    "unexpected_zero_count": 0,
+    "components": {
+      "Ex": {
+        "shape": [
+          7,
+          8,
+          8
+        ],
+        "expected_tangential_zero_count": 196,
+        "observed_zero_count": 196,
+        "interior_one_count": 252
+      },
+      "Ey": {
+        "shape": [
+          8,
+          7,
+          8
+        ],
+        "expected_tangential_zero_count": 196,
+        "observed_zero_count": 196,
+        "interior_one_count": 252
+      },
+      "Ez": {
+        "shape": [
+          8,
+          8,
+          7
+        ],
+        "expected_tangential_zero_count": 196,
+        "observed_zero_count": 196,
+        "interior_one_count": 252
+      }
+    }
+  },
+  "curl_e_projection": {
+    "curlE_x": {
+      "shape": [
+        8,
+        7,
+        7
+      ],
+      "low_normal_face_zero": true,
+      "high_normal_face_zero": true,
+      "interior_nonzero": true
+    },
+    "curlE_y": {
+      "shape": [
+        7,
+        8,
+        7
+      ],
+      "low_normal_face_zero": true,
+      "high_normal_face_zero": true,
+      "interior_nonzero": true
+    },
+    "curlE_z": {
+      "shape": [
+        7,
+        7,
+        8
+      ],
+      "low_normal_face_zero": true,
+      "high_normal_face_zero": true,
+      "interior_nonzero": true
+    }
+  },
+  "gradient_support_demo": {
+    "unprojected_masked_gradient_l1": 8.0,
+    "projected_masked_gradient_l1": 0.0,
+    "projected_unmasked_gradient_l1": 8.0,
+    "unprojected_gradient": [
+      1.0,
+      3.0,
+      5.0,
+      7.0
+    ],
+    "projected_gradient": [
+      0.0,
+      3.0,
+      5.0,
+      0.0
+    ]
+  },
+  "production_source_sha256_before": "f4a92760f3b4fd400be6926acc88ff653018d280d111d5961217305f468afc7f",
+  "production_source_sha256_after": "f4a92760f3b4fd400be6926acc88ff653018d280d111d5961217305f468afc7f",
+  "paper_statement": "set predicted tangential components on PECs to zero, then compute loss and backpropagate",
+  "current_confirmed_order": [
+    "fit curl H",
+    "update E",
+    "hard source",
+    "apply PEC to E",
+    "fit raw curl E",
+    "project normal curl E faces",
+    "update H"
+  ],
+  "unresolved": "whether the author's predicted tangential components refer to E, curl-E, or a tensor aligned differently",
+  "protocol_sha256": "756cc7ca61af9c6c5d55b51871ee9db6c45e44f1a8965d488fbb161b6611aecb"
+}

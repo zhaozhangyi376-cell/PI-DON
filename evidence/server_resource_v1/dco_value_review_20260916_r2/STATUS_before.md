@@ -1,22 +1,8 @@
 # STATUS — 当前复现进度快照
 
-更新：2026-09-17。旧配方长程训练继续暂停；用户批准并行推进算子/PEC审计、详细汇报和独立论文显式配置第一阶段参考。当前总计划 [PLAN](PLAN.md)，上一版快照在 `evidence/server_resource_v1/dco_value_review_20260916_r2/STATUS_before.md`。
+更新：2026-09-15。当前总计划 [PLAN](PLAN.md)，首批执行细则 [服务器资源协议](docs/plans/2026-09-15-server-resource-protocol.md)。上一版快照在 `evidence/server_resource_v1/before/`。
 
 ## 当前结论
-
-汇报前方向已收敛：[差异理由、PEC核对与工作包](docs/reports/2026-09-16-fidelity-boundary-and-briefing-plan.md)。固定权重算子审计已完成：旧`dco_lr1e3_300.pt`在重构Fig.5上的宏nMAE为0.312%，固定随机网络为21.332%，误差约相差68.4倍，证明旧DCO学到了非平凡旋度映射；但旧DCO在首个非零腔体E输入上的global relL2为7.12，显示从平面波训练分布到在线腔体状态的严重迁移失配。S1R权重未在本地，报告只列服务器原始指标，不伪造其场图。
-
-PEC计算图审计已完成：生产`apply_pec`对Ex/Ey/Ez的切向边界掩膜与预期一致，预测插入也清零对应法向curl面；但玩具自动微分表明，loss前边界置零与更新后硬投影的边界梯度支撑不同，因此当前实现不能宣称与论文PEC路径等价。作者的具体张量错位与mask细节仍未公开。
-
-汇报交付已完成：`汇报素材/PI-DON导师汇报_20260917_r3.pptx`共44页，配套逐页讲稿、Q&A和缩略总览；44页全部渲染且无几何溢出。用户已要求PPT终稿暂停，r3/r4只作为素材底稿，后续等用户写出自己的理解后再收敛成短汇报。独立`_01`论文显式第一阶段参考线已回传审计：1000样本、25000 Adam、恒定1e-4、等效batch32、fresh随机初始化和本地R1合同均核对通过；但科学门FAIL，开发集宏nMAE=9.2334%，relL2 p90=57.9028%，Eq.(5) MRE均值=2.0180，三项登记门均未过。它不解锁第二阶段、1024或8192。
-
-随机128已审核：服务器lab313，行动A-20260916T131636-74a4f0e0，交付PASS、科学FAIL。128步、159240 Adam、6837.28秒；Q=3.1335%，Ex/Ey nMAE=1.7801%/1.7705%。预训练128为261209 Adam、11074.07秒、Q=3.0811%，Ex/Ey=1.5486%/1.6308%。两组同在69步首次分量门失败；随机组更新少39.04%、时间少38.26%，但均未通过最终场门，不作合格求解的加速认证。
-
-本地lab298（0更新）核对随机22项产出哈希，重算两组32/64/128快照指标一致，核心源码哈希相同，冻结配置仅init不同。此前两次本地审计尝试lab296/297因异类账本事件、CRLF/LF字节差异退出，均0更新，现场保留。指标源文件换成LF后与服务器哈希精确一致，并另存验证副本。
-
-当前P实际使用旧300轮DCO，非S1R。S1R也不是逐细节论文复现：使用cellsize输入、RMS归一化、余弦调度。首个相同E目标上P初始R=50.6929、6647更新过门；随机R=1.0352、891更新过门，支持当前输入上的不利迁移迹象。随机组仍有完整DCO网络，只省去预训练。新训练暂停；1024/8192不启动。详见[数值审计](evidence/server_resource_v1/dco_value_review_20260916_r2/REPORT.md)和[方法回顾](docs/reports/2026-09-16-dco-value-retrospective.md)。
-
-## 前序证据背景
 
 服务器已完成一次1000轮、25000 Adam更新的S1R第一阶段训练。SR-COMPARE回传后，本地已核对S1R的history/summary/audit/stage、best/last、lab hash和checkpoint update计数：交付PASS、科学FAIL。旧S1中断保持INCOMPLETE，S1R禁止原样重复启动。
 
@@ -62,17 +48,7 @@ PEC计算图审计已完成：生产`apply_pec`对Ex/Ey/Ez的切向边界掩膜�
 | SR-64 | FAIL（服务器#304），33896 Adam | 35步通过；第36步E半步拟合失败，E残差3.4467e-5；未到57/58旧场门瓶颈 |
 | SR-64-LOWLR-CLEAN | PASS，178204 Adam | 从0开始低学习率64步通过；64步Q=2.934%，六分量门通过 |
 | SR-128-LOWLR-CLEAN | 交付PASS / 科学FAIL，261209 Adam | 从0开始低学习率128步完成；64步场门通过；128步Q=3.081%，但Ex/Ey nMAE=1.5486%/1.6308%，第69步首次分量门失败 |
-| SR-128-PAPER-TOL-DIAG | FAIL，66173 Adam | 项目`R<1e-4`诊断到64步停止；64步Q=9.041%；未确认该R等于论文loss |
-| SR-64-LOWLR-RANDOM | PASS，84881 Adam | 同clean64规则通过64步；成本低于预训练clean64；该配方未支持预训练成本收益 |
-| SR-128-LOWLR-RANDOM | 交付PASS / 科学FAIL，159240 Adam | 128步Q=3.1335%；Ex/Ey=1.7801%/1.7705%；不进入1024 |
-| SR-DCO-REVIEW | 审计PASS，本地lab298，0更新 | 完成证据回顾和论文实现对照；按用户要求暂停新训练 |
-| BRIEF-OP | INCOMPLETE，本地lab299，0更新 | 首次聚合遇到零参考分量空值；现场保留，不改判 |
-| BRIEF-OP-R1 | 诊断PASS，本地lab300，0更新 | 旧DCO Fig.5宏nMAE 0.312%，固定随机21.332%；首个腔体E暴露分布迁移失配 |
-| BRIEF-PEC | 诊断PASS，本地lab301，0更新 | PEC掩膜正确；硬投影与loss前置零的梯度路径不同，尚非作者等价实现 |
-| BRIEF-DECK | PASS | 44页PPT、逐页讲稿、Q&A和总览图完成，44/44渲染无溢出 |
-| PAPER01-PREFLIGHT | PASS，本地lab302，2 Adam | 独立`_01`的恒定1e-4、等效batch、fresh目录和证据写入通过；不计科学成绩 |
-| PAPER01-PREFLIGHT-R1 | PASS，本地lab303，2 Adam | 修正忠实度分类和Eq.(4)幅值构造后重新预检；合同哈希`370a93df...`，不计科学成绩 |
-| PAPER01-S1 | 交付PASS / 科学FAIL | 服务器完整25000 Adam；合同、history、checkpoint哈希均通过；宏nMAE=9.2334%，relL2 p90=57.9028%，Eq.(5) MRE=2.0180，三项登记门均失败 |
+| SR-128-PAPER-TOL-DIAG | FAIL，66173 Adam | `tol=1e-4`诊断到64步停止；64步Q=9.041%，field gate FAIL；不继续128/1024 |`r`n| SR-64-LOWLR-RANDOM | PASS，84881 Adam | 随机初始化同clean64规则通过64步；64步Q=2.932%，成本低于预训练clean64；预训练收益不成立 |
 | SR-S1/SR-G128 | BLOCKED | SR-S1本批不消耗；SR-G128需新64/128场门证据后再审 |
 | L1/G1024/L2/U | NOT_RUN | 无新合格128轨迹，不启动1024/8192 |
 

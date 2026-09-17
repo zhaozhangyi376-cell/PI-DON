@@ -1,0 +1,25 @@
+{
+  "schema": "pidon-paper01-s1-run-v1",
+  "created_utc": "2026-09-16T17:21:15.295325+00:00",
+  "mode": "preflight",
+  "claim": "paper-explicit reference; not author-code identity",
+  "config": {
+    "output": "_01\\evidence\\preflight_cuda_20260917",
+    "grid": 8,
+    "samples": 8,
+    "effective_batch": 4,
+    "microbatch": 2,
+    "updates": 2,
+    "levels": 2,
+    "base": 2,
+    "device": "cuda",
+    "learning_rate": 0.0001,
+    "seed": 2026091701,
+    "validation_every": 1,
+    "progress_every": 1
+  },
+  "contract_sha256": "d515742e49eecdc8d80316e0aed24cd7b4427bc21e753f8483939d4dc5417832",
+  "parameter_count": 2313,
+  "initial_checkpoint": null,
+  "old_evidence_reused": false
+}

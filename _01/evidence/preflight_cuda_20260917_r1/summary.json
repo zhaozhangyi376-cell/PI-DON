@@ -1,0 +1,72 @@
+{
+  "schema": "pidon-paper01-s1-summary-v1",
+  "status": "PASS",
+  "scientific_result": "PREFLIGHT_ONLY",
+  "mode": "preflight",
+  "updates": 2,
+  "parameter_updates": 2,
+  "learning_rates": [
+    0.0001,
+    0.0001
+  ],
+  "best_test_mse": 85.43094889322917,
+  "best_update": 2,
+  "final_test_mse": 85.43094889322917,
+  "final_metrics": {
+    "samples": 2,
+    "macro_nmae_mean": 6.0029860734939575,
+    "global_rel_l2_p90": 18.67357177734375,
+    "macro_mre_eq5_mean": 32.67501084009806,
+    "individual": [
+      {
+        "macro_nmae": 10.275867462158203,
+        "global_rel_l2": 20.38262176513672,
+        "macro_mre_eq5": 53.726576487223305,
+        "components": [
+          {
+            "nmae": 10.156539916992188,
+            "rel_l2": 19.86518096923828,
+            "mre_eq5": 52.88393020629883
+          },
+          {
+            "nmae": 9.417142868041992,
+            "rel_l2": 18.58883285522461,
+            "mre_eq5": 48.753868103027344
+          },
+          {
+            "nmae": 11.25391960144043,
+            "rel_l2": 22.619346618652344,
+            "mre_eq5": 59.54193115234375
+          }
+        ]
+      },
+      {
+        "macro_nmae": 1.730104684829712,
+        "global_rel_l2": 3.2921218872070312,
+        "macro_mre_eq5": 11.623445192972818,
+        "components": [
+          {
+            "nmae": 1.653318166732788,
+            "rel_l2": 3.1194756031036377,
+            "mre_eq5": 16.17107391357422
+          },
+          {
+            "nmae": 1.9953709840774536,
+            "rel_l2": 3.7056632041931152,
+            "mre_eq5": 8.900077819824219
+          },
+          {
+            "nmae": 1.541624903678894,
+            "rel_l2": 2.983816385269165,
+            "mre_eq5": 9.79918384552002
+          }
+        ]
+      }
+    ]
+  },
+  "elapsed_seconds": 0.41007749998243526,
+  "data_seconds": 0.009682100004283711,
+  "contract_sha256": "370a93df76cd3846a8fef3021e3c0ca7b5b35ee7c4a6a1e52b07403a93568fd4",
+  "old_checkpoint_loaded": false,
+  "output": "_01\\evidence\\preflight_cuda_20260917_r1"
+}

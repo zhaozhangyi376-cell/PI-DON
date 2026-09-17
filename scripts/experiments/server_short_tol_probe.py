@@ -136,13 +136,14 @@ def progress_line(row: dict[str, Any], requested_steps: int, total_cost: dict[st
 
 
 def make_config(out: Path, args: argparse.Namespace, steps: int) -> argparse.Namespace:
+    init = getattr(args, "init", None) or display(MASTER)
     return argparse.Namespace(
         config="",
         steps=steps,
         n=31,
         side=0.05,
         dt=3.075e-12,
-        init=display(MASTER),
+        init=init,
         tol=float(args.tol),
         tol_mode="rel",
         max_inner=int(args.per_fit_cap),
@@ -315,7 +316,7 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
         row.update({
             "arm": "TOL1E5-P",
             "arm_spec": {
-                "init": display(MASTER),
+                "init": getattr(args, "init", None) or display(MASTER),
                 "tol": config.tol,
                 "lr": config.lr,
                 "reset_opt_each_step": config.reset_opt_each_step,
@@ -438,6 +439,7 @@ if __name__ == "__main__":
     parser.add_argument("--seed", type=int, default=2026091508)
     parser.add_argument("--target-steps", type=int, default=64)
     parser.add_argument("--output-name", default="short_tol_probe")
+    parser.add_argument("--init", default=display(MASTER))
     parser.add_argument("--continue-to-128-if-pass64", action="store_true")
     parser.add_argument("--per-fit-cap", type=int, default=PER_FIT_CAP)
     parser.add_argument("--overall-adam-cap", type=int, default=ADAM_CAP)

@@ -1,0 +1,9 @@
+{
+  "manifest_present": true,
+  "contract_present": true,
+  "constant_lr": true,
+  "checkpoint_init": null,
+  "parameter_updates": 25000,
+  "best_checkpoint_sha256": "aac27a0afd4355a6042af9315710482c061a21bb63e0b3f651c5d1fd0e121b31",
+  "last_checkpoint_sha256": "ecfd1ba8a02b59b05c1c38acddc9fee56f45177f91950ef72d3177007cbf62be"
+}

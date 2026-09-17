@@ -1,0 +1,72 @@
+{
+  "schema": "pidon-paper01-s1-summary-v1",
+  "status": "PASS",
+  "scientific_result": "PREFLIGHT_ONLY",
+  "mode": "preflight",
+  "updates": 2,
+  "parameter_updates": 2,
+  "learning_rates": [
+    0.0001,
+    0.0001
+  ],
+  "best_test_mse": 10.219940185546875,
+  "best_update": 2,
+  "final_test_mse": 10.219940185546875,
+  "final_metrics": {
+    "samples": 2,
+    "macro_nmae_mean": 2.3208629488945007,
+    "global_rel_l2_p90": 7.268806338310242,
+    "macro_mre_eq5_mean": 18.32097848256429,
+    "individual": [
+      {
+        "macro_nmae": 3.223863124847412,
+        "global_rel_l2": 7.776052951812744,
+        "macro_mre_eq5": 27.103083928426106,
+        "components": [
+          {
+            "nmae": 3.3062520027160645,
+            "rel_l2": 8.176996231079102,
+            "mre_eq5": 28.452646255493164
+          },
+          {
+            "nmae": 3.3173553943634033,
+            "rel_l2": 7.961521625518799,
+            "mre_eq5": 27.015735626220703
+          },
+          {
+            "nmae": 3.0479819774627686,
+            "rel_l2": 7.173469543457031,
+            "mre_eq5": 25.840869903564453
+          }
+        ]
+      },
+      {
+        "macro_nmae": 1.4178627729415894,
+        "global_rel_l2": 2.7035868167877197,
+        "macro_mre_eq5": 9.538873036702475,
+        "components": [
+          {
+            "nmae": 1.2068064212799072,
+            "rel_l2": 2.408405065536499,
+            "mre_eq5": 8.757851600646973
+          },
+          {
+            "nmae": 1.7128981351852417,
+            "rel_l2": 3.3199124336242676,
+            "mre_eq5": 11.75654411315918
+          },
+          {
+            "nmae": 1.3338837623596191,
+            "rel_l2": 2.256232500076294,
+            "mre_eq5": 8.10222339630127
+          }
+        ]
+      }
+    ]
+  },
+  "elapsed_seconds": 0.4339767000055872,
+  "data_seconds": 0.007103300013113767,
+  "contract_sha256": "d515742e49eecdc8d80316e0aed24cd7b4427bc21e753f8483939d4dc5417832",
+  "old_checkpoint_loaded": false,
+  "output": "_01\\evidence\\preflight_cuda_20260917"
+}
