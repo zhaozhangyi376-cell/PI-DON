@@ -97,6 +97,8 @@ C:\PI-DON\evidence\paper01_s1\paper01_ablation_return_review.md
 C:\PI-DON\evidence\paper01_s1\paper01_ablation_return_review.json
 ```
 
+回传后的分叉判断见：[PAPER01-ABLATION-SMOKE 回传后决策表](PAPER01_ABLATION_DECISION.md)。
+
 ## 5. 失败时怎么处理
 
 - 如果服务器任务中断，不要删除 `_01\evidence\paper01_ablation_v1`。
