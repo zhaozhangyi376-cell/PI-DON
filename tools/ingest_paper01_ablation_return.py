@@ -13,6 +13,8 @@ ROOT = Path(__file__).resolve().parents[1]
 IMPORT_ROOT = ROOT / "evidence" / "paper01_s1" / "imports"
 REVIEW_JSON = ROOT / "evidence" / "paper01_s1" / "paper01_ablation_return_review.json"
 REVIEW_MD = ROOT / "evidence" / "paper01_s1" / "paper01_ablation_return_review.md"
+TASK_ID = "PAPER01-ABLATION-SMOKE"
+PROTOCOL = "docs/plans/2026-09-17-paper01-ablation-smoke-protocol.md"
 
 
 def read_json(path: Path) -> Any:
@@ -22,6 +24,13 @@ def read_json(path: Path) -> Any:
 def write_json(path: Path, data: Any) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(data, indent=2, ensure_ascii=False, default=str) + "\n", encoding="utf-8")
+
+
+def relative(path: Path) -> str:
+    try:
+        return path.resolve().relative_to(ROOT).as_posix()
+    except ValueError:
+        return str(path)
 
 
 def unique_import_dir(zip_path: Path) -> Path:
@@ -140,6 +149,39 @@ def write_report(data: dict[str, Any]) -> None:
     REVIEW_MD.write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 
+def apply_plan_update(plan: dict[str, Any], data: dict[str, Any], evidence: list[str]) -> None:
+    task = next((item for item in plan.get("tasks", []) if item.get("id") == TASK_ID), None)
+    if task is None:
+        raise SystemExit(f"Missing registered task {TASK_ID}")
+    task["status"] = data.get("status", "INCOMPLETE")
+    task["scientific_result"] = data.get("scientific_result", "DIAGNOSTIC_ONLY")
+    task["evidence"] = evidence
+    best = data.get("best_macro_nmae_variant") or {}
+    recommendation = data.get("recommendation") or {}
+    task["summary"] = (
+        f"PAPER01 ablation returned {data.get('status')}; "
+        f"updates={data.get('parameter_updates')}; "
+        f"best={best.get('variant')}; "
+        f"best_vs_baseline_macro_nmae_ratio={data.get('best_vs_baseline_macro_nmae_ratio')}; "
+        f"recommendation={recommendation.get('code')}; no stage-two or long-run unlock."
+    )
+    if plan.get("current_task") == TASK_ID:
+        plan["current_task"] = None
+
+
+def update_plan(data: dict[str, Any]) -> None:
+    plan_path = ROOT / "project" / "plan.json"
+    plan = read_json(plan_path)
+    evidence = [
+        PROTOCOL,
+        relative(Path(data["summary_path"])),
+        relative(REVIEW_JSON),
+        relative(REVIEW_MD),
+    ]
+    apply_plan_update(plan, data, evidence)
+    write_json(plan_path, plan)
+
+
 def ingest(zip_path: Path) -> dict[str, Any]:
     zip_path = zip_path.resolve()
     if not zip_path.is_file():
@@ -153,6 +195,7 @@ def ingest(zip_path: Path) -> dict[str, Any]:
     data = review(summary_path, import_dir)
     write_json(REVIEW_JSON, data)
     write_report(data)
+    update_plan(data)
     return data
 
 
